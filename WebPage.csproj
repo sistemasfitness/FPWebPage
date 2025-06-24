@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E86E77B-C84D-4088-B882-3802B4D11511}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebPage</RootNamespace>
+    <AssemblyName>WebPage</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44382</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedNumerics.BigDecimal, Version=2025.1001.2.129, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
+      <HintPath>packages\ExtendedNumerics.BigDecimal.2025.1001.2.129\lib\net48\ExtendedNumerics.BigDecimal.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.29.3.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.29.3\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.2.13, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.Streams.1.3.8\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.Signed.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.1.0\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>packages\Npgsql.8.0.3\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.Core, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.2\lib\net472\NPOI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.2\lib\net472\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.2\lib\net472\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.2\lib\net472\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.ImageSharp.2.1.9\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.9.0.4\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp, Version=0.8.4.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>packages\ZstdSharp.Port.0.8.4\lib\net462\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="404.html" />
+    <Content Include="assets\validate.js" />
+    <Content Include="blog.aspx" />
+    <Content Include="blogpost.aspx" />
+    <Content Include="carrito1.aspx" />
+    <Content Include="carrito2.aspx" />
+    <Content Include="carrito3.aspx" />
+    <Content Include="carrito4.aspx" />
+    <Content Include="cart-page-1.html" />
+    <Content Include="cart-page-2.html" />
+    <Content Include="cart-page-3.html" />
+    <Content Include="contacto.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="controls\footer.ascx" />
+    <Content Include="controls\loginregister.ascx" />
+    <Content Include="controls\mainmenu.ascx" />
+    <Content Include="controls\mainmenulanding.ascx" />
+    <Content Include="controls\mainmenunew.ascx" />
+    <Content Include="corporativo.aspx" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\animate.min.css" />
+    <Content Include="css\blog.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\calculators.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\icon_fonts\css\all_icons.css" />
+    <Content Include="css\icon_fonts\css\all_icons.min.css" />
+    <Content Include="css\icon_fonts\css\fontello-codes.css" />
+    <Content Include="css\icon_fonts\css\icon_set_1.css" />
+    <Content Include="css\icon_fonts\css\icon_set_2.css" />
+    <Content Include="css\icon_fonts\demo_icon_set_1.html" />
+    <Content Include="css\icon_fonts\demo_icon_set_2.html" />
+    <Content Include="css\icon_fonts\font\ElegantIcons.svg" />
+    <Content Include="css\icon_fonts\font\fontello.svg" />
+    <Content Include="css\ion.rangeSlider.css" />
+    <Content Include="css\ion.rangeSlider.min.css" />
+    <Content Include="css\jquery.cookiebar.css" />
+    <Content Include="css\magnific-popup.css" />
+    <Content Include="css\magnific-popup.min.css" />
+    <Content Include="css\menu.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\owl.carousel.min.css" />
+    <Content Include="css\owl.theme.default.css" />
+    <Content Include="css\owl.theme.default.min.css" />
+    <Content Include="css\pop_up.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\style.css" />
+    <Content Include="default.aspx" />
+    <Content Include="default_.aspx" />
+    <Content Include="eliminarproductocarrito.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="gracias.aspx" />
+    <Content Include="gympass.aspx" />
+    <Content Include="img\10_meses_prebd02.jpg" />
+    <Content Include="img\10_meses_prebd03.jpg" />
+    <Content Include="img\10_meses_pre_bd.jpg" />
+    <Content Include="img\android_apple.svg" />
+    <Content Include="img\apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="img\apple-touch-icon-144x144-precomposed.png" />
+    <Content Include="img\apple-touch-icon-57x57-precomposed.png" />
+    <Content Include="img\apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="img\arrow_down.svg" />
+    <Content Include="img\avatar1.jpg" />
+    <Content Include="img\avatar2.jpg" />
+    <Content Include="img\avatar3.jpg" />
+    <Content Include="img\bg_feat.jpg" />
+    <Content Include="img\bg_subscribe.png" />
+    <Content Include="img\blog-1.jpg" />
+    <Content Include="img\blog-2.jpg" />
+    <Content Include="img\blog-3.jpg" />
+    <Content Include="img\blog\ARTICULO-1-1200x800-1.jpg" />
+    <Content Include="img\blog\ARTICULO-2-1200x800-1.jpg" />
+    <Content Include="img\blog\ARTICULO-3-1200x800-1.jpg" />
+    <Content Include="img\cards.png" />
+    <Content Include="img\check_radio_sheet.png" />
+    <Content Include="img\clientes\coopfuturo.png" />
+    <Content Include="img\clientes\cooprofesores.png" />
+    <Content Include="img\clientes\fecolsa.png" />
+    <Content Include="img\clientes\freskoop.png" />
+    <Content Include="img\corporativo.png" />
+    <Content Include="img\course_1.jpg" />
+    <Content Include="img\course_2.jpg" />
+    <Content Include="img\course_3.jpg" />
+    <Content Include="img\course_4.jpg" />
+    <Content Include="img\course_5.jpg" />
+    <Content Include="img\course_6.jpg" />
+    <Content Include="img\course_7.jpg" />
+    <Content Include="img\course_8.jpg" />
+    <Content Include="img\devices.png" />
+    <Content Include="img\devices_2.png" />
+    <Content Include="img\dots_vert.png" />
+    <Content Include="img\down_arrow_select.png" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="img\favicon_.ico" />
+    <Content Include="img\female-bodybuilder-sitting-giant-tire.jpg" />
+    <Content Include="img\fix_ie_9_menu.png" />
+    <Content Include="img\footer_img.png" />
+    <Content Include="img\fp-logo-lime-f-min.svg" />
+    <Content Include="img\fp-sede-flb-cnv-18.jpg" />
+    <Content Include="img\freepass-01.png" />
+    <Content Include="img\full_bodu.png" />
+    <Content Include="img\full_body.png" />
+    <Content Include="img\gallery\gallery_1.jpg" />
+    <Content Include="img\gallery\gallery_2.jpg" />
+    <Content Include="img\gallery\gallery_3.jpg" />
+    <Content Include="img\gallery\gallery_4.jpg" />
+    <Content Include="img\gallery\gallery_5.jpg" />
+    <Content Include="img\gallery\gallery_6.jpg" />
+    <Content Include="img\gallery\gallery_7.jpg" />
+    <Content Include="img\gallery\gallery_8.jpg" />
+    <Content Include="img\gallery\salon-spinning-fitness-people-gimnasio-300x300.png" />
+    <Content Include="img\gallery\zona-cardiovascular-fitness-people-gimnasio-300x300.png" />
+    <Content Include="img\gallery\zona-mancuernas-fitness-people-01-300x300.png" />
+    <Content Include="img\gallery\zona-poleas-fitness-people-01-300x300.png" />
+    <Content Include="img\head_contact_.jpg" />
+    <Content Include="img\head_corporate_.jpg" />
+    <Content Include="img\head_services_.jpg" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-114x114.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-120x120.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-144x144.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-152x152.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-180x180.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-57x57.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-72x72.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon-76x76.png" />
+    <Content Include="img\iconified\iconified\apple-touch-icon.png" />
+    <Content Include="img\iconified\iconified\favicon.ico" />
+    <Content Include="img\iconified\iconified\iconifier-readme.txt" />
+    <Content Include="img\icon_1.svg" />
+    <Content Include="img\icon_2.svg" />
+    <Content Include="img\icon_3.svg" />
+    <Content Include="img\icon_ccv.gif" />
+    <Content Include="img\ips_3.png" />
+    <Content Include="img\isologo blanco-8.png" />
+    <Content Include="img\isologo negro-8.png" />
+    <Content Include="img\isologo verde-8.png" />
+    <Content Include="img\loader.gif" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo_2x.png" />
+    <Content Include="img\logo_sticky.png" />
+    <Content Include="img\logo_sticky_2x.png" />
+    <Content Include="img\lower_body.png" />
+    <Content Include="img\map-marker.png" />
+    <Content Include="img\middle_body.png" />
+    <Content Include="img\office.jpg" />
+    <Content Include="img\payments.png" />
+    <Content Include="img\payments_2x.png" />
+    <Content Include="img\paypal_bt.png" />
+    <Content Include="img\peoplewear.jpg" />
+    <Content Include="img\planes\10meses.jpg" />
+    <Content Include="img\planes\190fast.jpg" />
+    <Content Include="img\planes\4meses.jpg" />
+    <Content Include="img\planes\890meses.jpg" />
+    <Content Include="img\planes\99easy.jpg" />
+    <Content Include="img\planes\debito.jpg" />
+    <Content Include="img\planes\meseasy.jpg" />
+    <Content Include="img\planes\mesfast.jpg" />
+    <Content Include="img\planes\plan10meses.jpg" />
+    <Content Include="img\planes\planeasyweb.jpg" />
+    <Content Include="img\popup_img.jpg" />
+    <Content Include="img\promo_bg.jpg" />
+    <Content Include="img\ribbon.png" />
+    <Content Include="img\ribbon_01.png" />
+    <Content Include="img\ribbon_02.png" />
+    <Content Include="img\ribbon_2.png" />
+    <Content Include="img\sedes\1.png" />
+    <Content Include="img\sedes\2.png" />
+    <Content Include="img\sedes\banners\boulevard.jpg" />
+    <Content Include="img\sedes\banners\CABECERA.jpg" />
+    <Content Include="img\sedes\banners\canaveral.jpg" />
+    <Content Include="img\sedes\banners\ceiba.jpg" />
+    <Content Include="img\sedes\banners\CIUDADELA.jpg" />
+    <Content Include="img\sedes\banners\DELACUESTA.jpg" />
+    <Content Include="img\sedes\banners\jardin.jpg" />
+    <Content Include="img\sedes\banners\parquecentral.jpg" />
+    <Content Include="img\sedes\banners\prado.jpg" />
+    <Content Include="img\sedes\banners\PROVENZA.jpg" />
+    <Content Include="img\sedes\boulevard.png" />
+    <Content Include="img\sedes\cabecera.png" />
+    <Content Include="img\sedes\canaveral.png" />
+    <Content Include="img\sedes\ceiba.png" />
+    <Content Include="img\sedes\ciudadela.png" />
+    <Content Include="img\sedes\delacuesta.png" />
+    <Content Include="img\sedes\jardin.png" />
+    <Content Include="img\sedes\parquecentral.png" />
+    <Content Include="img\sedes\provenza.png" />
+    <Content Include="img\servicios.png" />
+    <Content Include="img\shadow_box.png" />
+    <Content Include="img\shadow_top.png" />
+    <Content Include="img\slides\banner_1.jpg" />
+    <Content Include="img\slides\banner_2.jpg" />
+    <Content Include="img\slides\banner_3.jpg" />
+    <Content Include="img\slides\banner_4.jpg" />
+    <Content Include="img\slides\banner_5.jpg" />
+    <Content Include="img\slides\slide_1.jpg" />
+    <Content Include="img\slides\slide_2.jpg" />
+    <Content Include="img\slides\slide_3.jpg" />
+    <Content Include="img\sprite-skin-flat.png" />
+    <Content Include="img\sub_header_about.jpg" />
+    <Content Include="img\sub_header_general.jpg" />
+    <Content Include="img\sub_header_home.jpg" />
+    <Content Include="img\sub_header_short.jpg" />
+    <Content Include="img\teacher_2_small.jpg" />
+    <Content Include="img\team\team-1.jpg" />
+    <Content Include="img\team\team-2.jpg" />
+    <Content Include="img\team\team-3.jpg" />
+    <Content Include="img\team\team-4.jpg" />
+    <Content Include="img\testimonial_1.jpg" />
+    <Content Include="img\thumb_cart_1.jpg" />
+    <Content Include="img\thumb_cart_2.jpg" />
+    <Content Include="img\thumb_cart_3.jpg" />
+    <Content Include="img\thumb_cart_4.jpg" />
+    <Content Include="img\top_body.png" />
+    <Content Include="img\video_fix.png" />
+    <Content Include="img\wompi\amex.svg" />
+    <Content Include="img\wompi\bancolombia.png" />
+    <Content Include="img\wompi\bancolombia.svg" />
+    <Content Include="img\wompi\compraypaga.svg" />
+    <Content Include="img\wompi\creditcard.jpg" />
+    <Content Include="img\wompi\daviplata.svg" />
+    <Content Include="img\wompi\efectivo.svg" />
+    <Content Include="img\wompi\mastercard.svg" />
+    <Content Include="img\wompi\nequi.jpg" />
+    <Content Include="img\wompi\nequi.png" />
+    <Content Include="img\wompi\pse.png" />
+    <Content Include="img\wompi\qrbancolombia.svg" />
+    <Content Include="img\wompi\supay.svg" />
+    <Content Include="img\wompi\visa.svg" />
+    <Content Include="img\wompi\wompi.svg" />
+    <Content Include="img\workout_1.jpg" />
+    <Content Include="img\workout_2.jpg" />
+    <Content Include="img\workout_3.jpg" />
+    <Content Include="img\workout_4.jpg" />
+    <Content Include="index_.html" />
+    <Content Include="js\animatedModal.js" />
+    <Content Include="js\animatedModal.min.js" />
+    <Content Include="js\bootstrap-portfilter.js" />
+    <Content Include="js\bootstrap-portfilter.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\calories_calculators.js" />
+    <Content Include="js\calories_calculators.min.js" />
+    <Content Include="js\common_scripts_min.js" />
+    <Content Include="js\fitnesspeople.js" />
+    <Content Include="js\functions.js" />
+    <Content Include="js\ion.rangeSlider.js" />
+    <Content Include="js\ion.rangeSlider.min.js" />
+    <Content Include="js\jarallax-video.js" />
+    <Content Include="js\jarallax-video.min.js" />
+    <Content Include="js\jarallax.js" />
+    <Content Include="js\jarallax.min.js" />
+    <Content Include="js\jquery-2.2.4.min.js" />
+    <Content Include="js\jquery.cookiebar.js" />
+    <Content Include="js\jquery.fitvids.js" />
+    <Content Include="js\jquery.magnific-popup.js" />
+    <Content Include="js\jquery.magnific-popup.min.js" />
+    <Content Include="js\mapmarker.jquery.js" />
+    <Content Include="js\mapmarker_func.jquery.js" />
+    <Content Include="js\menu.js" />
+    <Content Include="js\modernizr.js" />
+    <Content Include="js\owl.carousel.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\parallax.min.js" />
+    <Content Include="js\pop_up.js" />
+    <Content Include="js\pop_up.min.js" />
+    <Content Include="js\pop_up_func.js" />
+    <Content Include="js\respond.min.js" />
+    <Content Include="js\retina-replace.js" />
+    <Content Include="js\retina-replace.min.js" />
+    <Content Include="js\switchery.js" />
+    <Content Include="js\switchery.min.js" />
+    <Content Include="js\theia-sticky-sidebar.js" />
+    <Content Include="js\video_header.js" />
+    <Content Include="js\wow.js" />
+    <Content Include="js\wow.min.js" />
+    <Content Include="layerslider\css\blank.gif" />
+    <Content Include="layerslider\css\layerslider.css" />
+    <Content Include="layerslider\css\layerslider.min.css" />
+    <Content Include="layerslider\js\greensock.js" />
+    <Content Include="layerslider\js\jquery.js" />
+    <Content Include="layerslider\js\layerslider.kreaturamedia.jquery.js" />
+    <Content Include="layerslider\js\layerslider.transitions.js" />
+    <Content Include="layerslider\skins\borderlessdark3d\loading.gif" />
+    <Content Include="layerslider\skins\borderlessdark3d\nothumb.png" />
+    <Content Include="layerslider\skins\borderlessdark3d\shadow.png" />
+    <Content Include="layerslider\skins\borderlessdark3d\skin.css" />
+    <Content Include="layerslider\skins\borderlessdark3d\skin.png" />
+    <Content Include="layerslider\skins\borderlessdark\loading.gif" />
+    <Content Include="layerslider\skins\borderlessdark\nothumb.png" />
+    <Content Include="layerslider\skins\borderlessdark\shadow.png" />
+    <Content Include="layerslider\skins\borderlessdark\skin.css" />
+    <Content Include="layerslider\skins\borderlessdark\skin.png" />
+    <Content Include="layerslider\skins\borderlesslight3d\loading.gif" />
+    <Content Include="layerslider\skins\borderlesslight3d\nothumb.png" />
+    <Content Include="layerslider\skins\borderlesslight3d\shadow.png" />
+    <Content Include="layerslider\skins\borderlesslight3d\skin.css" />
+    <Content Include="layerslider\skins\borderlesslight3d\skin.png" />
+    <Content Include="layerslider\skins\borderlesslight\loading.gif" />
+    <Content Include="layerslider\skins\borderlesslight\nothumb.png" />
+    <Content Include="layerslider\skins\borderlesslight\shadow.png" />
+    <Content Include="layerslider\skins\borderlesslight\skin.css" />
+    <Content Include="layerslider\skins\borderlesslight\skin.png" />
+    <Content Include="layerslider\skins\carousel\loading.gif" />
+    <Content Include="layerslider\skins\carousel\nothumb.png" />
+    <Content Include="layerslider\skins\carousel\skin.css" />
+    <Content Include="layerslider\skins\carousel\skin.png" />
+    <Content Include="layerslider\skins\darkskin\loading.gif" />
+    <Content Include="layerslider\skins\darkskin\nothumb.png" />
+    <Content Include="layerslider\skins\darkskin\skin.css" />
+    <Content Include="layerslider\skins\darkskin\skin.png" />
+    <Content Include="layerslider\skins\defaultskin\loading.gif" />
+    <Content Include="layerslider\skins\defaultskin\nothumb.png" />
+    <Content Include="layerslider\skins\defaultskin\skin.css" />
+    <Content Include="layerslider\skins\defaultskin\skin.png" />
+    <Content Include="layerslider\skins\fullwidthdark\loading.gif" />
+    <Content Include="layerslider\skins\fullwidthdark\nothumb.png" />
+    <Content Include="layerslider\skins\fullwidthdark\skin.css" />
+    <Content Include="layerslider\skins\fullwidthdark\skin.png" />
+    <Content Include="layerslider\skins\fullwidth\loading.gif" />
+    <Content Include="layerslider\skins\fullwidth\nothumb.png" />
+    <Content Include="layerslider\skins\fullwidth\skin.css" />
+    <Content Include="layerslider\skins\fullwidth\skin.png" />
+    <Content Include="layerslider\skins\glass\loading.gif" />
+    <Content Include="layerslider\skins\glass\nothumb.png" />
+    <Content Include="layerslider\skins\glass\shadow.png" />
+    <Content Include="layerslider\skins\glass\skin.css" />
+    <Content Include="layerslider\skins\glass\skin.png" />
+    <Content Include="layerslider\skins\lightskin\loading.gif" />
+    <Content Include="layerslider\skins\lightskin\nothumb.png" />
+    <Content Include="layerslider\skins\lightskin\skin.css" />
+    <Content Include="layerslider\skins\lightskin\skin.png" />
+    <Content Include="layerslider\skins\minimal\loading.gif" />
+    <Content Include="layerslider\skins\minimal\nothumb.png" />
+    <Content Include="layerslider\skins\minimal\skin.css" />
+    <Content Include="layerslider\skins\minimal\skin.png" />
+    <Content Include="layerslider\skins\noskin\loading.gif" />
+    <Content Include="layerslider\skins\noskin\nothumb.png" />
+    <Content Include="layerslider\skins\noskin\skin.css" />
+    <Content Include="layerslider\skins\noskin\skin.png" />
+    <Content Include="layerslider\skins\v5\loading.gif" />
+    <Content Include="layerslider\skins\v5\nothumb.png" />
+    <Content Include="layerslider\skins\v5\skin.css" />
+    <Content Include="layerslider\skins\v5\skin.png" />
+    <Content Include="logout.aspx" />
+    <Content Include="mainAfil.aspx" />
+    <Content Include="newsletter.aspx" />
+    <Content Include="peoplewear.html" />
+    <Content Include="plan3plus3.aspx" />
+    <Content Include="planeasy.aspx" />
+    <Content Include="planes.aspx" />
+    <Content Include="producto.aspx" />
+    <Content Include="register.aspx" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="sedes.aspx" />
+    <Content Include="sede_pg.aspx" />
+    <Content Include="servicios.aspx" />
+    <Content Include="terminoslegales.aspx" />
+    <Content Include="tienda.aspx" />
+    <Content Include="verificacion.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="wompidata.aspx" />
+    <Content Include="wompiexito.aspx" />
+    <Content Include="wompipay.aspx" />
+    <Content Include="wompiplan.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="blog.aspx.cs">
+      <DependentUpon>blog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blog.aspx.designer.cs">
+      <DependentUpon>blog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="blogpost.aspx.cs">
+      <DependentUpon>blogpost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogpost.aspx.designer.cs">
+      <DependentUpon>blogpost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="carrito1.aspx.cs">
+      <DependentUpon>carrito1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="carrito1.aspx.designer.cs">
+      <DependentUpon>carrito1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="carrito2.aspx.cs">
+      <DependentUpon>carrito2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="carrito2.aspx.designer.cs">
+      <DependentUpon>carrito2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="carrito3.aspx.cs">
+      <DependentUpon>carrito3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="carrito3.aspx.designer.cs">
+      <DependentUpon>carrito3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="carrito4.aspx.cs">
+      <DependentUpon>carrito4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="carrito4.aspx.designer.cs">
+      <DependentUpon>carrito4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="clasesglobales.cs" />
+    <Compile Include="contacto.aspx.cs">
+      <DependentUpon>contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contacto.aspx.designer.cs">
+      <DependentUpon>contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\footer.ascx.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\footer.ascx.designer.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\loginregister.ascx.cs">
+      <DependentUpon>loginregister.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\loginregister.ascx.designer.cs">
+      <DependentUpon>loginregister.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\mainmenu.ascx.cs">
+      <DependentUpon>mainmenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\mainmenu.ascx.designer.cs">
+      <DependentUpon>mainmenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\mainmenulanding.ascx.cs">
+      <DependentUpon>mainmenulanding.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\mainmenulanding.ascx.designer.cs">
+      <DependentUpon>mainmenulanding.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\mainmenunew.ascx.cs">
+      <DependentUpon>mainmenunew.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\mainmenunew.ascx.designer.cs">
+      <DependentUpon>mainmenunew.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="corporativo.aspx.cs">
+      <DependentUpon>corporativo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="corporativo.aspx.designer.cs">
+      <DependentUpon>corporativo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default_.aspx.cs">
+      <DependentUpon>default_.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default_.aspx.designer.cs">
+      <DependentUpon>default_.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eliminarproductocarrito.aspx.cs">
+      <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eliminarproductocarrito.aspx.designer.cs">
+      <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="gracias.aspx.cs">
+      <DependentUpon>gracias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gracias.aspx.designer.cs">
+      <DependentUpon>gracias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gympass.aspx.cs">
+      <DependentUpon>gympass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gympass.aspx.designer.cs">
+      <DependentUpon>gympass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mainAfil.aspx.cs">
+      <DependentUpon>mainAfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mainAfil.aspx.designer.cs">
+      <DependentUpon>mainAfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="newsletter.aspx.cs">
+      <DependentUpon>newsletter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newsletter.aspx.designer.cs">
+      <DependentUpon>newsletter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="plan3plus3.aspx.cs">
+      <DependentUpon>plan3plus3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="plan3plus3.aspx.designer.cs">
+      <DependentUpon>plan3plus3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planeasy.aspx.cs">
+      <DependentUpon>planeasy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planeasy.aspx.designer.cs">
+      <DependentUpon>planeasy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planes.aspx.cs">
+      <DependentUpon>planes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planes.aspx.designer.cs">
+      <DependentUpon>planes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="producto.aspx.cs">
+      <DependentUpon>producto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="producto.aspx.designer.cs">
+      <DependentUpon>producto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sedes.aspx.cs">
+      <DependentUpon>sedes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sedes.aspx.designer.cs">
+      <DependentUpon>sedes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sede_pg.aspx.cs">
+      <DependentUpon>sede_pg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sede_pg.aspx.designer.cs">
+      <DependentUpon>sede_pg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="servicios.aspx.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="servicios.aspx.designer.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="terminoslegales.aspx.cs">
+      <DependentUpon>terminoslegales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terminoslegales.aspx.designer.cs">
+      <DependentUpon>terminoslegales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tienda.aspx.cs">
+      <DependentUpon>tienda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tienda.aspx.designer.cs">
+      <DependentUpon>tienda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verificacion.aspx.cs">
+      <DependentUpon>verificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verificacion.aspx.designer.cs">
+      <DependentUpon>verificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompidata.aspx.cs">
+      <DependentUpon>wompidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompidata.aspx.designer.cs">
+      <DependentUpon>wompidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompiexito.aspx.cs">
+      <DependentUpon>wompiexito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompiexito.aspx.designer.cs">
+      <DependentUpon>wompiexito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompipay.aspx.cs">
+      <DependentUpon>wompipay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompipay.aspx.designer.cs">
+      <DependentUpon>wompipay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompiplan.aspx.cs">
+      <DependentUpon>wompiplan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompiplan.aspx.designer.cs">
+      <DependentUpon>wompiplan.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="img\sedes\galeria\" />
+    <Folder Include="img\testimonios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\gallery\gallery_6.psd" />
+    <Content Include="img\iconified.zip" />
+    <Content Include="img\iconified2.zip" />
+    <Content Include="css\icon_fonts\font\ElegantIcons.eot" />
+    <Content Include="css\icon_fonts\font\ElegantIcons.ttf" />
+    <Content Include="css\icon_fonts\font\ElegantIcons.woff" />
+    <Content Include="css\icon_fonts\font\fontello.eot" />
+    <Content Include="css\icon_fonts\font\fontello.ttf" />
+    <Content Include="css\icon_fonts\font\fontello.woff" />
+    <Content Include="assets\docs\1.-MN-TDP-03-MANUAL-DE-PROTECCION-DE-DATOS-PERSONALES.pdf" />
+    <Content Include="assets\docs\2.-PT-TDP-02-POLITICA-DE-PROTECCION-EN-VIDEOVIGILANCIA.pdf" />
+    <Content Include="assets\docs\3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" />
+    <Content Include="assets\docs\4.-AVISO-DE-PRIVACIDAD-VERSION-II.pdf" />
+    <Content Include="assets\docs\DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" />
+    <Content Include="assets\docs\EEFF-2020-comprimido.pdf" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53635</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44382/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
