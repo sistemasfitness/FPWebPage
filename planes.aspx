@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planes.aspx.cs" Inherits="WebPage.planes" %>
 
-<%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/mainmenunew.ascx" TagPrefix="uc1" TagName="mainmenunew" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -55,7 +55,7 @@
     <!-- Header ================================================== -->
     <header>
         <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
+            <uc1:mainmenunew runat="server" ID="mainmenunew" />
         </div>
         <!-- End container -->
     </header>
@@ -69,6 +69,48 @@
     </section>--%>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
+
+    <section id="feat1">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 fadeIn animated" data-wow-delay="0.2s">
+                <div class="box_feat">
+                    <%--<i class="fa fa-building fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
+                    <img src="img/svgtopng/Recurso-40.png" width="100px" />
+                    <h3 style="font-weight: 900; color: #FFF;">10 Sedes</h3>
+                    <p style="font-weight: 500; color: #FFF;">
+                        Tenemos 8 sedes en Bucaramanga y toda su área metropolitana y 2 sedes más en Cúcuta.
+                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4 fadeIn animated" data-wow-delay="0.5s">
+                <div class="box_feat">
+                    <%--<i class="fa fa-user-doctor fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
+                    <img src="img/svgtopng/Recurso-39.png" width="100px" />
+                    <h3 style="font-weight: 900; color: #FFF;">Profesionales de la Salud</h3>
+                    <p style="font-weight: 500; color: #FFF;">
+                        Contamos con los mejores profesionales de la salud: Fisioterapeutas, médicos deportologos y nutricionistas.
+                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4 fadeIn animated" data-wow-delay="1s">
+                <div class="box_feat">
+                    <%--<i class="fa fa-person-biking fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
+                    <img src="img/svgtopng/Recurso-33.png" width="100px" />
+                    <h3 style="font-weight: 900; color: #FFF;">Clases individuales y grupales</h3>
+                    <p style="font-weight: 500; color: #FFF;">
+                        Más de 500 clases grupales y personalizadas al mes.
+                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End row -->
+    </div>
+    <!-- End container -->
+</section>
 
     <section class="margin_60_35" id="testimonials">
         <div class="container margin_60_35">
@@ -114,6 +156,74 @@
             <!-- End row -->
         </div>
     </section>
+
+    <div class="container_styled_1">
+	<div class="container margin_60_35">
+		<div class="row">
+			<div class="col-md-12">
+            
+				<h3 class="nomargin_top" style="color: #fff; font-weight: 900; ">Preguntas frecuentes</h3>
+				<div class="panel-group" id="works">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">Puedo cancelar mi suscripción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                      </h4>
+						</div>
+						<div id="collapseOne_works" class="panel-collapse collapse in">
+							<div class="panel-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">Como funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                      </h4>
+						</div>
+						<div id="collapseTwo_works" class="panel-collapse collapse">
+							<div class="panel-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                      </h4>
+						</div>
+						<div id="collapseThree_works" class="panel-collapse collapse">
+							<div class="panel-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+							</h4>
+						</div>
+						<div id="collapseFour_works" class="panel-collapse collapse">
+							<div class="panel-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End panel-group -->
+
+				
+
+			</div>
+			<!-- End col-md-9 -->
+		</div>
+		<!-- End row -->
+	</div>
+	<!-- End container -->
+</div>
 
     <section class="promo_full">
 	<div class="promo_full_wp">

@@ -745,6 +745,14 @@ input.form-control#email_newsletter {
 	background-size: cover;
 }
 
+#feat1 {
+	/*padding: 0px 0 600px 0;
+	background-image: url(../img/bg_feat.jpg);*/
+	background-repeat: no-repeat;
+	background-position: center 200px;
+	background-size: cover;
+}
+
 .box_feat {
 	text-align: center;
 	margin-bottom: 20px;
@@ -925,7 +933,7 @@ a#view_all {
 
 .promo_full {
 	height: auto;
-	background: url(../img/56.png) no-repeat center center;
+	background: url(../img/bannercomentarios01.jpg) no-repeat center center;
 	background-attachment: fixed;
 	background-size: cover;
 	-webkit-background-size: cover;

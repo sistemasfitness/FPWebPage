@@ -196,6 +196,50 @@
         </div>
     </div>
 
+    <section class="margin_60_35" id="planes">
+    <div class="container" id="scroll-to">
+
+        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
+        <p class="lead styled" style="font-weight: 500; color: #FFF;">
+            En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
+        </p>
+
+        <div class="row text-center plans">
+
+            <div class="col-md-4">
+                <div class="img_container">
+                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
+                    <a href="planes?id=1">
+                        <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container">
+                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
+                    <a href="planes?id=2">
+                        <img src="img/planes/190fast01.jpg" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container">
+                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
+                    <a href="planes?id=7">
+                        <img src="img/planes/12meses01.jpg" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--  End container-->
+</section>
+<!--  End section-->
+
     <%--<div id="newsletter_container" style="background-color: #000;">
         <div class="container margin_60">
             <div class="row">

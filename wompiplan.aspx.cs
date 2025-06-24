@@ -21,27 +21,27 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string strCode = Request.QueryString["code"];
-            //string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
+            string strCode = Request.QueryString["code"];
+            string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
 
-            //string[] codes = strData.Split('_');
+            string[] codes = strData.Split('_');
 
-            //string strDocumento = codes[0];
+            string strDocumento = codes[0];
 
-            ////Referencia unica para el pago.
-            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+            //Referencia unica para el pago.
+            _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
 
-            ////Hash Sha256 para Wompi
-            //_strMonto = codes[1] + "00";
-            //string moneda = "COP";
-            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+            //Hash Sha256 para Wompi
+            _strMonto = codes[1] + "00";
+            string moneda = "COP";
+            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 
-            //string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-            //_strHash256 = ComputeSha256Hash(concatenado);
+            string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+            _strHash256 = ComputeSha256Hash(concatenado);
 
-            //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
+            string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
-            //_strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
+            _strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
         }
 
         static string ComputeSha256Hash(string rawData)

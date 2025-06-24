@@ -21,7 +21,7 @@
             <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
             <ul>
                 <li><a href="default_" class="show-submenu" style="font-weight: 900;">INICIO</a></li>
-                <li><a href="sede_pg" style="font-weight: 900;">SEDES</a></li>
+                <li><a href="sedespg" style="font-weight: 900;">SEDES</a></li>
                 <li><a href="default_#planes" style="font-weight: 900;">PLANES</a></li>
                 <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
                 <li><a href="servicios" style="font-weight: 900;">SERVICIOS</a></li>

@@ -72,7 +72,7 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/Pnqk7ibBHbM" runat="server" visible="true" id="divVideo">
+    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/YamfAFw8XbQ" runat="server" visible="true" id="divVideo">
         <div id="hero_video">
             <div id="sub_content">
                 <div class="mobile_fix">
@@ -159,6 +159,38 @@
     <section class="margin_60_35" id="sedes" style="padding-top: 0px;">
         <div class="container margin_60">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+
+            <form runat="server" id="form1">
+                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="upSedes" runat="server">
+                    <ContentTemplate>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Ciudad:</label>
+                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" 
+                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
+                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" 
+                                        style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Sede:</label>
+                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
+                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true" 
+                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true" 
+                                        style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </form>
 
             <div class="row">
                 <div class="owl-carousel team-carousel3" width="600px">
@@ -523,7 +555,7 @@
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
                         <a href="planes?id=1">
-                            <img id="image1-img" src="img/planes/99easy.jpg" class="img-responsive" />
+                            <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -532,7 +564,7 @@
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
                         <a href="planes?id=2">
-                            <img src="img/planes/190fast.jpg" class="img-responsive" />
+                            <img src="img/planes/190fast01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -540,8 +572,8 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
-                        <a href="planes?id=6">
-                            <img src="img/planes/890meses.jpg" class="img-responsive" />
+                        <a href="planes?id=7">
+                            <img src="img/planes/12meses01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
