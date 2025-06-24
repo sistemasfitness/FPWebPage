@@ -150,7 +150,7 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">
-                            <img id="image1-img" src="img/planes/99easy.jpg" class="img-responsive" />
+                            <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">
-                            <img src="img/planes/190fast.jpg" class="img-responsive" />
+                            <img src="img/planes/190fast01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">
-                            <img src="img/planes/890meses.jpg" class="img-responsive" />
+                            <img src="img/planes/12meses01.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>

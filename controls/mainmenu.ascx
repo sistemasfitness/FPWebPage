@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="mainmenu.ascx.cs" Inherits="WebPage.controls.mainmenu" %>
 <div class="row">
-    <a href="https://wa.me/573146887259?text=Vengo%20de%20la%20web%2C%20%C2%BFC%C3%B3mo%20obtengo%20mi%20Free%20Pass%20por%20un%20d%C3%ADa%3F" class="whatsapp" target="_blank"> <img src="../img/btnWhatsapp3.png" class="img-responsive" /></a>
+    <a href="https://wa.me/573146887259?text=Vengo%20de%20la%20web%2C%20%C2%BFC%C3%B3mo%20obtengo%20mi%20Free%20Pass%20por%20un%20d%C3%ADa%3F" class="whatsapp" target="_blank"> <img src="../img/whatsapp-8.png" class="img-responsive" /></a>
     <div class="col-xs-3">
         <a href="default" id="logo">
             <img src="img/fp-logo-lime-f-min.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
