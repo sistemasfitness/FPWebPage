@@ -338,7 +338,6 @@
     <Content Include="img\footer_img.png" />
     <Content Include="img\fp-logo-lime-f-min.svg" />
     <Content Include="img\fp-sede-flb-cnv-18.jpg" />
-    <Content Include="img\freepass-01.png" />
     <Content Include="img\full_bodu.png" />
     <Content Include="img\full_body.png" />
     <Content Include="img\gallery\gallery_1.jpg" />
@@ -353,9 +352,6 @@
     <Content Include="img\gallery\zona-cardiovascular-fitness-people-gimnasio-300x300.png" />
     <Content Include="img\gallery\zona-mancuernas-fitness-people-01-300x300.png" />
     <Content Include="img\gallery\zona-poleas-fitness-people-01-300x300.png" />
-    <Content Include="img\head_contact_.jpg" />
-    <Content Include="img\head_corporate_.jpg" />
-    <Content Include="img\head_services_.jpg" />
     <Content Include="img\iconified\iconified\apple-touch-icon-114x114.png" />
     <Content Include="img\iconified\iconified\apple-touch-icon-120x120.png" />
     <Content Include="img\iconified\iconified\apple-touch-icon-144x144.png" />
@@ -389,11 +385,16 @@
     <Content Include="img\paypal_bt.png" />
     <Content Include="img\peoplewear.jpg" />
     <Content Include="img\planes\10meses.jpg" />
+    <Content Include="img\planes\12meses01.jpg" />
     <Content Include="img\planes\190fast.jpg" />
+    <Content Include="img\planes\190fast01.jpg" />
     <Content Include="img\planes\4meses.jpg" />
     <Content Include="img\planes\890meses.jpg" />
+    <Content Include="img\planes\890meses01.jpg" />
     <Content Include="img\planes\99easy.jpg" />
+    <Content Include="img\planes\99easy01.jpg" />
     <Content Include="img\planes\debito.jpg" />
+    <Content Include="img\planes\megaprima01.jpg" />
     <Content Include="img\planes\meseasy.jpg" />
     <Content Include="img\planes\mesfast.jpg" />
     <Content Include="img\planes\plan10meses.jpg" />
@@ -428,11 +429,16 @@
     <Content Include="img\servicios.png" />
     <Content Include="img\shadow_box.png" />
     <Content Include="img\shadow_top.png" />
+    <Content Include="img\slides\190fast01.jpg" />
+    <Content Include="img\slides\3plus3banner.jpg" />
+    <Content Include="img\slides\890meses01.jpg" />
+    <Content Include="img\slides\99easy01.jpg" />
     <Content Include="img\slides\banner_1.jpg" />
     <Content Include="img\slides\banner_2.jpg" />
     <Content Include="img\slides\banner_3.jpg" />
     <Content Include="img\slides\banner_4.jpg" />
     <Content Include="img\slides\banner_5.jpg" />
+    <Content Include="img\slides\megaprima01.jpg" />
     <Content Include="img\slides\slide_1.jpg" />
     <Content Include="img\slides\slide_2.jpg" />
     <Content Include="img\slides\slide_3.jpg" />
@@ -447,6 +453,9 @@
     <Content Include="img\team\team-3.jpg" />
     <Content Include="img\team\team-4.jpg" />
     <Content Include="img\testimonial_1.jpg" />
+    <Content Include="img\testimonios\comment1.png" />
+    <Content Include="img\testimonios\comment2.png" />
+    <Content Include="img\testimonios\comment3.png" />
     <Content Include="img\thumb_cart_1.jpg" />
     <Content Include="img\thumb_cart_2.jpg" />
     <Content Include="img\thumb_cart_3.jpg" />
@@ -636,7 +645,7 @@
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
     <Content Include="sedes.aspx" />
-    <Content Include="sede_pg.aspx" />
+    <Content Include="sedespg.aspx" />
     <Content Include="servicios.aspx" />
     <Content Include="terminoslegales.aspx" />
     <Content Include="tienda.aspx" />
@@ -843,12 +852,12 @@
     <Compile Include="sedes.aspx.designer.cs">
       <DependentUpon>sedes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="sede_pg.aspx.cs">
-      <DependentUpon>sede_pg.aspx</DependentUpon>
+    <Compile Include="sedespg.aspx.cs">
+      <DependentUpon>sedespg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="sede_pg.aspx.designer.cs">
-      <DependentUpon>sede_pg.aspx</DependentUpon>
+    <Compile Include="sedespg.aspx.designer.cs">
+      <DependentUpon>sedespg.aspx</DependentUpon>
     </Compile>
     <Compile Include="servicios.aspx.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
@@ -910,7 +919,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\sedes\galeria\" />
-    <Folder Include="img\testimonios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\gallery\gallery_6.psd" />
