@@ -139,7 +139,8 @@ namespace WebPage
                     txbMetodoPago.Text = "Pago Único";
                 }
 
-                txbValor.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
                 ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
 
                 Session["idPlan"] = idPlanQS;
@@ -307,8 +308,8 @@ namespace WebPage
             Session.Add("meses", dtPlan.Rows[0]["Meses"]);
             string strSede = ddlSedes.SelectedItem.Value.ToString();
             Session.Add("idSede", strSede);
-            string strTxbValor = txbValor.Text.ToString();
-            Session.Add("valor", strTxbValor);
+            string strValorPlan = hfValorPlan.Value;
+            Session.Add("valorPlan", strValorPlan);
             string strLtValor = ltValor.Text.ToString();
             Session.Add("ltValorPlan", strLtValor);
 

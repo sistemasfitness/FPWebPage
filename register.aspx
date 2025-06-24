@@ -160,7 +160,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label>Sede:</label>
+                                                <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
                                                     AppendDataBoundItems="true" 
                                                     DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true">
@@ -174,7 +174,8 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
                                                 <label>Valor del plan:</label>
-                                                <asp:TextBox ID="txbValor" CssClass="form-control" runat="server" disabled=""></asp:TextBox>
+                                                <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" disabled=""></asp:TextBox>
+                                                <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">

@@ -111,18 +111,10 @@ namespace WebPage
                 string dataid = rObjetc.data.id.ToString();
                 ltMensaje.Text = dataid;
 
-                int idAfiliado = int.Parse(Session["idAfiliado"].ToString());
-                int idPlan = int.Parse(Session["idPlan"].ToString());
-                string fechaInicioPlan = Session["fechaInicioPlan"].ToString();
-                string fechaFinPlan = Session["fechaFinPlan"].ToString();
-                int meses = int.Parse(Session["meses"].ToString());
-                int valor = int.Parse(Session["valor"].ToString());
-
-
                 try
                 {
                     clasesglobales cg = new clasesglobales();
-                    string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valor"].ToString()), "Debito automatico", "Pendiente", dataid);
+                    string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente", dataid);
 
                     CrearFuentePago(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
 
@@ -178,8 +170,37 @@ namespace WebPage
             string dataid = rObjetc.data.id.ToString();
 
             //Guardar en BD el dataid para generar pagos posteriores.
-            string strQuery = "SELECT idAfiliadoPlan FROM AfiliadosPlanes ORDER BY idAfiliado DESC LIMIT 1 ";
-            DataTable dt = TraerDatos(strQuery);
+            //string strQuery = "SELECT idAfiliadoPlan FROM AfiliadosPlanes ORDER BY idAfiliado DESC LIMIT 1 ";
+            //DataTable dt = TraerDatos(strQuery);
+
+            //Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
+
+            //strQuery = "UPDATE AfiliadosPlanes SET DataIdFuente = '" + dataid + "' WHERE idAfiliadoPlan = " + dt.Rows[0]["idAfiliadoPlan"].ToString();
+            //OdbcCommand command = new OdbcCommand(strQuery, myConnection);
+            //myConnection.Open();
+            //command.ExecuteNonQuery();
+            //command.Dispose();
+            //myConnection.Close();
+
+            ////Creamos la primera transaccion (primer cobro)
+            //string strDocumento = Session["idAfiliado"].ToString();
+
+            ////Referencia unica para el pago.
+            //string reference = strDocumento + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            ////Hash Sha256 para Wompi
+            //string monto = "8900000";
+            //string moneda = "COP";
+            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+            //string concatenado = reference + monto + moneda + integrity_secret;
+            //string hash256 = ComputeSha256Hash(concatenado);
+
+            //CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
 
             Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
 
@@ -205,6 +226,8 @@ namespace WebPage
             string hash256 = ComputeSha256Hash(concatenado);
 
             CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+
+            dt.Dispose();
         }
 
         private void CrearTransaccion(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
