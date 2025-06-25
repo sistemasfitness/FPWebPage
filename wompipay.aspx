@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" Async="true" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -73,7 +73,7 @@
                     data-redirect-url="https://fp.valora.com.co">
                 </script>
             </form>--%>
-            <form method="post" action="wompipay">
+            <form method="post" action="wompipay" role="form" id="form" runat="server">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
@@ -98,7 +98,8 @@
                                                         <div class="col-md-12 col-sm-12">
                                                             <div class="form-group">
                                                                 <label>Número de la tarjeta:</label>
-                                                                <input type="number" id="creditcard" name="creditcard" class="form-control" required="" />
+                                                                <%--<input type="number" id="creditcard" name="creditcard" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbCreditCard" CssClass="form-control" runat="server" required="" name="txbCreditCard"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -106,7 +107,23 @@
                                                         <div class="col-md-3 col-sm-3">
                                                             <div class="form-group">
                                                                 <label>Mes expira:</label>
-                                                                <select id="ddlMes" class="form-control" name="ddlMes" required="">
+                                                                <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
+                                                                    DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control">
+                                                                    <asp:ListItem Text="Mes" Value=""></asp:ListItem>
+                                                                    <asp:ListItem Text="Enero" Value="01"></asp:ListItem>
+                                                                    <asp:ListItem Text="Febrero" Value="02"></asp:ListItem>
+                                                                    <asp:ListItem Text="Marzo" Value="03"></asp:ListItem>
+                                                                    <asp:ListItem Text="Abril" Value="04"></asp:ListItem>
+                                                                    <asp:ListItem Text="Mayo" Value="05"></asp:ListItem>
+                                                                    <asp:ListItem Text="Junio" Value="06"></asp:ListItem>
+                                                                    <asp:ListItem Text="Julio" Value="07"></asp:ListItem>
+                                                                    <asp:ListItem Text="Agosto" Value="08"></asp:ListItem>
+                                                                    <asp:ListItem Text="Septiembre" Value="09"></asp:ListItem>
+                                                                    <asp:ListItem Text="Octubre" Value="10"></asp:ListItem>
+                                                                    <asp:ListItem Text="Noviembre" Value="11"></asp:ListItem>
+                                                                    <asp:ListItem Text="Diciembre" Value="12"></asp:ListItem>
+                                                                </asp:DropDownList>
+                                                                <%--<select id="ddlMes" class="form-control" name="ddlMes" required="">
                                                                     <option value="">Mes</option>
                                                                     <option value="01">Enero</option>
                                                                     <option value="02">Febrero</option>
@@ -120,13 +137,32 @@
                                                                     <option value="10">Octubre</option>
                                                                     <option value="11">Noviembre</option>
                                                                     <option value="12">Diciembre</option>
-                                                                </select>
+                                                                </select>--%>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 col-sm-3">
                                                             <div class="form-group">
                                                                 <label>Año expira:</label>
-                                                                <select id="ddlAnho" class="form-control" name="ddlAnho" required="">
+                                                                <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
+                                                                    DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control">
+                                                                    <asp:ListItem Text="Año" Value=""></asp:ListItem>
+                                                                    <asp:ListItem Text="2024" Value="24"></asp:ListItem>
+                                                                    <asp:ListItem Text="2025" Value="25"></asp:ListItem>
+                                                                    <asp:ListItem Text="2026" Value="26"></asp:ListItem>
+                                                                    <asp:ListItem Text="2027" Value="27"></asp:ListItem>
+                                                                    <asp:ListItem Text="2028" Value="28"></asp:ListItem>
+                                                                    <asp:ListItem Text="2029" Value="29"></asp:ListItem>
+                                                                    <asp:ListItem Text="2030" Value="30"></asp:ListItem>
+                                                                    <asp:ListItem Text="2031" Value="31"></asp:ListItem>
+                                                                    <asp:ListItem Text="2032" Value="32"></asp:ListItem>
+                                                                    <asp:ListItem Text="2033" Value="33"></asp:ListItem>
+                                                                    <asp:ListItem Text="2034" Value="34"></asp:ListItem>
+                                                                    <asp:ListItem Text="2035" Value="35"></asp:ListItem>
+                                                                    <asp:ListItem Text="2036" Value="36"></asp:ListItem>
+                                                                    <asp:ListItem Text="2037" Value="37"></asp:ListItem>
+                                                                    <asp:ListItem Text="2038" Value="38"></asp:ListItem>
+                                                                </asp:DropDownList>
+                                                                <%--<select id="ddlAnho" class="form-control" name="ddlAnho" required="">
                                                                     <option value="">Año</option>
                                                                     <option value="24">2024</option>
                                                                     <option value="25">2025</option>
@@ -143,13 +179,14 @@
                                                                     <option value="36">2036</option>
                                                                     <option value="37">2037</option>
                                                                     <option value="38">2038</option>
-                                                                </select>
+                                                                </select>--%>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="form-group">
                                                                 <label>CVC (Código de seguridad):</label>
-                                                                <input type="number" id="cvc" name="cvc" class="form-control" required="" />
+                                                                <%--<input type="number" id="cvc" name="cvc" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" required="" name="txbCVC"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -157,7 +194,8 @@
                                                         <div class="col-md-12 col-sm-12">
                                                             <div class="form-group">
                                                                 <label>Nombre en la tarjeta:</label>
-                                                                <input type="text" id="nombretarjeta" name="nombretarjeta" class="form-control" required="" />
+                                                                <%--<input type="text" id="nombretarjeta" name="nombretarjeta" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" name="txbNombreTarjeta"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -187,13 +225,11 @@
                                             </div>
                                         </div>--%>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <!--End step -->
                     </div>
-
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
@@ -225,7 +261,8 @@
                             <div id="message-subscribe"></div>
                             <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
                             <hr />
-                            <input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />
+                            <%--<input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />--%>
+                            <asp:Button ID="btnPagar" runat="server" CssClass="btn_full" Text="Pagar a través de Wompi" OnClick="btnPagar_Click" />
                             <%--<a href="explore-1.html" class="btn_outline"><i class="icon-right"></i>Continue shopping</a>--%>
                         </div>
                         <div class="box_style_4">

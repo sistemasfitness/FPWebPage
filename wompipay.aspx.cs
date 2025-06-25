@@ -8,8 +8,10 @@ using System.Data.Odbc;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -36,10 +38,10 @@ namespace WebPage
 
                     ltValor.Text = Session["ltValorPlan"].ToString();
 
-                    if (Request.Form.Count > 0)
-                    {
-                        TokenizarTarjeta(Request.Form["creditcard"].ToString(), Request.Form["cvc"].ToString(), Request.Form["ddlMes"].ToString(), Request.Form["ddlAnho"].ToString(), Request.Form["nombretarjeta"].ToString());
-                    }
+                    //if (Request.Form.Count > 0)
+                    //{
+                    //    TokenizarTarjeta(Request.Form["creditcard"].ToString(), Request.Form["cvc"].ToString(), Request.Form["ddlMes"].ToString(), Request.Form["ddlAnho"].ToString(), Request.Form["nombretarjeta"].ToString());
+                    //}
                 }
                 else
                 {
@@ -98,11 +100,17 @@ namespace WebPage
             return dt;
         }
 
-        private void TokenizarTarjeta(string creditcard, string cvc, string mes, string anho, string cardholder)
+        protected async void btnPagar_Click(object sender, EventArgs e)
+        {
+            await TokenizarTarjetaAsync(txbCreditCard.Text.ToString(), txbCVC.Text.ToString(), ddlMes.Text.ToString(), ddlAnho.Text.ToString(), txbNombreTarjeta.Text.ToString());
+        }
+
+        private async Task TokenizarTarjetaAsync(string creditcard, string cvc, string mes, string anho, string cardholder)
         {
             //Tokenizar una tarjeta
             string URLTokenizarTarjeta = "https://sandbox.wompi.co/v1/tokens/cards";
-            string respuesta = GetPost(URLTokenizarTarjeta, creditcard, cvc, mes, anho, cardholder);
+            string respuesta = await GetPostAsync(URLTokenizarTarjeta, creditcard, cvc, mes, anho, cardholder);
+
             Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
             string status = rObjetc.status.ToString();
             if (status == "CREATED")
@@ -114,9 +122,11 @@ namespace WebPage
                 try
                 {
                     clasesglobales cg = new clasesglobales();
-                    string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente", dataid);
+                    string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
 
-                    CrearFuentePago(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
+                    string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+                    await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
 
                 } catch (Exception ex)
                 {
@@ -160,11 +170,11 @@ namespace WebPage
                 ltMensaje.Text = status;
             }
         }
-        private void CrearFuentePago(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
+        private async Task CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
             //Crear Fuente de Pago
             string URLFuentePago = "https://sandbox.wompi.co/v1/payment_sources";
-            string respuesta = GetPost2(URLFuentePago, customer_email, type, token, acceptance_token, accept_personal_auth);
+            string respuesta = await GetPostFuentePagoAsync(URLFuentePago, customer_email, type, token, acceptance_token, accept_personal_auth);
             Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
 
             string dataid = rObjetc.data.id.ToString();
@@ -174,7 +184,7 @@ namespace WebPage
 
             Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
 
-            string respuestaFuentePago = cg.ActualizarAfiliadoPlanFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+            string respuestaFuentePago = cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
             //Creamos la primera transaccion (primer cobro)
 
@@ -189,7 +199,7 @@ namespace WebPage
             string concatenado = reference + monto + moneda + integrity_secret;
             string hash256 = ComputeSha256Hash(concatenado);
 
-            CrearTransaccion(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+            await CrearTransaccionAsync(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
 
             dt.Dispose();
 
@@ -226,11 +236,11 @@ namespace WebPage
             //CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
         }
 
-        private void CrearTransaccion(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        private async Task CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
             //Crear Transacción
             string URLTransacciones = "https://sandbox.wompi.co/v1/transactions";
-            string respuesta = GetPost3(URLTransacciones, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
+            string respuesta = await GetPostTransaccionAsync(URLTransacciones, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
             Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
 
             //En esta variable queda el id de la transaccion guardada.
@@ -238,7 +248,7 @@ namespace WebPage
 
             clasesglobales cg = new clasesglobales();
 
-            string respuestaTransaccion = cg.ActualizarAfiliadoPlanTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
+            string respuestaTransaccion = cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
             Response.Redirect("wompiexito");
 
@@ -271,93 +281,172 @@ namespace WebPage
             }
         }
 
-        public static string GetPost(string url, string creditcard, string cvc, string mes, string anho, string cardholder)
+        public static async Task<string> GetPostAsync(string url, string creditcard, string cvc, string mes, string anho, string cardholder)
         {
-            Tarjeta oTarjeta = new Tarjeta() { number = "" + creditcard + "", cvc = "" + cvc + "", exp_month = "" + mes + "", exp_year = "" + anho + "", card_holder = "" + cardholder + "" };
-
-            string result = "";
-            WebRequest wRequest = WebRequest.Create(url);
-            wRequest.Method = "post";
-            wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Authorization", "Bearer pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
-
-            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+            var oTarjeta = new Tarjeta
             {
-                string json = JsonConvert.SerializeObject(oTarjeta);
-                oSW.Write(json);
-                oSW.Flush();
-                oSW.Close();
-            }
+                number = creditcard,
+                cvc = cvc,
+                exp_month = mes,
+                exp_year = anho,
+                card_holder = cardholder
+            };
 
-            WebResponse wResponse = wRequest.GetResponse();
+            string json = JsonConvert.SerializeObject(oTarjeta);
 
-            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+            using (HttpClient client = new HttpClient())
             {
-                result = oSR.ReadToEnd().Trim();
-            }
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
 
-            return result;
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                response.EnsureSuccessStatusCode();
+
+                string result = await response.Content.ReadAsStringAsync();
+                return result;
+            }
         }
 
-        public static string GetPost2(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
+        //public static string GetPost(string url, string creditcard, string cvc, string mes, string anho, string cardholder)
+        //{
+        //    Tarjeta oTarjeta = new Tarjeta() { number = "" + creditcard + "", cvc = "" + cvc + "", exp_month = "" + mes + "", exp_year = "" + anho + "", card_holder = "" + cardholder + "" };
+
+        //    string result = "";
+        //    WebRequest wRequest = WebRequest.Create(url);
+        //    wRequest.Method = "post";
+        //    wRequest.ContentType = "application/json;charset=UTF-8";
+        //    wRequest.Headers.Add("Authorization", "Bearer pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
+
+        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+        //    {
+        //        string json = JsonConvert.SerializeObject(oTarjeta);
+        //        oSW.Write(json);
+        //        oSW.Flush();
+        //        oSW.Close();
+        //    }
+
+        //    WebResponse wResponse = wRequest.GetResponse();
+
+        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+        //    {
+        //        result = oSR.ReadToEnd().Trim();
+        //    }
+
+        //    return result;
+        //}
+
+        public static async Task<string> GetPostFuentePagoAsync(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
-            FuentePago oFuentePago = new FuentePago() { type = "" + type + "", token = "" + token + "", customer_email = "" + customer_email + "", acceptance_token = "" + acceptance_token + "", accept_personal_auth = "" + accept_personal_auth + "" };
-
-            string result = "";
-            WebRequest wRequest = WebRequest.Create(url);
-            wRequest.Method = "post";
-            wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
-
-            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+            var oFuentePago = new FuentePago
             {
-                string json = JsonConvert.SerializeObject(oFuentePago);
-                oSW.Write(json);
-                oSW.Flush();
-                oSW.Close();
-            }
+                type = type,
+                token = token,
+                customer_email = customer_email,
+                acceptance_token = acceptance_token,
+                accept_personal_auth = accept_personal_auth
+            };
 
-            WebResponse wResponse = wRequest.GetResponse();
+            string json = JsonConvert.SerializeObject(oFuentePago);
 
-            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+            using (HttpClient client = new HttpClient())
             {
-                result = oSR.ReadToEnd().Trim();
-            }
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
 
-            return result;
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                response.EnsureSuccessStatusCode();
+
+                string result = await response.Content.ReadAsStringAsync();
+                return result;
+            }
         }
 
-        public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        //public static string GetPost2(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
+        //{
+        //    FuentePago oFuentePago = new FuentePago() { type = "" + type + "", token = "" + token + "", customer_email = "" + customer_email + "", acceptance_token = "" + acceptance_token + "", accept_personal_auth = "" + accept_personal_auth + "" };
+
+        //    string result = "";
+        //    WebRequest wRequest = WebRequest.Create(url);
+        //    wRequest.Method = "post";
+        //    wRequest.ContentType = "application/json;charset=UTF-8";
+        //    wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+
+        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+        //    {
+        //        string json = JsonConvert.SerializeObject(oFuentePago);
+        //        oSW.Write(json);
+        //        oSW.Flush();
+        //        oSW.Close();
+        //    }
+
+        //    WebResponse wResponse = wRequest.GetResponse();
+
+        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+        //    {
+        //        result = oSR.ReadToEnd().Trim();
+        //    }
+
+        //    return result;
+        //}
+
+        public static async Task<string> GetPostTransaccionAsync(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
-            PaymentMethod oPM = new PaymentMethod() { installments = installments };
-            Transaccion oTransaccion = new Transaccion() { amount_in_cents = amount_in_cents, currency = "" + currency + "", signature = "" + signature + "", customer_email = "" + customer_email + "", payment_method = oPM, reference = "" + reference + "", payment_source_id = payment_source_id };
-
-            Transaccion oTrans = new Transaccion() { };
-
-            string result = "";
-            WebRequest wRequest = WebRequest.Create(url);
-            wRequest.Method = "post";
-            wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
-
-            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+            var oTransaccion = new Transaccion
             {
-                string json = JsonConvert.SerializeObject(oTransaccion);
-                oSW.Write(json);
-                oSW.Flush();
-                oSW.Close();
-            }
+                amount_in_cents = amount_in_cents,
+                currency = currency,
+                signature = signature,
+                customer_email = customer_email,
+                payment_method = new PaymentMethod { installments = installments },
+                reference = reference,
+                payment_source_id = payment_source_id
+            };
 
-            WebResponse wResponse = wRequest.GetResponse();
+            string json = JsonConvert.SerializeObject(oTransaccion);
 
-            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+            using (HttpClient client = new HttpClient())
             {
-                result = oSR.ReadToEnd().Trim();
-            }
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
 
-            return result;
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                response.EnsureSuccessStatusCode();
+
+                string result = await response.Content.ReadAsStringAsync();
+                return result;
+            }
         }
+      //public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        //{
+        //    PaymentMethod oPM = new PaymentMethod() { installments = installments };
+        //    Transaccion oTransaccion = new Transaccion() { amount_in_cents = amount_in_cents, currency = "" + currency + "", signature = "" + signature + "", customer_email = "" + customer_email + "", payment_method = oPM, reference = "" + reference + "", payment_source_id = payment_source_id };
 
+        //    Transaccion oTrans = new Transaccion() { };
+
+        //    string result = "";
+        //    WebRequest wRequest = WebRequest.Create(url);
+        //    wRequest.Method = "post";
+        //    wRequest.ContentType = "application/json;charset=UTF-8";
+        //    wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+
+        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+        //    {
+        //        string json = JsonConvert.SerializeObject(oTransaccion);
+        //        oSW.Write(json);
+        //        oSW.Flush();
+        //        oSW.Close();
+        //    }
+
+        //    WebResponse wResponse = wRequest.GetResponse();
+
+        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+        //    {
+        //        result = oSR.ReadToEnd().Trim();
+        //    }
+
+        //    return result;
+        //}
         public class Tarjeta
         {
             public string number { get; set; }
