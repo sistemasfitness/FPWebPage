@@ -306,6 +306,8 @@ namespace WebPage
 
             DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
             Session.Add("meses", dtPlan.Rows[0]["Meses"]);
+            string strCiudad = ddlCiudad.SelectedItem.Value.ToString();
+            Session.Add("idCiudad", strCiudad);
             string strSede = ddlSedes.SelectedItem.Value.ToString();
             Session.Add("idSede", strSede);
             string strValorPlan = hfValorPlan.Value;
@@ -322,7 +324,9 @@ namespace WebPage
                     "CelularAfiliado = '" + strCelular + "', " +
                     "EmailAfiliado = '" + strEmail + "', " +
                     "idGenero = " + ddlGenero.SelectedItem.Value.ToString() + ", " +
-                    "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "' " +
+                    "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "', " +
+                    "idCiudadAfiliado = " + strCiudad + ", " + 
+                    "idSede = " + strSede + " " +
                     "WHERE DocumentoAfiliado = '" + strCedula + "' ";
 
                 try
@@ -350,11 +354,11 @@ namespace WebPage
                 //Si no existe el documento del afiliado, lo creamos como nuevo.
                 string strQuery = "INSERT INTO Afiliados " +
                     "(DocumentoAfiliado, idTipoDocumento, NombreAfiliado, ApellidoAfiliado, CelularAfiliado, EmailAfiliado, " +
-                    "idGenero, FechaNacAfiliado, EstadoAfiliado) " +
+                    "idGenero, FechaNacAfiliado, idCiudadAfiliado, idSede, EstadoAfiliado) " +
                     "VALUES ('" + strCedula + "', " + ddlTipoDocumento.SelectedItem.Value.ToString() + ", " +
                     "'" + strNombre + "', '" + strApellido + "', " +
                     "'" + strCelular + "', '" + strEmail + "', " +
-                    "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', 'Pendiente') ";
+                    "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', " + strCiudad + ", " + strSede + ", 'Pendiente') ";
 
                 try
                 {

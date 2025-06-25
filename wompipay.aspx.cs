@@ -169,6 +169,33 @@ namespace WebPage
 
             string dataid = rObjetc.data.id.ToString();
 
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+
+            Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
+
+            string respuestaFuentePago = cg.ActualizarAfiliadoPlanFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+            //Creamos la primera transaccion (primer cobro)
+
+            //Referencia unica para el pago.
+            string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            //Hash Sha256 para Wompi
+            string monto = Session["valorPlan"].ToString() + "00"; // Convertir a centavos
+            string moneda = "COP";
+            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+            string concatenado = reference + monto + moneda + integrity_secret;
+            string hash256 = ComputeSha256Hash(concatenado);
+
+            CrearTransaccion(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+
+            dt.Dispose();
+
+            // TODO: Hacer inserción en tabla PagosPlanesAfiliados
+
+
             //Guardar en BD el dataid para generar pagos posteriores.
             //string strQuery = "SELECT idAfiliadoPlan FROM AfiliadosPlanes ORDER BY idAfiliado DESC LIMIT 1 ";
             //DataTable dt = TraerDatos(strQuery);
@@ -197,37 +224,6 @@ namespace WebPage
             //string hash256 = ComputeSha256Hash(concatenado);
 
             //CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
-
-            clasesglobales cg = new clasesglobales();
-
-            DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-
-            Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
-
-            strQuery = "UPDATE AfiliadosPlanes SET DataIdFuente = '" + dataid + "' WHERE idAfiliadoPlan = " + dt.Rows[0]["idAfiliadoPlan"].ToString();
-            OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-            myConnection.Open();
-            command.ExecuteNonQuery();
-            command.Dispose();
-            myConnection.Close();
-
-            //Creamos la primera transaccion (primer cobro)
-            string strDocumento = Session["idAfiliado"].ToString();
-
-            //Referencia unica para el pago.
-            string reference = strDocumento + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            //Hash Sha256 para Wompi
-            string monto = "8900000";
-            string moneda = "COP";
-            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-            string concatenado = reference + monto + moneda + integrity_secret;
-            string hash256 = ComputeSha256Hash(concatenado);
-
-            CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
-
-            dt.Dispose();
         }
 
         private void CrearTransaccion(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
@@ -240,15 +236,21 @@ namespace WebPage
             //En esta variable queda el id de la transaccion guardada.
             string dataid2 = rObjetc.data.id.ToString();
 
-            //Guardar en BD el dataid para generar pagos posteriores.
-            string strQuery = "UPDATE AfiliadosPlanes SET DataIdTransaction = '" + dataid2 + "' WHERE idAfiliadoPlan = " + Session["idAfiliadoPlan"].ToString();
-            OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-            myConnection.Open();
-            command.ExecuteNonQuery();
-            command.Dispose();
-            myConnection.Close();
+            clasesglobales cg = new clasesglobales();
+
+            string respuestaTransaccion = cg.ActualizarAfiliadoPlanTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
             Response.Redirect("wompiexito");
+
+            //Guardar en BD el dataid para generar pagos posteriores.
+            //string strQuery = "UPDATE AfiliadosPlanes SET DataIdTransaction = '" + dataid2 + "' WHERE idAfiliadoPlan = " + Session["idAfiliadoPlan"].ToString();
+            //OdbcCommand command = new OdbcCommand(strQuery, myConnection);
+            //myConnection.Open();
+            //command.ExecuteNonQuery();
+            //command.Dispose();
+            //myConnection.Close();
+
+            //Response.Redirect("wompiexito");
         }
 
         static string ComputeSha256Hash(string rawData)
