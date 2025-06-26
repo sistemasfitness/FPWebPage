@@ -100,117 +100,301 @@ namespace WebPage
             return dt;
         }
 
+        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        {
+            // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string script = $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: '{tipo}',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar'
+            }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+        }
+
         protected async void btnPagar_Click(object sender, EventArgs e)
         {
-            await TokenizarTarjetaAsync(txbCreditCard.Text.ToString(), txbCVC.Text.ToString(), ddlMes.Text.ToString(), ddlAnho.Text.ToString(), txbNombreTarjeta.Text.ToString());
+            try
+            {
+                await TokenizarTarjetaAsync(
+                    txbCreditCard.Text.Trim(),
+                    txbCVC.Text.Trim(),
+                    ddlMes.SelectedValue,
+                    ddlAnho.SelectedValue,
+                    txbNombreTarjeta.Text.Trim()
+                );
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error", "Ocurrió un error inesperado al procesar el pago.", "error");
+            }
         }
 
         private async Task TokenizarTarjetaAsync(string creditcard, string cvc, string mes, string anho, string cardholder)
         {
-            //Tokenizar una tarjeta
-            string URLTokenizarTarjeta = "https://sandbox.wompi.co/v1/tokens/cards";
-            string respuesta = await GetPostAsync(URLTokenizarTarjeta, creditcard, cvc, mes, anho, cardholder);
-
-            Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
-            string status = rObjetc.status.ToString();
-            if (status == "CREATED")
+            try
             {
-                //La tarjeta ha sido tokenizada correctamente
-                string dataid = rObjetc.data.id.ToString();
-                ltMensaje.Text = dataid;
-
-                try
+                // Validar sesiones necesarias
+                if (Session["idAfiliado"] == null || Session["idPlan"] == null ||
+                    Session["fechaInicioPlan"] == null || Session["fechaFinPlan"] == null ||
+                    Session["meses"] == null || Session["valorPlan"] == null ||
+                    Session["emailAfiliado"] == null)
                 {
+                    MostrarAlerta("Sesión incompleta", "Faltan datos requeridos para procesar el pago.", "warning");
+                    return;
+                }
+
+                //Tokenizar una tarjeta
+                string url = "https://sandbox.wompi.co/v1/tokens/cards";
+                string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
+
+                Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
+
+                if (rObjetc.status == "CREATED" && rObjetc.data != null && !string.IsNullOrEmpty(rObjetc.data.id))
+                {
+                    string dataid = rObjetc.data.id;
+                    ltMensaje.Text = dataid;
+
                     clasesglobales cg = new clasesglobales();
-                    string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
 
+                    // 1. Insertar afiliación al plan
+                    string mensaje = cg.InsertarAfiliadoPlan(
+                        int.Parse(Session["idAfiliado"].ToString()),
+                        int.Parse(Session["idPlan"].ToString()),
+                        Session["fechaInicioPlan"].ToString(),
+                        Session["fechaFinPlan"].ToString(),
+                        int.Parse(Session["meses"].ToString()),
+                        int.Parse(Session["valorPlan"].ToString()),
+                        "Débito automático",
+                        "Pendiente"
+                    );
+
+                    // 2. Obtener idAfiliadoPlan recién creado
                     DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-                    Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+                    if (dtIdAfiliadoPlan.Rows.Count == 0)
+                    {
+                        MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
+                        return;
+                    }
 
-                    string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+                    int idAfiliadoPlan = int.Parse(dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+                    Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
+                    // 3. Actualizar token del pago
+                    cg.ActualizarPagoPlanAfiliadoToken(dataid, idAfiliadoPlan);
 
-                    await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
+                    // 4. Crear fuente de pago en Wompi
+                    await CrearFuentePagoAsync(
+                        Session["emailAfiliado"].ToString(),
+                        "CARD",
+                        dataid,
+                        Session["acceptance_token"].ToString(),
+                        Session["accept_personal_auth"].ToString()
+                    );
 
-
-                    // Guardar el pago del plan afiliado
-
+                    // 5. Insertar pago en base de datos
                     DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
 
-                    string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
+                    if (dtCanalVentas.Rows.Count == 0)
+                    {
+                        MostrarAlerta("Canal no encontrado", "No se encontró el canal de ventas para esta sede.", "error");
+                        return;
+                    }
+
+                    int idCanalVenta = int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString());
+
+                    cg.InsertarPagoPlanAfiliado(
+                        idAfiliadoPlan,
+                        int.Parse(Session["valorPlan"].ToString()),
+                        "Wompi",
+                        Session["idReferencia"].ToString(),
+                        "Ninguno",
+                        "Aprobado",
+                        idCanalVenta
+                    );
 
                     dtIdAfiliadoPlan.Dispose();
                     dtCanalVentas.Dispose();
-
-                } catch (Exception ex)
-                {
-                    string mensajeError = "ERROR: " + ex.Message;
                 }
-
-                
-
-                //string strQuery = @"INSERT INTO AfiliadosPlanes 
-                //                    (idAfiliado, idPlan, FechaInicioPlan, FechaFinalPlan, Meses, Valor, ObservacionesPlan, EstadoPlan, DataIdToken) 
-                //                    VALUES (" + int.Parse(dt.Rows[0]["IdAfiliado"].ToString()) + ", " + Session["idPlan"].ToString() + ", " +
-                //                    "'" + Session["fechaInicioPlan"].ToString() + "', '" + Session["fechaFinPlan"].ToString() + "', " + 
-                //                    int.Parse(Session["Meses"].ToString()) + ", " + int.Parse(Session["txbValorPlan"].ToString()) + ", " +
-                //                    "'Debito automatico', 'Pendiente', '" + dataid + "');";
-
-                //try
-                //{
-                //    string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-                //    using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                //    {
-                //        mysqlConexion.Open();
-                //        using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                //        {
-                //            cmd.CommandType = CommandType.Text;
-                //            cmd.ExecuteNonQuery();
-                //        }
-                //        mysqlConexion.Close();
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    string respuestaConexion = "ERROR: " + ex.Message;
-                //}
-
-                //Creamos la fuente de pago
-
+                else
+                {
+                    string estado = rObjetc?.status ?? "Respuesta desconocida";
+                    MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ltMensaje.Text = status;
+                MostrarAlerta("Error inesperado", "Ocurrió un error al procesar la transacción.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
             }
+
+            //    //Tokenizar una tarjeta
+            //    string url = "https://sandbox.wompi.co/v1/tokens/cards";
+            //    string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
+            //    Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
+
+            //    string status = rObjetc.status.ToString();
+
+            //    //La tarjeta ha sido tokenizada correctamente
+            //    string dataid = rObjetc.data.id.ToString();
+            //    ltMensaje.Text = dataid;
+
+            //    try
+            //    {
+            //        clasesglobales cg = new clasesglobales();
+            //        string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
+
+            //        DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+            //        Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+
+            //        string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+
+            //        await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
+
+
+            //        // Guardar el pago del plan afiliado
+
+            //        DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
+
+            //        string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
+
+            //        dtIdAfiliadoPlan.Dispose();
+            //        dtCanalVentas.Dispose();
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ltMensaje.Text = "Ocurrió un error interno al procesar la tarjeta.";
+            //    }
+            //}
+            //else
+            //{
+            //    ltMensaje.Text = "No se pudo tokenizar la tarjeta: " + rObjetc.status;
+            //}
+
+
+
+            //if (status == "CREATED")
+            //{
+            //    //La tarjeta ha sido tokenizada correctamente
+            //    string dataid = rObjetc.data.id.ToString();
+            //    ltMensaje.Text = dataid;
+
+            //    try
+            //    {
+            //        clasesglobales cg = new clasesglobales();
+            //        string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
+
+            //        DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+            //        Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+
+            //        string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+
+            //        await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
+
+
+            //        // Guardar el pago del plan afiliado
+
+            //        DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
+
+            //        string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
+
+            //        dtIdAfiliadoPlan.Dispose();
+            //        dtCanalVentas.Dispose();
+
+            //    } catch (Exception ex)
+            //    {
+            //        string mensajeError = "ERROR: " + ex.Message;
+            //    }
+            //}
+            //else
+            //{
+            //    ltMensaje.Text = status;
+            //}
         }
         private async Task CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
-            //Crear Fuente de Pago
-            string URLFuentePago = "https://sandbox.wompi.co/v1/payment_sources";
-            string respuesta = await GetPostFuentePagoAsync(URLFuentePago, customer_email, type, token, acceptance_token, accept_personal_auth);
-            Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
+            try
+            {
+                // Validación básica de sesiones necesarias
+                if (Session["idAfiliadoPlan"] == null || Session["valorPlan"] == null ||
+                    Session["documentoAfiliado"] == null || Session["emailAfiliado"] == null)
+                {
+                    MostrarAlerta("Error de sesión", "Faltan datos requeridos para crear la fuente de pago.", "warning");
+                    return;
+                }
 
-            string dataid = rObjetc.data.id.ToString();
+                string url = "https://sandbox.wompi.co/v1/payment_sources";
+                string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
-            clasesglobales cg = new clasesglobales();
-            string respuestaFuentePago = cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+                Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
 
-            //Creamos la primera transaccion (primer cobro)
+                if (rObjetc.data.status != "AVAILABLE" || rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
+                {
+                    MostrarAlerta("Error en fuente de pago", "No se pudo crear la fuente de pago en Wompi.", "error");
+                    return;
+                }
 
-            //Referencia unica para el pago.
-            string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-            Session.Add("idReferencia", reference);
+                string dataid = rObjetc.data.id.ToString();
+                clasesglobales cg = new clasesglobales();
 
-            //Hash Sha256 para Wompi
-            string monto = Session["valorPlan"].ToString() + "00"; // Convertir a centavos
-            string moneda = "COP";
-            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+                // Actualizar fuente de pago en base de datos
+                cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
-            string concatenado = reference + monto + moneda + integrity_secret;
-            string hash256 = ComputeSha256Hash(concatenado);
+                // Crear referencia única para el cobro
+                string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                Session["idReferencia"] = reference;
 
-            await CrearTransaccionAsync(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+                // Calcular hash SHA256
+                string monto = Session["valorPlan"].ToString() + "00"; // en centavos
+                string moneda = "COP";
+                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+                string concatenado = reference + monto + moneda + integrity_secret;
+                string hash256 = ComputeSha256Hash(concatenado);
+
+                // Ejecutar el cobro inicial
+                await CrearTransaccionAsync(int.Parse(monto), moneda, hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+
+                // TODO: Hacer inserción en tabla PagosPlanesAfiliados
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error inesperado", "Ocurrió un error al crear la fuente de pago o procesar el primer cobro.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
+            }
+
+
+            ////Crear Fuente de Pago
+            //string URLFuentePago = "https://sandbox.wompi.co/v1/payment_sources";
+            //string respuesta = await GetPostFuentePagoAsync(URLFuentePago, customer_email, type, token, acceptance_token, accept_personal_auth);
+            //Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
+
+            //string dataid = rObjetc.data.id.ToString();
+
+            //clasesglobales cg = new clasesglobales();
+            //string respuestaFuentePago = cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+            ////Creamos la primera transaccion (primer cobro)
+
+            ////Referencia unica para el pago.
+            //string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            //Session.Add("idReferencia", reference);
+
+            ////Hash Sha256 para Wompi
+            //string monto = Session["valorPlan"].ToString() + "00"; // Convertir a centavos
+            //string moneda = "COP";
+            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+            //string concatenado = reference + monto + moneda + integrity_secret;
+            //string hash256 = ComputeSha256Hash(concatenado);
+
+            //await CrearTransaccionAsync(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
 
 
             // TODO: Hacer inserción en tabla PagosPlanesAfiliados
@@ -248,19 +432,62 @@ namespace WebPage
 
         private async Task CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
-            //Crear Transacción
-            string URLTransacciones = "https://sandbox.wompi.co/v1/transactions";
-            string respuesta = await GetPostTransaccionAsync(URLTransacciones, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
-            Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
+            try
+            {
+                if (Session["idAfiliadoPlan"] == null)
+                {
+                    MostrarAlerta("Error de sesión", "No se encontró el plan del afiliado en sesión.", "warning");
+                    return;
+                }
 
-            //En esta variable queda el id de la transaccion guardada.
-            string dataid2 = rObjetc.data.id.ToString();
+                string url = "https://sandbox.wompi.co/v1/transactions";
+                string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
 
-            clasesglobales cg = new clasesglobales();
+                Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
 
-            string respuestaTransaccion = cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
+                // Consulta de estado de pago realizado en Wompi
+                string estado = await ConsultarTransaccionPorReferencia(reference);
 
-            Response.Redirect("wompiexito");
+                if (rObjetc.data.status != "APPROVED" && rObjetc.data.status != "PENDING" || estado != "APPROVED")
+                {
+                    MostrarAlerta("Transacción rechazada", $"Estado recibido: {rObjetc?.data.status ?? "Desconocido"}", "error");
+                    return;
+                }
+
+                if (rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id))
+                {
+                    MostrarAlerta("Error", "No se recibió un ID válido para la transacción.", "error");
+                    return;
+                }
+
+                string dataid2 = rObjetc.data.id;
+
+                clasesglobales cg = new clasesglobales();
+                cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+                // Redireccionar solo si todo está OK
+                Response.Redirect("wompiexito", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error inesperado", "Ocurrió un error al intentar crear la transacción con Wompi.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en CrearTransaccionAsync: " + ex.ToString());
+            }
+
+            ////Crear Transacción
+            //string URLTransacciones = "https://sandbox.wompi.co/v1/transactions";
+            //string respuesta = await GetPostTransaccionAsync(URLTransacciones, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
+            //Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
+
+            ////En esta variable queda el id de la transaccion guardada.
+            //string dataid2 = rObjetc.data.id.ToString();
+
+            //clasesglobales cg = new clasesglobales();
+
+            //string respuestaTransaccion = cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
+
+            //Response.Redirect("wompiexito");
 
             //Guardar en BD el dataid para generar pagos posteriores.
             //string strQuery = "UPDATE AfiliadosPlanes SET DataIdTransaction = '" + dataid2 + "' WHERE idAfiliadoPlan = " + Session["idAfiliadoPlan"].ToString();
@@ -271,6 +498,39 @@ namespace WebPage
             //myConnection.Close();
 
             //Response.Redirect("wompiexito");
+        }
+
+        private async Task<string> ConsultarTransaccionPorReferencia(string referencia)
+        {
+            try
+            {
+                string respuesta = await GetPostConsultaTransaccionAsync(referencia);
+
+                // Clase sugerida para deserializar respuesta de Wompi
+                var json = JsonConvert.DeserializeObject<dynamic>(respuesta);
+
+                if (json.status == "ERROR")
+                {
+                    MostrarAlerta("Error al consultar", (string)json.message, "error");
+                    return null;
+                }
+
+                var data = json.data;
+                if (data == null || data.Count == 0)
+                {
+                    MostrarAlerta("Sin resultados", "No se encontraron transacciones con esta referencia.", "info");
+                    return null;
+                }
+
+                string estado = data[0].status;
+                return estado; // Ejemplo: "APPROVED", "DECLINED", "PENDING"
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error inesperado", "No se pudo consultar el estado de la transacción.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en ConsultarTransaccionPorReferencia: " + ex.ToString());
+                return null;
+            }
         }
 
         static string ComputeSha256Hash(string rawData)
@@ -293,6 +553,22 @@ namespace WebPage
 
         public static async Task<string> GetPostAsync(string url, string creditcard, string cvc, string mes, string anho, string cardholder)
         {
+            // Validaciones básicas
+            if (string.IsNullOrWhiteSpace(creditcard) || creditcard.Length < 13 || creditcard.Length > 19)
+                throw new ArgumentException("Número de tarjeta inválido.");
+
+            if (string.IsNullOrWhiteSpace(cvc) || cvc.Length < 3 || cvc.Length > 4)
+                throw new ArgumentException("Código CVC inválido.");
+
+            if (!int.TryParse(mes, out int mesInt) || mesInt < 1 || mesInt > 12)
+                throw new ArgumentException("Mes de expiración inválido.");
+
+            if (!int.TryParse(anho, out int anhoInt))
+                throw new ArgumentException("Año de expiración inválido.");
+
+            if (string.IsNullOrWhiteSpace(cardholder))
+                throw new ArgumentException("Nombre del titular inválido.");
+
             var oTarjeta = new Tarjeta
             {
                 number = creditcard,
@@ -309,11 +585,23 @@ namespace WebPage
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                response.EnsureSuccessStatusCode();
 
-                string result = await response.Content.ReadAsStringAsync();
-                return result;
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return $"{{\"status\":\"ERROR\",\"message\":\"{result}\"}}";
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return $"{{\"status\":\"ERROR\",\"message\":\"{ex.Message}\"}}";
+                }
             }
         }
 
@@ -347,6 +635,15 @@ namespace WebPage
 
         public static async Task<string> GetPostFuentePagoAsync(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
+            if (string.IsNullOrWhiteSpace(customer_email) ||
+                string.IsNullOrWhiteSpace(type) ||
+                string.IsNullOrWhiteSpace(token) ||
+                string.IsNullOrWhiteSpace(acceptance_token) ||
+                string.IsNullOrWhiteSpace(accept_personal_auth))
+            {
+                throw new ArgumentException("Todos los campos son obligatorios para crear una fuente de pago.");
+            }
+
             var oFuentePago = new FuentePago
             {
                 type = type,
@@ -363,11 +660,23 @@ namespace WebPage
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                response.EnsureSuccessStatusCode();
 
-                string result = await response.Content.ReadAsStringAsync();
-                return result;
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return $"{{\"status\":\"ERROR\",\"message\":\"{result}\"}}";
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return $"{{\"status\":\"ERROR\",\"message\":\"{ex.Message}\"}}";
+                }
             }
         }
 
@@ -401,6 +710,12 @@ namespace WebPage
 
         public static async Task<string> GetPostTransaccionAsync(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
+            if (amount_in_cents <= 0 || string.IsNullOrWhiteSpace(currency) || string.IsNullOrWhiteSpace(signature) ||
+                string.IsNullOrWhiteSpace(customer_email) || string.IsNullOrWhiteSpace(reference) || payment_source_id <= 0)
+            {
+                throw new ArgumentException("Los datos enviados para crear la transacción no son válidos.");
+            }
+
             var oTransaccion = new Transaccion
             {
                 amount_in_cents = amount_in_cents,
@@ -420,15 +735,53 @@ namespace WebPage
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                response.EnsureSuccessStatusCode();
 
-                string result = await response.Content.ReadAsStringAsync();
-                return result;
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return $"{{\"status\":\"ERROR\",\"message\":\"{result}\"}}";
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return $"{{\"status\":\"ERROR\",\"message\":\"{ex.Message}\"}}";
+                }
             }
+
+            //var oTransaccion = new Transaccion
+            //{
+            //    amount_in_cents = amount_in_cents,
+            //    currency = currency,
+            //    signature = signature,
+            //    customer_email = customer_email,
+            //    payment_method = new PaymentMethod { installments = installments },
+            //    reference = reference,
+            //    payment_source_id = payment_source_id
+            //};
+
+            //string json = JsonConvert.SerializeObject(oTransaccion);
+
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    client.DefaultRequestHeaders.Authorization =
+            //        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+
+            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //    HttpResponseMessage response = await client.PostAsync(url, content);
+            //    response.EnsureSuccessStatusCode();
+
+            //    string result = await response.Content.ReadAsStringAsync();
+            //    return result;
+            //}
         }
 
-      //public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        //public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         //{
         //    PaymentMethod oPM = new PaymentMethod() { installments = installments };
         //    Transaccion oTransaccion = new Transaccion() { amount_in_cents = amount_in_cents, currency = "" + currency + "", signature = "" + signature + "", customer_email = "" + customer_email + "", payment_method = oPM, reference = "" + reference + "", payment_source_id = payment_source_id };
@@ -458,6 +811,43 @@ namespace WebPage
 
         //    return result;
         //}
+
+        public static async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
+        {
+            string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return $"{{\"status\":\"ERROR\",\"message\":\"{result}\"}}";
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return $"{{\"status\":\"ERROR\",\"message\":\"{ex.Message}\"}}";
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
         public class Tarjeta
         {
             public string number { get; set; }
