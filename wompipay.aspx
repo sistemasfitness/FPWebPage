@@ -38,27 +38,6 @@
     <link href="css/custom.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <style>
-        body.swal2-shown {
-            padding-right: 0 !important;
-            overflow-y: auto !important;
-        }
-
-        .swal-title-custom {
-            font-size: 28px !important;
-        }
-
-        .swal-popup-custom {
-            font-size: 20px !important;
-            padding: 2em !important;
-        }
-
-        .swal-button-custom {
-            font-size: 18px !important;
-            padding: 10px 20px !important;
-        }
-    </style>
 </head>
 <body style="background-color: #fff;">
     <div class="layer"></div>
