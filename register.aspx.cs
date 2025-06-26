@@ -310,6 +310,8 @@ namespace WebPage
             Session.Add("idCiudad", strCiudad);
             string strSede = ddlSedes.SelectedItem.Value.ToString();
             Session.Add("idSede", strSede);
+            string strNombreSede = ddlSedes.SelectedItem.Text.ToString();
+            Session.Add("nombreSede", strNombreSede);
             string strValorPlan = hfValorPlan.Value;
             Session.Add("valorPlan", strValorPlan);
             string strLtValor = ltValor.Text.ToString();

@@ -124,9 +124,23 @@ namespace WebPage
                     clasesglobales cg = new clasesglobales();
                     string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
 
+                    DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+                    Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+
                     string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
+
                     await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
+
+
+                    // Guardar el pago del plan afiliado
+
+                    DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
+
+                    string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
+
+                    dtIdAfiliadoPlan.Dispose();
+                    dtCanalVentas.Dispose();
 
                 } catch (Exception ex)
                 {
@@ -163,7 +177,7 @@ namespace WebPage
                 //}
 
                 //Creamos la fuente de pago
-                
+
             }
             else
             {
@@ -180,16 +194,13 @@ namespace WebPage
             string dataid = rObjetc.data.id.ToString();
 
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-
-            Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
-
             string respuestaFuentePago = cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
 
             //Creamos la primera transaccion (primer cobro)
 
             //Referencia unica para el pago.
             string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            Session.Add("idReferencia", reference);
 
             //Hash Sha256 para Wompi
             string monto = Session["valorPlan"].ToString() + "00"; // Convertir a centavos
@@ -201,7 +212,6 @@ namespace WebPage
 
             await CrearTransaccionAsync(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
 
-            dt.Dispose();
 
             // TODO: Hacer inserción en tabla PagosPlanesAfiliados
 
@@ -417,6 +427,7 @@ namespace WebPage
                 return result;
             }
         }
+
       //public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         //{
         //    PaymentMethod oPM = new PaymentMethod() { installments = installments };
