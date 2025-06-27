@@ -38,8 +38,15 @@
     <link href="css/custom.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body.swal2-shown {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+    </style>
 </head>
-<body style="background-color: #fff;">
+<body style="color: #fff;">
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
@@ -261,7 +268,7 @@
 
                             </div>
                             <div id="message-subscribe"></div>
-                            <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
+                            <asp:HiddenField ID="ltMensaje" runat="server"></asp:HiddenField>
                             <hr />
                             <%--<input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />--%>
                             <asp:Button ID="btnPagar" runat="server" CssClass="btn_full" Text="Pagar a través de Wompi" OnClick="btnPagar_Click" />

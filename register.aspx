@@ -38,7 +38,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 </head>
-<body style="background-color: #fff;">
+<body style="color: #fff;">
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 

@@ -130,6 +130,7 @@ namespace WebPage
             catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ocurrió un error inesperado al procesar el pago.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
             }
         }
 
@@ -156,12 +157,28 @@ namespace WebPage
                 if (rObjetc.status == "CREATED" && rObjetc.data != null && !string.IsNullOrEmpty(rObjetc.data.id))
                 {
                     string dataid = rObjetc.data.id;
-                    ltMensaje.Text = dataid;
+                    ltMensaje.Value = dataid;
+
+                    // 1. Creación de fuente de pago en Wompi
+                    bool fuentePagoCreada = await CrearFuentePagoAsync(
+                        Session["emailAfiliado"].ToString(),
+                        "CARD",
+                        dataid,
+                        Session["acceptance_token"].ToString(),
+                        Session["accept_personal_auth"].ToString()
+                    );
+
+                    if (!fuentePagoCreada)
+                    {
+                        string estado = rObjetc?.status ?? "Respuesta desconocida";
+                        MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
+                        return;
+                    }
 
                     clasesglobales cg = new clasesglobales();
 
-                    // 1. Insertar afiliación al plan
-                    string mensaje = cg.InsertarAfiliadoPlan(
+                    // 2. Inserción de afiliación de cliente al plan
+                    cg.InsertarAfiliadoPlan(
                         int.Parse(Session["idAfiliado"].ToString()),
                         int.Parse(Session["idPlan"].ToString()),
                         Session["fechaInicioPlan"].ToString(),
@@ -172,7 +189,7 @@ namespace WebPage
                         "Pendiente"
                     );
 
-                    // 2. Obtener idAfiliadoPlan recién creado
+                    // 3. Obtención de idAfiliadoPlan recién creado
                     DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
                     if (dtIdAfiliadoPlan.Rows.Count == 0)
                     {
@@ -183,19 +200,7 @@ namespace WebPage
                     int idAfiliadoPlan = int.Parse(dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
                     Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
-                    // 3. Actualizar token del pago
-                    cg.ActualizarPagoPlanAfiliadoToken(dataid, idAfiliadoPlan);
-
-                    // 4. Crear fuente de pago en Wompi
-                    await CrearFuentePagoAsync(
-                        Session["emailAfiliado"].ToString(),
-                        "CARD",
-                        dataid,
-                        Session["acceptance_token"].ToString(),
-                        Session["accept_personal_auth"].ToString()
-                    );
-
-                    // 5. Insertar pago en base de datos
+                    // 4. Inserción de pago en base de datos
                     DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
 
                     if (dtCanalVentas.Rows.Count == 0)
@@ -214,6 +219,21 @@ namespace WebPage
                         "Ninguno",
                         "Aprobado",
                         idCanalVenta
+                    );
+
+                    // 5. Actualización de token del pago
+                    cg.ActualizarPagoPlanAfiliadoToken(dataid, idAfiliadoPlan);
+
+                    // 6. Actualización de fuente de pago en base de datos
+                    cg.ActualizarPagoPlanAfiliadoFuentePago(
+                        Session["dataIdFuentePago"].ToString(),
+                        idAfiliadoPlan
+                    );
+
+                    // 7. Actualización de transacción en base de datos
+                    cg.ActualizarPagoPlanAfiliadoTransaccion(
+                        Session["dataIdTransaccion"].ToString(),
+                        idAfiliadoPlan
                     );
 
                     dtIdAfiliadoPlan.Dispose();
@@ -317,18 +337,10 @@ namespace WebPage
             //    ltMensaje.Text = status;
             //}
         }
-        private async Task CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
+        private async Task<bool> CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
             try
             {
-                // Validación básica de sesiones necesarias
-                if (Session["idAfiliadoPlan"] == null || Session["valorPlan"] == null ||
-                    Session["documentoAfiliado"] == null || Session["emailAfiliado"] == null)
-                {
-                    MostrarAlerta("Error de sesión", "Faltan datos requeridos para crear la fuente de pago.", "warning");
-                    return;
-                }
-
                 string url = "https://sandbox.wompi.co/v1/payment_sources";
                 string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
@@ -337,14 +349,11 @@ namespace WebPage
                 if (rObjetc.data.status != "AVAILABLE" || rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
                 {
                     MostrarAlerta("Error en fuente de pago", "No se pudo crear la fuente de pago en Wompi.", "error");
-                    return;
+                    return false;
                 }
 
                 string dataid = rObjetc.data.id.ToString();
-                clasesglobales cg = new clasesglobales();
-
-                // Actualizar fuente de pago en base de datos
-                cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
+                Session["dataIdFuentePago"] = dataid;
 
                 // Crear referencia única para el cobro
                 string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -359,14 +368,30 @@ namespace WebPage
                 string hash256 = ComputeSha256Hash(concatenado);
 
                 // Ejecutar el cobro inicial
-                await CrearTransaccionAsync(int.Parse(monto), moneda, hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
+                bool transaccionCreada = await CrearTransaccionAsync(
+                    int.Parse(monto), 
+                    moneda, 
+                    hash256, 
+                    Session["emailAfiliado"].ToString(), 
+                    1, 
+                    reference, 
+                    Convert.ToInt32(dataid)
+                );
 
-                // TODO: Hacer inserción en tabla PagosPlanesAfiliados
+                if (!transaccionCreada) 
+                {
+                    string estado = rObjetc?.data?.status ?? "Respuesta desconocida";
+                    MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
+                    return false;
+                }
+
+                return true;
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error inesperado", "Ocurrió un error al crear la fuente de pago o procesar el primer cobro.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
+                return false;
             }
 
 
@@ -430,16 +455,10 @@ namespace WebPage
             //CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
         }
 
-        private async Task CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        private async Task<bool> CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
             try
             {
-                if (Session["idAfiliadoPlan"] == null)
-                {
-                    MostrarAlerta("Error de sesión", "No se encontró el plan del afiliado en sesión.", "warning");
-                    return;
-                }
-
                 string url = "https://sandbox.wompi.co/v1/transactions";
                 string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
 
@@ -448,31 +467,31 @@ namespace WebPage
                 // Consulta de estado de pago realizado en Wompi
                 string estado = await ConsultarTransaccionPorReferencia(reference);
 
-                if (rObjetc.data.status != "APPROVED" && rObjetc.data.status != "PENDING" || estado != "APPROVED")
+                if (estado != "APPROVED")
                 {
-                    MostrarAlerta("Transacción rechazada", $"Estado recibido: {rObjetc?.data.status ?? "Desconocido"}", "error");
-                    return;
+                    MostrarAlerta("Transacción rechazada", $"Estado recibido: {estado ?? "Desconocido"}", "error");
+                    return false;
                 }
 
                 if (rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id))
                 {
                     MostrarAlerta("Error", "No se recibió un ID válido para la transacción.", "error");
-                    return;
+                    return false;
                 }
 
                 string dataid2 = rObjetc.data.id;
-
-                clasesglobales cg = new clasesglobales();
-                cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
+                Session["dataIdTransaccion"] = dataid2;
 
                 // Redireccionar solo si todo está OK
                 Response.Redirect("wompiexito", false);
                 Context.ApplicationInstance.CompleteRequest();
+                return true;
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error inesperado", "Ocurrió un error al intentar crear la transacción con Wompi.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en CrearTransaccionAsync: " + ex.ToString());
+                return false;
             }
 
             ////Crear Transacción

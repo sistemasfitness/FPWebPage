@@ -580,6 +580,7 @@ namespace WebPage
         {
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarSedePorId(int.Parse(idSede));
+
             if (dt == null || dt.Rows.Count == 0)
             {
                 throw new Exception("Sede no encontrada.");
