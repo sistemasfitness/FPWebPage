@@ -4,7 +4,6 @@
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/mainmenunew.ascx" TagPrefix="uc1" TagName="mainmenunew" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,9 +11,11 @@
     <meta property="og:site_name" content="Fitness People" />
     <meta property="og:title" content="Fitness People" />
     <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
-    <meta property="og:image" itemprop="image" content="https://fitnesspeoplecolombia.com/img/para_banner.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:updated_time" content="1440432930" />
+    <meta property="og:image" content="https://fitnesspeoplecolombia.com/img/sedes/boulevard__.jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="355" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
 
     <script src="js/fitnesspeople.js"></script>
 

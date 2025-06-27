@@ -43,11 +43,17 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- SPECIFIC CSS -->
+    <link href="layerslider/css/layerslider.css" rel="stylesheet" />
+    <link href="css/pop_up.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
@@ -72,30 +78,73 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container_styled_1" >
+    <div class="container_styled_1">
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em><asp:Literal ID="ltNombreSede2" runat="server"></asp:Literal></em></h2>
+
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>Galería</em></h2>
+
+                    <div class="owl-carousel team-carousel3">
+
+                    <%--<div class="row magnific-gallery">--%>
+
+                        <asp:Repeater ID="rpGaleria" runat="server">
+                            <ItemTemplate>
+                                <%--<div class="col-sm-4">
+                                    <div class="img_wrapper">
+                                        <div class="img_container">
+                                            <a href="img/sedes/galeria/<%# Eval("NombreImagen") %>" title="<%# Eval("NombreSede") %>">
+                                                <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" width="800" height="533" class="img-responsive" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>--%>
+
+                                <div class="team-item">
+                                    <div class="team-item-img">
+                                        <div class="img_wrapper">
+                                            <div class="img_container">
+                                                <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" class="img-responsive" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    <%--</div>--%>
+                    </div>
+
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>
+                        <asp:Literal ID="ltNombreSede2" runat="server"></asp:Literal></em></h2>
                     <hr />
                     <%--<p class="lead"><i class="fa fa-city"></i> En la ciudad de <asp:Literal ID="ltCiudadSede2" runat="server"></asp:Literal></p><br />
-                    <h4><i class="fa fa-map-location-dot"></i> <asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
-                    <h4><i class="fab fa-whatsapp"></i> <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4><br />
-                    <h4><i class="fa fa-clock"></i> Horario: </h4>
-                    <p><asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>--%>
+<h4><i class="fa fa-map-location-dot"></i> <asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
+<h4><i class="fab fa-whatsapp"></i> <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4><br />
+<h4><i class="fa fa-clock"></i> Horario: </h4>
+<p><asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>--%>
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3><strong><i class="fa fa-city"></i></strong></h3><h4 style="padding-top: 10px; color: #FFF;"><asp:Literal ID="ltCiudadSede2" runat="server"></asp:Literal></h4>
+                            <h3><strong><i class="fa fa-city"></i></strong></h3>
+                            <h4 style="padding-top: 10px; color: #FFF;">
+                                <asp:Literal ID="ltCiudadSede2" runat="server"></asp:Literal></h4>
                         </div>
                         <div class="step" style="padding: 0 0 20px 31px;"></div>
                         <!--End step -->
                         <div class="form_title">
-                            <h3><strong><i class="fa fa-map-location-dot"></i></strong></h3><h4 style="padding-top: 10px; color: #FFF;"><asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
+                            <h3><strong><i class="fa fa-map-location-dot"></i></strong></h3>
+                            <h4 style="padding-top: 10px; color: #FFF;">
+                                <asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
                         </div>
                         <div class="step" style="padding: 0 0 20px 31px;"></div>
                         <!--End step -->
                         <div class="form_title">
-                            <h3><strong><i class="fab fa-whatsapp"></i></strong></h3><h4 style="padding-top: 10px; color: #FFF;"><asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4>
+                            <h3><strong><i class="fab fa-whatsapp"></i></strong></h3>
+                            <h4 style="padding-top: 10px; color: #FFF;">
+                                <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4>
                         </div>
                         <div class="step" style="padding: 0 0 20px 31px;"></div>
                         <!--End step -->
@@ -106,89 +155,13 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group" style="color: #FFF;">
-                                        <p><asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>
+                                        <p>
+                                            <asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!--End step -->
-                    </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                    <%--<asp:Literal ID="ltImagenRecuadro" runat="server"></asp:Literal>--%>
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>Galería</em></h2>
-
-                    <div class="row magnific-gallery">
-
-                        <asp:Repeater ID="rpGaleria" runat="server">
-                            <ItemTemplate>
-                                <div class="col-sm-4">
-                                    <div class="img_wrapper">
-                                        <div class="img_container">
-                                            <a href="img/sedes/galeria/<%# Eval("NombreImagen") %>" title="<%# Eval("NombreSede") %>">
-                                                <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" width="800" height="533" class="img-responsive" alt="" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-
-
-	                    <%--<div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_1.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_1.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>
-	                    <div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_2.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_2.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>
-	                    <div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_3.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_3.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>
-	                    <div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_4.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_4.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>
-	                    <div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_5.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_5.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>
-	                    <div class="col-sm-4">
-		                    <div class="img_wrapper">
-			                    <div class="img_container">
-				                    <a href="img/gallery/gallery_6.jpg" title="Photo title">
-					                    <img src="img/gallery/gallery_6.jpg" width="800" height="533" class="img-responsive" alt="" />
-				                    </a>
-			                    </div>
-		                    </div>
-	                    </div>--%>
                     </div>
                 </div>
             </div>
@@ -197,48 +170,48 @@
     </div>
 
     <section class="margin_60_35" id="planes">
-    <div class="container" id="scroll-to">
+        <div class="container" id="scroll-to">
 
-        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
-        <p class="lead styled" style="font-weight: 500; color: #FFF;">
-            En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
-        </p>
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
+            <p class="lead styled" style="font-weight: 500; color: #FFF;">
+                En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
+            </p>
 
-        <div class="row text-center plans">
+            <div class="row text-center plans">
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
-                    <a href="planes?id=1">
-                        <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
+                        <a href="planes?id=1">
+                            <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
-                    <a href="planes?id=2">
-                        <img src="img/planes/190fast01.jpg" class="img-responsive" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
+                        <a href="planes?id=2">
+                            <img src="img/planes/190fast01.jpg" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
-                    <a href="planes?id=7">
-                        <img src="img/planes/12meses01.jpg" class="img-responsive" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
+                        <a href="planes?id=7">
+                            <img src="img/planes/12meses01.jpg" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
         </div>
-
-    </div>
-    <!--  End container-->
-</section>
-<!--  End section-->
+        <!--  End container-->
+    </section>
+    <!--  End section-->
 
     <%--<div id="newsletter_container" style="background-color: #000;">
         <div class="container margin_60">
@@ -255,7 +228,7 @@
         </div>
     </div>--%>
     <!-- End newsletter_container -->
-    
+
     <!-- End container -->
 
     <div>
@@ -285,5 +258,45 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/bootstrap-portfilter.min.js"></script>
+    <script src="js/jarallax.min.js"></script>
+    <script src="js/jarallax-video.min.js"></script>
+    <script src="layerslider/js/greensock.js"></script>
+    <script src="layerslider/js/layerslider.transitions.js"></script>
+    <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+    <script>
+
+        'use strict';
+        $(".team-carousel3").owlCarousel({
+            items: 1,
+            loop: true,
+            autoHeight: true,
+            autoWidth: true,
+            center: true,
+            nav: false,
+            center: true,
+            autoplayTimeout: 3000,
+            margin: 10,
+            autoplay: true,
+            smartSpeed: 1000,
+            responsiveClass: false,
+            autoplayHoverPause: true,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 2,
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>

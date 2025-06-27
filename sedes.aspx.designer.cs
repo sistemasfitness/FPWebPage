@@ -51,6 +51,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltCiudadSede;
 
         /// <summary>
+        /// Control rpGaleria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpGaleria;
+
+        /// <summary>
         /// Control ltNombreSede2.
         /// </summary>
         /// <remarks>
@@ -94,15 +103,6 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltHorarioSede;
-
-        /// <summary>
-        /// Control rpGaleria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpGaleria;
 
         /// <summary>
         /// Control ltMapa.

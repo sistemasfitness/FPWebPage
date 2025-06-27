@@ -70,47 +70,39 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section id="feat1">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 fadeIn animated" data-wow-delay="0.2s">
-                <div class="box_feat">
-                    <%--<i class="fa fa-building fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
-                    <img src="img/svgtopng/Recurso-40.png" width="100px" />
-                    <h3 style="font-weight: 900; color: #FFF;">10 Sedes</h3>
-                    <p style="font-weight: 500; color: #FFF;">
-                        Tenemos 8 sedes en Bucaramanga y toda su área metropolitana y 2 sedes más en Cúcuta.
-                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-4 fadeIn animated" data-wow-delay="0.5s">
-                <div class="box_feat">
-                    <%--<i class="fa fa-user-doctor fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
-                    <img src="img/svgtopng/Recurso-39.png" width="100px" />
-                    <h3 style="font-weight: 900; color: #FFF;">Profesionales de la Salud</h3>
-                    <p style="font-weight: 500; color: #FFF;">
-                        Contamos con los mejores profesionales de la salud: Fisioterapeutas, médicos deportologos y nutricionistas.
-                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-4 fadeIn animated" data-wow-delay="1s">
-                <div class="box_feat">
-                    <%--<i class="fa fa-person-biking fa-5x" style="color: #E3FF00; text-shadow: 3px 3px 3px #1A1A1A; "></i>--%>
-                    <img src="img/svgtopng/Recurso-33.png" width="100px" />
-                    <h3 style="font-weight: 900; color: #FFF;">Clases individuales y grupales</h3>
-                    <p style="font-weight: 500; color: #FFF;">
-                        Más de 500 clases grupales y personalizadas al mes.
-                        <%--<br /><a href="sede_pg" style="font-weight: 900; color: #FFF;">Más información</a>--%>
-                    </p>
+    <section class="margin_60_35" id="testimonials1" >
+        <div class="container ">
+            <%--<h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>--%>
+            <div class="row">
+                <div class="owl-carousel team-carousel">
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/svgtopng/Recurso-39.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/svgtopng/Recurso-33.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <!-- End row -->
-    </div>
-    <!-- End container -->
-</section>
+    </section>
 
     <section class="margin_60_35" id="testimonials">
         <div class="container margin_60_35">
@@ -329,6 +321,35 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+       
+        'use strict';
+        $(".team-carousel").owlCarousel({
+            items: 1,
+            autoHeight: true,
+            autoWidth: true,
+            loop: true,
+            nav: false,
+            center: true,
+            autoplayTimeout: 1000,
+            margin: 100,
+            autoplay: true,
+            smartSpeed: 300,
+            responsiveClass: false,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 4,
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
