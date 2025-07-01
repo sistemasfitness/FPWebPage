@@ -37,8 +37,18 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <style>
+        .checkbox label:before {
+	        border: 2px solid black;
+        }
+
+        .checkbox label:after {
+	        background: black;
+        }
+    </style>
 </head>
-<body style="color: #fff;">
+<body>
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
@@ -54,21 +64,21 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sub_header_general.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1>Registro y pago</h1>
-            <p>Ingresa la siguiente informacion:</p>
+            <h1 style="font-weight: 900; color: black;">Registro y pago</h1>
+            <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #fff;">
         <div class="row">
             <form method="post" action="register" role="form" id="form" runat="server">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3><strong>1</strong>Información inicial</h3>
-                            <p>Datos personales para registro en el sistema.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Información inicial</h3>
+                            <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
                             <div class="row">
@@ -93,7 +103,8 @@
                                         <label>Tipo de Documento: *</label>
                                         <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
                                             AppendDataBoundItems="true" DataTextField="TipoDocumento" 
-                                            DataValueField="idTipoDoc" CssClass="form-control">
+                                            DataValueField="idTipoDoc" CssClass="form-control" 
+                                            Style="background-color: #3c3c3c;">
                                             <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
@@ -124,7 +135,8 @@
                                     <div class="form-group">
                                         <label>Género: *</label>
                                         <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
-                                            DataTextField="Genero" DataValueField="idGenero" required=""
+                                            DataTextField="Genero" DataValueField="idGenero" required="" 
+                                            Style="background-color: #3c3c3c;"
                                             CssClass="form-control" TabIndex="6">
                                             <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                         </asp:DropDownList>
@@ -140,8 +152,8 @@
                         </div>
                         <!--End step -->
                         <div class="form_title">
-                            <h3><strong>2</strong>Información del plan</h3>
-                            <p>Elige las opciones de tu plan.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
+                            <p style="color: #fff;">Elige las opciones de tu plan.</p>
                         </div>
                         <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
@@ -153,7 +165,8 @@
                                                 <label>Ciudad: *</label>
                                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
                                                     OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true">
+                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
+                                                    Style="background-color: #3c3c3c;">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
@@ -163,7 +176,8 @@
                                                 <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
                                                     AppendDataBoundItems="true" required=""
-                                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true">
+                                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true" 
+                                                    Style="background-color: #3c3c3c;">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
@@ -182,7 +196,7 @@
                                             <div class="form-group">
                                                 <label>Fecha de inicio: *</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                             AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
+                                                             AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
@@ -197,8 +211,8 @@
                         </div>
                         <!--End step -->
                         <div class="form_title">
-                            <h3><strong>3</strong>Información del pago</h3>
-                            <p>Método de pago elegido.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>3</strong>Información del pago</h3>
+                            <p style="color: #fff;">Método de pago elegido.</p>
                         </div>
                         <div class="step">
                             <div class="row">
@@ -216,15 +230,16 @@
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
-                        <div class="box_style_2">
+                        <div class="box_style_2" style="color: black;">
                             <div id="total_cart">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept1" id="check1" name="check1" onchange="habilitarBoton();" />
-                                    <label for="check1">
-                                        <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
+                                    <asp:CheckBox ID="cbAutorizo" runat="server" />
+
+                                    <label for="cbAutorizo">
+                                        <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S.</a> realizar el cobro recurrente.</span>
                                     </label>
                                 </div>
 
@@ -237,9 +252,9 @@
                         </div>
                         <div class="box_style_4">
                             <i class="icon_lifesaver"></i>
-                            <h4>Necesitas ayuda?</h4>
+                            <h4 style="color: #fff">Necesitas ayuda?</h4>
                             <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573138859790" class="phone" target="_blank">3138859790</a>
-                            <small>Todos los dias de 7:00am - 7:00pm</small>
+                            <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
                         </div>
                     </div>
                 </aside>
