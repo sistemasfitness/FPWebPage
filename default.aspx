@@ -298,93 +298,93 @@
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/7_dias_semana.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/10_sedes.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/breakee.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/clases_grupales.png" style="width: 160px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/deportologo.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/fisioterapeuta.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/nutricionista.png" style="width: 160px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/profesionales.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/salon_grupales.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/salon_pilates.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/salon_spinning.png" style="width: 160px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_xtreme.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/zona_cardiovascular.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/zona_hammer.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/zona_mancuernas.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/servicios/zona_poleas.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
                             </div>
                         </div>
 
@@ -722,16 +722,16 @@
             nav: false,
             center: true,
             autoplayTimeout: 1000,
-            margin: 100,
+            margin: 20,
             autoplay: true,
             smartSpeed: 300,
             responsiveClass: false,
             responsive: {
                 320: {
-                    items: 1,
+                    items: 2,
                 },
                 768: {
-                    items: 2,
+                    items: 3,
                 },
                 1000: {
                     items: 4,

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planes.aspx.cs" Inherits="WebPage.planes" %>
 
-<%@ Register Src="~/controls/mainmenunew.ascx" TagPrefix="uc1" TagName="mainmenunew" %>
+<%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenunew" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -70,32 +70,100 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="testimonials1" >
-        <div class="container ">
-            <%--<h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>--%>
+    <section class="margin_60_35" id="testimonials" style="background: #000;">
+        <div class="container">
             <div class="row">
                 <div class="owl-carousel team-carousel">
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                            <img src="img/servicios/7_dias_semana.png" style="width: 160px;" alt="" />
                         </div>
                     </div>
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/svgtopng/Recurso-39.png" style="width: 160px;" alt="" />
+                            <img src="img/servicios/10_sedes.png" style="width: 160px;" alt="" />
                         </div>
                     </div>
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/svgtopng/Recurso-33.png" style="width: 160px;" alt="" />
+                            <img src="img/servicios/breakee.png" style="width: 160px;" alt="" />
                         </div>
                     </div>
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                            <img src="img/servicios/clases_grupales.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/deportologo.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/fisioterapeuta.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/nutricionista.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/profesionales.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/salon_grupales.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/salon_pilates.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/salon_spinning.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/salon_xtreme.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/zona_cardiovascular.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/zona_hammer.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/zona_mancuernas.png" style="width: 160px;" alt="" />
+                        </div>
+                    </div>
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/servicios/zona_poleas.png" style="width: 160px;" alt="" />
                         </div>
                     </div>
 
@@ -108,46 +176,290 @@
         <div class="container margin_60_35">
             <div class="row" style="display: flex;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <%--<h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; ">¡Activa tu Plan Easy y entrena sin preocuparte por los pagos! 💳💪</h2>--%>
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; "><asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <%--<p class="lead" style="color: #FFF; margin-top: 20px;">
-                        ¿Cansado de estar pendiente cada mes del pago del gym?
-                        <br/>
-                        Con nuestro Plan Easy, te olvidas de eso. El cobro es automático mes a mes, para que tú solo te concentres en tu entrenamiento, como lo haces con tu disciplina.
-                    </p>--%>
                     <p class="lead" style="color: #FFF; margin-top: 20px;"><asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
-                    <%--<h2 class="lead" style="color: #FFF; margin-top: 0;">
-                        <strong>🔥 Precio especial de campaña: $99.000 (antes $149.000)</strong>
-                        <br/>
-                        Solo por tiempo limitado, si lo activas antes del <strong>8 de junio</strong> de 2025.
-                    </h2>
-                    <p class="lead" style="color: #FFF;">
-                        ✔ Sin filas
-                        <br/>
-                        ✔ Sin recordatorios
-                        <br/>
-                        ✔ Sin interrupciones en tu entrenamiento
-                        <br/>
-                        ✔ Todo desde tu cuenta, de forma segura y automática
-                    </p>
-                    <p class="lead" style="color: #FFF;"><strong>Haz clic en el botón, activa tu Plan Easy y disfruta del gym sin pausas.</strong></p>
-                    <h2 class="nomargin_top" style="color: #FFF; margin-bottom: 0; font-weight: 900;">¡Porque lo más fácil es seguir entrenando!</h2>--%>
-                    <%--<h2 class="nomargin_top" style="color: #FFF; margin-bottom: 0; font-weight: 900;"><asp:Literal ID="ltPrecioTotal" runat="server"></asp:Literal></h2>--%>
-                    <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank" style="margin: 4rem 3rem 0 3rem;">
-                        <button class="btn_1 add_bottom_15" style="width: 100%; background-color: black; font-size: x-large; margin-bottom: 0;">
-                            ¡COMPRAR AQUI!
-                        </button>
-                    </a>--%>
                 </div>
-                <%--<div class="col-md-5 col-md-offset-1 hidden-sm hidden-xs" style="display: flex; flex-direction: column; justify-content: center; cursor: pointer;" onclick="window.open('https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365', '_blank')">--%>
-                    <%--<h2 class="nomargin_top" style="font-weight: 900;">&nbsp;</h2>--%>
-                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
-                <%--</div>--%>
+                <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+            </div>
+            <div class="row" style="display: flex;">
+                <div class="col-md-12" style="display: flex; flex-direction: column; justify-content: space-around;">
+                <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
+                </div>
             </div>
             <!-- End row -->
         </div>
     </section>
+
+    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+        <div class="container">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+
+            <div class="row">
+                <div class="owl-carousel team-carousel3" width="600px">
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=1">
+                                        <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=2">
+                                        <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=3">
+                                        <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=4">
+                                        <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=5">
+                                        <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=6">
+                                        <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=7">
+                                        <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=8">
+                                        <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=9">
+                                        <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <div class="img_wrapper">
+                                <div class="img_container">
+                                    <a href="sedes?id=10">
+                                        <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <form runat="server" id="form2">
+            <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="upSedes" runat="server">
+                <ContentTemplate>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label style="color: #FFF;">Ciudad:</label>
+                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
+                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
+                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
+                                    Style="background-color: #3c3c3c;">
+                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label style="color: #FFF;">Sede:</label>
+                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
+                                    OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
+                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
+                                    Style="background-color: #3c3c3c;">
+                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            </form>
+        </div>
+    </section>
+
+    <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+        <div class="container">
+            <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
+            <!--Team Carousel -->
+            <div class="row">
+                <div class="owl-carousel team-carousel4">
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/combat.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/funcional.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/kick_boxing.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/pilates.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/rumba.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/spinning.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/xtreme.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="team-item">
+                        <div class="team-item-img">
+                            <img src="img/grupales/xtreme_2.jpg" style="width: 600px;" alt="" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Team Carousel-->
+        </div>
+        <!--  End container-->
+    </section>
+
+    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+    <div class="container" id="scroll-to">
+        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
+        <div class="row text-center plans">
+
+            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                <div class="img_container">
+                    <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
+                    <p style="font-weight: 600; color: #FFF;"><br />Deportólogo</p>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                <div class="img_container">
+                    <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
+                    <p style="font-weight: 600; color: #FFF;"><br />Fisioterapeuta</p>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                <div class="img_container">
+                    <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
+                    <p style="font-weight: 600; color: #FFF;"><br />Nutricionista</p>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                <div class="img_container">
+                    <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
+                    <p style="font-weight: 600; color: #FFF;"><br />Profesionales del deporte</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- End row plans-->
+
+    </div>
+    <!--  End container-->
+</section>
 
     <div class="container_styled_1">
 	<div class="container margin_60_35">
@@ -231,7 +543,7 @@
 										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment1.png" alt="" />
 										</figure>
 									</div>
-									<div class="comment">
+									<div class="lead" style="font-weight: 600">
 										"El mejor ambiente para entrenar y poner mi cuerpo en armonia. Gracias Fitness People."
 									</div>
 								</div>
@@ -244,7 +556,7 @@
 										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment2.png" alt="" />
 										</figure>
 									</div>
-									<div class="comment">
+									<div class="lead" style="font-weight: 600">
 										"No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant diceret ocurreret."
 									</div>
 								</div>
@@ -257,7 +569,7 @@
 										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment3.png" alt="" />
 										</figure>
 									</div>
-									<div class="comment">
+									<div class="lead" style="font-weight: 600"">
 										"No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant diceret ocurreret."
 									</div>
 								</div>
@@ -323,7 +635,7 @@
     <script src="js/functions.js"></script>
 
     <script>
-       
+
         'use strict';
         $(".team-carousel").owlCarousel({
             items: 1,
@@ -336,6 +648,57 @@
             margin: 100,
             autoplay: true,
             smartSpeed: 300,
+            responsiveClass: false,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 4,
+                }
+            }
+        });
+
+        $(".team-carousel3").owlCarousel({
+            items: 1,
+            loop: true,
+            autoHeight: true,
+            autoWidth: false,
+            nav: false,
+            center: true,
+            autoplayTimeout: 3000,
+            margin: 10,
+            autoplay: true,
+            smartSpeed: 1000,
+            responsiveClass: false,
+            autoplayHoverPause: true,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 2,
+                }
+            }
+        });
+
+        $(".team-carousel4").owlCarousel({
+            items: 1,
+            autoHeight: true,
+            autoWidth: true,
+            loop: true,
+            nav: false,
+            center: true,
+            autoplayTimeout: 3000,
+            margin: 100,
+            autoplay: true,
+            smartSpeed: 1000,
             responsiveClass: false,
             responsive: {
                 320: {
