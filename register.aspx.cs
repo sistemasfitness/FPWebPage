@@ -139,7 +139,8 @@ namespace WebPage
                     txbMetodoPago.Text = "Pago Único";
                 }
 
-                txbValor.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
                 ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
 
                 Session["idPlan"] = idPlanQS;
@@ -305,10 +306,14 @@ namespace WebPage
 
             DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
             Session.Add("meses", dtPlan.Rows[0]["Meses"]);
+            string strCiudad = ddlCiudad.SelectedItem.Value.ToString();
+            Session.Add("idCiudad", strCiudad);
             string strSede = ddlSedes.SelectedItem.Value.ToString();
             Session.Add("idSede", strSede);
-            string strTxbValor = txbValor.Text.ToString();
-            Session.Add("valor", strTxbValor);
+            string strNombreSede = ddlSedes.SelectedItem.Text.ToString();
+            Session.Add("nombreSede", strNombreSede);
+            string strValorPlan = hfValorPlan.Value;
+            Session.Add("valorPlan", strValorPlan);
             string strLtValor = ltValor.Text.ToString();
             Session.Add("ltValorPlan", strLtValor);
 
@@ -321,7 +326,9 @@ namespace WebPage
                     "CelularAfiliado = '" + strCelular + "', " +
                     "EmailAfiliado = '" + strEmail + "', " +
                     "idGenero = " + ddlGenero.SelectedItem.Value.ToString() + ", " +
-                    "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "' " +
+                    "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "', " +
+                    "idCiudadAfiliado = " + strCiudad + ", " + 
+                    "idSede = " + strSede + " " +
                     "WHERE DocumentoAfiliado = '" + strCedula + "' ";
 
                 try
@@ -349,11 +356,11 @@ namespace WebPage
                 //Si no existe el documento del afiliado, lo creamos como nuevo.
                 string strQuery = "INSERT INTO Afiliados " +
                     "(DocumentoAfiliado, idTipoDocumento, NombreAfiliado, ApellidoAfiliado, CelularAfiliado, EmailAfiliado, " +
-                    "idGenero, FechaNacAfiliado, EstadoAfiliado) " +
+                    "idGenero, FechaNacAfiliado, idCiudadAfiliado, idSede, EstadoAfiliado) " +
                     "VALUES ('" + strCedula + "', " + ddlTipoDocumento.SelectedItem.Value.ToString() + ", " +
                     "'" + strNombre + "', '" + strApellido + "', " +
                     "'" + strCelular + "', '" + strEmail + "', " +
-                    "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', 'Pendiente') ";
+                    "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', " + strCiudad + ", " + strSede + ", 'Pendiente') ";
 
                 try
                 {
@@ -573,6 +580,7 @@ namespace WebPage
         {
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarSedePorId(int.Parse(idSede));
+
             if (dt == null || dt.Rows.Count == 0)
             {
                 throw new Exception("Sede no encontrada.");

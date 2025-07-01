@@ -38,7 +38,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 </head>
-<body style="background-color: #fff;">
+<body style="color: #fff;">
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
@@ -74,14 +74,14 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Nombre(s) *:</label>
+                                        <label>Nombre(s): *</label>
                                         <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
                                             placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Apellido(s) *:</label>
+                                        <label>Apellido(s): *</label>
                                         <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
                                             placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
                                     </div>
@@ -90,7 +90,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Tipo de Documento *: </label>
+                                        <label>Tipo de Documento: *</label>
                                         <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
                                             AppendDataBoundItems="true" DataTextField="TipoDocumento" 
                                             DataValueField="idTipoDoc" CssClass="form-control">
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Nro. de Documento *:</label>
+                                        <label>Nro. de Documento: *</label>
                                         <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
                                     </div>
                                 </div>
@@ -108,13 +108,13 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Email *:</label>
+                                        <label>Email: *</label>
                                         <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="Email" required=""></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Celular *:</label>
+                                        <label>Celular: *</label>
                                         <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="Teléfono" required=""></asp:TextBox>
                                     </div>
                                 </div>
@@ -122,9 +122,9 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Género:</label>
+                                        <label>Género: *</label>
                                         <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
-                                            DataTextField="Genero" DataValueField="idGenero" 
+                                            DataTextField="Genero" DataValueField="idGenero" required=""
                                             CssClass="form-control" TabIndex="6">
                                             <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                         </asp:DropDownList>
@@ -132,8 +132,8 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Fecha de Nacimiento:</label>
-                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" TabIndex="7"></asp:TextBox>
+                                        <label>Fecha de Nacimiento: *</label>
+                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" TabIndex="7" required=""></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -160,9 +160,9 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label>Sede:</label>
+                                                <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
-                                                    AppendDataBoundItems="true" 
+                                                    AppendDataBoundItems="true" required=""
                                                     DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
@@ -174,13 +174,14 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
                                                 <label>Valor del plan:</label>
-                                                <asp:TextBox ID="txbValor" CssClass="form-control" runat="server" disabled=""></asp:TextBox>
+                                                <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" disabled=""></asp:TextBox>
+                                                <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <label>Fecha de inicio *:</label>
-                                                <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" 
+                                                <label>Fecha de inicio: *</label>
+                                                <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
                                                              AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
