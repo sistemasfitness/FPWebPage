@@ -57,19 +57,6 @@ namespace WebPage
 
         }
 
-        //private DataTable TraerDatos(string strQuery)
-        //{
-        //    myConnection.Open();
-        //    DataTable dt = new DataTable();
-
-        //    OdbcCommand sqlCmd = new OdbcCommand(strQuery, myConnection);
-        //    OdbcDataAdapter sqlDA = new OdbcDataAdapter(sqlCmd);
-        //    sqlDA.Fill(dt);
-        //    myConnection.Close();
-
-        //    return dt;
-        //}
-
         public DataTable TraerDatos(string strQuery)
         {
             DataTable dt = new DataTable();
@@ -131,6 +118,9 @@ namespace WebPage
             {
                 MostrarAlerta("Error", "Ocurrió un error inesperado al procesar el pago.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "habilitarBoton", @"
+                    document.getElementById('" + btnPagar.ClientID + @"').disabled = false;", true);
             }
         }
 
@@ -250,92 +240,6 @@ namespace WebPage
                 MostrarAlerta("Error inesperado", "Ocurrió un error al procesar la transacción.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
             }
-
-            //    //Tokenizar una tarjeta
-            //    string url = "https://sandbox.wompi.co/v1/tokens/cards";
-            //    string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
-            //    Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
-
-            //    string status = rObjetc.status.ToString();
-
-            //    //La tarjeta ha sido tokenizada correctamente
-            //    string dataid = rObjetc.data.id.ToString();
-            //    ltMensaje.Text = dataid;
-
-            //    try
-            //    {
-            //        clasesglobales cg = new clasesglobales();
-            //        string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
-
-            //        DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-            //        Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
-
-            //        string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
-
-
-            //        await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
-
-
-            //        // Guardar el pago del plan afiliado
-
-            //        DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
-
-            //        string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
-
-            //        dtIdAfiliadoPlan.Dispose();
-            //        dtCanalVentas.Dispose();
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ltMensaje.Text = "Ocurrió un error interno al procesar la tarjeta.";
-            //    }
-            //}
-            //else
-            //{
-            //    ltMensaje.Text = "No se pudo tokenizar la tarjeta: " + rObjetc.status;
-            //}
-
-
-
-            //if (status == "CREATED")
-            //{
-            //    //La tarjeta ha sido tokenizada correctamente
-            //    string dataid = rObjetc.data.id.ToString();
-            //    ltMensaje.Text = dataid;
-
-            //    try
-            //    {
-            //        clasesglobales cg = new clasesglobales();
-            //        string mensaje = cg.InsertarAfiliadoPlan(int.Parse(Session["idAfiliado"].ToString()), int.Parse(Session["idPlan"].ToString()), Session["fechaInicioPlan"].ToString(), Session["fechaFinPlan"].ToString(), int.Parse(Session["meses"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Debito automatico", "Pendiente");
-
-            //        DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-            //        Session.Add("idAfiliadoPlan", dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
-
-            //        string respuestaToken = cg.ActualizarPagoPlanAfiliadoToken(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
-
-
-            //        await CrearFuentePagoAsync(Session["emailAfiliado"].ToString(), "CARD", dataid, Session["acceptance_token"].ToString(), Session["accept_personal_auth"].ToString());
-
-
-            //        // Guardar el pago del plan afiliado
-
-            //        DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
-
-            //        string respuestaPagoPlanAfiliado = cg.InsertarPagoPlanAfiliado(int.Parse(Session["idAfiliadoPlan"].ToString()), int.Parse(Session["valorPlan"].ToString()), "Wompi", Session["idReferencia"].ToString(), "Ninguno", "Aprobado", int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString()));
-
-            //        dtIdAfiliadoPlan.Dispose();
-            //        dtCanalVentas.Dispose();
-
-            //    } catch (Exception ex)
-            //    {
-            //        string mensajeError = "ERROR: " + ex.Message;
-            //    }
-            //}
-            //else
-            //{
-            //    ltMensaje.Text = status;
-            //}
         }
         private async Task<bool> CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
@@ -393,66 +297,6 @@ namespace WebPage
                 System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
                 return false;
             }
-
-
-            ////Crear Fuente de Pago
-            //string URLFuentePago = "https://sandbox.wompi.co/v1/payment_sources";
-            //string respuesta = await GetPostFuentePagoAsync(URLFuentePago, customer_email, type, token, acceptance_token, accept_personal_auth);
-            //Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
-
-            //string dataid = rObjetc.data.id.ToString();
-
-            //clasesglobales cg = new clasesglobales();
-            //string respuestaFuentePago = cg.ActualizarPagoPlanAfiliadoFuentePago(dataid, int.Parse(Session["idAfiliadoPlan"].ToString()));
-
-            ////Creamos la primera transaccion (primer cobro)
-
-            ////Referencia unica para el pago.
-            //string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-            //Session.Add("idReferencia", reference);
-
-            ////Hash Sha256 para Wompi
-            //string monto = Session["valorPlan"].ToString() + "00"; // Convertir a centavos
-            //string moneda = "COP";
-            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-            //string concatenado = reference + monto + moneda + integrity_secret;
-            //string hash256 = ComputeSha256Hash(concatenado);
-
-            //await CrearTransaccionAsync(int.Parse(monto.ToString()), "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
-
-
-            // TODO: Hacer inserción en tabla PagosPlanesAfiliados
-
-
-            //Guardar en BD el dataid para generar pagos posteriores.
-            //string strQuery = "SELECT idAfiliadoPlan FROM AfiliadosPlanes ORDER BY idAfiliado DESC LIMIT 1 ";
-            //DataTable dt = TraerDatos(strQuery);
-
-            //Session.Add("idAfiliadoPlan", dt.Rows[0]["idAfiliadoPlan"].ToString());
-
-            //strQuery = "UPDATE AfiliadosPlanes SET DataIdFuente = '" + dataid + "' WHERE idAfiliadoPlan = " + dt.Rows[0]["idAfiliadoPlan"].ToString();
-            //OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-            //myConnection.Open();
-            //command.ExecuteNonQuery();
-            //command.Dispose();
-            //myConnection.Close();
-
-            ////Creamos la primera transaccion (primer cobro)
-            //string strDocumento = Session["idAfiliado"].ToString();
-
-            ////Referencia unica para el pago.
-            //string reference = strDocumento + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            ////Hash Sha256 para Wompi
-            //string monto = "8900000";
-            //string moneda = "COP";
-            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-            //string concatenado = reference + monto + moneda + integrity_secret;
-            //string hash256 = ComputeSha256Hash(concatenado);
-
-            //CrearTransaccion(8900000, "COP", hash256, Session["emailAfiliado"].ToString(), 1, reference, Convert.ToInt32(dataid));
         }
 
         private async Task<bool> CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
@@ -469,7 +313,7 @@ namespace WebPage
 
                 if (estado != "APPROVED")
                 {
-                    MostrarAlerta("Transacción rechazada", $"Estado recibido: {estado ?? "Desconocido"}", "error");
+                    MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
                     return false;
                 }
 
@@ -493,30 +337,6 @@ namespace WebPage
                 System.Diagnostics.Debug.WriteLine("Error en CrearTransaccionAsync: " + ex.ToString());
                 return false;
             }
-
-            ////Crear Transacción
-            //string URLTransacciones = "https://sandbox.wompi.co/v1/transactions";
-            //string respuesta = await GetPostTransaccionAsync(URLTransacciones, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
-            //Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
-
-            ////En esta variable queda el id de la transaccion guardada.
-            //string dataid2 = rObjetc.data.id.ToString();
-
-            //clasesglobales cg = new clasesglobales();
-
-            //string respuestaTransaccion = cg.ActualizarPagoPlanAfiliadoTransaccion(dataid2, int.Parse(Session["idAfiliadoPlan"].ToString()));
-
-            //Response.Redirect("wompiexito");
-
-            //Guardar en BD el dataid para generar pagos posteriores.
-            //string strQuery = "UPDATE AfiliadosPlanes SET DataIdTransaction = '" + dataid2 + "' WHERE idAfiliadoPlan = " + Session["idAfiliadoPlan"].ToString();
-            //OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-            //myConnection.Open();
-            //command.ExecuteNonQuery();
-            //command.Dispose();
-            //myConnection.Close();
-
-            //Response.Redirect("wompiexito");
         }
 
         private async Task<string> ConsultarTransaccionPorReferencia(string referencia)

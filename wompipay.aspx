@@ -82,7 +82,7 @@
                     data-redirect-url="https://fp.valora.com.co">
                 </script>
             </form>--%>
-            <form method="post" action="wompipay" role="form" id="form" runat="server">
+            <form id="form" runat="server">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
@@ -248,19 +248,19 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept1" id="check1" name="check1" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept1" id="check1" name="check1"  />
                                     <label for="check1">
                                         <span>Acepto haber leido <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a> para hacer este pago.</span>
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept2" id="check2" name="check2" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept2" id="check2" name="check2"  />
                                     <label for="check2">
                                         <span>Acepto la <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-administracion-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></span>
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept3" id="check3" name="check3" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept3" id="check3" name="check3"  />
                                     <label for="check3">
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
                                     </label>
@@ -271,7 +271,12 @@
                             <asp:HiddenField ID="ltMensaje" runat="server"></asp:HiddenField>
                             <hr />
                             <%--<input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />--%>
-                            <asp:Button ID="btnPagar" runat="server" CssClass="btn_full" Text="Pagar a través de Wompi" OnClick="btnPagar_Click" />
+                            <asp:Button ID="btnPagar" runat="server"
+                                    CssClass="btn_full"
+                                    Text="Pagar a través de Wompi"
+                                    UseSubmitBehavior="false"
+                                    OnClientClick="return ejecutarPago();" 
+                                    OnClick="btnPagar_Click" />
                             <%--<a href="explore-1.html" class="btn_outline"><i class="icon-right"></i>Continue shopping</a>--%>
                         </div>
                         <div class="box_style_4">
@@ -317,7 +322,7 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
-    <script>
+    <%--<script>
         function habilitarBoton() {
             const check1 = document.getElementById('check1')
             const check2 = document.getElementById('check2')
@@ -327,6 +332,34 @@
                 console.log('Boton de pago habilitado');
                 document.getElementById('submitplan').disabled = false;
             }
+        }
+    </script>--%>
+
+    <script type="text/javascript">
+        function ejecutarPago() {
+            Swal.fire({
+                title: 'Procesando',
+                text: 'Estamos procesando tu pago. Por favor espera...',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Deshabilitar el botón
+            var btn = document.getElementById('<%= btnPagar.ClientID %>');
+        if (btn) {
+            btn.disabled = true;
+        }
+
+        // Ejecutar postback manualmente
+        setTimeout(function () {
+            __doPostBack('<%= btnPagar.UniqueID %>', '');
+        }, 100); // pequeño delay para que la alerta se muestre bien
+
+            return false; // ← IMPORTANTE: evita el postback automático
         }
     </script>
 </body>
