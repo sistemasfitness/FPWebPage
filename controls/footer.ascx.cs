@@ -11,7 +11,8 @@ namespace WebPage.controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            int anhoActual = DateTime.Now.Year;
+            ltAnho.Text = anhoActual.ToString();
         }
     }
 }

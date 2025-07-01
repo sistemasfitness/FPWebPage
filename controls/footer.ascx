@@ -48,7 +48,7 @@
 <!-- End footer -->
 <div id="copy">
     <div class="container">
-        Copyright © 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
+        Copyright © <asp:Literal ID="ltAnho" runat="server"></asp:Literal> Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
     </div>
 </div>
 <!-- End copy -->

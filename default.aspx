@@ -73,21 +73,12 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/YamfAFw8XbQ" runat="server" visible="true" id="divVideo">
+    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/WbrKWkLvjbo" runat="server" visible="true" id="divVideo">
         <div id="hero_video">
             <div id="sub_content">
                 <div class="mobile_fix">
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
-                    <p>Transforma tu cuerpo y tu vida</p>
+                    <%--<h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
+                    <p>Transforma tu cuerpo y tu vida</p>--%>
                 </div>
             </div>
             <!-- End sub_content -->
@@ -127,8 +118,19 @@
     <!-- End SubHeader ============================================ -->
     <form runat="server" id="form2">
         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-        <section class="margin_60_35" id="sedes" style="padding-top: 0px;">
-            <div class="container margin_60">
+
+        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="container">
+                <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
+                <p class="lead styled" style="color: #FFF;">
+                    <b>Somos un Centro Médico Deportivo catalogado como una IPS.</b>
+                </p>
+            </div>
+            <!--  End container-->
+        </section>
+
+        <section class="margin_60_35" id="sedes" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
 
                 <div class="row">
@@ -291,30 +293,98 @@
 
         <section class="margin_60_35" id="testimonials" style="background: #000;">
             <div class="container">
-                <%--<h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>--%>
                 <div class="row">
                     <div class="owl-carousel team-carousel">
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/7_dias_semana.png" style="width: 160px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/svgtopng/Recurso-39.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/10_sedes.png" style="width: 160px;" alt="" />
                             </div>
                         </div>
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/svgtopng/Recurso-33.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/breakee.png" style="width: 160px;" alt="" />
                             </div>
                         </div>
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/svgtopng/Recurso-40.png" style="width: 160px;" alt="" />
+                                <img src="img/servicios/clases_grupales.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/deportologo.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/fisioterapeuta.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/nutricionista.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/profesionales.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/salon_grupales.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/salon_pilates.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/salon_spinning.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/salon_xtreme.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/zona_cardiovascular.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/zona_hammer.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/zona_mancuernas.png" style="width: 160px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/servicios/zona_poleas.png" style="width: 160px;" alt="" />
                             </div>
                         </div>
 
@@ -323,7 +393,115 @@
             </div>
         </section>
 
-        <section class="margin_60_35" id="planes">
+        <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="container">
+                <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
+                <!--Team Carousel -->
+                <div class="row">
+                    <div class="owl-carousel team-carousel4">
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/combat.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/funcional.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/kick_boxing.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/pilates.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/rumba.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/spinning.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/xtreme.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <img src="img/grupales/xtreme_2.jpg" style="width: 600px;" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Team Carousel-->
+            </div>
+            <!--  End container-->
+        </section>
+
+        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="container" id="scroll-to">
+                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
+                <div class="row text-center plans">
+
+                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                        <div class="img_container">
+                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
+                            <p style="font-weight: 600; color: #FFF;"><br />Deportólogo</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                        <div class="img_container">
+                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
+                            <p style="font-weight: 600; color: #FFF;"><br />Fisioterapeuta</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                        <div class="img_container">
+                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
+                            <p style="font-weight: 600; color: #FFF;"><br />Nutricionista</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                        <div class="img_container">
+                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
+                            <p style="font-weight: 600; color: #FFF;"><br />Profesionales del deporte</p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End row plans-->
+
+            </div>
+            <!--  End container-->
+        </section>
+
+        <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
                 <p class="lead styled" style="font-weight: 500; color: #FFF;">
@@ -335,7 +513,7 @@
                         <div class="img_container">
                             <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
                             <a href="planes?id=1">
-                                <img id="image1-img" src="img/planes/99easy01.jpg" class="img-responsive" />
+                                <img src="img/planes/plan_easy.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -344,7 +522,7 @@
                         <div class="img_container">
                             <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
                             <a href="planes?id=7">
-                                <img src="img/planes/12meses01.jpg" class="img-responsive" style="height: 450px;" />
+                                <img src="img/planes/mega_prima.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
@@ -353,7 +531,7 @@
                         <div class="img_container">
                             <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
                             <a href="planes?id=2">
-                                <img src="img/planes/190fast01.jpg" class="img-responsive" />
+                                <img src="img/planes/mes_fast.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -607,6 +785,31 @@
                 },
                 1000: {
                     items: 2,
+                }
+            }
+        });
+
+        $(".team-carousel4").owlCarousel({
+            items: 1,
+            autoHeight: true,
+            autoWidth: true,
+            loop: true,
+            nav: false,
+            center: true,
+            autoplayTimeout: 3000,
+            margin: 100,
+            autoplay: true,
+            smartSpeed: 1000,
+            responsiveClass: false,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 4,
                 }
             }
         });
