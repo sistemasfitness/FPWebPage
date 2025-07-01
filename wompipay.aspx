@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" Async="true" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -36,8 +36,17 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body.swal2-shown {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+    </style>
 </head>
-<body style="background-color: #fff;">
+<body style="color: #fff;">
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
@@ -73,7 +82,7 @@
                     data-redirect-url="https://fp.valora.com.co">
                 </script>
             </form>--%>
-            <form method="post" action="wompipay">
+            <form id="form" runat="server">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
@@ -98,7 +107,8 @@
                                                         <div class="col-md-12 col-sm-12">
                                                             <div class="form-group">
                                                                 <label>Número de la tarjeta:</label>
-                                                                <input type="number" id="creditcard" name="creditcard" class="form-control" required="" />
+                                                                <%--<input type="number" id="creditcard" name="creditcard" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbCreditCard" CssClass="form-control" runat="server" required="" name="txbCreditCard"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -106,7 +116,23 @@
                                                         <div class="col-md-3 col-sm-3">
                                                             <div class="form-group">
                                                                 <label>Mes expira:</label>
-                                                                <select id="ddlMes" class="form-control" name="ddlMes" required="">
+                                                                <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
+                                                                    DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control">
+                                                                    <asp:ListItem Text="Mes" Value=""></asp:ListItem>
+                                                                    <asp:ListItem Text="Enero" Value="01"></asp:ListItem>
+                                                                    <asp:ListItem Text="Febrero" Value="02"></asp:ListItem>
+                                                                    <asp:ListItem Text="Marzo" Value="03"></asp:ListItem>
+                                                                    <asp:ListItem Text="Abril" Value="04"></asp:ListItem>
+                                                                    <asp:ListItem Text="Mayo" Value="05"></asp:ListItem>
+                                                                    <asp:ListItem Text="Junio" Value="06"></asp:ListItem>
+                                                                    <asp:ListItem Text="Julio" Value="07"></asp:ListItem>
+                                                                    <asp:ListItem Text="Agosto" Value="08"></asp:ListItem>
+                                                                    <asp:ListItem Text="Septiembre" Value="09"></asp:ListItem>
+                                                                    <asp:ListItem Text="Octubre" Value="10"></asp:ListItem>
+                                                                    <asp:ListItem Text="Noviembre" Value="11"></asp:ListItem>
+                                                                    <asp:ListItem Text="Diciembre" Value="12"></asp:ListItem>
+                                                                </asp:DropDownList>
+                                                                <%--<select id="ddlMes" class="form-control" name="ddlMes" required="">
                                                                     <option value="">Mes</option>
                                                                     <option value="01">Enero</option>
                                                                     <option value="02">Febrero</option>
@@ -120,13 +146,32 @@
                                                                     <option value="10">Octubre</option>
                                                                     <option value="11">Noviembre</option>
                                                                     <option value="12">Diciembre</option>
-                                                                </select>
+                                                                </select>--%>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 col-sm-3">
                                                             <div class="form-group">
                                                                 <label>Año expira:</label>
-                                                                <select id="ddlAnho" class="form-control" name="ddlAnho" required="">
+                                                                <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
+                                                                    DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control">
+                                                                    <asp:ListItem Text="Año" Value=""></asp:ListItem>
+                                                                    <asp:ListItem Text="2024" Value="24"></asp:ListItem>
+                                                                    <asp:ListItem Text="2025" Value="25"></asp:ListItem>
+                                                                    <asp:ListItem Text="2026" Value="26"></asp:ListItem>
+                                                                    <asp:ListItem Text="2027" Value="27"></asp:ListItem>
+                                                                    <asp:ListItem Text="2028" Value="28"></asp:ListItem>
+                                                                    <asp:ListItem Text="2029" Value="29"></asp:ListItem>
+                                                                    <asp:ListItem Text="2030" Value="30"></asp:ListItem>
+                                                                    <asp:ListItem Text="2031" Value="31"></asp:ListItem>
+                                                                    <asp:ListItem Text="2032" Value="32"></asp:ListItem>
+                                                                    <asp:ListItem Text="2033" Value="33"></asp:ListItem>
+                                                                    <asp:ListItem Text="2034" Value="34"></asp:ListItem>
+                                                                    <asp:ListItem Text="2035" Value="35"></asp:ListItem>
+                                                                    <asp:ListItem Text="2036" Value="36"></asp:ListItem>
+                                                                    <asp:ListItem Text="2037" Value="37"></asp:ListItem>
+                                                                    <asp:ListItem Text="2038" Value="38"></asp:ListItem>
+                                                                </asp:DropDownList>
+                                                                <%--<select id="ddlAnho" class="form-control" name="ddlAnho" required="">
                                                                     <option value="">Año</option>
                                                                     <option value="24">2024</option>
                                                                     <option value="25">2025</option>
@@ -143,13 +188,14 @@
                                                                     <option value="36">2036</option>
                                                                     <option value="37">2037</option>
                                                                     <option value="38">2038</option>
-                                                                </select>
+                                                                </select>--%>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="form-group">
                                                                 <label>CVC (Código de seguridad):</label>
-                                                                <input type="number" id="cvc" name="cvc" class="form-control" required="" />
+                                                                <%--<input type="number" id="cvc" name="cvc" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" required="" name="txbCVC"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -157,7 +203,8 @@
                                                         <div class="col-md-12 col-sm-12">
                                                             <div class="form-group">
                                                                 <label>Nombre en la tarjeta:</label>
-                                                                <input type="text" id="nombretarjeta" name="nombretarjeta" class="form-control" required="" />
+                                                                <%--<input type="text" id="nombretarjeta" name="nombretarjeta" class="form-control" required="" />--%>
+                                                                <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" name="txbNombreTarjeta"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -187,13 +234,11 @@
                                             </div>
                                         </div>--%>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <!--End step -->
                     </div>
-
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
@@ -203,19 +248,19 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept1" id="check1" name="check1" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept1" id="check1" name="check1"  />
                                     <label for="check1">
                                         <span>Acepto haber leido <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a> para hacer este pago.</span>
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept2" id="check2" name="check2" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept2" id="check2" name="check2"  />
                                     <label for="check2">
                                         <span>Acepto la <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-administracion-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></span>
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" value="accept3" id="check3" name="check3" onchange="habilitarBoton();" />
+                                    <input type="checkbox" value="accept3" id="check3" name="check3"  />
                                     <label for="check3">
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
                                     </label>
@@ -223,9 +268,15 @@
 
                             </div>
                             <div id="message-subscribe"></div>
-                            <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
+                            <asp:HiddenField ID="ltMensaje" runat="server"></asp:HiddenField>
                             <hr />
-                            <input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />
+                            <%--<input type="submit" id="submitplan" class="btn_full" disabled="" value="Pagar a través de Wompi" />--%>
+                            <asp:Button ID="btnPagar" runat="server"
+                                    CssClass="btn_full"
+                                    Text="Pagar a través de Wompi"
+                                    UseSubmitBehavior="false"
+                                    OnClientClick="return ejecutarPago();" 
+                                    OnClick="btnPagar_Click" />
                             <%--<a href="explore-1.html" class="btn_outline"><i class="icon-right"></i>Continue shopping</a>--%>
                         </div>
                         <div class="box_style_4">
@@ -271,7 +322,7 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
-    <script>
+    <%--<script>
         function habilitarBoton() {
             const check1 = document.getElementById('check1')
             const check2 = document.getElementById('check2')
@@ -281,6 +332,34 @@
                 console.log('Boton de pago habilitado');
                 document.getElementById('submitplan').disabled = false;
             }
+        }
+    </script>--%>
+
+    <script type="text/javascript">
+        function ejecutarPago() {
+            Swal.fire({
+                title: 'Procesando',
+                text: 'Estamos procesando tu pago. Por favor espera...',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Deshabilitar el botón
+            var btn = document.getElementById('<%= btnPagar.ClientID %>');
+        if (btn) {
+            btn.disabled = true;
+        }
+
+        // Ejecutar postback manualmente
+        setTimeout(function () {
+            __doPostBack('<%= btnPagar.UniqueID %>', '');
+        }, 100); // pequeño delay para que la alerta se muestre bien
+
+            return false; // ← IMPORTANTE: evita el postback automático
         }
     </script>
 </body>
