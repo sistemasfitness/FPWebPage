@@ -73,7 +73,7 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/WbrKWkLvjbo" runat="server" visible="true" id="divVideo">
+    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
         <div id="hero_video">
             <div id="sub_content">
                 <div class="mobile_fix">

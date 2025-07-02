@@ -471,48 +471,48 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">Puedo cancelar mi suscripción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">¿Puedo cancelar mi suscripción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
                       </h4>
 						</div>
 						<div id="collapseOne_works" class="panel-collapse collapse in">
 							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">Como funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">¿Cómo funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
                       </h4>
 						</div>
 						<div id="collapseTwo_works" class="panel-collapse collapse">
 							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								Al activar tu plan, vincula una tarjeta para que el cobro mensual se realice de forma automática. Es cómodo, seguro y te evita preocupaciones. Te notificamos antes de cada cobro.
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">¿Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
                       </h4>
 						</div>
 						<div id="collapseThree_works" class="panel-collapse collapse">
 							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								¡No hay problema!¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">¿Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
 							</h4>
 						</div>
 						<div id="collapseFour_works" class="panel-collapse collapse">
 							<div class="panel-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
 							</div>
 						</div>
 					</div>
