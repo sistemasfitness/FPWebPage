@@ -1991,6 +1991,10 @@ s.checkbox-holder {
 		transition: background-color 0.3s;
 	}
 
+	.checkbox-dark label:before {
+		border: 2px solid black;
+	}
+
 	.checkbox input[type=checkbox]:focus + label:before {
 		background: rgba(255, 255, 0, 0.2);
 	}
@@ -2006,6 +2010,10 @@ s.checkbox-holder {
 		background: white;
 		-webkit-transition: all 0.3s ease;
 		transition: all 0.3s ease;
+	}
+
+	.checkbox-dark label:after {
+		background: black;
 	}
 
 	.checkbox input[type=checkbox] {

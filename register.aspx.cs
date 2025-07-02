@@ -53,7 +53,6 @@ namespace WebPage
                 txbDocumento.Text = "1005139501";
                 txbEmail.Text = "b.ochoa12@gmail.com";
                 txbCelular.Text = "3156552301";
-                ddlGenero.SelectedItem.Value = "1";
                 txbFechaNac.Text = "2000-01-01";
                 //ddlCiudad.SelectedItem.Text = "Bucaramanga";
                 //ddlCiudad.SelectedItem.Value = "1";

@@ -87,6 +87,33 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltValor;
 
         /// <summary>
+        /// Control cbAutorizo1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAutorizo1;
+
+        /// <summary>
+        /// Control cbAutorizo2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAutorizo2;
+
+        /// <summary>
+        /// Control cbAutorizo3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAutorizo3;
+
+        /// <summary>
         /// Control ltMensaje.
         /// </summary>
         /// <remarks>
