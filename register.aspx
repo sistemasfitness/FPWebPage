@@ -226,7 +226,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
@@ -247,7 +246,7 @@
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnAgregar" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" />
+                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" />
                             </div>
                         </div>
                         <div class="box_style_4">
@@ -264,13 +263,8 @@
     </div>
     <!-- End container -->
 
-    <uc1:footer runat="server" id="footer" />
     <!-- End footer -->
-    <div id="copy">
-        <div class="container">
-            Copyright © 2021 – 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
-        </div>
-    </div>
+    <uc1:footer runat="server" id="footer" />
     <!-- End copy -->
 
     <div id="toTop"></div>
@@ -319,11 +313,10 @@
         //}
 
         function habilitarBoton() {
-            const check1 = document.getElementById('check1')
+            const check = document.getElementById('<%= cbAutorizo.ClientID %>')
 
-            if (check1.checked) {
-                console.log('Boton de pago habilitado');
-                document.getElementById('submitplan').disabled = false;
+            if (check.checked) {
+                document.getElementById('<%= btnRegistrarAfiliado.ClientID %>').disabled = false;
             }
         }
     </script>
