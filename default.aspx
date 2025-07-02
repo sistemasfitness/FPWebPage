@@ -123,6 +123,7 @@
             <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
                 <p class="lead styled" style="color: #FFF;">
+                    <img src="img/icono_cmd_3.png" style="width: 100px;" /><br /><br />
                     <b>Somos un Centro Médico Deportivo catalogado como una IPS.</b>
                 </p>
             </div>
@@ -408,7 +409,7 @@
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/grupales/combat.jpg" style="width: 600px;" alt="" />
+                                <img src="img/grupales/combat1.jpg" style="width: 600px;" alt="" />
                             </div>
                         </div>
 
@@ -420,7 +421,7 @@
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/grupales/kick_boxing.jpg" style="width: 600px;" alt="" />
+                                <img src="img/grupales/kick_boxing1.jpg" style="width: 600px;" alt="" />
                             </div>
                         </div>
 
@@ -438,7 +439,7 @@
 
                         <div class="team-item">
                             <div class="team-item-img">
-                                <img src="img/grupales/spinning.jpg" style="width: 600px;" alt="" />
+                                <img src="img/grupales/spinning1.jpg" style="width: 600px;" alt="" />
                             </div>
                         </div>
 

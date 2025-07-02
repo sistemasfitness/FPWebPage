@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planes.aspx.cs" Inherits="WebPage.planes" %>
 
-<%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenunew" %>
+<%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -55,7 +55,7 @@
     <!-- Header ================================================== -->
     <header>
         <div class="container-fluid">
-            <uc1:mainmenunew runat="server" ID="mainmenunew" />
+            <uc1:mainmenu runat="server" ID="mainmenu" />
         </div>
         <!-- End container -->
     </header>
@@ -182,7 +182,7 @@
                 <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
             </div>
             <div class="row" style="display: flex;">
-                <div class="col-md-12" style="display: flex; flex-direction: column; justify-content: space-around;">
+                <div class="col-md-12" style="text-align: center;">
                 <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
             </div>
@@ -339,7 +339,7 @@
                             <div class="form-group">
                                 <label style="color: #FFF;">Sede:</label>
                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                    OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
+                                     OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
                                     DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
                                     Style="background-color: #3c3c3c;">
                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
@@ -368,7 +368,7 @@
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/grupales/combat.jpg" style="width: 600px;" alt="" />
+                            <img src="img/grupales/combat1.jpg" style="width: 600px;" alt="" />
                         </div>
                     </div>
 
@@ -380,7 +380,7 @@
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/grupales/kick_boxing.jpg" style="width: 600px;" alt="" />
+                            <img src="img/grupales/kick_boxing1.jpg" style="width: 600px;" alt="" />
                         </div>
                     </div>
 
@@ -398,7 +398,7 @@
 
                     <div class="team-item">
                         <div class="team-item-img">
-                            <img src="img/grupales/spinning.jpg" style="width: 600px;" alt="" />
+                            <img src="img/grupales/spinning1.jpg" style="width: 600px;" alt="" />
                         </div>
                     </div>
 
