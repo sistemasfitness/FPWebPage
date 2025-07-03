@@ -34,14 +34,7 @@ namespace WebPage
 
                         ltBotonPago.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
                         ltBotonPago.Text += "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\">";
-                        //ltBotonPago.Text += "<button class=\"btn_1 add_bottom_15\" style=\"width: 100%; background-color: black; font-size: x-large; margin-bottom: 0;\">";
-                        //ltBotonPago.Text += "¡COMPRAR AQUI!";
-                        //ltBotonPago.Text += "</button>";
                         ltBotonPago.Text += "</a>";
-
-                        //ltImagenMarketing.Text = "<div class=\"col-md-5 col-md-offset-1 hidden-sm hidden-xs\" style=\"display: flex; flex-direction: column; justify-content: center; cursor: pointer;\" >";
-                        //ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\">";
-                        //ltImagenMarketing.Text += "</div>";
 
                         ltImagenMarketing.Text = "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" />";
 
