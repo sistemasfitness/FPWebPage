@@ -20,6 +20,13 @@ namespace WebPage
                 if (Request.QueryString.Count > 0)
                 {
                     CargarDatosAfiliado();
+
+                    if (!RespondioParqAfiliado())
+                    {
+                        InsertarRespuestasAfiliado();
+                    }
+                    
+                    ListaPreguntasParq();
                 }
                 else
                 {
@@ -27,20 +34,6 @@ namespace WebPage
                 }
             }
         }
-
-        //private DataTable TraerDatos(string strQuery)
-        //{
-        //    OdbcConnection myConnection = new OdbcConnection(ConfigurationManager.AppSettings["sConn"].ToString());
-        //    myConnection.Open();
-        //    DataTable dt = new DataTable();
-
-        //    OdbcCommand sqlCmd = new OdbcCommand(strQuery, myConnection);
-        //    OdbcDataAdapter sqlDA = new OdbcDataAdapter(sqlCmd);
-        //    sqlDA.Fill(dt);
-        //    myConnection.Close();
-
-        //    return dt;
-        //}
 
         private void CargarDatosAfiliado()
         {
@@ -50,6 +43,7 @@ namespace WebPage
             if (dt.Rows.Count > 0)
             {
                 idAfil.Value = dt.Rows[0]["idAfiliado"].ToString();
+                ViewState["idAfiliado"] = idAfil.Value;
                 name_contact.Value = dt.Rows[0]["NombreAfiliado"].ToString();
                 lastname_contact.Value = dt.Rows[0]["ApellidoAfiliado"].ToString();
                 email_contact.Value = dt.Rows[0]["EmailAfiliado"].ToString();
@@ -57,6 +51,53 @@ namespace WebPage
                 ViewState["EmailAfiliado"] = dt.Rows[0]["EmailAfiliado"].ToString();
                 ViewState["ClaveAfiliado"] = dt.Rows[0]["ClaveAfiliado"].ToString();
             }
+        }
+
+        private void InsertarRespuestasAfiliado()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            string strQuery = "SELECT * FROM ParQ WHERE EstadoParQ = 'Activo' ";
+            DataTable dt = cg.TraerDatos(strQuery);
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    strQuery = "INSERT INTO ParqAfiliados (idParq, idAfiliado, Respuesta1Parq, FechaRespParQ) " +
+                        "VALUES (" + dt.Rows[i]["idParq"].ToString() + ", " + ViewState["idAfiliado"].ToString() + ", " +
+                        "0, CURDATE()) ";
+                    cg.TraerDatosStr(strQuery);
+                }
+            }
+        }
+
+        private bool RespondioParqAfiliado()
+        {
+            bool bRta = false;
+            clasesglobales cg = new clasesglobales();
+            string strQuery = "SELECT * FROM ParqAfiliados WHERE idAfiliado = " + ViewState["idAfiliado"].ToString();
+            DataTable dt = cg.TraerDatos(strQuery);
+            if (dt.Rows.Count > 0)
+            {
+                bRta = true;
+            }
+            return bRta;
+        }
+
+        private void ListaPreguntasParq()
+        {
+            string strQuery = @"SELECT pqa.idParqAfiliado, pqa.Respuesta1ParQ, pq.PreguntaParq, 
+		        IF(pqa.Respuesta1ParQ=0, ""<i class='fa fa-thumbs-down text-danger'>"",""<i class='fa fa-thumbs-up text-info'>"") AS Respuesta 
+	            FROM ParqAfiliados pqa, Parq pq
+	            WHERE pqa.idParq = pq.idParq 
+                AND pqa.idAfiliado = " + ViewState["idAfiliado"].ToString() + @" 
+                ORDER BY pq.Orden; ";
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.TraerDatos(strQuery);
+
+            rpParq.DataSource = dt;
+            rpParq.DataBind();
+            dt.Dispose();
         }
 
         private void VerificarAfiliado()
@@ -127,6 +168,46 @@ namespace WebPage
         protected void btnVerificar_Click(object sender, EventArgs e)
         {
             VerificarAfiliado();
+        }
+
+        protected void rpParq_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            LinkButton lb1 = (LinkButton)e.Item.FindControl("lb1");
+            lb1.CommandArgument = ((DataRowView)e.Item.DataItem).Row[0].ToString();
+        }
+
+        protected void lb1_Click(object sender, EventArgs e)
+        {
+            CambiarParq(((LinkButton)sender).CommandArgument);
+        }
+
+        private void CambiarParq(string argumento)
+        {
+            string strQuery = "SELECT * FROM ParqAfiliados " +
+                "WHERE idParq = " + argumento;
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.TraerDatos(strQuery);
+
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["Respuesta1ParQ"].ToString() == "1")
+                {
+                    strQuery = "UPDATE ParqAfiliados SET " +
+                        "Respuesta1Parq = 0 " +
+                        "WHERE idParq = " + argumento;
+                }
+                else
+                {
+                    strQuery = "UPDATE ParqAfiliados SET " +
+                        "Respuesta1Parq = 1 " +
+                        "WHERE idParq = " + argumento;
+                }
+
+                cg.TraerDatosStr(strQuery);
+            }
+
+            dt.Dispose();
+            ListaPreguntasParq();
         }
     }
 }

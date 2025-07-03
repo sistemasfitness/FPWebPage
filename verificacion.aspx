@@ -33,7 +33,8 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.bootstrap.min.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
@@ -55,7 +56,7 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/office.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/contact.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">VERIFICACION</h1>
         </div>
@@ -71,20 +72,20 @@
                 <p style="color: #fff">Confirma los siguientes datos y da clic al botón verificar:</p>
                 <div>
                     <div id="message-contact"></div>
-                    <form id="verificar" runat="server" >
+                    <form id="verificar" runat="server">
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Nombres</label>
                                     <input type="hidden" id="idAfil" runat="server" />
-                                    <input type="text" class="form-control styled" id="name_contact" 
+                                    <input type="text" class="form-control styled" id="name_contact"
                                         name="name_contact" runat="server" />
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Apellidos</label>
-                                    <input type="text" class="form-control styled" id="lastname_contact" 
+                                    <input type="text" class="form-control styled" id="lastname_contact"
                                         name="lastname_contact" runat="server" />
                                 </div>
                             </div>
@@ -93,27 +94,66 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Correo eléctronico:</label>
-                                    <input type="email" id="email_contact" name="email_contact" 
+                                    <input type="email" id="email_contact" name="email_contact"
                                         class="form-control styled" runat="server" />
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Celular:</label>
-                                    <input type="number" id="phone_contact" name="phone_contact" 
+                                    <input type="number" id="phone_contact" name="phone_contact"
                                         class="form-control styled" runat="server" />
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+
+                                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                    <asp:UpdatePanel ID="upParq" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
+                                        <ContentTemplate>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <table class="footable table table-striped" data-paging-size="10"
+                                                        data-paging="false" data-sorting="true">
+                                                        
+                                                            <tr>
+                                                                <th data-sortable="false">Pregunta</th>
+                                                                <th data-sortable="false">Respuesta</th>
+                                                            </tr>
+                                                        
+                                                        
+                                                            <asp:Repeater ID="rpParq" runat="server" OnItemDataBound="rpParq_ItemDataBound">
+                                                                <ItemTemplate>
+                                                                    <tr>
+                                                                        <td style="vertical-align: middle;"><%# Eval("PreguntaParq") %></td>
+                                                                        <td class="text-center">
+                                                                            <asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>
+                                                                    </tr>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
-                                    <input type="text" id="verify_contact" class=" form-control styled" 
+                                    <input type="text" id="verify_contact" class=" form-control styled"
                                         placeholder=" 3 + 1 =" runat="server" required />
                                 </div>
                                 <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
-                                <asp:Button ID="btnVerificar" runat="server" CssClass="btn_1" 
+                                <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
                                     Text="VERIFICAR" OnClick="btnVerificar_Click" />
                                 <%--<p><input type="submit" value="Verificar" class="btn_1" id="submit-contact" /></p>--%>
                             </div>
@@ -125,7 +165,8 @@
             <aside class="col-md-4">
                 <div class="box_style_2">
                     <h5 style="font-weight: 900;">Información de Contacto</h5>
-                    <p>Calle 45 No. 35 - 23 Piso 2<br>
+                    <p>
+                        Calle 45 No. 35 - 23 Piso 2<br>
                         (+57) 318 707 7584<br>
                         <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
                     </p>
@@ -165,7 +206,7 @@
     <!-- End container -->
 
     <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.764486790383!2d-73.11025033039041!3d7.119283530320726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f7e428fb6e5%3A0x3a67714ea25f138b!2sFitness%20People%20centro%20administrativo!5e0!3m2!1sen!2sco!4v1733155568363!5m2!1sen!2sco" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.764486790383!2d-73.11025033039041!3d7.119283530320726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f7e428fb6e5%3A0x3a67714ea25f138b!2sFitness%20People%20centro%20administrativo!5e0!3m2!1sen!2sco!4v1733155568363!5m2!1sen!2sco" width="100%" height="450" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <uc1:footer runat="server" ID="footer" />
@@ -192,5 +233,10 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"></script>
+
+    <script>
+        $('.footable').footable();
+    </script>
 </body>
 </html>
