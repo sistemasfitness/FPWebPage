@@ -512,27 +512,24 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
                             <a href="planes?id=1">
-                                <img src="img/planes/plan_easy.jpg" class="img-responsive" />
+                                <img src="img/planes/plan_easy01.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
                             <a href="planes?id=7">
-                                <img src="img/planes/mega_prima.jpg" class="img-responsive" style="height: 450px;" />
+                                <img src="img/planes/mega_prima01.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
                             <a href="planes?id=2">
-                                <img src="img/planes/mes_fast.jpg" class="img-responsive" />
+                                <img src="img/planes/mes_fast01.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
