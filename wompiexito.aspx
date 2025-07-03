@@ -37,7 +37,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 </head>
-<body style="background-color: #fff;">
+<body>
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
@@ -51,36 +51,33 @@
     <!-- End Header =============================================== -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sub_header_general.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1>Pago a través de Wompi</h1>
-            <p>Paga de manera segura a través de Wompi.</p>
+            <h1 style="font-weight: 900">¡Pago Exitoso!</h1>
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #fff">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <div class="box_style_2">
+                <div class="box_style_2" style="background-color: #1A1A1A">
                     <div id="confirm">
-                        <i class="icon_check_alt2"></i>
-                        <h3>Pago confirmado!</h3>
-                        <p>
-                            Su orden ha sido confirmada.
-                        </p>
+                        <%--<i class="icon_check_alt2"></i>--%>
+                        <h3 style="font-weight: 900; color: #e3ff00;">Pago confirmado!</h3>
+                        <p style="color: #fff;">Su orden ha sido confirmada.</p>
                     </div>
-                    <h4>Resumen</h4>
+                    <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
                     <table class="table table-striped nomargin">
                         <tbody>
-                            <tr>
+                            <tr style="background-color: #1A1A1A">
                                 <td>Débito automático</td>
-                                <td><strong class="pull-right">$89.000</strong></td>
+                                <td><strong class="pull-right"><span class="pull-right"><asp:Literal ID="ltValor1" runat="server"></asp:Literal></span></strong></td>
                             </tr>
-                            <tr>
-                                <td class="total_confirm">TOTAL</td>
-                                <td class="total_confirm"><span class="pull-right">$89.000</span></td>
+                            <tr style="font-weight: 900; background-color: #e3ff00; color: black;">
+                                <td class="">TOTAL</td>
+                                <td class=""><span class="pull-right"><asp:Literal ID="ltValor2" runat="server"></asp:Literal></span></td>
                             </tr>
                         </tbody>
                     </table>
