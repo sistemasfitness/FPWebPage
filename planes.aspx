@@ -172,18 +172,21 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="testimonials">
+    <section class="margin_60_35" id="testimonials2">
         <div class="container margin_60_35">
-            <div class="row" style="display: flex;">
+            <div class="row" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; "><asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
                     <p class="lead" style="color: #FFF; margin-top: 20px;"><asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
                 </div>
-                <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+
+                <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
+                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+                </div>
             </div>
             <div class="row" style="display: flex;">
                 <div class="col-md-12" style="text-align: center;">
-                <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
+                    <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
             </div>
             <!-- End row -->

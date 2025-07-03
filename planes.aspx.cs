@@ -39,9 +39,11 @@ namespace WebPage
                         //ltBotonPago.Text += "</button>";
                         ltBotonPago.Text += "</a>";
 
-                        ltImagenMarketing.Text = "<div class=\"col-md-5 col-md-offset-1 hidden-sm hidden-xs\" style=\"display: flex; flex-direction: column; justify-content: center; cursor: pointer;\" >";
-                        ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\">";
-                        ltImagenMarketing.Text += "</div>";
+                        //ltImagenMarketing.Text = "<div class=\"col-md-5 col-md-offset-1 hidden-sm hidden-xs\" style=\"display: flex; flex-direction: column; justify-content: center; cursor: pointer;\" >";
+                        //ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\">";
+                        //ltImagenMarketing.Text += "</div>";
+
+                        ltImagenMarketing.Text = "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" />";
 
                         //ltPrecioTotal.Text = dt.Rows[0]["PrecioTotal"].ToString();
 
