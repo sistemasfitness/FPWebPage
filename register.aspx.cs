@@ -388,7 +388,7 @@ namespace WebPage
 
             // Siigo API
             string token = ObtenerTokenSiigo(strSede);
-            Session.Add("token", token);
+            Session.Add("tokenSiigo", token);
             bool exists = ConsultSiigoCustomer(strCedula, token);
             ManageCustomer(exists, token);
 
@@ -576,39 +576,10 @@ namespace WebPage
         // Siigo API
         public static string ObtenerTokenSiigo(string idSede)
         {
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarSedePorId(int.Parse(idSede));
-
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                throw new Exception("Sede no encontrada.");
-            }
-
             // Usar los datos de la sede para obtener el token
             string url = "https://api.siigo.com/auth";
-            string username = "";
-            string accessKey = "";
-
-            if (dt.Rows[0]["idEmpresaFP"].ToString() == "1")
-            {
-                // Empresa FITNESS PEOPLE CENTRO MÉDICO DEPORTIVO S.A.S.
-                //username = "contabilidad@fitnesspeoplecmd.com";
-                //accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-                username = "sandbox@siigoapi.com";
-                accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
-            }
-            if (dt.Rows[0]["idEmpresaFP"].ToString() == "2")
-            {
-                // Empresa INVERSIONES FITNESS S.A.S.
-                //username = "contabilidad@fitnesspeoplecmd.com";
-                //accessKey = "NDIzNDc5YmYtMDQ4Yi00NjE2LWI0MmItZGE3YjBmY2IyZmUwOjMvdTI0LT9HZU4=";
-
-                username = "sandbox@siigoapi.com";
-                accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
-            }
-
-            dt.Dispose();
+            string username = "contabilidad@fitnesspeoplecmd.com";
+            string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
@@ -764,130 +735,5 @@ namespace WebPage
             public string last_name { get; set; }
             public string email { get; set; }
         }
-
-
-
-
-        //public void CrearFactura()
-        //{
-        //    string URLCrearFactura = "https://api.siigo.com/v1/invoices";
-
-        //    // Obtener información de la sesión del afiliado
-        //    string strCedula = Session["document"].ToString();
-        //    string strFechaInicioPlan = Session["fechaInicioPlan"].ToString();
-
-        //    Invoice oInvoice = new Invoice()
-        //    {
-        //        document = new DocumentType { id = 28006 },
-        //        date = strFechaInicioPlan,
-        //        customer = new Customer
-        //        {
-        //            identification = "1005137101"
-        //        },
-        //        seller = 856,
-        //        items = new List<Items>
-        //        {
-        //            new Items
-        //            {
-        //                code = "product-genericagua-TAX",
-        //                description = "AGUA",
-        //                quantity = 1,
-        //                price = 10000
-        //            }
-        //        },
-        //        stamp = new Stamp { send = true },
-        //        mail = new Mail { send = true },
-        //        observations = "Observaciones",
-        //        payments = new List<Payments>
-        //        {
-        //            new Payments
-        //            {
-        //                id = 9438,
-        //                value = 10000
-        //            }
-        //        }
-        //    };
-
-        //    string token = ObtenerTokenSiigo();
-
-        //    string respuesta = GetPostFactura(URLCrearFactura, oInvoice, token);
-
-        //    Console.WriteLine(respuesta);
-        //}
-
-        //public static string GetPostFactura(string url, Invoice oInvoice, string token)
-        //{
-        //    string result = "";
-        //    WebRequest wRequest = WebRequest.Create(url);
-        //    wRequest.Method = "post";
-        //    wRequest.ContentType = "application/json;charset=UTF-8";
-        //    wRequest.Headers.Add("Partner-Id", "SandboxSiigoApi");
-        //    wRequest.Headers.Add("Authorization", "Bearer " + token);
-
-        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-        //    {
-        //        string json = JsonConvert.SerializeObject(oInvoice);
-        //        oSW.Write(json);
-        //        oSW.Flush();
-        //        oSW.Close();
-        //    }
-
-        //    WebResponse wResponse = wRequest.GetResponse();
-
-        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-        //    {
-        //        result = oSR.ReadToEnd().Trim();
-        //    }
-
-        //    return result;
-        //}
-
-        //public class Invoice
-        //{
-        //    public DocumentType document { get; set; }
-        //    public string date { get; set; }
-        //    public Customer customer { get; set; }
-        //    public int seller { get; set; }
-        //    public List<Items> items { get; set; }
-        //    public Stamp stamp { get; set; }
-        //    public Mail mail { get; set; }
-        //    public string observations { get; set; }
-        //    public List<Payments> payments { get; set; }
-        //}
-
-        //public class DocumentType
-        //{
-        //    public int id { get; set; }
-        //}
-
-        //public class Customer
-        //{
-        //    public string identification { get; set; }
-        //}
-
-        //public class Items
-        //{
-        //    public string code { get; set; }
-        //    public string description { get; set; }
-        //    public int quantity { get; set; }
-        //    public int price { get; set; }
-        //}
-
-        //public class Stamp
-        //{
-        //    public bool send { get; set; }
-        //}
-
-        //public class Mail
-        //{
-        //    public bool send { get; set; }
-        //}
-
-        //public class Payments
-        //{
-        //    public int id { get; set; }
-        //    public int value { get; set; }
-        //    public string due_date { get; set; }
-        //}
     }
 }

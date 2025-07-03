@@ -805,5 +805,141 @@ namespace WebPage
             public Data3 data { get; set; }
             public Meta meta { get; set; }
         }
+
+        // 
+        // Siigo API
+
+        public void RegisterInvoice()
+        {
+            string url = "https://api.siigo.com/v1/invoices";
+
+            //int idTipoDocumento = 66444;
+            //int idVendedor = 51883;
+
+            // Siigo Pruebas
+            int idTipoDocumento = 28006;
+            int idVendedor = 856; // ID del vendedor en Siigo
+
+
+            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+
+            // Obtener información de la sesión del afiliado
+            string cedula = Session["documentoAfiliado"].ToString();
+            
+
+            Invoice oInvoice = new Invoice()
+            {
+                document = new DocumentType { id = idTipoDocumento },
+                date = fechaActual,
+                customer = new Customer
+                {
+                    identification = cedula
+                },
+                seller = idVendedor,
+                items = new List<Items>
+                {
+                    new Items
+                    {
+                        code = "product-genericagua-TAX",
+                        description = "AGUA",
+                        quantity = 1,
+                        price = 10000
+                    }
+                },
+                stamp = new Stamp { send = true },
+                mail = new Mail { send = true },
+                observations = "Observaciones",
+                payments = new List<Payments>
+                {
+                    new Payments
+                    {
+                        id = 9438,
+                        value = 10000
+                    }
+                }
+            };
+
+            //string token = ObtenerTokenSiigo();
+            string token = Session["tokenSiigo"].ToString();
+
+            string respuesta = GetPostFactura(url, oInvoice, token);
+
+            Console.WriteLine(respuesta);
+        }
+
+        public static string GetPostFactura(string url, Invoice oInvoice, string token)
+        {
+            string result = "";
+            WebRequest wRequest = WebRequest.Create(url);
+            wRequest.Method = "post";
+            wRequest.ContentType = "application/json;charset=UTF-8";
+            wRequest.Headers.Add("Partner-Id", "SandboxSiigoApi");
+            wRequest.Headers.Add("Authorization", "Bearer " + token);
+
+            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+            {
+                string json = JsonConvert.SerializeObject(oInvoice);
+                oSW.Write(json);
+                oSW.Flush();
+                oSW.Close();
+            }
+
+            WebResponse wResponse = wRequest.GetResponse();
+
+            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
+            {
+                result = oSR.ReadToEnd().Trim();
+            }
+
+            return result;
+        }
+
+        public class Invoice
+        {
+            public DocumentType document { get; set; }
+            public string date { get; set; }
+            public Customer customer { get; set; }
+            public int seller { get; set; }
+            public List<Items> items { get; set; }
+            public Stamp stamp { get; set; }
+            public Mail mail { get; set; }
+            public string observations { get; set; }
+            public List<Payments> payments { get; set; }
+        }
+
+        public class DocumentType
+        {
+            public int id { get; set; }
+        }
+
+        public class Customer
+        {
+            public string identification { get; set; }
+        }
+
+        public class Items
+        {
+            public string code { get; set; }
+            public string description { get; set; }
+            public int quantity { get; set; }
+            public int price { get; set; }
+        }
+
+        public class Stamp
+        {
+            public bool send { get; set; }
+        }
+
+        public class Mail
+        {
+            public bool send { get; set; }
+        }
+
+        public class Payments
+        {
+            public int id { get; set; }
+            public int value { get; set; }
+            public string due_date { get; set; }
+        }
     }
 }
