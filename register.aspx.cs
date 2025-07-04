@@ -122,6 +122,8 @@ namespace WebPage
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(idPlanQS));
 
                 string idPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["idPlan"].ToString() : "0";
+                string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
+                string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["CodSiigoPlan"].ToString() : "";
 
                 if (idPlan != idPlanQS || idPlan == "0")
                 {
@@ -142,6 +144,8 @@ namespace WebPage
                 ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
 
                 Session["idPlan"] = idPlanQS;
+                Session["nombrePlan"] = nombrePlan;
+                Session["codSiigoPlan"] = codSiigoPlan;
 
                 dtPlan.Dispose();
             }
@@ -308,8 +312,6 @@ namespace WebPage
             Session.Add("idCiudad", strCiudad);
             string strSede = ddlSedes.SelectedItem.Value.ToString();
             Session.Add("idSede", strSede);
-            string strNombreSede = ddlSedes.SelectedItem.Text.ToString();
-            Session.Add("nombreSede", strNombreSede);
             string strValorPlan = hfValorPlan.Value;
             Session.Add("valorPlan", strValorPlan);
             string strLtValor = ltValor.Text.ToString();
@@ -387,7 +389,7 @@ namespace WebPage
             dtPlan.Dispose();
 
             // Siigo API
-            string token = ObtenerTokenSiigo(strSede);
+            string token = GetSiigoToken();
             Session.Add("tokenSiigo", token);
             bool exists = ConsultSiigoCustomer(strCedula, token);
             ManageCustomer(exists, token);
@@ -574,7 +576,7 @@ namespace WebPage
 
         //
         // Siigo API
-        public static string ObtenerTokenSiigo(string idSede)
+        public static string GetSiigoToken()
         {
             // Usar los datos de la sede para obtener el token
             string url = "https://api.siigo.com/auth";

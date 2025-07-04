@@ -191,24 +191,13 @@ namespace WebPage
                     Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
                     // 4. Inserción de pago en base de datos
-                    DataTable dtCanalVentas = cg.ConsultarCanalesVentaPorNombre(Session["nombreSede"].ToString());
-
-                    if (dtCanalVentas.Rows.Count == 0)
-                    {
-                        MostrarAlerta("Canal no encontrado", "No se encontró el canal de ventas para esta sede.", "error");
-                        return;
-                    }
-
-                    int idCanalVenta = int.Parse(dtCanalVentas.Rows[0]["idCanalVenta"].ToString());
-
-                    cg.InsertarPagoPlanAfiliado(
+                    cg.InsertarPagoPlanAfiliadoWeb(
                         idAfiliadoPlan,
                         int.Parse(Session["valorPlan"].ToString()),
                         "Wompi",
                         Session["idReferencia"].ToString(),
                         "Ninguno",
-                        "Aprobado",
-                        idCanalVenta
+                        "Aprobado"
                     );
 
                     // 5. Actualización de token del pago
@@ -227,7 +216,6 @@ namespace WebPage
                     );
 
                     dtIdAfiliadoPlan.Dispose();
-                    dtCanalVentas.Dispose();
                 }
                 else
                 {
@@ -816,16 +804,22 @@ namespace WebPage
             //int idTipoDocumento = 66444;
             //int idVendedor = 51883;
 
+
+            // TODO: PREGUNTAR o https://binlist.net/
+            //int idPayment = 9438;
+
             // Siigo Pruebas
             int idTipoDocumento = 28006;
-            int idVendedor = 856; // ID del vendedor en Siigo
-
+            int idVendedor = 856;
+            int idPayment = 9438;
 
             string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
 
             // Obtener información de la sesión del afiliado
             string cedula = Session["documentoAfiliado"].ToString();
-            
+            string codSiigoPlan = Session["codSiigoPlan"].ToString();
+            string nombrePlan = Session["nombrePlan"].ToString();
+            int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
 
             Invoice oInvoice = new Invoice()
             {
@@ -840,26 +834,24 @@ namespace WebPage
                 {
                     new Items
                     {
-                        code = "product-genericagua-TAX",
-                        description = "AGUA",
+                        code = codSiigoPlan,
+                        description = nombrePlan,
                         quantity = 1,
-                        price = 10000
+                        price = precioPlan
                     }
                 },
                 stamp = new Stamp { send = true },
                 mail = new Mail { send = true },
-                observations = "Observaciones",
                 payments = new List<Payments>
                 {
                     new Payments
                     {
-                        id = 9438,
-                        value = 10000
+                        id = idPayment,
+                        value = precioPlan
                     }
                 }
             };
 
-            //string token = ObtenerTokenSiigo();
             string token = Session["tokenSiigo"].ToString();
 
             string respuesta = GetPostFactura(url, oInvoice, token);
@@ -903,7 +895,6 @@ namespace WebPage
             public List<Items> items { get; set; }
             public Stamp stamp { get; set; }
             public Mail mail { get; set; }
-            public string observations { get; set; }
             public List<Payments> payments { get; set; }
         }
 
