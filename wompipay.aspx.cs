@@ -146,14 +146,14 @@ namespace WebPage
 
                 if (rObjetc.status == "CREATED" && rObjetc.data != null && !string.IsNullOrEmpty(rObjetc.data.id))
                 {
-                    string dataid = rObjetc.data.id;
-                    ltMensaje.Value = dataid;
+                    string dataIdToken = rObjetc.data.id;
+                    ltMensaje.Value = dataIdToken;
 
                     // 1. Creación de fuente de pago en Wompi
                     bool fuentePagoCreada = await CrearFuentePagoAsync(
                         Session["emailAfiliado"].ToString(),
                         "CARD",
-                        dataid,
+                        dataIdToken,
                         Session["acceptance_token"].ToString(),
                         Session["accept_personal_auth"].ToString()
                     );
@@ -165,9 +165,12 @@ namespace WebPage
                         return;
                     }
 
+                    // 2. Creación de factura en Siigo
+                    string idSiigoFactura = await RegisterInvoiceAsync();
+
                     clasesglobales cg = new clasesglobales();
 
-                    // 2. Inserción de afiliación de cliente al plan
+                    // 3. Inserción de afiliación de cliente al plan
                     cg.InsertarAfiliadoPlan(
                         int.Parse(Session["idAfiliado"].ToString()),
                         int.Parse(Session["idPlan"].ToString()),
@@ -179,15 +182,15 @@ namespace WebPage
                         "Pendiente"
                     );
 
-                    // 3. Obtención de idAfiliadoPlan recién creado
-                    DataTable dtIdAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-                    if (dtIdAfiliadoPlan.Rows.Count == 0)
+                    // 4. Obtención de idAfiliadoPlan recién creado
+                    DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+                    if (dt.Rows.Count == 0)
                     {
                         MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
                         return;
                     }
 
-                    int idAfiliadoPlan = int.Parse(dtIdAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+                    int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
                     Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
                     // 4. Inserción de pago en base de datos
@@ -197,25 +200,14 @@ namespace WebPage
                         "Wompi",
                         Session["idReferencia"].ToString(),
                         "Ninguno",
-                        "Aprobado"
-                    );
-
-                    // 5. Actualización de token del pago
-                    cg.ActualizarPagoPlanAfiliadoToken(dataid, idAfiliadoPlan);
-
-                    // 6. Actualización de fuente de pago en base de datos
-                    cg.ActualizarPagoPlanAfiliadoFuentePago(
+                        "Pendiente",
+                        idSiigoFactura,
+                        dataIdToken,
                         Session["dataIdFuentePago"].ToString(),
-                        idAfiliadoPlan
+                        Session["dataIdTransaccion"].ToString()
                     );
 
-                    // 7. Actualización de transacción en base de datos
-                    cg.ActualizarPagoPlanAfiliadoTransaccion(
-                        Session["dataIdTransaccion"].ToString(),
-                        idAfiliadoPlan
-                    );
-
-                    dtIdAfiliadoPlan.Dispose();
+                    dt.Dispose();
                 }
                 else
                 {
@@ -296,15 +288,6 @@ namespace WebPage
 
                 Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
 
-                // Consulta de estado de pago realizado en Wompi
-                string estado = await ConsultarTransaccionPorReferencia(reference);
-
-                if (estado != "APPROVED")
-                {
-                    MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
-                    return false;
-                }
-
                 if (rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id))
                 {
                     MostrarAlerta("Error", "No se recibió un ID válido para la transacción.", "error");
@@ -313,6 +296,25 @@ namespace WebPage
 
                 string dataid2 = rObjetc.data.id;
                 Session["dataIdTransaccion"] = dataid2;
+
+                // Espera y reintentos para obtener estado definitivo
+                string estado = null;
+                int maxIntentos = 5;
+                int intentos = 0;
+
+                do
+                {
+                    await Task.Delay(1000); // Espera 2 segundos
+                    estado = await ConsultarTransaccionPorReferencia(reference);
+                    intentos++;
+                }
+                while (estado == "PENDING" && intentos < maxIntentos);
+
+                if (estado != "APPROVED")
+                {
+                    MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
+                    return false;
+                }
 
                 // Redireccionar solo si todo está OK
                 Response.Redirect("wompiexito", false);
@@ -796,30 +798,28 @@ namespace WebPage
 
         // 
         // Siigo API
-
-        public void RegisterInvoice()
+        public async Task<string> RegisterInvoiceAsync()
         {
             string url = "https://api.siigo.com/v1/invoices";
 
             //int idTipoDocumento = 66444;
             //int idVendedor = 51883;
-
-
-            // TODO: PREGUNTAR o https://binlist.net/
-            //int idPayment = 9438;
+            //int idPayment = 59576;
 
             // Siigo Pruebas
             int idTipoDocumento = 28006;
             int idVendedor = 856;
             int idPayment = 9438;
+            string codSiigoPlan = "COD2433";
+            string nombrePlan = "Pago de suscripción";
+            int precioPlan = 10000;
 
-            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+            string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
 
-            // Obtener información de la sesión del afiliado
             string cedula = Session["documentoAfiliado"].ToString();
-            string codSiigoPlan = Session["codSiigoPlan"].ToString();
-            string nombrePlan = Session["nombrePlan"].ToString();
-            int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
+            //string codSiigoPlan = Session["codSiigoPlan"].ToString();
+            //string nombrePlan = Session["nombrePlan"].ToString();
+            //int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
 
             Invoice oInvoice = new Invoice()
             {
@@ -853,37 +853,43 @@ namespace WebPage
             };
 
             string token = Session["tokenSiigo"].ToString();
+            string respuesta = await GetPostFacturaAsync(url, oInvoice, token);
 
-            string respuesta = GetPostFactura(url, oInvoice, token);
+            var jsonRespuesta = JsonConvert.DeserializeObject<dynamic>(respuesta);
+            string invoiceId = jsonRespuesta.id;
 
-            Console.WriteLine(respuesta);
+            return invoiceId;
         }
 
-        public static string GetPostFactura(string url, Invoice oInvoice, string token)
+        public static async Task<string> GetPostFacturaAsync(string url, Invoice oInvoice, string token)
         {
-            string result = "";
-            WebRequest wRequest = WebRequest.Create(url);
-            wRequest.Method = "post";
-            wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Partner-Id", "SandboxSiigoApi");
-            wRequest.Headers.Add("Authorization", "Bearer " + token);
-
-            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
+            using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(oInvoice);
-                oSW.Write(json);
-                oSW.Flush();
-                oSW.Close();
+                // Headers
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Add("Partner-Id", "SandboxSiigoApi");
+
+                // Serializar objeto
+                string json = JsonConvert.SerializeObject(oInvoice, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Enviar POST
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                // Validar y obtener resultado
+                if (!response.IsSuccessStatusCode)
+                {
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error en la petición: {response.StatusCode}\n{errorContent}");
+                }
+
+                return await response.Content.ReadAsStringAsync();
             }
-
-            WebResponse wResponse = wRequest.GetResponse();
-
-            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-            {
-                result = oSR.ReadToEnd().Trim();
-            }
-
-            return result;
         }
 
         public class Invoice
@@ -930,7 +936,6 @@ namespace WebPage
         {
             public int id { get; set; }
             public int value { get; set; }
-            public string due_date { get; set; }
         }
     }
 }

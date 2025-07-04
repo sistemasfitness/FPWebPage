@@ -398,8 +398,10 @@ namespace WebPage
             {
                 Response.Redirect("wompipay");
             }
-
-            Response.Redirect("wompiplan");
+            else
+            {
+                Response.Redirect("wompiplan");
+            }
         }
 
         public string CalcularFechaFinPlan(string strFechaInicio)
@@ -578,10 +580,12 @@ namespace WebPage
         // Siigo API
         public static string GetSiigoToken()
         {
-            // Usar los datos de la sede para obtener el token
             string url = "https://api.siigo.com/auth";
-            string username = "contabilidad@fitnesspeoplecmd.com";
-            string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
+            //string username = "contabilidad@fitnesspeoplecmd.com";
+            //string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
+
+            string username = "sandbox@siigoapi.com";
+            string accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
