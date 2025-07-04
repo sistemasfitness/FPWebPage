@@ -382,10 +382,12 @@
     <Content Include="img\iconified\iconified\apple-touch-icon.png" />
     <Content Include="img\iconified\iconified\favicon.ico" />
     <Content Include="img\iconified\iconified\iconifier-readme.txt" />
+    <Content Include="img\icono_cmd_3.png" />
     <Content Include="img\icon_1.svg" />
     <Content Include="img\icon_2.svg" />
     <Content Include="img\icon_3.svg" />
     <Content Include="img\icon_ccv.gif" />
+    <Content Include="img\inscribete_aqui.png" />
     <Content Include="img\ips_3.png" />
     <Content Include="img\isologo blanco-8.png" />
     <Content Include="img\isologo negro-8.png" />

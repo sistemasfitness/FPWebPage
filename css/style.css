@@ -964,6 +964,24 @@ a#view_all {
 	color: #fff;
 }
 
+#bg_gray1 {
+	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+#bg_gray2 {
+	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+#bg_gray3 {
+	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
 #sedes {
 	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
 	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
@@ -971,6 +989,16 @@ a#view_all {
 }
 
 #planes {
+	background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+#bg_black1 {
+	background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+#bg_black1 {
 	background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;
 	color: #fff;
 }

@@ -14,7 +14,7 @@
     <meta property="og:image" itemprop="image" content="https://fitnesspeoplecolombia.com/img/para_banner.png" />
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="1440432930" />
-    
+
     <script src="js/fitnesspeople.js"></script>
 
     <noscript>
@@ -83,127 +83,132 @@
     <!-- End SubHeader ============================================ -->
 
     <section class="margin_60_35" id="sedes" style="padding-top: 0px;">
-    <div class="container margin_60">
-        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+        <div class="container margin_60">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
 
-        <form runat="server" id="form1">
-            <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="upSedes" runat="server">
-                <ContentTemplate>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label style="color: #FFF;">Ciudad:</label>
-                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" 
-                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" 
-                                    style="background-color: #3c3c3c;">
-                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                </asp:DropDownList>
+            <form runat="server" id="form1">
+                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="upSedes" runat="server">
+                    <ContentTemplate>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Ciudad:</label>
+                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
+                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
+                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
+                                        Style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Sede:</label>
+                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
+                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
+                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
+                                        Style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label style="color: #FFF;">Sede:</label>
-                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
-                                    OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true" 
-                                    style="background-color: #3c3c3c;">
-                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </form>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </form>
 
-        <div class="row">
+            <div class="row">
 
                 <div class="owl-carousel team-carousel3">
-                <asp:Repeater ID="rpSedes" runat="server">
-                    <ItemTemplate>
-                        <div class="team-item">
-				            <div class="team-item-img">
-					            <img src="img/sedes/galeria/<%# Eval("ImagenPrincipal") %>" class="img-responsive" alt="" />
-					            <div class="team-item-detail">
-						            <div class="team-item-detail-inner">
-							            <h4 style="font-weight: 900;"><%# Eval("NombreSede") %></h4>
-                                        <p><%# Eval("DireccionSede") %><br />
-							            <%# Eval("NombreCiudadSede") %><br />
-                                        <%# Eval("TelefonoSede") %></p>
-							            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
-						            </div>
-					            </div>
-				            </div>
-				            <div class="team-item-info">
-					            <h4 style="font-weight: 900; color: #fff;"><%# Eval("NombreSede") %></h4>
-					            <p style="color: #fff;"><%# Eval("NombreCiudadSede") %></p>
-				            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                    <asp:Repeater ID="rpSedes" runat="server">
+                        <ItemTemplate>
+                            <div class="team-item">
+                                <div class="team-item-img">
+                                    <img src="img/sedes/galeria/<%# Eval("ImagenPrincipal") %>" class="img-responsive" alt="" />
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner">
+                                            <h4 style="font-weight: 900;"><%# Eval("NombreSede") %></h4>
+                                            <p>
+                                                <%# Eval("DireccionSede") %><br />
+                                                <%# Eval("NombreCiudadSede") %><br />
+                                                <%# Eval("TelefonoSede") %>
+                                            </p>
+                                            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h4 style="font-weight: 900; color: #fff;"><%# Eval("NombreSede") %></h4>
+                                    <p style="color: #fff;"><%# Eval("NombreCiudadSede") %></p>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
-			
 
+
+            </div>
         </div>
-    </div>
     </section>
 
-    <section class="margin_60_35" id="planes">
-    <div class="container" id="scroll-to">
+    <section class="margin_60_35" id="planes" style="padding-bottom: 0px;">
+        <div class="container" id="scroll-to">
 
-        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
-        <p class="lead styled" style="font-weight: 500; color: #FFF;">
-            En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
-        </p>
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
+            <p class="lead styled" style="font-weight: 500; color: #FFF;">
+                En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
+            </p>
 
-        <div class="row text-center plans">
+            <div class="row text-center plans">
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
-                    <a href="planes?id=1">
-                        <img src="img/planes/plan_easy.jpg" class="img-responsive" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
+                        <a href="planes?id=1">
+                            <img src="img/planes/plan_easy.jpg" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
-                    <a href="planes?id=7">
-                        <img src="img/planes/mega_prima.jpg" class="img-responsive" style="height: 450px;" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
+                        <a href="planes?id=7">
+                            <img src="img/planes/mega_prima.jpg" class="img-responsive" style="height: 450px;" />
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="img_container">
-                    <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
-                    <a href="planes?id=2">
-                        <img src="img/planes/mes_fast.jpg" class="img-responsive" />
-                    </a>
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
+                        <a href="planes?id=2">
+                            <img src="img/planes/mes_fast.jpg" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
         </div>
-
-    </div>
-    <!--  End container-->
-</section>
-<!--  End section-->
+        <!--  End container-->
+    </section>
+    <!--  End section-->
 
     <div id="newsletter_container" style="background-color: #000;">
-        <div class="container margin_60">
+        <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                    <div id="message-newsletter"></div>
-                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control" />
-                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                    </form>
+                    <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                <div id="message-newsletter"></div>
+                <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
+                    <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
+                    <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
+                </form>--%>
+                    <a href="gympass">
+                        <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                    </a>
                 </div>
             </div>
         </div>

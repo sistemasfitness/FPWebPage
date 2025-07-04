@@ -119,11 +119,12 @@
     <form runat="server" id="form2">
         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+        <section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
                 <p class="lead styled" style="color: #FFF;">
-                    <img src="img/icono_cmd_3.png" style="width: 100px;" /><br /><br />
+                    <img src="img/icono_cmd_3.png" style="width: 100px;" /><br />
+                    <br />
                     <b>Somos un Centro Médico Deportivo catalogado como una IPS.</b>
                 </p>
             </div>
@@ -292,7 +293,7 @@
             </div>
         </section>
 
-        <section class="margin_60_35" id="testimonials" style="background: #000;">
+        <section class="margin_60_35" id="bg_gray1" style="background: #000;">
             <div class="container">
                 <div class="row">
                     <div class="owl-carousel team-carousel">
@@ -394,7 +395,7 @@
             </div>
         </section>
 
-        <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+        <section class="margin_60_35" id="bg_gray2" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
                 <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
                 <!--Team Carousel -->
@@ -457,12 +458,19 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <a href="#planes">
+                            <img src="img/inscribete_aqui.png" class="img-responsive" style="width: 300px; display: inline;" />
+                        </a>
+                    </div>
+                </div>
                 <!--End Team Carousel-->
             </div>
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+        <section class="margin_60_35" id="bg_black2" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
@@ -470,28 +478,36 @@
                     <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                         <div class="img_container">
                             <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;"><br />Deportólogo</p>
+                            <p style="font-weight: 600; color: #FFF;">
+                                <br />
+                                Deportólogo</p>
                         </div>
                     </div>
 
                     <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                         <div class="img_container">
                             <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;"><br />Fisioterapeuta</p>
+                            <p style="font-weight: 600; color: #FFF;">
+                                <br />
+                                Fisioterapeuta</p>
                         </div>
                     </div>
 
                     <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                         <div class="img_container">
                             <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;"><br />Nutricionista</p>
+                            <p style="font-weight: 600; color: #FFF;">
+                                <br />
+                                Nutricionista</p>
                         </div>
                     </div>
 
                     <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                         <div class="img_container">
                             <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;"><br />Profesionales del deporte</p>
+                            <p style="font-weight: 600; color: #FFF;">
+                                <br />
+                                Profesionales del deporte</p>
                         </div>
                     </div>
 
@@ -502,7 +518,7 @@
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
                 <p class="lead styled" style="font-weight: 500; color: #FFF;">
@@ -583,7 +599,7 @@
             </div>
         </section>--%>
 
-        <section class="margin_60_35" id="testimonials">
+        <section class="margin_60_35" id="bg_gray3">
             <div class="container">
                 <h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>
                 <!--Team Carousel -->
@@ -638,14 +654,14 @@
                                             <asp:DropDownList ID="ddlNombresSedes" runat="server"
                                                 AppendDataBoundItems="true" DataTextField="NombreSede"
                                                 DataValueField="idSede" CssClass="form-control"
-                                                AutoPostBack="true" OnSelectedIndexChanged="ddlNombresSedes_SelectedIndexChanged" 
+                                                AutoPostBack="true" OnSelectedIndexChanged="ddlNombresSedes_SelectedIndexChanged"
                                                 Style="background-color: #3c3c3c;">
                                                 <asp:ListItem Text="Selecciona una sede" Value=""></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:HyperLink ID="hlContacto" runat="server" Target="_blank" CssClass="btn_full">Habla con un asesor</asp:HyperLink>
+                                        <asp:HyperLink ID="hlContacto" runat="server" Target="_blank" CssClass="btn_slider">HABLA CON UN ASESOR</asp:HyperLink>
                                         <%--<a href="https://wa.me/573146887259?text=Hola,%20estoy%20interesad@%20en%20los%20planes%20de%20Fitness%20People" target="_blank" class=" btn_full">HABLA CON UN ASESOR</a>--%>
                                     </div>
                                 </div>

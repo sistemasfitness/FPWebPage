@@ -193,7 +193,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled />
+                                <asp:Button ID="btnEnviar" runat="server" Text="ENVIAR" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled />
                                 <%--<input type="submit" value="Enviar" class="btn_slider" id="submit-contact" disabled />--%>
                             </div>
                         </div>

@@ -121,7 +121,7 @@
                                     <input type="text" id="verify_contact" class=" form-control styled" style="color: #FFF;" placeholder=" 3 + 1 ="/>
                                 </div>
                                 <p>
-                                    <input type="submit" value="ENVIAR" class="btn_1" id="submit-contact"/></p>
+                                    <input type="submit" value="ENVIAR" class="btn_slider" id="submit-contact"/></p>
                             </div>
                         </div>
                     </form>

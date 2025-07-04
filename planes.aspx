@@ -176,8 +176,10 @@
         <div class="container margin_60_35">
             <div class="row" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; "><asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <p class="lead" style="color: #FFF; margin-top: 20px;"><asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
+                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
+                    <p class="lead" style="color: #FFF; margin-top: 20px;">
+                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
                 </div>
 
                 <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
@@ -323,35 +325,35 @@
                 </div>
             </div>
             <form runat="server" id="form2">
-            <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="upSedes" runat="server">
-                <ContentTemplate>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label style="color: #FFF;">Ciudad:</label>
-                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                    Style="background-color: #3c3c3c;">
-                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                </asp:DropDownList>
+                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="upSedes" runat="server">
+                    <ContentTemplate>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Ciudad:</label>
+                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
+                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
+                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
+                                        Style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label style="color: #FFF;">Sede:</label>
+                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
+                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
+                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
+                                        Style="background-color: #3c3c3c;">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label style="color: #FFF;">Sede:</label>
-                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                     OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                    Style="background-color: #3c3c3c;">
-                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </form>
         </div>
     </section>
@@ -425,176 +427,187 @@
     </section>
 
     <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
-    <div class="container" id="scroll-to">
-        <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
-        <div class="row text-center plans">
+        <div class="container" id="scroll-to">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
+            <div class="row text-center plans">
 
-            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                <div class="img_container">
-                    <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                    <p style="font-weight: 600; color: #FFF;"><br />Deportólogo</p>
+                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="img_container">
+                        <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
+                        <p style="font-weight: 600; color: #FFF;">
+                            <br />
+                            Deportólogo</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                <div class="img_container">
-                    <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                    <p style="font-weight: 600; color: #FFF;"><br />Fisioterapeuta</p>
+                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="img_container">
+                        <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
+                        <p style="font-weight: 600; color: #FFF;">
+                            <br />
+                            Fisioterapeuta</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                <div class="img_container">
-                    <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                    <p style="font-weight: 600; color: #FFF;"><br />Nutricionista</p>
+                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="img_container">
+                        <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
+                        <p style="font-weight: 600; color: #FFF;">
+                            <br />
+                            Nutricionista</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                <div class="img_container">
-                    <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                    <p style="font-weight: 600; color: #FFF;"><br />Profesionales del deporte</p>
+                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="img_container">
+                        <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
+                        <p style="font-weight: 600; color: #FFF;">
+                            <br />
+                            Profesionales del deporte</p>
+                    </div>
                 </div>
+
             </div>
+            <!-- End row plans-->
 
         </div>
-        <!-- End row plans-->
-
-    </div>
-    <!--  End container-->
-</section>
+        <!--  End container-->
+    </section>
 
     <div class="container_styled_1">
-	<div class="container margin_60_35">
-		<div class="row">
-			<div class="col-md-12">
-            
-				<h3 class="nomargin_top" style="color: #fff; font-weight: 900; ">Preguntas frecuentes</h3>
-				<div class="panel-group" id="works">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">¿Puedo cancelar mi suscripción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
-                      </h4>
-						</div>
-						<div id="collapseOne_works" class="panel-collapse collapse in">
-							<div class="panel-body">
-								Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">¿Cómo funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
-                      </h4>
-						</div>
-						<div id="collapseTwo_works" class="panel-collapse collapse">
-							<div class="panel-body">
-								Al activar tu plan, vincula una tarjeta para que el cobro mensual se realice de forma automática. Es cómodo, seguro y te evita preocupaciones. Te notificamos antes de cada cobro.
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">¿Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
-                      </h4>
-						</div>
-						<div id="collapseThree_works" class="panel-collapse collapse">
-							<div class="panel-body">
-								¡No hay problema!¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">¿Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
-							</h4>
-						</div>
-						<div id="collapseFour_works" class="panel-collapse collapse">
-							<div class="panel-body">
-								Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End panel-group -->
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-md-12">
 
-				
+                    <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
+                    <div class="panel-group" id="works">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">¿Puedo cancelar mi suscripción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne_works" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">¿Cómo funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Al activar tu plan, vincula una tarjeta para que el cobro mensual se realice de forma automática. Es cómodo, seguro y te evita preocupaciones. Te notificamos antes de cada cobro.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">¿Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    ¡No hay problema!¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">¿Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End panel-group -->
 
-			</div>
-			<!-- End col-md-9 -->
-		</div>
-		<!-- End row -->
-	</div>
-	<!-- End container -->
-</div>
+
+
+                </div>
+                <!-- End col-md-9 -->
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End container -->
+    </div>
 
     <section class="promo_full">
-	<div class="promo_full_wp">
-		<div>
-			<h3 style="font-weight: 900;">Lo que dicen nuestros usuarios</h3>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<div class="carousel_testimonials">
-							<div>
-								<div class="box_overlay">
-									<div class="pic">
-										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment1.png" alt="" />
-										</figure>
-									</div>
-									<div class="lead" style="font-weight: 600">
-										"El mejor ambiente para entrenar y poner mi cuerpo en armonia. Gracias Fitness People."
-									</div>
-								</div>
-								<!-- End box_overlay -->
-							</div>
+        <div class="promo_full_wp">
+            <div>
+                <h3 style="font-weight: 900;">Lo que dicen nuestros usuarios</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="carousel_testimonials">
+                                <div>
+                                    <div class="box_overlay">
+                                        <div class="pic">
+                                            <figure style="width: 100%; height: auto;">
+                                                <img src="img/testimonios/comment1.png" alt="" />
+                                            </figure>
+                                        </div>
+                                        <div class="lead" style="font-weight: 600">
+                                            "Entrenar aquí es una locura, los espacios son amplios y siempre limpios. Se nota el compromiso."
+                                        </div>
+                                    </div>
+                                    <!-- End box_overlay -->
+                                </div>
 
-							<div>
-								<div class="box_overlay">
-									<div class="pic">
-										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment2.png" alt="" />
-										</figure>
-									</div>
-									<div class="lead" style="font-weight: 600">
-										"No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant diceret ocurreret."
-									</div>
-								</div>
-								<!-- End box_overlay -->
-							</div>
+                                <div>
+                                    <div class="box_overlay">
+                                        <div class="pic">
+                                            <figure style="width: 100%; height: auto;">
+                                                <img src="img/testimonios/comment2.png" alt="" />
+                                            </figure>
+                                        </div>
+                                        <div class="lead" style="font-weight: 600">
+                                            "Lo que más valoro es la atención del personal. Desde que entras te hacen sentir en casa."
+                                        </div>
+                                    </div>
+                                    <!-- End box_overlay -->
+                                </div>
 
-							<div>
-								<div class="box_overlay">
-									<div class="pic">
-										<figure style="width: 100%; height: auto;"><img src="img/testimonios/comment3.png" alt="" />
-										</figure>
-									</div>
-									<div class="lead" style="font-weight: 600"">
-										"No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant diceret ocurreret."
-									</div>
-								</div>
-								<!-- End box_overlay -->
-							</div>
+                                <div>
+                                    <div class="box_overlay">
+                                        <div class="pic">
+                                            <figure style="width: 100%; height: auto;">
+                                                <img src="img/testimonios/comment3.png" alt="" />
+                                            </figure>
+                                        </div>
+                                        <div class="lead" style="font-weight: 600">
+				                            "Me encanta entrenar en este gym. Tiene un ambiente motivador, buena música, variedad de clases y el equipo humano es increíble."
+                                        </div>
+                                    </div>
+                                    <!-- End box_overlay -->
+                                </div>
 
-						</div>
-						<!-- End carousel_testimonials -->
-					</div>
-					<!-- End col-md-8 -->
-				</div>
-				<!-- End row -->
-			</div>
-			<!-- End container -->
-		</div>
-		<!-- End promo_full_wp -->
-	</div>
-	<!-- End promo_full -->
-</section>
+                            </div>
+                            <!-- End carousel_testimonials -->
+                        </div>
+                        <!-- End col-md-8 -->
+                    </div>
+                    <!-- End row -->
+                </div>
+                <!-- End container -->
+            </div>
+            <!-- End promo_full_wp -->
+        </div>
+        <!-- End promo_full -->
+    </section>
 
     <div id="newsletter_container" style="background-color: #000;">
-        <div class="container margin_60">
+        <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
                     <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
@@ -604,7 +617,7 @@
                         <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
                     </form>--%>
                     <a href="gympass">
-                    <img src="img/gympass01.jpg" style="width: 370px;" />
+                        <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
                     </a>
                 </div>
             </div>
