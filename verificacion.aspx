@@ -38,6 +38,9 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- SPECIFIC CSS -->
+    <link href="css/ion.rangeSlider.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="layer"></div>
@@ -116,25 +119,25 @@
                                         <ContentTemplate>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <table class="footable table table-striped" data-paging-size="10"
-                                                        data-paging="false" data-sorting="true">
-                                                        
-                                                            <tr>
-                                                                <th data-sortable="false">Pregunta</th>
-                                                                <th data-sortable="false">Respuesta</th>
-                                                            </tr>
-                                                        
-                                                        
-                                                            <asp:Repeater ID="rpParq" runat="server" OnItemDataBound="rpParq_ItemDataBound">
-                                                                <ItemTemplate>
-                                                                    <tr>
-                                                                        <td style="vertical-align: middle;"><%# Eval("PreguntaParq") %></td>
-                                                                        <td class="text-center">
-                                                                            <asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>
-                                                                    </tr>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
-                                                        
+                                                    <table class="table" style="background: #fff;">
+                                                        <tr>
+                                                            <th>Pregunta</th>
+                                                            <th>Respuesta</th>
+                                                        </tr>
+                                                        <asp:Repeater ID="rpParq" runat="server" >
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td style="vertical-align: middle;"><%# Eval("PreguntaParq") %>
+                                                                        <asp:HiddenField ID="hfIdParqAfiliado" runat="server" Value='<%# Eval("idParqAfiliado") %>' />
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" />
+                                                                        <%--<input type="checkbox" class="js-switch" runat="server" />--%>
+                                                                        <%--<asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>--%>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
                                                     </table>
                                                 </div>
                                             </div>
@@ -235,6 +238,30 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"></script>
 
+     <!-- SPECIFIC SCRIPTS -->
+     <script src="js/ion.rangeSlider.min.js"></script>
+     <script src="js/switchery.min.js"></script>
+     <script>
+         $("#range").ionRangeSlider({
+             hide_min_max: true,
+             keyboard: true,
+             min: 10000,
+             max: 200000,
+             from: 19000,
+             to: 99000,
+             type: 'double',
+             step: 1000,
+             prefix: "$",
+             grid: false
+         });
+         //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+         var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+         elems.forEach(function (html) {
+             var switchery = new Switchery(html, {
+                 size: 'small'
+             });
+         });
+     </script>
     <script>
         $('.footable').footable();
     </script>

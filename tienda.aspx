@@ -69,10 +69,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet" />
 
     <!-- SPECIFIC CSS -->
-    <link href="css/ion.rangeSlider.min.css" rel="stylesheet">
+    <link href="css/ion.rangeSlider.min.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -118,15 +118,15 @@
                                     <ul>
                                         <li>
                                             <label>Todas (6)</label>
-                                            <input type="checkbox" class="js-switch" checked>
+                                            <input type="checkbox" class="js-switch" checked />
                                         </li>
                                         <li>
                                             <label>Ropa (2)</label>
-                                            <input type="checkbox" class="js-switch">
+                                            <input type="checkbox" class="js-switch" />
                                         </li>
                                         <li>
                                             <label>Accesorio (2)</label>
-                                            <input type="checkbox" class="js-switch">
+                                            <input type="checkbox" class="js-switch" />
                                         </li>
                                     </ul>
                                 </div>
@@ -218,7 +218,8 @@
             prefix: "$",
             grid: false
         });
-        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
         elems.forEach(function (html) {
             var switchery = new Switchery(html, {
                 size: 'small'

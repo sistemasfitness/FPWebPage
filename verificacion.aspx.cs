@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -86,7 +87,7 @@ namespace WebPage
 
         private void ListaPreguntasParq()
         {
-            string strQuery = @"SELECT pqa.idParqAfiliado, pqa.Respuesta1ParQ, pq.PreguntaParq, 
+            string strQuery = @"SELECT pqa.idParqAfiliado, pqa.Respuesta1ParQ, pq.PreguntaParq, pq.idParq,  
 		        IF(pqa.Respuesta1ParQ=0, ""<i class='fa fa-thumbs-down text-danger'>"",""<i class='fa fa-thumbs-up text-info'>"") AS Respuesta 
 	            FROM ParqAfiliados pqa, Parq pq
 	            WHERE pqa.idParq = pq.idParq 
@@ -133,6 +134,40 @@ namespace WebPage
                         string respuesta = "ERROR: " + ex.Message;
                     }
 
+                    foreach (RepeaterItem item in rpParq.Items)
+                    {
+                        if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                        {
+                            CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                            HiddenField hfidParqAfiliado = (HiddenField)item.FindControl("hfidParqAfiliado");
+                            if (chbRespuesta != null && chbRespuesta.Checked)
+                            {
+                                // Aquí se puede acceder al valor del checkbox seleccionado
+                                strQuery = "UPDATE ParqAfiliados SET Respuesta1Parq = 1 WHERE idParqAfiliado = " + hfidParqAfiliado.Value.ToString();
+
+                                try
+                                {
+                                    string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                                    using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                                    {
+                                        mysqlConexion.Open();
+                                        using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
+                                        {
+                                            cmd.CommandType = CommandType.Text;
+                                            cmd.ExecuteNonQuery();
+                                        }
+                                        mysqlConexion.Close();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    string respuesta = "ERROR: " + ex.Message;
+                                }
+                            }
+                        }
+                    }
+
                     EnviarConfirmacion();
 
                 }
@@ -170,12 +205,6 @@ namespace WebPage
             VerificarAfiliado();
         }
 
-        protected void rpParq_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            LinkButton lb1 = (LinkButton)e.Item.FindControl("lb1");
-            lb1.CommandArgument = ((DataRowView)e.Item.DataItem).Row[0].ToString();
-        }
-
         protected void lb1_Click(object sender, EventArgs e)
         {
             CambiarParq(((LinkButton)sender).CommandArgument);
@@ -208,6 +237,19 @@ namespace WebPage
 
             dt.Dispose();
             ListaPreguntasParq();
+        }
+
+        protected void rpParq_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                CheckBox chkBox = (CheckBox)e.Item.FindControl("chbRespuesta");
+                if (chkBox != null)
+                {
+                    // Aplicar estilos dinámicos
+                    chkBox.CssClass = "js-switch";
+                }
+            }
         }
     }
 }
