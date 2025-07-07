@@ -27,7 +27,6 @@ namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
-        OdbcConnection myConnection = new OdbcConnection(ConfigurationManager.AppSettings["sConn"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +44,7 @@ namespace WebPage
                 txbFechaIni.Attributes.Add("type", "date");
                 txbFechaFin.Attributes.Add("type", "date");
 
-
+                // Datos de Pruebas
                 txbNombre.Text = "Brayan Stiven";
                 txbApellido.Text = "Ochoa Pineda";
                 ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
@@ -54,60 +53,6 @@ namespace WebPage
                 txbEmail.Text = "b.ochoa12@gmail.com";
                 txbCelular.Text = "3156552301";
                 txbFechaNac.Text = "2000-01-01";
-                //ddlCiudad.SelectedItem.Text = "Bucaramanga";
-                //ddlCiudad.SelectedItem.Value = "1";
-                //ddlSedes.SelectedItem.Text = "Boulevard";
-                //ddlCiudad.SelectedItem.Value = "1";
-                //txbFechaIni.Text = "2025-07-01";
-
-
-                //if (Request.Form.Count > 0)
-                //{
-                //    //Guardamos los datos del afiliado
-                //    string strCedula = txbDocumento.Text.ToString();
-                //    Session.Add("idAfiliado", strCedula);
-                //    string strEmail = txbEmail.Text.ToString();
-                //    Session.Add("emailAfiliado", strEmail);
-                //    string strFechaInicioPlan = Request.Form["txbFechaInicio"].ToString();
-                //    Session.Add("fechaInicioPlan", strFechaInicioPlan);
-                //    //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
-                //    if (ExisteAfiliado(strCedula))
-                //    {
-                //        string strQuery = "UPDATE Afiliados SET " +
-                //            "NombreAfiliado = '" + txbNombre.Text.ToString() + "', " +
-                //            "ApellidoAfiliado = '" + txbApellido.Text.ToString() + "', " +
-                //            "CelularAfiliado = '" + txbCelular.Text.ToString() + "', " +
-                //            "EmailAfiliado = '" + strEmail + "', " +
-                //            "idGenero = " + ddlGenero.SelectedItem.Value.ToString() + ", " +
-                //            "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "' " +
-                //            "WHERE DocumentoAfiliado = '" + strCedula + "' ";
-                //        OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-                //        myConnection.Open();
-                //        command.ExecuteNonQuery();
-                //        command.Dispose();
-                //        myConnection.Close();
-                //    }
-                //    else
-                //    {
-                //        //Si no existe el documento del afiliado, lo creamos como nuevo.
-                //        string strQuery = "INSERT INTO Afiliados " +
-                //            "(DocumentoAfiliado, idTipoDocumento, NombreAfiliado, ApellidoAfiliado, CelularAfiliado, EmailAfiliado, " +
-                //            "idGenero, FechaNacAfiliado, EstadoAfiliado) " +
-                //            "VALUES ('" + strCedula + "', " + ddlTipoDocumento.SelectedItem.Value.ToString() + ", " +
-                //            "'" + txbNombre.Text.ToString() + "', '" + txbApellido.Text.ToString() + "', " +
-                //            "'" + txbCelular.Text.ToString() + "', '" + strEmail + "', " +
-                //            "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', 'Pendiente') ";
-                //        OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-                //        myConnection.Open();
-                //        command.ExecuteNonQuery();
-                //        command.Dispose();
-                //        myConnection.Close();
-
-                //        //EnviarCorreoBienvenida();
-                //    }
-
-                //    Response.Redirect("wompipay");
-                //}
             }
 
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
@@ -152,42 +97,6 @@ namespace WebPage
 
             dt.Dispose();
 
-
-            //if (Request.QueryString.Count > 0)
-            //{
-            //    if (Request.QueryString["idPlan"].ToString() == "1")
-            //    {
-            //        //Plan Deluxe 4 meses
-            //        //ltValor.Text = "$510.000";
-            //        //txbMetodoPago.Text = "Tarjeta";
-
-            //        txbValor.Text = "510000";
-            //        txbMetodoPago.Text = "Tarjeta";
-            //        ltValor.Text = "$510.000";
-            //        Session["idPlan"] = "1";
-            //    }
-            //    if (Request.QueryString["idPlan"].ToString() == "2")
-            //    {
-            //        //Plan Deluxe 10 meses
-            //        txbValor.Text = "890000";
-            //        txbMetodoPago.Text = "Tarjeta";
-            //        ltValor.Text = "$890.000";
-            //        Session["idPlan"] = "2";
-            //    }
-            //    if (Request.QueryString["idPlan"].ToString() == "3")
-            //    {
-            //        //Plan Debito Automatico
-            //        txbValor.Text = "99000";
-            //        txbMetodoPago.Text = "Débito automático";
-            //        ltValor.Text = "$99.000";
-            //        Session["idPlan"] = "3";
-            //    }
-            //}
-            //else
-            //{
-            //    //Response.Redirect("default");
-            //}
-
             string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
             //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
@@ -201,20 +110,6 @@ namespace WebPage
             Root rObjetc = JsonConvert.DeserializeObject<Root>(respuesta);
             Session.Add("acceptance_token", rObjetc.data.presigned_acceptance.acceptance_token.ToString());
             Session.Add("accept_personal_auth", rObjetc.data.presigned_personal_data_auth.acceptance_token.ToString());
-
-            //Referencia unica para el pago.
-            //string strDocumento = Request.Form["txbDocumento"].ToString();
-            //string strDocumento = "91491754";
-            //string strReferencia = strDocumento + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            //Hash Sha256 para Wompi
-            //string monto = Request.Form["txbPrecio"].ToString() + "00";
-            //string monto = "8900000";
-            //string moneda = "COP";
-            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-            //string concatenado = strReferencia + monto + moneda + integrity_secret;
-            //string strHash = ComputeSha256Hash(concatenado);
         }
 
         private void CargarTipoDocumento()
@@ -230,9 +125,8 @@ namespace WebPage
 
         private void CargarGeneros()
         {
-            string strQuery = "SELECT * FROM generos ORDER BY idGenero";
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.TraerDatos(strQuery);
+            DataTable dt = cg.ConsultarGeneros();
 
             ddlGenero.DataSource = dt;
             ddlGenero.DataBind();
@@ -244,9 +138,7 @@ namespace WebPage
         {
             clasesglobales cg = new clasesglobales();
 
-            string strQuery = "SELECT * FROM CiudadesSedes " +
-            "WHERE idCiudadSede <> 5 ";
-            DataTable dt = cg.TraerDatos(strQuery);
+            DataTable dt = cg.ConsultarCiudadesSedesWeb();
 
             ddlCiudad.DataSource = dt;
             ddlCiudad.DataBind();
@@ -268,12 +160,7 @@ namespace WebPage
 
             clasesglobales cg = new clasesglobales();
 
-            //hlContacto.Enabled = false;
-            string strQuery = "SELECT * " +
-            "FROM Sedes " +
-            "WHERE idCiudadSede = " + ddlCiudad.SelectedItem.Value.ToString() + " " +
-            "AND idSede <> 11 ";
-            DataTable dt = cg.TraerDatos(strQuery);
+            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(int.Parse(ddlCiudad.SelectedItem.Value.ToString()));
 
             ddlSedes.DataSource = dt;
             ddlSedes.DataBind();
@@ -288,18 +175,26 @@ namespace WebPage
             //Guardamos los datos del afiliado
             string strCedula = txbDocumento.Text.ToString();
             Session.Add("documentoAfiliado", strCedula);
+            int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
 
-            DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(int.Parse(Session["documentoAfiliado"].ToString()));
-            Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+            Session.Add("idAfiliado", "");
+
+            DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
+            if (dtAfiliado.Rows.Count > 0)
+            {
+                Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+            }
 
             string strNombre = txbNombre.Text.ToString();
             Session.Add("nombreAfiliado", strNombre);
             string strApellido = txbApellido.Text.ToString();
             Session.Add("apellidoAfiliado", strApellido);
-            string strEmail = txbEmail.Text.ToString();
-            Session.Add("emailAfiliado", strEmail);
             string strCelular = txbCelular.Text.ToString();
             Session.Add("celularAfiliado", strCelular);
+            string strEmail = txbEmail.Text.ToString();
+            Session.Add("emailAfiliado", strEmail);
+            int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
+            string strFechaNac = txbFechaNac.Text.ToString();
 
             string strFechaInicioPlan = txbFechaIni.Text.ToString();
             Session.Add("fechaInicioPlan", strFechaInicioPlan);
@@ -308,10 +203,8 @@ namespace WebPage
 
             DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
             Session.Add("meses", dtPlan.Rows[0]["Meses"]);
-            string strCiudad = ddlCiudad.SelectedItem.Value.ToString();
-            Session.Add("idCiudad", strCiudad);
-            string strSede = ddlSedes.SelectedItem.Value.ToString();
-            Session.Add("idSede", strSede);
+            int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
+            int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
             string strValorPlan = hfValorPlan.Value;
             Session.Add("valorPlan", strValorPlan);
             string strLtValor = ltValor.Text.ToString();
@@ -320,70 +213,39 @@ namespace WebPage
             //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
             if (Session["idAfiliado"].ToString() != "")
             {
-                string strQuery = "UPDATE Afiliados SET " +
-                    "NombreAfiliado = '" + strNombre + "', " +
-                    "ApellidoAfiliado = '" + strApellido + "', " +
-                    "CelularAfiliado = '" + strCelular + "', " +
-                    "EmailAfiliado = '" + strEmail + "', " +
-                    "idGenero = " + ddlGenero.SelectedItem.Value.ToString() + ", " +
-                    "FechaNacAfiliado = '" + txbFechaNac.Text.ToString() + "', " +
-                    "idCiudadAfiliado = " + strCiudad + ", " + 
-                    "idSede = " + strSede + " " +
-                    "WHERE DocumentoAfiliado = '" + strCedula + "' ";
-
-                try
-                {
-                    string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-                    using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                    {
-                        mysqlConexion.Open();
-                        using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.ExecuteNonQuery();
-                        }
-                        mysqlConexion.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string respuesta = "ERROR: " + ex.Message;
-                }
+                cg.ActualizarAfiliadoWeb(
+                    strCedula,
+                    strNombre,
+                    strApellido,
+                    strCelular,
+                    strEmail,
+                    idGenero,
+                    strFechaNac,
+                    idCiudad,
+                    idSede
+                );
             }
             else
             {
                 //Si no existe el documento del afiliado, lo creamos como nuevo.
-                string strQuery = "INSERT INTO Afiliados " +
-                    "(DocumentoAfiliado, idTipoDocumento, NombreAfiliado, ApellidoAfiliado, CelularAfiliado, EmailAfiliado, " +
-                    "idGenero, FechaNacAfiliado, idCiudadAfiliado, idSede, EstadoAfiliado) " +
-                    "VALUES ('" + strCedula + "', " + ddlTipoDocumento.SelectedItem.Value.ToString() + ", " +
-                    "'" + strNombre + "', '" + strApellido + "', " +
-                    "'" + strCelular + "', '" + strEmail + "', " +
-                    "" + ddlGenero.SelectedItem.Value.ToString() + ", '" + txbFechaNac.Text.ToString() + "', " + strCiudad + ", " + strSede + ", 'Pendiente') ";
-
-                try
-                {
-                    string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-                    using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                    {
-                        mysqlConexion.Open();
-                        using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.ExecuteNonQuery();
-                        }
-                        mysqlConexion.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string respuesta = "ERROR: " + ex.Message;
-                }
+                cg.InsertarAfiliadoWeb(
+                    strCedula,
+                    idTipoDocumento,
+                    strNombre,
+                    strApellido,
+                    strCelular,
+                    strEmail,
+                    idGenero,
+                    strFechaNac,
+                    idCiudad,
+                    idSede
+                );
 
                 //EnviarCorreoBienvenida();
             }
+
+            DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
+            Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
 
             dtAfiliado.Dispose();
             dtPlan.Dispose();
@@ -449,55 +311,6 @@ namespace WebPage
             string strFechaFin = CalcularFechaFinPlan(strFechaInicio);
 
             txbFechaFin.Text = strFechaFin;
-        }
-
-
-        public DataTable TraerDatos(string strQuery)
-        {
-            DataTable dt = new DataTable();
-
-            try
-            {
-                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
-                        {
-                            mysqlConexion.Open();
-                            dataAdapter.Fill(dt);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                dt = new DataTable();
-                dt.Columns.Add("Error", typeof(string));
-                dt.Rows.Add(ex.Message);
-            }
-
-            return dt;
-        }
-
-        static string ComputeSha256Hash(string rawData)
-        {
-            // Crea un SHA256
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - devuelve una matriz de bytes
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                // Convierte una matriz de bytes en una cadena
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
 
         public static string GetHTTP(string url)
@@ -613,9 +426,9 @@ namespace WebPage
             }
         }
 
-        public static bool ConsultSiigoCustomer(string identificacion, string token)
+        public static bool ConsultSiigoCustomer(string documento, string token)
         {
-            string URL = "https://api.siigo.com/v1/customers?identification=" + identificacion;
+            string URL = "https://api.siigo.com/v1/customers?identification=" + documento;
 
             WebRequest request = WebRequest.Create(URL);
             request.Method = "GET";
@@ -664,6 +477,12 @@ namespace WebPage
         {
             string URLRegisterCustomer = "https://api.siigo.com/v1/customers";
 
+            string documento = Session["documentoAfiliado"].ToString();
+            string nombres = Session["nombreAfiliado"].ToString();
+            string apellidos = Session["apellidoAfiliado"].ToString();
+            string celular = Session["celularAfiliado"].ToString();
+            string correo = Session["emailAfiliado"].ToString();
+
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarCodigoSiigoPorDocumento(Session["documentoAfiliado"].ToString());
             string codSiigo = dt.Rows[0]["CodSiigo"].ToString();
@@ -672,25 +491,23 @@ namespace WebPage
             {
                 person_type = "Person",
                 id_type = codSiigo,
-                identification = Session["documentoAfiliado"].ToString(),
-                name = new List<string> { Session["nombreAfiliado"].ToString(), Session["apellidoAfiliado"].ToString() },
+                identification = documento,
+                name = new List<string> { nombres, apellidos },
                 phones = new List<Phone> {
-                    new Phone { number = Session["celularAfiliado"].ToString() }
+                    new Phone { number = celular }
                 },
                 contacts = new List<Contact> {
                     new Contact
                     {
-                        first_name = Session["nombreAfiliado"].ToString(),
-                        last_name = Session["apellidoAfiliado"].ToString(),
-                        email = Session["emailAfiliado"].ToString()
+                        first_name = nombres,
+                        last_name = apellidos,
+                        email = correo
                     }
                 }
             };
 
             string respuesta = GetPostCustomer(URLRegisterCustomer, oCustomer, token);
             dt.Dispose();
-
-            Console.WriteLine(respuesta);
         }
 
         public static string GetPostCustomer(string url, Customer oCustomer, string token)

@@ -27,15 +27,8 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                //Session["idAfiliado"] = "91491754";
-                //Session["fechaInicioPlan"] = "2025-05-01";
-                //Session["fechaFinalPlan"] = "2025-12-01";
                 if (Session["idAfiliado"].ToString() != "")
                 {
-                    //string strCedula = Session["idAfiliado"].ToString();
-                    //string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = " + strCedula;
-                    //DataTable dt = TraerDatos(strQuery);
-
                     ltValor.Text = Session["ltValorPlan"].ToString();
 
                     //if (Request.Form.Count > 0)
@@ -57,36 +50,6 @@ namespace WebPage
 
         }
 
-        public DataTable TraerDatos(string strQuery)
-        {
-            DataTable dt = new DataTable();
-
-            try
-            {
-                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
-                        {
-                            mysqlConexion.Open();
-                            dataAdapter.Fill(dt);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                dt = new DataTable();
-                dt.Columns.Add("Error", typeof(string));
-                dt.Rows.Add(ex.Message);
-            }
-
-            return dt;
-        }
-
         private void MostrarAlerta(string titulo, string mensaje, string tipo)
         {
             // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
@@ -106,25 +69,72 @@ namespace WebPage
         {
             try
             {
-                await TokenizarTarjetaAsync(
+                bool tarjetaTokenizada = await TokenizarTarjetaAsync(
                     txbCreditCard.Text.Trim(),
                     txbCVC.Text.Trim(),
                     ddlMes.SelectedValue,
                     ddlAnho.SelectedValue,
                     txbNombreTarjeta.Text.Trim()
                 );
+
+                if (!tarjetaTokenizada)
+                {
+                    MostrarAlerta("Error de tokenización", "La tarjeta no pudo ser procesada.", "error");
+                    return;
+                }
+
+                // 1. Creación de factura en Siigo
+                string idSiigoFactura = await RegisterInvoiceAsync();
+
+                clasesglobales cg = new clasesglobales();
+
+                // 2. Inserción de afiliación de cliente al plan
+                cg.InsertarAfiliadoPlan(
+                    int.Parse(Session["idAfiliado"].ToString()),
+                    int.Parse(Session["idPlan"].ToString()),
+                    Session["fechaInicioPlan"].ToString(),
+                    Session["fechaFinPlan"].ToString(),
+                    int.Parse(Session["meses"].ToString()),
+                    int.Parse(Session["valorPlan"].ToString()),
+                    "Débito automático",
+                    "Pendiente"
+                );
+
+                // 3. Obtención de idAfiliadoPlan recién creado
+                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+                if (dt.Rows.Count == 0)
+                {
+                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
+                    return;
+                }
+
+                int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
+                Session["idAfiliadoPlan"] = idAfiliadoPlan;
+
+                // 4. Inserción de pago en base de datos
+                cg.InsertarPagoPlanAfiliadoWeb(
+                    idAfiliadoPlan,
+                    int.Parse(Session["valorPlan"].ToString()),
+                    "Wompi",
+                    Session["idReferencia"].ToString(),
+                    "Ninguno",
+                    "Pendiente",
+                    idSiigoFactura,
+                    Session["dataIdToken"].ToString(),
+                    Session["dataIdFuentePago"].ToString(),
+                    Session["dataIdTransaccion"].ToString()
+                );
+
+                dt.Dispose();
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ocurrió un error inesperado al procesar el pago.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "habilitarBoton", @"
-                    document.getElementById('" + btnPagar.ClientID + @"').disabled = false;", true);
             }
         }
 
-        private async Task TokenizarTarjetaAsync(string creditcard, string cvc, string mes, string anho, string cardholder)
+        private async Task<bool> TokenizarTarjetaAsync(string creditcard, string cvc, string mes, string anho, string cardholder)
         {
             try
             {
@@ -135,7 +145,7 @@ namespace WebPage
                     Session["emailAfiliado"] == null)
                 {
                     MostrarAlerta("Sesión incompleta", "Faltan datos requeridos para procesar el pago.", "warning");
-                    return;
+                    return false;
                 }
 
                 //Tokenizar una tarjeta
@@ -147,7 +157,7 @@ namespace WebPage
                 if (rObjetc.status == "CREATED" && rObjetc.data != null && !string.IsNullOrEmpty(rObjetc.data.id))
                 {
                     string dataIdToken = rObjetc.data.id;
-                    ltMensaje.Value = dataIdToken;
+                    Session["dataIdToken"] = dataIdToken;
 
                     // 1. Creación de fuente de pago en Wompi
                     bool fuentePagoCreada = await CrearFuentePagoAsync(
@@ -162,63 +172,23 @@ namespace WebPage
                     {
                         string estado = rObjetc?.status ?? "Respuesta desconocida";
                         MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
-                        return;
+                        return false;
                     }
 
-                    // 2. Creación de factura en Siigo
-                    string idSiigoFactura = await RegisterInvoiceAsync();
-
-                    clasesglobales cg = new clasesglobales();
-
-                    // 3. Inserción de afiliación de cliente al plan
-                    cg.InsertarAfiliadoPlan(
-                        int.Parse(Session["idAfiliado"].ToString()),
-                        int.Parse(Session["idPlan"].ToString()),
-                        Session["fechaInicioPlan"].ToString(),
-                        Session["fechaFinPlan"].ToString(),
-                        int.Parse(Session["meses"].ToString()),
-                        int.Parse(Session["valorPlan"].ToString()),
-                        "Débito automático",
-                        "Pendiente"
-                    );
-
-                    // 4. Obtención de idAfiliadoPlan recién creado
-                    DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-                    if (dt.Rows.Count == 0)
-                    {
-                        MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
-                        return;
-                    }
-
-                    int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
-                    Session["idAfiliadoPlan"] = idAfiliadoPlan;
-
-                    // 4. Inserción de pago en base de datos
-                    cg.InsertarPagoPlanAfiliadoWeb(
-                        idAfiliadoPlan,
-                        int.Parse(Session["valorPlan"].ToString()),
-                        "Wompi",
-                        Session["idReferencia"].ToString(),
-                        "Ninguno",
-                        "Pendiente",
-                        idSiigoFactura,
-                        dataIdToken,
-                        Session["dataIdFuentePago"].ToString(),
-                        Session["dataIdTransaccion"].ToString()
-                    );
-
-                    dt.Dispose();
+                    return true;
                 }
                 else
                 {
                     string estado = rObjetc?.status ?? "Respuesta desconocida";
                     MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error inesperado", "Ocurrió un error al procesar la transacción.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
+                return false;
             }
         }
         private async Task<bool> CrearFuentePagoAsync(string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
@@ -434,34 +404,6 @@ namespace WebPage
             }
         }
 
-        //public static string GetPost(string url, string creditcard, string cvc, string mes, string anho, string cardholder)
-        //{
-        //    Tarjeta oTarjeta = new Tarjeta() { number = "" + creditcard + "", cvc = "" + cvc + "", exp_month = "" + mes + "", exp_year = "" + anho + "", card_holder = "" + cardholder + "" };
-
-        //    string result = "";
-        //    WebRequest wRequest = WebRequest.Create(url);
-        //    wRequest.Method = "post";
-        //    wRequest.ContentType = "application/json;charset=UTF-8";
-        //    wRequest.Headers.Add("Authorization", "Bearer pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
-
-        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-        //    {
-        //        string json = JsonConvert.SerializeObject(oTarjeta);
-        //        oSW.Write(json);
-        //        oSW.Flush();
-        //        oSW.Close();
-        //    }
-
-        //    WebResponse wResponse = wRequest.GetResponse();
-
-        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-        //    {
-        //        result = oSR.ReadToEnd().Trim();
-        //    }
-
-        //    return result;
-        //}
-
         public static async Task<string> GetPostFuentePagoAsync(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
         {
             if (string.IsNullOrWhiteSpace(customer_email) ||
@@ -509,34 +451,6 @@ namespace WebPage
             }
         }
 
-        //public static string GetPost2(string url, string customer_email, string type, string token, string acceptance_token, string accept_personal_auth)
-        //{
-        //    FuentePago oFuentePago = new FuentePago() { type = "" + type + "", token = "" + token + "", customer_email = "" + customer_email + "", acceptance_token = "" + acceptance_token + "", accept_personal_auth = "" + accept_personal_auth + "" };
-
-        //    string result = "";
-        //    WebRequest wRequest = WebRequest.Create(url);
-        //    wRequest.Method = "post";
-        //    wRequest.ContentType = "application/json;charset=UTF-8";
-        //    wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
-
-        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-        //    {
-        //        string json = JsonConvert.SerializeObject(oFuentePago);
-        //        oSW.Write(json);
-        //        oSW.Flush();
-        //        oSW.Close();
-        //    }
-
-        //    WebResponse wResponse = wRequest.GetResponse();
-
-        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-        //    {
-        //        result = oSR.ReadToEnd().Trim();
-        //    }
-
-        //    return result;
-        //}
-
         public static async Task<string> GetPostTransaccionAsync(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
         {
             if (amount_in_cents <= 0 || string.IsNullOrWhiteSpace(currency) || string.IsNullOrWhiteSpace(signature) ||
@@ -582,64 +496,7 @@ namespace WebPage
                     return $"{{\"status\":\"ERROR\",\"message\":\"{ex.Message}\"}}";
                 }
             }
-
-            //var oTransaccion = new Transaccion
-            //{
-            //    amount_in_cents = amount_in_cents,
-            //    currency = currency,
-            //    signature = signature,
-            //    customer_email = customer_email,
-            //    payment_method = new PaymentMethod { installments = installments },
-            //    reference = reference,
-            //    payment_source_id = payment_source_id
-            //};
-
-            //string json = JsonConvert.SerializeObject(oTransaccion);
-
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    client.DefaultRequestHeaders.Authorization =
-            //        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
-
-            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-            //    HttpResponseMessage response = await client.PostAsync(url, content);
-            //    response.EnsureSuccessStatusCode();
-
-            //    string result = await response.Content.ReadAsStringAsync();
-            //    return result;
-            //}
         }
-
-        //public static string GetPost3(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
-        //{
-        //    PaymentMethod oPM = new PaymentMethod() { installments = installments };
-        //    Transaccion oTransaccion = new Transaccion() { amount_in_cents = amount_in_cents, currency = "" + currency + "", signature = "" + signature + "", customer_email = "" + customer_email + "", payment_method = oPM, reference = "" + reference + "", payment_source_id = payment_source_id };
-
-        //    Transaccion oTrans = new Transaccion() { };
-
-        //    string result = "";
-        //    WebRequest wRequest = WebRequest.Create(url);
-        //    wRequest.Method = "post";
-        //    wRequest.ContentType = "application/json;charset=UTF-8";
-        //    wRequest.Headers.Add("Authorization", "Bearer prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
-
-        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-        //    {
-        //        string json = JsonConvert.SerializeObject(oTransaccion);
-        //        oSW.Write(json);
-        //        oSW.Flush();
-        //        oSW.Close();
-        //    }
-
-        //    WebResponse wResponse = wRequest.GetResponse();
-
-        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-        //    {
-        //        result = oSR.ReadToEnd().Trim();
-        //    }
-
-        //    return result;
-        //}
 
         public static async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
         {
@@ -669,14 +526,8 @@ namespace WebPage
             }
         }
 
-
-
-
-
-
-
-
-
+        //
+        // Wompi API
         public class Tarjeta
         {
             public string number { get; set; }

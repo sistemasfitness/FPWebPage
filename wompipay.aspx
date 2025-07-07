@@ -174,21 +174,21 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <asp:CheckBox ID="cbAutorizo1" runat="server" />
+                                    <input type="checkbox" id="cbAutorizo1" />
 
                                     <label for="cbAutorizo1">
                                         <span>Acepto haber leido <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a> para hacer este pago.</span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <asp:CheckBox ID="cbAutorizo2" runat="server" />
+                                    <input type="checkbox" id="cbAutorizo2" />
 
                                     <label for="cbAutorizo2">
                                         <span>Acepto la <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-administracion-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <asp:CheckBox ID="cbAutorizo3" runat="server" />
+                                    <input type="checkbox" id="cbAutorizo3" />
 
                                     <label for="cbAutorizo3">
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
@@ -196,14 +196,13 @@
                                 </div>
                             </div>
                             <div id="message-subscribe"></div>
-                            <asp:HiddenField ID="ltMensaje" runat="server"></asp:HiddenField>
                             <hr />
                             <asp:Button ID="btnPagar" runat="server"
-                                    CssClass="btn_full"
-                                    Text="Pagar"
-                                    UseSubmitBehavior="false"
-                                    OnClientClick="return ejecutarPago();" 
-                                    OnClick="btnPagar_Click"/>
+                                CssClass="btn_full"
+                                Text="Pagar"
+                                UseSubmitBehavior="false"
+                                OnClientClick="return ejecutarPago();" 
+                                OnClick="btnPagar_Click" />
                         </div>
                         <div class="box_style_4">
                             <i class="icon_lifesaver"></i>
@@ -221,12 +220,6 @@
 
     <uc1:footer runat="server" ID="footer" />
     <!-- End footer -->
-    <div id="copy">
-        <div class="container">
-            Copyright © 2021 – 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
-        </div>
-    </div>
-    <!-- End copy -->
 
     <div id="toTop"></div>
     <!-- Back to top button -->
@@ -249,16 +242,16 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
     <%--<script>
-        function habilitarBoton() {
-            const check1 = document.getElementById('check1')
-            const check2 = document.getElementById('check2')
-            const check3 = document.getElementById('check3')
+        function validarAutorizaciones() {
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
+            const cb3 = document.getElementById("cbAutorizo3");
 
-            if (check1.checked && check2.checked && check3.checked) {
-                console.log('Boton de pago habilitado');
-                document.getElementById('submitplan').disabled = false;
-            }
+            const btn = document.getElementById("<%= btnPagar.ClientID %>");
+            btn.disabled = !(cb1.checked && cb2.checked && cb3.checked);
         }
+
+        window.onload = validarAutorizaciones;
     </script>--%>
 
     <script type="text/javascript">

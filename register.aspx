@@ -135,7 +135,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Fecha de Nacimiento: *</label>
-                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" TabIndex="7" required=""></asp:TextBox>
+                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
