@@ -11,7 +11,8 @@ namespace WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // TODO: Hacer la inserción de factura con la API de Siigo
+            ltValor1.Text = Session["ltValorPlan"].ToString();
+            ltValor2.Text = Session["ltValorPlan"].ToString();
         }
     }
 }

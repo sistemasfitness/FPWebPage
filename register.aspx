@@ -37,16 +37,6 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
-
-    <style>
-        .checkbox label:before {
-	        border: 2px solid black;
-        }
-
-        .checkbox label:after {
-	        background: black;
-        }
-    </style>
 </head>
 <body>
     <div class="layer"></div>
@@ -62,9 +52,9 @@
     <!-- End Header =============================================== -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sub_header_general.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900; color: black;">Registro y pago</h1>
+            <h1 style="font-weight: 900;">Registro y pago</h1>
             <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
@@ -73,7 +63,7 @@
 
     <div class="container margin_60_35" style="color: #fff;">
         <div class="row">
-            <form method="post" action="register" role="form" id="form" runat="server">
+            <form id="form" runat="server">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
@@ -145,7 +135,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Fecha de Nacimiento: *</label>
-                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" TabIndex="7" required=""></asp:TextBox>
+                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +216,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
@@ -235,7 +224,7 @@
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
                             </div>
                             <div style="font-size: 13px">
-                                <div class="checkbox">
+                                <div class="checkbox checkbox-dark">
                                     <asp:CheckBox ID="cbAutorizo" runat="server" />
 
                                     <label for="cbAutorizo">
@@ -247,7 +236,7 @@
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnAgregar" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" />
+                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" Enabled="false"/>
                             </div>
                         </div>
                         <div class="box_style_4">
@@ -264,13 +253,8 @@
     </div>
     <!-- End container -->
 
-    <uc1:footer runat="server" id="footer" />
     <!-- End footer -->
-    <div id="copy">
-        <div class="container">
-            Copyright © 2021 – 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
-        </div>
-    </div>
+    <uc1:footer runat="server" id="footer" />
     <!-- End copy -->
 
     <div id="toTop"></div>
@@ -296,35 +280,18 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
     <script>
-        //function popSedes() {
-        //    const ddlCiudad = document.getElementById("ddlCiudad");
-        //    const ddlSede = document.getElementById("ddlSede");
+        window.onload = function () {
+            const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');
+            const btnRegistrar = document.getElementById('<%= btnRegistrarAfiliado.ClientID %>');
 
-        //    ddlSede.innerHTML = "";
-        //    const selectedCiudad = ddlCiudad.value;
-
-        //    const sedes = {
-        //        "Bucaramanga": ["Boulevard", "Cabecera", "El Prado", "Provenza", "Ciudadela"],
-        //        "Cúcuta": ["Ceiba II", "Jardin Plaza"],
-        //        "Floridablanca": ["Cañaveral"],
-        //        "Piedecuesta": ["DeLaCuesta", "Parque Central"],
-        //    };
-
-        //    const opcionesSede = sedes[selectedCiudad];
-        //    for (var i = 0; i < opcionesSede.length; i++) {
-        //        const opcion = document.createElement("option");
-        //        opcion.text = opcionesSede[i];
-        //        ddlSede.add(opcion);
-        //    }
-        //}
-
-        function habilitarBoton() {
-            const check1 = document.getElementById('check1')
-
-            if (check1.checked) {
-                console.log('Boton de pago habilitado');
-                document.getElementById('submitplan').disabled = false;
+            function toggleButton() {
+                btnRegistrar.disabled = !cbAutorizo.checked;
             }
+
+            cbAutorizo.addEventListener('change', toggleButton);
+
+            // Inicializar el estado al cargar la página
+            toggleButton();
         }
     </script>
 </body>
