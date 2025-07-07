@@ -30,24 +30,12 @@ namespace WebPage
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
-
-                    //if (Request.Form.Count > 0)
-                    //{
-                    //    TokenizarTarjeta(Request.Form["creditcard"].ToString(), Request.Form["cvc"].ToString(), Request.Form["ddlMes"].ToString(), Request.Form["ddlAnho"].ToString(), Request.Form["nombretarjeta"].ToString());
-                    //}
                 }
                 else
                 {
                     Response.Redirect("default");
                 }
             }
-
-            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
-            string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
-
-            string strPrivateKeySandbox = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
-            string strPrivateKeyProduction = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
-
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)
@@ -156,10 +144,12 @@ namespace WebPage
 
                 if (rObjetc.status == "CREATED" && rObjetc.data != null && !string.IsNullOrEmpty(rObjetc.data.id))
                 {
+                    ObtenerTokensDeAceptacion();
+
                     string dataIdToken = rObjetc.data.id;
                     Session["dataIdToken"] = dataIdToken;
 
-                    // 1. Creación de fuente de pago en Wompi
+                    // Creación de fuente de pago en Wompi
                     bool fuentePagoCreada = await CrearFuentePagoAsync(
                         Session["emailAfiliado"].ToString(),
                         "CARD",
@@ -526,8 +516,67 @@ namespace WebPage
             }
         }
 
+        private void ObtenerTokensDeAceptacion()
+        {
+            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+            //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+
+            //string strPrivateKeySandbox = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+            //string strPrivateKeyProduction = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+
+            // Construir la URL de la API
+            string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
+
+            try
+            {
+                // Realizar la petición HTTP tipo GET
+                string respuesta = GetHTTP(url);
+
+                // Deserializar la respuesta JSON
+                Root rObjetc = JsonConvert.DeserializeObject<Root>(respuesta);
+
+                // Guardar los tokens en la sesión
+                Session["acceptance_token"] = rObjetc.data.presigned_acceptance.acceptance_token;
+                Session["accept_personal_auth"] = rObjetc.data.presigned_personal_data_auth.acceptance_token;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los tokens de aceptación de Wompi: " + ex.Message);
+            }
+        }
+
         //
-        // Wompi API
+        // Wompi API - Tokenización
+        public static string GetHTTP(string url)
+        {
+            WebRequest wRequest = WebRequest.Create(url);
+            WebResponse wResponse = wRequest.GetResponse();
+            StreamReader sReader = new StreamReader(wResponse.GetResponseStream());
+            return sReader.ReadToEnd().Trim();
+        }
+
+        public class PresignedAcceptance
+        {
+            public string acceptance_token { get; set; }
+        }
+
+        public class PresignedPersonalDataAuth
+        {
+            public string acceptance_token { get; set; }
+        }
+
+        public class Data
+        {
+            public PresignedAcceptance presigned_acceptance { get; set; }
+            public PresignedPersonalDataAuth presigned_personal_data_auth { get; set; }
+        }
+
+        public class Root
+        {
+            public Data data { get; set; }
+        }
+
+        // 
         public class Tarjeta
         {
             public string number { get; set; }
@@ -704,7 +753,7 @@ namespace WebPage
             };
 
             string token = Session["tokenSiigo"].ToString();
-            string respuesta = await GetPostFacturaAsync(url, oInvoice, token);
+            string respuesta = await GetPostInvoiceAsync(url, oInvoice, token);
 
             var jsonRespuesta = JsonConvert.DeserializeObject<dynamic>(respuesta);
             string invoiceId = jsonRespuesta.id;
@@ -712,7 +761,7 @@ namespace WebPage
             return invoiceId;
         }
 
-        public static async Task<string> GetPostFacturaAsync(string url, Invoice oInvoice, string token)
+        public static async Task<string> GetPostInvoiceAsync(string url, Invoice oInvoice, string token)
         {
             using (HttpClient client = new HttpClient())
             {

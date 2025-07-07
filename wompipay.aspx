@@ -63,7 +63,7 @@
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">Pago a través de Wompi</h1>
-            <p style="font-weight: 900;">Paga de manera segura y sin complicaciones.</p>
+            <p style="font-weight: 900;">¡Paga de manera segura y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
@@ -94,7 +94,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <h4 style="font-weight: 900; color: #e3ff00;">
-                                            <img src="img/wompi/mastercard.svg" /> Tarjeta de Crédito / Débito
+                                            <img src="img/wompi/mastercard.svg" /> Tarjeta de Crédito
                                         </h4>
                                     </div>
                                 </div>
@@ -174,21 +174,21 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo1" />
+                                    <input type="checkbox" id="cbAutorizo1" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo1">
                                         <span>Acepto haber leido <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a> para hacer este pago.</span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo2" />
+                                    <input type="checkbox" id="cbAutorizo2" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo2">
                                         <span>Acepto la <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-administracion-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo3" />
+                                    <input type="checkbox" id="cbAutorizo3" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo3">
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
@@ -201,7 +201,7 @@
                                 CssClass="btn_full"
                                 Text="Pagar"
                                 UseSubmitBehavior="false"
-                                OnClientClick="return ejecutarPago();" 
+                                OnClientClick="return validarYEjecutarPago();" 
                                 OnClick="btnPagar_Click" />
                         </div>
                         <div class="box_style_4">
@@ -241,20 +241,75 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
-    <%--<script>
-        function validarAutorizaciones() {
+    <script>
+
+        function validarCamposFormulario() {
+            const tarjeta = document.getElementById("<%= txbCreditCard.ClientID %>");
+            const mes = document.getElementById("<%= ddlMes.ClientID %>");
+            const anho = document.getElementById("<%= ddlAnho.ClientID %>");
+            const cvc = document.getElementById("<%= txbCVC.ClientID %>");
+            const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");
+
+            if (!tarjeta.value.trim()) {
+                Swal.fire('Campo requerido', 'Por favor ingresa el número de la tarjeta.', 'warning');
+                tarjeta.focus();
+                return false;
+            }
+
+            if (!mes.value) {
+                Swal.fire('Campo requerido', 'Por favor selecciona el mes de expiración.', 'warning');
+                mes.focus();
+                return false;
+            }
+
+            if (!anho.value) {
+                Swal.fire('Campo requerido', 'Por favor selecciona el año de expiración.', 'warning');
+                anho.focus();
+                return false;
+            }
+
+            if (!cvc.value.trim()) {
+                Swal.fire('Campo requerido', 'Por favor ingresa el CVC de la tarjeta.', 'warning');
+                cvc.focus();
+                return false;
+            }
+
+            if (!nombre.value.trim()) {
+                Swal.fire('Campo requerido', 'Por favor ingresa el nombre del titular de la tarjeta.', 'warning');
+                nombre.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function validarYEjecutarPago() {
             const cb1 = document.getElementById("cbAutorizo1");
             const cb2 = document.getElementById("cbAutorizo2");
             const cb3 = document.getElementById("cbAutorizo3");
 
-            const btn = document.getElementById("<%= btnPagar.ClientID %>");
-            btn.disabled = !(cb1.checked && cb2.checked && cb3.checked);
+            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;
+            const formularioOK = validarCamposFormulario();
+
+            if (!autorizacionesOK) {
+                Swal.fire({
+                    title: 'Falta confirmar',
+                    text: 'Debes aceptar todas las autorizaciones para continuar.',
+                    icon: 'warning', 
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
+                return false;
+            }
+
+            if (!formularioOK) {
+                return false;
+            }
+
+            ejecutarPago();
+            return false;
         }
 
-        window.onload = validarAutorizaciones;
-    </script>--%>
-
-    <script type="text/javascript">
         function ejecutarPago() {
             Swal.fire({
                 title: 'Procesando',
@@ -268,18 +323,16 @@
             });
 
             // Deshabilitar el botón
-            var btn = document.getElementById('<%= btnPagar.ClientID %>');
-            if (btn) {
-                btn.disabled = true;
-            }
+            const btn = document.getElementById('<%= btnPagar.ClientID %>');
+            if (btn) btn.disabled = true;
 
             // Ejecutar postback manualmente
             setTimeout(function () {
                 __doPostBack('<%= btnPagar.UniqueID %>', '');
-            }, 100); // pequeño delay para que la alerta se muestre bien
-
-            return false; // ← IMPORTANTE: evita el postback automático
+            }, 300); // Aumentado para asegurar que SweetAlert se vea
         }
+
     </script>
+
 </body>
 </html>

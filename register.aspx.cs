@@ -96,20 +96,6 @@ namespace WebPage
             }
 
             dt.Dispose();
-
-            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
-            //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
-
-            //string strPrivateKeySandbox = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
-            //string strPrivateKeyProduction = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
-
-
-            //Obtener los Tokens de Aceptación prefirmados
-            string URLTokenAceptacion = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
-            string respuesta = GetHTTP(URLTokenAceptacion);
-            Root rObjetc = JsonConvert.DeserializeObject<Root>(respuesta);
-            Session.Add("acceptance_token", rObjetc.data.presigned_acceptance.acceptance_token.ToString());
-            Session.Add("accept_personal_auth", rObjetc.data.presigned_personal_data_auth.acceptance_token.ToString());
         }
 
         private void CargarTipoDocumento()
@@ -248,6 +234,7 @@ namespace WebPage
             Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
 
             dtAfiliado.Dispose();
+            dtAfiliado2.Dispose();
             dtPlan.Dispose();
 
             // Siigo API
@@ -311,82 +298,6 @@ namespace WebPage
             string strFechaFin = CalcularFechaFinPlan(strFechaInicio);
 
             txbFechaFin.Text = strFechaFin;
-        }
-
-        public static string GetHTTP(string url)
-        {
-            WebRequest wRequest = WebRequest.Create(url);
-            WebResponse wResponse = wRequest.GetResponse();
-            StreamReader sReader = new StreamReader(wResponse.GetResponseStream());
-            return sReader.ReadToEnd().Trim();
-        }
-
-        public class Data
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string email { get; set; }
-            public string contact_name { get; set; }
-            public string phone_number { get; set; }
-            public bool active { get; set; }
-            public object logo_url { get; set; }
-            public string legal_name { get; set; }
-            public string legal_id_type { get; set; }
-            public string legal_id { get; set; }
-            public string public_key { get; set; }
-            public List<string> accepted_currencies { get; set; }
-            public string fraud_javascript_key { get; set; }
-            public List<FraudGroup> fraud_groups { get; set; }
-            public List<string> accepted_payment_methods { get; set; }
-            public List<PaymentMethod> payment_methods { get; set; }
-            public PresignedAcceptance presigned_acceptance { get; set; }
-            public PresignedPersonalDataAuth presigned_personal_data_auth { get; set; }
-        }
-
-        public class FraudGroup
-        {
-            public string provider { get; set; }
-            public PublicData public_data { get; set; }
-        }
-
-        public class Meta
-        {
-        }
-
-        public class PaymentMethod
-        {
-            public string name { get; set; }
-            public List<PaymentProcessor> payment_processors { get; set; }
-        }
-
-        public class PaymentProcessor
-        {
-            public string name { get; set; }
-        }
-
-        public class PresignedAcceptance
-        {
-            public string acceptance_token { get; set; }
-            public string permalink { get; set; }
-            public string type { get; set; }
-        }
-
-        public class PresignedPersonalDataAuth
-        {
-            public string acceptance_token { get; set; }
-            public string permalink { get; set; }
-            public string type { get; set; }
-        }
-
-        public class PublicData
-        {
-            public string javascript_key { get; set; }
-        }
-
-        public class Root
-        {
-            public Data data { get; set; }
-            public Meta meta { get; set; }
         }
 
         //
