@@ -44,6 +44,9 @@ namespace WebPage
                 txbFechaIni.Attributes.Add("type", "date");
                 txbFechaFin.Attributes.Add("type", "date");
 
+                txbDocumento.Attributes.Add("type", "number");
+                txbCelular.Attributes.Add("type", "number");
+
                 // Datos de Pruebas
                 txbNombre.Text = "Brayan Stiven";
                 txbApellido.Text = "Ochoa Pineda";

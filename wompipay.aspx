@@ -251,31 +251,61 @@
             const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");
 
             if (!tarjeta.value.trim()) {
-                Swal.fire('Campo requerido', 'Por favor ingresa el número de la tarjeta.', 'warning');
+                Swal.fire({
+                    title: 'Campo requerido',
+                    text: 'Por favor, ingresa el número de la tarjeta.',
+                    icon: 'warning',
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
                 tarjeta.focus();
                 return false;
             }
 
             if (!mes.value) {
-                Swal.fire('Campo requerido', 'Por favor selecciona el mes de expiración.', 'warning');
+                Swal.fire({
+                    title: 'Campo requerido',
+                    text: 'Por favor, selecciona el mes de expiración.',
+                    icon: 'warning',
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
                 mes.focus();
                 return false;
             }
 
             if (!anho.value) {
-                Swal.fire('Campo requerido', 'Por favor selecciona el año de expiración.', 'warning');
+                Swal.fire({
+                    title: 'Campo requerido',
+                    text: 'Por favor, selecciona el año de expiración.',
+                    icon: 'warning',
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
                 anho.focus();
                 return false;
             }
 
             if (!cvc.value.trim()) {
-                Swal.fire('Campo requerido', 'Por favor ingresa el CVC de la tarjeta.', 'warning');
+                Swal.fire({
+                    title: 'Campo requerido',
+                    text: 'Por favor, ingresa el CVC de la tarjeta.',
+                    icon: 'warning',
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
                 cvc.focus();
                 return false;
             }
 
             if (!nombre.value.trim()) {
-                Swal.fire('Campo requerido', 'Por favor ingresa el nombre del titular de la tarjeta.', 'warning');
+                Swal.fire({
+                    title: 'Campo requerido',
+                    text: 'Por favor, ingresa el nombre del titular de la tarjeta.',
+                    icon: 'warning',
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar'
+                });
                 nombre.focus();
                 return false;
             }
@@ -293,7 +323,7 @@
 
             if (!autorizacionesOK) {
                 Swal.fire({
-                    title: 'Falta confirmar',
+                    title: 'Confirmación requerida',
                     text: 'Debes aceptar todas las autorizaciones para continuar.',
                     icon: 'warning', 
                     showCloseButton: true,

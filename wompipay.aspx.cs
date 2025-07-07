@@ -30,6 +30,9 @@ namespace WebPage
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
+
+                    txbCreditCard.Attributes.Add("type", "number");
+                    txbCVC.Attributes.Add("type", "number");
                 }
                 else
                 {
@@ -272,7 +275,14 @@ namespace WebPage
 
                 if (estado != "APPROVED")
                 {
-                    MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
+                    if (estado == "DECLINED")
+                    {
+                        MostrarAlerta("Transacción rechazada", "No se pudo procesar el pago con tu tarjeta. Intenta nuevamente.", "error");
+                    } 
+                    else
+                    {
+                        MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
+                    }
                     return false;
                 }
 
