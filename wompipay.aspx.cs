@@ -22,7 +22,6 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        OdbcConnection myConnection = new OdbcConnection(ConfigurationManager.AppSettings["sConn"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -106,7 +105,6 @@ namespace WebPage
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
-                    "Wompi",
                     Session["idReferencia"].ToString(),
                     "Ninguno",
                     "Pendiente",
