@@ -37,6 +37,15 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body.swal2-shown {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+    </style>
 </head>
 <body>
     <div class="layer"></div>
@@ -178,7 +187,7 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
                                                 <label>Valor del plan:</label>
-                                                <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" disabled=""></asp:TextBox>
+                                                <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" Enabled="false"></asp:TextBox>
                                                 <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
@@ -186,13 +195,13 @@
                                             <div class="form-group">
                                                 <label>Fecha de inicio: *</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                             AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
+                                                    AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
                                                 <label>Fecha de fin:</label>
-                                                <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" disabled=""></asp:TextBox>
+                                                <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
