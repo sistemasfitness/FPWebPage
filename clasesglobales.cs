@@ -7696,7 +7696,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, string tipoPago, string idReferencia, string banco, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion)
+        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, string idReferencia, string banco, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion)
         {
             string respuesta = string.Empty;
             try
@@ -7710,7 +7710,6 @@ namespace WebPage
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
                         cmd.Parameters.AddWithValue("@p_valor", valor);
-                        cmd.Parameters.AddWithValue("@p_tipo_pago", tipoPago);
                         cmd.Parameters.AddWithValue("@p_id_referencia", idReferencia);
                         cmd.Parameters.AddWithValue("@p_banco", banco);
                         cmd.Parameters.AddWithValue("@p_estado", estado);
