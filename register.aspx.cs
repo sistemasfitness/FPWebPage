@@ -219,9 +219,12 @@ namespace WebPage
                                 "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
                                 "warning"
                             );
-                            return; // Detenemos el flujo
+
+                            return;
                         }
                     }
+
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoWeb(
                         strCedula,
@@ -337,8 +340,13 @@ namespace WebPage
                 title: '{titulo}',
                 text: '{mensaje}',
                 icon: '{tipo}',
-                showCloseButton: true,
-                confirmButtonText: 'Aceptar'
+                background: '#000000', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);

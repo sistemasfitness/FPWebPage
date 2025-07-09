@@ -3414,6 +3414,58 @@ ul.plan-features {
 	-webkit-transform: translateZ(0) scale(1.0, 1.0);
 }
 
+/*-------- 3.14 SweetAlert --------*/
+body.swal2-shown {
+	padding-right: 0 !important;
+	overflow-y: auto !important;
+}
+
+.alert {
+	color: #FFFFFF; /* Color de texto del popup */
+	border: 1px solid #FFFFFF;
+}
+
+.swal2-close {
+	color: #E3FF00; /* botón de cerrar */
+}
+
+.swal2-close:hover{
+	color: #E3FF00;
+}
+
+.btn-confirm-alert {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: #e3ff00;
+	width: 100%;
+	background: #1a1a1a;
+	cursor: pointer;
+	padding: 12px 20px;
+	display: inline-block;
+	outline: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	display: block;
+	text-align: center;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.btn-confirm-alert:hover {
+	background: #333;
+}
+
+.swal2-icon {
+	border-color: #E3FF00 !important;
+	color: #E3FF00 !important;
+}
+/*-------- 3.14 SweetAlert --------*/
 .whatsapp {
 	position: fixed;
 	width: 109px;

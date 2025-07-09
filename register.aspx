@@ -39,13 +39,6 @@
     <link href="css/custom.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <style>
-        body.swal2-shown {
-            padding-right: 0 !important;
-            overflow-y: auto !important;
-        }
-    </style>
 </head>
 <body>
     <div class="layer"></div>
