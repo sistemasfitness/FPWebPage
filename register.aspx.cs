@@ -204,27 +204,28 @@ namespace WebPage
                 //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
                 if (Session["idAfiliado"].ToString() != "")
                 {
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Fecha de inicio inválida",
-                                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Fecha de inicio inválida",
+                    //            "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoWeb(
                         strCedula,
@@ -339,8 +340,8 @@ namespace WebPage
             Swal.fire({{
                 title: '{titulo}',
                 text: '{mensaje}',
-                icon: '{tipo}',
-                background: '#000000', 
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
                 showCloseButton: true, 
                 confirmButtonText: 'Aceptar', 
                 customClass: {{

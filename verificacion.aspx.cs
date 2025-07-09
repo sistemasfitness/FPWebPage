@@ -20,6 +20,17 @@ namespace WebPage
             {
                 if (Request.QueryString.Count > 0)
                 {
+                    string origenWeb = Request.QueryString["web"];
+
+                    if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
+                    {
+                        id_parrafo.Visible = false;
+                        txbNombre.Enabled = false;
+                        txbApellidos.Disabled = true;
+                        txbCorreo.Disabled = true;
+                        txbCelular.Disabled = true;
+                    }
+
                     CargarDatosAfiliado();
 
                     if (!RespondioParqAfiliado())
@@ -43,12 +54,12 @@ namespace WebPage
             DataTable dt = cg.TraerDatos(strQuery);
             if (dt.Rows.Count > 0)
             {
-                idAfil.Value = dt.Rows[0]["idAfiliado"].ToString();
-                ViewState["idAfiliado"] = idAfil.Value;
-                name_contact.Value = dt.Rows[0]["NombreAfiliado"].ToString();
-                lastname_contact.Value = dt.Rows[0]["ApellidoAfiliado"].ToString();
-                email_contact.Value = dt.Rows[0]["EmailAfiliado"].ToString();
-                phone_contact.Value = dt.Rows[0]["CelularAfiliado"].ToString();
+                hfidAfil.Value = dt.Rows[0]["idAfiliado"].ToString();
+                ViewState["idAfiliado"] = hfidAfil.Value;
+                txbNombre.Value = dt.Rows[0]["NombreAfiliado"].ToString();
+                txbApellidos.Value = dt.Rows[0]["ApellidoAfiliado"].ToString();
+                txbCorreo.Value = dt.Rows[0]["EmailAfiliado"].ToString();
+                txbCelular.Value = dt.Rows[0]["CelularAfiliado"].ToString();
                 ViewState["EmailAfiliado"] = dt.Rows[0]["EmailAfiliado"].ToString();
                 ViewState["ClaveAfiliado"] = dt.Rows[0]["ClaveAfiliado"].ToString();
             }

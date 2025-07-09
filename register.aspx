@@ -211,7 +211,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Método:</label>
-                                        <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" disabled="" 
+                                        <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" Enabled="false" 
                                             TabIndex="4"></asp:TextBox>
                                     </div>
                                 </div>

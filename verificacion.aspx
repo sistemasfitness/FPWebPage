@@ -61,7 +61,7 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/contact.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">VERIFICACION</h1>
+            <h1 style="font-weight: 900;">VERIFICACIÓN</h1>
         </div>
     </section>
     <!-- End section -->
@@ -69,10 +69,9 @@
 
     <div class="container margin_60_35">
         <div class="row">
-
             <div class="col-md-8">
                 <h2 style="font-weight: 900; color: #fff">Verificación de Afiliado</h2>
-                <p style="color: #fff">Confirma los siguientes datos y da clic al botón verificar:</p>
+                <p id="id_parrafo" style="color: #fff" runat="server">Confirma los siguientes datos y da clic al botón verificar:</p>
                 <div>
                     <div id="message-contact"></div>
                     <form id="verificar" runat="server">
@@ -80,16 +79,15 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Nombres</label>
-                                    <input type="hidden" id="idAfil" runat="server" />
-                                    <input type="text" class="form-control styled" id="name_contact"
-                                        name="name_contact" runat="server" />
+                                    <asp:HiddenField ID="hfNombre" runat="server" />
+                                    <asp:HiddenField ID="hfidAfil" runat="server" />
+                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Apellidos</label>
-                                    <input type="text" class="form-control styled" id="lastname_contact"
-                                        name="lastname_contact" runat="server" />
+                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -97,15 +95,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Correo eléctronico:</label>
-                                    <input type="email" id="email_contact" name="email_contact"
-                                        class="form-control styled" runat="server" />
+                                    <asp:TextBox ID="txbCorreo" CssClass="form-control" runat="server" name="txbCorreo"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Celular:</label>
-                                    <input type="number" id="phone_contact" name="phone_contact"
-                                        class="form-control styled" runat="server" />
+                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +109,6 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-
                                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                     <asp:UpdatePanel ID="upParq" runat="server" UpdateMode="Always" ChildrenAsTriggers="true">
                                         <ContentTemplate>
@@ -143,7 +138,6 @@
                                             </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-
                                 </div>
                             </div>
                         </div>
@@ -153,7 +147,7 @@
                                 <div class="form-group">
                                     <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
                                     <input type="text" id="verify_contact" class=" form-control styled"
-                                        placeholder=" 3 + 1 =" runat="server" required />
+                                        placeholder=" 3 + 1 =" runat="server" required="" />
                                 </div>
                                 <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
                                 <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
@@ -169,34 +163,34 @@
                 <div class="box_style_2">
                     <h5 style="font-weight: 900;">Información de Contacto</h5>
                     <p>
-                        Calle 45 No. 35 - 23 Piso 2<br>
-                        (+57) 318 707 7584<br>
+                        Calle 45 No. 35 - 23 Piso 2<br/>
+                        (+57) 318 707 7584<br/>
                         <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
                     </p>
                     <h5 style="font-weight: 900;">Cómo llegar?</h5>
                     <form action="http://maps.google.com/maps" method="get" target="_blank">
                         <div class="form-group">
-                            <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled">
-                            <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander">
+                            <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled" />
+                            <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander" />
                             <!-- Write here your end point -->
                         </div>
-                        <input type="submit" value="Obtener ruta" class="btn_1 add_bottom_15">
+                        <input type="submit" value="Obtener ruta" class="btn_1 add_bottom_15" />
                     </form>
-                    <hr class="styled">
+                    <hr class="styled"/>
                     <h5 style="font-weight: 900;">Departamentos</h5>
                     <ul class="contacts_info">
                         <li><strong>Contabilidad</strong><br>
                             <a href="https://wa.me/573187077584" style="color: #333333;">(+57) 318 707 7584</a>
-                            <br>
+                            <br />
                             <a href="mailto:contabilidad@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">contabilidad@fitnesspeoplecmd.com</a>
-                            <br>
+                            <br />
                             <small>Lunes a Viernes 9am - 6pm</small>
                         </li>
                         <li><strong>Área Comercial</strong><br>
                             <a href="https://wa.me/573138859790" style="color: #333333;">(+57) 313 885 9790</a>
-                            <br>
+                            <br />
                             <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
-                            <br>
+                            <br />
                             <small>Lunes a Sábado 8am - 7pm</small>
                         </li>
                     </ul>

@@ -236,6 +236,22 @@
     <script src="js/functions.js"></script>
     <script>
 
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            });
+        }
+
         function validarCamposFormulario() {
             const tarjeta = document.getElementById("<%= txbCreditCard.ClientID %>");
             const mes = document.getElementById("<%= ddlMes.ClientID %>");
@@ -244,61 +260,31 @@
             const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");
 
             if (!tarjeta.value.trim()) {
-                Swal.fire({
-                    title: 'Campo requerido',
-                    text: 'Por favor, ingresa el número de la tarjeta.',
-                    icon: 'warning',
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de la tarjeta.', 'warning');
                 tarjeta.focus();
                 return false;
             }
 
             if (!mes.value) {
-                Swal.fire({
-                    title: 'Campo requerido',
-                    text: 'Por favor, selecciona el mes de expiración.',
-                    icon: 'warning',
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona el mes de expiración.', 'warning');
                 mes.focus();
                 return false;
             }
 
             if (!anho.value) {
-                Swal.fire({
-                    title: 'Campo requerido',
-                    text: 'Por favor, selecciona el año de expiración.',
-                    icon: 'warning',
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona el año de expiración.', 'warning');
                 anho.focus();
                 return false;
             }
 
             if (!cvc.value.trim()) {
-                Swal.fire({
-                    title: 'Campo requerido',
-                    text: 'Por favor, ingresa el CVC de la tarjeta.',
-                    icon: 'warning',
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el CVC de la tarjeta.', 'warning');
                 cvc.focus();
                 return false;
             }
 
             if (!nombre.value.trim()) {
-                Swal.fire({
-                    title: 'Campo requerido',
-                    text: 'Por favor, ingresa el nombre del titular de la tarjeta.',
-                    icon: 'warning',
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre del titular de la tarjeta.', 'warning');
                 nombre.focus();
                 return false;
             }
@@ -315,13 +301,7 @@
             const formularioOK = validarCamposFormulario();
 
             if (!autorizacionesOK) {
-                Swal.fire({
-                    title: 'Confirmación requerida',
-                    text: 'Debes aceptar todas las autorizaciones para continuar.',
-                    icon: 'warning', 
-                    showCloseButton: true,
-                    confirmButtonText: 'Aceptar'
-                });
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
                 return false;
             }
 
@@ -334,16 +314,28 @@
         }
 
         function ejecutarPago() {
-            Swal.fire({
-                title: 'Procesando',
-                text: 'Estamos procesando tu pago. Por favor espera...',
-                icon: 'info',
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                didOpen: () => {
-                    Swal.showLoading();
+            mostrarAlerta(
+                'Procesando',
+                'Estamos procesando tu pago. Por favor espera...',
+                'info',
+                {
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
                 }
-            });
+            );
+            //Swal.fire({
+            //    title: 'Procesando',
+            //    text: 'Estamos procesando tu pago. Por favor espera...',
+            //    icon: 'info',
+            //    allowOutsideClick: false,
+            //    showConfirmButton: false,
+            //    didOpen: () => {
+            //        Swal.showLoading();
+            //    }
+            //});
 
             // Deshabilitar el botón
             const btn = document.getElementById('<%= btnPagar.ClientID %>');
