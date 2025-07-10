@@ -426,7 +426,7 @@
         <!--  End container-->
     </section>
 
-    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+    <section class="margin_60_35" id="profesionales" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
             <div class="row text-center plans">

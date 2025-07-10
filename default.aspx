@@ -518,7 +518,7 @@
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+        <section id="planes" class="margin_60_35" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
                 <p class="lead styled" style="font-weight: 500; color: #FFF;">
