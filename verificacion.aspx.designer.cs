@@ -42,22 +42,13 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlForm verificar;
 
         /// <summary>
-        /// Control hfNombre.
+        /// Control hfIdAfiliado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfNombre;
-
-        /// <summary>
-        /// Control hfidAfil.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfidAfil;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdAfiliado;
 
         /// <summary>
         /// Control txbNombres.

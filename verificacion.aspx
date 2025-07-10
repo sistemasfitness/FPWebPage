@@ -79,8 +79,7 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Nombres</label>
-                                    <asp:HiddenField ID="hfNombre" runat="server" />
-                                    <asp:HiddenField ID="hfidAfil" runat="server" />
+                                    <asp:HiddenField ID="hfIdAfiliado" runat="server" />
                                     <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres"></asp:TextBox>
                                 </div>
                             </div>
@@ -186,7 +185,7 @@
                             <br />
                             <small>Lunes a Viernes 9am - 6pm</small>
                         </li>
-                        <li><strong>Área Comercial</strong><br>
+                        <li><strong>Área Comercial</strong><br/>
                             <a href="https://wa.me/573138859790" style="color: #333333;">(+57) 313 885 9790</a>
                             <br />
                             <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
