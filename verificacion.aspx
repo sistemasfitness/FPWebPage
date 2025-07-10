@@ -121,11 +121,12 @@
                                                         <asp:Repeater ID="rpParq" runat="server" >
                                                             <ItemTemplate>
                                                                 <tr>
-                                                                    <td style="vertical-align: middle;"><%# Eval("PreguntaParq") %>
+                                                                    <td style="vertical-align: middle;">
+                                                                        <%# Eval("PreguntaParq") %>
                                                                         <asp:HiddenField ID="hfIdParqAfiliado" runat="server" Value='<%# Eval("idParqAfiliado") %>' />
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" />
+                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" Checked='<%# Eval("Respuesta").ToString() == "1" %>' />
                                                                         <%--<input type="checkbox" class="js-switch" runat="server" />--%>
                                                                         <%--<asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>--%>
                                                                     </td>
@@ -145,8 +146,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
-                                    <input type="text" id="verify_contact" class=" form-control styled"
-                                        placeholder=" 3 + 1 =" runat="server" required="" />
+                                    <asp:TextBox ID="txbVerificacion" CssClass="form-control" runat="server" name="txbVerificacion"></asp:TextBox>
                                 </div>
                                 <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
                                 <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
