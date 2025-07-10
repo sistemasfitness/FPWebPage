@@ -471,7 +471,7 @@
         </section>
 
         <section class="margin_60_35" id="bg_black2" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container" id="scroll-to">
+            <div class="container" id="scroll-to2">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
 
@@ -638,7 +638,7 @@
         <!--  End section-->
 
 
-        <div id="planes">
+        <div id="seleccion_sede">
             <div class="container margin_60">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 text-center">
