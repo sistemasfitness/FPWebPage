@@ -529,7 +529,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=1">
-                                <img src="img/planes/plan_easy01.jpg" class="img-responsive" />
+                                <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -537,7 +537,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=7">
-                                <img src="img/planes/mega_prima01.jpg" class="img-responsive" style="height: 450px;" />
+                                <img src="img/planes/03_transformacion_total.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
@@ -545,7 +545,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=2">
-                                <img src="img/planes/mes_fast01.jpg" class="img-responsive" />
+                                <img src="img/planes/02_mes_fast.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
