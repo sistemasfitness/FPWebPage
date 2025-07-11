@@ -7568,7 +7568,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede)
+        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede, string estado)
         {
             string respuesta = string.Empty;
             try
@@ -7589,6 +7589,7 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_fecha_nac", fechaNac);
                         cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
                         cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+                        cmd.Parameters.AddWithValue("@p_estado", estado);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }

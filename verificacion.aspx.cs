@@ -89,37 +89,26 @@ namespace WebPage
             //{
             //    try
             //    {
-            //        if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()) && ViewState["origenWeb"].ToString().ToLower() != "true")
+            //        clasesglobales cg = new clasesglobales();
+            //        DataTable dt = cg.ConsultarAfiliadoPorId(int.Parse(ViewState["idAfiliado"].ToString()));
+
+            //        if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()))
             //        {
-            //            string strQuery = "UPDATE afiliados " +
-            //            "SET NombreAfiliado = '" + Request.Form["name_contact"].ToString() + "', " +
-            //            "ApellidoAfiliado = '" + Request.Form["lastname_contact"].ToString() + "', " +
-            //            "CelularAfiliado = '" + Request.Form["phone_contact"].ToString() + "', " +
-            //            "EstadoAfiliado = 'Activo' " +
-            //            "WHERE idAfiliado = " + Request.Form["idAfil"].ToString();
-
-            //            try
-            //            {
-            //                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-            //                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-            //                {
-            //                    mysqlConexion.Open();
-            //                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-            //                    {
-            //                        cmd.CommandType = CommandType.Text;
-            //                        cmd.ExecuteNonQuery();
-            //                    }
-            //                    mysqlConexion.Close();
-            //                }
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                string respuesta = "ERROR: " + ex.Message;
-            //            }
+            //            cg.ActualizarAfiliadoWeb(
+            //                dt.Rows[0]["DocumentoAfiliado"].ToString(),
+            //                txbNombres.Text, 
+            //                txbApellidos.Text,
+            //                txbCelular.Text, 
+            //                txbCorreo.Text, 
+            //                int.Parse(dt.Rows[0]["idGenero"].ToString()),
+            //                dt.Rows[0]["FechaNacAfiliado"].ToString(), 
+            //                int.Parse(dt.Rows[0]["idCiudad"].ToString()), 
+            //                int.Parse(dt.Rows[0]["idSede"].ToString()), 
+            //                "Activo"
+            //            );
             //        }
 
-                        
+            //        dt.Dispose();
 
             //        foreach (RepeaterItem item in rpParq.Items)
             //        {

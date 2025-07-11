@@ -236,7 +236,8 @@ namespace WebPage
                         idGenero,
                         strFechaNac,
                         idCiudad,
-                        idSede
+                        idSede, 
+                        "Pendiente"
                     );
                 }
                 else
