@@ -4028,6 +4028,38 @@ namespace WebPage
             return dt;
         }
 
+        public DataTable ConsultarPreguntasParQPorEstado(string estado)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PREGUNTAS_PARQ_POR_ESTADO", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_estado", estado);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
         public DataTable ConsultarPreguntasParQPorIdAfiliado(int idAfiliado)
         {
             DataTable dt = new DataTable();
@@ -7781,6 +7813,35 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_id_data_token", idDataToken);
                         cmd.Parameters.AddWithValue("@p_id_data_fuente", idDataFuente);
                         cmd.Parameters.AddWithValue("@p_id_data_transaction", idDataTransaccion);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(int idParQ, int idAfiliado, int idAfiliadoPlan, int respuestaParQ)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_RESPUESTAS_DE_PREGUNTAS_PARQ_POR_ID_AFILIADO_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_parq", idParQ);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
+                        cmd.Parameters.AddWithValue("@p_respuesta", respuestaParQ);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }

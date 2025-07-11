@@ -28,7 +28,7 @@ namespace WebPage
 
                     CargarDatosAfiliado(idAfiliado);
                     
-                    ListaPreguntasParq(idAfiliado);
+                    ListaPreguntasParq();
                 }
                 else
                 {
@@ -70,10 +70,10 @@ namespace WebPage
             }
         }
 
-        private void ListaPreguntasParq(int idAfiliado)
+        private void ListaPreguntasParq()
         {
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarPreguntasParQPorIdAfiliado(idAfiliado);
+            DataTable dt = cg.ConsultarPreguntasParQPorEstado("Activo");
 
             if (dt.Rows.Count > 0)
             {
@@ -85,85 +85,129 @@ namespace WebPage
 
         private void VerificarAfiliado()
         {
-            //if (txbVerificacion.Text.ToString() == "4")
-            //{
-            //    try
-            //    {
-            //        clasesglobales cg = new clasesglobales();
-            //        DataTable dt = cg.ConsultarAfiliadoPorId(int.Parse(ViewState["idAfiliado"].ToString()));
+            if (txbVerificacion.Text.ToString() == "4")
+            {
+                try
+                {
+                    clasesglobales cg = new clasesglobales();
 
-            //        if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()))
-            //        {
-            //            cg.ActualizarAfiliadoWeb(
-            //                dt.Rows[0]["DocumentoAfiliado"].ToString(),
-            //                txbNombres.Text, 
-            //                txbApellidos.Text,
-            //                txbCelular.Text, 
-            //                txbCorreo.Text, 
-            //                int.Parse(dt.Rows[0]["idGenero"].ToString()),
-            //                dt.Rows[0]["FechaNacAfiliado"].ToString(), 
-            //                int.Parse(dt.Rows[0]["idCiudad"].ToString()), 
-            //                int.Parse(dt.Rows[0]["idSede"].ToString()), 
-            //                "Activo"
-            //            );
-            //        }
+                    int idAfiliado = int.Parse(ViewState["idAfiliado"].ToString());
 
-            //        dt.Dispose();
+                    DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
 
-            //        foreach (RepeaterItem item in rpParq.Items)
-            //        {
-            //            if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-            //            {
-            //                CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
-            //                HiddenField hfidParqAfiliado = (HiddenField)item.FindControl("hfidParqAfiliado");
-            //                if (chbRespuesta != null && chbRespuesta.Checked)
-            //                {
-            //                    // Aquí se puede acceder al valor del checkbox seleccionado
-            //                    strQuery = "UPDATE ParqAfiliados SET Respuesta1Parq = 1 WHERE idParqAfiliado = " + hfidParqAfiliado.Value.ToString();
+                    if (dtAfiliado.Rows.Count == 0)
+                    {
+                        ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
+                            "<td class=\"total_confirm\">No se encontró el afiliado." +
+                            "</td></tr></tbody></table>";
+                        return;
+                    }
 
-            //                    try
-            //                    {
-            //                        string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                    if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()))
+                    {
+                        cg.ActualizarAfiliadoWeb(
+                            dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString(),
+                            txbNombres.Text,
+                            txbApellidos.Text,
+                            txbCelular.Text,
+                            txbCorreo.Text,
+                            int.Parse(dtAfiliado.Rows[0]["idGenero"].ToString()),
+                            dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString(),
+                            int.Parse(dtAfiliado.Rows[0]["idCiudad"].ToString()),
+                            int.Parse(dtAfiliado.Rows[0]["idSede"].ToString()),
+                            "Activo"
+                        );
+                    }
 
-            //                        using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-            //                        {
-            //                            mysqlConexion.Open();
-            //                            using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-            //                            {
-            //                                cmd.CommandType = CommandType.Text;
-            //                                cmd.ExecuteNonQuery();
-            //                            }
-            //                            mysqlConexion.Close();
-            //                        }
-            //                    }
-            //                    catch (Exception ex)
-            //                    {
-            //                        string respuesta = "ERROR: " + ex.Message;
-            //                    }
-            //                }
-            //            }
-            //        }
+                    DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
 
-            //        EnviarConfirmacion();
+                    if (dtAfiliadoPlan.Rows.Count == 0)
+                    {
+                        // TODO: Hacer Error
+                    }
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
-            //            "<td class=\"total_confirm\">" + ex.Message + "</td></tr></tbody></table>";
-            //    }
-            //}
-            //else
-            //{
-            //    ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
-            //        "<td class=\"total_confirm\">Respuesta a la pregunta de validación incorrecta. Vuelve a intentar." +
-            //        "</td></tr></tbody></table>";
-            //}
+                    foreach (RepeaterItem item in rpParq.Items)
+                    {
+                        if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                        {
+                            CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                            HiddenField hfidParq = (HiddenField)item.FindControl("hfidParq");
+
+                            if (chbRespuesta != null && chbRespuesta.Checked)
+                            {
+                                cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
+                                    int.Parse(hfidParq.Value.ToString()),
+                                    idAfiliado,
+                                    int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
+                                    1
+                                );
+                            }
+                        }
+                    }
+
+
+
+
+                    // ConsultarPreguntaParQPorEstado
+
+
+
+                    //foreach (RepeaterItem item in rpParq.Items)
+                    //{
+                    //    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                    //    {
+                    //        CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                    //        HiddenField hfidParqAfiliado = (HiddenField)item.FindControl("hfidParqAfiliado");
+                    //        if (chbRespuesta != null && chbRespuesta.Checked)
+                    //        {
+                    //            // Aquí se puede acceder al valor del checkbox seleccionado
+                    //            string strQuery = "UPDATE ParqAfiliados SET Respuesta = 1 WHERE idParqAfiliado = " + hfidParqAfiliado.Value.ToString();
+
+                    //            try
+                    //            {
+                    //                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                    //                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                    //                {
+                    //                    mysqlConexion.Open();
+                    //                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
+                    //                    {
+                    //                        cmd.CommandType = CommandType.Text;
+                    //                        cmd.ExecuteNonQuery();
+                    //                    }
+                    //                    mysqlConexion.Close();
+                    //                }
+                    //            }
+                    //            catch (Exception ex)
+                    //            {
+                    //                string respuesta = "ERROR: " + ex.Message;
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    dtAfiliado.Dispose();
+
+                    //EnviarConfirmacion();
+
+                }
+                catch (Exception ex)
+                {
+                    ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
+                        "<td class=\"total_confirm\">" + ex.Message + "</td></tr></tbody></table>";
+                }
+            }
+            else
+            {
+                ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
+                    "<td class=\"total_confirm\">Respuesta a la pregunta de validación incorrecta. Vuelve a intentar." +
+                    "</td></tr></tbody></table>";
+            }
         }
 
         protected void btnVerificar_Click(object sender, EventArgs e)
         {
-            //VerificarAfiliado();
+            VerificarAfiliado();
         }
 
         private void EnviarConfirmacion()

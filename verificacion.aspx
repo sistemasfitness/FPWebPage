@@ -123,10 +123,12 @@
                                                                 <tr>
                                                                     <td style="vertical-align: middle;">
                                                                         <%# Eval("PreguntaParq") %>
-                                                                        <asp:HiddenField ID="hfIdParqAfiliado" runat="server" Value='<%# Eval("idParqAfiliado") %>' />
+                                                                        <asp:HiddenField ID="hfIdParq" runat="server" Value='<%# Eval("idParq") %>' />
+                                                                        <%--<asp:HiddenField ID="hfIdParqAfiliado" runat="server" Value='<%# Eval("idParqAfiliado") %>' />--%>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" Checked='<%# Eval("Respuesta").ToString() == "1" %>' />
+                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" />
+                                                                        <%--<asp:CheckBox ID="chbRespuesta" runat="server" Checked='<%# Eval("Respuesta").ToString() == "1" %>' />--%>
                                                                         <%--<input type="checkbox" class="js-switch" runat="server" />--%>
                                                                         <%--<asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>--%>
                                                                     </td>
