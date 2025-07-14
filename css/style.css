@@ -1863,6 +1863,12 @@ ul#cat_nav {
 	opacity: 1;
 }
 
+.img_container:hover img {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
 .img_container img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
