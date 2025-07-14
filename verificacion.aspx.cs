@@ -24,6 +24,13 @@ namespace WebPage
 
                     int idAfiliado = int.Parse(Request.QueryString["id"].ToString());
 
+                    DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
+
+                    if (dtAfiliado.Rows.Count == 0)
+                    {
+                        Response.Redirect("default");
+                    }
+
                     ValidarAfiliadoWeb();
 
                     CargarDatosAfiliado(idAfiliado);
@@ -83,7 +90,7 @@ namespace WebPage
             }
         }
 
-        private void VerificarAfiliado()
+        protected void btnVerificar_Click(object sender, EventArgs e)
         {
             if (txbVerificacion.Text.ToString() == "4")
             {
@@ -91,17 +98,45 @@ namespace WebPage
                 {
                     clasesglobales cg = new clasesglobales();
 
-                    int idAfiliado = int.Parse(ViewState["idAfiliado"].ToString());
+                    int idAfiliado = ViewState["idAfiliado"] != null ? int.Parse(ViewState["idAfiliado"].ToString()) : 0;
 
                     DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
 
                     if (dtAfiliado.Rows.Count == 0)
                     {
-                        ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
-                            "<td class=\"total_confirm\">No se encontró el afiliado." +
-                            "</td></tr></tbody></table>";
+                        MostrarAlerta("Error", "El usuario no se encuentra registrado en el sistema.", "error");
                         return;
                     }
+
+                    DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
+
+                    if (dtAfiliadoPlan.Rows.Count == 0)
+                    {
+                        MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
+                        return;
+                    }
+
+                    // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
+
+                    foreach (RepeaterItem item in rpParq.Items)
+                    {
+                        if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                        {
+                            CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                            HiddenField hfidParq = (HiddenField)item.FindControl("hfidParq");
+
+                            int respuestaPARQ = chbRespuesta != null && chbRespuesta.Checked ? 1 : 0;
+
+                            cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
+                                int.Parse(hfidParq.Value.ToString()),
+                                idAfiliado,
+                                int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
+                                respuestaPARQ
+                            );
+                        }
+                    }
+
+                    // TODO: Actualizar el estado del plan del afiliado de "Pendiente" a "Activo" (AfiliadosPlanes).
 
                     if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()))
                     {
@@ -118,33 +153,6 @@ namespace WebPage
                             "Activo"
                         );
                     }
-
-                    DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
-
-                    if (dtAfiliadoPlan.Rows.Count == 0)
-                    {
-                        // TODO: Hacer Error
-                    }
-
-                    foreach (RepeaterItem item in rpParq.Items)
-                    {
-                        if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-                        {
-                            CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
-                            HiddenField hfidParq = (HiddenField)item.FindControl("hfidParq");
-
-                            if (chbRespuesta != null && chbRespuesta.Checked)
-                            {
-                                cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
-                                    int.Parse(hfidParq.Value.ToString()),
-                                    idAfiliado,
-                                    int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
-                                    1
-                                );
-                            }
-                        }
-                    }
-
 
 
 
@@ -187,27 +195,21 @@ namespace WebPage
                     //}
 
                     dtAfiliado.Dispose();
+                    dtAfiliadoPlan.Dispose();
 
                     //EnviarConfirmacion();
 
                 }
                 catch (Exception ex)
                 {
-                    ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
-                        "<td class=\"total_confirm\">" + ex.Message + "</td></tr></tbody></table>";
+                    MostrarAlerta("Error", "Ocurrió un error inesperado al realizar la verificación.", "error");
+                    System.Diagnostics.Debug.WriteLine("Error en btnVerificar_Click: " + ex.ToString());
                 }
             }
             else
             {
-                ltMensaje.Text = "<table class=\"table table-striped nomargin\"><tbody><tr>" +
-                    "<td class=\"total_confirm\">Respuesta a la pregunta de validación incorrecta. Vuelve a intentar." +
-                    "</td></tr></tbody></table>";
+                MostrarAlerta("Error", "Respuesta a la pregunta de validación incorrecta. Por favor, vuelve a intentar.", "error");
             }
-        }
-
-        protected void btnVerificar_Click(object sender, EventArgs e)
-        {
-            VerificarAfiliado();
         }
 
         private void EnviarConfirmacion()
@@ -223,6 +225,26 @@ namespace WebPage
             //    "Clave: " + ViewState["ClaveAfiliado"].ToString() + " \r\n\r\n";
 
             //cg.EnviarCorreo(strRemitente, strDestinatario, strAsunto, strMensaje);
+        }
+
+        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        {
+            // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string script = $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
+            }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
     }
 }

@@ -41,6 +41,8 @@
 
     <!-- SPECIFIC CSS -->
     <link href="css/ion.rangeSlider.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="layer"></div>
@@ -124,13 +126,9 @@
                                                                     <td style="vertical-align: middle;">
                                                                         <%# Eval("PreguntaParq") %>
                                                                         <asp:HiddenField ID="hfIdParq" runat="server" Value='<%# Eval("idParq") %>' />
-                                                                        <%--<asp:HiddenField ID="hfIdParqAfiliado" runat="server" Value='<%# Eval("idParqAfiliado") %>' />--%>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <asp:CheckBox ID="chbRespuesta" runat="server" />
-                                                                        <%--<asp:CheckBox ID="chbRespuesta" runat="server" Checked='<%# Eval("Respuesta").ToString() == "1" %>' />--%>
-                                                                        <%--<input type="checkbox" class="js-switch" runat="server" />--%>
-                                                                        <%--<asp:LinkButton ID="lb1" runat="server" OnClick="lb1_Click" ClientIDMode="AutoID"><%# Eval("Respuesta") %></asp:LinkButton></td>--%>
                                                                     </td>
                                                                 </tr>
                                                             </ItemTemplate>
@@ -150,7 +148,6 @@
                                     <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
                                     <asp:TextBox ID="txbVerificacion" CssClass="form-control" runat="server" name="txbVerificacion"></asp:TextBox>
                                 </div>
-                                <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
                                 <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
                                     Text="VERIFICAR" OnClick="btnVerificar_Click" />
                                 <%--<p><input type="submit" value="Verificar" class="btn_1" id="submit-contact" /></p>--%>
