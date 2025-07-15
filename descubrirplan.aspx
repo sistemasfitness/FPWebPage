@@ -195,265 +195,81 @@
     </section>
 
     <section class="margin_60_35" id="create-plan-container" style="padding-top: 10px; padding-bottom: 15px;">
-        <div class="container">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¿Qué te motiva a empezar a entrenar?</h2>
+        <div class="container" style="display: flex; flex-direction: column;">
 
             <div class="row text-center" id="question-steps">
                 <!-- Pregunta 1 -->
-                <div class="card-row" data-step="0" style="display: flex;">
-                    <div class="col-xs-12 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(0, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
+                <div class="question-block">
+                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué te motiva a empezar a entrenar?</h2>
 
-                    <div class="col-xs-12 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(0, 2, this)">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 2</p>
+                    <div class="card-row" data-step="0">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 1, this)">
+                            <img src="img/descubrir-plan/01-01_pregunta.png" class="img-responsive" />
                         </div>
-                    </div>
 
-                    <div class="col-xs-12 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(0, 3, this)">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 3</p>
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 2, this)">
+                            <img src="img/descubrir-plan/01-02_pregunta.png" class="img-responsive" />
                         </div>
-                    </div>
 
-                    <div class="col-xs-12 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(0, 4, this)">
-                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 4</p>
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 3, this)">
+                            <img src="img/descubrir-plan/01-03_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 4, this)">
+                            <img src="img/descubrir-plan/01-04_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
+                
 
                 <!-- Pregunta 2 -->
-                <div class="card-row" data-step="1" style="display: flex; justify-content: center;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(1, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
+                <div class="question-block">
+                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(1, 2, this)">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 2</p>
+                    <div class="card-row" data-step="1">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 1, this)">
+                            <img src="img/descubrir-plan/02-01_pregunta.png" class="img-responsive" />
                         </div>
-                    </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(1, 3, this)">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 3</p>
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 2, this)">
+                            <img src="img/descubrir-plan/02-02_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 3, this)">
+                            <img src="img/descubrir-plan/02-03_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
 
                 <!-- Pregunta 3 -->
-                <div class="card-row" data-step="2" style="display: flex; justify-content: center;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(2, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
+                <div class="question-block">
+                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué tipo de entrenamiento te haría sentir más cómodo y motivado para empezar?</h2>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(2, 2, this)">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 2</p>
+                    <div class="card-row" data-step="2">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 1, this)">
+                            <img src="img/descubrir-plan/03-01_pregunta.png" class="img-responsive" />
                         </div>
-                    </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(2, 3, this)">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 3</p>
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 2, this)">
+                            <img src="img/descubrir-plan/03-02_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 3, this)">
+                            <img src="img/descubrir-plan/03-03_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <%--<!-- Pregunta 4 | Sedes -->
-                <div class="card-row" data-step="3" style="display: flex;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(3, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
+            <!-- Barra de progreso -->
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(3, 2, this)">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 2</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(3, 3, this)">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 3</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(3, 4, this)">
-                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 4</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pregunta 5 | Sede 1 -->
-                <div class="card-row" data-step="4" style="display: flex;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 2, this)">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 2</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 3, this)">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 3</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 4, this)">
-                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 4</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 5, this)">
-                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 5</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pregunta 5 | Sede 2 -->
-                <div class="card-row" data-step="4" style="display: flex;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pregunta 5 | Sede 3 -->
-                <div class="card-row" data-step="4" style="display: flex;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Pregunta 5 | Sede 4 -->
-                <div class="card-row" data-step="4" style="display: flex;">
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container" onclick="selectCard(4, 1, this)">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <br />
-                            <p style="font-weight: 600; color: #FFF;">Opción 1</p>
-                        </div>
-                    </div>
-                </div>--%>
-
-
-                <%--
-                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                    <div class="img_container" onclick="selectCard(0, 1, this)">
-                        <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                        <p style="font-weight: 600; color: #FFF;">
-                            <br />
-                            Opción 1</p>
-                    </div>
-                </div>
-            
-                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                    <div class="img_container">
-                        <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                        <p style="font-weight: 600; color: #FFF;">
-                            <br />
-                            Fisioterapeuta</p>
-                    </div>
-                </div>
-
-                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                    <div class="img_container">
-                        <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                        <p style="font-weight: 600; color: #FFF;">
-                            <br />
-                            Nutricionista</p>
-                    </div>
-                </div>
-
-                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                    <div class="img_container">
-                        <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                        <p style="font-weight: 600; color: #FFF;">
-                            <br />
-                            Profesionales del deporte</p>
-                    </div>
-                </div>--%>
-
+            <!-- Botones de navegación -->
+            <div class="quiz-controls">
+                <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled="">Anterior</button>
+                <button type="button" id="btnNext" onclick="goToNext()" disabled="">Siguiente</button>
             </div>
             <!-- End row plans-->
 
@@ -996,6 +812,168 @@
             }
         });
     </script>
+
+    <script>
+
+        const totalSteps = 3;
+        let currentStep = 0;
+        const answers = [];
+
+        const allSteps = document.querySelectorAll('.question-block');
+        const progressFill = document.getElementById("progress-fill");
+        const btnPrev = document.getElementById("btnPrev");
+        const btnNext = document.getElementById("btnNext");
+
+        function selectCard(step, value, card) {
+            const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
+            const wasSelected = card.classList.contains("selected");
+
+            // Deselecciona todas
+            cards.forEach(c => c.classList.remove("selected"));
+
+            if (!wasSelected) {
+                // Marca esta tarjeta como seleccionada
+                card.classList.add("selected");
+                answers[step] = value;
+                btnNext.disabled = false;
+            } else {
+                // Se deseleccionó la tarjeta actual
+                answers[step] = null;
+                btnNext.disabled = true;
+            }
+        }
+
+        function restoreSelection(step) {
+            const selectedValue = answers[step];
+            const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
+
+            cards.forEach((card, index) => {
+                card.classList.remove("selected");
+                if ((index + 1) === selectedValue) {
+                    card.classList.add("selected");
+                }
+            });
+
+            btnNext.disabled = selectedValue == null;
+        }
+
+        function goToNext() {
+            if (answers[currentStep] == null) return;
+
+            allSteps[currentStep].style.display = "none";
+            currentStep++;
+
+            if (currentStep < totalSteps) {
+                allSteps[currentStep].style.display = "block";
+                btnNext.disabled = answers[currentStep] == null;
+            }
+
+            // Restaura selección visual
+            restoreSelection(currentStep);
+
+            btnPrev.disabled = currentStep === 0;
+
+            if (currentStep === totalSteps - 1) {
+                btnNext.textContent = "Finalizar";
+            }
+
+            updateProgress();
+        }
+
+        function goToPrevious() {
+            allSteps[currentStep].style.display = "none";
+            currentStep--;
+
+            allSteps[currentStep].style.display = "block";
+            btnNext.disabled = answers[currentStep] == null;
+
+            // Restaura selección visual
+            restoreSelection(currentStep);
+
+            btnPrev.disabled = currentStep === 0;
+            btnNext.textContent = "Siguiente";
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let percent = ((currentStep) / totalSteps) * 100;
+            progressFill.style.width = percent + "%";
+        }
+
+        window.onload = function () {
+            allSteps.forEach((block, index) => {
+                block.style.display = index === 0 ? "block" : "none";
+            });
+            btnNext.disabled = true;
+        };
+
+    </script>
+
+    <style>
+
+        .card-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .card.selected {
+            background: #E3FF00;
+            border-color: #E3FF00;
+        }
+
+        .progress-bar {
+            margin: 0;
+            height: 25px;
+            background: #ccc;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #007bff;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        .quiz-controls button {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quiz-controls button:disabled {
+            background: #1A1A1A;
+            cursor: not-allowed;
+        }
+
+        .question-block {
+            margin-bottom: 40px;
+            display: none;
+        }
+
+    </style>
 
 </body>
 </html>
