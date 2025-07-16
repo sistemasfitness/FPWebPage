@@ -425,15 +425,16 @@
                     <%--Opciones Cucuta--%>
                     <div class="card-row opciones-cucuta" data-step="4" style="display: none;">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            data-img-default="img/descubrir-plan/04-08_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                            data-img-default="img/descubrir-plan/04-09_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-09_pregunta-seleccion.png"
                             onclick="selectCard(4, 1, this)"
                             onmouseover="cambiarImagenHover(this)" 
                             onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-09_pregunta.png" class="img-responsive" />
                         </div>
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            
+                            data-img-default="img/descubrir-plan/04-10_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-10_pregunta-seleccion.png"
                             onclick="selectCard(4, 2, this)"
                             onmouseover="cambiarImagenHover(this)" 
                             onmouseout="restaurarImagenHover(this)" >
