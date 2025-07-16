@@ -61,7 +61,7 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan3plus3.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal.png" data-natural-width="1400" data-natural-height="470">
         <%--<div id="sub_content_in">
             <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
         </div>--%>
@@ -212,21 +212,38 @@
 
                     <div class="card-row" data-step="0">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            onmouseover="cambiarImagen(this, 'img/descubrir-plan/01-01_pregunta-seleccion.png')" 
-                            onmouseout="restaurarImagen(this, 'img/descubrir-plan/01-01_pregunta.png')"
-                            onclick="selectCard(0, 1, this)">
+                            data-img-default="img/descubrir-plan/01-01_pregunta.png"
+                            data-img-selected="img/descubrir-plan/01-01_pregunta-seleccion.png"
+                            onclick="selectCard(0, 1, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/01-01_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/01-02_pregunta.png"
+                            data-img-selected="img/descubrir-plan/01-02_pregunta-seleccion.png"
+                            onclick="selectCard(0, 2, this)" 
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/01-02_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 3, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/01-03_pregunta.png"
+                            data-img-selected="img/descubrir-plan/01-03_pregunta-seleccion.png"
+                            onclick="selectCard(0, 3, this)" 
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/01-03_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 4, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/01-04_pregunta.png"
+                            data-img-selected="img/descubrir-plan/01-04_pregunta-seleccion.png"
+                            onclick="selectCard(0, 4, this)" 
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/01-04_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -238,15 +255,30 @@
                     <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
 
                     <div class="card-row" data-step="1">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/02-01_pregunta.png"
+                            data-img-selected="img/descubrir-plan/02-01_pregunta-seleccion.png"
+                            onclick="selectCard(1, 1, this)" 
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/02-01_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/02-02_pregunta.png"
+                            data-img-selected="img/descubrir-plan/02-02_pregunta-seleccion.png"
+                            onclick="selectCard(1, 2, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/02-02_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 3, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/02-03_pregunta.png"
+                            data-img-selected="img/descubrir-plan/02-03_pregunta-seleccion.png"
+                            onclick="selectCard(1, 3, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/02-03_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -257,15 +289,30 @@
                     <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tipo de entrenamiento te haría sentir más cómodo y motivado para empezar?</h2>
 
                     <div class="card-row" data-step="2">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/03-01_pregunta.png"
+                            data-img-selected="img/descubrir-plan/03-01_pregunta-seleccion.png"
+                            onclick="selectCard(2, 1, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/03-01_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/03-02_pregunta.png"
+                            data-img-selected="img/descubrir-plan/03-02_pregunta-seleccion.png"
+                            onclick="selectCard(2, 2, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/03-02_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 3, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/03-03_pregunta.png"
+                            data-img-selected="img/descubrir-plan/03-03_pregunta-seleccion.png"
+                            onclick="selectCard(2, 3, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/03-03_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -276,11 +323,21 @@
                     <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿En cuál sede Fitness People te gustaría entrenar?</h2>
 
                     <div class="card-row" data-step="3">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(3, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            <%--data-img-default="img/descubrir-plan/04-01_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-01_pregunta-seleccion.png"--%>
+                            onclick="selectCard(3, 1, this)"
+                            <%--onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)"--%> >
                             <img src="img/descubrir-plan/btn_sede-bucaramanga.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(3, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            <%--data-img-default="img/descubrir-plan/04-02_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-02_pregunta-seleccion.png"--%>
+                            onclick="selectCard(3, 2, this)"
+                            <%--onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)"--%> >
                             <img src="img/descubrir-plan/btn_sede-cucuta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -292,47 +349,94 @@
 
                     <%--Opciones Bucaramanga--%>
                     <div class="card-row opciones-bucaramanga" data-step="4" style="display: none;">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onmouseover="cambiarImagen(this, 'img/descubrir-plan/04-01_pregunta-seleccion.png')" 
-                            onmouseout="restaurarImagen(this, 'img/descubrir-plan/04-01_pregunta.png')"
-                            onclick="selectCard(4, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-01_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-01_pregunta-seleccion.png"
+                            onclick="selectCard(4, 1, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-01_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-02_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-02_pregunta-seleccion.png"
+                            onclick="selectCard(4, 2, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-02_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 3, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-03_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-03_pregunta-seleccion.png"
+                            onclick="selectCard(4, 3, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-03_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 4, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-04_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-04_pregunta-seleccion.png"
+                            onclick="selectCard(4, 4, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-04_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 5, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-05_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-05_pregunta-seleccion.png"
+                            onclick="selectCard(4, 5, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-05_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 6, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-06_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-06_pregunta-seleccion.png"
+                            onclick="selectCard(4, 6, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-06_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 7, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-07_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-07_pregunta-seleccion.png"
+                            onclick="selectCard(4, 7, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-07_pregunta.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 8, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-08_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                            onclick="selectCard(4, 8, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-08_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
 
                     <%--Opciones Cucuta--%>
                     <div class="card-row opciones-cucuta" data-step="4" style="display: none;">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            data-img-default="img/descubrir-plan/04-08_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                            onclick="selectCard(4, 1, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-09_pregunta.png" class="img-responsive" />
                         </div>
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 2, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            
+                            onclick="selectCard(4, 2, this)"
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-10_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -907,13 +1011,22 @@
             const wasSelected = card.classList.contains("selected");
 
             // Deselecciona todas
-            cards.forEach(c => c.classList.remove("selected"));
+            cards.forEach(c => {
+                c.classList.remove("selected");
+                const img = c.querySelector("img");
+                const defaultImg = c.getAttribute("data-img-default");
+                if (img && defaultImg) img.src = defaultImg;
+            });
 
             if (!wasSelected) {
                 // Marca esta tarjeta como seleccionada
                 card.classList.add("selected");
                 answers[step] = value;
                 btnNext.disabled = false;
+
+                const img = card.querySelector("img");
+                const selectedImg = card.getAttribute("data-img-selected");
+                if (img && selectedImg) img.src = selectedImg;
 
                 // Lógica condicional si estamos en la pregunta de sede
                 if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
@@ -982,14 +1095,23 @@
             opcionesCuc.style.display = "none";
         }
 
-        function cambiarImagen(container, nuevaRuta) {
-            const img = container.querySelector("img");
-            img.src = nuevaRuta;
+        function cambiarImagenHover(card) {
+            const img = card.querySelector("img");
+            const hoverImg = card.getAttribute("data-img-selected");
+            if (img && hoverImg) img.src = hoverImg;
         }
 
-        function restaurarImagen(container, rutaOriginal) {
-            const img = container.querySelector("img");
-            img.src = rutaOriginal;
+        function restaurarImagenHover(card) {
+            const img = card.querySelector("img");
+            if (!img) return;
+
+            if (card.classList.contains("selected")) {
+                const selectedImg = card.getAttribute("data-img-selected");
+                if (selectedImg) img.src = selectedImg;
+            } else {
+                const defaultImg = card.getAttribute("data-img-default");
+                if (defaultImg) img.src = defaultImg;
+            }
         }
 
         function goToNext() {
@@ -1066,10 +1188,10 @@
             /*border-color: #E3FF00;*/
         }
 
-        .card.selected img {
+        /*.card.selected img {
             border-radius: 35px;
             border: 3px solid #E3FF00;
-        }
+        }*/
 
         .progress-bar {
             margin: 0;
