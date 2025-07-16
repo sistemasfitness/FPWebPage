@@ -14,42 +14,42 @@ namespace WebPage
 		{
             if (!IsPostBack)
             {
-                CargarCiudades();
+                //CargarCiudades();
             }
         }
 
-        private void CargarCiudades()
-        {
-            clasesglobales cg = new clasesglobales();
+        //private void CargarCiudades()
+        //{
+        //    clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarCiudadesSedesWeb();
+        //    DataTable dt = cg.ConsultarCiudadesSedesWeb();
 
-            ddlCiudad.DataSource = dt;
-            ddlCiudad.DataBind();
+        //    ddlCiudad.DataSource = dt;
+        //    ddlCiudad.DataBind();
 
-            dt.Dispose();
+        //    dt.Dispose();
 
-            ddlSedes.Enabled = false;
-        }
+        //    ddlSedes.Enabled = false;
+        //}
 
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(new ListItem("Seleccione", ""));
-            ddlSedes.Enabled = false;
+        //protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    ddlSedes.Items.Clear();
+        //    ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+        //    ddlSedes.Enabled = false;
 
-            if (string.IsNullOrEmpty(ddlCiudad.SelectedValue)) return;
+        //    if (string.IsNullOrEmpty(ddlCiudad.SelectedValue)) return;
 
-            ddlSedes.Enabled = true;
+        //    ddlSedes.Enabled = true;
 
-            clasesglobales cg = new clasesglobales();
+        //    clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(int.Parse(ddlCiudad.SelectedItem.Value.ToString()));
+        //    DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(int.Parse(ddlCiudad.SelectedItem.Value.ToString()));
 
-            ddlSedes.DataSource = dt;
-            ddlSedes.DataBind();
+        //    ddlSedes.DataSource = dt;
+        //    ddlSedes.DataBind();
 
-            dt.Dispose();
-        }
+        //    dt.Dispose();
+        //}
     }
 }

@@ -61,15 +61,15 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    <%--<section class="parallax_window_in" data-parallax="scroll" data-image-src="img/planeasy_1400x470.jpg" data-natural-width="1400" data-natural-height="470">
-        <div id="sub_content_in">
-            <h1 style="font-weight: 900;">PLAN EASY</h1>
-        </div>
-    </section>--%>
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan3plus3.jpg" data-natural-width="1400" data-natural-height="470">
+        <%--<div id="sub_content_in">
+            <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
+        </div>--%>
+    </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="testimonials" style="background: #000;">
+    <%--<section class="margin_60_35" id="testimonials" style="background: #000;">
         <div class="container">
             <div class="row">
                 <div class="owl-carousel team-carousel">
@@ -169,9 +169,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--%>
 
-    <section class="margin_60_35" id="testimonials2">
+<%--<section class="margin_60_35" id="testimonials2">
         <div class="container margin_60_35">
             <div class="row" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
@@ -192,6 +192,14 @@
             </div>
             <!-- End row -->
         </div>
+    </section>--%>
+
+    <section class="margin_60_35" id="sedes" style="padding-top: 10px; padding-bottom: 15px;">
+        <div class="container" style="display: flex; flex-direction: column;">
+            <div class="row text-center">
+                <h1 style="font-weight: 900; color: white;">DESCUBRE TU PLAN PERFECTO</h1>
+            </div>
+        </div>
     </section>
 
     <section class="margin_60_35" id="create-plan-container" style="padding-top: 10px; padding-bottom: 15px;">
@@ -200,10 +208,13 @@
             <div class="row text-center" id="question-steps">
                 <!-- Pregunta 1 -->
                 <div class="question-block">
-                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué te motiva a empezar a entrenar?</h2>
+                    <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué te motiva a empezar a entrenar?</h2>
 
                     <div class="card-row" data-step="0">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(0, 1, this)">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
+                            onmouseover="cambiarImagen(this, 'img/descubrir-plan/01-01_pregunta-seleccion.png')" 
+                            onmouseout="restaurarImagen(this, 'img/descubrir-plan/01-01_pregunta.png')"
+                            onclick="selectCard(0, 1, this)">
                             <img src="img/descubrir-plan/01-01_pregunta.png" class="img-responsive" />
                         </div>
 
@@ -224,7 +235,7 @@
 
                 <!-- Pregunta 2 -->
                 <div class="question-block">
-                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
+                    <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
 
                     <div class="card-row" data-step="1">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(1, 1, this)">
@@ -243,7 +254,7 @@
 
                 <!-- Pregunta 3 -->
                 <div class="question-block">
-                    <h2 class="main_title" style="font-weight: 900; color: #FFF;">¿Qué tipo de entrenamiento te haría sentir más cómodo y motivado para empezar?</h2>
+                    <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tipo de entrenamiento te haría sentir más cómodo y motivado para empezar?</h2>
 
                     <div class="card-row" data-step="2">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 1, this)">
@@ -256,6 +267,73 @@
 
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(2, 3, this)">
                             <img src="img/descubrir-plan/03-03_pregunta.png" class="img-responsive" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="question-block">
+                    <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿En cuál sede Fitness People te gustaría entrenar?</h2>
+
+                    <div class="card-row" data-step="3">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(3, 1, this)">
+                            <img src="img/descubrir-plan/btn_sede-bucaramanga.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(3, 2, this)">
+                            <img src="img/descubrir-plan/btn_sede-cucuta.png" class="img-responsive" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 | Sedes -->
+                <div class="question-block" id="sede-opciones-container">
+                    <h2 class="indent_title" style="font-weight: 900; color: #FFF;">Sedes en Bucaramanga</h2>
+
+                    <%--Opciones Bucaramanga--%>
+                    <div class="card-row opciones-bucaramanga" data-step="4" style="display: none;">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onmouseover="cambiarImagen(this, 'img/descubrir-plan/04-01_pregunta-seleccion.png')" 
+                            onmouseout="restaurarImagen(this, 'img/descubrir-plan/04-01_pregunta.png')"
+                            onclick="selectCard(4, 1, this)">
+                            <img src="img/descubrir-plan/04-01_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 2, this)">
+                            <img src="img/descubrir-plan/04-02_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 3, this)">
+                            <img src="img/descubrir-plan/04-03_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 4, this)">
+                            <img src="img/descubrir-plan/04-04_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 5, this)">
+                            <img src="img/descubrir-plan/04-05_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 6, this)">
+                            <img src="img/descubrir-plan/04-06_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 7, this)">
+                            <img src="img/descubrir-plan/04-07_pregunta.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 8, this)">
+                            <img src="img/descubrir-plan/04-08_pregunta.png" class="img-responsive" />
+                        </div>
+                    </div>
+
+                    <%--Opciones Cucuta--%>
+                    <div class="card-row opciones-cucuta" data-step="4" style="display: none;">
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 1, this)">
+                            <img src="img/descubrir-plan/04-09_pregunta.png" class="img-responsive" />
+                        </div>
+                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" onclick="selectCard(4, 2, this)">
+                            <img src="img/descubrir-plan/04-10_pregunta.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -277,7 +355,7 @@
         <!--  End container-->
     </section>
 
-    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+    <%--<section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
 
@@ -438,9 +516,9 @@
                 </asp:UpdatePanel>
             </form>
         </div>
-    </section>
+    </section>--%>
 
-    <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+    <%--<section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
             <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
             <!--Team Carousel -->
@@ -506,9 +584,9 @@
             <!--End Team Carousel-->
         </div>
         <!--  End container-->
-    </section>
+    </section>--%>
 
-    <section class="margin_60_35" id="profesionales" style="padding-top: 10px; padding-bottom: 15px;">
+    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
             <div class="row text-center plans">
@@ -815,7 +893,7 @@
 
     <script>
 
-        const totalSteps = 3;
+        const totalSteps = 5;
         let currentStep = 0;
         const answers = [];
 
@@ -836,25 +914,82 @@
                 card.classList.add("selected");
                 answers[step] = value;
                 btnNext.disabled = false;
+
+                // Lógica condicional si estamos en la pregunta de sede
+                if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
+
             } else {
                 // Se deseleccionó la tarjeta actual
                 answers[step] = null;
                 btnNext.disabled = true;
+
+                // Si deselecciona sede, ocultamos todo lo que sigue
+                if (step === 3) ocultarOpcionesPorSede();
             }
         }
 
         function restoreSelection(step) {
             const selectedValue = answers[step];
-            const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
 
-            cards.forEach((card, index) => {
-                card.classList.remove("selected");
-                if ((index + 1) === selectedValue) {
-                    card.classList.add("selected");
-                }
-            });
+            // Paso 4 es condicional, así que debemos buscar en el bloque visible
+            if (step === 4) {
+                const visibles = document.querySelectorAll(`.card-row[data-step="${step}"]`);
+                visibles.forEach(row => {
+                    if (getComputedStyle(row).display !== "none") {
+                        const cards = row.querySelectorAll('.card');
+                        cards.forEach((card, index) => {
+                            card.classList.remove("selected");
+                            if ((index + 1) === selectedValue) {
+                                card.classList.add("selected");
+                            }
+                        });
+                    }
+                });
+            } else {
+                // Comportamiento normal para otros pasos
+                const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
+                cards.forEach((card, index) => {
+                    card.classList.remove("selected");
+                    if ((index + 1) === selectedValue) {
+                        card.classList.add("selected");
+                    }
+                });
+            }
 
             btnNext.disabled = selectedValue == null;
+        }
+
+        function mostrarOpcionesPorSede(sedeSeleccionada) {
+            const opcionesBga = document.querySelector('.opciones-bucaramanga');
+            const opcionesCuc = document.querySelector('.opciones-cucuta');
+
+            // Ocultamos ambas primero
+            opcionesBga.style.display = "none";
+            opcionesCuc.style.display = "none";
+
+            if (sedeSeleccionada === 1) {
+                opcionesBga.style.display = "flex";
+            } else if (sedeSeleccionada === 2) {
+                opcionesCuc.style.display = "flex";
+            }
+        }
+
+        function ocultarOpcionesPorSede() {
+            const opcionesBga = document.querySelector('.opciones-bucaramanga');
+            const opcionesCuc = document.querySelector('.opciones-cucuta');
+
+            opcionesBga.style.display = "none";
+            opcionesCuc.style.display = "none";
+        }
+
+        function cambiarImagen(container, nuevaRuta) {
+            const img = container.querySelector("img");
+            img.src = nuevaRuta;
+        }
+
+        function restaurarImagen(container, rutaOriginal) {
+            const img = container.querySelector("img");
+            img.src = rutaOriginal;
         }
 
         function goToNext() {
@@ -927,15 +1062,20 @@
         }
 
         .card.selected {
-            background: #E3FF00;
-            border-color: #E3FF00;
+            /*background: #E3FF00;*/
+            /*border-color: #E3FF00;*/
+        }
+
+        .card.selected img {
+            border-radius: 35px;
+            border: 3px solid #E3FF00;
         }
 
         .progress-bar {
             margin: 0;
             height: 25px;
-            background: #ccc;
-            border-radius: 5px;
+            background: #1A1A1A;
+            border-radius: 15px;
             margin: 20px 0;
             overflow: hidden;
             width: 100%;
@@ -943,7 +1083,8 @@
 
         .progress-fill {
             height: 100%;
-            background: #007bff;
+            background: #E3FF00;
+            border-radius: 15px;
             width: 0%;
             transition: width 0.3s;
         }
@@ -951,7 +1092,7 @@
         .quiz-controls {
             display: flex;
             justify-content: space-evenly;
-            margin-top: 20px;
+            margin: 10px 0 30px 0;
         }
 
         .quiz-controls button {
