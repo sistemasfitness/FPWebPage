@@ -1027,6 +1027,16 @@
                 // Lógica condicional si estamos en la pregunta de sede
                 if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
 
+                if (step === 4) {
+                    // Construimos query params con las respuestas
+                    const queryParams = answers
+                        .map((val, index) => `q${index + 1}=${encodeURIComponent(val)}`)
+                        .join("&");
+
+                    // Redirige a la página con las respuestas en la URL
+                    window.location.href = `resultado.aspx?${queryParams}`;
+                }
+
                 goToNext();
 
             } else {
@@ -1180,16 +1190,6 @@
             border: 3px solid transparent;
         }
 
-        .card.selected {
-            /*background: #E3FF00;*/
-            /*border-color: #E3FF00;*/
-        }
-
-        /*.card.selected img {
-            border-radius: 35px;
-            border: 3px solid #E3FF00;
-        }*/
-
         .progress-bar {
             margin: 0;
             height: 25px;
@@ -1207,6 +1207,8 @@
             width: 0%;
             transition: width 0.3s;
         }
+
+        /*TODO: Revisar aside son necesarios estos estilos*/
 
         .quiz-controls {
             display: flex;
