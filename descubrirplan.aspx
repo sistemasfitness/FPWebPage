@@ -204,7 +204,6 @@
 
     <section class="margin_60_35" id="create-plan-container" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" style="display: flex; flex-direction: column;">
-
             <div class="row text-center" id="question-steps">
                 <!-- Pregunta 1 -->
                 <div class="question-block">
@@ -249,7 +248,6 @@
                     </div>
                 </div>
                 
-
                 <!-- Pregunta 2 -->
                 <div class="question-block">
                     <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
@@ -452,10 +450,9 @@
             <!-- Botones de navegación -->
             <div class="quiz-controls">
                 <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled="">Anterior</button>
-                <button type="button" id="btnNext" onclick="goToNext()" disabled="">Siguiente</button>
+                <button type="button" id="btnNext" onclick="goToNext()" style="display:none;">Siguiente</button>
             </div>
             <!-- End row plans-->
-
         </div>
         <!--  End container-->
     </section>
@@ -743,7 +740,6 @@
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-md-12">
-
                     <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
                     <div class="panel-group" id="works">
                         <div class="panel panel-default">
@@ -1023,7 +1019,6 @@
                 // Marca esta tarjeta como seleccionada
                 card.classList.add("selected");
                 answers[step] = value;
-                btnNext.disabled = false;
 
                 const img = card.querySelector("img");
                 const selectedImg = card.getAttribute("data-img-selected");
@@ -1032,10 +1027,11 @@
                 // Lógica condicional si estamos en la pregunta de sede
                 if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
 
+                goToNext();
+
             } else {
                 // Se deseleccionó la tarjeta actual
                 answers[step] = null;
-                btnNext.disabled = true;
 
                 // Si deselecciona sede, ocultamos todo lo que sigue
                 if (step === 3) ocultarOpcionesPorSede();
