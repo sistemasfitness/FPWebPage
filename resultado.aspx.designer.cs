@@ -42,31 +42,13 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoPlan;
 
         /// <summary>
-        /// Control ltImagenInfoPlan.
+        /// Control ltImagenInfoFoto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPlan;
-
-        /// <summary>
-        /// Control ltImagenInfoPlanTT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPlanTT;
-
-        /// <summary>
-        /// Control ltImagenInfoClases.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltImagenInfoClases;
+        protected global::System.Web.UI.WebControls.Literal ltImagenInfoFoto;
 
         /// <summary>
         /// Control divInfoFoto.
@@ -78,13 +60,22 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoFoto;
 
         /// <summary>
-        /// Control ltImagenInfoFoto.
+        /// Control ltImagenInfoPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltImagenInfoFoto;
+        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPlan;
+
+        /// <summary>
+        /// Control ltImagenInfoClases.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltImagenInfoClases;
 
         /// <summary>
         /// Control ltBotonPago.

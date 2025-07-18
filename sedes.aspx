@@ -183,7 +183,7 @@
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
                         <a href="planes?id=1">
-                            <img src="img/planes/plan_easy.jpg" class="img-responsive" />
+                            <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
                         <a href="planes?id=7">
-                            <img src="img/planes/mega_prima.jpg" class="img-responsive" style="height: 450px;" />
+                            <img src="img/planes/03_transformacion_total.jpg" class="img-responsive" style="height: 450px;" />
                         </a>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                     <div class="img_container">
                         <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
                         <a href="planes?id=2">
-                            <img src="img/planes/mes_fast.jpg" class="img-responsive" />
+                            <img src="img/planes/02_plan-fast-150mil_16-07-2025.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>

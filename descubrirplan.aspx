@@ -61,7 +61,7 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal.png" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in banner-principal">
         <%--<div id="sub_content_in">
             <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
         </div>--%>
@@ -322,20 +322,20 @@
 
                     <div class="card-row" data-step="3">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            <%--data-img-default="img/descubrir-plan/04-01_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-01_pregunta-seleccion.png"--%>
+                            data-img-default="img/descubrir-plan/btn_sede-bucaramanga.png"
+                            data-img-selected="img/descubrir-plan/btn_sede-bucaramanga-seleccion.png"
                             onclick="selectCard(3, 1, this)"
-                            <%--onmouseover="cambiarImagenHover(this)" 
-                            onmouseout="restaurarImagenHover(this)"--%> >
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/btn_sede-bucaramanga.png" class="img-responsive" />
                         </div>
 
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            <%--data-img-default="img/descubrir-plan/04-02_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-02_pregunta-seleccion.png"--%>
+                            data-img-default="img/descubrir-plan/btn_sede-cucuta.png"
+                            data-img-selected="img/descubrir-plan/btn_sede-cucuta-seleccion.png"
                             onclick="selectCard(3, 2, this)"
-                            <%--onmouseover="cambiarImagenHover(this)" 
-                            onmouseout="restaurarImagenHover(this)"--%> >
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/btn_sede-cucuta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -692,7 +692,6 @@
         <div class="container" id="scroll-to">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
             <div class="row text-center plans">
-
                 <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                     <div class="img_container">
                         <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
@@ -728,10 +727,8 @@
                             Profesionales del deporte</p>
                     </div>
                 </div>
-
             </div>
             <!-- End row plans-->
-
         </div>
         <!--  End container-->
     </section>
@@ -792,9 +789,6 @@
                         </div>
                     </div>
                     <!-- End panel-group -->
-
-
-
                 </div>
                 <!-- End col-md-9 -->
             </div>
@@ -1174,7 +1168,37 @@
 
     </script>
 
+    <%--<script>
+        function actualizarImagenSlider() {
+            const bannerPrincipal = document.getElementById('banner-principal');
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth <= 480) {
+                bannerPrincipal.src = 'img/descubrir-plan/banner-principal_movil.jpg'; // Imagen vertical o móvil
+                console.log("Hola");
+            } else {
+                bannerPrincipal.src = 'img/descubrir-plan/banner-principal.png'; // Imagen de escritorio
+            }
+        }
+
+        window.addEventListener('load', actualizarImagenSlider);
+        window.addEventListener('resize', actualizarImagenSlider);
+    </script>--%>
+
     <style>
+
+        .banner-principal {
+	        background-image: url(img/descubrir-plan/banner-principal.png);
+	        background-size: cover;
+	        background-position: center;
+        }
+
+        /* Para pantallas de 480px o menos */
+        @media (max-width: 480px) {
+            .banner-principal {
+                background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
+            }
+        }
 
         .card-row {
             display: flex;

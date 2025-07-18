@@ -71,18 +71,18 @@
 
     <section class="margin_60_35" id="testimonials">
         <div class="container margin_60_35">
-            <div class="row" style="display: flex; margin-bottom: 2rem;">
-                <div id="divInfoPlan" runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
+            <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
+                <div id="divInfoPlan" runat="server" class="col-md-6" style="cursor: pointer; align-content: center;">
+                    <asp:Literal ID="ltImagenInfoFoto" runat="server"></asp:Literal>
+                </div>
+
+                <div id="divInfoFoto" runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
                     <asp:Literal ID="ltImagenInfoPlan" runat="server"></asp:Literal>
-                    <asp:Literal ID="ltImagenInfoPlanTT" runat="server"></asp:Literal>
                     <img src="img/descubrir-plan/resultado_icono-clases.png" alt="" style="width: 300px; margin-bottom: 10px;" />
                     <asp:Literal ID="ltImagenInfoClases" runat="server"></asp:Literal>
                 </div>
-
-                <div id="divInfoFoto" runat="server" class="col-md-6 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
-                    <asp:Literal ID="ltImagenInfoFoto" runat="server"></asp:Literal>
-                </div>
             </div>
+
             <div class="row" style="display: flex; justify-content: center;">
                 <div  style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>

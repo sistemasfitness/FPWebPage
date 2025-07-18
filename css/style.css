@@ -3449,4 +3449,19 @@ ul.plan-features {
 	#layerslider {
 		height: 70vh !important;
 	}
+
+	/* Inicio: resultado.aspx */
+	.banner-descubrir-plan {
+		background-size: cover;
+		background-position: center;
+	}
+
+	.info-planes {
+		flex-direction: column;
+	}
+
+	#divInfoFoto {
+		text-align: center;
+	}
+	/* Fin: resultado.aspx */
 }

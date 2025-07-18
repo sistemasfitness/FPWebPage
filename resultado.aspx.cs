@@ -65,7 +65,7 @@ namespace WebPage
                                respuesta == "2" ? "https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20732" : "https://app.clez.co/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=24641";
 
             ltBotonPago.Text = "<a href=\"" + linkBoton + "\" target=\"_blank\" class='img_container' style='height: 100%;' >";
-            ltBotonPago.Text += "<img src=\"img/descubrir-plan/resultado_btn_lo-quiero.png\" style=\"width: 400px;\">";
+            ltBotonPago.Text += "<img src=\"img/descubrir-plan/resultado_btn_lo-quiero.png\" style=\"width: 350px;\">";
             ltBotonPago.Text += "</a>";
         }
 
