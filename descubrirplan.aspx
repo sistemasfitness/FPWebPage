@@ -449,7 +449,7 @@
 
             <!-- Botones de navegación -->
             <div class="quiz-controls">
-                <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled="">Anterior</button>
+                <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled=""><i class="fa-solid fa-chevron-left"></i></button>
                 <button type="button" id="btnNext" onclick="goToNext()" style="display:none;">Siguiente</button>
             </div>
             <!-- End row plans-->
@@ -1219,14 +1219,15 @@
         .quiz-controls button {
             padding: 10px 20px;
             border: none;
-            background: #007bff;
-            color: #fff;
-            border-radius: 5px;
+            background: #E3FF00;
+            color: #000000;
+            border-radius: 15px;
             cursor: pointer;
         }
 
         .quiz-controls button:disabled {
             background: #1A1A1A;
+            color: #FFFFFF;
             cursor: not-allowed;
         }
 

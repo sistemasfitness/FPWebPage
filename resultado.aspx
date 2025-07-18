@@ -69,16 +69,14 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="testimonials2">
+    <section class="margin_60_35" id="testimonials">
         <div class="container margin_60_35">
             <div class="row" style="display: flex; margin-bottom: 2rem;">
                 <div id="divInfoPlan" runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
                     <asp:Literal ID="ltImagenInfoPlan" runat="server"></asp:Literal>
-
-                    <div style="display: flex; flex-direction: column; text-align: center;">
-                        <img src="img/descubrir-plan/resultado_icono-clases.png" alt="\" style="width: 300px;" />
-                        <asp:Literal ID="ltImagenInfoClases" runat="server"></asp:Literal>
-                    </div>
+                    <asp:Literal ID="ltImagenInfoPlanTT" runat="server"></asp:Literal>
+                    <img src="img/descubrir-plan/resultado_icono-clases.png" alt="" style="width: 300px; margin-bottom: 10px;" />
+                    <asp:Literal ID="ltImagenInfoClases" runat="server"></asp:Literal>
                 </div>
 
                 <div id="divInfoFoto" runat="server" class="col-md-6 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">

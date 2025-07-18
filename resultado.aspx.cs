@@ -28,7 +28,10 @@ namespace WebPage
             string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.png" :
                              respuestaPlan == "2" ? "resultado_01_plan-easy-foto.png" : "resultado_02_plan-6-meses-foto.png";
 
+            //string imgInfoTT = respuestaPlan == "1" ? "resultado_03_transformacion-total-info-2.png" : "";
+
             ltImagenInfoPlan.Text = "<img src=\"img/descubrir-plan/" + imgInfo + "\" alt=\"\" class=\"img-responsive\" />";
+            //ltImagenInfoPlanTT.Text = "<img src=\"img/descubrir-plan/" + imgInfoTT + "\" alt=\"\" class=\"img-responsive\" />";
             ltImagenInfoFoto.Text = "<img src=\"img/descubrir-plan/" + imgFoto + "\" alt=\"\" class=\"img-responsive\" />";
             MostrarInfoClasesPlan(respuestaClases);
         }
@@ -36,24 +39,24 @@ namespace WebPage
         private void MostrarInfoClasesPlan(string respuesta)
         {
             string clasesInfo = respuesta == "1" ?
-                            @"Combat : Pelea contra el estrés y gana fuerza. <br/>
-                              Funcional: Hasta 420 kcal en 45 minutos. <br/>
-                              xtreme +: Quema grasa, reta tu cuerpo." :
+                            @"• Combat : Pelea contra el estrés y gana fuerza. <br/>
+                              • Funcional: Hasta 420 kcal en 45 minutos. <br/>
+                              • Xtreme +: Quema grasa, reta tu cuerpo." :
                              respuesta == "2" ?
-                            @"core: Abdomen fuerte, cuerpo estable. <br/>
-                              Funcional: Repara, fortalece y previene. <br/>
-                              pilates: Tonifica, corrige tu postura y conecta contigo. <br/> 
-                              rumba: Suda y tonifica mientras te diviertes. <br/> 
-                              Aeróbicos: Quema, tonifica y sonríe." :
+                            @"• Core: Abdomen fuerte, cuerpo estable. <br/>
+                              • Funcional: Repara, fortalece y previene. <br/>
+                              • Pilates: Tonifica, corrige tu postura y conecta contigo. <br/> 
+                              • Rumba: Suda y tonifica mientras te diviertes. <br/> 
+                              • Aeróbicos: Quema, tonifica y sonríe." :
                               respuesta == "3" ?
-                            @"xtreme: Al límite de tu fuerza, al máximo tus resultados. <br/>
-                              xtreme +: Construye músculo con alta intensidad. <br/>
-                              Core: Abdomen fuerte, cuerpo estable." :
-                            @"rumba: Ritmo, cardio y diversión en una sola clase. <br/>
-                              Aeróbicos: terapia en movimiento. <br/>
-                              spinning: Fortalece piernas, Quema grasa y libera mente.";
+                            @"• Xtreme: Al límite de tu fuerza, al máximo tus resultados. <br/>
+                              • Xtreme +: Construye músculo con alta intensidad. <br/>
+                              • Core: Abdomen fuerte, cuerpo estable." :
+                            @"• Rumba: Ritmo, cardio y diversión en una sola clase. <br/>
+                              • Aeróbicos: terapia en movimiento. <br/>
+                              • Spinning: Fortalece piernas, Quema grasa y libera mente.";
 
-            ltImagenInfoClases.Text = clasesInfo;
+            ltImagenInfoClases.Text = $"<p style='color: #FFFFFF; font-weight: bold;'>{clasesInfo}</p>";
         }
 
         private void MostrarBotonPlan(string respuesta)
@@ -62,7 +65,7 @@ namespace WebPage
                                respuesta == "2" ? "https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20732" : "https://app.clez.co/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=24641";
 
             ltBotonPago.Text = "<a href=\"" + linkBoton + "\" target=\"_blank\" class='img_container' style='height: 100%;' >";
-            ltBotonPago.Text += "<img src=\"img/descubrir-plan/resultado_btn_lo-quiero.png\" style=\"width: 300px;\">";
+            ltBotonPago.Text += "<img src=\"img/descubrir-plan/resultado_btn_lo-quiero.png\" style=\"width: 400px;\">";
             ltBotonPago.Text += "</a>";
         }
 
