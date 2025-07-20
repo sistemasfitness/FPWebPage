@@ -33,15 +33,6 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltBannerFull;
 
         /// <summary>
-        /// Control divInfoPlan.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoPlan;
-
-        /// <summary>
         /// Control ltImagenInfoFoto.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltImagenInfoFoto;
-
-        /// <summary>
-        /// Control divInfoFoto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoFoto;
 
         /// <summary>
         /// Control ltImagenInfoPlan.

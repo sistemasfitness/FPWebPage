@@ -72,11 +72,11 @@
     <section class="margin_60_35" id="testimonials">
         <div class="container margin_60_35">
             <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
-                <div id="divInfoPlan" runat="server" class="col-md-6" style="cursor: pointer; align-content: center;">
+                <div runat="server" class="col-md-6" style="cursor: pointer; align-content: center;">
                     <asp:Literal ID="ltImagenInfoFoto" runat="server"></asp:Literal>
                 </div>
 
-                <div id="divInfoFoto" runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
+                <div runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
                     <asp:Literal ID="ltImagenInfoPlan" runat="server"></asp:Literal>
                     <img src="img/descubrir-plan/resultado_icono-clases.png" alt="" style="width: 300px; margin-bottom: 10px;" />
                     <asp:Literal ID="ltImagenInfoClases" runat="server"></asp:Literal>
@@ -116,6 +116,19 @@
     <div id="toTop"></div>
     <!-- Back to top button -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myAviso" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                <!--<a href="https://forms.gle/JTfGsH33Y22FjkKV7" target="_blank"> -->
+                <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20732" target="_blank">
+                    <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Search Menu -->
     <div class="search-overlay-menu">
         <span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -132,6 +145,42 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+
+        // Esperar 5 segundos y luego mostrar el modal
+        setTimeout(function () {
+            $('#aviso').modal('show');
+        }, 5000);
+
+    </script>
+
+    <style>
+
+    body.modal-open {
+	    padding-right: 0 !important;
+	    overflow-y: auto !important;
+    }
+
+    .banner-principal {
+        background-image: url(img/descubrir-plan/banner-principal.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Para pantallas de 480px o menos */
+    @media (max-width: 480px) {
+        /*.banner-principal {
+            background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
+        }*/
+
+        .info-planes {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    </style>
 </body>
 </html>
 

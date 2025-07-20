@@ -1168,23 +1168,6 @@
 
     </script>
 
-    <%--<script>
-        function actualizarImagenSlider() {
-            const bannerPrincipal = document.getElementById('banner-principal');
-            const screenWidth = window.innerWidth;
-
-            if (screenWidth <= 480) {
-                bannerPrincipal.src = 'img/descubrir-plan/banner-principal_movil.jpg'; // Imagen vertical o móvil
-                console.log("Hola");
-            } else {
-                bannerPrincipal.src = 'img/descubrir-plan/banner-principal.png'; // Imagen de escritorio
-            }
-        }
-
-        window.addEventListener('load', actualizarImagenSlider);
-        window.addEventListener('resize', actualizarImagenSlider);
-    </script>--%>
-
     <style>
 
         .banner-principal {
@@ -1198,66 +1181,6 @@
             .banner-principal {
                 background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
             }
-        }
-
-        .card-row {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s;
-            border: 3px solid transparent;
-        }
-
-        .progress-bar {
-            margin: 0;
-            height: 25px;
-            background: #1A1A1A;
-            border-radius: 15px;
-            margin: 20px 0;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #E3FF00;
-            border-radius: 15px;
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        /*TODO: Revisar aside son necesarios estos estilos*/
-
-        .quiz-controls {
-            display: flex;
-            justify-content: space-evenly;
-            margin: 10px 0 30px 0;
-        }
-
-        .quiz-controls button {
-            padding: 10px 20px;
-            border: none;
-            background: #E3FF00;
-            color: #000000;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-
-        .quiz-controls button:disabled {
-            background: #1A1A1A;
-            color: #FFFFFF;
-            cursor: not-allowed;
-        }
-
-        .question-block {
-            margin-bottom: 40px;
-            display: none;
         }
 
     </style>
