@@ -60,7 +60,10 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
+
+    <div id="bannerFullContainer">
+        <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
+    </div>
     <%--<section class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal.png" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
@@ -122,8 +125,8 @@
             <div class="modal-content modal-popup">
                 <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
                 <!--<a href="https://forms.gle/JTfGsH33Y22FjkKV7" target="_blank"> -->
-                <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20732" target="_blank">
-                    <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
+                <a href="gympass" target="_blank">
+                    <img src="img/gympass.jpg" class="img-responsive" />
                 </a>
             </div>
         </div>
@@ -148,10 +151,10 @@
 
     <script>
 
-        // Esperar 5 segundos y luego mostrar el modal
+        // Esperar 20 segundos y luego mostrar el modal
         setTimeout(function () {
             $('#aviso').modal('show');
-        }, 5000);
+        }, 20000);
 
     </script>
 
@@ -170,9 +173,9 @@
 
     /* Para pantallas de 480px o menos */
     @media (max-width: 480px) {
-        /*.banner-principal {
-            background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
-        }*/
+        #bannerFullContainer {
+            display: none !important;
+        }
 
         .info-planes {
             display: flex;
