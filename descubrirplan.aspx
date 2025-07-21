@@ -61,7 +61,7 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal.png" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in banner-principal">
         <%--<div id="sub_content_in">
             <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
         </div>--%>
@@ -204,7 +204,6 @@
 
     <section class="margin_60_35" id="create-plan-container" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" style="display: flex; flex-direction: column;">
-
             <div class="row text-center" id="question-steps">
                 <!-- Pregunta 1 -->
                 <div class="question-block">
@@ -249,7 +248,6 @@
                     </div>
                 </div>
                 
-
                 <!-- Pregunta 2 -->
                 <div class="question-block">
                     <h2 class="indent_title" style="font-weight: 900; color: #FFF;">¿Qué tan comprometido(a) te ves entrenando en el gimnasio?</h2>
@@ -324,20 +322,20 @@
 
                     <div class="card-row" data-step="3">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            <%--data-img-default="img/descubrir-plan/04-01_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-01_pregunta-seleccion.png"--%>
+                            data-img-default="img/descubrir-plan/btn_sede-bucaramanga.png"
+                            data-img-selected="img/descubrir-plan/btn_sede-bucaramanga-seleccion.png"
                             onclick="selectCard(3, 1, this)"
-                            <%--onmouseover="cambiarImagenHover(this)" 
-                            onmouseout="restaurarImagenHover(this)"--%> >
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/btn_sede-bucaramanga.png" class="img-responsive" />
                         </div>
 
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            <%--data-img-default="img/descubrir-plan/04-02_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-02_pregunta-seleccion.png"--%>
+                            data-img-default="img/descubrir-plan/btn_sede-cucuta.png"
+                            data-img-selected="img/descubrir-plan/btn_sede-cucuta-seleccion.png"
                             onclick="selectCard(3, 2, this)"
-                            <%--onmouseover="cambiarImagenHover(this)" 
-                            onmouseout="restaurarImagenHover(this)"--%> >
+                            onmouseover="cambiarImagenHover(this)" 
+                            onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/btn_sede-cucuta.png" class="img-responsive" />
                         </div>
                     </div>
@@ -425,15 +423,16 @@
                     <%--Opciones Cucuta--%>
                     <div class="card-row opciones-cucuta" data-step="4" style="display: none;">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            data-img-default="img/descubrir-plan/04-08_pregunta.png"
-                            data-img-selected="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                            data-img-default="img/descubrir-plan/04-09_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-09_pregunta-seleccion.png"
                             onclick="selectCard(4, 1, this)"
                             onmouseover="cambiarImagenHover(this)" 
                             onmouseout="restaurarImagenHover(this)" >
                             <img src="img/descubrir-plan/04-09_pregunta.png" class="img-responsive" />
                         </div>
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
-                            
+                            data-img-default="img/descubrir-plan/04-10_pregunta.png"
+                            data-img-selected="img/descubrir-plan/04-10_pregunta-seleccion.png"
                             onclick="selectCard(4, 2, this)"
                             onmouseover="cambiarImagenHover(this)" 
                             onmouseout="restaurarImagenHover(this)" >
@@ -450,11 +449,10 @@
 
             <!-- Botones de navegación -->
             <div class="quiz-controls">
-                <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled="">Anterior</button>
-                <button type="button" id="btnNext" onclick="goToNext()" disabled="">Siguiente</button>
+                <button type="button" id="btnPrev" class="toLeft" onclick="goToPrevious()" disabled=""><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" id="btnNext" onclick="goToNext()" style="display:none;">Siguiente</button>
             </div>
             <!-- End row plans-->
-
         </div>
         <!--  End container-->
     </section>
@@ -694,7 +692,6 @@
         <div class="container" id="scroll-to">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
             <div class="row text-center plans">
-
                 <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
                     <div class="img_container">
                         <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
@@ -730,10 +727,8 @@
                             Profesionales del deporte</p>
                     </div>
                 </div>
-
             </div>
             <!-- End row plans-->
-
         </div>
         <!--  End container-->
     </section>
@@ -742,7 +737,6 @@
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-md-12">
-
                     <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
                     <div class="panel-group" id="works">
                         <div class="panel panel-default">
@@ -795,9 +789,6 @@
                         </div>
                     </div>
                     <!-- End panel-group -->
-
-
-
                 </div>
                 <!-- End col-md-9 -->
             </div>
@@ -1022,7 +1013,6 @@
                 // Marca esta tarjeta como seleccionada
                 card.classList.add("selected");
                 answers[step] = value;
-                btnNext.disabled = false;
 
                 const img = card.querySelector("img");
                 const selectedImg = card.getAttribute("data-img-selected");
@@ -1031,10 +1021,21 @@
                 // Lógica condicional si estamos en la pregunta de sede
                 if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
 
+                if (step === 4) {
+                    // Construimos query params con las respuestas
+                    const queryParams = answers
+                        .map((val, index) => `q${index + 1}=${encodeURIComponent(val)}`)
+                        .join("&");
+
+                    // Redirige a la página con las respuestas en la URL
+                    window.location.href = `resultado.aspx?${queryParams}`;
+                }
+
+                goToNext();
+
             } else {
                 // Se deseleccionó la tarjeta actual
                 answers[step] = null;
-                btnNext.disabled = true;
 
                 // Si deselecciona sede, ocultamos todo lo que sigue
                 if (step === 3) ocultarOpcionesPorSede();
@@ -1169,71 +1170,17 @@
 
     <style>
 
-        .card-row {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-            flex-wrap: wrap;
+        .banner-principal {
+	        background-image: url(img/descubrir-plan/banner-principal.png);
+	        background-size: cover;
+	        background-position: center;
         }
 
-        .card {
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s;
-            border: 3px solid transparent;
-        }
-
-        .card.selected {
-            /*background: #E3FF00;*/
-            /*border-color: #E3FF00;*/
-        }
-
-        /*.card.selected img {
-            border-radius: 35px;
-            border: 3px solid #E3FF00;
-        }*/
-
-        .progress-bar {
-            margin: 0;
-            height: 25px;
-            background: #1A1A1A;
-            border-radius: 15px;
-            margin: 20px 0;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #E3FF00;
-            border-radius: 15px;
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        .quiz-controls {
-            display: flex;
-            justify-content: space-evenly;
-            margin: 10px 0 30px 0;
-        }
-
-        .quiz-controls button {
-            padding: 10px 20px;
-            border: none;
-            background: #007bff;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .quiz-controls button:disabled {
-            background: #1A1A1A;
-            cursor: not-allowed;
-        }
-
-        .question-block {
-            margin-bottom: 40px;
-            display: none;
+        /* Para pantallas de 480px o menos */
+        @media (max-width: 480px) {
+            .banner-principal {
+                background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
+            }
         }
 
     </style>
