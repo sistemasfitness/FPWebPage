@@ -24,7 +24,7 @@
                     <a href="default" class="show-submenu" style="font-weight: 900;">INICIO</a>
                 </li>
                 <li><a href="sedespg" style="font-weight: 900;">SEDES</a></li>
-                <li><a href="descubrirplan" style="font-weight: 900;" class="new-menu"></a></li>
+                <li class="new-item-menu"><a href="descubrirplan" style="font-weight: 900; color: black;">TEST</a></li>
                 <li><a href="default.aspx#planes" style="font-weight: 900;">PLANES</a></li>
                 <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
                 <li><a href="servicios" style="font-weight: 900;">SERVICIOS</a></li>
@@ -41,10 +41,7 @@
 </div>
 
 <style>
-    .new-menu {
-        border-radius: 15px;
-        width: 57px;
-        height: 51px;
+    .new-item-menu {
         background-image: url('img/descubrir-plan/mainmenu-test.png');
     }
 </style>

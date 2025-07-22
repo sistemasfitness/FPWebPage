@@ -62,164 +62,10 @@
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
     <section class="parallax_window_in banner-principal">
-        <div id="sub_content" style="display: flex; flex-direction: column; justify-content: space-evenly; height: 100%; padding: 15px 50px;">
-            <h2 style="font-weight: 900; text-align: center;">Tu cuerpo tiene metas, Nosotros te ayudamos a lograrlas.</h2>
-
-            <div style="display: flex; justify-content: space-between;">
-                <div style="display: flex;">
-                    <div><h3 style="font-weight: 900; font-size: 10rem; margin-right: 10px;">1.</h3></div>
-                    <div style="display: flex; flex-direction: column;">
-                        <h3 style="font-weight: 900;">Elige tu motivación</h3>
-                        <h5 style="font-weight: 500; max-width: 300px;">¿Bajar de peso? ¿Ganar músculo? ¿Cuidar tu salud física o mental? Aquí todo empieza por lo que tú necesitas.</h5>
-                    </div>
-                </div>
-
-                <div style="display: flex;">
-                    <div><h3 style="font-weight: 900; font-size: 10rem; margin-right: 10px;">2.</h3></div>
-                    <div style="display: flex; flex-direction: column;">
-                        <h3 style="font-weight: 900;">Entrena a tu ritmo</h3>
-                        <h5 style="font-weight: 500; max-width: 300px;">Cuéntanos qué tan comprometido estás. Nosotros adaptamos el plan a tu nivel y estilo de vida.</h5>
-                    </div>
-                </div>
-
-                <div style="display: flex;">
-                    <div><h3 style="font-weight: 900; font-size: 10rem; margin-right: 10px;">3.</h3></div>
-                    <div style="display: flex; flex-direction: column;">
-                        <h3 style="font-weight: 900;">Vive tu experiencia</h3>
-                        <h5 style="font-weight: 500; max-width: 300px;">Desde clases grupales hasta entreno con pesas. Elige tu sede favorita y empieza el cambio que tu cuerpo merece.</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <%--<section class="margin_60_35" id="testimonials" style="background: #000;">
-        <div class="container">
-            <div class="row">
-                <div class="owl-carousel team-carousel">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>--%>
-
-<%--<section class="margin_60_35" id="testimonials2">
-        <div class="container margin_60_35">
-            <div class="row" style="display: flex; margin-bottom: 2rem;">
-                <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
-                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <p class="lead" style="color: #FFF; margin-top: 20px;">
-                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
-                </div>
-
-                <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
-                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
-                </div>
-            </div>
-            <div class="row" style="display: flex; justify-content: center;">
-                <div class="col-md-12" style="text-align: center;">
-                    <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
-                </div>
-            </div>
-            <!-- End row -->
-        </div>
-    </section>--%>
-    
     <section class="margin_60_35" id="sedes" style="padding: 10px 20px 15px 20px;">
         <div class="container" style="display: flex; flex-direction: column;">
             <div class="row text-center">
@@ -346,7 +192,7 @@
                 <div class="question-block">
                     <h2 class="indent_title" style="padding: 0 20px; font-weight: 900; color: #FFF;">¿En cuál sede Fitness People te gustaría entrenar?</h2>
 
-                    <div class="card-row" data-step="3">
+                    <div class="card-row" data-step="3" style="display: flex; justify-content: center; flex-wrap: wrap;">
                         <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 card img_container" 
                             data-img-default="img/descubrir-plan/btn_sede-bucaramanga.png"
                             data-img-selected="img/descubrir-plan/btn_sede-bucaramanga-seleccion.png"
@@ -488,237 +334,6 @@
         </div>
         <!--  End container-->
     </section>
-
-    <%--<section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
-        <div class="container">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
-
-            <div class="row">
-                <div class="owl-carousel team-carousel3" width="600px">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=1">
-                                        <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=2">
-                                        <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=3">
-                                        <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=4">
-                                        <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=5">
-                                        <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=6">
-                                        <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=7">
-                                        <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=8">
-                                        <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=9">
-                                        <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=10">
-                                        <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <form runat="server" id="form2">
-                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </form>
-        </div>
-    </section>--%>
-
-    <%--<section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
-        <div class="container">
-            <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
-            <!--Team Carousel -->
-            <div class="row">
-                <div class="owl-carousel team-carousel4">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/combat1.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/funcional.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/kick_boxing1.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/pilates.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/rumba.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/spinning1.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/xtreme.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/grupales/xtreme_2.jpg" style="width: 600px;" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--End Team Carousel-->
-        </div>
-        <!--  End container-->
-    </section>--%>
 
     <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
@@ -897,12 +512,6 @@
         <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                    <div id="message-newsletter"></div>
-                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
-                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                    </form>--%>
                     <a href="gympass">
                         <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
                     </a>
@@ -1033,7 +642,7 @@
             const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
             const wasSelected = card.classList.contains("selected");
 
-            // Deselecciona todas
+            // Deseleccionar todas
             cards.forEach(c => {
                 c.classList.remove("selected");
                 const img = c.querySelector("img");
@@ -1042,7 +651,7 @@
             });
 
             if (!wasSelected) {
-                // Marca esta tarjeta como seleccionada
+                // Marcar tarjeta como seleccionada
                 card.classList.add("selected");
                 answers[step] = value;
 
