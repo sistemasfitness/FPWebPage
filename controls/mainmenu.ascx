@@ -44,5 +44,11 @@
     .new-item-menu {
         background-image: url('img/descubrir-plan/mainmenu-test.png');
     }
+
+    @media (max-width: 480px) {
+        .new-item-menu {
+            background-image: none;
+        }
+    }
 </style>
 <!-- End row -->
