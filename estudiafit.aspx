@@ -61,12 +61,12 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan_estudiafit.jpg" data-natural-width="1400" data-natural-height="470">
+    <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
+    <%--<section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan_estudiafit.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">PLAN ESTUDIAFIT</h1>
         </div>
-    </section>
+    </section>--%>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
@@ -179,18 +179,18 @@
             <div class="row" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
-                        <%--<asp:Literal ID="ltTitulo" runat="server"></asp:Literal>--%></h2>
+                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
                     <p class="lead" style="color: #FFF; margin-top: 20px;">
-                        <%--<asp:Literal ID="ltDescripcion" runat="server"></asp:Literal>--%></p>
+                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
                 </div>
 
                 <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
-                    <img src="img/planes/plan_estudiafit.jpg" alt="plan_estudiafit" class="img-responsive" />
+                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                 </div>
             </div>
             <div class="row" style="display: flex; justify-content: center;">
-                <div class="col-md-12" style="text-align: center;">
-                    <%--<asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>--%>
+                <div style="text-align: center;">
+                    <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
             </div>
             <!-- End row -->

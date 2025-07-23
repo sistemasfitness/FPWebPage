@@ -87,7 +87,7 @@
             </div>
 
             <div class="row" style="display: flex; justify-content: center;">
-                <div  style="text-align: center;">
+                <div style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
             </div>
