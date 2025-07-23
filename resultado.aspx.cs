@@ -22,16 +22,13 @@ namespace WebPage
 
         private void MostrarInfoPlan(string respuestaClases, string respuestaPlan)
         {
-            string imgInfo = respuestaPlan == "1" ? "resultado_03_transformacion-total-info-1.png" :
+            string imgInfo = respuestaPlan == "1" ? "resultado_03_transformacion-total-info.png" :
                              respuestaPlan == "2" ? "resultado_01_plan-easy-info.png" : "resultado_02_plan-6-meses-info.png";
 
             string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.png" :
                              respuestaPlan == "2" ? "resultado_01_plan-easy-foto.png" : "resultado_02_plan-6-meses-foto.png";
 
-            //string imgInfoTT = respuestaPlan == "1" ? "resultado_03_transformacion-total-info-2.png" : "";
-
             ltImagenInfoPlan.Text = "<img src=\"img/descubrir-plan/" + imgInfo + "\" alt=\"\" class=\"img-responsive\" />";
-            //ltImagenInfoPlanTT.Text = "<img src=\"img/descubrir-plan/" + imgInfoTT + "\" alt=\"\" class=\"img-responsive\" />";
             ltImagenInfoFoto.Text = "<img src=\"img/descubrir-plan/" + imgFoto + "\" alt=\"\" class=\"img-responsive\" />";
             MostrarInfoClasesPlan(respuestaClases);
         }
@@ -75,10 +72,6 @@ namespace WebPage
                                respuesta == "2" ? "resultado_01_plan-easy-banner.png" : "resultado_02_plan-6-meses-banner.png";
 
             ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/descubrir-plan/" + imgBanner + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
-            //ltBannerFull.Text += "<div id=\"sub_content_in\">";
-            //ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombrePlan"].ToString().ToUpper() + "</h1>";
-            //ltBannerFull.Text += "<p>ENTRENA SIN PAUSAS, SIN VUELTAS, SIN EXCUSAS.</p>";
-            //ltBannerFull.Text += "</div>";
             ltBannerFull.Text += "</section>";
         }
 
