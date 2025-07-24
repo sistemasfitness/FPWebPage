@@ -33,6 +33,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltBannerFull;
 
         /// <summary>
+        /// Control form2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
+
+        /// <summary>
         /// Control ltTitulo.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,24 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltDescripcion;
 
         /// <summary>
+        /// Control txtCedula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCedula;
+
+        /// <summary>
+        /// Control txtCodigoUniversidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoUniversidad;
+
+        /// <summary>
         /// Control ltImagenMarketing.
         /// </summary>
         /// <remarks>
@@ -60,22 +87,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltImagenMarketing;
 
         /// <summary>
-        /// Control ltBotonPago.
+        /// Control btnBotonPago.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltBotonPago;
-
-        /// <summary>
-        /// Control form2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
+        protected global::System.Web.UI.WebControls.LinkButton btnBotonPago;
 
         /// <summary>
         /// Control sm1.

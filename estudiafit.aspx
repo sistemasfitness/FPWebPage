@@ -174,160 +174,181 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="planes">
-        <div class="container margin_60_35">
-            <div class="row" style="display: flex; margin-bottom: 2rem;">
-                <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
-                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <p class="lead" style="color: #FFF; margin-top: 20px;">
-                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
-                </div>
+    <form runat="server" id="form2">
+        <section class="margin_60_35" id="planes">
+            <div class="container margin_60_35">
+                <div class="row" style="display: flex; margin-bottom: 2rem;">
+                    <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
+                        <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
+                            <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
 
-                <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
-                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+                        <p class="lead" style="color: #FFF; margin-top: 20px;">
+                            <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
+
+                        <div class="formulario-estudiantil" style="margin-top: 30px;">
+                            <div class="form-group">
+                                <label for="txtCedula">Cédula</label>
+                                <asp:TextBox ID="txtCedula" runat="server" CssClass="form-control input-form" placeholder="1 000 000 000"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtCodigoUniversidad">Código Universidad</label>
+                                <asp:TextBox ID="txtCodigoUniversidad" runat="server" CssClass="form-control input-form" placeholder="USANS478#"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fileCarnet">Carnet Estudiantil Vigente</label>
+                                <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
+                        <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+                    </div>
                 </div>
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div style="text-align: center;">
+                        <asp:LinkButton ID="btnBotonPago" runat="server" OnClick="btnBotonPago_Click" CssClass="img_container">
+                            <img src="img/comprar_ahora.png" style="width: 300px;" />
+                        </asp:LinkButton>
+                    </div>
+                </div>
+                <!-- End row -->
             </div>
-            <div class="row" style="display: flex; justify-content: center;">
-                <div style="text-align: center;">
-                    <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
+        </section>
+
+        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="container">
+                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+
+                <div class="row">
+                    <div class="owl-carousel team-carousel3" width="600px">
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=1">
+                                            <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=2">
+                                            <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=3">
+                                            <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=4">
+                                            <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=5">
+                                            <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=6">
+                                            <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=7">
+                                            <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=8">
+                                            <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=9">
+                                            <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-item">
+                            <div class="team-item-img">
+                                <div class="img_wrapper">
+                                    <div class="img_container">
+                                        <a href="sedes?id=10">
+                                            <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- End row -->
-        </div>
-    </section>
 
-    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
-        <div class="container">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
-
-            <div class="row">
-                <div class="owl-carousel team-carousel3" width="600px">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=1">
-                                        <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=2">
-                                        <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=3">
-                                        <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=4">
-                                        <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=5">
-                                        <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=6">
-                                        <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=7">
-                                        <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=8">
-                                        <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=9">
-                                        <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=10">
-                                        <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <form runat="server" id="form2">
                 <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+
                 <asp:UpdatePanel ID="upSedes" runat="server">
                     <ContentTemplate>
                         <div class="row">
@@ -356,9 +377,9 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+    </form>
 
     <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
@@ -734,6 +755,17 @@
             }
         });
     </script>
+
+    <style>
+
+        .input-form {
+            padding: 2.5rem;
+            color: black;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+    </style>
 
 </body>
 </html>
