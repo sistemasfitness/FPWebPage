@@ -114,6 +114,24 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
 
         /// <summary>
+        /// Control ltBotonPago2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltBotonPago2;
+
+        /// <summary>
+        /// Control ltBotonPago3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltBotonPago3;
+
+        /// <summary>
         /// Control ltMapa.
         /// </summary>
         /// <remarks>

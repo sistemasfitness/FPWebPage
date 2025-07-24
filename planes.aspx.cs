@@ -32,16 +32,16 @@ namespace WebPage
                         ltTitulo.Text = dt.Rows[0]["TituloPlan"].ToString();
                         ltDescripcion.Text = dt.Rows[0]["DescripcionPlanWeb"].ToString();
 
-                        ltBotonPago.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
-                        ltBotonPago.Text += "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\">";
-                        ltBotonPago.Text += "</a>";
+                        ltImagenMarketing.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
+                        ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" />";
+                        ltImagenMarketing.Text += "</a>";
 
-                        ltImagenMarketing.Text = "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" />";
+                        string enlacePago = dt.Rows[0]["EnlacePago"].ToString();
+                        string htmlBoton = GenerarBotonPago(enlacePago);
 
-                        //ltPrecioTotal.Text = dt.Rows[0]["PrecioTotal"].ToString();
-
-                        //ltNombrePlan.Text = dt.Rows[0]["NombrePlan"].ToString().ToUpper();
-
+                        ltBotonPago.Text = htmlBoton;
+                        ltBotonPago2.Text = htmlBoton;
+                        ltBotonPago3.Text = htmlBoton;
                     }
                     else
                     {
@@ -59,6 +59,12 @@ namespace WebPage
                     ddlSedes.Enabled = false;
                 }
             }
+        }
+
+        private string GenerarBotonPago(string enlace)
+        {
+            return $"<a href=\"{enlace}\" target=\"_blank\" >" +
+                   "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\"></a>";
         }
 
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
