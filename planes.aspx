@@ -174,7 +174,7 @@
 
     <section class="margin_60_35" id="testimonials2">
         <div class="container margin_60_35">
-            <div class="row" style="display: flex; margin-bottom: 2rem;">
+            <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
                         <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
@@ -182,9 +182,12 @@
                         <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
                 </div>
 
-                <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
+                <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
                     <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                 </div>
+                <%--<div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
+                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
+                </div>--%>
             </div>
             <div class="row" style="display: flex; justify-content: center;">
                 <div class="col-md-12" style="text-align: center;">
@@ -201,7 +204,6 @@
 
             <div class="row">
                 <div class="owl-carousel team-carousel3" width="600px">
-
                     <div class="team-item">
                         <div class="team-item-img">
                             <div class="img_wrapper">
@@ -321,7 +323,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <form runat="server" id="form2">
@@ -364,7 +365,6 @@
             <!--Team Carousel -->
             <div class="row">
                 <div class="owl-carousel team-carousel4">
-
                     <div class="team-item">
                         <div class="team-item-img">
                             <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
@@ -419,6 +419,12 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="col-md-12" style="text-align: center;">
+                    <asp:Literal ID="ltBotonPago2" runat="server"></asp:Literal>
                 </div>
             </div>
             <!--End Team Carousel-->
@@ -538,6 +544,12 @@
                 <!-- End col-md-9 -->
             </div>
             <!-- End row -->
+
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="col-md-12" style="text-align: center;">
+                    <asp:Literal ID="ltBotonPago3" runat="server"></asp:Literal>
+                </div>
+            </div>
         </div>
         <!-- End container -->
     </div>
