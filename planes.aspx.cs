@@ -33,7 +33,7 @@ namespace WebPage
                         ltDescripcion.Text = dt.Rows[0]["DescripcionPlanWeb"].ToString();
 
                         ltImagenMarketing.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
-                        ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" />";
+                        ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />";
                         ltImagenMarketing.Text += "</a>";
 
                         string enlacePago = dt.Rows[0]["EnlacePago"].ToString();
