@@ -31,9 +31,9 @@ namespace WebPage
                     ltTitulo.Text = dt.Rows[0]["TituloPlan"].ToString();
                     ltDescripcion.Text = dt.Rows[0]["DescripcionPlanWeb"].ToString();
 
-                    ltBotonPago.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" class='img_container' style='height: 100%;' >";
-                    ltBotonPago.Text += "<img src=\"img/comprar_ahora.png\" style=\"width: 350px;\">";
-                    ltBotonPago.Text += "</a>";
+                    //ltBotonPago.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" class='img_container' style='height: 100%;' >";
+                    //ltBotonPago.Text += "<img src=\"img/comprar_ahora.png\" style=\"width: 350px;\">";
+                    //ltBotonPago.Text += "</a>";
 
                     ltImagenMarketing.Text = "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />";
                 }
@@ -53,6 +53,11 @@ namespace WebPage
                 ddlSedes.Enabled = false;
             }
         }
+
+        protected void btnBotonPago_Click(object sender, EventArgs e)
+        { 
+        
+        }    
 
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
