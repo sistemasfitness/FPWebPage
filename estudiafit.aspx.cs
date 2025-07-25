@@ -58,44 +58,64 @@ namespace WebPage
 
         protected void btnBotonPago_Click(object sender, EventArgs e)
         {
-            string documento = txtCedula.Text.Trim();
-            string codigoUniversidad = txtCodigoUniversidad.Text.Trim();
-
-            clasesglobales cg = new clasesglobales();
-
-            DataTable dtCodUni = cg.ConsultarEstudiafitUniPorCodigo(codigoUniversidad);
-
-            if (dtCodUni.Rows.Count <= 0)
+            try
             {
-                // TODO: Crear mensaje de error con SweetAlert
-            }
+                string documento = txtCedula.Text.Trim();
+                string codigoUniversidad = txtCodigoUniversidad.Text.Trim();
 
-            HttpPostedFile postedFile = Request.Files["fileCarnet"];
-            string nombreArchivo = "";
-
-            if (postedFile != null && postedFile.ContentLength > 0)
-            {
-                string extension = Path.GetExtension(postedFile.FileName).ToLower();
-                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".pdf")
+                if (documento == "" || codigoUniversidad == "")
                 {
-                    nombreArchivo = Path.GetFileName(postedFile.FileName);
-                    string rutaGuardado = Server.MapPath("img//estudiafit//carnets-uni//") + nombreArchivo;
-                    postedFile.SaveAs(rutaGuardado);
+                    MostrarAlerta("Error", "Debes completar todos los campos.", "error");
+                    return;
                 }
-                else
+
+                clasesglobales cg = new clasesglobales();
+
+                DataTable dtCodUni = cg.ConsultarEstudiafitUniPorCodigo(codigoUniversidad);
+
+                if (dtCodUni.Rows.Count <= 0)
+                {
+                    // TODO: Crear mensaje de error con SweetAlert
+                    MostrarAlerta("Error", "El código que acabas de escribir no es válido.", "error");
+                    return;
+                }
+
+                HttpPostedFile postedFile = Request.Files["fileCarnet"];
+                string nombreArchivo = "";
+
+                if (postedFile == null && postedFile.ContentLength <= 0)
+                {
+                    MostrarAlerta("Error", "Debes cargar tú carnet estudiantil.", "error");
+                    return;
+                }
+
+                string extension = Path.GetExtension(postedFile.FileName).ToLower();
+
+                if (extension != ".jpg" || extension != ".jpeg" || extension != ".png" || extension != ".pdf")
                 {
                     // TODO: Crear mensaje de error con SweetAlert
                     // Manejo de error: tipo no permitido
                     // Puedes mostrar un mensaje al usuario
+                    MostrarAlerta("Error", "El tipo de archivo que cargaste no es válido.", "error");
+                    return;
                 }
+
+                nombreArchivo = Path.GetFileName(postedFile.FileName);
+                string rutaGuardado = Server.MapPath("img//estudiafit//carnets-uni//") + nombreArchivo;
+                postedFile.SaveAs(rutaGuardado);
+
+                int codUni = int.Parse(dtCodUni.Rows[0]["idUni"].ToString());
+
+                // Inserción a la BD
+                cg.InsertarEstudiafit(documento, codUni, nombreArchivo);
+
+                dtCodUni.Dispose();
             }
-
-            int codUni = int.Parse(dtCodUni.Rows[0]["idUni"].ToString());
-
-            // Inserción a la BD
-            cg.InsertarEstudiafit(documento, codUni, nombreArchivo);
-
-            dtCodUni.Dispose();
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error", "Ocurrió un error inesperado al registrarse.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en btnBotonPago_Click: " + ex.ToString());
+            }
         }
 
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,6 +141,26 @@ namespace WebPage
         protected void ddlSedes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
+        }
+
+        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        {
+            // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string script = $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
+            }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
     }
 }
