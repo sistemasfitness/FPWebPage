@@ -182,23 +182,33 @@
                         <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
                             <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
 
-                        <p class="lead" style="color: #FFF; margin-top: 20px;">
+                        <p class="lead" style="color: #FFF;">
                             <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
 
-                        <div class="formulario-estudiantil" style="margin-top: 30px;">
+                        <div class="formulario-estudiantil" style="margin-top: 10px;">
                             <div class="form-group">
                                 <label for="txtCedula">Cédula</label>
-                                <asp:TextBox ID="txtCedula" runat="server" CssClass="form-control input-form" placeholder="1 000 000 000"></asp:TextBox>
+                                <asp:TextBox ID="txtCedula" runat="server" CssClass="form-control input-form" placeholder="1 000 000 000" required=""></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <label for="txtCodigoUniversidad">Código Universidad</label>
-                                <asp:TextBox ID="txtCodigoUniversidad" runat="server" CssClass="form-control input-form" placeholder="USANS478#"></asp:TextBox>
+                                <asp:TextBox ID="txtCodigoUniversidad" runat="server" CssClass="form-control input-form" placeholder="USANS478#" required=""></asp:TextBox>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display: flex; flex-direction: column;">
                                 <label for="fileCarnet">Carnet Estudiantil Vigente</label>
-                                <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" />
+                                <%--<input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" />--%>
+
+                                <div>
+                                    <!-- Este label actuará como el botón -->
+                                    <label for="fileCarnet" class="custom-file-upload">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i><br />
+                                        SUBIR CARNET
+                                    </label>
+
+                                    <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" required=""/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -757,6 +767,32 @@
     </script>
 
     <style>
+
+        .custom-file-upload {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            text-align: center;
+            color: #555;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #e0e0e0;
+        }
+
+        .custom-file-upload i {
+            font-size: 40px;
+        }
+
+        #fileCarnet {
+            display: none; /* Ocultamos el input real */
+        }
 
         .input-form {
             padding: 2.5rem;
