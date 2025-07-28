@@ -18,7 +18,7 @@ namespace WebPage
                 {
                     clasesglobales cg = new clasesglobales();
                     string strQuery = "SELECT * " +
-                        "FROM Planes WHERE idPlan <> 9 AND idPlan = " + Request.QueryString["id"].ToString();
+                        "FROM Planes WHERE idPlan <> 9 AND idPlan <> 12 AND idPlan = " + Request.QueryString["id"].ToString();
                     DataTable dt = cg.TraerDatos(strQuery);
                     if (dt.Rows.Count > 0)
                     {
