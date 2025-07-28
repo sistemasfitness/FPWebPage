@@ -176,7 +176,7 @@
         </div>
     </section>
 
-    <form runat="server" id="form2">
+    <form runat="server" id="form2" enctype="multipart/form-data">
         <section class="margin_60_35" id="planes">
             <div class="container margin_60_35">
                 <div class="row" style="display: flex; margin-bottom: 2rem;">
@@ -200,28 +200,34 @@
 
                             <div class="form-group" style="display: flex; flex-direction: column;">
                                 <label for="fileCarnet">Carnet Estudiantil Vigente</label>
-                                <%--<input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" />--%>
 
                                 <div>
-                                    <!-- Este label actuará como el botón -->
-                                    <label for="fileCarnet" class="custom-file-upload">
+                                    <!-- Botón personalizado -->
+                                    <label for="fileCarnet" class="custom-file-upload" id="archivoInicial">
                                         <i class="fa-solid fa-cloud-arrow-up"></i><br />
                                         SUBIR CARNET
                                     </label>
 
-                                    <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" required=""/>
+                                    <!-- Input real oculto visualmente -->
+                                    <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" required="" onchange="mostrarArchivoSeleccionado()" />
+
+                                    <!-- Botón personalizado oculto -->
+                                    <label for="fileCarnet" id="archivoSeleccionado" class="custom-file-upload" style="display: none;">
+                                        <i class="fa-solid fa-cloud-arrow-down"></i><br />
+                                        <p id="textoArchivoSeleccionado" class="nomargin" style="font-size: 2rem;"></p>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
+                    <div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="align-content: center;">
                         <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                     </div>
                 </div>
                 <div class="row" style="display: flex; justify-content: center;">
                     <div style="text-align: center;">
-                        <asp:LinkButton ID="btnBotonPago" runat="server" OnClick="btnBotonPago_Click" CssClass="img_container">
+                        <asp:LinkButton ID="btnRegistrarEstudiante" runat="server" OnClick="btnRegistrarEstudiante_Click" CssClass="img_container">
                             <img src="img/comprar_ahora.png" style="width: 300px;" />
                         </asp:LinkButton>
                     </div>
@@ -566,9 +572,6 @@
                         </div>
                     </div>
                     <!-- End panel-group -->
-
-
-
                 </div>
                 <!-- End col-md-9 -->
             </div>
@@ -766,6 +769,25 @@
                 }
             }
         });
+    </script>
+
+    <script>
+        function mostrarArchivoSeleccionado() {
+            var input = document.getElementById("fileCarnet");
+            var archivoInicial = document.getElementById("archivoInicial");
+            var archivoSeleccionado = document.getElementById("archivoSeleccionado");
+            var textoArchivoSeleccionado = document.getElementById("textoArchivoSeleccionado");
+
+            if (input.files.length > 0) {
+                archivoSeleccionado.style.display = "inline-block";
+                textoArchivoSeleccionado.textContent = "ARCHIVO SELECCIONADO: " + input.files[0].name;
+                archivoInicial.style.display = "none";
+            } else {
+                archivoSeleccionado.style.display = "none";
+                textoArchivoSeleccionado.textContent = "";
+                archivoInicial.style.display = "inline-block";
+            }
+        }
     </script>
 
     <style>

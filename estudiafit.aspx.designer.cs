@@ -87,13 +87,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltImagenMarketing;
 
         /// <summary>
-        /// Control btnBotonPago.
+        /// Control btnRegistrarEstudiante.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBotonPago;
+        protected global::System.Web.UI.WebControls.LinkButton btnRegistrarEstudiante;
 
         /// <summary>
         /// Control sm1.

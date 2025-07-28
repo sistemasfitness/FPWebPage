@@ -33,11 +33,7 @@ namespace WebPage
                     ltTitulo.Text = dtPlan.Rows[0]["TituloPlan"].ToString();
                     ltDescripcion.Text = dtPlan.Rows[0]["DescripcionPlanWeb"].ToString();
 
-                    //ltBotonPago.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" class='img_container' style='height: 100%;' >";
-                    //ltBotonPago.Text += "<img src=\"img/comprar_ahora.png\" style=\"width: 350px;\">";
-                    //ltBotonPago.Text += "</a>";
-
-                    ltImagenMarketing.Text = "<img src=\"img/planes/" + dtPlan.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />";
+                    ltImagenMarketing.Text = "<img src=\"img/planes/" + dtPlan.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"cursor: pointer; border-radius: 15px;\" />";
                 }
                 else
                 {
@@ -56,7 +52,7 @@ namespace WebPage
             }
         }
 
-        protected void btnBotonPago_Click(object sender, EventArgs e)
+        protected void btnRegistrarEstudiante_Click(object sender, EventArgs e)
         {
             try
             {
@@ -65,56 +61,66 @@ namespace WebPage
 
                 if (documento == "" || codigoUniversidad == "")
                 {
-                    MostrarAlerta("Error", "Debes completar todos los campos.", "error");
+                    MostrarAlerta("Campos requeridos", "Por favor, llena todos los campos para poder continuar.", "warning");
                     return;
                 }
 
                 clasesglobales cg = new clasesglobales();
 
+                // Consulta de existencia de documento en la BD
+                DataTable dtEstudiafit = cg.ConsultarEstudiafitPorDocumento(documento);
+
+                if (dtEstudiafit.Rows.Count > 0)
+                {
+                    MostrarAlerta("Ya estás registrado", "Este número de cédula ya se encuentra registrada en el sistema.", "info");
+                    return;
+                }
+
                 DataTable dtCodUni = cg.ConsultarEstudiafitUniPorCodigo(codigoUniversidad);
 
                 if (dtCodUni.Rows.Count <= 0)
                 {
-                    // TODO: Crear mensaje de error con SweetAlert
-                    MostrarAlerta("Error", "El código que acabas de escribir no es válido.", "error");
+                    MostrarAlerta("Código inválido", "El código de universidad que ingresaste no es válido. Verifica y vuelve a intentarlo.", "error");
                     return;
                 }
 
                 HttpPostedFile postedFile = Request.Files["fileCarnet"];
                 string nombreArchivo = "";
 
-                if (postedFile == null && postedFile.ContentLength <= 0)
+                if (postedFile == null || postedFile.ContentLength <= 0)
                 {
-                    MostrarAlerta("Error", "Debes cargar tú carnet estudiantil.", "error");
+                    MostrarAlerta("Archivo requerido", "Por favor, sube tu carnet estudiantil vigente en formato PDF o imagen.", "warning");
                     return;
                 }
 
                 string extension = Path.GetExtension(postedFile.FileName).ToLower();
 
-                if (extension != ".jpg" || extension != ".jpeg" || extension != ".png" || extension != ".pdf")
+                if (extension != ".jpg" && extension != ".jpeg" && extension != ".png" && extension != ".pdf")
                 {
-                    // TODO: Crear mensaje de error con SweetAlert
-                    // Manejo de error: tipo no permitido
-                    // Puedes mostrar un mensaje al usuario
-                    MostrarAlerta("Error", "El tipo de archivo que cargaste no es válido.", "error");
+                    MostrarAlerta("Archivo no válido", "Solo se permiten archivos en formato PDF o imágenes (JPG, PNG).", "error");
                     return;
                 }
 
-                nombreArchivo = Path.GetFileName(postedFile.FileName);
+                nombreArchivo = DateTime.Now.ToString("yyyyMMdd-HHmmss_") + Path.GetFileName(postedFile.FileName.Replace(" ", "-"));
                 string rutaGuardado = Server.MapPath("img//estudiafit//carnets-uni//") + nombreArchivo;
                 postedFile.SaveAs(rutaGuardado);
 
                 int codUni = int.Parse(dtCodUni.Rows[0]["idUni"].ToString());
 
-                // Inserción a la BD
                 cg.InsertarEstudiafit(documento, codUni, nombreArchivo);
 
+                dtEstudiafit.Dispose();
                 dtCodUni.Dispose();
+
+                // Función de limpieza de campos
+                LimpiarFormulario();
+
+                // TODO: Redireccionar al link de CLEZ para realizar el pago
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error", "Ocurrió un error inesperado al registrarse.", "error");
-                System.Diagnostics.Debug.WriteLine("Error en btnBotonPago_Click: " + ex.ToString());
+                MostrarAlerta("Error", "Ocurrió un error inesperado al procesar tu registro.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en btnRegistrarEstudiante_Click: " + ex.ToString());
             }
         }
 
@@ -161,6 +167,23 @@ namespace WebPage
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+        }
+
+        protected void LimpiarFormulario()
+        {
+            // Limpiar los TextBox
+            txtCedula.Text = "";
+            txtCodigoUniversidad.Text = "";
+
+            string script = @"
+            <script>
+                document.getElementById('fileCarnet').value = '';
+                document.getElementById('archivoSeleccionado').style.display = 'none';
+                document.getElementById('textoArchivoSeleccionado').textContent = '';
+                document.getElementById('archivoInicial').style.display = 'inline-block';
+            </script>";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "limpiarFile", script);
         }
     }
 }
