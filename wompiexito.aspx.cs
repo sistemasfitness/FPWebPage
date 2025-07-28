@@ -11,8 +11,25 @@ namespace WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltValor1.Text = Session["ltValorPlan"].ToString();
-            ltValor2.Text = Session["ltValorPlan"].ToString();
+            if (!IsPostBack)
+            {
+                if (Session["idAfiliado"].ToString() != "")
+                {
+                    ltValor1.Text = Session["ltValorPlan"].ToString();
+                    ltValor2.Text = Session["ltValorPlan"].ToString();
+                }
+                else
+                {
+                    Response.Redirect("default");
+                }
+            }
+        }
+
+        protected void btnRedireccionarActivarPlan_Click(object sender, EventArgs e)
+        {
+            string idAfiliado = Session["idAfiliado"].ToString();
+
+            Response.Redirect($"verificacion?id={idAfiliado}&web=true");
         }
     }
 }

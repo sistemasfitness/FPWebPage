@@ -382,7 +382,7 @@ a {
 		.btn_slider:hover {
 			background: #000;
 			color: #e3ff00;
-			border: 2px solid #e3ff00;
+			/*border: 1px solid #e3ff00;*/
 		}
 
 	a.btn_1.white,
@@ -3420,6 +3420,68 @@ ul.plan-features {
 	-webkit-transform: translateZ(0) scale(1.0, 1.0);
 }
 
+/*-------- 3.14 SweetAlert --------*/
+body.swal2-shown {
+	padding-right: 0 !important;
+	overflow-y: auto !important;
+}
+
+.alert {
+	color: #FFFFFF; /* Color de texto del popup */
+	border: 1px solid #FFFFFF;
+}
+
+.swal2-close {
+	color: #E3FF00; /* botón de cerrar */
+}
+
+.swal2-close:hover{
+	color: #E3FF00;
+}
+
+.swal2-icon {
+	border-color: #E3FF00 !important;
+	color: #E3FF00 !important;
+}
+
+	.swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+		background-color: #E3FF00 !important;
+	}
+
+.swal2-loader {
+	border-color: #E3FF00 !important; /* color del borde */
+	border-top-color: transparent !important; /* hace efecto de giro */
+}
+
+.btn-confirm-alert {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: #000000;
+	width: 100%;
+	background: #E3FF00;
+	cursor: pointer;
+	padding: 12px 20px;
+	display: inline-block;
+	outline: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	display: block;
+	text-align: center;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+	.btn-confirm-alert:hover {
+		background: #000000;
+		color: #E3FF00;
+	}
+/*-------- 3.14 SweetAlert --------*/
 .whatsapp {
 	position: fixed;
 	width: 109px;

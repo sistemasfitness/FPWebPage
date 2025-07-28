@@ -81,6 +81,13 @@
                             </tr>
                         </tbody>
                     </table>
+                    <form runat="server">
+                        <div style="margin-top: 30px; text-align: center;">
+                            <p style="color: #fff;">Para activar tu plan, debes completar el formulario de verificación</p>
+                            <asp:Button ID="btnRedireccionarActivarPlan" runat="server" CssClass="btn_slider" Text="ACTIVAR PLAN" OnClick="btnRedireccionarActivarPlan_Click" />
+                            <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

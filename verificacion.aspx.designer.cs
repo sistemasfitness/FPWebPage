@@ -24,6 +24,15 @@ namespace WebPage
         protected global::WebPage.controls.mainmenu mainmenu;
 
         /// <summary>
+        /// Control id_parrafo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl id_parrafo;
+
+        /// <summary>
         /// Control verificar.
         /// </summary>
         /// <remarks>
@@ -33,49 +42,49 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlForm verificar;
 
         /// <summary>
-        /// Control idAfil.
+        /// Control hfIdAfiliado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden idAfil;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdAfiliado;
 
         /// <summary>
-        /// Control name_contact.
+        /// Control txbNombres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText name_contact;
+        protected global::System.Web.UI.WebControls.TextBox txbNombres;
 
         /// <summary>
-        /// Control lastname_contact.
+        /// Control txbApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText lastname_contact;
+        protected global::System.Web.UI.WebControls.TextBox txbApellidos;
 
         /// <summary>
-        /// Control email_contact.
+        /// Control txbCorreo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email_contact;
+        protected global::System.Web.UI.WebControls.TextBox txbCorreo;
 
         /// <summary>
-        /// Control phone_contact.
+        /// Control txbCelular.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl phone_contact;
+        protected global::System.Web.UI.WebControls.TextBox txbCelular;
 
         /// <summary>
         /// Control ScriptManager1.
@@ -105,22 +114,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Repeater rpParq;
 
         /// <summary>
-        /// Control verify_contact.
+        /// Control txbVerificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText verify_contact;
-
-        /// <summary>
-        /// Control ltMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltMensaje;
+        protected global::System.Web.UI.WebControls.TextBox txbVerificacion;
 
         /// <summary>
         /// Control btnVerificar.

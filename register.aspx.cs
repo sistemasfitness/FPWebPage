@@ -160,100 +160,131 @@ namespace WebPage
 
         protected void btnRegistrar(object sender, EventArgs e)
         {
-            clasesglobales cg = new clasesglobales();
-
-            //Guardamos los datos del afiliado
-            string strCedula = txbDocumento.Text.ToString();
-            Session.Add("documentoAfiliado", strCedula);
-            int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
-
-            Session.Add("idAfiliado", "");
-
-            DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
-            if (dtAfiliado.Rows.Count > 0)
+            try
             {
-                Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+                clasesglobales cg = new clasesglobales();
+
+                //Guardamos los datos del afiliado
+                string strCedula = txbDocumento.Text.ToString();
+                Session.Add("documentoAfiliado", strCedula);
+                int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
+
+                Session.Add("idAfiliado", "");
+
+                DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
+                if (dtAfiliado.Rows.Count > 0)
+                {
+                    Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+                }
+
+                string strNombre = txbNombre.Text.ToString();
+                Session.Add("nombreAfiliado", strNombre);
+                string strApellido = txbApellido.Text.ToString();
+                Session.Add("apellidoAfiliado", strApellido);
+                string strCelular = txbCelular.Text.ToString();
+                Session.Add("celularAfiliado", strCelular);
+                string strEmail = txbEmail.Text.ToString();
+                Session.Add("emailAfiliado", strEmail);
+                int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
+                string strFechaNac = txbFechaNac.Text.ToString();
+
+                string strFechaInicioPlan = txbFechaIni.Text.ToString();
+                Session.Add("fechaInicioPlan", strFechaInicioPlan);
+                string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
+                Session.Add("fechaFinPlan", strFechaFinPlan);
+
+                DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
+                Session.Add("meses", dtPlan.Rows[0]["Meses"]);
+                int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
+                int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
+                string strValorPlan = hfValorPlan.Value;
+                Session.Add("valorPlan", strValorPlan);
+                string strLtValor = ltValor.Text.ToString();
+                Session.Add("ltValorPlan", strLtValor);
+
+                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
+                if (Session["idAfiliado"].ToString() != "")
+                {
+                    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Fecha de inicio inválida",
+                    //            "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
+                    //            "warning"
+                    //        );
+
+                    //        return;
+                    //    }
+                    //}
+
+                    //dtFechaFinPlan.Dispose();
+
+                    cg.ActualizarAfiliadoWeb(
+                        strCedula,
+                        strNombre,
+                        strApellido,
+                        strCelular,
+                        strEmail,
+                        idGenero,
+                        strFechaNac,
+                        idCiudad,
+                        idSede, 
+                        "Pendiente"
+                    );
+                }
+                else
+                {
+                    //Si no existe el documento del afiliado, lo creamos como nuevo.
+                    cg.InsertarAfiliadoWeb(
+                        strCedula,
+                        idTipoDocumento,
+                        strNombre,
+                        strApellido,
+                        strCelular,
+                        strEmail,
+                        idGenero,
+                        strFechaNac,
+                        idCiudad,
+                        idSede
+                    );
+
+                    //EnviarCorreoBienvenida();
+                }
+
+                DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
+                Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
+
+                dtAfiliado.Dispose();
+                dtAfiliado2.Dispose();
+                dtPlan.Dispose();
+
+                // Siigo API
+                string token = GetSiigoToken();
+                Session.Add("tokenSiigo", token);
+                bool exists = ConsultSiigoCustomer(strCedula, token);
+                ManageCustomer(exists, token);
+
+                if (Session["idPlan"].ToString() == "1")
+                {
+                    Response.Redirect("wompipay");
+                }
+                else
+                {
+                    Response.Redirect("wompiplan");
+                }
             }
-
-            string strNombre = txbNombre.Text.ToString();
-            Session.Add("nombreAfiliado", strNombre);
-            string strApellido = txbApellido.Text.ToString();
-            Session.Add("apellidoAfiliado", strApellido);
-            string strCelular = txbCelular.Text.ToString();
-            Session.Add("celularAfiliado", strCelular);
-            string strEmail = txbEmail.Text.ToString();
-            Session.Add("emailAfiliado", strEmail);
-            int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
-            string strFechaNac = txbFechaNac.Text.ToString();
-
-            string strFechaInicioPlan = txbFechaIni.Text.ToString();
-            Session.Add("fechaInicioPlan", strFechaInicioPlan);
-            string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
-            Session.Add("fechaFinPlan", strFechaFinPlan);
-
-            DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
-            Session.Add("meses", dtPlan.Rows[0]["Meses"]);
-            int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
-            int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
-            string strValorPlan = hfValorPlan.Value;
-            Session.Add("valorPlan", strValorPlan);
-            string strLtValor = ltValor.Text.ToString();
-            Session.Add("ltValorPlan", strLtValor);
-
-            //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
-            if (Session["idAfiliado"].ToString() != "")
+            catch (Exception ex)
             {
-                cg.ActualizarAfiliadoWeb(
-                    strCedula,
-                    strNombre,
-                    strApellido,
-                    strCelular,
-                    strEmail,
-                    idGenero,
-                    strFechaNac,
-                    idCiudad,
-                    idSede
-                );
-            }
-            else
-            {
-                //Si no existe el documento del afiliado, lo creamos como nuevo.
-                cg.InsertarAfiliadoWeb(
-                    strCedula,
-                    idTipoDocumento,
-                    strNombre,
-                    strApellido,
-                    strCelular,
-                    strEmail,
-                    idGenero,
-                    strFechaNac,
-                    idCiudad,
-                    idSede
-                );
-
-                //EnviarCorreoBienvenida();
-            }
-
-            DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
-            Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
-
-            dtAfiliado.Dispose();
-            dtAfiliado2.Dispose();
-            dtPlan.Dispose();
-
-            // Siigo API
-            string token = GetSiigoToken();
-            Session.Add("tokenSiigo", token);
-            bool exists = ConsultSiigoCustomer(strCedula, token);
-            ManageCustomer(exists, token);
-
-            if (Session["idPlan"].ToString() == "1")
-            {
-                Response.Redirect("wompipay");
-            }
-            else
-            {
-                Response.Redirect("wompiplan");
+                MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
             }
         }
 
@@ -302,6 +333,26 @@ namespace WebPage
             string strFechaFin = CalcularFechaFinPlan(strFechaInicio);
 
             txbFechaFin.Text = strFechaFin;
+        }
+
+        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        {
+            // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string script = $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
+            }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
 
         //

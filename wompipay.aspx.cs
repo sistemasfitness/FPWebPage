@@ -47,9 +47,14 @@ namespace WebPage
             Swal.fire({{
                 title: '{titulo}',
                 text: '{mensaje}',
-                icon: '{tipo}',
-                showCloseButton: true,
-                confirmButtonText: 'Aceptar'
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
