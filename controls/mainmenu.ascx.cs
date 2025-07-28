@@ -11,7 +11,7 @@ namespace WebPage.controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["idAfil"] != null)
+            if (Session["idAfiliado"] != null)
             {
                 ltMenu1.Text = "<li><a href=\"logout\" class=\"hidden-xs\">SALIR</a></li>";
                 ltMenu2.Text = "<li><a href=\"logout\" style=\"font-weight: 900;\" class=\"visible-xs\">SALIR</a></li>";
