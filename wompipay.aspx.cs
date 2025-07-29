@@ -143,7 +143,11 @@ namespace WebPage
                 }
 
                 //Tokenizar una tarjeta
-                string url = "https://sandbox.wompi.co/v1/tokens/cards";
+                // URL - Pruebas
+                //string url = "https://sandbox.wompi.co/v1/tokens/cards";
+
+                // URL - Producción
+                string url = "https://production.wompi.co/v1/tokens/cards";
                 string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
 
                 Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
@@ -191,7 +195,11 @@ namespace WebPage
         {
             try
             {
-                string url = "https://sandbox.wompi.co/v1/payment_sources";
+                // URL - Pruebas
+                //string url = "https://sandbox.wompi.co/v1/payment_sources";
+
+                // URL - Producción
+                string url = "https://production.wompi.co/v1/payment_sources";
                 string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
                 Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
@@ -212,7 +220,12 @@ namespace WebPage
                 // Calcular hash SHA256
                 string monto = Session["valorPlan"].ToString() + "00"; // en centavos
                 string moneda = "COP";
-                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+                // Integrity Secret - Pruebas
+                //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+                // Integrity Secret - Producción
+                string integrity_secret = "prod_integrity_x3D1pIYNDtSP1WulflhafCNbCLCFFP4t";
 
                 string concatenado = reference + monto + moneda + integrity_secret;
                 string hash256 = ComputeSha256Hash(concatenado);
@@ -249,7 +262,11 @@ namespace WebPage
         {
             try
             {
-                string url = "https://sandbox.wompi.co/v1/transactions";
+                // URL - Pruebas
+                //string url = "https://sandbox.wompi.co/v1/transactions";
+
+                // URL - Producción
+                string url = "https://production.wompi.co/v1/transactions";
                 string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
 
                 Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
@@ -384,7 +401,13 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv");
+                // Llave Pública - Pruebas
+                //string keyPub = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+
+                // Llave Pública - Producción
+                string keyPub = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPub);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -431,7 +454,13 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+                // Llave Privada - Pruebas
+                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+
+                // Llave Privada - Producción
+                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -477,8 +506,14 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
+                // Llave Privada - Pruebas
+                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+
+                // Llave Privada - Producción
+                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+
                 client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -503,12 +538,22 @@ namespace WebPage
 
         public static async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
         {
-            string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
+            // URL - Pruebas
+            //string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
+
+            // URL - Producción
+            string url = $"https://production.wompi.co/v1/transactions?reference={idReferencia}";
 
             using (HttpClient client = new HttpClient())
             {
+                // Llave Privada - Pruebas
+                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+
+                // Llave Privada - Producción
+                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+
                 client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2");
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
 
                 try
                 {
@@ -531,14 +576,18 @@ namespace WebPage
 
         private void ObtenerTokensDeAceptacion()
         {
-            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
-            //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+            //string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+            string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
             //string strPrivateKeySandbox = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
             //string strPrivateKeyProduction = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
 
             // Construir la URL de la API
-            string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
+            // URL - Pruebas
+            //string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
+
+            // URL - Producción
+            string url = "https://production.wompi.co/v1/merchants/" + strPublicKeyProduction;
 
             try
             {
@@ -715,24 +764,24 @@ namespace WebPage
         {
             string url = "https://api.siigo.com/v1/invoices";
 
-            //int idTipoDocumento = 66444;
-            //int idVendedor = 51883;
-            //int idPayment = 59576;
+            int idTipoDocumento = 66444;
+            int idVendedor = 51883;
+            int idPayment = 59576;
 
             // Siigo Pruebas
-            int idTipoDocumento = 28006;
-            int idVendedor = 856;
-            int idPayment = 9438;
-            string codSiigoPlan = "COD2433";
-            string nombrePlan = "Pago de suscripción";
-            int precioPlan = 10000;
+            //int idTipoDocumento = 28006;
+            //int idVendedor = 856;
+            //int idPayment = 9438;
+            //string codSiigoPlan = "COD2433";
+            //string nombrePlan = "Pago de suscripción";
+            //int precioPlan = 10000;
 
             string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
 
             string cedula = Session["documentoAfiliado"].ToString();
-            //string codSiigoPlan = Session["codSiigoPlan"].ToString();
-            //string nombrePlan = Session["nombrePlan"].ToString();
-            //int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
+            string codSiigoPlan = Session["codSiigoPlan"].ToString();
+            string nombrePlan = Session["nombrePlan"].ToString();
+            int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
 
             Invoice oInvoice = new Invoice()
             {
@@ -778,10 +827,16 @@ namespace WebPage
         {
             using (HttpClient client = new HttpClient())
             {
+                // Header - Pruebas
+                //string header = "SandboxSiigoApi";
+
+                // Header - Producción
+                string header = "ProductionSiigoApi";
+
                 // Headers
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                client.DefaultRequestHeaders.Add("Partner-Id", "SandboxSiigoApi");
+                client.DefaultRequestHeaders.Add("Partner-Id", header);
 
                 // Serializar objeto
                 string json = JsonConvert.SerializeObject(oInvoice, new JsonSerializerSettings

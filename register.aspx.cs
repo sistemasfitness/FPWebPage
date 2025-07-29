@@ -48,14 +48,14 @@ namespace WebPage
                 txbCelular.Attributes.Add("type", "number");
 
                 // Datos de Pruebas
-                txbNombre.Text = "Brayan Stiven";
-                txbApellido.Text = "Ochoa Pineda";
-                ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
-                ddlTipoDocumento.SelectedItem.Value = "1";
-                txbDocumento.Text = "1005139501";
-                txbEmail.Text = "b.ochoa12@gmail.com";
-                txbCelular.Text = "3156552301";
-                txbFechaNac.Text = "2000-01-01";
+                //txbNombre.Text = "Brayan Stiven";
+                //txbApellido.Text = "Ochoa Pineda";
+                //ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
+                //ddlTipoDocumento.SelectedItem.Value = "1";
+                //txbDocumento.Text = "1005139501";
+                //txbEmail.Text = "b.ochoa12@gmail.com";
+                //txbCelular.Text = "3156552301";
+                //txbFechaNac.Text = "2000-01-01";
             }
 
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
@@ -205,27 +205,27 @@ namespace WebPage
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    //if (dtFechaFinPlan.Rows.Count > 0)
-                    //{
-                    //    // Obtener fecha de fin anterior
-                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    if (dtFechaFinPlan.Rows.Count > 0)
+                    {
+                        // Obtener fecha de fin anterior
+                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                    //    if (fechaInicioNuevo <= fechaFinAnterior)
-                    //    {
-                    //        MostrarAlerta(
-                    //            "Fecha de inicio inválida",
-                    //            "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                    //            "warning"
-                    //        );
+                        if (fechaInicioNuevo <= fechaFinAnterior)
+                        {
+                            MostrarAlerta(
+                                "Fecha de inicio inválida",
+                                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
+                                "warning"
+                            );
 
-                    //        return;
-                    //    }
-                    //}
+                            return;
+                        }
+                    }
 
-                    //dtFechaFinPlan.Dispose();
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoWeb(
                         strCedula,
@@ -359,11 +359,11 @@ namespace WebPage
         public static string GetSiigoToken()
         {
             string url = "https://api.siigo.com/auth";
-            //string username = "contabilidad@fitnesspeoplecmd.com";
-            //string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
+            string username = "contabilidad@fitnesspeoplecmd.com";
+            string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
 
-            string username = "sandbox@siigoapi.com";
-            string accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
+            //string username = "sandbox@siigoapi.com";
+            //string accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
@@ -395,10 +395,16 @@ namespace WebPage
         {
             string URL = "https://api.siigo.com/v1/customers?identification=" + documento;
 
+            // Header - Pruebas
+            //string header = "SandboxSiigoApi";
+
+            // Header - Producción
+            string header = "ProductionSiigoApi";
+
             WebRequest request = WebRequest.Create(URL);
             request.Method = "GET";
             request.ContentType = "application/json;charset=UTF-8";
-            request.Headers.Add("Partner-Id", "SandboxSiigoApi");
+            request.Headers.Add("Partner-Id", header);
             request.Headers.Add("Authorization", "Bearer " + token);
 
             try
@@ -477,11 +483,17 @@ namespace WebPage
 
         public static string GetPostCustomer(string url, Customer oCustomer, string token)
         {
+            // Header - Pruebas
+            //string header = "SandboxSiigoApi";
+
+            // Header - Producción
+            string header = "ProductionSiigoApi";
+
             string result = "";
             WebRequest wRequest = WebRequest.Create(url);
             wRequest.Method = "post";
             wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Partner-Id", "SandboxSiigoApi");
+            wRequest.Headers.Add("Partner-Id", header);
             wRequest.Headers.Add("Authorization", "Bearer " + token);
 
             using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
