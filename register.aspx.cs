@@ -274,11 +274,13 @@ namespace WebPage
 
                 if (Session["idPlan"].ToString() == "1")
                 {
-                    Response.Redirect("wompipay");
+                    Response.Redirect("wompipay", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
-                    Response.Redirect("wompiplan");
+                    Response.Redirect("wompiplan", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
             }
             catch (Exception ex)

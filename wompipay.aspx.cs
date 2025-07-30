@@ -766,6 +766,8 @@ namespace WebPage
 
             int idTipoDocumento = 66444;
             int idVendedor = 51883;
+
+            // TODO: CAMBIAR ESTE MÉTODO DE PAGO YA QUE SE VAN A HACER MODIFICACIONES EN SIIGO
             int idPayment = 59576;
 
             // Siigo Pruebas
@@ -781,7 +783,7 @@ namespace WebPage
             string cedula = Session["documentoAfiliado"].ToString();
             string codSiigoPlan = Session["codSiigoPlan"].ToString();
             string nombrePlan = Session["nombrePlan"].ToString();
-            int precioPlan = int.Parse(Session["ltValorPlan"].ToString());
+            int precioPlan = int.Parse(Session["valorPlan"].ToString());
 
             Invoice oInvoice = new Invoice()
             {
