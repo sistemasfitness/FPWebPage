@@ -576,11 +576,11 @@ namespace WebPage
 
         private void ObtenerTokensDeAceptacion()
         {
+            // Llave Pública - Pruebas
             //string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
-            string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
-            //string strPrivateKeySandbox = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
-            //string strPrivateKeyProduction = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+            // Llave Pública - Producción
+            string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
             // Construir la URL de la API
             // URL - Pruebas
@@ -765,6 +765,7 @@ namespace WebPage
             string url = "https://api.siigo.com/v1/invoices";
 
             int idTipoDocumento = 66444;
+            int costCenterDefault = 13053;
             int idVendedor = 51883;
 
             // TODO: CAMBIAR ESTE MÉTODO DE PAGO YA QUE SE VAN A HACER MODIFICACIONES EN SIIGO
@@ -772,6 +773,7 @@ namespace WebPage
 
             // Siigo Pruebas
             //int idTipoDocumento = 28006;
+            //int costCenterDefault = 621;
             //int idVendedor = 856;
             //int idPayment = 9438;
             //string codSiigoPlan = "COD2433";
@@ -801,7 +803,10 @@ namespace WebPage
                         code = codSiigoPlan,
                         description = nombrePlan,
                         quantity = 1,
-                        price = precioPlan
+                        price = precioPlan,
+                        cost_center = new CostCenter() {
+                            id = costCenterDefault
+                        }
                     }
                 },
                 stamp = new Stamp { send = true },
@@ -890,6 +895,12 @@ namespace WebPage
             public string description { get; set; }
             public int quantity { get; set; }
             public int price { get; set; }
+            public CostCenter cost_center { get; set; }
+        }
+
+        public class CostCenter
+        {
+            public int id { get; set; }
         }
 
         public class Stamp

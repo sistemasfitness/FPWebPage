@@ -361,11 +361,13 @@ namespace WebPage
         public static string GetSiigoToken()
         {
             string url = "https://api.siigo.com/auth";
+            // Datos - Pruebas
+            //string username = "sandbox@siigoapi.com";
+            //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+
+            // Datos - Producción
             string username = "contabilidad@fitnesspeoplecmd.com";
             string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-            //string username = "sandbox@siigoapi.com";
-            //string accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
@@ -466,6 +468,7 @@ namespace WebPage
                 id_type = codSiigo,
                 identification = documento,
                 name = new List<string> { nombres, apellidos },
+                email = correo,
                 phones = new List<Phone> {
                     new Phone { number = celular }
                 },
@@ -522,6 +525,7 @@ namespace WebPage
             public string id_type { get; set; }
             public string identification { get; set; }
             public List<string> name { get; set; }
+            public string email { get; set; }
             public List<Phone> phones { get; set; }
             public List<Contact> contacts { get; set; }
         }
