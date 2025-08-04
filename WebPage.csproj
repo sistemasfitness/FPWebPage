@@ -690,6 +690,7 @@
     <Content Include="sedespg.aspx" />
     <Content Include="servicios.aspx" />
     <Content Include="terminoslegales.aspx" />
+    <Content Include="TestRedeban.aspx" />
     <Content Include="tienda.aspx" />
     <Content Include="verificacion.aspx" />
     <Content Include="Web.config" />
@@ -908,6 +909,7 @@
     <Compile Include="sedespg.aspx.designer.cs">
       <DependentUpon>sedespg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Services\RedebanClient.cs" />
     <Compile Include="servicios.aspx.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -921,6 +923,13 @@
     </Compile>
     <Compile Include="terminoslegales.aspx.designer.cs">
       <DependentUpon>terminoslegales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestRedeban.aspx.cs">
+      <DependentUpon>TestRedeban.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestRedeban.aspx.designer.cs">
+      <DependentUpon>TestRedeban.aspx</DependentUpon>
     </Compile>
     <Compile Include="tienda.aspx.cs">
       <DependentUpon>tienda.aspx</DependentUpon>
