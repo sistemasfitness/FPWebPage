@@ -17,11 +17,13 @@
                 <ContentTemplate>
                     <asp:Label ID="lblMessage" runat="server" Text="Message will appear here." />
                     <br />
-                    <asp:Button ID="btnTest" runat="server" Text="Test Redeban" OnClick="btnEnviarDatos_Click" />
+                    <asp:Button ID="btnEnviarDatos" runat="server" Text="Enviar Datos" OnClick="btnEnviarDatos_Click" />
+                    <br />
+                    <asp:Button ID="btnBorrarTransaccion" runat="server" Text="Borrar Transaccion" OnClick="btnEliminarTransaccion_Click" />
                     <br />
                     <asp:Label ID="lblResult" runat="server" Text="" />
                     <br />
-                    <asp:Timer ID="tmrRespuesta" runat="server" Interval="3000" OnTick="tmrRespuesta_Tick" Enabled="false" />
+                    <asp:Timer ID="tmrRespuesta" runat="server" Interval="5000" OnTick="tmrRespuesta_Tick" Enabled="false" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

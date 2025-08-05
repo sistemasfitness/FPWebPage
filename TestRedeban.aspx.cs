@@ -23,6 +23,7 @@ namespace WebPage
             // Guardar en sesión para usar luego
             Session["idTransaccion"] = idTransaccion;
             Session["token"] = token;
+            Session["intentos"] = 0;
 
             string resultado = RedebanClient.EnviarDatosCompra(idTransaccion, token);
             lblResult.Text = "DatosCompra: " + resultado;
@@ -42,6 +43,7 @@ namespace WebPage
         {
             string idTransaccion = Session["idTransaccion"]?.ToString();
             string token = Session["token"]?.ToString();
+            int intentos = (Session["intentos"] != null) ? (int)Session["intentos"] : 0;
 
             if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
             {
@@ -50,8 +52,12 @@ namespace WebPage
                 return;
             }
 
+            // Incrementar contador
+            intentos++;
+            Session["intentos"] = intentos;
+
             string respuesta = RedebanClient.ConsultarRespuesta(idTransaccion, token);
-            lblResult.Text = "Respuesta: " + respuesta;
+            lblResult.Text = $"Respuesta (Intento {intentos}/10): " + respuesta;
 
             // Si ya hubo respuesta definitiva, detener el Timer
             if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:00"))
@@ -66,6 +72,30 @@ namespace WebPage
                 lblResult.Text += "<br/>❌ Pago rechazado.";
             }
             // Otros Cod: (02 = iniciando, 03+ = error) pueden seguir consultando
+            else if (intentos >= 10)
+            {
+                tmrRespuesta.Enabled = false;
+                lblResult.Text += "<br/>⚠️ Tiempo agotado. El cliente no completó el pago.";
+            }
+        }
+
+        protected void btnEliminarTransaccion_Click(object sender, EventArgs e)
+        {
+            string token = RedebanClient.ObtenerToken();
+            string idTransaccion = Session["idTransaccion"]?.ToString();
+
+            // Guardar en sesión para usar luego
+            Session["idTransaccion"] = idTransaccion;
+            Session["token"] = token;
+
+            string resultado = RedebanClient.BorrarTransaccion(idTransaccion, token);
+            lblResult.Text = "BorrarTransaccion: " + resultado;
+
+            if (resultado.Contains("Cod:00"))
+            {
+                // Activar el Timer para iniciar la consulta automática
+                tmrRespuesta.Enabled = true;
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace WebPage.Services
 
             // ⚠️ CAMBIA ESTOS VALORES
             string codigoUnico = "0020304050"; // Código Redeban
-            string sobreescribir = "S"; // TODO: Cambiar a N
+            string sobreescribir = "S"; // TODO: Cambiar a N o S
             string terminal = "LM9ZZ702";
 
             // ⚙️ Armar la cadena 'Data'
@@ -88,16 +88,16 @@ namespace WebPage.Services
 
             var builder = new CompraDataBuilder
             {
-                Valor = 120000,
-                Propina = 0,
-                IVA = 22800,
-                Factura = "F123456",
-                BaseDevolucionIVA = 97200,
+                Valor = 15630,
+                Propina = 1200,
+                IVA = 2500,
+                Factura = $"F{idTransaccion}",
+                BaseDevolucionIVA = 10630,
                 CodigoCajero = "KIOSCO01",
-                ImpuestoConsumo = 0,
-                MontoBaseIVA = 100000,
-                MontoBaseImpConsumo = 0,
-                Recibo = "R123456",
+                ImpuestoConsumo = 800,
+                MontoBaseIVA = 14000,
+                MontoBaseImpConsumo = 1630,
+                Recibo = $"R{idTransaccion}",
                 Terminal = terminal,
             };
 
@@ -211,6 +211,64 @@ namespace WebPage.Services
             catch (Exception ex)
             {
                 return $"Error al consultar respuesta: {ex.Message}";
+            }
+        }
+
+        public static string BorrarTransaccion(string idTransaccion, string token)
+        {
+            string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
+            string soapAction = "http://tempuri.org/BorrarTransaccion";
+
+            string codigoUnico = "0020304050";
+
+            string soapXml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
+                                <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/"">
+                                   <soapenv:Header/>
+                                   <soapenv:Body>
+                                      <tem:BorrarTransaccion>
+                                         <tem:Cod_unico>{codigoUnico}</tem:Cod_unico>
+                                         <tem:id_transaccion>{idTransaccion}</tem:id_transaccion>
+                                         <tem:token>{token}</tem:token>
+                                      </tem:BorrarTransaccion>
+                                   </soapenv:Body>
+                                </soapenv:Envelope>";
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                byte[] data = Encoding.UTF8.GetBytes(soapXml);
+
+                request.Method = "POST";
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = data.Length;
+                request.Headers.Add("SOAPAction", soapAction);
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string result = reader.ReadToEnd();
+
+                    // Extraer resultado
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(result);
+                    XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
+                    ns.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
+                    ns.AddNamespace("ns", "http://tempuri.org/");
+
+                    XmlNode resultado = doc.SelectSingleNode("//ns:BorrarTransaccionResult", ns);
+                    return resultado?.InnerText ?? "No se obtuvo respuesta del datáfono.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Error al borrar transacción: {ex.Message}";
             }
         }
 
