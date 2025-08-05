@@ -639,6 +639,7 @@
     <Content Include="plan3plus3.aspx" />
     <Content Include="planeasy.aspx" />
     <Content Include="planes.aspx" />
+    <Content Include="planesData.aspx" />
     <Content Include="producto.aspx" />
     <Content Include="Pruebas.aspx" />
     <Content Include="register.aspx" />
@@ -872,6 +873,13 @@
     </Compile>
     <Compile Include="planes.aspx.designer.cs">
       <DependentUpon>planes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planesData.aspx.cs">
+      <DependentUpon>planesData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planesData.aspx.designer.cs">
+      <DependentUpon>planesData.aspx</DependentUpon>
     </Compile>
     <Compile Include="producto.aspx.cs">
       <DependentUpon>producto.aspx</DependentUpon>
