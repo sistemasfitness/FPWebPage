@@ -471,7 +471,7 @@
         </section>
 
         <section class="margin_60_35" id="bg_black2" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container" id="scroll-to">
+            <div class="container" id="scroll-to2">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
 
@@ -518,7 +518,7 @@
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+        <section id="planes" class="margin_60_35" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
                 <p class="lead styled" style="font-weight: 500; color: #FFF;">
@@ -529,23 +529,23 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=1">
-                                <img src="img/planes/plan_easy01.jpg" class="img-responsive" />
+                                <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=7">
-                                <img src="img/planes/mega_prima01.jpg" class="img-responsive" style="height: 450px;" />
+                            <a href="planes?id=11">
+                                <img src="img/planes/plan_8-mas-3.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=2">
-                                <img src="img/planes/mes_fast01.jpg" class="img-responsive" />
+                            <a href="planes?id=10">
+                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -638,7 +638,7 @@
         <!--  End section-->
 
 
-        <div id="planes">
+        <div id="seleccion_sede">
             <div class="container margin_60">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 text-center">

@@ -48,14 +48,14 @@ namespace WebPage
                 txbCelular.Attributes.Add("type", "number");
 
                 // Datos de Pruebas
-                //txbNombre.Text = "Brayan Stiven";
-                //txbApellido.Text = "Ochoa Pineda";
-                //ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
-                //ddlTipoDocumento.SelectedItem.Value = "1";
-                //txbDocumento.Text = "1005139501";
-                //txbEmail.Text = "b.ochoa12@gmail.com";
-                //txbCelular.Text = "3156552301";
-                //txbFechaNac.Text = "2000-01-01";
+                txbNombre.Text = "Brayan Stiven";
+                txbApellido.Text = "Ochoa Pineda";
+                ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
+                ddlTipoDocumento.SelectedItem.Value = "1";
+                txbDocumento.Text = "1005139501";
+                txbEmail.Text = "b.ochoa12@gmail.com";
+                txbCelular.Text = "3156552301";
+                txbFechaNac.Text = "2000-01-01";            
             }
 
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));

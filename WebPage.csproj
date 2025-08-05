@@ -287,7 +287,9 @@
     <Content Include="css\style.css" />
     <Content Include="default.aspx" />
     <Content Include="default_.aspx" />
+    <Content Include="descubrirplan.aspx" />
     <Content Include="eliminarproductocarrito.aspx" />
+    <Content Include="estudiafit.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="gracias.aspx" />
@@ -643,6 +645,7 @@
     <Content Include="producto.aspx" />
     <Content Include="Pruebas.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -808,12 +811,26 @@
     <Compile Include="default_.aspx.designer.cs">
       <DependentUpon>default_.aspx</DependentUpon>
     </Compile>
+    <Compile Include="descubrirplan.aspx.cs">
+      <DependentUpon>descubrirplan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descubrirplan.aspx.designer.cs">
+      <DependentUpon>descubrirplan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eliminarproductocarrito.aspx.cs">
       <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="eliminarproductocarrito.aspx.designer.cs">
       <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estudiafit.aspx.cs">
+      <DependentUpon>estudiafit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estudiafit.aspx.designer.cs">
+      <DependentUpon>estudiafit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -902,6 +919,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resultado.aspx.cs">
+      <DependentUpon>resultado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resultado.aspx.designer.cs">
+      <DependentUpon>resultado.aspx</DependentUpon>
     </Compile>
     <Compile Include="sedes.aspx.cs">
       <DependentUpon>sedes.aspx</DependentUpon>

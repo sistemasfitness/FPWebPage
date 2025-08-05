@@ -24,10 +24,11 @@
                     <a href="default" class="show-submenu" style="font-weight: 900;">INICIO</a>
                 </li>
                 <li><a href="sedespg" style="font-weight: 900;">SEDES</a></li>
-                <li><a href="default#planes" style="font-weight: 900;">PLANES</a></li>
+                <li class="new-item-menu"><a href="descubrirplan" style="font-weight: 900; color: black;">TEST</a></li>
+                <li><a href="default.aspx#planes" style="font-weight: 900;">PLANES</a></li>
                 <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
                 <li><a href="servicios" style="font-weight: 900;">SERVICIOS</a></li>
-                <li><a href="tienda" style="font-weight: 900;">TIENDA</a></li>
+                <%--<li><a href="tienda" style="font-weight: 900;">TIENDA</a></li>--%>
                 <%--<li><a href="blog" style="font-weight: 900;">BLOG</a></li>--%>
                 <li><a href="contacto" style="font-weight: 900;">CONTACTO</a></li>
                 <asp:Literal ID="ltMenuAfil" runat="server"></asp:Literal>
@@ -38,4 +39,16 @@
         <!-- End main-menu -->
     </nav>
 </div>
+
+<style>
+    .new-item-menu {
+        background-image: url('img/descubrir-plan/mainmenu-test.png');
+    }
+
+    @media (max-width: 480px) {
+        .new-item-menu {
+            background-image: none;
+        }
+    }
+</style>
 <!-- End row -->

@@ -1863,6 +1863,12 @@ ul#cat_nav {
 	opacity: 1;
 }
 
+.img_container:hover img {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
 .img_container img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
@@ -3501,8 +3507,83 @@ body.swal2-shown {
 	height: 800px; /* valor por defecto */
 }
 
+/* descubirirplan.aspx */
+.card-row {
+	display: flex;
+	justify-content: space-around;
+	margin: 20px 0;
+	flex-wrap: wrap;
+}
+
+.card {
+	border-radius: 30px;
+	cursor: pointer;
+	transition: background 0.3s;
+	border: 3px solid transparent;
+}
+
+.progress-bar {
+	margin: 0;
+	height: 25px;
+	background: #1A1A1A;
+	border-radius: 15px;
+	margin: 20px 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.progress-fill {
+	height: 100%;
+	background: #E3FF00;
+	border-radius: 15px;
+	width: 0%;
+	transition: width 0.3s;
+}
+
+.quiz-controls {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 10px 0 30px 0;
+}
+
+	.quiz-controls button {
+		padding: 10px 20px;
+		border: none;
+		background: #E3FF00;
+		color: #000000;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+
+		.quiz-controls button:disabled {
+			background: #1A1A1A;
+			color: #FFFFFF;
+			cursor: not-allowed;
+		}
+
+.question-block {
+	margin-bottom: 40px;
+	display: none;
+}
+/* descubirirplan.aspx */
+
 @media (max-width: 480px) {
 	#layerslider {
 		height: 70vh !important;
 	}
+
+	/* resultado.aspx */
+	.banner-descubrir-plan {
+		background-size: cover;
+		background-position: center;
+	}
+
+	.info-planes {
+		flex-direction: column;
+	}
+
+	#divInfoFoto {
+		text-align: center;
+	}
+	/* resultado.aspx */
 }
