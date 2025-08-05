@@ -645,6 +645,7 @@
     <Content Include="producto.aspx" />
     <Content Include="Pruebas.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="registerData.aspx" />
     <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -919,6 +920,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="registerData.aspx.cs">
+      <DependentUpon>registerData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="registerData.aspx.designer.cs">
+      <DependentUpon>registerData.aspx</DependentUpon>
     </Compile>
     <Compile Include="resultado.aspx.cs">
       <DependentUpon>resultado.aspx</DependentUpon>

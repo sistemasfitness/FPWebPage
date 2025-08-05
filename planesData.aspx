@@ -88,7 +88,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?id=1">
+                            <a href="registerData?idPlan=1">
                                 <img src="img/planes/plan_easy01.jpg" class="img-responsive" />
                             </a>
                         </div>
@@ -96,7 +96,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?id=7">
+                            <a href="registerData?idPlan=7">
                                 <img src="img/planes/mega_prima01.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
@@ -104,7 +104,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?id=2">
+                            <a href="registerData?idPlan=2">
                                 <img src="img/planes/mes_fast01.jpg" class="img-responsive" />
                             </a>
                         </div>
