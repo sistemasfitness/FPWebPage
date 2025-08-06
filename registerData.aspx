@@ -239,7 +239,18 @@
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" Enabled="false"/>
+                                <%--<asp:Button ID="btnRegistrarAfiliado" runat="server" 
+                                    CssClass="btn_full" 
+                                    Text="Registrar y pagar" 
+                                    OnClick="btnRegistrar" 
+                                    Enabled="false"/>--%>
+
+                                <asp:Button ID="btnPagar" runat="server"
+                                    CssClass="btn_full"
+                                    Text="Registrar y pagar"
+                                    UseSubmitBehavior="false"
+                                    OnClientClick="return validarYEjecutarPago();" 
+                                    OnClick="btnPagar_Click" />
                             </div>
                         </div>
                         <div class="box_style_4">
@@ -282,6 +293,193 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+    <script>
+
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            });
+        }
+
+        function validarCamposFormulario() {
+            const tipoDocumento = document.getElementById("<%= ddlTipoDocumento.ClientID %>");
+            const documento = document.getElementById("<%= txbDocumento.ClientID %>");
+            const nombres = document.getElementById("<%= txbNombre.ClientID %>");
+            const apellidos = document.getElementById("<%= txbApellido.ClientID %>");
+            const correo = document.getElementById("<%= txbEmail.ClientID %>");
+            const telefono = document.getElementById("<%= txbCelular.ClientID %>");
+            const genero = document.getElementById("<%= ddlGenero.ClientID %>");
+            const fechaNacimiento = document.getElementById("<%= txbFechaNac.ClientID %>");
+
+            const ciudad = document.getElementById("<%= ddlCiudad.ClientID %>");
+            const sede = document.getElementById("<%= ddlSedes.ClientID %>");
+            const fechaInicio = document.getElementById("<%= txbFechaIni.ClientID %>");
+
+            if (!tipoDocumento.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona el tipo de documento.', 'warning');
+                tipoDocumento.focus();
+                return false;
+            }
+
+            if (!documento.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de documento.', 'warning');
+                documento.focus();
+                return false;
+            }
+
+            if (!nombres.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa tu nombre.', 'warning');
+                nombres.focus();
+                return false;
+            }
+
+            if (!apellidos.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa tus apellidos.', 'warning');
+                apellidos.focus();
+                return false;
+            }
+
+            if (!correo.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el correo electrónico.', 'warning');
+                correo.focus();
+                return false;
+            }
+
+            if (!telefono.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa tu número de celular.', 'warning');
+                telefono.focus();
+                return false;
+            }
+
+            if (!genero.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona el género.', 'warning');
+                genero.focus();
+                return false;
+            }
+
+            if (!fechaNacimiento.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa tu fecha de nacimiento.', 'warning');
+                fechaNacimiento.focus();
+                return false;
+            }
+
+            if (!ciudad.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona la ciudad.', 'warning');
+                ciudad.focus();
+                return false;
+            }
+
+            if (!sede.value) {
+                mostrarAlerta('Campo requerido', 'Por favor, selecciona la sede.', 'warning');
+                sede.focus();
+                return false;
+            }
+
+            if (!fechaInicio.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa la fecha de inicio del plan.', 'warning');
+                fechaInicio.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function validarYEjecutarPago() {
+            const cb1 = document.getElementById("cbAutorizo");
+            //const cb2 = document.getElementById("cbAutorizo2");
+            //const cb3 = document.getElementById("cbAutorizo3");
+
+            /*const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;*/
+
+            const autorizacionesOK = cb1.checked;
+            const formularioOK = validarCamposFormulario();
+
+            if (!autorizacionesOK) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+                return false;
+            }
+
+            if (!formularioOK) {
+                return false;
+            }
+
+            ejecutarPago();
+            return false;
+        }
+
+        function ejecutarPago() {
+            mostrarAlerta(
+                'Procesando',
+                'Estamos procesando tu pago. Por favor espera...',
+                'info',
+                {
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                }
+            );
+
+            // Deshabilitar el botón
+            const btn = document.getElementById('<%= btnPagar.ClientID %>');
+            if (btn) btn.disabled = true;
+
+            // Ejecutar postback manualmente
+            setTimeout(function () {
+                __doPostBack('<%= btnPagar.UniqueID %>', '');
+            }, 300); // Aumentado para asegurar que SweetAlert se vea
+            }
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#txbDocumento').on('change blur', function () {
+                var documento = $(this).val().trim();
+
+                if (documento.length === 0) {
+                    $('#txbNombre').val('');
+                    $('#txbApellido').val('');
+                    $('#txbFechaNac').val('');
+                    $('#ddlGenero').val('');
+                    return;
+                }
+
+                var url = 'https://pqrdsuperargo.supersalud.gov.co/api/api/adres/0/' + documento;
+
+                // Limpia primero los campos
+                $('#txbNombre').val('');
+                $('#txbApellido').val('');
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function (data) {
+                        // Nombres
+                        var nombreCompleto = [data.nombre, data.s_nombre].filter(Boolean).join(' ').toUpperCase();
+                        var apellidoCompleto = [data.apellido, data.s_apellido].filter(Boolean).join(' ').toUpperCase();
+
+                        $('#txbNombre').val(nombreCompleto);
+                        $('#txbApellido').val(apellidoCompleto);
+                        $('#txbFechaNac').val((data.fecha_nacimiento));
+                        $('#ddlGenero').val(data.sexo);
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         window.onload = function () {
             const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');

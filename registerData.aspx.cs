@@ -144,7 +144,7 @@ namespace WebPage
             dt.Dispose();
         }
 
-        protected void btnRegistrar(object sender, EventArgs e)
+        protected void btnPagar_Click(object sender, EventArgs e)
         {
             try
             {

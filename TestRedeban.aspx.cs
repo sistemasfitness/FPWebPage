@@ -60,13 +60,13 @@ namespace WebPage
             lblResult.Text = $"Respuesta (Intento {intentos}/10): " + respuesta;
 
             // Si ya hubo respuesta definitiva, detener el Timer
-            if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:00"))
+            if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))
             {
                 tmrRespuesta.Enabled = false;
                 lblResult.Text += "<br/>✅ Pago aprobado.";
                 // Aquí podrías guardar en BD y mostrar pantalla de éxito
             }
-            else if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:01"))
+            else if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))
             {
                 tmrRespuesta.Enabled = false;
                 lblResult.Text += "<br/>❌ Pago rechazado.";
