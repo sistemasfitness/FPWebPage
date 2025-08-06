@@ -536,16 +536,16 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=11">
-                                <img src="img/planes/plan_8-mas-3.jpg" class="img-responsive" style="height: 450px;" />
+                            <a href="planes?id=14">
+                                <img src="img/planes/plan_10-meses-agosto.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=10">
-                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
+                            <a href="planes?id=13">
+                                <img src="img/planes/plan_6-meses-duo.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
