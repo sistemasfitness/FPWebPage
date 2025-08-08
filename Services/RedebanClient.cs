@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 
@@ -11,7 +13,9 @@ namespace WebPage.Services
 {
     public class RedebanClient
     {
-        public static string ObtenerToken()
+        private static readonly HttpClient _httpClient = new HttpClient();
+
+        public static async Task<string> ObtenerTokenAsync()
         {
             string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
             string accionSoap = "http://tempuri.org/Token";
@@ -35,28 +39,17 @@ namespace WebPage.Services
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                byte[] data = Encoding.UTF8.GetBytes(soapXml);
-
-                request.Method = "POST";
-                request.ContentType = "text/xml; charset=utf-8";
-                request.ContentLength = data.Length;
-                request.Headers.Add("SOAPAction", accionSoap);
-
-                // Requiere TLS 1.2
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                using (Stream stream = request.GetRequestStream())
+                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
-                    stream.Write(data, 0, data.Length);
-                }
+                    content.Headers.Add("SOAPAction", accionSoap);
 
-                using (WebResponse response = request.GetResponse())
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = reader.ReadToEnd();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-                    // Parsear respuesta SOAP para extraer solo el token
+                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    response.EnsureSuccessStatusCode();
+
+                    string result = await response.Content.ReadAsStringAsync();
+
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
@@ -73,14 +66,14 @@ namespace WebPage.Services
             }
         }
 
-        public static string EnviarDatosCompra(string idTransaccion, string token)
+        public static async Task<string> EnviarDatosCompraAsync(string idTransaccion, string token)
         {
             string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
             string soapAction = "http://tempuri.org/DatosCompra";
 
             // ⚠️ CAMBIA ESTOS VALORES
             string codigoUnico = "0020304050"; // Código Redeban
-            string sobreescribir = "S"; // TODO: Cambiar a N o S
+            string sobreescribir = "N"; // TODO: Cambiar a N o S
             string terminal = "LM9ZZ702";
 
             // ⚙️ Armar la cadena 'Data'
@@ -119,27 +112,15 @@ namespace WebPage.Services
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                byte[] dataBytes = Encoding.UTF8.GetBytes(soapXml);
-
-                request.Method = "POST";
-                request.ContentType = "text/xml; charset=utf-8";
-                request.ContentLength = dataBytes.Length;
-                request.Headers.Add("SOAPAction", soapAction);
-
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                using (Stream stream = request.GetRequestStream())
+                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
-                    stream.Write(dataBytes, 0, dataBytes.Length);
-                }
+                    content.Headers.Add("SOAPAction", soapAction);
 
-                using (WebResponse response = request.GetResponse())
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = reader.ReadToEnd();
+                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    response.EnsureSuccessStatusCode();
 
-                    // Extraer el mensaje: Cod:XX,Msj:XXXX
+                    string result = await response.Content.ReadAsStringAsync();
+
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
@@ -156,7 +137,7 @@ namespace WebPage.Services
             }
         }
 
-        public static string ConsultarRespuesta(string idTransaccion, string token)
+        public static async Task<string> ConsultarRespuestaAsync(string idTransaccion, string token)
         {
             string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
             string soapAction = "http://tempuri.org/Respuesta";
@@ -177,27 +158,15 @@ namespace WebPage.Services
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                byte[] data = Encoding.UTF8.GetBytes(soapXml);
-
-                request.Method = "POST";
-                request.ContentType = "text/xml; charset=utf-8";
-                request.ContentLength = data.Length;
-                request.Headers.Add("SOAPAction", soapAction);
-
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                using (Stream stream = request.GetRequestStream())
+                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
-                    stream.Write(data, 0, data.Length);
-                }
+                    content.Headers.Add("SOAPAction", soapAction);
 
-                using (WebResponse response = request.GetResponse())
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = reader.ReadToEnd();
+                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    response.EnsureSuccessStatusCode();
 
-                    // Extraer el contenido de RespuestaResult
+                    string result = await response.Content.ReadAsStringAsync();
+
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
@@ -214,7 +183,7 @@ namespace WebPage.Services
             }
         }
 
-        public static string BorrarTransaccion(string idTransaccion, string token)
+        public static async Task<string> BorrarTransaccionAsync(string idTransaccion, string token)
         {
             string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
             string soapAction = "http://tempuri.org/BorrarTransaccion";
@@ -235,27 +204,15 @@ namespace WebPage.Services
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                byte[] data = Encoding.UTF8.GetBytes(soapXml);
-
-                request.Method = "POST";
-                request.ContentType = "text/xml; charset=utf-8";
-                request.ContentLength = data.Length;
-                request.Headers.Add("SOAPAction", soapAction);
-
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                using (Stream stream = request.GetRequestStream())
+                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
-                    stream.Write(data, 0, data.Length);
-                }
+                    content.Headers.Add("SOAPAction", soapAction);
 
-                using (WebResponse response = request.GetResponse())
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = reader.ReadToEnd();
+                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    response.EnsureSuccessStatusCode();
 
-                    // Extraer resultado
+                    string result = await response.Content.ReadAsStringAsync();
+
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);

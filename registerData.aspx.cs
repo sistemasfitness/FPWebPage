@@ -1,14 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using MySqlX.XDevAPI.Relational;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.Services;
 
 namespace WebPage
 {
@@ -39,9 +42,9 @@ namespace WebPage
                 //txbApellido.Text = "Ochoa Pineda";
                 //ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
                 //ddlTipoDocumento.SelectedItem.Value = "1";
-                //txbDocumento.Text = "1005139501";
-                //txbEmail.Text = "b.ochoa12@gmail.com";
-                //txbCelular.Text = "3156552301";
+                txbDocumento.Text = "1005137105";
+                txbEmail.Text = "carlos.rivera0904@gmail.com";
+                txbCelular.Text = "3133664411";
                 //txbFechaNac.Text = "2000-01-01";
             }
 
@@ -144,135 +147,234 @@ namespace WebPage
             dt.Dispose();
         }
 
-        protected void btnPagar_Click(object sender, EventArgs e)
+        protected async void btnPagar_Click(object sender, EventArgs e)
         {
             try
             {
-                clasesglobales cg = new clasesglobales();
+                // 1. Compra del plan con Redeban
+                bool pagoIniciado = await RealizarCompraAsync();
 
-                //Guardamos los datos del afiliado
-                string strCedula = txbDocumento.Text.ToString();
-                Session.Add("documentoAfiliado", strCedula);
-                int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
-
-                Session.Add("idAfiliado", "");
-
-                DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                if (dtAfiliado.Rows.Count > 0)
+                if (!pagoIniciado)
                 {
-                    Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+                    MostrarAlerta("Error de Pago", "No se pudo iniciar el proceso de pago.", "error");
+                    return;
                 }
 
-                string strNombre = txbNombre.Text.ToString();
-                Session.Add("nombreAfiliado", strNombre);
-                string strApellido = txbApellido.Text.ToString();
-                Session.Add("apellidoAfiliado", strApellido);
-                string strCelular = txbCelular.Text.ToString();
-                Session.Add("celularAfiliado", strCelular);
-                string strEmail = txbEmail.Text.ToString();
-                Session.Add("emailAfiliado", strEmail);
-                int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
-                string strFechaNac = txbFechaNac.Text.ToString();
+                // Si se inició el pago, activamos el Timer para polling
+                tmrRespuesta.Enabled = true;
 
-                string strFechaInicioPlan = txbFechaIni.Text.ToString();
-                Session.Add("fechaInicioPlan", strFechaInicioPlan);
-                string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
-                Session.Add("fechaFinPlan", strFechaFinPlan);
+                // 2. Registro/actualización del afiliado
 
-                DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
-                Session.Add("meses", dtPlan.Rows[0]["Meses"]);
-                int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
-                int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
-                string strValorPlan = hfValorPlan.Value;
-                Session.Add("valorPlan", strValorPlan);
-                string strLtValor = ltValor.Text.ToString();
-                Session.Add("ltValorPlan", strLtValor);
+                // 3. Creación del cliente en Siigo (si no existe)
 
-                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
-                if (Session["idAfiliado"].ToString() != "")
-                {
-                    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                //clasesglobales cg = new clasesglobales();
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Fecha de inicio inválida",
-                                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                                "warning"
-                            );
+                ////Guardamos los datos del afiliado
+                //string strCedula = txbDocumento.Text.ToString();
+                //Session.Add("documentoAfiliado", strCedula);
+                //int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
 
-                            return;
-                        }
-                    }
+                ////Session.Add("idAfiliado", "");
 
-                    dtFechaFinPlan.Dispose();
+                //string idAfiliado = "";
 
-                    cg.ActualizarAfiliadoWeb(
-                        strCedula,
-                        strNombre,
-                        strApellido,
-                        strCelular,
-                        strEmail,
-                        idGenero,
-                        strFechaNac,
-                        idCiudad,
-                        idSede,
-                        "Pendiente"
-                    );
-                }
-                else
-                {
-                    //Si no existe el documento del afiliado, lo creamos como nuevo.
-                    cg.InsertarAfiliadoWeb(
-                        strCedula,
-                        idTipoDocumento,
-                        strNombre,
-                        strApellido,
-                        strCelular,
-                        strEmail,
-                        idGenero,
-                        strFechaNac,
-                        idCiudad,
-                        idSede
-                    );
+                //DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
+                //if (dtAfiliado.Rows.Count > 0)
+                //{
+                //    idAfiliado = dtAfiliado.Rows[0]["IdAfiliado"].ToString();
+                //}
 
-                    //EnviarCorreoBienvenida();
-                }
+                //string strNombre = txbNombre.Text.ToString();
+                //Session.Add("nombreAfiliado", strNombre);
+                //string strApellido = txbApellido.Text.ToString();
+                //Session.Add("apellidoAfiliado", strApellido);
+                //string strCelular = txbCelular.Text.ToString();
+                //Session.Add("celularAfiliado", strCelular);
+                //string strEmail = txbEmail.Text.ToString();
+                //Session.Add("emailAfiliado", strEmail);
+                //int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
+                //string strFechaNac = txbFechaNac.Text.ToString();
 
-                DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
+                //string strFechaInicioPlan = txbFechaIni.Text.ToString();
+                ////Session.Add("fechaInicioPlan", strFechaInicioPlan);
+                //string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
+                ////Session.Add("fechaFinPlan", strFechaFinPlan);
 
-                dtAfiliado.Dispose();
-                dtAfiliado2.Dispose();
-                dtPlan.Dispose();
+                //DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
+                ////Session.Add("meses", dtPlan.Rows[0]["Meses"]);
+                //int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
+                //int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
+                //string strValorPlan = hfValorPlan.Value;
+                ////Session.Add("valorPlan", strValorPlan);
+                //string strLtValor = ltValor.Text.ToString();
+                ////Session.Add("ltValorPlan", strLtValor);
 
-                // Siigo API
-                string token = GetSiigoToken();
-                Session.Add("tokenSiigo", token);
-                bool exists = ConsultSiigoCustomer(strCedula, token);
-                ManageCustomer(exists, token);
+                ////Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos sus datos
+                //if (idAfiliado != "")
+                //{
+                //    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
+                //    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                if (Session["idPlan"].ToString() == "1")
-                {
-                    Response.Redirect("wompipay", false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
-                else
-                {
-                    Response.Redirect("wompiplan", false);
-                    Context.ApplicationInstance.CompleteRequest();
-                }
+                //    if (dtFechaFinPlan.Rows.Count > 0)
+                //    {
+                //        // Obtener fecha de fin anterior
+                //        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                //        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+
+                //        if (fechaInicioNuevo <= fechaFinAnterior)
+                //        {
+                //            MostrarAlerta(
+                //                "Fecha de inicio inválida",
+                //                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
+                //                "warning"
+                //            );
+
+                //            return;
+                //        }
+                //    }
+
+                //    dtFechaFinPlan.Dispose();
+
+                //    cg.ActualizarAfiliadoWeb(
+                //        strCedula,
+                //        strNombre,
+                //        strApellido,
+                //        strCelular,
+                //        strEmail,
+                //        idGenero,
+                //        strFechaNac,
+                //        idCiudad,
+                //        idSede,
+                //        "Pendiente"
+                //    );
+                //}
+                //else
+                //{
+                //    //Si no existe el documento del afiliado, lo creamos como nuevo.
+                //    cg.InsertarAfiliadoWeb(
+                //        strCedula,
+                //        idTipoDocumento,
+                //        strNombre,
+                //        strApellido,
+                //        strCelular,
+                //        strEmail,
+                //        idGenero,
+                //        strFechaNac,
+                //        idCiudad,
+                //        idSede
+                //    );
+
+                //    //EnviarCorreoBienvenida();
+                //}
+
+                ////DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
+                ////Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
+
+                //dtAfiliado.Dispose();
+                ////dtAfiliado2.Dispose();
+                //dtPlan.Dispose();
+
+                //// Siigo API
+                //string token = GetSiigoToken();
+                //Session.Add("tokenSiigo", token);
+                //bool exists = ConsultSiigoCustomer(strCedula, token);
+                //ManageCustomer(exists, token);
+
+                //if (Session["idPlan"].ToString() == "1")
+                //{
+                //    Response.Redirect("wompipay", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //}
+                //else
+                //{
+                //    Response.Redirect("wompiplan", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //}
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
+            }
+        }
+
+        private async Task<bool> RealizarCompraAsync()
+        {
+            try
+            {
+                string token = await RedebanClient.ObtenerTokenAsync();
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    MostrarAlerta("Error", "No se pudo obtener el token de Redeban.", "error");
+                    return false;
+                }
+
+                string idTransaccion = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+                // Guardar en sesión para usar luego
+                Session["idTransaccion"] = idTransaccion;
+                Session["token"] = token;
+                Session["intentos"] = 0;
+
+                string resultado = await RedebanClient.EnviarDatosCompraAsync(idTransaccion, token);
+                //lblResult.Text = "DatosCompra: " + resultado;
+
+                if (resultado.Contains("Cod:00"))
+                {
+                    // Activar el Timer para iniciar la consulta automática
+                    //tmrRespuesta.Enabled = true;
+
+                    return true;
+                }
+                else
+                {
+                    MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error inesperado", "Ocurrió un error al procesar el pago.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en RealizarCompra: " + ex.ToString());
+                return false;
+            }
+        }
+
+        protected async void tmrRespuesta_Tick(object sender, EventArgs e)
+        {
+            int intentos = (int)(Session["intentos"] ?? 0);
+            if (intentos >= 15)
+            {
+                tmrRespuesta.Enabled = false;
+                MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning");
+                return;
+            }
+
+            Session["intentos"] = intentos + 1;
+
+            string idTransaccion = Session["idTransaccion"]?.ToString();
+            string token = Session["token"]?.ToString();
+
+            if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
+            {
+                tmrRespuesta.Enabled = false;
+                MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error");
+                return;
+            }
+
+            string respuesta = await RedebanClient.ConsultarRespuestaAsync(idTransaccion, token);
+
+            if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))
+            {
+                tmrRespuesta.Enabled = false;
+                MostrarAlerta("Pago aprobado", "La transacción fue aprobada exitosamente.", "success");
+                // Aquí podrías llamar a tu registro de afiliado y Siigo
+            }
+            else if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))
+            {
+                tmrRespuesta.Enabled = false;
+                MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error");
             }
         }
 
@@ -349,12 +451,12 @@ namespace WebPage
         {
             string url = "https://api.siigo.com/auth";
             // Datos - Pruebas
-            //string username = "sandbox@siigoapi.com";
-            //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+            string username = "sandbox@siigoapi.com";
+            string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
 
             // Datos - Producción
-            string username = "contabilidad@fitnesspeoplecmd.com";
-            string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
+            //string username = "contabilidad@fitnesspeoplecmd.com";
+            //string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
@@ -387,10 +489,10 @@ namespace WebPage
             string URL = "https://api.siigo.com/v1/customers?identification=" + documento;
 
             // Header - Pruebas
-            //string header = "SandboxSiigoApi";
+            string header = "SandboxSiigoApi";
 
             // Header - Producción
-            string header = "ProductionSiigoApi";
+            //string header = "ProductionSiigoApi";
 
             WebRequest request = WebRequest.Create(URL);
             request.Method = "GET";
@@ -476,10 +578,10 @@ namespace WebPage
         public static string GetPostCustomer(string url, Customer oCustomer, string token)
         {
             // Header - Pruebas
-            //string header = "SandboxSiigoApi";
+            string header = "SandboxSiigoApi";
 
             // Header - Producción
-            string header = "ProductionSiigoApi";
+            //string header = "ProductionSiigoApi";
 
             string result = "";
             WebRequest wRequest = WebRequest.Create(url);

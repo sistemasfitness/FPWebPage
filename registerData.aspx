@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registerData.aspx.cs" Inherits="WebPage.registerData" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="registerData.aspx.cs" Inherits="WebPage.registerData" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -199,6 +199,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <asp:Timer ID="tmrRespuesta" runat="server" Interval="5000" Enabled="false" OnTick="tmrRespuesta_Tick" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -234,7 +236,6 @@
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S.</a> realizar el cobro recurrente.</span>
                                     </label>
                                 </div>
-
                             </div>
                             <div id="message-subscribe"></div>
                             <hr />
@@ -295,7 +296,7 @@
     <script src="js/functions.js"></script>
     <script>
 
-        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}) {
+        function mostrarAlerta(titulo, mensaje, tipo) {
             Swal.fire({
                 title: titulo,
                 text: mensaje,
@@ -307,7 +308,6 @@
                     popup: 'alert',
                     confirmButton: 'btn-confirm-alert'
                 },
-                ...opcionesExtras
             });
         }
 
@@ -418,18 +418,39 @@
         }
 
         function ejecutarPago() {
-            mostrarAlerta(
-                'Procesando',
-                'Estamos procesando tu pago. Por favor espera...',
-                'info',
-                {
-                    allowOutsideClick: false,
-                    showConfirmButton: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
+            let contador = 5;
+
+            // Primera alerta: procesando pago
+            Swal.fire({
+                title: 'Procesando',
+                html: `Estamos procesando tu pago.<br><br>Iniciando en <b>${contador}</b> segundos...`,
+                icon: 'info',
+                background: '#3C3C3C',
+                allowOutsideClick: false,
+                showConfirmButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                didOpen: () => {
+                    Swal.showLoading();
+                    const interval = setInterval(() => {
+                        contador--;
+                        Swal.getHtmlContainer().querySelector('b').textContent = contador;
+
+                        if (contador <= 0) {
+                            clearInterval(interval);
+                            // Segunda alerta: indicar botón verde
+                            Swal.update({
+                                title: 'Continúa en tu datáfono',
+                                html: 'Por favor, presiona la <b>TECLA VERDE</b> en el datáfono para continuar con el pago.',
+                                icon: 'info'
+                            });
+                        }
+                    }, 1000);
                 }
-            );
+            });
 
             // Deshabilitar el botón
             const btn = document.getElementById('<%= btnPagar.ClientID %>');
@@ -438,7 +459,7 @@
             // Ejecutar postback manualmente
             setTimeout(function () {
                 __doPostBack('<%= btnPagar.UniqueID %>', '');
-            }, 300); // Aumentado para asegurar que SweetAlert se vea
+            }, 10000); // Aumentado para asegurar que SweetAlert se vea
             }
 
     </script>
@@ -480,7 +501,7 @@
         });
     </script>
 
-    <script>
+    <%--<script>
         window.onload = function () {
             const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');
             const btnRegistrar = document.getElementById('<%= btnRegistrarAfiliado.ClientID %>');
@@ -494,6 +515,6 @@
             // Inicializar el estado al cargar la página
             toggleButton();
         }
-    </script>
+    </script>--%>
 </body>
 </html>
