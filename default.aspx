@@ -554,19 +554,19 @@
 
                 <div class="banner-tarifas img_container"></div>
 
-                <section class="" style="padding-top: 10px; padding-bottom: 15px;">
+                <section style="padding-top: 10px; padding-bottom: 15px;">
                     <div class="container" style="display: flex; flex-direction: column;">
                         <div class="row">
                             <div class="card-row-tarifas">
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3"  >
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
                                     <img src="img/tarifas/01_plan-referencia-easy.png" class="img-responsive" />
                                 </div>
 
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
                                     <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
                                 </div>
 
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3"  >
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
                                     <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
                                 </div>
 
