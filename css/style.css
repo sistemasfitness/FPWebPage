@@ -988,8 +988,13 @@ a#view_all {
 	color: #fff;
 }
 
+#profesionales {
+	background: #1A1A1A url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
 #planes {
-	background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;
+	background: #000000 url(../img/bg_subscribe.png) no-repeat left top;
 	color: #fff;
 }
 
@@ -2699,7 +2704,7 @@ label {
 
 /*-------- 3.9 Plans price style --------*/
 .plans {
-	margin: 0px auto 50px;
+	margin: 0px auto 0px;
 	zoom: 1;
 }
 
@@ -3566,6 +3571,15 @@ body.swal2-shown {
 	display: none;
 }
 /* descubirirplan.aspx */
+
+/* default.aspx */
+.card-row-tarifas {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+	flex-wrap: wrap;
+}
+/* default.aspx */
 
 @media (max-width: 480px) {
 	#layerslider {
