@@ -535,16 +535,16 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=14">
-                                <img src="img/planes/plan_10-meses-agosto.jpg" class="img-responsive" style="height: 450px;" />
+                            <a href="planes?id=15">
+                                <img src="img/planes/plan_15-anios.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=13">
-                                <img src="img/planes/plan_6-meses-duo.jpg" class="img-responsive" />
+                            <a href="planes?id=10">
+                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -554,7 +554,7 @@
 
                 <div class="banner-tarifas img_container"></div>
 
-                <section class="" style="padding-top: 10px; padding-bottom: 15px; he">
+                <section class="" style="padding-top: 10px; padding-bottom: 15px;">
                     <div class="container" style="display: flex; flex-direction: column;">
                         <div class="row">
                             <div class="card-row-tarifas">
@@ -565,11 +565,7 @@
                                 <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
                                     <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="card-row-tarifas">
                                 <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3"  >
                                     <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
                                 </div>
