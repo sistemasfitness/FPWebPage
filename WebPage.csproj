@@ -641,9 +641,10 @@
     <Content Include="plan3plus3.aspx" />
     <Content Include="planeasy.aspx" />
     <Content Include="planes.aspx" />
-    <Content Include="planesData.aspx" />
+    <Content Include="planesKiosco.aspx" />
     <Content Include="producto.aspx" />
     <Content Include="Pruebas.aspx" />
+    <Content Include="pagoRedeban.aspx" />
     <Content Include="register.aspx" />
     <Content Include="registerData.aspx" />
     <Content Include="resultado.aspx" />
@@ -892,12 +893,12 @@
     <Compile Include="planes.aspx.designer.cs">
       <DependentUpon>planes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="planesData.aspx.cs">
-      <DependentUpon>planesData.aspx</DependentUpon>
+    <Compile Include="planesKiosco.aspx.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="planesData.aspx.designer.cs">
-      <DependentUpon>planesData.aspx</DependentUpon>
+    <Compile Include="planesKiosco.aspx.designer.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
     </Compile>
     <Compile Include="producto.aspx.cs">
       <DependentUpon>producto.aspx</DependentUpon>
@@ -913,6 +914,13 @@
     </Compile>
     <Compile Include="Pruebas.aspx.designer.cs">
       <DependentUpon>Pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pagoRedeban.aspx.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagoRedeban.aspx.designer.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
     </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>

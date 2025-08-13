@@ -460,7 +460,7 @@
             setTimeout(function () {
                 __doPostBack('<%= btnPagar.UniqueID %>', '');
             }, 10000); // Aumentado para asegurar que SweetAlert se vea
-            }
+        }
 
     </script>
 

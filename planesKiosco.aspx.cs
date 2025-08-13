@@ -11,7 +11,7 @@ namespace WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["OrigenPlanes"] = "KIOSCO";
         }
     }
 }

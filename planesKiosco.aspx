@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planesData.aspx.cs" Inherits="WebPage.planesData" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planesKiosco.aspx.cs" Inherits="WebPage.planesData" %>
 
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
@@ -88,7 +88,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?idPlan=1">
+                            <a href="register?idPlan=1">
                                 <img src="img/planes/plan_easy01.jpg" class="img-responsive" />
                             </a>
                         </div>
@@ -96,7 +96,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?idPlan=7">
+                            <a href="register?idPlan=7">
                                 <img src="img/planes/mega_prima01.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
@@ -104,7 +104,7 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="registerData?idPlan=2">
+                            <a href="register?idPlan=2">
                                 <img src="img/planes/mes_fast01.jpg" class="img-responsive" />
                             </a>
                         </div>

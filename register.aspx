@@ -76,22 +76,6 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>Nombre(s): *</label>
-                                        <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
-                                            placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Apellido(s): *</label>
-                                        <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
-                                            placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
                                         <label>Tipo de Documento: *</label>
                                         <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
                                             AppendDataBoundItems="true" DataTextField="TipoDocumento" 
@@ -105,6 +89,22 @@
                                     <div class="form-group">
                                         <label>Nro. de Documento: *</label>
                                         <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Nombre(s): *</label>
+                                        <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
+                                            placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Apellido(s): *</label>
+                                        <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
+                                            placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>

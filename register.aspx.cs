@@ -32,6 +32,8 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
+                string origen = Session["OrigenPlanes"] != null ? Session["OrigenPlanes"].ToString() : "";
+
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
@@ -285,7 +287,8 @@ namespace WebPage
 
                 if (Session["idPlan"].ToString() == "1")
                 {
-                    Response.Redirect("wompipay", false);
+                    //Response.Redirect("wompipay", false);
+                    Response.Redirect("pagoRedeban", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 else
