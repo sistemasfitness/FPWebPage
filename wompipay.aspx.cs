@@ -16,6 +16,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.Services;
 using static WebPage.register;
 
 namespace WebPage
@@ -79,7 +80,37 @@ namespace WebPage
                 }
 
                 // 1. Creación de factura en Siigo
-                string idSiigoFactura = await RegisterInvoiceAsync();
+                var siigoClient = new SiigoClient(
+                    new HttpClient(),
+                    "https://api.siigo.com/",
+                    "sandbox@siigoapi.com",
+                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                    "SandboxSiigoApi"
+                );
+
+                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                //    Session["documentoAfiliado"].ToString(), 
+                //    Session["codSiigoPlan"].ToString(), 
+                //    Session["nombrePlan"].ToString(),
+                //    int.Parse(Session["valorPlan"].ToString())
+                //);
+
+                // Siigo Pruebas
+                //    //int idTipoDocumento = 28006;
+                //    //int costCenterDefault = 621;
+                //    //int idVendedor = 856;
+                //    //int idPayment = 9438;
+                string codSiigoPlan = "COD2433";
+                string nombrePlan = "Pago de suscripción";
+                int precioPlan = 10000;
+                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                    Session["documentoAfiliado"].ToString(),
+                    codSiigoPlan,
+                    nombrePlan,
+                    precioPlan
+                );
 
                 clasesglobales cg = new clasesglobales();
 
@@ -144,10 +175,10 @@ namespace WebPage
 
                 //Tokenizar una tarjeta
                 // URL - Pruebas
-                //string url = "https://sandbox.wompi.co/v1/tokens/cards";
+                string url = "https://sandbox.wompi.co/v1/tokens/cards";
 
                 // URL - Producción
-                string url = "https://production.wompi.co/v1/tokens/cards";
+                //string url = "https://production.wompi.co/v1/tokens/cards";
                 string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
 
                 Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
@@ -196,10 +227,10 @@ namespace WebPage
             try
             {
                 // URL - Pruebas
-                //string url = "https://sandbox.wompi.co/v1/payment_sources";
+                string url = "https://sandbox.wompi.co/v1/payment_sources";
 
                 // URL - Producción
-                string url = "https://production.wompi.co/v1/payment_sources";
+                //string url = "https://production.wompi.co/v1/payment_sources";
                 string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
                 Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
@@ -222,10 +253,10 @@ namespace WebPage
                 string moneda = "COP";
 
                 // Integrity Secret - Pruebas
-                //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 
                 // Integrity Secret - Producción
-                string integrity_secret = "prod_integrity_x3D1pIYNDtSP1WulflhafCNbCLCFFP4t";
+                //string integrity_secret = "prod_integrity_x3D1pIYNDtSP1WulflhafCNbCLCFFP4t";
 
                 string concatenado = reference + monto + moneda + integrity_secret;
                 string hash256 = ComputeSha256Hash(concatenado);
@@ -263,10 +294,10 @@ namespace WebPage
             try
             {
                 // URL - Pruebas
-                //string url = "https://sandbox.wompi.co/v1/transactions";
+                string url = "https://sandbox.wompi.co/v1/transactions";
 
                 // URL - Producción
-                string url = "https://production.wompi.co/v1/transactions";
+                //string url = "https://production.wompi.co/v1/transactions";
                 string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
 
                 Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
@@ -402,10 +433,10 @@ namespace WebPage
             using (HttpClient client = new HttpClient())
             {
                 // Llave Pública - Pruebas
-                //string keyPub = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+                string keyPub = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
 
                 // Llave Pública - Producción
-                string keyPub = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+                //string keyPub = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPub);
 
@@ -455,10 +486,10 @@ namespace WebPage
             using (HttpClient client = new HttpClient())
             {
                 // Llave Privada - Pruebas
-                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
 
                 // Llave Privada - Producción
-                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
 
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
 
@@ -507,10 +538,10 @@ namespace WebPage
             using (HttpClient client = new HttpClient())
             {
                 // Llave Privada - Pruebas
-                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
 
                 // Llave Privada - Producción
-                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
 
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
@@ -539,18 +570,18 @@ namespace WebPage
         public static async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
         {
             // URL - Pruebas
-            //string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
+            string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
 
             // URL - Producción
-            string url = $"https://production.wompi.co/v1/transactions?reference={idReferencia}";
+            //string url = $"https://production.wompi.co/v1/transactions?reference={idReferencia}";
 
             using (HttpClient client = new HttpClient())
             {
                 // Llave Privada - Pruebas
-                //string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
 
                 // Llave Privada - Producción
-                string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
 
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
@@ -577,17 +608,17 @@ namespace WebPage
         private void ObtenerTokensDeAceptacion()
         {
             // Llave Pública - Pruebas
-            //string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
 
             // Llave Pública - Producción
-            string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+            //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
 
             // Construir la URL de la API
             // URL - Pruebas
-            //string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
+            string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
 
             // URL - Producción
-            string url = "https://production.wompi.co/v1/merchants/" + strPublicKeyProduction;
+            //string url = "https://production.wompi.co/v1/merchants/" + strPublicKeyProduction;
 
             try
             {
@@ -760,163 +791,163 @@ namespace WebPage
 
         // 
         // Siigo API
-        public async Task<string> RegisterInvoiceAsync()
-        {
-            string url = "https://api.siigo.com/v1/invoices";
+        //public async Task<string> RegisterInvoiceAsync()
+        //{
+        //    string url = "https://api.siigo.com/v1/invoices";
 
-            int idTipoDocumento = 66444;
-            int costCenterDefault = 13053;
-            int idVendedor = 51883;
+        //    int idTipoDocumento = 66444;
+        //    int costCenterDefault = 13053;
+        //    int idVendedor = 51883;
 
-            // TODO: CAMBIAR ESTE MÉTODO DE PAGO YA QUE SE VAN A HACER MODIFICACIONES EN SIIGO
-            int idPayment = 59576;
+        //    // TODO: CAMBIAR ESTE MÉTODO DE PAGO YA QUE SE VAN A HACER MODIFICACIONES EN SIIGO
+        //    int idPayment = 59576;
 
-            // Siigo Pruebas
-            //int idTipoDocumento = 28006;
-            //int costCenterDefault = 621;
-            //int idVendedor = 856;
-            //int idPayment = 9438;
-            //string codSiigoPlan = "COD2433";
-            //string nombrePlan = "Pago de suscripción";
-            //int precioPlan = 10000;
+        //    // Siigo Pruebas
+        //    //int idTipoDocumento = 28006;
+        //    //int costCenterDefault = 621;
+        //    //int idVendedor = 856;
+        //    //int idPayment = 9438;
+        //    //string codSiigoPlan = "COD2433";
+        //    //string nombrePlan = "Pago de suscripción";
+        //    //int precioPlan = 10000;
 
-            string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
+        //    string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
 
-            string cedula = Session["documentoAfiliado"].ToString();
-            string codSiigoPlan = Session["codSiigoPlan"].ToString();
-            string nombrePlan = Session["nombrePlan"].ToString();
-            int precioPlan = int.Parse(Session["valorPlan"].ToString());
+        //    string cedula = Session["documentoAfiliado"].ToString();
+        //    string codSiigoPlan = Session["codSiigoPlan"].ToString();
+        //    string nombrePlan = Session["nombrePlan"].ToString();
+        //    int precioPlan = int.Parse(Session["valorPlan"].ToString());
 
-            Invoice oInvoice = new Invoice()
-            {
-                document = new DocumentType { id = idTipoDocumento },
-                date = fechaActual,
-                customer = new Customer
-                {
-                    identification = cedula
-                },
-                seller = idVendedor,
-                items = new List<Items>
-                {
-                    new Items
-                    {
-                        code = codSiigoPlan,
-                        description = nombrePlan,
-                        quantity = 1,
-                        price = precioPlan,
-                        cost_center = new CostCenter() {
-                            id = costCenterDefault
-                        }
-                    }
-                },
-                stamp = new Stamp { send = true },
-                mail = new Mail { send = true },
-                payments = new List<Payments>
-                {
-                    new Payments
-                    {
-                        id = idPayment,
-                        value = precioPlan
-                    }
-                }
-            };
+        //    Invoice oInvoice = new Invoice()
+        //    {
+        //        document = new DocumentType { id = idTipoDocumento },
+        //        date = fechaActual,
+        //        customer = new Customer
+        //        {
+        //            identification = cedula
+        //        },
+        //        seller = idVendedor,
+        //        items = new List<Items>
+        //        {
+        //            new Items
+        //            {
+        //                code = codSiigoPlan,
+        //                description = nombrePlan,
+        //                quantity = 1,
+        //                price = precioPlan,
+        //                cost_center = new CostCenter() {
+        //                    id = costCenterDefault
+        //                }
+        //            }
+        //        },
+        //        stamp = new Stamp { send = true },
+        //        mail = new Mail { send = true },
+        //        payments = new List<Payments>
+        //        {
+        //            new Payments
+        //            {
+        //                id = idPayment,
+        //                value = precioPlan
+        //            }
+        //        }
+        //    };
 
-            string token = Session["tokenSiigo"].ToString();
-            string respuesta = await GetPostInvoiceAsync(url, oInvoice, token);
+        //    string token = Session["tokenSiigo"].ToString();
+        //    string respuesta = await GetPostInvoiceAsync(url, oInvoice, token);
 
-            var jsonRespuesta = JsonConvert.DeserializeObject<dynamic>(respuesta);
-            string invoiceId = jsonRespuesta.id;
+        //    var jsonRespuesta = JsonConvert.DeserializeObject<dynamic>(respuesta);
+        //    string invoiceId = jsonRespuesta.id;
 
-            return invoiceId;
-        }
+        //    return invoiceId;
+        //}
 
-        public static async Task<string> GetPostInvoiceAsync(string url, Invoice oInvoice, string token)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                // Header - Pruebas
-                //string header = "SandboxSiigoApi";
+        //public static async Task<string> GetPostInvoiceAsync(string url, Invoice oInvoice, string token)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        // Header - Pruebas
+        //        //string header = "SandboxSiigoApi";
 
-                // Header - Producción
-                string header = "ProductionSiigoApi";
+        //        // Header - Producción
+        //        string header = "ProductionSiigoApi";
 
-                // Headers
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                client.DefaultRequestHeaders.Add("Partner-Id", header);
+        //        // Headers
+        //        client.DefaultRequestHeaders.Clear();
+        //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        //        client.DefaultRequestHeaders.Add("Partner-Id", header);
 
-                // Serializar objeto
-                string json = JsonConvert.SerializeObject(oInvoice, new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+        //        // Serializar objeto
+        //        string json = JsonConvert.SerializeObject(oInvoice, new JsonSerializerSettings
+        //        {
+        //            NullValueHandling = NullValueHandling.Ignore
+        //        });
 
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                // Enviar POST
-                HttpResponseMessage response = await client.PostAsync(url, content);
+        //        // Enviar POST
+        //        HttpResponseMessage response = await client.PostAsync(url, content);
 
-                // Validar y obtener resultado
-                if (!response.IsSuccessStatusCode)
-                {
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    throw new Exception($"Error en la petición: {response.StatusCode}\n{errorContent}");
-                }
+        //        // Validar y obtener resultado
+        //        if (!response.IsSuccessStatusCode)
+        //        {
+        //            string errorContent = await response.Content.ReadAsStringAsync();
+        //            throw new Exception($"Error en la petición: {response.StatusCode}\n{errorContent}");
+        //        }
 
-                return await response.Content.ReadAsStringAsync();
-            }
-        }
+        //        return await response.Content.ReadAsStringAsync();
+        //    }
+        //}
 
-        public class Invoice
-        {
-            public DocumentType document { get; set; }
-            public string date { get; set; }
-            public Customer customer { get; set; }
-            public int seller { get; set; }
-            public List<Items> items { get; set; }
-            public Stamp stamp { get; set; }
-            public Mail mail { get; set; }
-            public List<Payments> payments { get; set; }
-        }
+        //public class Invoice
+        //{
+        //    public DocumentType document { get; set; }
+        //    public string date { get; set; }
+        //    public Customer customer { get; set; }
+        //    public int seller { get; set; }
+        //    public List<Items> items { get; set; }
+        //    public Stamp stamp { get; set; }
+        //    public Mail mail { get; set; }
+        //    public List<Payments> payments { get; set; }
+        //}
 
-        public class DocumentType
-        {
-            public int id { get; set; }
-        }
+        //public class DocumentType
+        //{
+        //    public int id { get; set; }
+        //}
 
-        public class Customer
-        {
-            public string identification { get; set; }
-        }
+        //public class Customer
+        //{
+        //    public string identification { get; set; }
+        //}
 
-        public class Items
-        {
-            public string code { get; set; }
-            public string description { get; set; }
-            public int quantity { get; set; }
-            public int price { get; set; }
-            public CostCenter cost_center { get; set; }
-        }
+        //public class Items
+        //{
+        //    public string code { get; set; }
+        //    public string description { get; set; }
+        //    public int quantity { get; set; }
+        //    public int price { get; set; }
+        //    public CostCenter cost_center { get; set; }
+        //}
 
-        public class CostCenter
-        {
-            public int id { get; set; }
-        }
+        //public class CostCenter
+        //{
+        //    public int id { get; set; }
+        //}
 
-        public class Stamp
-        {
-            public bool send { get; set; }
-        }
+        //public class Stamp
+        //{
+        //    public bool send { get; set; }
+        //}
 
-        public class Mail
-        {
-            public bool send { get; set; }
-        }
+        //public class Mail
+        //{
+        //    public bool send { get; set; }
+        //}
 
-        public class Payments
-        {
-            public int id { get; set; }
-            public int value { get; set; }
-        }
+        //public class Payments
+        //{
+        //    public int id { get; set; }
+        //    public int value { get; set; }
+        //}
     }
 }
