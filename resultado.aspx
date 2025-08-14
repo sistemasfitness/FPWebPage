@@ -61,14 +61,14 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
 
-    <div id="bannerFullContainer">
+    <%--<div id="bannerFullContainer">
         <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    </div>
-    <%--<section class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal.png" data-natural-width="1400" data-natural-height="470">
+    </div>--%>
+    <section id="bannerFullContainer" class="parallax_window_in" data-parallax="scroll" data-image-src="img/descubrir-plan/banner-principal_2025-08-14.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="">DESCUBRE TU PLAN PERFECTO</h1>
+            <%--<h1 style="">DESCUBRE TU PLAN PERFECTO</h1>--%>
         </div>
-    </section>--%>
+    </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
@@ -80,9 +80,11 @@
                 </div>
 
                 <div runat="server" class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around; align-items:center;">
-                    <asp:Literal ID="ltImagenInfoPlan" runat="server"></asp:Literal>
-                    <img src="img/descubrir-plan/resultado_icono-clases.png" alt="" style="width: 300px; margin-bottom: 10px;" />
+                    <asp:Literal ID="ltImagenInfoPrincipal" runat="server"></asp:Literal>
+                    <p class="margin_30" style="color: #FFF; font-weight: 500; font-size: 2rem; text-align: center;">Acceso a todas las sedes y clases grupales</p>
+                    <img src="img/descubrir-plan/resultado_icono-clases.png" alt="" style="width: 300px; margin-bottom: 5px;" />
                     <asp:Literal ID="ltImagenInfoClases" runat="server"></asp:Literal>
+                    <asp:Literal ID="ltImagenInfoPrecio" runat="server"></asp:Literal>
                 </div>
             </div>
 
@@ -151,10 +153,10 @@
 
     <script>
 
-        // Esperar 20 segundos y luego mostrar el modal
+        // Esperar 25 segundos y luego mostrar el modal
         setTimeout(function () {
             $('#aviso').modal('show');
-        }, 20000);
+        }, 25000);
 
     </script>
 
@@ -165,11 +167,11 @@
 	    overflow-y: auto !important;
     }
 
-    .banner-principal {
+    /*.banner-principal {
         background-image: url(img/descubrir-plan/banner-principal.png);
         background-size: cover;
         background-position: center;
-    }
+    }*/
 
     /* Para pantallas de 480px o menos */
     @media (max-width: 480px) {

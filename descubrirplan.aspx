@@ -61,8 +61,7 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>
-    <section class="parallax_window_in banner-principal">
-    </section>
+    <section class="parallax_window_in banner-principal"></section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
