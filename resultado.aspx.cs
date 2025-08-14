@@ -20,16 +20,52 @@ namespace WebPage
             VisualizarResultadoPlan(q1, q2);
         }
 
+        //private void MostrarInfoPlan(string respuestaClases, string respuestaPlan)
+        //{
+        //    string imgInfo = respuestaPlan == "1" ? "resultado_03_transformacion-total-info.png" :
+        //                     respuestaPlan == "2" ? "resultado_01_plan-easy-info.png" : "resultado_02_plan-6-meses-info.png";
+
+        //    string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.png" :
+        //                     respuestaPlan == "2" ? "resultado_01_plan-easy-foto.png" : "resultado_02_plan-6-meses-foto.png";
+
+        //    ltImagenInfoPlan.Text = "<img src=\"img/descubrir-plan/" + imgInfo + "\" alt=\"\" class=\"img-responsive\" />";
+        //    ltImagenInfoFoto.Text = "<img src=\"img/descubrir-plan/" + imgFoto + "\" alt=\"\" class=\"img-responsive\" />";
+        //    MostrarInfoClasesPlan(respuestaClases);
+        //}
+
         private void MostrarInfoPlan(string respuestaClases, string respuestaPlan)
         {
-            string imgInfo = respuestaPlan == "1" ? "resultado_03_transformacion-total-info.png" :
-                             respuestaPlan == "2" ? "resultado_01_plan-easy-info.png" : "resultado_02_plan-6-meses-info.png";
+            string imgFoto = "";
 
-            string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.png" :
-                             respuestaPlan == "2" ? "resultado_01_plan-easy-foto.png" : "resultado_02_plan-6-meses-foto.png";
+            string imgTextPrincipal = "";
 
-            ltImagenInfoPlan.Text = "<img src=\"img/descubrir-plan/" + imgInfo + "\" alt=\"\" class=\"img-responsive\" />";
+            if (respuestaClases == "1")
+            {
+                imgFoto = "resultado_03_cambio-total-foto_2025-08-14.jpg";
+                imgTextPrincipal = "resultado_cambio-total-texto_2025-08-14.png";
+            }
+            else if (respuestaClases == "2")
+            {
+                imgFoto = "resultado_02_plan-fast-foto_2025-08-14.jpg";
+                imgTextPrincipal = "resultado_salud-fisica-texto_2025-08-14.png";
+            }
+            else if (respuestaClases == "3")
+            {
+                imgFoto = "resultado_01_plan-easy-foto_2025-08-14.jpg";
+                imgTextPrincipal = "resultado_fuerza-muscular-texto_2025-08-14.png";
+            }
+            else if (respuestaClases == "4")
+            {
+                imgFoto = "resultado_03_salud-mental-foto_2025-08-14.jpg";
+                imgTextPrincipal = "resultado_salud-mental-texto_2025-08-14.png";
+            }
+
+            string imgPrecio = respuestaPlan == "1" ? "resultado_01_plan-12-meses-precio.png" :
+                               respuestaPlan == "2" ? "resultado_01_plan-easy-precio.png" : "resultado_01_plan-fast-precio.png";
+
             ltImagenInfoFoto.Text = "<img src=\"img/descubrir-plan/" + imgFoto + "\" alt=\"\" class=\"img-responsive\" />";
+            ltImagenInfoPrincipal.Text = "<img src=\"img/descubrir-plan/" + imgTextPrincipal + "\" alt=\"\" class=\"img-responsive\" />";
+            ltImagenInfoPrecio.Text = "<img src=\"img/descubrir-plan/" + imgPrecio + "\" alt=\"\" class=\"img-responsive\" />";
             MostrarInfoClasesPlan(respuestaClases);
         }
 
@@ -66,18 +102,18 @@ namespace WebPage
             ltBotonPago.Text += "</a>";
         }
 
-        private void MostrarBannerPlan(string respuesta)
-        {
-            string imgBanner = respuesta == "1" ? "resultado_03_transformacion-total-banner.png" : 
-                               respuesta == "2" ? "resultado_01_plan-easy-banner.png" : "resultado_02_plan-6-meses-banner.png";
+        //private void MostrarBannerPlan(string respuesta)
+        //{
+        //    string imgBanner = respuesta == "1" ? "resultado_03_transformacion-total-banner.png" : 
+        //                       respuesta == "2" ? "resultado_01_plan-easy-banner.png" : "resultado_02_plan-6-meses-banner.png";
 
-            ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/descubrir-plan/" + imgBanner + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
-            ltBannerFull.Text += "</section>";
-        }
+        //    ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/descubrir-plan/" + imgBanner + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
+        //    ltBannerFull.Text += "</section>";
+        //}
 
         private void VisualizarResultadoPlan(string respuestaClases, string respuestaPlan)
         {
-            MostrarBannerPlan(respuestaPlan);
+            //MostrarBannerPlan(respuestaPlan);
             MostrarInfoPlan(respuestaClases, respuestaPlan);
             MostrarBotonPlan(respuestaPlan);
         }

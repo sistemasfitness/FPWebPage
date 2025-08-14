@@ -24,15 +24,6 @@ namespace WebPage
         protected global::WebPage.controls.mainmenu mainmenu;
 
         /// <summary>
-        /// Control ltBannerFull.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltBannerFull;
-
-        /// <summary>
         /// Control ltImagenInfoFoto.
         /// </summary>
         /// <remarks>
@@ -42,13 +33,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltImagenInfoFoto;
 
         /// <summary>
-        /// Control ltImagenInfoPlan.
+        /// Control ltImagenInfoPrincipal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPlan;
+        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPrincipal;
 
         /// <summary>
         /// Control ltImagenInfoClases.
@@ -58,6 +49,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltImagenInfoClases;
+
+        /// <summary>
+        /// Control ltImagenInfoPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltImagenInfoPrecio;
 
         /// <summary>
         /// Control ltBotonPago.
