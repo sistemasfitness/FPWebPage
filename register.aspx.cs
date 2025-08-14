@@ -32,8 +32,6 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                string origen = Session["OrigenPlanes"] != null ? Session["OrigenPlanes"].ToString() : "";
-
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
@@ -285,16 +283,26 @@ namespace WebPage
 
                 await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
 
-                if (Session["idPlan"].ToString() == "1")
+                string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+
+                if (origen == "KIOSCO")
                 {
-                    //Response.Redirect("wompipay", false);
                     Response.Redirect("pagoRedeban", false);
                     Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+
+                if (Session["idPlan"].ToString() == "1")
+                {
+                    Response.Redirect("wompipay", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
                 }
                 else
                 {
                     Response.Redirect("wompiplan", false);
                     Context.ApplicationInstance.CompleteRequest();
+                    return;
                 }
             }
             catch (Exception ex)
