@@ -13,26 +13,35 @@ namespace WebPage.Services
 {
     public class RedebanClient
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private readonly HttpClient _httpClient;
+        private readonly string _url;
+        private readonly string _baseUrlAccionSoap;
+        private readonly string _codigoUnico;
+        private readonly string _usuario;
+        private readonly string _clave;
 
-        public static async Task<string> ObtenerTokenAsync()
+        public RedebanClient(HttpClient httpClient, string url, string baseUrlAccionSoap, string codigoUnico, string usuario, string clave)
         {
-            string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
-            string accionSoap = "http://tempuri.org/Token";
+            _httpClient = httpClient;
+            _url = url;
+            _baseUrlAccionSoap = baseUrlAccionSoap;
+            _codigoUnico = codigoUnico;
+            _usuario = usuario;
+            _clave = clave;
+        }
 
-            // Cambia estos valores por los que te dio Redeban
-            string codigoUnico = "0020304050";
-            string usuario = "sistemas@fitnesspeoplecmd.com";
-            string clave = "idJ089J3Fm";
+        public async Task<string> ObtenerTokenAsync()
+        {
+            string accionSoap = $"{_baseUrlAccionSoap}Token";
 
             string soapXml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
                                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/"">
                                    <soapenv:Header/>
                                    <soapenv:Body>
                                       <tem:Token>
-                                         <tem:Cod_unico>{codigoUnico}</tem:Cod_unico>
-                                         <tem:usuario>{usuario}</tem:usuario>
-                                         <tem:clave>{clave}</tem:clave>
+                                         <tem:Cod_unico>{_codigoUnico}</tem:Cod_unico>
+                                         <tem:usuario>{_usuario}</tem:usuario>
+                                         <tem:clave>{_clave}</tem:clave>
                                       </tem:Token>
                                    </soapenv:Body>
                                 </soapenv:Envelope>";
@@ -42,10 +51,9 @@ namespace WebPage.Services
                 using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
                     content.Headers.Add("SOAPAction", accionSoap);
-
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    HttpResponseMessage response = await _httpClient.PostAsync(_url, content);
                     response.EnsureSuccessStatusCode();
 
                     string result = await response.Content.ReadAsStringAsync();
@@ -53,8 +61,7 @@ namespace WebPage.Services
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-                    ns.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
-                    ns.AddNamespace("ns", "http://tempuri.org/");
+                    ns.AddNamespace("ns", _baseUrlAccionSoap);
 
                     XmlNode tokenNode = doc.SelectSingleNode("//ns:TokenResult", ns);
                     return tokenNode?.InnerText ?? "No se pudo leer el token";
@@ -66,30 +73,23 @@ namespace WebPage.Services
             }
         }
 
-        public static async Task<string> EnviarDatosCompraAsync(string idTransaccion, string token)
+        public async Task<string> EnviarDatosCompraAsync(string idTransaccion, string token, int valor, string terminal)
         {
-            string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
-            string soapAction = "http://tempuri.org/DatosCompra";
+            string soapAction = $"{_baseUrlAccionSoap}DatosCompra";
 
-            // ⚠️ CAMBIA ESTOS VALORES
-            string codigoUnico = "0020304050"; // Código Redeban
-            string sobreescribir = "N"; // TODO: Cambiar a N o S
-            string terminal = "LM9ZZ702";
-
-            // ⚙️ Armar la cadena 'Data'
-            //string data = $"15630,1200,2500,1234567,10630,987653,800,14000,1630,12345,{terminal},3,N";
+            string sobreescribir = "N"; // Posibles Valores: N o S
 
             var builder = new CompraDataBuilder
             {
-                Valor = 15630,
-                Propina = 1200,
-                IVA = 2500,
+                Valor = valor,
+                Propina = 0,
+                IVA = 0,
                 Factura = $"F{idTransaccion}",
-                BaseDevolucionIVA = 10630,
-                CodigoCajero = "KIOSCO01",
-                ImpuestoConsumo = 800,
-                MontoBaseIVA = 14000,
-                MontoBaseImpConsumo = 1630,
+                BaseDevolucionIVA = 0,
+                CodigoCajero = "KIOSCO",
+                ImpuestoConsumo = 0,
+                MontoBaseIVA = 0,
+                MontoBaseImpConsumo = 0,
                 Recibo = $"R{idTransaccion}",
                 Terminal = terminal,
             };
@@ -101,7 +101,7 @@ namespace WebPage.Services
                                    <soapenv:Header/>
                                    <soapenv:Body>
                                       <tem:DatosCompra>
-                                         <tem:Cod_Unico>{codigoUnico}</tem:Cod_Unico>
+                                         <tem:Cod_Unico>{_codigoUnico}</tem:Cod_Unico>
                                          <tem:id_transaccion>{idTransaccion}</tem:id_transaccion>
                                          <tem:Data>{data}</tem:Data>
                                          <tem:token>{token}</tem:token>
@@ -110,105 +110,56 @@ namespace WebPage.Services
                                    </soapenv:Body>
                                 </soapenv:Envelope>";
 
-            try
-            {
-                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
-                {
-                    content.Headers.Add("SOAPAction", soapAction);
-
-                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
-                    response.EnsureSuccessStatusCode();
-
-                    string result = await response.Content.ReadAsStringAsync();
-
-                    XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(result);
-                    XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-                    ns.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
-                    ns.AddNamespace("ns", "http://tempuri.org/");
-
-                    XmlNode resultado = doc.SelectSingleNode("//ns:DatosCompraResult", ns);
-                    return resultado?.InnerText ?? "No se obtuvo respuesta del datáfono.";
-                }
-            }
-            catch (Exception ex)
-            {
-                return $"Error en DatosCompra: {ex.Message}";
-            }
+            return await EnviarSoapRequestAsync(soapAction, soapXml, "//ns:DatosCompraResult");
         }
 
-        public static async Task<string> ConsultarRespuestaAsync(string idTransaccion, string token)
+        public async Task<string> ConsultarRespuestaAsync(string idTransaccion, string token)
         {
-            string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
-            string soapAction = "http://tempuri.org/Respuesta";
-
-            string codigoUnico = "0020304050";
+            string soapAction = $"{_baseUrlAccionSoap}Respuesta";
 
             string soapXml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
                                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/"">
                                    <soapenv:Header/>
                                    <soapenv:Body>
                                       <tem:Respuesta>
-                                         <tem:Cod_unico>{codigoUnico}</tem:Cod_unico>
+                                         <tem:Cod_unico>{_codigoUnico}</tem:Cod_unico>
                                          <tem:id_transaccion>{idTransaccion}</tem:id_transaccion>
                                          <tem:token>{token}</tem:token>
                                       </tem:Respuesta>
                                    </soapenv:Body>
                                 </soapenv:Envelope>";
 
-            try
-            {
-                using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
-                {
-                    content.Headers.Add("SOAPAction", soapAction);
-
-                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
-                    response.EnsureSuccessStatusCode();
-
-                    string result = await response.Content.ReadAsStringAsync();
-
-                    XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(result);
-                    XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-                    ns.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
-                    ns.AddNamespace("ns", "http://tempuri.org/");
-
-                    XmlNode node = doc.SelectSingleNode("//ns:RespuestaResult", ns);
-                    return node?.InnerText ?? "No se recibió respuesta del datáfono.";
-                }
-            }
-            catch (Exception ex)
-            {
-                return $"Error al consultar respuesta: {ex.Message}";
-            }
+            return await EnviarSoapRequestAsync(soapAction, soapXml, "//ns:RespuestaResult");
         }
 
-        public static async Task<string> BorrarTransaccionAsync(string idTransaccion, string token)
+        public async Task<string> BorrarTransaccionAsync(string idTransaccion, string token)
         {
-            string url = "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx";
-            string soapAction = "http://tempuri.org/BorrarTransaccion";
-
-            string codigoUnico = "0020304050";
+            string soapAction = $"{_baseUrlAccionSoap}BorrarTransaccion";
 
             string soapXml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
                                 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tem=""http://tempuri.org/"">
                                    <soapenv:Header/>
                                    <soapenv:Body>
                                       <tem:BorrarTransaccion>
-                                         <tem:Cod_unico>{codigoUnico}</tem:Cod_unico>
+                                         <tem:Cod_unico>{_codigoUnico}</tem:Cod_unico>
                                          <tem:id_transaccion>{idTransaccion}</tem:id_transaccion>
                                          <tem:token>{token}</tem:token>
                                       </tem:BorrarTransaccion>
                                    </soapenv:Body>
                                 </soapenv:Envelope>";
 
+            return await EnviarSoapRequestAsync(soapAction, soapXml, "//ns:BorrarTransaccionResult");
+        }
+
+        private async Task<string> EnviarSoapRequestAsync(string soapAction, string soapXml, string xpathResult)
+        {
             try
             {
                 using (var content = new StringContent(soapXml, Encoding.UTF8, "text/xml"))
                 {
                     content.Headers.Add("SOAPAction", soapAction);
 
-                    HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                    HttpResponseMessage response = await _httpClient.PostAsync(_url, content);
                     response.EnsureSuccessStatusCode();
 
                     string result = await response.Content.ReadAsStringAsync();
@@ -216,19 +167,17 @@ namespace WebPage.Services
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(result);
                     XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
-                    ns.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
                     ns.AddNamespace("ns", "http://tempuri.org/");
 
-                    XmlNode resultado = doc.SelectSingleNode("//ns:BorrarTransaccionResult", ns);
-                    return resultado?.InnerText ?? "No se obtuvo respuesta del datáfono.";
+                    XmlNode node = doc.SelectSingleNode(xpathResult, ns);
+                    return node?.InnerText ?? "No se recibió respuesta.";
                 }
             }
             catch (Exception ex)
             {
-                return $"Error al borrar transacción: {ex.Message}";
+                return $"Error en SOAP: {ex.Message}";
             }
         }
-
 
         public class CompraDataBuilder
         {

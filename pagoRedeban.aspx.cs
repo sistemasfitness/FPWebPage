@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
@@ -27,8 +28,10 @@ namespace WebPage
         {
             try
             {
-                // 1. Compra del plan con Redeban
-                bool pagoIniciado = await RealizarPagoAsync();
+                int precioPlan = int.Parse(Session["valorPlan"].ToString());
+
+                // 1. Compra de plan por datáfono Redeban
+                bool pagoIniciado = await RealizarPagoAsync(precioPlan);
 
                 if (!pagoIniciado)
                 {
@@ -39,134 +42,43 @@ namespace WebPage
                 // Si se inició el pago, activamos el Timer para polling
                 tmrRespuesta.Enabled = true;
 
-                // 2. Registro/actualización del afiliado
+                // 1. Creación de factura en Siigo
+                var siigoClient = new SiigoClient(
+                    new HttpClient(),
+                    "https://api.siigo.com/",
+                    "sandbox@siigoapi.com",
+                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                    "SandboxSiigoApi"
+                );
 
-                // 3. Creación del cliente en Siigo (si no existe)
+                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                //    Session["documentoAfiliado"].ToString(), 
+                //    Session["codSiigoPlan"].ToString(), 
+                //    Session["nombrePlan"].ToString(),
+                //    int.Parse(Session["valorPlan"].ToString())
+                //);
 
+                // Siigo Pruebas
+                //int idTipoDocumento = 28006;
+                //int costCenterDefault = 621;
+                //int idVendedor = 856;
+                //int idPayment = 9438;
+                string codSiigoPlan = "COD2433";
+                string nombrePlan = "Pago de suscripción";
+                int precioPlanSiigo = 10000;
+                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                    Session["documentoAfiliado"].ToString(),
+                    codSiigoPlan,
+                    nombrePlan,
+                    precioPlanSiigo
+                );
 
-                //clasesglobales cg = new clasesglobales();
+                // 3. Registro de afiliación en la base de datos (AfiliadoPlan)
 
-                ////Guardamos los datos del afiliado
-                //string strCedula = txbDocumento.Text.ToString();
-                //Session.Add("documentoAfiliado", strCedula);
-                //int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
+                // 4. Registro de pago en la base de datos (PagosPlanAfiliado)
 
-                ////Session.Add("idAfiliado", "");
-
-                //string idAfiliado = "";
-
-                //DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                //if (dtAfiliado.Rows.Count > 0)
-                //{
-                //    idAfiliado = dtAfiliado.Rows[0]["IdAfiliado"].ToString();
-                //}
-
-                //string strNombre = txbNombre.Text.ToString();
-                //Session.Add("nombreAfiliado", strNombre);
-                //string strApellido = txbApellido.Text.ToString();
-                //Session.Add("apellidoAfiliado", strApellido);
-                //string strCelular = txbCelular.Text.ToString();
-                //Session.Add("celularAfiliado", strCelular);
-                //string strEmail = txbEmail.Text.ToString();
-                //Session.Add("emailAfiliado", strEmail);
-                //int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
-                //string strFechaNac = txbFechaNac.Text.ToString();
-
-                //string strFechaInicioPlan = txbFechaIni.Text.ToString();
-                ////Session.Add("fechaInicioPlan", strFechaInicioPlan);
-                //string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
-                ////Session.Add("fechaFinPlan", strFechaFinPlan);
-
-                //DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
-                ////Session.Add("meses", dtPlan.Rows[0]["Meses"]);
-                //int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
-                //int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
-                //string strValorPlan = hfValorPlan.Value;
-                ////Session.Add("valorPlan", strValorPlan);
-                //string strLtValor = ltValor.Text.ToString();
-                ////Session.Add("ltValorPlan", strLtValor);
-
-                ////Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos sus datos
-                //if (idAfiliado != "")
-                //{
-                //    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                //    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
-
-                //    if (dtFechaFinPlan.Rows.Count > 0)
-                //    {
-                //        // Obtener fecha de fin anterior
-                //        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                //        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
-
-                //        if (fechaInicioNuevo <= fechaFinAnterior)
-                //        {
-                //            MostrarAlerta(
-                //                "Fecha de inicio inválida",
-                //                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                //                "warning"
-                //            );
-
-                //            return;
-                //        }
-                //    }
-
-                //    dtFechaFinPlan.Dispose();
-
-                //    cg.ActualizarAfiliadoWeb(
-                //        strCedula,
-                //        strNombre,
-                //        strApellido,
-                //        strCelular,
-                //        strEmail,
-                //        idGenero,
-                //        strFechaNac,
-                //        idCiudad,
-                //        idSede,
-                //        "Pendiente"
-                //    );
-                //}
-                //else
-                //{
-                //    //Si no existe el documento del afiliado, lo creamos como nuevo.
-                //    cg.InsertarAfiliadoWeb(
-                //        strCedula,
-                //        idTipoDocumento,
-                //        strNombre,
-                //        strApellido,
-                //        strCelular,
-                //        strEmail,
-                //        idGenero,
-                //        strFechaNac,
-                //        idCiudad,
-                //        idSede
-                //    );
-
-                //    //EnviarCorreoBienvenida();
-                //}
-
-                ////DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                ////Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
-
-                //dtAfiliado.Dispose();
-                ////dtAfiliado2.Dispose();
-                //dtPlan.Dispose();
-
-                //// Siigo API
-                //string token = GetSiigoToken();
-                //Session.Add("tokenSiigo", token);
-                //bool exists = ConsultSiigoCustomer(strCedula, token);
-                //ManageCustomer(exists, token);
-
-                //if (Session["idPlan"].ToString() == "1")
-                //{
-                //    Response.Redirect("wompipay", false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //}
-                //else
-                //{
-                //    Response.Redirect("wompiplan", false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //}
             }
             catch (Exception ex)
             {
@@ -174,11 +86,13 @@ namespace WebPage
             }
         }
 
-        private async Task<bool> RealizarPagoAsync()
+        private async Task<bool> RealizarPagoAsync(int precioPlan)
         {
             try
             {
-                string token = await RedebanClient.ObtenerTokenAsync();
+                var redebanClient = CrearRedebanClient();
+
+                string token = await redebanClient.ObtenerTokenAsync();
 
                 if (string.IsNullOrEmpty(token))
                 {
@@ -193,7 +107,8 @@ namespace WebPage
                 Session["token"] = token;
                 Session["intentos"] = 0;
 
-                string resultado = await RedebanClient.EnviarDatosCompraAsync(idTransaccion, token);
+                // TODO: Reemplazar el código del datáfono por el real que viene de la query
+                string resultado = await redebanClient.EnviarDatosCompraAsync(idTransaccion, token, precioPlan, "LM9ZZ702");
                 //lblResult.Text = "DatosCompra: " + resultado;
 
                 if (resultado.Contains("Cod:00"))
@@ -220,6 +135,7 @@ namespace WebPage
         protected async void tmrRespuesta_Tick(object sender, EventArgs e)
         {
             int intentos = (int)(Session["intentos"] ?? 0);
+
             if (intentos >= 15)
             {
                 tmrRespuesta.Enabled = false;
@@ -231,6 +147,7 @@ namespace WebPage
 
             string idTransaccion = Session["idTransaccion"]?.ToString();
             string token = Session["token"]?.ToString();
+            var redebanClient = CrearRedebanClient();
 
             if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
             {
@@ -239,7 +156,7 @@ namespace WebPage
                 return;
             }
 
-            string respuesta = await RedebanClient.ConsultarRespuestaAsync(idTransaccion, token);
+            string respuesta = await redebanClient.ConsultarRespuestaAsync(idTransaccion, token);
 
             if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))
             {
@@ -252,6 +169,18 @@ namespace WebPage
                 tmrRespuesta.Enabled = false;
                 MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error");
             }
+        }
+
+        private RedebanClient CrearRedebanClient()
+        {
+            return new RedebanClient(
+                new HttpClient(),
+                "https://sipserviceclientetestv52.azurewebsites.net/sipservice.asmx",
+                "http://tempuri.org/",
+                "0020304050", 
+                "sistemas@fitnesspeoplecmd.com",
+                "idJ089J3Fm"
+            );
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)
