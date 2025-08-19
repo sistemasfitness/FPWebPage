@@ -206,27 +206,27 @@ namespace WebPage
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Fecha de inicio inválida",
-                                "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Fecha de inicio inválida",
+                    //            "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoWeb(
                         strCedula,
@@ -266,12 +266,6 @@ namespace WebPage
                 dtAfiliado.Dispose();
                 dtAfiliado2.Dispose();
                 dtPlan.Dispose();
-
-                // Siigo API
-                //string token = GetSiigoToken();
-                //Session.Add("tokenSiigo", token);
-                //bool exists = ConsultSiigoCustomer(strCedula, token);
-                //ManageCustomer(exists, token);
 
                 var siigoClient = new SiigoClient(
                     new HttpClient(),
@@ -367,7 +361,7 @@ namespace WebPage
                 text: '{mensaje}',
                 icon: '{tipo}', 
                 background: '#3C3C3C', 
-                showCloseButton: true, 
+                showCloseButton: false, 
                 confirmButtonText: 'Aceptar', 
                 customClass: {{
                     popup: 'alert',
@@ -377,191 +371,5 @@ namespace WebPage
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
-
-        //
-        // Siigo API
-        //public static string GetSiigoToken()
-        //{
-        //    string url = "https://api.siigo.com/auth";
-        //    // Datos - Pruebas
-        //    //string username = "sandbox@siigoapi.com";
-        //    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-
-        //    // Datos - Producción
-        //    string username = "contabilidad@fitnesspeoplecmd.com";
-        //    string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-        //    var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-        //    httpWebRequest.ContentType = "application/json";
-        //    httpWebRequest.Method = "POST";
-
-        //    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-        //    {
-        //        string json = new JavaScriptSerializer().Serialize(new
-        //        {
-        //            username = username,
-        //            access_key = accessKey
-        //        });
-
-        //        streamWriter.Write(json);
-        //        streamWriter.Flush();
-        //        streamWriter.Close();
-        //    }
-
-        //    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        //    {
-        //        string result = streamReader.ReadToEnd();
-        //        dynamic obj = new JavaScriptSerializer().Deserialize<dynamic>(result);
-        //        return obj["access_token"];
-        //    }
-        //}
-
-        //public static bool ConsultSiigoCustomer(string documento, string token)
-        //{
-        //    string URL = "https://api.siigo.com/v1/customers?identification=" + documento;
-
-        //    // Header - Pruebas
-        //    //string header = "SandboxSiigoApi";
-
-        //    // Header - Producción
-        //    string header = "ProductionSiigoApi";
-
-        //    WebRequest request = WebRequest.Create(URL);
-        //    request.Method = "GET";
-        //    request.ContentType = "application/json;charset=UTF-8";
-        //    request.Headers.Add("Partner-Id", header);
-        //    request.Headers.Add("Authorization", "Bearer " + token);
-
-        //    try
-        //    {
-        //        using (WebResponse response = request.GetResponse())
-        //        {
-        //            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-        //            {
-        //                string respuesta = reader.ReadToEnd();
-
-        //                // Deserializamos para acceder a pagination.total_results
-        //                var serializer = new JavaScriptSerializer();
-        //                dynamic json = serializer.Deserialize<dynamic>(respuesta);
-
-        //                int totalResultados = json["pagination"]["total_results"];
-
-        //                return totalResultados > 0;
-        //            }
-        //        }
-        //    }
-        //    catch (WebException ex)
-        //    {
-        //        using (StreamReader reader = new StreamReader(ex.Response.GetResponseStream()))
-        //        {
-        //            string error = reader.ReadToEnd();
-                    
-        //            throw new Exception("Error al consultar cliente en Siigo: " + error);
-        //        }
-        //    }
-        //}
-
-        //public void ManageCustomer(bool exists, string token)
-        //{
-        //    if (!exists)
-        //    {
-        //        RegisterCustomer(token);
-        //    }
-        //}
-
-        //private void RegisterCustomer(string token)
-        //{
-        //    string URLRegisterCustomer = "https://api.siigo.com/v1/customers";
-
-        //    string documento = Session["documentoAfiliado"].ToString();
-        //    string nombres = Session["nombreAfiliado"].ToString();
-        //    string apellidos = Session["apellidoAfiliado"].ToString();
-        //    string celular = Session["celularAfiliado"].ToString();
-        //    string correo = Session["emailAfiliado"].ToString();
-
-        //    clasesglobales cg = new clasesglobales();
-        //    DataTable dt = cg.ConsultarCodigoSiigoPorDocumento(Session["documentoAfiliado"].ToString());
-        //    string codSiigo = dt.Rows[0]["CodSiigo"].ToString();
-
-        //    Customer oCustomer = new Customer()
-        //    {
-        //        person_type = "Person",
-        //        id_type = codSiigo,
-        //        identification = documento,
-        //        name = new List<string> { nombres, apellidos },
-        //        email = correo,
-        //        phones = new List<Phone> {
-        //            new Phone { number = celular }
-        //        },
-        //        contacts = new List<Contact> {
-        //            new Contact
-        //            {
-        //                first_name = nombres,
-        //                last_name = apellidos,
-        //                email = correo
-        //            }
-        //        }
-        //    };
-
-        //    string respuesta = GetPostCustomer(URLRegisterCustomer, oCustomer, token);
-        //    dt.Dispose();
-        //}
-
-        //public static string GetPostCustomer(string url, Customer oCustomer, string token)
-        //{
-        //    // Header - Pruebas
-        //    //string header = "SandboxSiigoApi";
-
-        //    // Header - Producción
-        //    string header = "ProductionSiigoApi";
-
-        //    string result = "";
-        //    WebRequest wRequest = WebRequest.Create(url);
-        //    wRequest.Method = "post";
-        //    wRequest.ContentType = "application/json;charset=UTF-8";
-        //    wRequest.Headers.Add("Partner-Id", header);
-        //    wRequest.Headers.Add("Authorization", "Bearer " + token);
-
-        //    using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-        //    {
-        //        string json = JsonConvert.SerializeObject(oCustomer);
-        //        oSW.Write(json);
-        //        oSW.Flush();
-        //        oSW.Close();
-        //    }
-
-        //    WebResponse wResponse = wRequest.GetResponse();
-
-        //    using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-        //    {
-        //        result = oSR.ReadToEnd().Trim();
-        //    }
-
-        //    return result;
-        //}
-
-        //public class Customer
-        //{
-        //    public string person_type { get; set; }
-        //    public string id_type { get; set; }
-        //    public string identification { get; set; }
-        //    public List<string> name { get; set; }
-        //    public string email { get; set; }
-        //    public List<Phone> phones { get; set; }
-        //    public List<Contact> contacts { get; set; }
-        //}
-
-        //public class Phone
-        //{
-        //    public string number { get; set; }
-        //}
-
-        //public class Contact
-        //{
-        //    public string first_name { get; set; }
-        //    public string last_name { get; set; }
-        //    public string email { get; set; }
-        //}
     }
 }

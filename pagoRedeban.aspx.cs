@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -41,44 +42,6 @@ namespace WebPage
 
                 // Si se inició el pago, activamos el Timer para polling
                 tmrRespuesta.Enabled = true;
-
-                // 1. Creación de factura en Siigo
-                var siigoClient = new SiigoClient(
-                    new HttpClient(),
-                    "https://api.siigo.com/",
-                    "sandbox@siigoapi.com",
-                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                    "SandboxSiigoApi"
-                );
-
-                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
-                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                //    Session["documentoAfiliado"].ToString(), 
-                //    Session["codSiigoPlan"].ToString(), 
-                //    Session["nombrePlan"].ToString(),
-                //    int.Parse(Session["valorPlan"].ToString())
-                //);
-
-                // Siigo Pruebas
-                //int idTipoDocumento = 28006;
-                //int costCenterDefault = 621;
-                //int idVendedor = 856;
-                //int idPayment = 9438;
-                string codSiigoPlan = "COD2433";
-                string nombrePlan = "Pago de suscripción";
-                int precioPlanSiigo = 10000;
-                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                    Session["documentoAfiliado"].ToString(),
-                    codSiigoPlan,
-                    nombrePlan,
-                    precioPlanSiigo
-                );
-
-                // 3. Registro de afiliación en la base de datos (AfiliadoPlan)
-
-                // 4. Registro de pago en la base de datos (PagosPlanAfiliado)
-
             }
             catch (Exception ex)
             {
@@ -161,13 +124,100 @@ namespace WebPage
             if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))
             {
                 tmrRespuesta.Enabled = false;
-                MostrarAlerta("Pago aprobado", "La transacción fue aprobada exitosamente.", "success");
-                // Aquí podrías llamar a tu registro de afiliado y Siigo
+                await ProcesarPagoExitosoAsync();
             }
             else if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))
             {
                 tmrRespuesta.Enabled = false;
                 MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error");
+            }
+        }
+
+        private async Task ProcesarPagoExitosoAsync()
+        {
+            try
+            {
+                // 1. Creación de factura en Siigo
+                var siigoClient = new SiigoClient(
+                    new HttpClient(),
+                    "https://api.siigo.com/",
+                    "sandbox@siigoapi.com",
+                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                    "SandboxSiigoApi"
+                );
+
+                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                //    Session["documentoAfiliado"].ToString(), 
+                //    Session["codSiigoPlan"].ToString(), 
+                //    Session["nombrePlan"].ToString(),
+                //    int.Parse(Session["valorPlan"].ToString())
+                //);
+
+                // Siigo Pruebas
+                //int idTipoDocumento = 28006;
+                //int costCenterDefault = 621;
+                //int idVendedor = 856;
+                //int idPayment = 9438;
+                string codSiigoPlan = "COD2433";
+                string nombrePlan = "Pago de suscripción";
+                int precioPlanSiigo = 10000;
+                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                    Session["documentoAfiliado"].ToString(),
+                    codSiigoPlan,
+                    nombrePlan,
+                    precioPlanSiigo
+                );
+
+                clasesglobales cg = new clasesglobales();
+
+                // 3. Registro de afiliación en la base de datos (AfiliadoPlan)
+                cg.InsertarAfiliadoPlan(
+                    int.Parse(Session["idAfiliado"].ToString()),
+                    int.Parse(Session["idPlan"].ToString()),
+                    Session["fechaInicioPlan"].ToString(),
+                    Session["fechaFinPlan"].ToString(),
+                    int.Parse(Session["meses"].ToString()),
+                    int.Parse(Session["valorPlan"].ToString()),
+                    "Débito automático", // TODO: Cambiar dependiendo el plan
+                    "Pendiente"
+                );
+
+                // 4. Obtención de idAfiliadoPlan recién creado
+                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+                if (dt.Rows.Count == 0)
+                {
+                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
+                    return;
+                }
+
+                int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
+                Session["idAfiliadoPlan"] = idAfiliadoPlan;
+
+                string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+                // 5. Registro de pago en la base de datos (PagosPlanAfiliado)
+                cg.InsertarPagoPlanAfiliadoWeb(
+                    idAfiliadoPlan,
+                    int.Parse(Session["valorPlan"].ToString()),
+                    3,
+                    referencia,
+                    "Ninguno",
+                    "Pendiente",
+                    idSiigoFactura,
+                    "",
+                    "",
+                    "",
+                    "LM9ZZ702" // TODO: Cambiarlo por el que está en el query
+                );
+
+                MostrarAlerta("Pago aprobado", "La transacción fue aprobada exitosamente.", "success");
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno: " + ex.Message, "error");
+                System.Diagnostics.Debug.WriteLine("Error en ProcesarPagoExitosoAsync: " + ex.ToString());
             }
         }
 
@@ -187,12 +237,13 @@ namespace WebPage
         {
             // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
             string script = $@"
+            Swal.close();
             Swal.fire({{
                 title: '{titulo}',
                 text: '{mensaje}',
                 icon: '{tipo}', 
                 background: '#3C3C3C', 
-                showCloseButton: true, 
+                showCloseButton: false, 
                 confirmButtonText: 'Aceptar', 
                 customClass: {{
                     popup: 'alert',
@@ -211,7 +262,7 @@ namespace WebPage
                 title: 'Cargando',
                 html: `Este proceso iniciará en <b>${contador}</b> segundos...`,
                 icon: 'info',
-                background: '#3C3C3C',
+                background: '#3C3C3C', 
                 allowOutsideClick: false,
                 showConfirmButton: false, 
                 customClass: {

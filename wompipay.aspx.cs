@@ -141,13 +141,15 @@ namespace WebPage
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
+                    5,
                     Session["idReferencia"].ToString(),
                     "Ninguno",
                     "Pendiente",
                     idSiigoFactura,
                     Session["dataIdToken"].ToString(),
                     Session["dataIdFuentePago"].ToString(),
-                    Session["dataIdTransaccion"].ToString()
+                    Session["dataIdTransaccion"].ToString(),
+                    ""
                 );
 
                 dt.Dispose();
