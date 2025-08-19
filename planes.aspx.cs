@@ -86,7 +86,7 @@ namespace WebPage
 
                     // Fechas de ejemplo (puedes cargarlas de base de datos o lógica de negocio)
                     DateTime fechaInicio = new DateTime(2025, 8, 11, 0, 0, 0);
-                    DateTime fechaFin = new DateTime(2025, 8, 15, 23, 59, 59); // AAAA,MM,DD,HH,MM,SS
+                    DateTime fechaFin = new DateTime(2025, 8, 20, 23, 59, 59); // AAAA,MM,DD,HH,MM,SS
 
                     string script = $@"
                     <script>
