@@ -27,6 +27,8 @@ namespace WebPage
 
         private async void IniciarPago()
         {
+            string urlRedirect = $"register?idPlan={Session["idPlan"]}";
+
             try
             {
                 int precioPlan = int.Parse(Session["valorPlan"].ToString());
@@ -36,7 +38,7 @@ namespace WebPage
 
                 if (!pagoIniciado)
                 {
-                    MostrarAlerta("Error de Pago", "No se pudo iniciar el proceso de pago.", "error");
+                    MostrarAlerta("Error de Pago", "No se pudo iniciar el proceso de pago.", "error", urlRedirect);
                     return;
                 }
 
@@ -45,51 +47,62 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
+                MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error", urlRedirect);
             }
         }
 
         private async Task<bool> RealizarPagoAsync(int precioPlan)
         {
+            string urlRedirect = $"register?idPlan={Session["idPlan"]}";
+
             try
             {
                 var redebanClient = CrearRedebanClient();
 
+                // 1. Obtener el token
                 string token = await redebanClient.ObtenerTokenAsync();
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    MostrarAlerta("Error", "No se pudo obtener el token de Redeban.", "error");
+                    MostrarAlerta("Error", "No se pudo obtener el token de Redeban.", "error", urlRedirect);
                     return false;
                 }
 
+                // 2. Borrar transacción anterior si existe
+                if (Session["idTransaccionAnterior"] != null)
+                {
+                    string idAnterior = Session["idTransaccionAnterior"].ToString();
+                    string resultadoBorrar = await redebanClient.BorrarTransaccionAsync(idAnterior, token);
+
+                    System.Diagnostics.Debug.WriteLine($"BorrarTransaccion Anterior: {resultadoBorrar}");
+                }
+
+                // 3. Generar un nuevo IdTransaccion único
                 string idTransaccion = DateTime.Now.ToString("yyyyMMddHHmmss");
 
                 // Guardar en sesión para usar luego
                 Session["idTransaccion"] = idTransaccion;
+                Session["idTransaccionAnterior"] = idTransaccion;
                 Session["token"] = token;
                 Session["intentos"] = 0;
 
+                // 4. Enviar la solicitud de compra
                 // TODO: Reemplazar el código del datáfono por el real que viene de la query
                 string resultado = await redebanClient.EnviarDatosCompraAsync(idTransaccion, token, precioPlan, "LM9ZZ702");
-                //lblResult.Text = "DatosCompra: " + resultado;
 
                 if (resultado.Contains("Cod:00"))
                 {
-                    // Activar el Timer para iniciar la consulta automática
-                    //tmrRespuesta.Enabled = true;
-
                     return true;
                 }
                 else
                 {
-                    MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error");
+                    MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error", urlRedirect);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Ocurrió un error al procesar el pago.", "error");
+                MostrarAlerta("Error inesperado", "Ocurrió un error al procesar el pago.", "error", urlRedirect);
                 System.Diagnostics.Debug.WriteLine("Error en RealizarCompra: " + ex.ToString());
                 return false;
             }
@@ -97,39 +110,50 @@ namespace WebPage
 
         protected async void tmrRespuesta_Tick(object sender, EventArgs e)
         {
+            string urlRedirect = $"register?idPlan={Session["idPlan"]}";
             int intentos = (int)(Session["intentos"] ?? 0);
-
-            if (intentos >= 15)
-            {
-                tmrRespuesta.Enabled = false;
-                MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning");
-                return;
-            }
-
-            Session["intentos"] = intentos + 1;
 
             string idTransaccion = Session["idTransaccion"]?.ToString();
             string token = Session["token"]?.ToString();
             var redebanClient = CrearRedebanClient();
 
+            if (intentos >= 20)
+            {
+                tmrRespuesta.Enabled = false;
+
+                if (!string.IsNullOrEmpty(idTransaccion) && !string.IsNullOrEmpty(token))
+                {
+                    // Intentar borrar la transacción pendiente para evitar Cod:06
+                    string resultadoBorrar = await redebanClient.BorrarTransaccionAsync(idTransaccion, token);
+
+                    // Registrar el resultado para depuración
+                    System.Diagnostics.Debug.WriteLine($"BorrarTransaccion: {resultadoBorrar}");
+                }
+
+                MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning", urlRedirect);
+                return;
+            }
+
+            Session["intentos"] = intentos + 1;
+
             if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
             {
                 tmrRespuesta.Enabled = false;
-                MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error");
+                MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error", urlRedirect);
                 return;
             }
 
             string respuesta = await redebanClient.ConsultarRespuestaAsync(idTransaccion, token);
 
-            if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))
+            if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))))
             {
                 tmrRespuesta.Enabled = false;
                 await ProcesarPagoExitosoAsync();
             }
-            else if (respuesta.Contains("Cod:00") && respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))
+            else if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))))
             {
                 tmrRespuesta.Enabled = false;
-                MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error");
+                MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error", urlRedirect);
             }
         }
 
@@ -188,7 +212,7 @@ namespace WebPage
                 DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
                 if (dt.Rows.Count == 0)
                 {
-                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
+                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error", "planesKiosco.aspx");
                     return;
                 }
 
@@ -212,11 +236,11 @@ namespace WebPage
                     "LM9ZZ702" // TODO: Cambiarlo por el que está en el query
                 );
 
-                MostrarAlerta("Pago aprobado", "La transacción fue aprobada exitosamente.", "success");
+                MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", "planesKiosco.aspx");
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno: " + ex.Message, "error");
+                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno.", "error", "planesKiosco.aspx");
                 System.Diagnostics.Debug.WriteLine("Error en ProcesarPagoExitosoAsync: " + ex.ToString());
             }
         }
@@ -233,22 +257,27 @@ namespace WebPage
             );
         }
 
-        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        private void MostrarAlerta(string titulo, string mensaje, string tipo, string urlRedirect)
         {
             // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
             string script = $@"
-            Swal.close();
+            Swal.hideLoading();
             Swal.fire({{
                 title: '{titulo}',
                 text: '{mensaje}',
                 icon: '{tipo}', 
                 background: '#3C3C3C', 
+                allowOutsideClick: false, 
                 showCloseButton: false, 
                 confirmButtonText: 'Aceptar', 
                 customClass: {{
                     popup: 'alert',
                     confirmButton: 'btn-confirm-alert'
                 }},
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    window.location.href = '{urlRedirect}';
+                }}
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);

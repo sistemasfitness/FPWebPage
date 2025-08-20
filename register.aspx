@@ -147,6 +147,7 @@
                             <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
                             <p style="color: #fff;">Elige las opciones de tu plan.</p>
                         </div>
+
                         <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
                             <asp:UpdatePanel ID="upSedes" runat="server">
@@ -166,10 +167,9 @@
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Sede: *</label>
-                                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
-                                                    AppendDataBoundItems="true" required=""
-                                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true" 
-                                                    Style="background-color: #3c3c3c;">
+                                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" required=""
+                                                    AppendDataBoundItems="true" DataTextField="NombreSede" DataValueField="idSede" 
+                                                    AutoPostBack="true" Style="background-color: #3c3c3c;">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
@@ -233,7 +233,6 @@
                                         <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S.</a> realizar el cobro recurrente.</span>
                                     </label>
                                 </div>
-
                             </div>
                             <div id="message-subscribe"></div>
                             <hr />
@@ -282,6 +281,7 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
     <script>
+
         window.onload = function () {
             const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');
             const btnRegistrar = document.getElementById('<%= btnRegistrarAfiliado.ClientID %>');
@@ -295,6 +295,7 @@
             // Inicializar el estado al cargar la página
             toggleButton();
         }
+
     </script>
 </body>
 </html>

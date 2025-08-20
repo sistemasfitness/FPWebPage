@@ -75,7 +75,7 @@
                         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="upSedes" runat="server">
                             <ContentTemplate>
-                                <asp:Timer ID="tmrRespuesta" runat="server" Interval="5000" Enabled="false" OnTick="tmrRespuesta_Tick" />
+                                <asp:Timer ID="tmrRespuesta" runat="server" Interval="3000" Enabled="false" OnTick="tmrRespuesta_Tick" />
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </form>
