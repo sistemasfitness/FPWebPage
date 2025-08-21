@@ -82,6 +82,7 @@
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">Autorización de uso de datos</a><br />
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-AVISO-DE-PRIVACIDAD-VERSION-II.pdf" target="_blank">Aviso de privacidad</a><br />
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados financieros</a><br />
+                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Registro de Promoción – Fitness People</a><br />
                     </p>
                     <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Términos y Condiciones de Ofertas – Fitness People Colombia</h4>
                     <p class="lead" style="color: #FFF; font-size: 1.5rem;">
