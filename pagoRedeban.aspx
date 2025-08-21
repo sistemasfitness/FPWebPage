@@ -56,6 +56,7 @@
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">Pago a través de Datáfono</h1>
+            <p style="">¡Paga de manera rápida, segura y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
@@ -67,9 +68,8 @@
                 <div class="box_style_2" style="background-color: #1A1A1A; text-align: center;">
                     <div id="confirm">
                         <%--// TODO: Modificar y mejorar mensajes--%>
-                        <h2>¡Gracias por preferirnos!</h2>
-                        <p>Tu pago se está procesando a través del datáfono. Por favor, espera un momento.</p>
-                        <p>Recuerda presionar la <b style="color: #157347;">TECLA VERDE</b> del datáfono para continuar.</p>
+                        <h2 style="font-weight: 900; color: #e3ff00;">¡Gracias por preferirnos!</h2>
+                        <p style="font-weight: 500; font-size: 2rem;">Estamos trabajando para mejorar y darte siempre la mejor experiencia.</p>
                     </div>
                     <form runat="server">
                         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>

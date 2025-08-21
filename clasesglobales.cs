@@ -7792,7 +7792,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, int idMedioPago, string idReferencia, string banco, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion, string codDatafono)
+        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, int idMedioPago, string idReferencia, string banco, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion, string codDatafono, string idTransaccionRRN, string numFacturaDatafono)
         {
             string respuesta = string.Empty;
             try
@@ -7815,6 +7815,8 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_id_data_fuente", idDataFuente);
                         cmd.Parameters.AddWithValue("@p_id_data_transaction", idDataTransaccion);
                         cmd.Parameters.AddWithValue("@p_cod_datafono", codDatafono);
+                        cmd.Parameters.AddWithValue("@p_id_transaccion_RRN", idTransaccionRRN);
+                        cmd.Parameters.AddWithValue("@p_num_recibo_datafono", numFacturaDatafono);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }

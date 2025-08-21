@@ -33,7 +33,7 @@ namespace WebPage
             {
                 int precioPlan = int.Parse(Session["valorPlan"].ToString());
 
-                // 1. Compra de plan por datáfono Redeban
+                // Realizar compra de plan por datáfono Redeban
                 bool pagoIniciado = await RealizarPagoAsync(precioPlan);
 
                 if (!pagoIniciado)
@@ -42,7 +42,6 @@ namespace WebPage
                     return;
                 }
 
-                // Si se inició el pago, activamos el Timer para polling
                 tmrRespuesta.Enabled = true;
             }
             catch (Exception ex)
@@ -162,6 +161,12 @@ namespace WebPage
             if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))))
             {
                 tmrRespuesta.Enabled = false;
+
+                string[] partesRespuesta = respuesta.Split(',');
+
+                Session["idTransaccionRRN"] = partesRespuesta[12];
+                Session["numReciboDatafono"] = partesRespuesta[10];
+
                 await ProcesarPagoExitosoAsync();
             }
             else if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))))
@@ -233,21 +238,23 @@ namespace WebPage
                 int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
                 Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
-                string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                //string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
 
                 // 5. Registro de pago en la base de datos (PagosPlanAfiliado)
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
                     3,
-                    referencia,
+                    Session["idTransaccion"].ToString(),
                     "Ninguno",
                     "Pendiente",
                     idSiigoFactura,
                     "",
                     "",
                     "",
-                    "LM9ZZ702" // TODO: Cambiarlo por el que está en el query
+                    "LM9ZZ702", // TODO: Cambiarlo por el que está en el query
+                    Session["idTransaccionRRN"].ToString(),
+                    Session["numReciboDatafono"].ToString()
                 );
 
                 MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", "planesKiosco.aspx");
