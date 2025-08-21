@@ -90,13 +90,27 @@ namespace WebPage
                 // TODO: Reemplazar el código del datáfono por el real que viene de la query
                 string resultado = await redebanClient.EnviarDatosCompraAsync(idTransaccion, token, precioPlan, "LM9ZZ702");
 
-                if (resultado.Contains("Cod:00"))
+                // 5. Extraer el código de la respuesta con Regex
+                var match = System.Text.RegularExpressions.Regex.Match(resultado, @"Cod:(\d+),Msj:(.*)");
+
+                if (match.Success)
                 {
-                    return true;
+                    string cod = match.Groups[1].Value;
+                    string msj = match.Groups[2].Value;
+
+                    if (cod == "00")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error", urlRedirect);
+                        return false;
+                    }
                 }
                 else
                 {
-                    MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error", urlRedirect);
+                    MostrarAlerta("Error en pago", "Respuesta inesperada del servicio Redeban: " + resultado, "error", urlRedirect);
                     return false;
                 }
             }
@@ -117,7 +131,7 @@ namespace WebPage
             string token = Session["token"]?.ToString();
             var redebanClient = CrearRedebanClient();
 
-            if (intentos >= 20)
+            if (intentos >= 15)
             {
                 tmrRespuesta.Enabled = false;
 
