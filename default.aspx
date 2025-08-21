@@ -535,8 +535,8 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=15">
-                                <img src="img/planes/plan_15-anios.jpg" class="img-responsive" style="height: 450px;" />
+                            <a href="planes?id=14">
+                                <img src="img/planes/plan_10-meses_2025-08-21.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
@@ -544,7 +544,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=10">
-                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
+                                <img src="img/planes/plan_6-mas-2_2025-08-21.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
