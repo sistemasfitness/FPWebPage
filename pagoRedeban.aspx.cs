@@ -38,6 +38,7 @@ namespace WebPage
 
                 if (!pagoIniciado)
                 {
+                    LimpiarPago();
                     MostrarAlerta("Error de Pago", "No se pudo iniciar el proceso de pago.", "error", urlRedirect);
                     return;
                 }
@@ -46,6 +47,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
+                LimpiarPago();
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error", urlRedirect);
             }
         }
@@ -63,6 +65,7 @@ namespace WebPage
 
                 if (string.IsNullOrEmpty(token))
                 {
+                    LimpiarPago();
                     MostrarAlerta("Error", "No se pudo obtener el token de Redeban.", "error", urlRedirect);
                     return false;
                 }
@@ -84,10 +87,10 @@ namespace WebPage
                 Session["idTransaccionAnterior"] = idTransaccion;
                 Session["token"] = token;
                 Session["intentos"] = 0;
+                string codDatafono = Session["codDatafono"].ToString();
 
                 // 4. Enviar la solicitud de compra
-                // TODO: Reemplazar el código del datáfono por el real que viene de la query
-                string resultado = await redebanClient.EnviarDatosCompraAsync(idTransaccion, token, precioPlan, "LM9ZZ702");
+                string resultado = await redebanClient.EnviarDatosCompraAsync(idTransaccion, token, precioPlan, codDatafono);
 
                 // 5. Extraer el código de la respuesta con Regex
                 var match = System.Text.RegularExpressions.Regex.Match(resultado, @"Cod:(\d+),Msj:(.*)");
@@ -103,18 +106,21 @@ namespace WebPage
                     }
                     else
                     {
+                        LimpiarPago();
                         MostrarAlerta("Error en pago", "No se pudo iniciar la transacción. Detalle: " + resultado, "error", urlRedirect);
                         return false;
                     }
                 }
                 else
                 {
+                    LimpiarPago();
                     MostrarAlerta("Error en pago", "Respuesta inesperada del servicio Redeban: " + resultado, "error", urlRedirect);
                     return false;
                 }
             }
             catch (Exception ex)
             {
+                LimpiarPago();
                 MostrarAlerta("Error inesperado", "Ocurrió un error al procesar el pago.", "error", urlRedirect);
                 System.Diagnostics.Debug.WriteLine("Error en RealizarCompra: " + ex.ToString());
                 return false;
@@ -143,6 +149,7 @@ namespace WebPage
                     System.Diagnostics.Debug.WriteLine($"BorrarTransaccion: {resultadoBorrar}");
                 }
 
+                LimpiarPago();
                 MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning", urlRedirect);
                 return;
             }
@@ -152,6 +159,7 @@ namespace WebPage
             if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
             {
                 tmrRespuesta.Enabled = false;
+                LimpiarPago();
                 MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error", urlRedirect);
                 return;
             }
@@ -172,12 +180,15 @@ namespace WebPage
             else if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))))
             {
                 tmrRespuesta.Enabled = false;
+                LimpiarPago();
                 MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error", urlRedirect);
             }
         }
 
         private async Task ProcesarPagoExitosoAsync()
         {
+            string urlRedirect = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+
             try
             {
                 // 1. Creación de factura en Siigo
@@ -231,7 +242,7 @@ namespace WebPage
                 DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
                 if (dt.Rows.Count == 0)
                 {
-                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error", "planesKiosco.aspx");
+                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error", urlRedirect);
                     return;
                 }
 
@@ -239,6 +250,7 @@ namespace WebPage
                 Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
                 //string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                string codDatafono = Session["codDatafono"].ToString();
 
                 // 5. Registro de pago en la base de datos (PagosPlanAfiliado)
                 cg.InsertarPagoPlanAfiliadoWeb(
@@ -252,16 +264,17 @@ namespace WebPage
                     "",
                     "",
                     "",
-                    "LM9ZZ702", // TODO: Cambiarlo por el que está en el query
+                    codDatafono,
                     Session["idTransaccionRRN"].ToString(),
                     Session["numReciboDatafono"].ToString()
                 );
 
-                MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", "planesKiosco.aspx");
+                LimpiarTodo();
+                MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", urlRedirect);
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno.", "error", "planesKiosco.aspx");
+                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno. Por favor, comunicarse con el área de sistemas.", "error", urlRedirect);
                 System.Diagnostics.Debug.WriteLine("Error en ProcesarPagoExitosoAsync: " + ex.ToString());
             }
         }
@@ -276,6 +289,21 @@ namespace WebPage
                 "sistemas@fitnesspeoplecmd.com",
                 "idJ089J3Fm"
             );
+        }
+
+        private void LimpiarPago()
+        {
+            Session.Remove("idTransaccion");
+            Session.Remove("idTransaccionAnterior");
+            Session.Remove("token");
+            Session.Remove("intentos");
+            Session.Remove("idTransaccionRRN");
+            Session.Remove("numReciboDatafono");
+        }
+
+        private void LimpiarTodo()
+        {
+            Session.Clear();
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo, string urlRedirect)
@@ -297,7 +325,7 @@ namespace WebPage
                 }},
             }}).then((result) => {{
                 if (result.isConfirmed) {{
-                    window.location.href = '{urlRedirect}';
+                    window.location.replace('{urlRedirect}');
                 }}
             }});";
 
