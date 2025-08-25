@@ -309,7 +309,13 @@ namespace WebPage
             }
         }
 
-        private void BuscarAfiliadoExistente()
+        // TODO: Realizar lógica de gestión de usuario
+        private void GestionarUsuario()
+        {
+
+        }
+
+        protected void BuscarAfiliadoExistente(object sender, EventArgs e)
         {
             string documentoAfiliado = txbDocumento.Text.Trim();
 
@@ -323,7 +329,6 @@ namespace WebPage
 
                     if (dt.Rows.Count > 0)
                     {
-                        // TODO: TERMINAR DE ARREGLAR
                         txbNombre.Text = dt.Rows[0]["NombreAfiliado"].ToString();
                         txbApellido.Text = dt.Rows[0]["ApellidoAfiliado"].ToString();
                         txbEmail.Text = dt.Rows[0]["EmailAfiliado"].ToString();
@@ -331,11 +336,12 @@ namespace WebPage
                         ddlGenero.SelectedIndex = Convert.ToInt32(ddlGenero.Items.IndexOf(ddlGenero.Items.FindByValue(dt.Rows[0]["idGenero"].ToString())));
                         txbFechaNac.Text = dt.Rows[0]["FechaNacAfiliado"].ToString();
                         ddlCiudad.SelectedIndex = Convert.ToInt32(ddlCiudad.Items.IndexOf(ddlCiudad.Items.FindByValue(dt.Rows[0]["idCiudadAfiliado"].ToString())));
+                        ddlSedes.SelectedIndex = Convert.ToInt32(ddlSedes.Items.IndexOf(ddlSedes.Items.FindByValue(dt.Rows[0]["idSede"].ToString())));
                     }
 
                 } catch (Exception ex)
                 {
-
+                    MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
                 }
             }
         }

@@ -73,6 +73,7 @@
                             <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
+                            <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
                             <asp:UpdatePanel ID="upAfiliados" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
@@ -90,7 +91,9 @@
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Nro. de Documento: *</label>
-                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
+                                                    placeholder="Documento" TabIndex="1" required=""
+                                                    AutoPostBack="true" OnTextChanged="BuscarAfiliadoExistente"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +156,6 @@
                         </div>
 
                         <div class="step">
-                            <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
                             <asp:UpdatePanel ID="upSedes" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
