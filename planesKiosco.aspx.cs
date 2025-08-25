@@ -16,8 +16,8 @@ namespace WebPage
             {
                 ConsultarCodDatafono();
 
-                // Controla y evita posibles errores de regresar o página anterior
-                RedireccionarAPlanes();
+                // Controla y evita posibles errores de regresar a página anterior
+                BloquearPaginaAnterior();
             }
 
             Session["origenPlanes"] = "KIOSCO";
@@ -50,22 +50,22 @@ namespace WebPage
         }
 
         // TODO: ARREGLAR PORQUE NO ESTÁ FUNCIONANDO
-        private void RedireccionarAPlanes()
+        private void BloquearPaginaAnterior()
         {
             string codDatafono = Session["codDatafono"].ToString();
 
             string script = $@"
-            <script type='text/javascript'>
-                // Empuja un nuevo estado al historial
-                window.history.pushState(null, '', window.location.href);
+                <script type='text/javascript'>
+                    // Empuja un nuevo estado al historial
+                    window.history.pushState(null, '', window.location.href);
 
-                // Si el usuario intenta retroceder, se envía a planesKiosco
-                window.onpopstate = function () {{
-                    window.location.href = 'planesKiosco?codDatafono={codDatafono}';
-                }};
-            </script>";
+                    // Si el usuario intenta retroceder, se envía a planesKiosco
+                    window.onpopstate = function () {{
+                        window.location.replace('planesKiosco?codDatafono={codDatafono}');
+                    }};
+                </script>";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "NoBackFromPlanesKiosco", script, false);
+            ScriptManager.RegisterStartupScript(this, GetType(), "BackPlanes", script, false);
         }
     }
 }

@@ -33,7 +33,8 @@ namespace WebPage
             if (!IsPostBack)
             {
                 // Controla y evita posibles errores de regresar o página anterior
-                RedireccionarAPlanes();
+                BloquearPaginaAnterior();
+                CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
                 CargarGeneros();
@@ -161,7 +162,7 @@ namespace WebPage
             dt.Dispose();
         }
 
-        protected async void btnRegistrar(object sender, EventArgs e)
+        protected async void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -308,6 +309,42 @@ namespace WebPage
             }
         }
 
+        private void BuscarAfiliadoExistente()
+        {
+            string documentoAfiliado = txbDocumento.Text.Trim();
+
+            if (!string.IsNullOrEmpty(documentoAfiliado))
+            {
+                try
+                {
+                    clasesglobales cg = new clasesglobales();
+
+                    DataTable dt = cg.ConsultarAfiliadoPorDocumento(documentoAfiliado);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        // TODO: TERMINAR DE ARREGLAR
+                        txbNombre.Text = dt.Rows[0]["NombreAfiliado"].ToString();
+                        txbApellido.Text = dt.Rows[0]["ApellidoAfiliado"].ToString();
+                        txbEmail.Text = dt.Rows[0]["EmailAfiliado"].ToString();
+                        txbCelular.Text = dt.Rows[0]["CelularAfiliado"].ToString();
+                        ddlGenero.SelectedIndex = Convert.ToInt32(ddlGenero.Items.IndexOf(ddlGenero.Items.FindByValue(dt.Rows[0]["idGenero"].ToString())));
+                        txbFechaNac.Text = dt.Rows[0]["FechaNacAfiliado"].ToString();
+                        ddlCiudad.SelectedIndex = Convert.ToInt32(ddlCiudad.Items.IndexOf(ddlCiudad.Items.FindByValue(dt.Rows[0]["idCiudadAfiliado"].ToString())));
+                    }
+
+                } catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        private void CambiarPlanSeleccionado()
+        {
+            btnElegirPlanLink.NavigateUrl = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+        }
+
         public string CalcularFechaFinPlan(string strFechaInicio)
         {
             DateTime fechaInicio;
@@ -355,22 +392,22 @@ namespace WebPage
             txbFechaFin.Text = strFechaFin;
         }
 
-        private void RedireccionarAPlanes()
+        private void BloquearPaginaAnterior()
         {
             string codDatafono = Session["codDatafono"].ToString();
 
             string script = $@"
-            <script type='text/javascript'>
-                // Empuja un nuevo estado al historial
-                window.history.pushState(null, '', window.location.href);
+                <script type='text/javascript'>
+                    // Empuja un nuevo estado al historial
+                    window.history.pushState(null, '', window.location.href);
 
-                // Si el usuario intenta retroceder, se envía a planesKiosco
-                window.onpopstate = function () {{
-                    window.location.href = 'planesKiosco?codDatafono={codDatafono}';
-                }};
-            </script>";
+                    // Si el usuario intenta retroceder, se envía a planesKiosco
+                    window.onpopstate = function () {{
+                        window.location.href = 'planesKiosco?codDatafono={codDatafono}';
+                    }};
+                </script>";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "NoBackToPagoRedeban", script, false);
+            ScriptManager.RegisterStartupScript(this, GetType(), "BackPlanes", script, false);
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)

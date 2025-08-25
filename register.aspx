@@ -56,7 +56,7 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">Registro y pago</h1>
+            <h1 style="font-weight: 900;">Registro</h1>
             <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
@@ -73,74 +73,78 @@
                             <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Tipo de Documento: *</label>
-                                        <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
-                                            AppendDataBoundItems="true" DataTextField="TipoDocumento" 
-                                            DataValueField="idTipoDoc" CssClass="form-control" 
-                                            Style="background-color: #3c3c3c;">
-                                            <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
+                            <asp:UpdatePanel ID="upAfiliados" runat="server">
+                                <ContentTemplate>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Tipo de Documento: *</label>
+                                                <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
+                                                    AppendDataBoundItems="true" DataTextField="TipoDocumento" 
+                                                    DataValueField="idTipoDoc" CssClass="form-control" 
+                                                    Style="background-color: #3c3c3c;">
+                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nro. de Documento: *</label>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nro. de Documento: *</label>
-                                        <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nombre(s): *</label>
+                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
+                                                    placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Apellido(s): *</label>
+                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
+                                                    placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nombre(s): *</label>
-                                        <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
-                                            placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Email: *</label>
+                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="Email" required=""></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Celular: *</label>
+                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="Teléfono" required=""></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Apellido(s): *</label>
-                                        <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
-                                            placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Género: *</label>
+                                                <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
+                                                    DataTextField="Genero" DataValueField="idGenero" required="" 
+                                                    Style="background-color: #3c3c3c;"
+                                                    CssClass="form-control" TabIndex="6">
+                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Fecha de Nacimiento: *</label>
+                                                <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email: *</label>
-                                        <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="Email" required=""></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Celular: *</label>
-                                        <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="Teléfono" required=""></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Género: *</label>
-                                        <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
-                                            DataTextField="Genero" DataValueField="idGenero" required="" 
-                                            Style="background-color: #3c3c3c;"
-                                            CssClass="form-control" TabIndex="6">
-                                            <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Fecha de Nacimiento: *</label>
-                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                         <!--End step -->
                         <div class="form_title">
@@ -237,15 +241,24 @@
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" Enabled="false"/>
+                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar_Click" Enabled="false"/>
                             </div>
                         </div>
+
+                        <div class="box_style_2" style="color: black;">
+                            <div>
+                                <asp:HyperLink ID="btnElegirPlanLink" runat="server" CssClass="btn_full" Text="Seleccionar otro plan" />
+                            </div>
+                        </div>
+
                         <div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
                             <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573138859790" class="phone" target="_blank">3138859790</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
                         </div>
+
+
                     </div>
                 </aside>
             </form>

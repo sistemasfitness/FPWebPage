@@ -141,7 +141,7 @@ namespace WebPage
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
-                    5,
+                    4,
                     Session["idReferencia"].ToString(),
                     "Ninguno",
                     "Pendiente",

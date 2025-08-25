@@ -33,6 +33,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlForm form;
 
         /// <summary>
+        /// Control upAfiliados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upAfiliados;
+
+        /// <summary>
         /// Control ddlTipoDocumento.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegistrarAfiliado;
+
+        /// <summary>
+        /// Control btnElegirPlanLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink btnElegirPlanLink;
 
         /// <summary>
         /// Control footer.
