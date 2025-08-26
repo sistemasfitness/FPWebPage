@@ -79,6 +79,14 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
+                                                <label>Nro. de Documento: *</label>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
+                                                    placeholder="Documento" TabIndex="1" required=""
+                                                    AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
                                                 <label>Tipo de Documento: *</label>
                                                 <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
                                                     AppendDataBoundItems="true" DataTextField="TipoDocumento" 
@@ -86,14 +94,6 @@
                                                     Style="background-color: #3c3c3c;">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Nro. de Documento: *</label>
-                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
-                                                    placeholder="Documento" TabIndex="1" required=""
-                                                    AutoPostBack="true" OnTextChanged="BuscarAfiliadoExistente"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                             <div class="form-group">
                                                 <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" required=""
-                                                    AppendDataBoundItems="true" DataTextField="NombreSede" DataValueField="idSede" 
+                                                    AppendDataBoundItems="true" DataTextField="NombreSede" DataValueField="IdSede" 
                                                     AutoPostBack="true" Style="background-color: #3c3c3c;">
                                                     <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
