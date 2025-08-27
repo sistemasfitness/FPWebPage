@@ -32,8 +32,6 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                // Controla y evita posibles errores de regresar o página anterior
-                BloquearPaginaAnterior();
                 CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
@@ -462,24 +460,6 @@ namespace WebPage
             string strFechaFin = CalcularFechaFinPlan(strFechaInicio);
 
             txbFechaFin.Text = strFechaFin;
-        }
-
-        private void BloquearPaginaAnterior()
-        {
-            string codDatafono = Session["codDatafono"].ToString();
-
-            string script = $@"
-                <script type='text/javascript'>
-                    // Empuja un nuevo estado al historial
-                    window.history.pushState(null, '', window.location.href);
-
-                    // Si el usuario intenta retroceder, se envía a planesKiosco
-                    window.onpopstate = function () {{
-                        window.location.href = 'planesKiosco?codDatafono={codDatafono}';
-                    }};
-                </script>";
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "BackPlanes", script, false);
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)

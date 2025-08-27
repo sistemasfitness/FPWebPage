@@ -16,7 +16,7 @@ namespace WebPage
             {
                 ConsultarCodDatafono();
 
-                // Controla y evita posibles errores de regresar a página anterior
+                // Bloquear que el usuario vuelva a Register o PagoRedeban
                 BloquearPaginaAnterior();
             }
 
@@ -46,26 +46,27 @@ namespace WebPage
             else
             {
                 Response.Redirect("default");
+
             }
         }
 
-        // TODO: ARREGLAR PORQUE NO ESTÁ FUNCIONANDO
         private void BloquearPaginaAnterior()
         {
             string codDatafono = Session["codDatafono"].ToString();
 
             string script = $@"
-                <script type='text/javascript'>
-                    // Empuja un nuevo estado al historial
-                    window.history.pushState(null, '', window.location.href);
-
-                    // Si el usuario intenta retroceder, se envía a planesKiosco
+                (function() {{
+                    // Empuja un estado falso al historial
+                    window.history.pushState(null, null, window.location.href);
+            
                     window.onpopstate = function () {{
+                        // Cada vez que el usuario presione atrás, lo redirigimos otra vez aquí
                         window.location.replace('planesKiosco?codDatafono={codDatafono}');
                     }};
-                </script>";
+                }})();
+            ";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "BackPlanes", script, false);
+            ScriptManager.RegisterStartupScript(this, GetType(), "BloquearPaginaAnterior", script, true);
         }
     }
 }
