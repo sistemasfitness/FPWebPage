@@ -643,10 +643,8 @@
     <Content Include="planes.aspx" />
     <Content Include="planesKiosco.aspx" />
     <Content Include="producto.aspx" />
-    <Content Include="Pruebas.aspx" />
     <Content Include="pagoRedeban.aspx" />
     <Content Include="register.aspx" />
-    <Content Include="registerData.aspx" />
     <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -908,13 +906,6 @@
       <DependentUpon>producto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pruebas.aspx.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pruebas.aspx.designer.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pagoRedeban.aspx.cs">
       <DependentUpon>pagoRedeban.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -928,13 +919,6 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="registerData.aspx.cs">
-      <DependentUpon>registerData.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="registerData.aspx.designer.cs">
-      <DependentUpon>registerData.aspx</DependentUpon>
     </Compile>
     <Compile Include="resultado.aspx.cs">
       <DependentUpon>resultado.aspx</DependentUpon>
