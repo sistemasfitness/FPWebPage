@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" Debug="true" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>

@@ -27,24 +27,25 @@ namespace WebPage
             string strReferencia = Request.QueryString["id"].ToString();
             string strEnv = Request.QueryString["env"].ToString();
 
-            string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
-            DataTable dt = TraerDatos(strQuery);
+            clasesglobales cg = new clasesglobales();
+
+            string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "';";
+            DataTable dt = cg.TraerDatos(strQuery);
 
             if (dt.Rows.Count > 0)
             {
                 strQuery = "SELECT * FROM AfiliadosPlanes WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
                     "AND EstadoPlan = 'Inactivo' ";
-                DataTable dt2 = TraerDatos(strQuery);
+                DataTable dt2 = cg.TraerDatos(strQuery);
 
                 if (dt2.Rows.Count > 0)
                 {
                     try
                     {
-                        strQuery = "INSERT INTO PagosPlanAfiliado (idAfiliadoPlan, Valor, idReferenciaWompi, env, fechahorapago) " +
+                        strQuery = "INSERT INTO PagosPlanAfiliado (idAfiliadoPlan, Valor, idReferencia, FechaHoraPago) " +
                             "VALUES (" + dt2.Rows[0]["idAfiliadoPlan"].ToString() + ", " +
-                            "" + dt2.Rows[0]["Valor"].ToString() + ", " +
-                            "'" + strReferencia + "', " +
-                            "'" + strEnv + "', NOW()) ";
+                            "" + Convert.ToInt16(dt2.Rows[0]["Valor"].ToString()) + ", " +
+                            "'" + strReferencia + "', NOW());";
                         OdbcCommand command = new OdbcCommand(strQuery, myConnection);
                         myConnection.Open();
                         command.ExecuteNonQuery();
@@ -78,23 +79,25 @@ namespace WebPage
             }
         }
 
-        private DataTable TraerDatos(string strQuery)
-        {
-            myConnection.Open();
-            DataTable dt = new DataTable();
+        //private DataTable TraerDatos(string strQuery)
+        //{
+        //    myConnection.Open();
+        //    DataTable dt = new DataTable();
 
-            OdbcCommand sqlCmd = new OdbcCommand(strQuery, myConnection);
-            OdbcDataAdapter sqlDA = new OdbcDataAdapter(sqlCmd);
-            sqlDA.Fill(dt);
-            myConnection.Close();
+        //    OdbcCommand sqlCmd = new OdbcCommand(strQuery, myConnection);
+        //    OdbcDataAdapter sqlDA = new OdbcDataAdapter(sqlCmd);
+        //    sqlDA.Fill(dt);
+        //    myConnection.Close();
 
-            return dt;
-        }
+        //    return dt;
+        //}
 
         private void PostArmatura(string strDocumento)
         {
             string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
-            DataTable dt = TraerDatos(strQuery);
+
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.TraerDatos(strQuery);
 
             string strGenero = "";
             if (dt.Rows[0]["idGenero"].ToString() == "1")
