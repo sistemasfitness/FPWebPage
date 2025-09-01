@@ -81,7 +81,7 @@
     <div class="container_styled_1">
         <div class="container margin_60_35">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-bottom: 3rem;">
 
                     <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>Galería</em></h2>
 
@@ -103,14 +103,11 @@
 
                                 <div class="team-item">
                                     <div class="team-item-img">
-                                        <div class="img_wrapper">
-                                            <div class="img_container">
-                                                <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" class="img-responsive" alt="" />
-                                            </div>
+                                        <div class="img_container" style="height: 100%;">
+                                            <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" class="img-responsive" alt="" />
                                         </div>
                                     </div>
                                 </div>
-
                             </ItemTemplate>
                         </asp:Repeater>
                     <%--</div>--%>
@@ -274,25 +271,24 @@
             items: 1,
             loop: true,
             autoHeight: true,
-            autoWidth: true,
-            center: true,
-            nav: false,
-            center: true,
+            autoWidth: false,
+            center: false,
+            nav: true,
             autoplayTimeout: 3000,
             margin: 10,
             autoplay: true,
             smartSpeed: 1000,
-            responsiveClass: false,
+            responsiveClass: true,
             autoplayHoverPause: true,
             responsive: {
-                320: {
+                0: {
                     items: 1,
                 },
                 768: {
-                    items: 2,
+                    items: 1,
                 },
                 1000: {
-                    items: 2,
+                    items: 1,
                 }
             }
         });
