@@ -102,7 +102,7 @@
                                 </div>--%>
 
                                 <div class="team-item">
-                                    <div class="team-item-img">
+                                    <div class="team-item-img carousel-images-sedes">
                                         <div class="img_container" style="height: 100%;">
                                             <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" class="img-responsive" alt="" />
                                         </div>
@@ -166,19 +166,15 @@
         </div>
     </div>
 
-    <section class="margin_60_35" id="planes">
+    <section id="planes" class="margin_60_35" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
-
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
             <p class="lead styled" style="font-weight: 500; color: #FFF;">
                 En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
             </p>
-
             <div class="row text-center plans">
-
                 <div class="col-md-4">
                     <div class="img_container">
-                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23365" target="_blank">--%>
                         <a href="planes?id=1">
                             <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
                         </a>
@@ -187,24 +183,48 @@
 
                 <div class="col-md-4">
                     <div class="img_container">
-                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">--%>
-                        <a href="planes?id=7">
-                            <img src="img/planes/03_transformacion_total.jpg" class="img-responsive" style="height: 450px;" />
+                        <a href="planes?id=14">
+                            <img src="img/planes/plan_10-meses_2025-08-21.jpg" class="img-responsive" style="height: 450px;" />
                         </a>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="img_container">
-                        <%--<a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=23124" target="_blank">--%>
-                        <a href="planes?id=2">
-                            <img src="img/planes/02_plan-fast-150mil_16-07-2025.jpg" class="img-responsive" />
+                        <a href="planes?id=10">
+                            <img src="img/planes/plan_6-mas-2_2025-08-21.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
 
             </div>
+            <!-- End row plans-->
 
+            <div class="banner-tarifas img_container"></div>
+
+            <section style="padding-top: 10px; padding-bottom: 15px;">
+                <div class="container" style="display: flex; flex-direction: column;">
+                    <div class="row">
+                        <div class="card-row-tarifas">
+                            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
+                                <img src="img/tarifas/01_plan-referencia-easy.png" class="img-responsive" />
+                            </div>
+
+                            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
+                                <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
+                            </div>
+
+                            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
+                                <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
+                            </div>
+
+                            <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
+                                <img src="img/tarifas/04_plan-referencia-10-meses.png" class="img-responsive" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <!--  End container-->
     </section>
@@ -263,6 +283,18 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+    <style>
+
+        .banner-tarifas {
+            width: 100%;
+            height: 470px;
+            background-image: url('img/banners/tarifas-2025.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
 
     <script>
 
