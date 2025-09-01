@@ -190,8 +190,11 @@
                 </div>--%>
             </div>
             <div class="row" style="display: flex; justify-content: center;">
-                <div class="col-md-12" style="text-align: center;">
+                <div class="col-md-6" style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
+                </div>
+                <div class="col-md-6" style="text-align: center;">
+                    <asp:HyperLink ID="btnComprarPlan" runat="server" CssClass="btn_full" Text="Comprar Plan" />
                 </div>
             </div>
             <!-- End row -->

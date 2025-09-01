@@ -42,6 +42,10 @@ namespace WebPage
                         ltBotonPago.Text = htmlBoton;
                         ltBotonPago2.Text = htmlBoton;
                         ltBotonPago3.Text = htmlBoton;
+
+                        Session["origenPlanes"] = "WEB";
+
+                        ComprarPlan();
                     }
                     else
                     {
@@ -65,6 +69,11 @@ namespace WebPage
         {
             return $"<a href=\"{enlace}\" target=\"_blank\" >" +
                    "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\"></a>";
+        }
+
+        private void ComprarPlan()
+        {
+            btnComprarPlan.NavigateUrl = $"register?idPlan={Request.QueryString["id"]}";
         }
 
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)

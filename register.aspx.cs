@@ -281,16 +281,26 @@ namespace WebPage
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
-
-                if (Session["idPlan"].ToString() == "1")
+                else if (origen == "WEB")
                 {
-                    Response.Redirect("wompipay", false);
-                    Context.ApplicationInstance.CompleteRequest();
-                    return;
+                    if (Session["idPlan"].ToString() == "1")
+                    {
+                        Response.Redirect("wompipay", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
+                    else
+                    {
+                        string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+
+                        Response.Redirect($"wompiplan?code={strDataWompi}", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
                 }
                 else
                 {
-                    Response.Redirect("wompiplan", false);
+                    Response.Redirect("default", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
@@ -412,7 +422,16 @@ namespace WebPage
 
         private void CambiarPlanSeleccionado()
         {
-            btnElegirPlanLink.NavigateUrl = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+            string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+
+            if (origen == "KIOSCO")
+            {
+                btnElegirPlanLink.NavigateUrl = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+            }
+            else if (origen == "WEB")
+            {
+                btnElegirPlanLink.NavigateUrl = "default#planes";
+            }
         }
 
         public string CalcularFechaFinPlan(string strFechaInicio)

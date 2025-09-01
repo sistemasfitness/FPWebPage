@@ -694,7 +694,6 @@
     <Content Include="sedespg.aspx" />
     <Content Include="servicios.aspx" />
     <Content Include="terminoslegales.aspx" />
-    <Content Include="TestRedeban.aspx" />
     <Content Include="tienda.aspx" />
     <Content Include="verificacion.aspx" />
     <Content Include="Web.config" />
@@ -956,13 +955,6 @@
     </Compile>
     <Compile Include="terminoslegales.aspx.designer.cs">
       <DependentUpon>terminoslegales.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TestRedeban.aspx.cs">
-      <DependentUpon>TestRedeban.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestRedeban.aspx.designer.cs">
-      <DependentUpon>TestRedeban.aspx</DependentUpon>
     </Compile>
     <Compile Include="tienda.aspx.cs">
       <DependentUpon>tienda.aspx</DependentUpon>
