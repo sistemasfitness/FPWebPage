@@ -207,7 +207,7 @@
                     <div class="row">
                         <div class="card-row-tarifas">
                             <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
-                                <img src="img/tarifas/01_plan-referencia-easy.png" class="img-responsive" />
+                                <img src="img/tarifas/01_plan-referencia-1-mes.png" class="img-responsive" />
                             </div>
 
                             <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
