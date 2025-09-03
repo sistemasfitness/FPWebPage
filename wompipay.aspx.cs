@@ -322,7 +322,7 @@ namespace WebPage
 
                 do
                 {
-                    await Task.Delay(1000); // Espera 2 segundos
+                    await Task.Delay(1000); // Espera 1 segundos
                     estado = await ConsultarTransaccionPorReferencia(reference);
                     intentos++;
                 }
