@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -43,7 +44,6 @@ namespace WebPage
                 {
                     Response.StatusCode = 400; // Bad Request
                     Response.Write("Empty body");
-                    Response.End();
                     return;
                 }
 
@@ -53,7 +53,6 @@ namespace WebPage
                 {
                     Response.StatusCode = 401; // Unauthorized
                     Response.Write("Invalid signature");
-                    Response.End();
                     return;
                 }
 
@@ -61,34 +60,56 @@ namespace WebPage
                 dynamic webhook = JsonConvert.DeserializeObject(body);
 
                 string evento = webhook.@event;
-                string transactionId = webhook.data.transaction.id;
-                string status = webhook.data.transaction.status;
+                string idTransaccion = webhook.data.transaction.id;
+                string estado = webhook.data.transaction.status;
                 string referencia = webhook.data.transaction.reference;
                 string moneda = webhook.data.transaction.currency;
                 long montoCents = webhook.data.transaction.amount_in_cents;
 
                 // 4. Registrar en BD
-                //GuardarTransaccionEnBD(transactionId, referencia, status, moneda, montoCents);
+                ProcesarTransaccion(idTransaccion, referencia, estado);
 
-                // 5. (Opcional) enviar notificación al usuario
-                if (status == "APPROVED")
-                {
-                    //EnviarCorreoConfirmacion(referencia, montoCents / 100.0m);
-                }
-
-                // 6. Confirmar recepción a Wompi
+                // 5. Confirmar recepción a Wompi
                 Response.StatusCode = 200;
-                Response.Write("OK");
-                Response.End();
             }
             catch (Exception ex)
             {
                 // Loguear el error
                 System.Diagnostics.Debug.WriteLine("Error en Webhook: " + ex.ToString());
-
                 Response.StatusCode = 500;
-                Response.Write("Internal Server Error");
-                Response.End();
+            }
+        }
+
+        private void ProcesarTransaccion(string transaccionId, string referencia, string estado)
+        {
+            if (estado == "APPROVED")
+            {
+                // TODO: Buscar en la base de datos si existe una transacción con esta idTransaccion
+                //ConsultarTransaccionWompiPorId(transaccionId);
+
+                // Si no existe:
+                //InsertarTransaccionWompi();
+
+                // Si existe y tiene estado "PENDING":
+                //CambiarEstadoTransaccionWompi(transaccionId, estado);
+            }
+
+            if (estado == "PENDING")
+            {
+                // TODO: Buscar en la base de datos si existe una transacción con esta idTransaccion
+                //ConsultarTransaccionWompiPorId(transaccionId);
+
+                // Si no existe:
+                //InsertarTransaccionWompi();
+            }
+
+            if (estado == "DECLINED" || estado == "VOIDED")
+            {
+                // TODO: Buscar en la base de datos si existe una transacción con esta idTransaccion
+                //ConsultarTransaccionWompiPorId(transaccionId);
+
+                // Si existe y tiene estado "PENDING":
+                //CambiarEstadoTransaccionWompi(transaccionId, estado);
             }
         }
 
