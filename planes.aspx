@@ -172,8 +172,24 @@
         </div>
     </section>
 
+    <section id="barraProgreso" runat="server" visible="false" style="text-align: center;">
+        <div class="container">
+            <asp:Literal ID="litScriptFechas" runat="server" EnableViewState="false"></asp:Literal>
+
+            <h2 style="font-weight: 900; color: #e3ff00;">¡Date prisa!</h2>
+
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+
+            <h4 style="font-weight: 500; color: #e3ff00;">Esta promo termina en: </h4>
+
+            <p style="font-size: 3rem; font-weight: 900; color: #FFF;" id="time-remaining"></p>
+        </div>
+    </section>
+
     <section class="margin_60_35" id="testimonials2">
-        <div class="container margin_60_35">
+        <div class="container">
             <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
@@ -185,9 +201,6 @@
                 <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
                     <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                 </div>
-                <%--<div class="col-md-6 col-md-offset-1 hidden-sm hidden-xs" style="cursor: pointer; align-content: center;">
-                    <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
-                </div>--%>
             </div>
             <div class="row" style="display: flex; justify-content: center;">
                 <div class="col-md-6" style="text-align: center;">
@@ -746,6 +759,59 @@
                 }
             }
         });
+    </script>
+
+    <style>
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 0.5s linear;
+        }
+    </style>
+
+    <script>
+        function iniciarTemporizador(fechaInicioStr, fechaFinStr) {
+            const fechaInicio = new Date(fechaInicioStr);
+            const fechaFin = new Date(fechaFinStr);
+            const totalTiempo = fechaFin - fechaInicio;
+
+            function actualizarBarra() {
+                const ahora = new Date();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill").style.width = "0%";
+                    document.getElementById("time-remaining").textContent = "Tiempo terminado";
+                    clearInterval(intervalo);
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+                const horas = Math.floor((tiempoRestante / (1000 * 60 * 60)) % 24);
+                const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+
+                document.getElementById("time-remaining").textContent =
+                    `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        }
     </script>
 
 </body>

@@ -43,7 +43,7 @@ namespace WebPage
 
             string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
-            _strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
+            _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
         }
 
         private void AlmacenarDatosPago(string referencia, string documento)

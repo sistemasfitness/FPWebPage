@@ -33,6 +33,24 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltBannerFull;
 
         /// <summary>
+        /// Control barraProgreso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl barraProgreso;
+
+        /// <summary>
+        /// Control litScriptFechas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litScriptFechas;
+
+        /// <summary>
         /// Control ltTitulo.
         /// </summary>
         /// <remarks>

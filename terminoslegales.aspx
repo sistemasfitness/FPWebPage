@@ -72,8 +72,8 @@
     <div class="container_styled_1">
         <div class="container margin_60_35">
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;"">Documentación</h2>
+                <div class="col-md-12">
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Documentación</h2>
                     <p></p>
                     <p class="lead" style="color: #FFF;">
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" target="_blank">Derechos y deberes usuarios Fitness People</a><br />
@@ -82,11 +82,59 @@
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">Autorización de uso de datos</a><br />
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-AVISO-DE-PRIVACIDAD-VERSION-II.pdf" target="_blank">Aviso de privacidad</a><br />
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados financieros</a><br />
+                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos y condiciones de las promociones</a><br />
+                    </p>
+                    <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Términos y Condiciones de Ofertas – Fitness People Colombia</h4>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>1. Generalidades</strong><br />
+                        Las ofertas y promociones publicadas en https://fitnesspeoplecolombia.com son organizadas por Fitness People Colombia S.A.S., en adelante “Fitness People”. Al acceder o participar en estas promociones, el usuario acepta los presentes términos y condiciones.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>2. Vigencia de las promociones</strong><br />
+                        Cada promoción tendrá una vigencia específica, la cual será comunicada en la página web, redes sociales, puntos de venta físicos o piezas publicitarias.<br />
+                        Una vez vencida la fecha de vigencia, la promoción perderá validez automáticamente.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>3. Disponibilidad</strong><br />
+                        Todas las promociones están sujetas a disponibilidad de cupos y sedes.<br />
+                        Fitness People se reserva el derecho de suspender, modificar o cancelar una promoción sin previo aviso en caso de fuerza mayor o situaciones externas que lo ameriten.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>4. Restricciones generales</strong><br />
+                        Las ofertas no son acumulables con otras promociones, descuentos o convenios empresariales, salvo que se indique lo contrario de manera expresa.<br />
+                        Las promociones aplican únicamente para personas nuevas o clientes actuales, según se especifique en cada campaña.<br />
+                        Los beneficios no son redimibles en dinero, no son transferibles ni intercambiables por otros servicios.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>5. Condiciones de pago</strong><br />
+                        El cliente deberá realizar el pago en los plazos y condiciones indicadas en la oferta.<br />
+                        Fitness People no se hace responsable por pagos realizados en canales no autorizados.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>6. Responsabilidad del usuario</strong><br />
+                        El cliente debe verificar que cumple con los requisitos de la promoción antes de realizar la compra.<br />
+                        Es deber del usuario proporcionar información veraz y actualizada.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>7. Modificaciones</strong><br />
+                        Fitness People se reserva el derecho de modificar estos términos y condiciones en cualquier momento, garantizando la publicación oportuna de los cambios en la página web oficial.
+                    </p>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        <strong>8. Ley aplicable</strong><br />
+                        Estos términos se rigen por la legislación colombiana. Cualquier disputa se resolverá bajo la jurisdicción de los jueces de la República de Colombia.
+                    </p>
+                    <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Beneficio exclusivo para empleados</h4>
+                    <p class="lead" style="color: #FFF; font-size: 1.5rem;">
+                        Fitness People otorga a sus empleados un bono equivalente a un (1) año de entrenamiento en las sedes de la marca, como beneficio de bienestar laboral.<br />
+                        Este bono solo será redimible mientras el trabajador mantenga vigente su contrato laboral con Fitness People.<br />
+                        En caso de renuncia voluntaria o terminación del contrato por cualquier causal (incluyendo despido con o sin justa causa), el empleado perderá de manera inmediata el derecho a continuar disfrutando de este beneficio, sin lugar a reclamaciones posteriores.<br />
+                        El beneficio es personal e intransferible, no puede ser cedido, comercializado ni redimido en dinero.<br />
+                        Fitness People se reserva el derecho de verificar la vigencia del contrato antes de autorizar el acceso al beneficio.
                     </p>
                 </div>
-                <div class="col-md-5 col-md-offset-1 hidden-sm hidden-xs">
-                    <img src="img/devices_2.png" alt="" class="img-responsive">
-                </div>
+                <%--<div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+                    <img src="img/devices_2.png" alt="" class="img-responsive" />
+                </div>--%>
             </div>
             <!-- End row -->
         </div>

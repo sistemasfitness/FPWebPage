@@ -44,7 +44,7 @@
     <link href="css/animate.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/menu.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
@@ -470,7 +470,7 @@
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="bg_black2" style="padding-top: 10px; padding-bottom: 15px;">
+        <section class="margin_60_35" id="profesionales" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container" id="scroll-to2">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
@@ -525,7 +525,6 @@
                     En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
                 </p>
                 <div class="row text-center plans">
-
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=1">
@@ -536,8 +535,8 @@
 
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=11">
-                                <img src="img/planes/plan_8-mas-3.jpg" class="img-responsive" style="height: 450px;" />
+                            <a href="planes?id=14">
+                                <img src="img/planes/plan_10-meses_2025-08-21.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
@@ -545,7 +544,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=10">
-                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
+                                <img src="img/planes/plan_6-mas-2_2025-08-21.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -553,6 +552,31 @@
                 </div>
                 <!-- End row plans-->
 
+                <div class="banner-tarifas img_container"></div>
+
+                <section style="padding-top: 10px; padding-bottom: 15px;">
+                    <div class="container" style="display: flex; flex-direction: column;">
+                        <div class="row">
+                            <div class="card-row-tarifas">
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
+                                    <img src="img/tarifas/01_plan-referencia-1-mes.png" class="img-responsive" />
+                                </div>
+
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
+                                    <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
+                                </div>
+
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
+                                    <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
+                                </div>
+
+                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
+                                    <img src="img/tarifas/04_plan-referencia-10-meses.png" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
             <!--  End container-->
         </section>
@@ -873,5 +897,14 @@
         window.addEventListener('load', actualizarImagenSlider);
         window.addEventListener('resize', actualizarImagenSlider);
     </script>--%>
+    <style>
+        .banner-tarifas {
+	        width: 100%;
+	        height: 470px;
+	        background-image: url('img/banners/tarifas-2025.jpg');
+	        background-size: cover;
+	        background-position: center;
+        }
+    </style>
 </body>
 </html>
