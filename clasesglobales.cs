@@ -7759,6 +7759,37 @@ namespace WebPage
             return dt;
         }
 
+        public DataTable ConsultarPagoPlanAfiliadoPendienteWeb(string referencia)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PAGO_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_referencia", referencia);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+            return dt;
+        }
+
         public DataTable ConsultarFechaFinPlanPorDocumento(string documento)
         {
             DataTable dt = new DataTable();
@@ -7861,7 +7892,72 @@ namespace WebPage
             return respuesta;
         }
 
-		public string InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(int idParQ, int idAfiliado, int idAfiliadoPlan, int respuestaParQ)
+        public string InsertarPagoPlanAfiliadoPendienteWeb(string referencia, int idAfiliado, string documentoAfiliado, int idPlan, string fechaInicioPlan, string fechaFinPlan, int meses, int valorPlan)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_PAGO_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_referencia", referencia);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documentoAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
+                        cmd.Parameters.AddWithValue("@p_fecha_ini_plan", fechaInicioPlan);
+                        cmd.Parameters.AddWithValue("@p_fecha_fin_plan", fechaFinPlan);
+                        cmd.Parameters.AddWithValue("@p_meses", meses);
+                        cmd.Parameters.AddWithValue("@p_valor_plan", valorPlan);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string ActualizarIdSiigoFacturaDePagoPlanAfiliado(string idSiigoFactura, int idAfiliadoPlan)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open(); // Abrir conexión antes de usarla
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_ID_SIIGO_FACTURA_DE_PAGO_PLAN_AFILIADO", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        cmd.Parameters.AddWithValue("@p_id_siigo_factura", idSiigoFactura);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(int idParQ, int idAfiliado, int idAfiliadoPlan, int respuestaParQ)
         {
             string respuesta = string.Empty;
             try

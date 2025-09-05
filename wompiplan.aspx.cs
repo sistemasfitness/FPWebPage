@@ -39,9 +39,25 @@ namespace WebPage
             string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
             _strHash256 = ComputeSha256Hash(concatenado);
 
+            AlmacenarDatosPago(_strReferencia, strDocumento);
+
             string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
             _strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
+        }
+
+        private void AlmacenarDatosPago(string referencia, string documento)
+        {
+            clasesglobales cg = new clasesglobales();
+
+            int idAfiliado = Convert.ToInt32(Session["idAfiliado"].ToString());
+            int idPlan = Convert.ToInt16(Session["idPlan"].ToString());
+            string fechaInicioPlan = Session["fechaInicioPlan"].ToString();
+            string fechaFinPlan = Session["fechaFinPlan"].ToString();
+            int meses = Convert.ToInt16(Session["meses"].ToString());
+            int valorPlan = Convert.ToInt32(Session["valorPlan"].ToString());
+
+            cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, documento, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
         }
 
         static string ComputeSha256Hash(string rawData)

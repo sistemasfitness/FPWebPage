@@ -263,15 +263,22 @@ namespace WebPage
                 dtAfiliado2.Dispose();
                 dtPlan.Dispose();
 
-                var siigoClient = new SiigoClient(
-                    new HttpClient(),
-                    "https://api.siigo.com/",
-                    "sandbox@siigoapi.com",
-                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                    "SandboxSiigoApi"
-                );
+                try
+                {
+                    var siigoClient = new SiigoClient(
+                        new HttpClient(),
+                        "https://api.siigo.com/",
+                        "sandbox@siigoapi.com",
+                        "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                        "SandboxSiigoApi"
+                    );
 
-                await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
+                    await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
+                }
+                catch (Exception siigoEx)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
+                }
 
                 string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
 

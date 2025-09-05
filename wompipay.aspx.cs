@@ -79,42 +79,9 @@ namespace WebPage
                     return;
                 }
 
-                // 1. Creación de factura en Siigo
-                var siigoClient = new SiigoClient(
-                    new HttpClient(),
-                    "https://api.siigo.com/",
-                    "sandbox@siigoapi.com",
-                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                    "SandboxSiigoApi"
-                );
-
-                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
-                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                //    Session["documentoAfiliado"].ToString(), 
-                //    Session["codSiigoPlan"].ToString(), 
-                //    Session["nombrePlan"].ToString(),
-                //    int.Parse(Session["valorPlan"].ToString())
-                //);
-
-                // Siigo Pruebas
-                //    //int idTipoDocumento = 28006;
-                //    //int costCenterDefault = 621;
-                //    //int idVendedor = 856;
-                //    //int idPayment = 9438;
-                string codSiigoPlan = "COD2433";
-                string nombrePlan = "Pago de suscripción";
-                int precioPlan = 10000;
-                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                    Session["documentoAfiliado"].ToString(),
-                    codSiigoPlan,
-                    nombrePlan,
-                    precioPlan
-                );
-
                 clasesglobales cg = new clasesglobales();
 
-                // 2. Inserción de afiliación de cliente al plan
+                // 1. Inserción de afiliación de cliente al plan
                 cg.InsertarAfiliadoPlan(
                     int.Parse(Session["idAfiliado"].ToString()),
                     int.Parse(Session["idPlan"].ToString()),
@@ -126,7 +93,7 @@ namespace WebPage
                     "Pendiente"
                 );
 
-                // 3. Obtención de idAfiliadoPlan recién creado
+                // 2. Obtención de idAfiliadoPlan recién creado
                 DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
                 if (dt.Rows.Count == 0)
                 {
@@ -137,7 +104,9 @@ namespace WebPage
                 int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
                 Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
-                // 4. Inserción de pago en base de datos
+                // 3. Inserción de pago en base de datos
+                string idSiigoFactura = null;
+
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
@@ -149,10 +118,54 @@ namespace WebPage
                     Session["dataIdToken"].ToString(),
                     Session["dataIdFuentePago"].ToString(),
                     Session["dataIdTransaccion"].ToString(),
-                    "", 
-                    "", 
-                    ""
+                    null,
+                    null,
+                    null
                 );
+
+                // 4. Intentar facturar en Siigo
+                try
+                {
+                    // Creación de factura
+                    var siigoClient = new SiigoClient(
+                        new HttpClient(),
+                        "https://api.siigo.com/",
+                        "sandbox@siigoapi.com",
+                        "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                        "SandboxSiigoApi"
+                    );
+
+                    // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                    // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                    //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                    //    Session["documentoAfiliado"].ToString(), 
+                    //    Session["codSiigoPlan"].ToString(), 
+                    //    Session["nombrePlan"].ToString(),
+                    //    int.Parse(Session["valorPlan"].ToString())
+                    //);
+
+                    // Siigo Pruebas
+                    //    //int idTipoDocumento = 28006;
+                    //    //int costCenterDefault = 621;
+                    //    //int idVendedor = 856;
+                    //    //int idPayment = 9438;
+                    string codSiigoPlan = "COD2433";
+                    string nombrePlan = "Pago de suscripción";
+                    int precioPlan = 10000;
+                    idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        Session["documentoAfiliado"].ToString(),
+                        codSiigoPlan,
+                        nombrePlan,
+                        precioPlan
+                    );
+
+                    // Actualizar pago con id de factura
+                    cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+                }
+                catch (Exception siigoEx)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+                }
 
                 dt.Dispose();
             }
