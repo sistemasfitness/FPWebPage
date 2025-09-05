@@ -203,10 +203,10 @@
                 </div>
             </div>
             <div class="row" style="display: flex; justify-content: center;">
-                <div class="col-md-11" style="text-align: center;">
+                <div class="col-md-12" style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
-                <div class="col-md-1" style="text-align: center;">
+                <div class="col-md-0" style="text-align: center; display: none;">
                     <asp:HyperLink ID="btnComprarPlan" runat="server" CssClass="btn" Text="." />
                 </div>
             </div>
