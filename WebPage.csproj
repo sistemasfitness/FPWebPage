@@ -641,8 +641,9 @@
     <Content Include="plan3plus3.aspx" />
     <Content Include="planeasy.aspx" />
     <Content Include="planes.aspx" />
+    <Content Include="planesKiosco.aspx" />
     <Content Include="producto.aspx" />
-    <Content Include="Pruebas.aspx" />
+    <Content Include="pagoRedeban.aspx" />
     <Content Include="register.aspx" />
     <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -673,6 +674,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="wompiwebhook.aspx" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -889,6 +891,13 @@
     <Compile Include="planes.aspx.designer.cs">
       <DependentUpon>planes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="planesKiosco.aspx.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planesKiosco.aspx.designer.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
+    </Compile>
     <Compile Include="producto.aspx.cs">
       <DependentUpon>producto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -897,12 +906,12 @@
       <DependentUpon>producto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pruebas.aspx.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
+    <Compile Include="pagoRedeban.aspx.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pruebas.aspx.designer.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
+    <Compile Include="pagoRedeban.aspx.designer.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
     </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -932,6 +941,8 @@
     <Compile Include="sedespg.aspx.designer.cs">
       <DependentUpon>sedespg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Services\RedebanClient.cs" />
+    <Compile Include="Services\SiigoClient.cs" />
     <Compile Include="servicios.aspx.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -987,6 +998,13 @@
     </Compile>
     <Compile Include="wompiplan.aspx.designer.cs">
       <DependentUpon>wompiplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompiwebhook.aspx.cs">
+      <DependentUpon>wompiwebhook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompiwebhook.aspx.designer.cs">
+      <DependentUpon>wompiwebhook.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

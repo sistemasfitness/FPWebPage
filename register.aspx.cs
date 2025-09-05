@@ -22,6 +22,7 @@ using System.Globalization;
 using MySql.Data.MySqlClient;
 using System.Web.Configuration;
 using System.Security.Policy;
+using WebPage.Services;
 
 namespace WebPage
 {
@@ -31,6 +32,8 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
+                CambiarPlanSeleccionado();
+
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
@@ -45,18 +48,7 @@ namespace WebPage
                 txbFechaFin.Attributes.Add("type", "date");
 
                 txbDocumento.Attributes.Add("type", "number");
-                txbCelular.Attributes.Add("type", "number");
-
-                // Datos de Pruebas
-                txbNombre.Text = "Brayan Stiven";
-                txbApellido.Text = "Ochoa Pineda";
-                ddlTipoDocumento.SelectedItem.Text = "Cédula de Ciudadanía";
-                ddlTipoDocumento.SelectedItem.Value = "1";
-                txbDocumento.Text = "1005139501";
-                txbEmail.Text = "b.ochoa12@gmail.com";
-                txbCelular.Text = "3156552301";
-                txbFechaNac.Text = "2000-01-01";
-                // Hola soy Carlos, el desarrollador de este código.
+                txbCelular.Attributes.Add("type", "number");     
             }
 
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
@@ -131,6 +123,8 @@ namespace WebPage
             DataTable dt = cg.ConsultarCiudadesSedesWeb();
 
             ddlCiudad.DataSource = dt;
+            ddlCiudad.DataTextField = "NombreCiudadSede";
+            ddlCiudad.DataValueField = "idCiudadSede";
             ddlCiudad.DataBind();
 
             dt.Dispose();
@@ -153,12 +147,14 @@ namespace WebPage
             DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(int.Parse(ddlCiudad.SelectedItem.Value.ToString()));
 
             ddlSedes.DataSource = dt;
+            ddlCiudad.DataTextField = "NombreSede";
+            ddlCiudad.DataValueField = "IdSede";
             ddlSedes.DataBind();
 
             dt.Dispose();
         }
 
-        protected void btnRegistrar(object sender, EventArgs e)
+        protected async void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -267,24 +263,181 @@ namespace WebPage
                 dtAfiliado2.Dispose();
                 dtPlan.Dispose();
 
-                // Siigo API
-                string token = GetSiigoToken();
-                Session.Add("tokenSiigo", token);
-                bool exists = ConsultSiigoCustomer(strCedula, token);
-                ManageCustomer(exists, token);
-
-                if (Session["idPlan"].ToString() == "1")
+                try
                 {
-                    Response.Redirect("wompipay");
+                    var siigoClient = new SiigoClient(
+                        new HttpClient(),
+                        "https://api.siigo.com/",
+                        "sandbox@siigoapi.com",
+                        "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+                        "SandboxSiigoApi"
+                    );
+
+                    await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
+                }
+                catch (Exception siigoEx)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
+                }
+
+                string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+
+                if (origen == "KIOSCO")
+                {
+                    Response.Redirect("pagoRedeban", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+                else if (origen == "WEB")
+                {
+                    if (Session["idPlan"].ToString() == "1")
+                    {
+                        Response.Redirect("wompipay", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
+                    else
+                    {
+                        string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+
+                        Response.Redirect($"wompiplan?code={strDataWompi}", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
                 }
                 else
                 {
-                    Response.Redirect("wompiplan");
+                    Response.Redirect("default", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
                 }
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
+            }
+        }
+
+        protected async void GestionarDatosUsuario(object sender, EventArgs e)
+        {
+            string documento = txbDocumento.Text.Trim();
+
+            if (string.IsNullOrEmpty(documento))
+            {
+                LimpiarCampos();
+                return;
+            }
+
+            // 1. Buscar en BD
+            bool afiliadoExistente = BuscarAfiliado(documento);
+
+            if (!afiliadoExistente)
+            {
+                // 2. Si no, buscar en ADRES
+                await BuscarPersonaADRES(documento);
+            }
+        }
+
+        protected bool BuscarAfiliado(string documento)
+        {
+            if (string.IsNullOrEmpty(documento)) return false;
+
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
+
+            if (dt.Rows.Count > 0)
+            {
+                ddlTipoDocumento.SelectedValue = dt.Rows[0]["idTipoDocumento"].ToString();
+                txbNombre.Text = dt.Rows[0]["NombreAfiliado"].ToString();
+                txbApellido.Text = dt.Rows[0]["ApellidoAfiliado"].ToString();
+                txbEmail.Text = dt.Rows[0]["EmailAfiliado"].ToString();
+                txbCelular.Text = dt.Rows[0]["CelularAfiliado"].ToString();
+                txbFechaNac.Text = dt.Rows[0]["FechaNacAfiliado"].ToString();
+                ddlGenero.SelectedValue = dt.Rows[0]["idGenero"].ToString();
+
+                DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(Convert.ToInt32(dt.Rows[0]["idSede"].ToString()));
+                ddlCiudad.SelectedValue = dtCiudad.Rows[0]["idCiudadSede"].ToString();
+
+                // Cargar las sedes de esa ciudad
+                DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(dtCiudad.Rows[0]["idCiudadSede"].ToString()));
+                ddlSedes.Items.Clear();
+                ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+                ddlSedes.DataSource = dtSedes;
+                ddlSedes.DataTextField = "NombreSede";
+                ddlSedes.DataValueField = "IdSede";
+                ddlSedes.DataBind();
+
+                ddlSedes.SelectedValue = dt.Rows[0]["idSede"].ToString();
+
+                dt.Dispose();
+                dtCiudad.Dispose();
+                dtSedes.Dispose();
+
+                return true;
+            }
+            else
+            {
+                LimpiarCampos();
+                dt.Dispose();
+                return false;
+            }
+        }
+
+        protected async Task BuscarPersonaADRES(string documento)
+        {
+            string url = $"https://pqrdsuperargo.supersalud.gov.co/api/api/adres/0/{documento}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    LimpiarCampos();
+                    return;
+                }
+
+                string json = await response.Content.ReadAsStringAsync();
+                dynamic personaADRES = JsonConvert.DeserializeObject<dynamic>(json);
+
+                if (personaADRES == null || personaADRES.nombre == null || personaADRES.apellido == null)
+                {
+                    LimpiarCampos();
+                    return;
+                }
+
+                txbNombre.Text = $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}".Trim().ToUpper();
+                txbApellido.Text = $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}".Trim().ToUpper();
+                txbFechaNac.Text = personaADRES.fecha_nacimiento;
+                ddlGenero.SelectedValue = personaADRES.sexo;
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            ddlTipoDocumento.ClearSelection();
+            txbNombre.Text = "";
+            txbApellido.Text = "";
+            txbEmail.Text = "";
+            txbCelular.Text = "";
+            ddlGenero.ClearSelection();
+            txbFechaNac.Text = "";
+            ddlCiudad.ClearSelection();
+            ddlSedes.Items.Clear();
+            ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+        }
+
+        private void CambiarPlanSeleccionado()
+        {
+            string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+
+            if (origen == "KIOSCO")
+            {
+                btnElegirPlanLink.NavigateUrl = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+            }
+            else if (origen == "WEB")
+            {
+                btnElegirPlanLink.NavigateUrl = "default#planes";
             }
         }
 
@@ -344,7 +497,7 @@ namespace WebPage
                 text: '{mensaje}',
                 icon: '{tipo}', 
                 background: '#3C3C3C', 
-                showCloseButton: true, 
+                showCloseButton: false, 
                 confirmButtonText: 'Aceptar', 
                 customClass: {{
                     popup: 'alert',
@@ -353,176 +506,6 @@ namespace WebPage
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
-        }
-
-        //
-        // Siigo API
-        public static string GetSiigoToken()
-        {
-            string url = "https://api.siigo.com/auth";
-            //string username = "contabilidad@fitnesspeoplecmd.com";
-            //string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-            string username = "sandbox@siigoapi.com";
-            string accessKey = "NDllMzI0NmEtNjExZC00NGM3LWE3OTQtMWUyNTNlZWU0ZTM0OkosU2MwLD4xQ08=";
-
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                string json = new JavaScriptSerializer().Serialize(new
-                {
-                    username = username,
-                    access_key = accessKey
-                });
-
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                string result = streamReader.ReadToEnd();
-                dynamic obj = new JavaScriptSerializer().Deserialize<dynamic>(result);
-                return obj["access_token"];
-            }
-        }
-
-        public static bool ConsultSiigoCustomer(string documento, string token)
-        {
-            string URL = "https://api.siigo.com/v1/customers?identification=" + documento;
-
-            WebRequest request = WebRequest.Create(URL);
-            request.Method = "GET";
-            request.ContentType = "application/json;charset=UTF-8";
-            request.Headers.Add("Partner-Id", "SandboxSiigoApi");
-            request.Headers.Add("Authorization", "Bearer " + token);
-
-            try
-            {
-                using (WebResponse response = request.GetResponse())
-                {
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        string respuesta = reader.ReadToEnd();
-
-                        // Deserializamos para acceder a pagination.total_results
-                        var serializer = new JavaScriptSerializer();
-                        dynamic json = serializer.Deserialize<dynamic>(respuesta);
-
-                        int totalResultados = json["pagination"]["total_results"];
-
-                        return totalResultados > 0;
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                using (StreamReader reader = new StreamReader(ex.Response.GetResponseStream()))
-                {
-                    string error = reader.ReadToEnd();
-                    
-                    throw new Exception("Error al consultar cliente en Siigo: " + error);
-                }
-            }
-        }
-
-        public void ManageCustomer(bool exists, string token)
-        {
-            if (!exists)
-            {
-                RegisterCustomer(token);
-            }
-        }
-
-        private void RegisterCustomer(string token)
-        {
-            string URLRegisterCustomer = "https://api.siigo.com/v1/customers";
-
-            string documento = Session["documentoAfiliado"].ToString();
-            string nombres = Session["nombreAfiliado"].ToString();
-            string apellidos = Session["apellidoAfiliado"].ToString();
-            string celular = Session["celularAfiliado"].ToString();
-            string correo = Session["emailAfiliado"].ToString();
-
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarCodigoSiigoPorDocumento(Session["documentoAfiliado"].ToString());
-            string codSiigo = dt.Rows[0]["CodSiigo"].ToString();
-
-            Customer oCustomer = new Customer()
-            {
-                person_type = "Person",
-                id_type = codSiigo,
-                identification = documento,
-                name = new List<string> { nombres, apellidos },
-                phones = new List<Phone> {
-                    new Phone { number = celular }
-                },
-                contacts = new List<Contact> {
-                    new Contact
-                    {
-                        first_name = nombres,
-                        last_name = apellidos,
-                        email = correo
-                    }
-                }
-            };
-
-            string respuesta = GetPostCustomer(URLRegisterCustomer, oCustomer, token);
-            dt.Dispose();
-        }
-
-        public static string GetPostCustomer(string url, Customer oCustomer, string token)
-        {
-            string result = "";
-            WebRequest wRequest = WebRequest.Create(url);
-            wRequest.Method = "post";
-            wRequest.ContentType = "application/json;charset=UTF-8";
-            wRequest.Headers.Add("Partner-Id", "SandboxSiigoApi");
-            wRequest.Headers.Add("Authorization", "Bearer " + token);
-
-            using (var oSW = new StreamWriter(wRequest.GetRequestStream()))
-            {
-                string json = JsonConvert.SerializeObject(oCustomer);
-                oSW.Write(json);
-                oSW.Flush();
-                oSW.Close();
-            }
-
-            WebResponse wResponse = wRequest.GetResponse();
-
-            using (var oSR = new StreamReader(wResponse.GetResponseStream()))
-            {
-                result = oSR.ReadToEnd().Trim();
-            }
-
-            return result;
-        }
-
-        public class Customer
-        {
-            public string person_type { get; set; }
-            public string id_type { get; set; }
-            public string identification { get; set; }
-            public List<string> name { get; set; }
-            public List<Phone> phones { get; set; }
-            public List<Contact> contacts { get; set; }
-        }
-
-        public class Phone
-        {
-            public string number { get; set; }
-        }
-
-        public class Contact
-        {
-            public string first_name { get; set; }
-            public string last_name { get; set; }
-            public string email { get; set; }
         }
     }
 }

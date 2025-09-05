@@ -3449,8 +3449,40 @@ body.swal2-shown {
 	color: #E3FF00 !important;
 }
 
+	/* SUCCESS */
+	.swal2-icon.swal2-success {
+		border-color: #E3FF00 !important;
+	}
+
+		.swal2-icon.swal2-success [class^='swal2-success-line'] {
+			background-color: #E3FF00 !important;
+		}
+
+		.swal2-icon.swal2-success .swal2-success-ring {
+			border: 0.25em solid #E3FF00 !important;
+		}
+
+	/* ERROR */
 	.swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
 		background-color: #E3FF00 !important;
+	}
+
+	/* WARNING */
+	.swal2-icon.swal2-warning {
+		border-color: #E3FF00 !important;
+		color: #E3FF00 !important;
+	}
+
+	/* INFO */
+	.swal2-icon.swal2-info {
+		border-color: #E3FF00 !important;
+		color: #E3FF00 !important;
+	}
+
+	/* QUESTION */
+	.swal2-icon.swal2-question {
+		border-color: #E3FF00 !important;
+		color: #E3FF00 !important;
 	}
 
 .swal2-loader {

@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class Pruebas
+    public partial class wompiwebhook
     {
 
         /// <summary>
