@@ -105,10 +105,10 @@ namespace WebPage
                 DataTable dtPagoPendiente = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
 
                 int idAfiliado = Convert.ToInt32(dtPagoPendiente.Rows[0]["idAfiliado"].ToString());
-                string documentoAfiliado = dtPagoPendiente.Rows[0]["idAfiliado"].ToString();
+                string documentoAfiliado = dtPagoPendiente.Rows[0]["documentoAfiliado"].ToString();
                 int idPlan = Convert.ToInt16(dtPagoPendiente.Rows[0]["idPlan"].ToString());
-                string fechaInicioPlan = dtPagoPendiente.Rows[0]["fechaInicioPlan"].ToString();
-                string fechaFinPlan = dtPagoPendiente.Rows[0]["fechaFinPlan"].ToString();
+                string fechaInicioPlan = Convert.ToDateTime(dtPagoPendiente.Rows[0]["fechaInicioPlan"].ToString()).ToString("yyyy-MM-dd");
+                string fechaFinPlan = Convert.ToDateTime(dtPagoPendiente.Rows[0]["fechaFinPlan"].ToString()).ToString("yyyy-MM-dd");
                 int meses = Convert.ToInt16(dtPagoPendiente.Rows[0]["meses"].ToString());
                 int valorPlan = Convert.ToInt32(dtPagoPendiente.Rows[0]["valorPlan"].ToString());
 
@@ -120,7 +120,7 @@ namespace WebPage
                     fechaFinPlan,
                     meses,
                     valorPlan,
-                    "Débito automático",
+                    "Pago Único",
                     "Pendiente"
                 );
 

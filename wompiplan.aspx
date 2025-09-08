@@ -1,7 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
+<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
 <!DOCTYPE html>
 
@@ -22,6 +23,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Kalam:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 
     <!-- BASE CSS -->
     <link href="css/animate.min.css" rel="stylesheet" />
@@ -31,6 +33,7 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
@@ -54,20 +57,20 @@
     <!-- End Header =============================================== -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sub_header_general.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1>Pago a través de Wompi</h1>
-            <p>Paga de manera segura a través de Wompi.</p>
+            <h1 style="font-weight: 900">Pago a través de Wompi</h1>
+            <p style="font-weight: 900;">¡Paga de manera segura y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #fff">
         <div class="row">
             Botón de Pago.
-            <form>
-                <script src="https://checkout.wompi.co/widget.js"
+            <form id="form" runat="server">
+                <%--<script src="https://checkout.wompi.co/widget.js"
                     data-render="button"
                     data-public-key="pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv"
                     data-currency="COP"
@@ -75,21 +78,16 @@
                     data-reference="<%=strReferencia%>"
                     data-signature:integrity="<%=strHash256%>"
                     data-redirect-url="<%=strRedireccion%>">
-                </script>
+                </script>--%>
+
+                <div>
+                    <asp:Button ID="btnGuardarTransaccion" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="GuardarTransaccion"/>
+                </div>
             </form>
         </div>
-        <!-- End row -->
     </div>
-    <!-- End container -->
 
     <uc1:footer runat="server" ID="footer" />
-    <!-- End footer -->
-    <div id="copy">
-        <div class="container">
-            Copyright © 2021 – 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
-        </div>
-    </div>
-    <!-- End copy -->
 
     <div id="toTop"></div>
     <!-- Back to top button -->

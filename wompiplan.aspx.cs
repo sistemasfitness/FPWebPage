@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Net.Http;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.Services;
 
 namespace WebPage
 {
@@ -44,6 +49,12 @@ namespace WebPage
             string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
             _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+        }
+
+        protected async void GuardarTransaccion(object sender, EventArgs e)
+        {
+            // NO ELIMINAR
+            // Función para comprobar que los Pa están bien
         }
 
         private void AlmacenarDatosPago(string referencia, string documento)
