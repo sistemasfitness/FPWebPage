@@ -92,8 +92,8 @@ namespace WebPage
 
         protected void btnVerificar_Click(object sender, EventArgs e)
         {
-            if (txbVerificacion.Text.ToString() == "4")
-            {
+            //if (txbVerificacion.Text.ToString() == "4")
+            //{
                 try
                 {
                     clasesglobales cg = new clasesglobales();
@@ -205,11 +205,11 @@ namespace WebPage
                     MostrarAlerta("Error", "Ocurrió un error inesperado al realizar la verificación.", "error");
                     System.Diagnostics.Debug.WriteLine("Error en btnVerificar_Click: " + ex.ToString());
                 }
-            }
-            else
-            {
-                MostrarAlerta("Error", "Respuesta a la pregunta de validación incorrecta. Por favor, vuelve a intentar.", "error");
-            }
+            //}
+            //else
+            //{
+            //    MostrarAlerta("Error", "Respuesta a la pregunta de validación incorrecta. Por favor, vuelve a intentar.", "error");
+            //}
         }
 
         private void EnviarConfirmacion()

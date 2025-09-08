@@ -206,7 +206,7 @@
                 <div class="col-md-12" style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
-                <div class="col-md-0" style="text-align: center; display: none;">
+                <div class="col-md-1" style="text-align: center;">
                     <asp:HyperLink ID="btnComprarPlan" runat="server" CssClass="btn" Text="." />
                 </div>
             </div>

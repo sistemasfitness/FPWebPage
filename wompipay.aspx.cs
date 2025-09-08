@@ -113,7 +113,7 @@ namespace WebPage
                     4,
                     Session["idReferencia"].ToString(),
                     "Ninguno",
-                    "Pendiente",
+                    "Aprobado",
                     idSiigoFactura,
                     Session["dataIdToken"].ToString(),
                     Session["dataIdFuentePago"].ToString(),

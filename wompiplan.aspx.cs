@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Net.Http;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.Services;
 
 namespace WebPage
 {
@@ -21,18 +26,25 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string strCode = Request.QueryString["code"];
-            string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
+            //string strCode = Request.QueryString["code"];
+            //string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
 
-            string[] codes = strData.Split('_');
+            //string[] codes = strData.Split('_');
 
-            string strDocumento = codes[0];
+            //string strDocumento = codes[0];
 
-            //Referencia unica para el pago.
+            ////Referencia unica para el pago.
+            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+
+            ////Hash Sha256 para Wompi
+            //_strMonto = codes[1] + "00";
+
+
+            string strDocumento = Request.QueryString["nroDoc"];
+
             _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+            _strMonto = Request.QueryString["valorPlan"] + "00";
 
-            //Hash Sha256 para Wompi
-            _strMonto = codes[1] + "00";
             string moneda = "COP";
             string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 
@@ -44,6 +56,12 @@ namespace WebPage
             string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
             _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+        }
+
+        protected async void GuardarTransaccion(object sender, EventArgs e)
+        {
+            // NO ELIMINAR
+            // Función para comprobar que los Pa están bien
         }
 
         private void AlmacenarDatosPago(string referencia, string documento)
