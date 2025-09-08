@@ -176,15 +176,7 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="planes?id=1">
-                            <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="img_container">
-                        <a href="planes?id=14">
-                            <img src="img/planes/plan_10-meses_2025-08-21.jpg" class="img-responsive" style="height: 450px;" />
+                            <img src="img/planes/01_plan-easy_2025-09-08.jpg" class="img-responsive" />
                         </a>
                     </div>
                 </div>
@@ -192,11 +184,18 @@
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="planes?id=10">
-                            <img src="img/planes/plan_6-mas-2_2025-08-21.jpg" class="img-responsive" />
+                            <img src="img/planes/03_plan-6-mas-2_2025-09-08.jpg" class="img-responsive" style="height: 450px;" />
                         </a>
                     </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <a href="planes?id=16">
+                            <img src="img/planes/02_plan-3-mas-1_2025-09-08.jpg" class="img-responsive" />
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- End row plans-->
 

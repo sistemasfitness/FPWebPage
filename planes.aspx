@@ -192,10 +192,10 @@
         <div class="container">
             <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
-                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <p class="lead" style="color: #FFF; margin-top: 20px;">
-                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
+                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal>
+                    </h2>
+                    <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal>
                 </div>
 
                 <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
