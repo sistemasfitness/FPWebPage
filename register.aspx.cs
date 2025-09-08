@@ -298,9 +298,11 @@ namespace WebPage
                     }
                     else
                     {
-                        string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+                        //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
 
-                        Response.Redirect($"wompiplan?code={strDataWompi}", false);
+                        //string strDataWompi = strCedula + "_" + strValorPlan;
+
+                        Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
                         Context.ApplicationInstance.CompleteRequest();
                         return;
                     }

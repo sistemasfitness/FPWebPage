@@ -70,7 +70,7 @@
         <div class="row">
             Botón de Pago.
             <form id="form" runat="server">
-                <%--<script src="https://checkout.wompi.co/widget.js"
+                <script src="https://checkout.wompi.co/widget.js"
                     data-render="button"
                     data-public-key="pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv"
                     data-currency="COP"
@@ -78,11 +78,11 @@
                     data-reference="<%=strReferencia%>"
                     data-signature:integrity="<%=strHash256%>"
                     data-redirect-url="<%=strRedireccion%>">
-                </script>--%>
+                </script>
 
-                <div>
+                <%--<div>
                     <asp:Button ID="btnGuardarTransaccion" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="GuardarTransaccion"/>
-                </div>
+                </div>--%>
             </form>
         </div>
     </div>

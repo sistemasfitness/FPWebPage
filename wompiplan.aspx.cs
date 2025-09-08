@@ -26,18 +26,25 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string strCode = Request.QueryString["code"];
-            string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
+            //string strCode = Request.QueryString["code"];
+            //string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
 
-            string[] codes = strData.Split('_');
+            //string[] codes = strData.Split('_');
 
-            string strDocumento = codes[0];
+            //string strDocumento = codes[0];
 
-            //Referencia unica para el pago.
+            ////Referencia unica para el pago.
+            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+
+            ////Hash Sha256 para Wompi
+            //_strMonto = codes[1] + "00";
+
+
+            string strDocumento = Request.QueryString["nroDoc"];
+
             _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+            _strMonto = Request.QueryString["valorPlan"] + "00";
 
-            //Hash Sha256 para Wompi
-            _strMonto = codes[1] + "00";
             string moneda = "COP";
             string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 

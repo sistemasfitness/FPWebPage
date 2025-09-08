@@ -259,8 +259,6 @@
                             <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573138859790" class="phone" target="_blank">3138859790</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
                         </div>
-
-
                     </div>
                 </aside>
             </form>

@@ -138,7 +138,7 @@ namespace WebPage
                     4,
                     referencia,
                     "Ninguno",
-                    "Pendiente",
+                    "Aprobado",
                     idSiigoFactura,
                     null,
                     null,
