@@ -198,7 +198,7 @@ namespace WebPage
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
-                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
+                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos sus datos
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
@@ -472,12 +472,11 @@ namespace WebPage
 
             int totalMeses = meses + mesesCortesia;
 
-            // Calcular la fecha final sumando meses y días
+            // Calcular la fecha final sumando meses
             DateTime fechaFin = fechaInicio.AddMonths(totalMeses);
 
             dt.Dispose();
 
-            // Devolverla en formato yyyy-MM-dd (puedes cambiarlo si quieres otro)
             return fechaFin.ToString("yyyy-MM-dd");
         }
 

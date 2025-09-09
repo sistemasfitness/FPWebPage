@@ -89,10 +89,10 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/banner_gym_pass.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/concurso-gympass.png" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">GYM PASS</h1>
-            <p>Una experiencia exclusiva por un día en Fitness People</p>
+            <p>Una experiencia exclusiva por 6 días en Fitness People</p>
         </div>
     </section>
     <!-- End section -->
@@ -171,7 +171,29 @@
                                 <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required runat="server" />
                             </div>
                         </div>
+
+                        <div class="col-md-12 col-sm-12" style="display: flex; flex-direction: column;">
+                            <label for="fileCarnet">Carnet Estudiantil Vigente</label>
+
+                            <div>
+                                <!-- Botón personalizado -->
+                                <label for="fileCarnet" class="custom-file-upload" id="archivoInicial">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i><br />
+                                    SUBIR CARNET
+                                </label>
+
+                                <!-- Input real oculto visualmente -->
+                                <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" required="" onchange="mostrarArchivoSeleccionado()" />
+
+                                <!-- Botón personalizado oculto -->
+                                <label for="fileCarnet" id="archivoSeleccionado" class="custom-file-upload" style="display: none;">
+                                    <i class="fa-solid fa-cloud-arrow-down"></i><br />
+                                    <p id="textoArchivoSeleccionado" class="nomargin" style="font-size: 2rem;"></p>
+                                </label>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -204,7 +226,7 @@
         <!-- End col lg 9 -->
         <aside class="col-md-4">
             <div class="box_style_1">
-                <img src="img/gympass.jpg" alt="gympass" class="img-responsive" />
+                <img src="img/concurso-gympass.png" alt="gympass" class="img-responsive" />
             </div>
         </aside>
         <!--End aside -->
@@ -258,5 +280,60 @@
             }
         }
     </script>
+
+    <script>
+        function mostrarArchivoSeleccionado() {
+            var input = document.getElementById("fileCarnet");
+            var archivoInicial = document.getElementById("archivoInicial");
+            var archivoSeleccionado = document.getElementById("archivoSeleccionado");
+            var textoArchivoSeleccionado = document.getElementById("textoArchivoSeleccionado");
+
+            if (input.files.length > 0) {
+                archivoSeleccionado.style.display = "inline-block";
+                textoArchivoSeleccionado.textContent = "ARCHIVO SELECCIONADO: " + input.files[0].name;
+                archivoInicial.style.display = "none";
+            } else {
+                archivoSeleccionado.style.display = "none";
+                textoArchivoSeleccionado.textContent = "";
+                archivoInicial.style.display = "inline-block";
+            }
+        }
+    </script>
+
+<style>
+
+    .custom-file-upload {
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border: 2px dashed #ccc;
+        text-align: center;
+        color: #555;
+        font-size: 24px;
+        transition: background 0.3s;
+    }
+
+    .custom-file-upload:hover {
+        background-color: #e0e0e0;
+    }
+
+    .custom-file-upload i {
+        font-size: 40px;
+    }
+
+    #fileCarnet {
+        display: none; /* Ocultamos el input real */
+    }
+
+    .input-form {
+        padding: 2.5rem;
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+</style>
 </body>
 </html>

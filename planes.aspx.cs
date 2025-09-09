@@ -52,7 +52,7 @@ namespace WebPage
                         Response.Redirect("default");
                     }
 
-                    GenerarBarraProgreso();
+                    //GenerarBarraProgreso();
 
                     strQuery = "SELECT * FROM CiudadesSedes " +
                         "WHERE idCiudadSede <> 5 ";

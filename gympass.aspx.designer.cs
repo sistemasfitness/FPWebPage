@@ -33,7 +33,7 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlForm contacto;
 
         /// <summary>
-        /// Control txbNombre.
+        /// Control name_contact.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
@@ -42,7 +42,7 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlInputText name_contact;
 
         /// <summary>
-        /// Control txbApellidos.
+        /// Control lastname_contact.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
@@ -51,7 +51,7 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlInputText lastname_contact;
 
         /// <summary>
-        /// Control txbCorreo.
+        /// Control email_contact.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
@@ -60,7 +60,7 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email_contact;
 
         /// <summary>
-        /// Control txbCelular.
+        /// Control phone_contact.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
