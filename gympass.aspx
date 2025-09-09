@@ -70,6 +70,8 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -106,38 +108,48 @@
             <%--<p style="color: #FFF;">Una experiencia exclusiva por un día en Fitness People.</p>--%>
             <div>
                 <div id="message-contact"></div>
-                <form method="post" id="contacto" style="color: #FFF;" runat="server">
+                <form method="post" id="contacto" style="color: #FFF;" runat="server" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Nombres</label>
-                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="name_contact" name="name_contact" placeholder="Nombre" required runat="server" />
+                                <label>Nombres.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="name_contact" name="name_contact" placeholder="Pepito" required="" runat="server" />
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Apellidos</label>
-                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="lastname_contact" name="lastname_contact" placeholder="Apellido" required runat="server" />
+                                <label>Apellidos.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="lastname_contact" name="lastname_contact" placeholder="Pérez" required="" runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label>Nro. de documento.</label>
+                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" placeholder="123456789" style="background: #FFF; color: #000;" required="" runat="server" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Correo eléctronico:</label>
-                                <input type="email" id="email_contact" name="email_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="email@email.com" required runat="server" />
+                                <label>Correo eléctronico.</label>
+                                <input type="email" id="email_contact" name="email_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="ejemplo@correo.com" required="" runat="server" />
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Celular:</label>
-                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3993334444" required runat="server" />
+                                <label>Celular.</label>
+                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3133333333" required="" runat="server" />
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
+                        <%--<div class="form-group">
+                                <label>Fecha que asistirá:</label>
+                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
+                            </div>--%>
                             <div class="form-group">
-                                <label>Nro. de documento:</label>
-                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" style="background: #FFF; color: #000;" required runat="server" />
+                                <label>Fecha de inicio.</label>
+                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
                             </div>
                         </div>
                     </div>
@@ -156,7 +168,7 @@
                         </div>--%>
                         <div class="col-md-8 col-sm-8">
                             <div class="form-group">
-                                <label>Sede:</label>
+                                <label>Sede.</label>
                                 <%--<select id="ddlSede" name="ddlSede" class="form-control" required>
                                     <option value="">Seleccione</option>
                                 </select>--%>
@@ -167,26 +179,26 @@
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Fecha que asistirá:</label>
-                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required runat="server" />
+                                <label>Código de Embajador.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="cod_embajador" name="cod_embajador" placeholder="Pepito123" required="" runat="server" />
                             </div>
                         </div>
 
                         <div class="col-md-12 col-sm-12" style="display: flex; flex-direction: column;">
-                            <label for="fileCarnet">Carnet Estudiantil Vigente</label>
+                            <label for="captureFile">Captura donde se visualice que nos sigues.</label>
 
                             <div>
                                 <!-- Botón personalizado -->
-                                <label for="fileCarnet" class="custom-file-upload" id="archivoInicial">
+                                <label for="captureFile" class="custom-file-upload" id="archivoInicial">
                                     <i class="fa-solid fa-cloud-arrow-up"></i><br />
-                                    SUBIR CARNET
+                                    SUBIR CAPTURA
                                 </label>
 
                                 <!-- Input real oculto visualmente -->
-                                <input type="file" name="fileCarnet" id="fileCarnet" accept="image/*,application/pdf" class="form-control input-form" required="" onchange="mostrarArchivoSeleccionado()" />
+                                <input type="file" name="captureFile" id="captureFile" accept="image/*" class="form-control input-form" onchange="mostrarArchivoSeleccionado()" />
 
                                 <!-- Botón personalizado oculto -->
-                                <label for="fileCarnet" id="archivoSeleccionado" class="custom-file-upload" style="display: none;">
+                                <label for="captureFile" id="archivoSeleccionado" class="custom-file-upload" style="display: none;">
                                     <i class="fa-solid fa-cloud-arrow-down"></i><br />
                                     <p id="textoArchivoSeleccionado" class="nomargin" style="font-size: 2rem;"></p>
                                 </label>
@@ -215,7 +227,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <asp:Button ID="btnEnviar" runat="server" Text="ENVIAR" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled />
+                                <asp:Button ID="btnEnviar" runat="server" Text="ENVIAR" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled="" />
                                 <%--<input type="submit" value="Enviar" class="btn_slider" id="submit-contact" disabled />--%>
                             </div>
                         </div>
@@ -271,19 +283,23 @@
             }
         }
 
-        function habilitarBoton() {
-            const check1 = document.getElementById('check_1')
-
-            if (check1.checked) {
-                console.log('Boton de enviar habilitado');
-                document.getElementById('btnEnviar').disabled = false;
-            }
-        }
     </script>
 
     <script>
+
+        function habilitarBoton() {
+            var check = document.getElementById("check_1");
+            var boton = document.getElementById("<%= btnEnviar.ClientID %>");
+
+            if (check.checked) {
+                boton.disabled = false;
+            } else {
+                boton.disabled = true;
+            }
+        }
+
         function mostrarArchivoSeleccionado() {
-            var input = document.getElementById("fileCarnet");
+            var input = document.getElementById("captureFile");
             var archivoInicial = document.getElementById("archivoInicial");
             var archivoSeleccionado = document.getElementById("archivoSeleccionado");
             var textoArchivoSeleccionado = document.getElementById("textoArchivoSeleccionado");
@@ -298,42 +314,46 @@
                 archivoInicial.style.display = "inline-block";
             }
         }
+
     </script>
 
-<style>
+    <style>
 
-    .custom-file-upload {
-        display: inline-block;
-        width: 100%;
-        cursor: pointer;
-        background-color: #f0f0f0;
-        padding: 20px;
-        border: 2px dashed #ccc;
-        text-align: center;
-        color: #555;
-        font-size: 24px;
-        transition: background 0.3s;
-    }
+        .custom-file-upload {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            color: #555;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
 
-    .custom-file-upload:hover {
-        background-color: #e0e0e0;
-    }
+        .custom-file-upload:hover {
+            background-color: #e0e0e0;
+        }
 
-    .custom-file-upload i {
-        font-size: 40px;
-    }
+        .custom-file-upload i {
+            font-size: 40px;
+        }
 
-    #fileCarnet {
-        display: none; /* Ocultamos el input real */
-    }
+        #captureFile {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
 
-    .input-form {
-        padding: 2.5rem;
-        color: black;
-        background-color: white;
-        border-radius: 10px;
-    }
+        .input-form {
+            padding: 2.5rem;
+            color: black;
+            background-color: white;
+            border-radius: 10px;
+        }
 
-</style>
+    </style>
+
 </body>
 </html>

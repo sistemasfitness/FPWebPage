@@ -51,6 +51,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlInputText lastname_contact;
 
         /// <summary>
+        /// Control id_contact.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl id_contact;
+
+        /// <summary>
         /// Control email_contact.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,13 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl phone_contact;
 
         /// <summary>
-        /// Control id_contact.
+        /// Control date_contact.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl id_contact;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText date_contact;
 
         /// <summary>
         /// Control ddlSede.
@@ -87,13 +96,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlSede;
 
         /// <summary>
-        /// Control date_contact.
+        /// Control cod_embajador.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText date_contact;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText cod_embajador;
 
         /// <summary>
         /// Control btnEnviar.
