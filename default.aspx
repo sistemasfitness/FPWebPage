@@ -581,6 +581,24 @@
         </section>
         <!--  End section-->
 
+        <div id="newsletter_container" style="background-color: #000;">
+            <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                    <div id="message-newsletter"></div>
+                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
+                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
+                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
+                    </form>--%>
+                        <a href="gympass">
+                            <img src="img/concurso-gympass-2.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%--<section id="feat">
             <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>

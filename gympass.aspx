@@ -238,7 +238,7 @@
         <!-- End col lg 9 -->
         <aside class="col-md-4">
             <div class="box_style_1">
-                <img src="img/concurso-gympass.png" alt="gympass" class="img-responsive" />
+                <img src="img/concurso-gympass-1.png" alt="gympass" class="img-responsive" />
             </div>
         </aside>
         <!--End aside -->
