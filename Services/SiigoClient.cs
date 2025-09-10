@@ -196,7 +196,7 @@ namespace WebPage.Services
             return obj.pagination.total_results > 0;
         }
 
-        public async Task<string> RegisterInvoiceAsync(string cedula, string codSiigoPlan, string nombrePlan, int precioPlan)
+        public async Task<string> RegisterInvoiceAsync(string cedula, string codSiigoPlan, string nombrePlan, int precioPlan, int idSede)
         {
             // TODO: Insertar en la base de datos esta información
             // 1. Obtener configuración de Siigo desde la BD
@@ -221,13 +221,20 @@ namespace WebPage.Services
             //string partnerId = "SandboxSiigoApi";
 
             // Header - Producción
-            // string header = "ProductionSiigoApi";
+            // string partnerId = "ProductionSiigoApi";
+
+            clasesglobales cg = new clasesglobales();
+            DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+            int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 28006;
+            int costCenterDefault = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["costCenterDefault"].ToString()) : 621;
+            int idVendedor = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idVendedor"].ToString()) : 856;
+            int idPayment = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idPayment"].ToString()) : 856;
 
             // Más Datos - Pruebas
-            int idTipoDocumento = 28006;
-            int costCenterDefault = 621;
-            int idVendedor = 856;
-            int idPayment = 9438;
+            //int idTipoDocumento = 28006;
+            //int costCenterDefault = 621;
+            //int idVendedor = 856;
+            //int idPayment = 9438;
 
             // Más Datos - Producción
             //int idTipoDocumento = 66444;

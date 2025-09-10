@@ -124,7 +124,10 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label style="color: #fff">EPS:</label>
-                                    <asp:DropDownList ID="ddlEPS" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlEPS" runat="server" CssClass="form-control" 
+                                        DataTextField="NombreEps" DataValueField="idEps" AppendDataBoundItems="true">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +143,16 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Parentesco:</label>
-                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" AppendDataBoundItems="true">
+                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Padre/Madre" Value="Padre/Madre"></asp:ListItem>
+                                        <asp:ListItem Text="Esposo/a" Value="Esposo/a"></asp:ListItem>
+                                        <asp:ListItem Text="Hermano/a" Value="Hermano/a"></asp:ListItem>
+                                        <asp:ListItem Text="Hijo/a" Value="Hijo/a"></asp:ListItem>
+                                        <asp:ListItem Text="Primo/a" Value="Primo/a"></asp:ListItem>
+                                        <asp:ListItem Text="Sobrino/a" Value="Sobrino/a"></asp:ListItem>
+                                        <asp:ListItem Text="Encargado/a" Value="Encargado/a"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -158,7 +170,8 @@
                                         <ContentTemplate>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <h4 style="color: #fff">CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</h4>
+                                                    <br />
+                                                    <h4 style="color: #fff"><b>CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</b></h4>
                                                     <p style="color: #fff">Apreciado usuario: EL PRESTADOR lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD en un programa de entrenamiento.
                                                       Responda SI o NO:</p>
                                                     <table class="table" style="background: #fff;">
@@ -193,7 +206,8 @@
                                 <div class="form-group">
                                     <label style="color: #fff">Observaciones:</label>
                                     <p style="color: #fff">Si seleccionó SI en alguna(s) de la(s) anterior(es) casilla(s), por favor especificar o si tiene otra observación por favor escríbala aquí:</p>
-                                    <asp:TextBox ID="txbObservacionesPARQ" CssClass="form-control" runat="server" name="txbObservacionesPARQ"></asp:TextBox>
+                                    <asp:TextBox ID="txbObservacionesPARQ" CssClass="form-control" runat="server" name="txbObservacionesPARQ"
+                                        placeholder="Observaciones"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -201,8 +215,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <p style="color: #fff">SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS: PRESTADOR Lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
-                                    <p style="color: #fff">SI RESPONDIÓ NO A TODAS LAS PREGUNTAS: PRESTADOR le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
+                                    <p style="color: #fff">SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS: Fitness People CMD lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
+                                    <p style="color: #fff">SI RESPONDIÓ NO A TODAS LAS PREGUNTAS: Fitness People CMD le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
                                       NOTAS:
                                     </p>
                                         <ol style="color: #fff">
@@ -211,7 +225,7 @@
                                             <li>Si se produce algún cambio en su estado de salud en relación con las preguntas anteriores, le pedimos que informe inmediatamente al profesional responsable de su programa de entrenamiento.</li>
                                             <li>Si el médico Deportólogo le restringe el entrenamiento, entonces se concluye que es una persona no apta para continuar con el plan de entrenamiento.</li>
                                         </ol>
-                                      <p style="color: #fff">EL PRESTADOR no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar este cuestionario.</p>
+                                      <p style="color: #fff">Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar este cuestionario.</p>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +234,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <p style="color: #fff;"><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
-                                    <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                    <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" style="color: #fff" />
                                 </div>
                             </div>
                         </div>

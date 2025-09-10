@@ -126,13 +126,22 @@ namespace WebPage
                 // 4. Intentar facturar en Siigo
                 try
                 {
+                    //int idSede = Convert.ToInt32(Session["idSede"].ToString());
+                    int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
+
+                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+
                     // Creación de factura
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
-                        "https://api.siigo.com/",
-                        "sandbox@siigoapi.com",
-                        "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                        "SandboxSiigoApi"
+                        urlTest,
+                        username,
+                        accessKey,
+                        partnerId
                     );
 
                     // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
@@ -156,7 +165,8 @@ namespace WebPage
                         Session["documentoAfiliado"].ToString(),
                         codSiigoPlan,
                         nombrePlan,
-                        precioPlan
+                        precioPlan,
+                        idSede
                     );
 
                     // Actualizar pago con id de factura

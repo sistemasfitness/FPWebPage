@@ -193,6 +193,7 @@ namespace WebPage
                 Session.Add("meses", dtPlan.Rows[0]["Meses"]);
                 int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
                 int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
+                Session.Add("idSede", idSede);
                 string strValorPlan = hfValorPlan.Value;
                 Session.Add("valorPlan", strValorPlan);
                 string strLtValor = ltValor.Text.ToString();
@@ -224,7 +225,7 @@ namespace WebPage
 
                     //dtFechaFinPlan.Dispose();
 
-                    cg.ActualizarAfiliadoWeb(
+                    cg.ActualizarAfiliadoRegister(
                         strCedula,
                         strNombre,
                         strApellido,
@@ -263,14 +264,22 @@ namespace WebPage
                 dtAfiliado2.Dispose();
                 dtPlan.Dispose();
 
+                // Consultamos los datos de Siigo
+
                 try
                 {
+                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
-                        "https://api.siigo.com/",
-                        "sandbox@siigoapi.com",
-                        "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                        "SandboxSiigoApi"
+                        urlTest,
+                        username,
+                        accessKey,
+                        partnerId
                     );
 
                     await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);

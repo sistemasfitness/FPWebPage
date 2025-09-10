@@ -174,6 +174,7 @@ namespace WebPage
                     //    //int costCenterDefault = 621;
                     //    //int idVendedor = 856;
                     //    //int idPayment = 9438;
+                    int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
                     string codSiigoPlan = "COD2433";
                     string nombrePlan = "Pago de suscripción";
                     int precioPlan = 10000;
@@ -181,7 +182,8 @@ namespace WebPage
                         documentoAfiliado,
                         codSiigoPlan,
                         nombrePlan,
-                        precioPlan
+                        precioPlan,
+                        idSede
                     );
 
                     // Actualizar pago con id de factura

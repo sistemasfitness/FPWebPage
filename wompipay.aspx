@@ -319,6 +319,7 @@
                 'Estamos procesando tu pago. Por favor espera...',
                 'info',
                 {
+                    showCloseButton: false,
                     allowOutsideClick: false,
                     showConfirmButton: false,
                     didOpen: () => {
