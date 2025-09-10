@@ -35,6 +35,8 @@ namespace WebPage
                         ValidarAfiliadoWeb();
                         CargarEps();
 
+                        txbFechaNacimiento.Attributes.Add("type", "date");
+
                         hfIdAfiliado.Value = dtAfiliado.Rows[0]["IdAfiliado"].ToString();
                         ViewState["idAfiliado"] = hfIdAfiliado.Value;
                         txbNombres.Text = dtAfiliado.Rows[0]["NombreAfiliado"].ToString();

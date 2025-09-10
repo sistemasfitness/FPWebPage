@@ -3,6 +3,8 @@
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
+<%@ Register Src="~/controls/infocontacto.ascx" TagPrefix="uc1" TagName="infocontacto" %>
+
 
 <!DOCTYPE html>
 
@@ -82,13 +84,13 @@
                                 <div class="form-group">
                                     <label style="color: #fff">Nombres</label>
                                     <asp:HiddenField ID="hfIdAfiliado" runat="server" />
-                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres"></asp:TextBox>
+                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Apellidos</label>
-                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos"></asp:TextBox>
+                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -96,13 +98,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Correo eléctronico:</label>
-                                    <asp:TextBox ID="txbCorreo" CssClass="form-control" runat="server" name="txbCorreo"></asp:TextBox>
+                                    <asp:TextBox ID="txbCorreo" CssClass="form-control" runat="server" name="txbCorreo" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Celular:</label>
-                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular"></asp:TextBox>
+                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -110,13 +112,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Dirección:</label>
-                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion"></asp:TextBox>
+                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Fecha nacimiento:</label>
-                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento"></asp:TextBox>
+                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +127,7 @@
                                 <div class="form-group">
                                     <label style="color: #fff">EPS:</label>
                                     <asp:DropDownList ID="ddlEPS" runat="server" CssClass="form-control" 
-                                        DataTextField="NombreEps" DataValueField="idEps" AppendDataBoundItems="true">
+                                        DataTextField="NombreEps" DataValueField="idEps" AppendDataBoundItems="true" style="background-color: #3c3c3c;">
                                         <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -134,8 +136,8 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label style="color: #fff">Responsable:</label>
-                                    <asp:TextBox ID="txbResponsable" CssClass="form-control" runat="server" name="txbResponsable"></asp:TextBox>
+                                    <label style="color: #fff">Nombre de contacto en caso de emergencia:</label>
+                                    <asp:TextBox ID="txbResponsable" CssClass="form-control" runat="server" name="txbResponsable" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +145,8 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Parentesco:</label>
-                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" 
+                                        AppendDataBoundItems="true" style="background-color: #3c3c3c;">
                                         <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                         <asp:ListItem Text="Padre/Madre" Value="Padre/Madre"></asp:ListItem>
                                         <asp:ListItem Text="Esposo/a" Value="Esposo/a"></asp:ListItem>
@@ -157,8 +160,9 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Celular de contacto del responsable:</label>
-                                    <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server" name="txbContacto"></asp:TextBox>
+                                    <label style="color: #fff">Celular de contacto en caso de emergencia:</label>
+                                    <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server" 
+                                        name="txbContacto" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -172,12 +176,12 @@
                                                 <div class="col-lg-12">
                                                     <br />
                                                     <h4 style="color: #fff"><b>CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</b></h4>
-                                                    <p style="color: #fff">Apreciado usuario: EL PRESTADOR lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD en un programa de entrenamiento.
+                                                    <p style="color: #fff">Apreciado usuario: <b>Fitness People CMD</b> lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su <b>PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD</b> en un programa de entrenamiento.<br /><br />
                                                       Responda SI o NO:</p>
                                                     <table class="table" style="background: #fff;">
                                                         <tr>
                                                             <th>Pregunta</th>
-                                                            <th>Respuesta</th>
+                                                            <th>Respuesta<br />No - Si</th>
                                                         </tr>
                                                         <asp:Repeater ID="rpParq" runat="server" >
                                                             <ItemTemplate>
@@ -207,7 +211,7 @@
                                     <label style="color: #fff">Observaciones:</label>
                                     <p style="color: #fff">Si seleccionó SI en alguna(s) de la(s) anterior(es) casilla(s), por favor especificar o si tiene otra observación por favor escríbala aquí:</p>
                                     <asp:TextBox ID="txbObservacionesPARQ" CssClass="form-control" runat="server" name="txbObservacionesPARQ"
-                                        placeholder="Observaciones"></asp:TextBox>
+                                        placeholder="Observaciones" style="background-color: #3c3c3c;"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +229,7 @@
                                             <li>Si se produce algún cambio en su estado de salud en relación con las preguntas anteriores, le pedimos que informe inmediatamente al profesional responsable de su programa de entrenamiento.</li>
                                             <li>Si el médico Deportólogo le restringe el entrenamiento, entonces se concluye que es una persona no apta para continuar con el plan de entrenamiento.</li>
                                         </ol>
-                                      <p style="color: #fff">Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar este cuestionario.</p>
+                                      <p style="color: #fff">Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar los datos personales como titular de la información y este cuestionario.</p>
                                 </div>
                             </div>
                         </div>
@@ -254,43 +258,7 @@
                 </div>
             </div>
             <!-- End col lg 9 -->
-            <aside class="col-md-4">
-                <div class="box_style_2">
-                    <h5 style="font-weight: 900;">Información de Contacto</h5>
-                    <p>
-                        Calle 45 No. 35 - 23 Piso 2<br/>
-                        (+57) 318 707 7584<br/>
-                        <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
-                    </p>
-                    <h5 style="font-weight: 900;">Cómo llegar?</h5>
-                    <form action="http://maps.google.com/maps" method="get" target="_blank">
-                        <div class="form-group">
-                            <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled" />
-                            <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander" />
-                            <!-- Write here your end point -->
-                        </div>
-                        <input type="submit" value="Obtener ruta" class="btn_1 add_bottom_15" />
-                    </form>
-                    <hr class="styled"/>
-                    <h5 style="font-weight: 900;">Departamentos</h5>
-                    <ul class="contacts_info">
-                        <li><strong>Contabilidad</strong><br>
-                            <a href="https://wa.me/573187077584" style="color: #333333;">(+57) 318 707 7584</a>
-                            <br />
-                            <a href="mailto:contabilidad@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">contabilidad@fitnesspeoplecmd.com</a>
-                            <br />
-                            <small>Lunes a Viernes 9am - 6pm</small>
-                        </li>
-                        <li><strong>Área Comercial</strong><br/>
-                            <a href="https://wa.me/573138859790" style="color: #333333;">(+57) 313 885 9790</a>
-                            <br />
-                            <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
-                            <br />
-                            <small>Lunes a Sábado 8am - 7pm</small>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+            <uc1:infocontacto runat="server" id="infocontacto" />
             <!--End aside -->
         </div>
         <!-- End row -->
