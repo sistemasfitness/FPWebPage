@@ -63,10 +63,10 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <div class="box_style_2" style="background-color: #1A1A1A">
-                    <div id="confirm">
+                    <div id="confirm" class="text-center" style="font-weight: 900;">
                         <%--<i class="icon_check_alt2"></i>--%>
-                        <h3 style="font-weight: 900; color: #e3ff00;">Pago confirmado!</h3>
-                        <p style="color: #fff;">Su orden ha sido confirmada.</p>
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por pertenecer a la familia Fitness People!</h3>
+                        <p style="color: #fff;">Hemos recibido tu pago.</p>
                     </div>
                     <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
                     <table class="table table-striped nomargin">
@@ -82,11 +82,17 @@
                         </tbody>
                     </table>
                     <form runat="server">
-                        <div style="margin-top: 30px; text-align: center;">
-                            <p style="color: #fff;">Para activar tu plan, debes completar el formulario de verificación</p>
-                            <asp:Button ID="btnRedireccionarActivarPlan" runat="server" CssClass="btn_slider" Text="ACTIVAR PLAN" OnClick="btnRedireccionarActivarPlan_Click" />
-                            <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
-                        </div>
+                        <asp:Panel ID="pnlActivarPlan" runat="server">
+                            <div style="margin-top: 30px; text-align: center;">
+                                <p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>
+
+                                <asp:Button ID="btnRedireccionarActivarPlan" 
+                                            runat="server" CssClass="btn_slider" 
+                                            Text="Activar acceso" 
+                                            OnClick="btnRedireccionarActivarPlan_Click" />
+                                <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
+                            </div>
+                        </asp:Panel>
                     </form>
                 </div>
             </div>

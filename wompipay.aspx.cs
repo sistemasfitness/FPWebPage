@@ -113,6 +113,7 @@ namespace WebPage
                     4,
                     Session["idReferencia"].ToString(),
                     "Ninguno",
+                    152, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,
                     Session["dataIdToken"].ToString(),
@@ -123,60 +124,65 @@ namespace WebPage
                     null
                 );
 
-                // 4. Intentar facturar en Siigo
-                try
+                string idPlanQS = Session["idPlan"].ToString();
+
+                if (idPlanQS != "12")
                 {
-                    //int idSede = Convert.ToInt32(Session["idSede"].ToString());
-                    int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
+                    // 4. Intentar facturar en Siigo
+                    try
+                    {
+                        //int idSede = Convert.ToInt32(Session["idSede"].ToString());
+                        int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
 
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                        DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                        string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                        string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                        string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                        string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
 
-                    // Creación de factura
-                    var siigoClient = new SiigoClient(
-                        new HttpClient(),
-                        urlTest,
-                        username,
-                        accessKey,
-                        partnerId
-                    );
+                        // Creación de factura
+                        var siigoClient = new SiigoClient(
+                            new HttpClient(),
+                            urlTest,
+                            username,
+                            accessKey,
+                            partnerId
+                        );
 
-                    // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
-                    // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                    //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                    //    Session["documentoAfiliado"].ToString(), 
-                    //    Session["codSiigoPlan"].ToString(), 
-                    //    Session["nombrePlan"].ToString(),
-                    //    int.Parse(Session["valorPlan"].ToString())
-                    //);
+                        // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                        // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                        //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        //    Session["documentoAfiliado"].ToString(), 
+                        //    Session["codSiigoPlan"].ToString(), 
+                        //    Session["nombrePlan"].ToString(),
+                        //    int.Parse(Session["valorPlan"].ToString())
+                        //);
 
-                    // Siigo Pruebas
-                    //    //int idTipoDocumento = 28006;
-                    //    //int costCenterDefault = 621;
-                    //    //int idVendedor = 856;
-                    //    //int idPayment = 9438;
-                    string codSiigoPlan = "COD2433";
-                    string nombrePlan = "Pago de suscripción";
-                    int precioPlan = 10000;
-                    idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                        Session["documentoAfiliado"].ToString(),
-                        codSiigoPlan,
-                        nombrePlan,
-                        precioPlan,
-                        idSede
-                    );
+                        // Siigo Pruebas
+                        //    //int idTipoDocumento = 28006;
+                        //    //int costCenterDefault = 621;
+                        //    //int idVendedor = 856;
+                        //    //int idPayment = 9438;
+                        string codSiigoPlan = "COD2433";
+                        string nombrePlan = "Pago de suscripción";
+                        int precioPlan = 10000;
+                        idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                            Session["documentoAfiliado"].ToString(),
+                            codSiigoPlan,
+                            nombrePlan,
+                            precioPlan,
+                            idSede
+                        );
 
-                    // Actualizar pago con id de factura
-                    cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+                        // Actualizar pago con id de factura
+                        cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+                    }
+                    catch (Exception siigoEx)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+                    }
                 }
-                catch (Exception siigoEx)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
-                }
-
+                
                 dt.Dispose();
             }
             catch (Exception ex)
@@ -365,8 +371,12 @@ namespace WebPage
                 }
 
                 // Redireccionar solo si todo está OK
-                Response.Redirect("wompiexito", false);
-                Context.ApplicationInstance.CompleteRequest();
+                //Response.Redirect("wompiexito", false);
+                //Context.ApplicationInstance.CompleteRequest();
+                //return true;
+
+                string script = "window.location.replace('wompiexito.aspx');";
+                ClientScript.RegisterStartupScript(this.GetType(), "redirect", script, true);
                 return true;
             }
             catch (Exception ex)
