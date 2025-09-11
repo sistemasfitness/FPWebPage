@@ -216,6 +216,7 @@
 					                    </label>
 				                    </div>
                                 </div>
+                                <p><strong>Válido solo para usuarios nuevos que no hayan tomado cortesías.</strong></p>
                                 <p>Cortesía con acceso a la sede escogida por el cliente. Se debe presentar el documento de identidad en el counter de la sede. 
                                     No se permite el ingreso de menores de 14 años. Nos reservamos el derecho de admisión. 
                                     Cortesía válida para todas las sedes. Esta cortesía no tiene valor comercial. 
