@@ -7631,7 +7631,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, string direccion, string fechaNac, int idEps, string responsable, string parentesco, string celularcontacto, string estado)
+        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, string direccion, string fechaNac, int idEps, string responsable, string parentesco, string celularcontacto, string estado, string observacionesparq)
         {
             string respuesta = string.Empty;
             try
@@ -7658,6 +7658,7 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_parentesco", parentesco);
                         cmd.Parameters.AddWithValue("@p_celular_contacto", celularcontacto);
                         cmd.Parameters.AddWithValue("@p_estado", estado);
+                        cmd.Parameters.AddWithValue("@p_observaciones_parq", observacionesparq);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }

@@ -54,6 +54,25 @@ namespace WebPage
                         {
                             ddlParentesco.SelectedIndex = Convert.ToInt16(ddlParentesco.Items.IndexOf(ddlParentesco.Items.FindByValue(dtAfiliado.Rows[0]["Parentesco"].ToString())));
                         }
+                        
+                        if (dtAfiliado.Rows[0]["idTipoDocumento"].ToString() == "3")
+                        {
+                            ddlParentesco.Items.Add(new ListItem("Seleccione", ""));
+                            ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
+                            ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
+                        }
+                        else
+                        {
+                            ddlParentesco.Items.Add(new ListItem("Seleccione", ""));
+                            ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
+                            ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
+                            ddlParentesco.Items.Add(new ListItem("Hermano/a ", "Hermano/a"));
+                            ddlParentesco.Items.Add(new ListItem("Hijo/a", "Hijo/a"));
+                            ddlParentesco.Items.Add(new ListItem("Primo/a", "Primo/a"));
+                            ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
+                            ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
+                        }
+                        ddlParentesco.DataBind();
                         txbContacto.Text = dtAfiliado.Rows[0]["ContactoAfiliado"].ToString();
                         ViewState["EmailAfiliado"] = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
                         ViewState["ClaveAfiliado"] = dtAfiliado.Rows[0]["ClaveAfiliado"].ToString();
@@ -169,9 +188,11 @@ namespace WebPage
                         }
                     }
 
-                    // TODO: Actualizar el estado del plan del afiliado de "Pendiente" a "Activo" (AfiliadosPlanes).
+                // TODO: Actualizar el estado del plan del afiliado de "Pendiente" a "Activo" (AfiliadosPlanes).
 
-                    if (string.IsNullOrEmpty(ViewState["origenWeb"].ToString()))
+                    string origenWeb = Request.QueryString["web"];
+
+                    if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
                     {
                         cg.ActualizarAfiliadoWeb(
                             dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString(),
@@ -185,7 +206,8 @@ namespace WebPage
                             txbResponsable.Text, 
                             ddlParentesco.SelectedItem.Value.ToString(),
                             txbContacto.Text, 
-                            "Activo"
+                            "Activo", 
+                            txbObservacionesPARQ.Text
                         );
                     }
 
@@ -233,6 +255,8 @@ namespace WebPage
                     // Enviar correo de confirmación
                     EnviarConfirmacion();
 
+                    Response.Redirect("default");
+
                 }
                 catch (Exception ex)
                 {
@@ -250,13 +274,13 @@ namespace WebPage
         {
             clasesglobales cg = new clasesglobales();
 
-            string strAsunto = "Verificación realizada";
+            string strAsunto = "Bienvenido a Fitness People CMD";
             string strRemitente = "sistemas@fitnesspeoplecmd.com";
             //string strDestinatario = ViewState["EmailAfiliado"].ToString();
             string strDestinatario = "chrislemoce@gmail.com";
-            string strMensaje = "Haz realizado la verificación correctamente.\r\n\r\n" +
-                "Ahora puedes ingresar al Área de Afiliados a través de la página web: fitnesspeoplecolombia.com\r\n" +
-                "Clave: " + ViewState["ClaveAfiliado"].ToString() + " \r\n\r\n";
+            string strMensaje = "Bienvenido a Fitness People CMD.\r\n\r\n" +
+                "Ahora eres Afiliados de Fitness People CMD. Ingresa a nuestra página web: fitnesspeoplecolombia.com\r\n" +
+                "Contrato: fitnesspeoplecolombia.com/contrato \r\n\r\n";
 
             cg.EnviarCorreo(strRemitente, strDestinatario, strAsunto, strMensaje);
         }

@@ -250,6 +250,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="contrato.aspx" />
     <Content Include="controls\footer.ascx" />
     <Content Include="controls\infocontacto.ascx" />
     <Content Include="controls\loginregister.ascx" />
@@ -755,6 +756,13 @@
     </Compile>
     <Compile Include="contacto.aspx.designer.cs">
       <DependentUpon>contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contrato.aspx.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contrato.aspx.designer.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
     </Compile>
     <Compile Include="controls\footer.ascx.cs">
       <DependentUpon>footer.ascx</DependentUpon>

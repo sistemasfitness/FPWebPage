@@ -84,13 +84,13 @@
                                 <div class="form-group">
                                     <label style="color: #fff">Nombres</label>
                                     <asp:HiddenField ID="hfIdAfiliado" runat="server" />
-                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres" style="background-color: #3c3c3c;" required=""></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Apellidos</label>
-                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos" style="background-color: #3c3c3c;" required=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Celular:</label>
-                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" style="background-color: #3c3c3c;" required=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -112,13 +112,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Dirección:</label>
-                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion" style="background-color: #3c3c3c;" required=""></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label style="color: #fff">Fecha nacimiento:</label>
-                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento" style="background-color: #3c3c3c;" required=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -147,14 +147,6 @@
                                     <label style="color: #fff">Parentesco:</label>
                                     <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" 
                                         AppendDataBoundItems="true" style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                        <asp:ListItem Text="Padre/Madre" Value="Padre/Madre"></asp:ListItem>
-                                        <asp:ListItem Text="Esposo/a" Value="Esposo/a"></asp:ListItem>
-                                        <asp:ListItem Text="Hermano/a" Value="Hermano/a"></asp:ListItem>
-                                        <asp:ListItem Text="Hijo/a" Value="Hijo/a"></asp:ListItem>
-                                        <asp:ListItem Text="Primo/a" Value="Primo/a"></asp:ListItem>
-                                        <asp:ListItem Text="Sobrino/a" Value="Sobrino/a"></asp:ListItem>
-                                        <asp:ListItem Text="Encargado/a" Value="Encargado/a"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -181,7 +173,7 @@
                                                     <table class="table" style="background: #fff;">
                                                         <tr>
                                                             <th>Pregunta</th>
-                                                            <th>Respuesta<br />No - Si</th>
+                                                            <th>Respuesta</th>
                                                         </tr>
                                                         <asp:Repeater ID="rpParq" runat="server" >
                                                             <ItemTemplate>
@@ -250,7 +242,8 @@
                                     <asp:TextBox ID="txbVerificacion" CssClass="form-control" runat="server" name="txbVerificacion"></asp:TextBox>
                                 </div>--%>
                                 <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
-                                    Text="VERIFICAR" OnClick="btnVerificar_Click" />
+                                    Text="VERIFICAR" OnClick="btnVerificar_Click" UseSubmitBehavior="false" 
+                                    OnClientClick="return validarYEjecutar();" />
                                 <%--<p><input type="submit" value="Verificar" class="btn_1" id="submit-contact" /></p>--%>
                             </div>
                         </div>
@@ -299,18 +292,6 @@
      <script src="js/ion.rangeSlider.min.js"></script>
      <script src="js/switchery.min.js"></script>
      <script>
-         $("#range").ionRangeSlider({
-             hide_min_max: true,
-             keyboard: true,
-             min: 10000,
-             max: 200000,
-             from: 19000,
-             to: 99000,
-             type: 'double',
-             step: 1000,
-             prefix: "$",
-             grid: false
-         });
          //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
          var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
          elems.forEach(function (html) {
@@ -318,9 +299,110 @@
                  size: 'small'
              });
          });
+
+
+         function validarCamposFormulario() {
+
+             document.getElementById("btnVerificar").addEventListener("click", function (event) {
+                 event.preventDefault()
+             });
+
+             const nombre = document.getElementById("<%= txbNombres.ClientID %>");
+             const apellido = document.getElementById("<%= txbApellidos.ClientID %>");
+             const correo = document.getElementById("<%= txbCorreo.ClientID %>");
+             const celular = document.getElementById("<%= txbCelular.ClientID %>");
+             const direccion = document.getElementById("<%= txbDireccion.ClientID %>");
+             const fechanacimiento = document.getElementById("<%= txbFechaNacimiento.ClientID %>");
+             const responsable = document.getElementById("<%= txbResponsable.ClientID %>");
+             const contacto = document.getElementById("<%= txbContacto.ClientID %>");
+
+             const observaciones = document.getElementById("<%= txbObservacionesPARQ.ClientID %>");
+             <%--const mes = document.getElementById("<%= ddlMes.ClientID %>");
+             const anho = document.getElementById("<%= ddlAnho.ClientID %>");
+                const cvc = document.getElementById("<%= txbCVC.ClientID %>");
+             const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");--%>
+
+             if (!nombre.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa nombre(s).', 'warning', nombre);
+                 return false;
+             }
+
+             if (!apellido.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa apellido(s).', 'warning', apellido);
+                 return false;
+             }
+
+             if (!correo.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el correo electrónico.', 'warning', correo);
+                 return false;
+             }
+
+             if (!celular.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular.', 'warning', celular);
+                 return false;
+             }
+
+             if (!direccion.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa la dirección.', 'warning', direccion);
+                 return false;
+             }
+
+             if (!fechanacimiento.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa la fecha de nacimiento.', 'warning', fechanacimiento);
+                 return false;
+             }
+
+             if (!responsable.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre de contacto en caso de emergencia.', 'warning', responsable);
+                 return false;
+             }
+
+             if (!contacto.value.trim()) {
+                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular de contacto en caso de emergencia.', 'warning', contacto);
+                 return false;
+             }
+
+             return true;
+         }
+
+         function validarYEjecutar() {
+             const cb1 = document.getElementById("chAcepto1");
+
+             const autorizacionesOK = cb1.checked;
+             const formularioOK = validarCamposFormulario();
+
+             if (!autorizacionesOK) {
+                 mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+                 return false;
+             }
+
+             if (!formularioOK) {
+                 return false;
+             }
+
+             setTimeout(function () {
+                 __doPostBack('<%= btnVerificar.UniqueID %>', '');
+             }, 100);
+             return false;
+         }
+
+         function mostrarAlerta(titulo, mensaje, tipo, enfoque) {
+             Swal.fire({
+                 title: titulo,
+                 text: mensaje,
+                 icon: tipo,
+                 background: '#3C3C3C',
+                 showCloseButton: false,
+                 confirmButtonText: 'Aceptar',
+                 customClass: {
+                     popup: 'alert',
+                     confirmButton: 'btn-confirm-alert'
+                 },
+                 didClose: () => {
+                     enfoque.focus();
+                 }
+             });
+         }
      </script>
-    <script>
-        $('.footable').footable();
-    </script>
 </body>
 </html>
