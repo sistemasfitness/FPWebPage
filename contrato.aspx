@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiexito.aspx.cs" Inherits="WebPage.wompiexito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="contrato.aspx.cs" Inherits="WebPage.contrato" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -53,7 +53,7 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900">¡Pago Exitoso!</h1>
+            <h1 style="font-weight: 900">CONTRATO</h1>
         </div>
     </section>
     <!-- End section -->
@@ -63,37 +63,11 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <div class="box_style_2" style="background-color: #1A1A1A">
-                    <div id="confirm" class="text-center" style="font-weight: 900;">
+                    <div id="confirm">
                         <%--<i class="icon_check_alt2"></i>--%>
-                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por pertenecer a la familia Fitness People!</h3>
-                        <p style="color: #fff;">Hemos recibido tu pago.</p>
+                        <%--<h3 style="font-weight: 900; color: #e3ff00;">Revisa tu contrato</h3>
+                        <p style="color: #fff;">Su orden ha sido confirmada.</p>--%>
                     </div>
-                    <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
-                    <table class="table table-striped nomargin">
-                        <tbody>
-                            <tr style="background-color: #1A1A1A">
-                                <td>Débito automático</td>
-                                <td><strong class="pull-right"><span class="pull-right"><asp:Literal ID="ltValor1" runat="server"></asp:Literal></span></strong></td>
-                            </tr>
-                            <tr style="font-weight: 900; background-color: #e3ff00; color: black;">
-                                <td class="">TOTAL</td>
-                                <td class=""><span class="pull-right"><asp:Literal ID="ltValor2" runat="server"></asp:Literal></span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form runat="server">
-                        <asp:Panel ID="pnlActivarPlan" runat="server">
-                            <div style="margin-top: 30px; text-align: center;">
-                                <p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>
-
-                                <asp:Button ID="btnRedireccionarActivarPlan" 
-                                            runat="server" CssClass="btn_slider" 
-                                            Text="Activar acceso" 
-                                            OnClick="btnRedireccionarActivarPlan_Click" />
-                                <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
-                            </div>
-                        </asp:Panel>
-                    </form>
                 </div>
             </div>
         </div>

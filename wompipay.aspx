@@ -319,6 +319,7 @@
                 'Estamos procesando tu pago. Por favor espera...',
                 'info',
                 {
+                    showCloseButton: false,
                     allowOutsideClick: false,
                     showConfirmButton: false,
                     didOpen: () => {
@@ -326,16 +327,6 @@
                     }
                 }
             );
-            //Swal.fire({
-            //    title: 'Procesando',
-            //    text: 'Estamos procesando tu pago. Por favor espera...',
-            //    icon: 'info',
-            //    allowOutsideClick: false,
-            //    showConfirmButton: false,
-            //    didOpen: () => {
-            //        Swal.showLoading();
-            //    }
-            //});
 
             // Deshabilitar el botón
             const btn = document.getElementById('<%= btnPagar.ClientID %>');

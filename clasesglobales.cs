@@ -7631,7 +7631,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede, string estado)
+        public string ActualizarAfiliadoWeb(string documento, string nombres, string apellidos, string celular, string correo, string direccion, string fechaNac, int idEps, string responsable, string parentesco, string celularcontacto, string estado, string observacionesparq)
         {
             string respuesta = string.Empty;
             try
@@ -7641,6 +7641,47 @@ namespace WebPage
                 {
                     mysqlConexion.Open();
                     using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_AFILIADO_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
+                        cmd.Parameters.AddWithValue("@p_nombres", nombres);
+                        cmd.Parameters.AddWithValue("@p_apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@p_celular", celular);
+                        cmd.Parameters.AddWithValue("@p_correo", correo);
+                        cmd.Parameters.AddWithValue("@p_direccion", direccion);
+                        //cmd.Parameters.AddWithValue("@p_id_genero", idGenero);
+                        cmd.Parameters.AddWithValue("@p_fecha_nac", fechaNac);
+                        //cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
+                        //cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+                        cmd.Parameters.AddWithValue("@p_id_eps", idEps);
+                        cmd.Parameters.AddWithValue("@p_responsable", responsable);
+                        cmd.Parameters.AddWithValue("@p_parentesco", parentesco);
+                        cmd.Parameters.AddWithValue("@p_celular_contacto", celularcontacto);
+                        cmd.Parameters.AddWithValue("@p_estado", estado);
+                        cmd.Parameters.AddWithValue("@p_observaciones_parq", observacionesparq);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string ActualizarAfiliadoRegister(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede, string estado)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_AFILIADO_WEB_REGISTER", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_documento", documento);
@@ -7854,7 +7895,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, int idMedioPago, string idReferencia, string banco, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion, string codDatafono, string idTransaccionRRN, string numFacturaDatafono)
+        public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, int idMedioPago, string idReferencia, string banco, int idUsuario, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion, string codDatafono, string idTransaccionRRN, string numFacturaDatafono)
         {
             string respuesta = string.Empty;
             try
@@ -7871,6 +7912,7 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_id_medio_pago", idMedioPago);
                         cmd.Parameters.AddWithValue("@p_id_referencia", idReferencia);
                         cmd.Parameters.AddWithValue("@p_banco", banco);
+                        cmd.Parameters.AddWithValue("@p_id_usuario", idUsuario);
                         cmd.Parameters.AddWithValue("@p_estado", estado);
                         cmd.Parameters.AddWithValue("@p_id_siigo_factura", idSiigoFactura);
                         cmd.Parameters.AddWithValue("@p_id_data_token", idDataToken);
@@ -8226,6 +8268,38 @@ namespace WebPage
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_documento_afiliado", docAfiliado);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public DataTable ConsultarIntegracion(int idSede)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_INTEGRACION_POR_ID_SEDE", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
 
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
                         {

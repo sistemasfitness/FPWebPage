@@ -195,6 +195,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Button btnVerificar;
 
         /// <summary>
+        /// Control infocontacto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.infocontacto infocontacto;
+
+        /// <summary>
         /// Control footer.
         /// </summary>
         /// <remarks>
