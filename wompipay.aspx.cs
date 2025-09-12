@@ -80,6 +80,15 @@ namespace WebPage
                 }
 
                 clasesglobales cg = new clasesglobales();
+                string idPlanQS = Session["idPlan"].ToString();
+                string strDescripcion = "Débito automático";
+                string strEstado = "Pendiente";
+
+                if (idPlanQS == "12")
+                {
+                    strDescripcion = "Débito automático Migración Clez";
+                    strEstado = "Activo";
+                }
 
                 // 1. Inserción de afiliación de cliente al plan
                 cg.InsertarAfiliadoPlan(
@@ -89,8 +98,8 @@ namespace WebPage
                     Session["fechaFinPlan"].ToString(),
                     int.Parse(Session["meses"].ToString()),
                     int.Parse(Session["valorPlan"].ToString()),
-                    "Débito automático",
-                    "Pendiente"
+                    strDescripcion,
+                    strEstado
                 );
 
                 // 2. Obtención de idAfiliadoPlan recién creado
@@ -123,8 +132,6 @@ namespace WebPage
                     null,
                     null
                 );
-
-                string idPlanQS = Session["idPlan"].ToString();
 
                 if (idPlanQS != "12")
                 {
