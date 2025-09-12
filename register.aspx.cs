@@ -266,27 +266,32 @@ namespace WebPage
 
                 // Consultamos los datos de Siigo
 
-                try
-                {
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                string idPlanQS = Request.QueryString["idPlan"];
 
-                    var siigoClient = new SiigoClient(
-                        new HttpClient(),
-                        urlTest,
-                        username,
-                        accessKey,
-                        partnerId
-                    );
-
-                    await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
-                }
-                catch (Exception siigoEx)
+                if (idPlanQS != "12")
                 {
-                    System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
+                    try
+                    {
+                        DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                        string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                        string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                        string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                        string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+
+                        var siigoClient = new SiigoClient(
+                            new HttpClient(),
+                            urlTest,
+                            username,
+                            accessKey,
+                            partnerId
+                        );
+
+                        await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
+                    }
+                    catch (Exception siigoEx)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
+                    }
                 }
 
                 string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
@@ -299,22 +304,26 @@ namespace WebPage
                 }
                 else if (origen == "WEB")
                 {
-                    if (Session["idPlan"].ToString() == "1")
+                    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
                     {
                         Response.Redirect("wompipay", false);
                         Context.ApplicationInstance.CompleteRequest();
                         return;
                     }
-                    else
-                    {
-                        //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+                    //else
+                    //{
+                    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
 
-                        //string strDataWompi = strCedula + "_" + strValorPlan;
+                    //    //string strDataWompi = strCedula + "_" + strValorPlan;
 
-                        Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
-                        Context.ApplicationInstance.CompleteRequest();
-                        return;
-                    }
+                    //    // TODO: Encriptar strDataWompi
+                    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
+
+
+                    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                    //    Context.ApplicationInstance.CompleteRequest();
+                    //    return;
+                    //}
                 }
                 else
                 {
