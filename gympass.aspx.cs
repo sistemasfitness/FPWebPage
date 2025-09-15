@@ -22,6 +22,8 @@ namespace WebPage
                 listaSedes();
                 date_contact.Attributes.Add("type", "date");
             }
+
+            date_contact.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
         }
 
         public DataTable TraerDatos(string strQuery)
@@ -91,13 +93,15 @@ namespace WebPage
                 string strCorreo = email_contact.Value.ToString();
                 string strCelular = phone_contact.Value.ToString();
                 string strDocumento = id_contact.Value.ToString();
-                string strSede = ddlSede.SelectedItem.Text;
+                string strSedeValor = ddlSede.SelectedItem.Value;
+                string strSedeTexto = ddlSede.SelectedItem.Text;
                 string strFechaAsistencia = date_contact.Value.ToString();
                 string strCodEmbajador = cod_embajador.Value.ToString();
-                
-                if (strDocumento == "" || strCodEmbajador == "")
+
+                // Validación de sede seleccionada
+                if (string.IsNullOrWhiteSpace(strSedeValor))
                 {
-                    MostrarAlerta("Campos requeridos", "Por favor, llena todos los campos para poder continuar.", "warning");
+                    MostrarAlerta("Campo requerido", "Por favor, selecciona una sede para poder continuar.", "warning");
                     return;
                 }
 
@@ -143,7 +147,7 @@ namespace WebPage
 
                 string codEmbajador = dtCodEmbajador.Rows[0]["CodigoEmb"].ToString();
 
-                cg.InsertarConcursoGymPass(strNombre, strApellido, strDocumento, strCorreo, strCelular, strFechaAsistencia, strSede, strCodEmbajador, nombreArchivo);
+                cg.InsertarConcursoGymPass(strNombre, strApellido, strDocumento, strCorreo, strCelular, strFechaAsistencia, strSedeTexto, strCodEmbajador, nombreArchivo);
 
                 dtConcursoGymPass.Dispose();
                 dtCodEmbajador.Dispose();
