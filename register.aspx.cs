@@ -312,7 +312,7 @@ namespace WebPage
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
-                else if (origen == "WEB")
+                else if (Session["origenPlanes"].ToString() == "WEB")
                 {
                     if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17") 
                     {
