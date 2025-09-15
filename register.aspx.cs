@@ -294,43 +294,55 @@ namespace WebPage
                     }
                 }
 
-                string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
-
-                if (origen == "KIOSCO")
+                if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
                 {
-                    Response.Redirect("pagoRedeban", false);
+                    Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
-                }
-                else if (origen == "WEB")
-                {
-                    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
-                    {
-                        Response.Redirect("wompipay", false);
-                        Context.ApplicationInstance.CompleteRequest();
-                        return;
-                    }
-                    //else
-                    //{
-                    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
-
-                    //    //string strDataWompi = strCedula + "_" + strValorPlan;
-
-                    //    // TODO: Encriptar strDataWompi
-                    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
-
-
-                    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
-                    //    Context.ApplicationInstance.CompleteRequest();
-                    //    return;
-                    //}
-                }
-                else
+                } else
                 {
                     Response.Redirect("default", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
+
+                //string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+
+                //if (origen == "KIOSCO")
+                //{
+                //    Response.Redirect("pagoRedeban", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //    return;
+                //}
+                //else if (origen == "WEB")
+                //{
+                //    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
+                //    {
+                //        Response.Redirect("wompipay", false);
+                //        Context.ApplicationInstance.CompleteRequest();
+                //        return;
+                //    }
+                //    //else
+                //    //{
+                //    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+
+                //    //    //string strDataWompi = strCedula + "_" + strValorPlan;
+
+                //    //    // TODO: Encriptar strDataWompi
+                //    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
+
+
+                //    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                //    //    Context.ApplicationInstance.CompleteRequest();
+                //    //    return;
+                //    //}
+                //}
+                //else
+                //{
+                //    Response.Redirect("default", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //    return;
+                //}
             }
             catch (Exception ex)
             {
