@@ -524,19 +524,11 @@
                 <p class="lead styled" style="font-weight: 500; color: #FFF;">
                     En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
                 </p>
-                <div class="row text-center plans">
+                <%--<div class="row text-center plans">
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=1">
-                                <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <a href="planes?id=14">
-                                <img src="img/planes/plan_10-meses_2025-08-21.jpg" class="img-responsive" style="height: 450px;" />
+                                <img src="img/planes/01_plan-easy_2025-09-08.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>
@@ -544,11 +536,43 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=10">
-                                <img src="img/planes/plan_6-mas-2_2025-08-21.jpg" class="img-responsive" />
+                                <img src="img/planes/03_plan-6-mas-2_2025-09-08.jpg" class="img-responsive" style="height: 450px;" />
                             </a>
                         </div>
                     </div>
 
+                    <div class="col-md-4">
+                        <div class="img_container">
+                            <a href="planes?id=16">
+                                <img src="img/planes/02_plan-3-mas-1_2025-09-08.jpg" class="img-responsive" />
+                            </a>
+                        </div>
+                    </div>
+                </div>--%>
+                <div class="row text-center plans">
+                    <div class="col-md-0" style="display: none;">
+                        <div class="img_container">
+                            <a href="planes?id=1">
+                                <img src="img/planes/01_plan-easy_2025-09-08.jpg" class="img-responsive" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="img_container">
+                            <a href="planes?id=10" style="display: flex; justify-content: center;">
+                                <img src="img/planes/03_plan-6-mas-2_2025-09-08.jpg" class="img-responsive" style="height: 450px;" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="img_container">
+                            <a href="planes?id=16" style="display: flex; justify-content: center;">
+                                <img src="img/planes/02_plan-3-mas-1_2025-09-08.jpg" class="img-responsive" style="height: 450px;" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <!-- End row plans-->
 
@@ -581,6 +605,24 @@
             <!--  End container-->
         </section>
         <!--  End section-->
+
+        <div id="newsletter_container" style="background-color: #000;">
+            <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                    <div id="message-newsletter"></div>
+                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
+                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
+                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
+                    </form>--%>
+                        <a href="gympass">
+                            <img src="img/concurso-gympass-2.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <%--<section id="feat">
             <div class="container">

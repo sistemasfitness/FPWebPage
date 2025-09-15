@@ -148,16 +148,23 @@
                     <h5 style="font-weight: 900;">Departamentos</h5>
                     <ul class="contacts_info">
                         <li><strong>Contabilidad</strong><br>
-                            <a href="https://wa.me/573187077584" style="color: #333333;">(+57) 318 707 7584</a>
+                            <a href="https://wa.me/573187077584" style="color: #333333;" target="_blank">(+57) 318 707 7584</a>
                             <br/>
                             <a href="mailto:contabilidad@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">contabilidad@fitnesspeoplecmd.com</a>
                             <br/>
                             <small>Lunes a Viernes 9am - 6pm</small>
                         </li>
                         <li><strong>Área Comercial</strong><br>
-                            <a href="https://wa.me/573138859790" style="color: #333333;">(+57) 313 885 9790</a>
+                            <a href="https://wa.me/573138859790" style="color: #333333;" target="_blank">(+57) 313 885 9790</a>
                             <br/>
                             <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
+                            <br/>
+                            <small>Lunes a Sábado 8am - 7pm</small>
+                        </li>
+				                    <li><strong>Ejecutivo Corporativo</strong><br>
+                            <a href="https://wa.me/573006859461" style="color: #333333;" target="_blank">(+57) 300 685 9461</a>
+                            <br/>
+                            <a href="mailto:lidercorporativa@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">lidercorporativa@fitnesspeoplecmd.com</a>
                             <br/>
                             <small>Lunes a Sábado 8am - 7pm</small>
                         </li>

@@ -8122,6 +8122,106 @@ namespace WebPage
             return respuesta;
         }
 
+        // Concurso Gym Pass
+
+        public DataTable ConsultarConcursoGymPassPorDocumento(string documento)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_CONCURSO_GYM_PASS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_numero_documento", documento);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public DataTable ConsultarCodigoEmbajador(string codEmbajador)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_CODIGO_EMBAJADOR", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_cod_embajador", codEmbajador);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public string InsertarConcursoGymPass(string nombres, string apellidos, string documento, string correo, string celular, string fechaInicio, string sede, string codEmbajador, string archivoCaptura)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_CONCURSO_GYM_PASS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_nombres", nombres);
+                        cmd.Parameters.AddWithValue("@p_apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
+                        cmd.Parameters.AddWithValue("@p_correo", correo);
+                        cmd.Parameters.AddWithValue("@p_telefono", celular);
+                        cmd.Parameters.AddWithValue("@p_fecha_asistencia", fechaInicio);
+                        cmd.Parameters.AddWithValue("@p_sede", sede);
+                        cmd.Parameters.AddWithValue("@p_cod_embajador", codEmbajador);
+                        cmd.Parameters.AddWithValue("@p_nombre_archivo", archivoCaptura);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         // Redeban - Datáfonos
         public DataTable ConsultarDatafonoPorCodigo(string codDatafono)
         {
