@@ -185,7 +185,14 @@
                         </div>
 
                         <div class="col-md-12 col-sm-12" style="display: flex; flex-direction: column;">
-                            <label for="captureFile">Captura donde se visualice que nos sigues.</label>
+                            <label for="captureFile">
+                                Captura donde se visualice que nos sigues en Instagram 
+                                <a href="https://www.instagram.com/fitnesspeople_colombia/" 
+                                   target="_blank" 
+                                   style="text-decoration: none; color: #E3FF00;">
+                                   @fitnesspeople_colombia
+                                </a>.
+                            </label>
 
                             <div>
                                 <!-- Botón personalizado -->
