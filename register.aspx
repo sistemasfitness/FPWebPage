@@ -192,14 +192,14 @@
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <label>Fecha de inicio: *</label>
+                                                <label style="color: #808080;">Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
                                                     AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <label>Fecha de fin:</label>
+                                                <label style="color: #808080;">Fecha de fin:</label>
                                                 <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
