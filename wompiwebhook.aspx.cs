@@ -19,7 +19,8 @@ namespace WebPage
 	public partial class wompiwebhook : System.Web.UI.Page
 	{
         // Llave secreta de eventos de Dashboard Wompi
-        private const string EVENT_SECRET = "prod_events_qNoVyjX3vk7AtP9XtltSiPzrxz8PYsEi";
+        //private const string EVENT_SECRET = "prod_events_qNoVyjX3vk7AtP9XtltSiPzrxz8PYsEi";
+        private const string EVENT_SECRET = "test_events_q0E0LNV5lFIVEvtyyt9JBMMCb08Lm8og";
         protected async void Page_Load(object sender, EventArgs e)
 		{
             if (Request.HttpMethod == "POST")
