@@ -32,20 +32,26 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
+                Session["origenPlanes"] = "WEB"; // OJO: Esta variable de sesión es temporal
                 CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
 
+                txbFechaNac.Attributes.Add("type", "date");
+                txbFechaIni.Attributes.Add("type", "date");
+                txbFechaFin.Attributes.Add("type", "date");
+
+                DateTime dtHoy = DateTime.Now;
+                DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
                 DateTime dt14 = DateTime.Now.AddYears(-14);
                 DateTime dt100 = DateTime.Now.AddYears(-100);
                 txbFechaNac.Attributes.Add("min", dt100.Year.ToString() + "-" + string.Format("{0:MM}", dt100) + "-" + String.Format("{0:dd}", dt100));
                 txbFechaNac.Attributes.Add("max", dt14.Year.ToString() + "-" + string.Format("{0:MM}", dt14) + "-" + String.Format("{0:dd}", dt14));
 
-                txbFechaNac.Attributes.Add("type", "date");
-                txbFechaIni.Attributes.Add("type", "date");
-                txbFechaFin.Attributes.Add("type", "date");
+                txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
+                txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
 
                 txbDocumento.Attributes.Add("type", "number");
                 txbCelular.Attributes.Add("type", "number");     
@@ -89,6 +95,12 @@ namespace WebPage
                 Session["codSiigoPlan"] = codSiigoPlan;
 
                 dtPlan.Dispose();
+
+                if (idPlanQS == "12" || idPlanQS == "17")  // Plan de migracion 2.000 y 89.000
+                {
+                    txbFechaIni.Enabled = false;
+                    txbFechaFin.Enabled = false;
+                }
             }
 
             dt.Dispose();
@@ -299,7 +311,31 @@ namespace WebPage
                     Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
-                } else
+                }
+                else if (Session["origenPlanes"].ToString() == "WEB")
+                {
+                    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17") 
+                    {
+                        Response.Redirect("wompipay", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
+                    //else
+                    //{
+                    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+
+                    //    //string strDataWompi = strCedula + "_" + strValorPlan;
+
+                    //    // TODO: Encriptar strDataWompi
+                    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
+
+
+                    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                    //    Context.ApplicationInstance.CompleteRequest();
+                    //    return;
+                    //}
+                }
+                else
                 {
                     Response.Redirect("default", false);
                     Context.ApplicationInstance.CompleteRequest();

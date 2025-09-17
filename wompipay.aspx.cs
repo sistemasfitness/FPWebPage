@@ -23,6 +23,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
+        static int idIntegracion = 1; // Pruebas
+        //int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -213,12 +215,12 @@ namespace WebPage
                     return false;
                 }
 
-                //Tokenizar una tarjeta
-                // URL - Pruebas
-                string url = "https://sandbox.wompi.co/v1/tokens/cards";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-                // URL - Producción
-                //string url = "https://production.wompi.co/v1/tokens/cards";
+                //Tokenizar una tarjeta
+                
+                string url = dtIntegracionWompi.Rows[0]["urlTest"] + "tokens/cards";
                 string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
 
                 Root1 rObjetc = JsonConvert.DeserializeObject<Root1>(respuesta);
@@ -266,11 +268,11 @@ namespace WebPage
         {
             try
             {
-                // URL - Pruebas
-                string url = "https://sandbox.wompi.co/v1/payment_sources";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-                // URL - Producción
-                //string url = "https://production.wompi.co/v1/payment_sources";
+                string url = dtIntegracionWompi.Rows[0]["urlTest"].ToString() + "payment_sources";
+
                 string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
                 Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
@@ -292,11 +294,7 @@ namespace WebPage
                 string monto = Session["valorPlan"].ToString() + "00"; // en centavos
                 string moneda = "COP";
 
-                // Integrity Secret - Pruebas
-                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-                // Integrity Secret - Producción
-                //string integrity_secret = "prod_integrity_x3D1pIYNDtSP1WulflhafCNbCLCFFP4t";
+                string integrity_secret = dtIntegracionWompi.Rows[0]["integrity_secret"].ToString();
 
                 string concatenado = reference + monto + moneda + integrity_secret;
                 string hash256 = ComputeSha256Hash(concatenado);
@@ -333,11 +331,11 @@ namespace WebPage
         {
             try
             {
-                // URL - Pruebas
-                string url = "https://sandbox.wompi.co/v1/transactions";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-                // URL - Producción
-                //string url = "https://production.wompi.co/v1/transactions";
+                string url = dtIntegracionWompi.Rows[0]["urlTest"].ToString() + "transactions";
+
                 string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
 
                 Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
@@ -476,11 +474,10 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
-                // Llave Pública - Pruebas
-                string keyPub = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-                // Llave Pública - Producción
-                //string keyPub = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
+                string keyPub = dtIntegracionWompi.Rows[0]["keyPub"].ToString();
 
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPub);
 
@@ -529,11 +526,10 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
-                // Llave Privada - Pruebas
-                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-                // Llave Privada - Producción
-                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                string keyPriv = dtIntegracionWompi.Rows[0]["keyPriv"].ToString();
 
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
 
@@ -581,11 +577,11 @@ namespace WebPage
 
             using (HttpClient client = new HttpClient())
             {
-                // Llave Privada - Pruebas
-                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
 
-                // Llave Privada - Producción
-                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                clasesglobales cg = new clasesglobales();
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
+
+                string keyPriv = dtIntegracionWompi.Rows[0]["keyPriv"].ToString();
 
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
@@ -613,19 +609,14 @@ namespace WebPage
 
         public static async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
         {
-            // URL - Pruebas
-            string url = $"https://sandbox.wompi.co/v1/transactions?reference={idReferencia}";
+            clasesglobales cg = new clasesglobales();
+            DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-            // URL - Producción
-            //string url = $"https://production.wompi.co/v1/transactions?reference={idReferencia}";
+            string url = dtIntegracionWompi.Rows[0]["urlTest"].ToString() + $"transactions?reference={idReferencia}";
 
             using (HttpClient client = new HttpClient())
             {
-                // Llave Privada - Pruebas
-                string keyPriv = "prv_test_GWPWL8e9md24zYyTuF5KojJmH7Y4Sez2";
-
-                // Llave Privada - Producción
-                //string keyPriv = "prv_prod_h7JHlOIL6EjCzotPnupYSbzy16ulQ5DO";
+                string keyPriv = dtIntegracionWompi.Rows[0]["keyPriv"].ToString();
 
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", keyPriv);
@@ -651,18 +642,11 @@ namespace WebPage
 
         private void ObtenerTokensDeAceptacion()
         {
-            // Llave Pública - Pruebas
-            string strPublicKeySandbox = "pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv";
+            clasesglobales cg = new clasesglobales();
+            DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
 
-            // Llave Pública - Producción
-            //string strPublicKeyProduction = "pub_prod_9kHE7xJALv0kDfoSLxQAul1dY141BdR2";
-
-            // Construir la URL de la API
-            // URL - Pruebas
-            string url = "https://sandbox.wompi.co/v1/merchants/" + strPublicKeySandbox;
-
-            // URL - Producción
-            //string url = "https://production.wompi.co/v1/merchants/" + strPublicKeyProduction;
+            string keyPub = dtIntegracionWompi.Rows[0]["keyPub"].ToString();
+            string url = dtIntegracionWompi.Rows[0]["urlTest"].ToString() + "merchants/" + keyPub;
 
             try
             {
