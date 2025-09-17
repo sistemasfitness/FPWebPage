@@ -86,7 +86,7 @@ namespace WebPage
                 string strDescripcion = "Débito automático";
                 string strEstado = "Pendiente";
 
-                if (idPlanQS == "12")
+                if (idPlanQS == "12" || idPlanQS == "17")
                 {
                     strDescripcion = "Débito automático Migración Clez";
                     strEstado = "Activo";
@@ -160,28 +160,29 @@ namespace WebPage
 
                         // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
                         // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                        //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                        //    Session["documentoAfiliado"].ToString(), 
-                        //    Session["codSiigoPlan"].ToString(), 
-                        //    Session["nombrePlan"].ToString(),
-                        //    int.Parse(Session["valorPlan"].ToString())
-                        //);
+                        idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                            Session["documentoAfiliado"].ToString(),
+                            Session["codSiigoPlan"].ToString(),
+                            Session["nombrePlan"].ToString(),
+                            int.Parse(Session["valorPlan"].ToString()),
+                            idSede
+                        );
 
                         // Siigo Pruebas
                         //    //int idTipoDocumento = 28006;
                         //    //int costCenterDefault = 621;
                         //    //int idVendedor = 856;
                         //    //int idPayment = 9438;
-                        string codSiigoPlan = "COD2433";
-                        string nombrePlan = "Pago de suscripción";
-                        int precioPlan = 10000;
-                        idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                            Session["documentoAfiliado"].ToString(),
-                            codSiigoPlan,
-                            nombrePlan,
-                            precioPlan,
-                            idSede
-                        );
+                        //string codSiigoPlan = "COD2433";
+                        //string nombrePlan = "Pago de suscripción";
+                        //int precioPlan = 10000;
+                        //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        //    Session["documentoAfiliado"].ToString(),
+                        //    codSiigoPlan,
+                        //    nombrePlan,
+                        //    precioPlan,
+                        //    idSede
+                        //);
 
                         // Actualizar pago con id de factura
                         cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
