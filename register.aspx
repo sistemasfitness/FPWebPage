@@ -236,7 +236,7 @@
                                     <asp:CheckBox ID="cbAutorizo" runat="server" />
 
                                     <label for="cbAutorizo">
-                                        <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S.</a> realizar el cobro recurrente.</span>
+                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
                                     </label>
                                 </div>
                             </div>
