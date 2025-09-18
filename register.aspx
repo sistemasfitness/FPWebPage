@@ -247,7 +247,7 @@
                             </div>
                         </div>
 
-                        <div class="box_style_2" style="color: black;">
+                        <div class="box_style_2" style="display: none; color: black;">
                             <div>
                                 <asp:HyperLink ID="btnElegirPlanLink" runat="server" CssClass="btn_full" Text="Seleccionar otro plan" />
                             </div>

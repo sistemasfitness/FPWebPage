@@ -74,14 +74,14 @@
         <div class="container" style="display: flex; flex-direction: column;">
             <img src="img/actualizardatos/img-actualizardatos.png" class="img-responsive"  />
         </div>
-        <div class="row text-center add_top_20">
+        <div class="text-center add_top_20">
             <h2 class="indent_title" style="padding: 0 20px; font-weight: 900; color: #FFF;">CONFIANZA Y SEGURIDAD EN CADA PASO</h2>
         </div>
-        <div class="row text-center add_top_20">
+        <div class="text-center add_top_20">
             <h2 class="indent_title" style="padding: 0 20px; font-weight: 900; font-size: 4rem; color: #e3ff00;">¡Tu experiencia en Fitness People evoluciona!</h2>
             <h2 class="indent_title" style="padding: 0 20px; font-weight: 900; font-size: 3rem; color: #FFF;">Próximamente los beneficios exclusivos del nuevo sotfware:</h2>
         </div>
-        <div class="container row add_top_20 plans" style="justify-content: center;">
+        <div class="container add_top_20 plans" style="justify-content: center;">
             <div class="col-xs-12 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4 card img_container" style="display: flex; justify-content: center;" >
                 <img src="img/actualizardatos/01-beneficio_ingreso-face-id.png" class="img-responsive" />
             </div>
@@ -94,10 +94,10 @@
                 <img src="img/actualizardatos/03-beneficio_revision-evolucion-medica.png" class="img-responsive" />
             </div>
         </div>
-        <div class="container add_top_60 text-center" style="display: flex; flex-direction: column; justify-content: center;">
+        <div class="container add_top_60 text-center img-responsive" style="display: flex; flex-direction: column; justify-content: center;">
             <a href="https://fitnesspeoplecolombia.com/register?idPlan=12" 
                target="_blank">
-               <img src="img/actualizardatos/btn-actualizardatos.png" style="max-width: 100%" />
+               <img src="img/actualizardatos/btn-actualizardatos.png" style="width: 50rem; max-width: 100%" />
             </a>
             <h2 class="indent_title" style="padding: 0 20px; font-weight: 900; font-size: 3rem; color: #FFF;">Y DISFRUTA LA EXPERIENCIA RENOVADA</h2>
         </div>
@@ -259,205 +259,6 @@
             }
         });
     </script>
-
-    <script>
-
-        const totalSteps = 5;
-        let currentStep = 0;
-        const answers = [];
-
-        const allSteps = document.querySelectorAll('.question-block');
-        const progressFill = document.getElementById("progress-fill");
-        const btnPrev = document.getElementById("btnPrev");
-        const btnNext = document.getElementById("btnNext");
-
-        function selectCard(step, value, card) {
-            const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
-            const wasSelected = card.classList.contains("selected");
-
-            // Deseleccionar todas
-            cards.forEach(c => {
-                c.classList.remove("selected");
-                const img = c.querySelector("img");
-                const defaultImg = c.getAttribute("data-img-default");
-                if (img && defaultImg) img.src = defaultImg;
-            });
-
-            if (!wasSelected) {
-                // Marcar tarjeta como seleccionada
-                card.classList.add("selected");
-                answers[step] = value;
-
-                const img = card.querySelector("img");
-                const selectedImg = card.getAttribute("data-img-selected");
-                if (img && selectedImg) img.src = selectedImg;
-
-                // Lógica condicional si estamos en la pregunta de sede
-                if (step === 3) mostrarOpcionesPorSede(value); // value 1 o 2
-
-                if (step === 4) {
-                    // Construimos query params con las respuestas
-                    const queryParams = answers
-                        .map((val, index) => `q${index + 1}=${encodeURIComponent(val)}`)
-                        .join("&");
-
-                    // Redirige a la página con las respuestas en la URL
-                    window.location.href = `resultado.aspx?${queryParams}`;
-                }
-
-                goToNext();
-
-            } else {
-                // Se deseleccionó la tarjeta actual
-                answers[step] = null;
-
-                // Si deselecciona sede, ocultamos todo lo que sigue
-                if (step === 3) ocultarOpcionesPorSede();
-            }
-        }
-
-        function restoreSelection(step) {
-            const selectedValue = answers[step];
-
-            // Paso 4 es condicional, así que debemos buscar en el bloque visible
-            if (step === 4) {
-                const visibles = document.querySelectorAll(`.card-row[data-step="${step}"]`);
-                visibles.forEach(row => {
-                    if (getComputedStyle(row).display !== "none") {
-                        const cards = row.querySelectorAll('.card');
-                        cards.forEach((card, index) => {
-                            card.classList.remove("selected");
-                            if ((index + 1) === selectedValue) {
-                                card.classList.add("selected");
-                            }
-                        });
-                    }
-                });
-            } else {
-                // Comportamiento normal para otros pasos
-                const cards = document.querySelectorAll(`.card-row[data-step="${step}"] .card`);
-                cards.forEach((card, index) => {
-                    card.classList.remove("selected");
-                    if ((index + 1) === selectedValue) {
-                        card.classList.add("selected");
-                    }
-                });
-            }
-
-            btnNext.disabled = selectedValue == null;
-        }
-
-        function mostrarOpcionesPorSede(sedeSeleccionada) {
-            const opcionesBga = document.querySelector('.opciones-bucaramanga');
-            const opcionesCuc = document.querySelector('.opciones-cucuta');
-
-            // Ocultamos ambas primero
-            opcionesBga.style.display = "none";
-            opcionesCuc.style.display = "none";
-
-            if (sedeSeleccionada === 1) {
-                opcionesBga.style.display = "flex";
-            } else if (sedeSeleccionada === 2) {
-                opcionesCuc.style.display = "flex";
-            }
-        }
-
-        function ocultarOpcionesPorSede() {
-            const opcionesBga = document.querySelector('.opciones-bucaramanga');
-            const opcionesCuc = document.querySelector('.opciones-cucuta');
-
-            opcionesBga.style.display = "none";
-            opcionesCuc.style.display = "none";
-        }
-
-        function cambiarImagenHover(card) {
-            const img = card.querySelector("img");
-            const hoverImg = card.getAttribute("data-img-selected");
-            if (img && hoverImg) img.src = hoverImg;
-        }
-
-        function restaurarImagenHover(card) {
-            const img = card.querySelector("img");
-            if (!img) return;
-
-            if (card.classList.contains("selected")) {
-                const selectedImg = card.getAttribute("data-img-selected");
-                if (selectedImg) img.src = selectedImg;
-            } else {
-                const defaultImg = card.getAttribute("data-img-default");
-                if (defaultImg) img.src = defaultImg;
-            }
-        }
-
-        function goToNext() {
-            if (answers[currentStep] == null) return;
-
-            allSteps[currentStep].style.display = "none";
-            currentStep++;
-
-            if (currentStep < totalSteps) {
-                allSteps[currentStep].style.display = "block";
-                btnNext.disabled = answers[currentStep] == null;
-            }
-
-            // Restaura selección visual
-            restoreSelection(currentStep);
-
-            btnPrev.disabled = currentStep === 0;
-
-            if (currentStep === totalSteps - 1) {
-                btnNext.textContent = "Finalizar";
-            }
-
-            updateProgress();
-        }
-
-        function goToPrevious() {
-            allSteps[currentStep].style.display = "none";
-            currentStep--;
-
-            allSteps[currentStep].style.display = "block";
-            btnNext.disabled = answers[currentStep] == null;
-
-            // Restaura selección visual
-            restoreSelection(currentStep);
-
-            btnPrev.disabled = currentStep === 0;
-            btnNext.textContent = "Siguiente";
-
-            updateProgress();
-        }
-
-        function updateProgress() {
-            let percent = ((currentStep) / totalSteps) * 100;
-            progressFill.style.width = percent + "%";
-        }
-
-        window.onload = function () {
-            allSteps.forEach((block, index) => {
-                block.style.display = index === 0 ? "block" : "none";
-            });
-            btnNext.disabled = true;
-        };
-
-    </script>
-
-    <style>
-
-        .banner-principal {
-	        background-image: url(img/descubrir-plan/banner-principal.png);
-	        background-size: cover;
-	        background-position: center;
-        }
-
-        /* Para pantallas de 480px o menos */
-        @media (max-width: 480px) {
-            .banner-principal {
-                background-image: url('img/descubrir-plan/banner-principal_movil.jpg');
-            }
-        }
-
-    </style>
 
 </body>
 </html>
