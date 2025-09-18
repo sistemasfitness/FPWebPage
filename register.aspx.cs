@@ -32,7 +32,8 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                Session["origenPlanes"] = "WEB"; // OJO: Esta variable de sesión es temporal
+                validarPlanes();
+
                 CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
@@ -104,6 +105,16 @@ namespace WebPage
             }
 
             dt.Dispose();
+        }
+
+        private void validarPlanes()
+        {
+            string idPlanQS = Request.QueryString["idPlan"];
+
+            if (idPlanQS != "12" && idPlanQS != "17")  // Plan de migracion 2.000 y 89.000
+            {
+                Response.Redirect("default");
+            }
         }
 
         private void CargarTipoDocumento()
@@ -306,34 +317,11 @@ namespace WebPage
                     }
                 }
 
-                if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
+                if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17")
                 {
                     Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
-                }
-                else if (Session["origenPlanes"].ToString() == "WEB")
-                {
-                    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17") 
-                    {
-                        Response.Redirect("wompipay", false);
-                        Context.ApplicationInstance.CompleteRequest();
-                        return;
-                    }
-                    //else
-                    //{
-                    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
-
-                    //    //string strDataWompi = strCedula + "_" + strValorPlan;
-
-                    //    // TODO: Encriptar strDataWompi
-                    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
-
-
-                    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
-                    //    Context.ApplicationInstance.CompleteRequest();
-                    //    return;
-                    //}
                 }
                 else
                 {
@@ -342,44 +330,44 @@ namespace WebPage
                     return;
                 }
 
-                //string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+                    //string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
 
-                //if (origen == "KIOSCO")
-                //{
-                //    Response.Redirect("pagoRedeban", false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //    return;
-                //}
-                //else if (origen == "WEB")
-                //{
-                //    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12")
-                //    {
-                //        Response.Redirect("wompipay", false);
-                //        Context.ApplicationInstance.CompleteRequest();
-                //        return;
-                //    }
-                //    //else
-                //    //{
-                //    //    //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+                    //if (origen == "KIOSCO")
+                    //{
+                    //    Response.Redirect("pagoRedeban", false);
+                    //    Context.ApplicationInstance.CompleteRequest();
+                    //    return;
+                    //}
+                    //else if (origen == "WEB")
+                    //{
+                    //    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17")
+                    //    {
+                    //        Response.Redirect("wompipay", false);
+                    //        Context.ApplicationInstance.CompleteRequest();
+                    //        return;
+                    //    }
+                    //    else
+                    //    {
+                    //        //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
 
-                //    //    //string strDataWompi = strCedula + "_" + strValorPlan;
+                    //        //string strDataWompi = strCedula + "_" + strValorPlan;
 
-                //    //    // TODO: Encriptar strDataWompi
-                //    //    // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
+                    //        // TODO: Encriptar strDataWompi
+                    //        // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
 
 
-                //    //    Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
-                //    //    Context.ApplicationInstance.CompleteRequest();
-                //    //    return;
-                //    //}
-                //}
-                //else
-                //{
-                //    Response.Redirect("default", false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //    return;
-                //}
-            }
+                    //        Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                    //        Context.ApplicationInstance.CompleteRequest();
+                    //        return;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Response.Redirect("default", false);
+                    //    Context.ApplicationInstance.CompleteRequest();
+                    //    return;
+                    //}
+                }
             catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
