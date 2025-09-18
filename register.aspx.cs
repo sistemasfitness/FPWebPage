@@ -290,31 +290,28 @@ namespace WebPage
                 // Consultamos los datos de Siigo
 
                 string idPlanQS = Request.QueryString["idPlan"];
-
-                if (idPlanQS != "12")
+                
+                try
                 {
-                    try
-                    {
-                        DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                        string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                        string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                        string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                        string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
 
-                        var siigoClient = new SiigoClient(
-                            new HttpClient(),
-                            urlTest,
-                            username,
-                            accessKey,
-                            partnerId
-                        );
+                    var siigoClient = new SiigoClient(
+                        new HttpClient(),
+                        urlTest,
+                        username,
+                        accessKey,
+                        partnerId
+                    );
 
-                        await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
-                    }
-                    catch (Exception siigoEx)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
-                    }
+                    await siigoClient.ManageCustomerAsync(strCedula, strNombre, strApellido, strCelular, strEmail);
+                }
+                catch (Exception siigoEx)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
                 }
 
                 if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17")
@@ -330,43 +327,43 @@ namespace WebPage
                     return;
                 }
 
-                    //string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
+                //string origen = Session["origenPlanes"] != null ? Session["origenPlanes"].ToString() : "";
 
-                    //if (origen == "KIOSCO")
-                    //{
-                    //    Response.Redirect("pagoRedeban", false);
-                    //    Context.ApplicationInstance.CompleteRequest();
-                    //    return;
-                    //}
-                    //else if (origen == "WEB")
-                    //{
-                    //    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17")
-                    //    {
-                    //        Response.Redirect("wompipay", false);
-                    //        Context.ApplicationInstance.CompleteRequest();
-                    //        return;
-                    //    }
-                    //    else
-                    //    {
-                    //        //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
+                //if (origen == "KIOSCO")
+                //{
+                //    Response.Redirect("pagoRedeban", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //    return;
+                //}
+                //else if (origen == "WEB")
+                //{
+                //    if (Session["idPlan"].ToString() == "1" || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17")
+                //    {
+                //        Response.Redirect("wompipay", false);
+                //        Context.ApplicationInstance.CompleteRequest();
+                //        return;
+                //    }
+                //    else
+                //    {
+                //        //string strDataWompi = Convert.ToBase64String(Encoding.Unicode.GetBytes(strCedula + "_" + strValorPlan));
 
-                    //        //string strDataWompi = strCedula + "_" + strValorPlan;
+                //        //string strDataWompi = strCedula + "_" + strValorPlan;
 
-                    //        // TODO: Encriptar strDataWompi
-                    //        // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
+                //        // TODO: Encriptar strDataWompi
+                //        // Response.Redirect("wompipay?data=" + HttpUtility.UrlEncode(strDataWompi), false);
 
 
-                    //        Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
-                    //        Context.ApplicationInstance.CompleteRequest();
-                    //        return;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    Response.Redirect("default", false);
-                    //    Context.ApplicationInstance.CompleteRequest();
-                    //    return;
-                    //}
+                //        Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                //        Context.ApplicationInstance.CompleteRequest();
+                //        return;
+                //    }
+                //}
+                //else
+                //{
+                //    Response.Redirect("default", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //    return;
+                //}
                 }
             catch (Exception ex)
             {
