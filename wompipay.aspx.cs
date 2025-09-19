@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -23,8 +24,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        //static int idIntegracion = 1; // Pruebas
-        static int idIntegracion = 4; // Producción
+        static int idIntegracion = 1; // Pruebas
+        //static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,8 +34,8 @@ namespace WebPage
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
 
-                    txbCreditCard.Attributes.Add("type", "number");
-                    txbCVC.Attributes.Add("type", "number");
+                    txbCreditCard.Attributes.Add("type", "text");
+                    txbCVC.Attributes.Add("type", "text");
                 }
                 else
                 {
@@ -63,13 +64,32 @@ namespace WebPage
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
 
+        private string LimpiarNumeroTarjeta(string numero)
+        {
+            return new string(numero.Where(char.IsDigit).ToArray());
+        }
+
         protected async void btnPagar_Click(object sender, EventArgs e)
         {
             try
             {
+                string cardNumber = txbCreditCard.Text.Replace(" ", "");
+                if (!cardNumber.All(char.IsDigit))
+                {
+                    MostrarAlerta("Error", "El número de tarjeta no es válido.", "error");
+                    return;
+                }
+
+                string cvc = txbCVC.Text.Trim();
+                if (cvc.Length < 3 || cvc.Length > 4 || !cvc.All(char.IsDigit))
+                {
+                    MostrarAlerta("Error", "El CVC debe ser numérico y de 3 o 4 dígitos.", "error");
+                    return;
+                }
+
                 bool tarjetaTokenizada = await TokenizarTarjetaAsync(
-                    txbCreditCard.Text.Trim(),
-                    txbCVC.Text.Trim(),
+                    cardNumber,
+                    cvc,
                     ddlMes.SelectedValue,
                     ddlAnho.SelectedValue,
                     txbNombreTarjeta.Text.Trim()
