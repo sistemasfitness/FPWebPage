@@ -967,6 +967,7 @@
     </Compile>
     <Compile Include="Services\RedebanClient.cs" />
     <Compile Include="Services\SiigoClient.cs" />
+    <Compile Include="Services\UrlEncryptor.cs" />
     <Compile Include="servicios.aspx.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

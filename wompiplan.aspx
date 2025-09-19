@@ -79,10 +79,6 @@
                     data-signature:integrity="<%=strHash256%>"
                     data-redirect-url="<%=strRedireccion%>">
                 </script>
-
-                <%--<div>
-                    <asp:Button ID="btnGuardarTransaccion" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="GuardarTransaccion"/>
-                </div>--%>
             </form>
         </div>
     </div>

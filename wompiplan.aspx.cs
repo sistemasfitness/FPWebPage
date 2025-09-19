@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.OpenXmlFormats.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net.Http;
@@ -39,29 +40,54 @@ namespace WebPage
             ////Hash Sha256 para Wompi
             //_strMonto = codes[1] + "00";
 
+            
+            //
 
-            string strDocumento = Request.QueryString["nroDoc"];
+            //string strDocumento = Request.QueryString["nroDoc"];
 
-            _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-            _strMonto = Request.QueryString["valorPlan"] + "00";
+            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+            //_strMonto = Request.QueryString["valorPlan"] + "00";
 
-            string moneda = "COP";
-            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+            //string moneda = "COP";
+            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 
-            string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-            _strHash256 = ComputeSha256Hash(concatenado);
+            //string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+            //_strHash256 = ComputeSha256Hash(concatenado);
 
-            AlmacenarDatosPago(_strReferencia, strDocumento);
+            //AlmacenarDatosPago(_strReferencia, strDocumento);
 
-            string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
+            //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
 
-            _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-        }
+            //_strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
 
-        protected async void GuardarTransaccion(object sender, EventArgs e)
-        {
-            // NO ELIMINAR
-            // Función para comprobar que los Pa están bien
+
+            //
+
+
+            string token = Request.QueryString["data"];
+            if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
+            {
+                var qs = HttpUtility.ParseQueryString(payload);
+                string nroDoc = qs["nroDoc"];
+                string valorPlan = qs["valorPlan"];
+
+                _strReferencia = nroDoc + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+                _strMonto = $"{valorPlan}00";
+
+                string moneda = "COP";
+                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+                string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+                _strHash256 = ComputeSha256Hash(concatenado);
+
+                AlmacenarDatosPago(_strReferencia, nroDoc);
+
+                string strString = Convert.ToBase64String(Encoding.UTF8.GetBytes(nroDoc));
+                _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+            }
+            else
+            {
+                Response.Redirect("default");
+            }
         }
 
         private void AlmacenarDatosPago(string referencia, string documento)

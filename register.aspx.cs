@@ -111,7 +111,12 @@ namespace WebPage
         {
             string idPlanQS = Request.QueryString["idPlan"];
 
-            if (idPlanQS != "12" && idPlanQS != "17")  // Plan de migracion 2.000 y 89.000
+            //if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12" && idPlanQS != "16" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000 - 6+2 590.000 - 3+1 349.000
+            //{
+            //    Response.Redirect("default");
+            //}
+
+            if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000
             {
                 Response.Redirect("default");
             }
@@ -320,6 +325,19 @@ namespace WebPage
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
+                //else if (idPlanQS == "10" || idPlanQS == "16")
+                //{
+                //    string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}&valorPlan={HttpUtility.UrlEncode(strValorPlan)}";
+                //    string token = UrlEncryptor.Encrypt(payload);
+                //    Response.Redirect($"wompiplan?data={HttpUtility.UrlEncode(token)}", false);
+                //    Context.ApplicationInstance.CompleteRequest();
+                //    return;
+
+
+                //    //Response.Redirect($"wompiplan?nroDoc={strCedula}&valorPlan={strValorPlan}", false);
+                //    //Context.ApplicationInstance.CompleteRequest();
+                //    //return;
+                //}
                 else
                 {
                     Response.Redirect("default", false);

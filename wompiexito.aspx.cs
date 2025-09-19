@@ -18,7 +18,7 @@ namespace WebPage
                     ltValor1.Text = Session["ltValorPlan"].ToString();
                     ltValor2.Text = Session["ltValorPlan"].ToString();
 
-                    if (Session["idPlan"] != null || Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17")
+                    if (Session["idPlan"].ToString() == "12" || Session["idPlan"].ToString() == "17")
                     {
                         pnlActivarPlan.Visible = false; // Ocultar si el plan es 12 o 17
                     }
