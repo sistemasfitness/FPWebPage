@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -33,8 +34,8 @@ namespace WebPage
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
 
-                    txbCreditCard.Attributes.Add("type", "number");
-                    txbCVC.Attributes.Add("type", "number");
+                    txbCreditCard.Attributes.Add("type", "text");
+                    txbCVC.Attributes.Add("type", "text");
                 }
                 else
                 {
@@ -67,9 +68,23 @@ namespace WebPage
         {
             try
             {
+                string cardNumber = txbCreditCard.Text.Replace(" ", "");
+                if (!cardNumber.All(char.IsDigit))
+                {
+                    MostrarAlerta("Error", "El número de tarjeta no es válido.", "error");
+                    return;
+                }
+
+                string cvc = txbCVC.Text.Trim();
+                if (cvc.Length < 3 || cvc.Length > 4 || !cvc.All(char.IsDigit))
+                {
+                    MostrarAlerta("Error", "El CVC debe ser numérico y de 3 o 4 dígitos.", "error");
+                    return;
+                }
+
                 bool tarjetaTokenizada = await TokenizarTarjetaAsync(
-                    txbCreditCard.Text.Trim(),
-                    txbCVC.Text.Trim(),
+                    cardNumber,
+                    cvc,
                     ddlMes.SelectedValue,
                     ddlAnho.SelectedValue,
                     txbNombreTarjeta.Text.Trim()
@@ -122,14 +137,14 @@ namespace WebPage
                     idAfiliadoPlan,
                     int.Parse(Session["valorPlan"].ToString()),
                     4,
-                    Session["idReferencia"].ToString(),
+                    Session["idReferencia"].ToString(), 
                     "Ninguno",
                     152, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,
-                    Session["dataIdToken"].ToString(),
-                    Session["dataIdFuentePago"].ToString(),
-                    Session["dataIdTransaccion"].ToString(),
+                    Session["dataIdToken"].ToString(), 
+                    Session["dataIdFuentePago"].ToString(), 
+                    Session["dataIdTransaccion"].ToString(), 
                     null,
                     null,
                     null
