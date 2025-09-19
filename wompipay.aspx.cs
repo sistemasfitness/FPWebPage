@@ -24,8 +24,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        static int idIntegracion = 1; // Pruebas
-        //static int idIntegracion = 4; // Producción
+        //static int idIntegracion = 1; // Pruebas
+        static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -62,11 +62,6 @@ namespace WebPage
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
-        }
-
-        private string LimpiarNumeroTarjeta(string numero)
-        {
-            return new string(numero.Where(char.IsDigit).ToArray());
         }
 
         protected async void btnPagar_Click(object sender, EventArgs e)
