@@ -223,6 +223,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="404.html" />
+    <Content Include="actualizardatos.aspx" />
     <Content Include="assets\validate.js" />
     <Content Include="blog.aspx" />
     <Content Include="blogpost.aspx" />
@@ -706,6 +707,13 @@
     <Content Include="wompiplan.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="actualizardatos.aspx.cs">
+      <DependentUpon>actualizardatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="actualizardatos.aspx.designer.cs">
+      <DependentUpon>actualizardatos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="blog.aspx.cs">
       <DependentUpon>blog.aspx</DependentUpon>

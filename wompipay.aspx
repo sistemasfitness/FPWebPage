@@ -93,13 +93,15 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Número de la tarjeta:</label>
-                                        <asp:TextBox ID="txbCreditCard" CssClass="form-control" runat="server" required="" name="txbCreditCard"></asp:TextBox>
+                                        <label for="txbCreditCard">Número de la tarjeta:</label>
+                                        <asp:TextBox ID="txbCreditCard" CssClass="form-control" runat="server" 
+                                            MaxLength="19" placeholder="#### #### #### ####" oninput="formatCreditCard(this)" 
+                                            required="" name="txbCreditCard"></asp:TextBox>
                                     </div>
                                 </div>          
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label>Mes expira:</label>
+                                        <label for="ddlMes">Mes expira:</label>
                                         <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control" Style="background-color: #3c3c3c;">
                                             <asp:ListItem Text="Mes" Value=""></asp:ListItem>
@@ -120,7 +122,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label>Año expira:</label>
+                                        <label for="ddlAnho">Año expira:</label>
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" Style="background-color: #3c3c3c;">
                                             <asp:ListItem Text="Año" Value=""></asp:ListItem>
@@ -144,13 +146,15 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label>CVC (Código de seguridad):</label>
-                                        <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" required="" name="txbCVC"></asp:TextBox>
+                                        <label for="txbCVC">CVC (Código de seguridad):</label>
+                                        <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" 
+                                            MaxLength="4" placeholder="•••" oninput="formatCVC(this)" 
+                                            required="" name="txbCVC"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Nombre en la tarjeta:</label>
+                                        <label for="txbNombreTarjeta">Nombre en la tarjeta:</label>
                                         <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" name="txbNombreTarjeta"></asp:TextBox>
                                     </div>
                                 </div>
@@ -200,7 +204,7 @@
                         <div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
-                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573138859790" class="phone" target="_blank">3138859790</a>
+                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573105150340" class="phone" target="_blank">3105150340</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
                         </div>
                     </div>
@@ -336,6 +340,34 @@
             setTimeout(function () {
                 __doPostBack('<%= btnPagar.UniqueID %>', '');
             }, 300); // Aumentado para asegurar que SweetAlert se vea
+        }
+
+    </script>
+
+    <script>
+
+        function formatCreditCard(input) {
+            // Elimina todo lo que no sea número
+            let value = input.value.replace(/\D/g, '');
+
+            // Limita a 16 dígitos (puedes ajustar si aceptas 19)
+            value = value.substring(0, 16);
+
+            // Agrupa de a 4 dígitos
+            let formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
+
+            // Asigna el valor formateado al input
+            input.value = formattedValue;
+        }
+
+        function formatCVC(input) {
+            // Elimina cualquier cosa que no sea número
+            let value = input.value.replace(/\D/g, '');
+
+            // Limita a 4 dígitos (algunas tarjetas como Amex lo requieren)
+            value = value.substring(0, 4);
+
+            input.value = value;
         }
 
     </script>
