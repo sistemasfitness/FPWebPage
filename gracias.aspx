@@ -8,38 +8,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');</script>
-    <!-- End Google Tag Manager -->
+    <meta property="og:site_name" content="Fitness People" />
+    <meta property="og:title" content="Fitness People" />
+    <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
+    <meta property="og:image" itemprop="image" content="https://fitnesspeoplecolombia.com/img/para_banner.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="1440432930" />
 
-    <!-- Meta Pixel Code -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1224942061553441');
-        fbq('track', 'PageView');
-    </script>
+    <script src="js/fitnesspeople.js"></script>
+
     <noscript>
-        <img height="1" width="1" style="display: none"
-            src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
-    <!-- End Meta Pixel Code -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,6 +50,10 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- SPECIFIC CSS -->
+    <link href="layerslider/css/layerslider.css" rel="stylesheet" />
+    <link href="css/pop_up.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -97,37 +81,55 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #fff">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <div class="box_style_2">
-                    <div runat="server" id="confirm1" visible="false">
-                        <i class="icon_check_alt2"></i>
-                        <h3>Orden confirmada!</h3>
-                        <p>
-                            Su orden ha sido confirmada.
-                        </p>
-                        <p>
-                            Gracias por confiar en Fitness People.
-                        </p>
+                <div class="box_style_2" style="background-color: #1A1A1A">
+                    <div id="confirm" class="text-center" style="font-weight: 900;">
+                        <%--<i class="icon_check_alt2"></i>--%>
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por pertenecer a la familia Fitness People!</h3>
+                        <p style="color: #fff;">Hemos recibido tu pago.</p>
                     </div>
-                    <div runat="server" id="confirm2" visible="false">
-                        <i class="icon_check_alt2"></i>
-                        <h3>Ya estas registrado!</h3>
-                        <p>
-                            Pronto nos comunicaremos contigo!
-                        </p>
-                        <p>
-                            Gracias por confiar en Fitness People.
-                        </p>
-                    </div>
-                    <div runat="server" id="confirm3" visible="false">
-                        <i class="icon_check_alt2"></i>
-                        <h3>Gracias por registrarte!</h3>
-                        <p>
-                            Pronto nos comunicaremos contigo!
-                        </p>
-                    </div>
+                    <h4 style="font-weight: 900; color: #e3ff00;">Ahora puedes ingresar a nuestras sedes.</h4>
+
+                    <%--<section class="margin_60_35" id="sedes" style="padding-top: 0px;">
+                        <div class="container margin_60">--%>
+                            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+
+                            <div class="row">
+
+                                <div class="owl-carousel team-carousel3">
+                                    <asp:Repeater ID="rpSedes" runat="server">
+                                        <ItemTemplate>
+                                            <div class="team-item">
+                                                <div class="team-item-img">
+                                                    <img src="img/sedes/galeria/<%# Eval("ImagenPrincipal") %>" class="img-responsive" alt="" />
+                                                    <div class="team-item-detail">
+                                                        <div class="team-item-detail-inner">
+                                                            <h4 style="font-weight: 900;"><%# Eval("NombreSede") %></h4>
+                                                            <p>
+                                                                <%# Eval("DireccionSede") %><br />
+                                                                <%# Eval("NombreCiudadSede") %><br />
+                                                                <%# Eval("TelefonoSede") %>
+                                                            </p>
+                                                            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="team-item-info">
+                                                    <h4 style="font-weight: 900; color: #fff;"><%# Eval("NombreSede") %></h4>
+                                                    <p style="color: #fff;"><%# Eval("NombreCiudadSede") %></p>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+
+
+                            </div>
+                        <%--</div>
+                    </section>--%>
+
                 </div>
             </div>
         </div>
@@ -147,6 +149,71 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/bootstrap-portfilter.min.js"></script>
+    <script src="js/jarallax.min.js"></script>
+    <script src="js/jarallax-video.min.js"></script>
+    <script src="layerslider/js/greensock.js"></script>
+    <script src="layerslider/js/layerslider.transitions.js"></script>
+    <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+    <script>
+        $('.jarallax').jarallax({
+            videoLoop: true,
+            videoPlayOnlyVisible: false,
+            videoLazyLoading: false
+        });
+
+        $(".team-carousel3").owlCarousel({
+            items: 1,
+            loop: true,
+            autoHeight: true,
+            autoWidth: false,
+            nav: false,
+            center: true,
+            autoplayTimeout: 3000,
+            margin: 10,
+            autoplay: true,
+            smartSpeed: 1000,
+            responsiveClass: false,
+            autoplayHoverPause: true,
+            responsive: {
+                320: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                1000: {
+                    items: 2,
+                }
+            }
+        });
+
+        $('#layerslider').layerSlider({
+            autoStart: true,
+            navButtons: false,
+            navStartStop: false,
+            showCircleTimer: false,
+            responsive: true,
+            responsiveUnder: 1400,
+            layersContainer: 1170,
+            skinsPath: 'layerslider/skins/'
+            // Please make sure that you didn't forget to add a comma to the line endings
+            // except the last line!
+        });
+
+    </script>
+
+    <style>
+        .banner-tarifas {
+            width: 100%;
+            height: 470px;
+            background-image: url('img/banners/tarifas-2025.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 
 </body>
 </html>

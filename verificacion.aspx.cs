@@ -256,7 +256,7 @@ namespace WebPage
                     EnviarConfirmacion();
 
                     //TODO: Pagina intermedia donde informa que le enviamos un correo al afiliado.
-                    Response.Redirect("default");
+                    Response.Redirect("gracias");
 
                 }
                 catch (Exception ex)
@@ -280,8 +280,8 @@ namespace WebPage
             string strDestinatario = ViewState["EmailAfiliado"].ToString();
             //string strDestinatario = "chrislemoce@gmail.com";
             string strMensaje = "Bienvenido a Fitness People CMD.\r\n\r\n" +
-                "Ahora eres Afiliados de Fitness People CMD. Ingresa a nuestra página web: fitnesspeoplecolombia.com\r\n" +
-                "Contrato: fitnesspeoplecolombia.com/contrato \r\n\r\n";
+                "Ahora haces parte de la familia Fitness People CMD. Ingresa a nuestra página web: fitnesspeoplecolombia.com\r\n"; // +
+                //"Contrato: fitnesspeoplecolombia.com/contrato \r\n\r\n";
 
             cg.EnviarCorreo(strRemitente, strDestinatario, strAsunto, strMensaje);
         }
