@@ -71,63 +71,63 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #F4F4F4;">
         <div class="row">
             <div class="col-md-8">
-                <h2 style="font-weight: 900; color: #fff">Verificación de Afiliado</h2>
-                <p id="id_parrafo" style="color: #fff" runat="server">Confirma los siguientes datos y da clic al botón verificar:</p>
+                <h2 style="font-weight: 900; color: #E3FF00;">Verificación de afiliado</h2>
+                <p id="id_parrafo" runat="server">Confirma los siguientes datos y da clic al botón verificar:</p>
                 <div>
                     <div id="message-contact"></div>
-                    <form id="verificar" runat="server">
+                    <form id="verificar" runat="server" class="form-web">
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Nombres</label>
+                                    <label>Nombres</label>
                                     <asp:HiddenField ID="hfIdAfiliado" runat="server" />
-                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres" style="background-color: #3c3c3c;" required=""></asp:TextBox>
+                                    <asp:TextBox ID="txbNombres" CssClass="form-control" runat="server" name="txbNombres" required=""></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Apellidos</label>
-                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos" style="background-color: #3c3c3c;" required=""></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #fff">Correo eléctronico:</label>
-                                    <asp:TextBox ID="txbCorreo" CssClass="form-control" runat="server" name="txbCorreo" style="background-color: #3c3c3c;"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #fff">Celular:</label>
-                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" style="background-color: #3c3c3c;" required=""></asp:TextBox>
+                                    <label>Apellidos</label>
+                                    <asp:TextBox ID="txbApellidos" CssClass="form-control" runat="server" name="txbApellidos" required=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Dirección:</label>
-                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion" style="background-color: #3c3c3c;" required=""></asp:TextBox>
+                                    <label>Correo eléctronico:</label>
+                                    <asp:TextBox ID="txbCorreo" CssClass="form-control" runat="server" name="txbCorreo"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Fecha nacimiento:</label>
-                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento" style="background-color: #3c3c3c;" required=""></asp:TextBox>
+                                    <label></label>
+                                    <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" required=""></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Dirección:</label>
+                                    <asp:TextBox ID="txbDireccion" CssClass="form-control" runat="server" name="txbDireccion" required=""></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Fecha nacimiento:</label>
+                                    <asp:TextBox ID="txbFechaNacimiento" CssClass="form-control" runat="server" name="txbFechaNacimiento" required=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label style="color: #fff">EPS:</label>
+                                    <label>EPS:</label>
                                     <asp:DropDownList ID="ddlEPS" runat="server" CssClass="form-control" 
-                                        DataTextField="NombreEps" DataValueField="idEps" AppendDataBoundItems="true" style="background-color: #3c3c3c;">
+                                        DataTextField="NombreEps" DataValueField="idEps" AppendDataBoundItems="true">
                                         <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -136,25 +136,25 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label style="color: #fff">Nombre de contacto en caso de emergencia:</label>
-                                    <asp:TextBox ID="txbResponsable" CssClass="form-control" runat="server" name="txbResponsable" style="background-color: #3c3c3c;"></asp:TextBox>
+                                    <label>Nombre de contacto en caso de emergencia:</label>
+                                    <asp:TextBox ID="txbResponsable" CssClass="form-control" runat="server" name="txbResponsable"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Parentesco:</label>
+                                    <label>Parentesco:</label>
                                     <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" 
-                                        AppendDataBoundItems="true" style="background-color: #3c3c3c;">
+                                        AppendDataBoundItems="true">
                                     </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label style="color: #fff">Celular de contacto en caso de emergencia:</label>
+                                    <label>Celular de contacto en caso de emergencia:</label>
                                     <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server" 
-                                        name="txbContacto" style="background-color: #3c3c3c;"></asp:TextBox>
+                                        name="txbContacto"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -167,10 +167,10 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <br />
-                                                    <h4 style="color: #fff"><b>CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</b></h4>
-                                                    <p style="color: #fff">Apreciado usuario: <b>Fitness People CMD</b> lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su <b>PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD</b> en un programa de entrenamiento.<br /><br />
-                                                      Responda SI o NO:</p>
-                                                    <table class="table" style="background: #fff;">
+                                                    <h4><b>CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</b></h4>
+                                                    <p>Apreciado usuario: <b>Fitness People CMD</b> lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su <b>PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD</b> en un programa de entrenamiento.<br /><br />
+                                                      Seleccione la casilla de respuesta según sea el caso.</p>
+                                                    <table class="table" style="background: #3c3c3c;">
                                                         <tr>
                                                             <th>Pregunta</th>
                                                             <th>Respuesta</th>
@@ -182,7 +182,7 @@
                                                                         <%# Eval("PreguntaParq") %>
                                                                         <asp:HiddenField ID="hfIdParq" runat="server" Value='<%# Eval("idParq") %>' />
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td style="text-align: center; vertical-align: middle;">
                                                                         <asp:CheckBox ID="chbRespuesta" runat="server" />
                                                                     </td>
                                                                 </tr>
@@ -200,10 +200,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label style="color: #fff">Observaciones:</label>
-                                    <p style="color: #fff">Si seleccionó SI en alguna(s) de la(s) anterior(es) casilla(s), por favor especificar o si tiene otra observación por favor escríbala aquí:</p>
+                                    <label>Observaciones:</label>
+                                    <p>Si seleccionó SI en alguna(s) de la(s) anterior(es) casilla(s), por favor especificar o si tiene otra observación por favor escríbala aquí:</p>
                                     <asp:TextBox ID="txbObservacionesPARQ" CssClass="form-control" runat="server" name="txbObservacionesPARQ"
-                                        placeholder="Observaciones" style="background-color: #3c3c3c;"></asp:TextBox>
+                                        placeholder="Observaciones"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -211,17 +211,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <p style="color: #fff">SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS: Fitness People CMD lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
-                                    <p style="color: #fff">SI RESPONDIÓ NO A TODAS LAS PREGUNTAS: Fitness People CMD le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
+                                    <p>SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS: Fitness People CMD lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
+                                    <p>SI RESPONDIÓ NO A TODAS LAS PREGUNTAS: Fitness People CMD le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
                                       NOTAS:
                                     </p>
-                                        <ol style="color: #fff">
+                                        <ol>
                                             <li>Este cuestionario solo es aplicable a personas entre 18 y 69 años de edad.</li>
                                             <li>Si está embarazada, antes de hacer ejercicio le sugerimos que consulte a su médico.</li>
                                             <li>Si se produce algún cambio en su estado de salud en relación con las preguntas anteriores, le pedimos que informe inmediatamente al profesional responsable de su programa de entrenamiento.</li>
                                             <li>Si el médico Deportólogo le restringe el entrenamiento, entonces se concluye que es una persona no apta para continuar con el plan de entrenamiento.</li>
                                         </ol>
-                                      <p style="color: #fff">Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar los datos personales como titular de la información y este cuestionario.</p>
+                                      <p>Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar los datos personales como titular de la información y este cuestionario.</p>
                                 </div>
                             </div>
                         </div>
@@ -229,13 +229,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <p style="color: #fff;"><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
-                                    <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" style="color: #fff" />
+                                    <p><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
+                                    <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" />
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row margin_30">
                             <div class="col-md-12">
                                 <%--<div class="form-group">
                                     <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
@@ -296,7 +296,8 @@
          var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
          elems.forEach(function (html) {
              var switchery = new Switchery(html, {
-                 size: 'small'
+                 size: 'small', 
+                 color: '#E3FF00'
              });
          });
 

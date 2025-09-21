@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="infocontacto.ascx.cs" Inherits="WebPage.controls.infocontacto" %>
-<aside class="col-md-4">
+<aside class="col-md-4 info-contacto form-web">
     <div class="box_style_2">
         <h5 style="font-weight: 900;">Información de Contacto</h5>
         <p>
@@ -10,8 +10,8 @@
         <h5 style="font-weight: 900;">Cómo llegar?</h5>
         <form action="http://maps.google.com/maps" method="get" target="_blank">
             <div class="form-group">
-                <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled" />
-                <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander" />
+                <input type="text" name="" placeholder="Ingresa tu ubicación" class="form-control styled" />
+                <input type="hidden" name="" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander" />
                 <!-- Write here your end point -->
             </div>
             <input type="submit" value="OBTENER RUTA" class="btn_1 add_bottom_15" />

@@ -65,7 +65,7 @@
 
     <div class="container margin_60_35" style="color: #fff;">
         <div class="row">
-            <form id="form" runat="server">
+            <form id="form" runat="server" class="form-web">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
@@ -81,8 +81,8 @@
                                             <div class="form-group">
                                                 <label>Nro. de Documento: *</label>
                                                 <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
-                                                    placeholder="Documento" TabIndex="1" required=""
-                                                    AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
+                                                    placeholder="1234567890" TabIndex="1" required="" oninput="numberFormat(this)"
+                                                    MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
@@ -90,9 +90,8 @@
                                                 <label>Tipo de Documento: *</label>
                                                 <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
                                                     AppendDataBoundItems="true" DataTextField="TipoDocumento" 
-                                                    DataValueField="idTipoDoc" CssClass="form-control" 
-                                                    Style="background-color: #3c3c3c;">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                    DataValueField="idTipoDoc" CssClass="form-control">
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -102,14 +101,14 @@
                                             <div class="form-group">
                                                 <label>Nombre(s): *</label>
                                                 <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
-                                                    placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
+                                                    placeholder="Pepito" TabIndex="4"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Apellido(s): *</label>
                                                 <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
-                                                    placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
+                                                    placeholder="Pérez" TabIndex="2"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -117,13 +116,15 @@
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Email: *</label>
-                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="Email" required=""></asp:TextBox>
+                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="ejemplo@correo.com" 
+                                                    required=""></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Celular: *</label>
-                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="Teléfono" required=""></asp:TextBox>
+                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" 
+                                                    MaxLength="10" oninput="numberFormat(this)" required=""></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -133,16 +134,16 @@
                                                 <label>Género: *</label>
                                                 <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
                                                     DataTextField="Genero" DataValueField="idGenero" required="" 
-                                                    Style="background-color: #3c3c3c;"
                                                     CssClass="form-control" TabIndex="6">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label>Fecha de Nacimiento: *</label>
-                                                <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
+                                                <asp:TextBox ID="txbFechaNac" CssClass="form-control" 
+                                                    runat="server" name="txbFechaNac" required=""></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -164,9 +165,8 @@
                                                 <label>Ciudad: *</label>
                                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
                                                     OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                                    Style="background-color: #3c3c3c;">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true">
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -175,8 +175,8 @@
                                                 <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" required=""
                                                     AppendDataBoundItems="true" DataTextField="NombreSede" DataValueField="IdSede" 
-                                                    AutoPostBack="true" Style="background-color: #3c3c3c;">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                    AutoPostBack="true">
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -194,7 +194,7 @@
                                             <div class="form-group">
                                                 <label style="color: #808080;">Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                    AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
+                                                    AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
@@ -294,6 +294,16 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
     <script>
+
+        function numberFormat(input) {
+            // Elimina cualquier cosa que no sea número
+            let value = input.value.replace(/\D/g, '');
+
+            // Limita a 4 dígitos (algunas tarjetas como Amex lo requieren)
+            value = value.substring(0, 10);
+
+            input.value = value;
+        }
 
         window.onload = function () {
             const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');

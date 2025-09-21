@@ -75,20 +75,25 @@
                     data-redirect-url="https://fp.valora.com.co">
                 </script>
             </form>--%>
-            <form id="form" runat="server" style="color: #fff;">
+            <form id="form" runat="server" class="form-web" style="color: #fff;">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="icon-shield"></i></strong>Opciones de pago</h3>
-                            <p style="color: #fff;">Selecciona la forma de pago:</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="icon-shield"></i></strong>Método de pago</h3><%--Opciones de pago--%>
+                            <%--<p style="color: #fff;">Selecciona la forma de pago:</p>--%>
                         </div>
                         <div class="step">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <h4 style="font-weight: 900; color: #e3ff00;">
-                                            <img src="img/wompi/mastercard.svg" /> Tarjeta de Crédito
+                                            Tarjeta de Crédito/Débito
                                         </h4>
+                                        <div style="height: 25px">
+                                            <img src="img/wompi/visa.svg" />
+                                            <img src="img/wompi/mastercard.svg" />
+                                            <img style="max-height: 100%;" src="img/wompi/amex.svg" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -103,7 +108,7 @@
                                     <div class="form-group">
                                         <label for="ddlMes">Mes expira:</label>
                                         <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
-                                            DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control" Style="background-color: #3c3c3c;">
+                                            DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control" >
                                             <asp:ListItem Text="Mes" Value=""></asp:ListItem>
                                             <asp:ListItem Text="Enero" Value="01"></asp:ListItem>
                                             <asp:ListItem Text="Febrero" Value="02"></asp:ListItem>
@@ -124,7 +129,7 @@
                                     <div class="form-group">
                                         <label for="ddlAnho">Año expira:</label>
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
-                                            DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" Style="background-color: #3c3c3c;">
+                                            DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" >
                                             <asp:ListItem Text="Año" Value=""></asp:ListItem>
                                             <asp:ListItem Text="2024" Value="24"></asp:ListItem>
                                             <asp:ListItem Text="2025" Value="25"></asp:ListItem>
@@ -155,7 +160,8 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="txbNombreTarjeta">Nombre en la tarjeta:</label>
-                                        <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" name="txbNombreTarjeta"></asp:TextBox>
+                                        <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" placeholder="Pepito Pérez" 
+                                            name="txbNombreTarjeta"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -174,21 +180,21 @@
                                     <input type="checkbox" id="cbAutorizo1" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo1">
-                                        <span>Acepto haber leido <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a> para hacer este pago.</span>
+                                        <span>Acepto haber leido <b><a style="color: #000000; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a></b> para hacer este pago.</span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
                                     <input type="checkbox" id="cbAutorizo2" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo2">
-                                        <span>Acepto la <a style="color: #808080; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-administracion-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></span>
+                                        <span>Acepto la <b><a style="color: #000000; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-tratamiento-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></b></span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
                                     <input type="checkbox" id="cbAutorizo3" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo3">
-                                        <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S. </a> realizar el cobro recurrente.</span>
+                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
                                     </label>
                                 </div>
                             </div>

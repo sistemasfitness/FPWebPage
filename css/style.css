@@ -95,7 +95,7 @@ h4,
 h5,
 h6 {
 	-webkit-font-smoothing: antialiased;
-	color: #222;
+	color: #F4F4F4;
 	font-weight: 300;
 }
 
@@ -3628,6 +3628,23 @@ body.swal2-shown {
 	flex-wrap: wrap;
 }
 /* default.aspx */
+
+/* Inputs de Formularios */
+.form-web input[type="text"],
+.form-web input[type="email"],
+.form-web input[type="number"],
+.form-web input[type="date"],
+.form-web select, 
+.form-web textarea {
+	background-color: #3c3c3c;
+}
+/* Inputs de Formularios */
+
+/* infocontacto.aspx */
+.info-contacto , .info-contacto h5 {
+	color: #000000;
+}
+/* infocontacto.aspx */
 
 @media (max-width: 480px) {
 	#layerslider {

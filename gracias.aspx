@@ -88,10 +88,9 @@
                     <div id="confirm" class="text-center" style="font-weight: 900;">
                         <%--<i class="icon_check_alt2"></i>--%>
                         <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por pertenecer a la familia Fitness People!</h3>
-                        <p style="color: #fff;">Hemos recibido tu pago.</p>
+                        <h4 class="margin_30" style="font-weight: 900; color: #FFF;">Ahora puedes ingresar a nuestras sedes</h4>
                     </div>
-                    <h4 style="font-weight: 900; color: #e3ff00;">Ahora puedes ingresar a nuestras sedes.</h4>
-
+                    
                     <%--<section class="margin_60_35" id="sedes" style="padding-top: 0px;">
                         <div class="container margin_60">--%>
                             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>

@@ -88,7 +88,7 @@
 
                                 <asp:Button ID="btnRedireccionarActivarPlan" 
                                             runat="server" CssClass="btn_slider" 
-                                            Text="Activar acceso" 
+                                            Text="ACTIVAR ACCESO" 
                                             OnClick="btnRedireccionarActivarPlan_Click" />
                                 <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
                             </div>

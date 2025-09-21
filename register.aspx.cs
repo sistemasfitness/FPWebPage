@@ -53,9 +53,6 @@ namespace WebPage
 
                 txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
                 txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
-
-                txbDocumento.Attributes.Add("type", "number");
-                txbCelular.Attributes.Add("type", "number");     
             }
 
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
@@ -116,7 +113,7 @@ namespace WebPage
             //    Response.Redirect("default");
             //}
 
-            if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000
+            if (idPlanQS != "1" && idPlanQS != "12" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000
             {
                 Response.Redirect("default");
             }
@@ -163,7 +160,7 @@ namespace WebPage
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+            ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
             ddlSedes.Enabled = false;
 
             if (string.IsNullOrEmpty(ddlCiudad.SelectedValue)) return;
@@ -432,7 +429,7 @@ namespace WebPage
                 // Cargar las sedes de esa ciudad
                 DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(dtCiudad.Rows[0]["idCiudadSede"].ToString()));
                 ddlSedes.Items.Clear();
-                ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+                ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
                 ddlSedes.DataSource = dtSedes;
                 ddlSedes.DataTextField = "NombreSede";
                 ddlSedes.DataValueField = "IdSede";
@@ -495,7 +492,7 @@ namespace WebPage
             txbFechaNac.Text = "";
             ddlCiudad.ClearSelection();
             ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(new ListItem("Seleccione", ""));
+            ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
         }
 
         private void CambiarPlanSeleccionado()

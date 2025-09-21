@@ -33,9 +33,6 @@ namespace WebPage
                 if (Session["idAfiliado"].ToString() != "")
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
-
-                    txbCreditCard.Attributes.Add("type", "text");
-                    txbCVC.Attributes.Add("type", "text");
                 }
                 else
                 {

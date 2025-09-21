@@ -159,7 +159,7 @@
                 En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
             </p>
 
-            <%--<div class="row text-center plans">
+            <div class="row text-center plans">
                 <div class="col-md-4">
                     <div class="img_container">
                         <a href="planes?id=1">
@@ -183,8 +183,8 @@
                         </a>
                     </div>
                 </div>
-            </div>--%>
-            <div class="row text-center plans">
+            </div>
+            <%--<div class="row text-center plans">
                 <div class="col-md-0" style="display: none;">
                     <div class="img_container">
                         <a href="planes?id=1">
@@ -208,7 +208,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <div class="banner-tarifas img_container"></div>
 

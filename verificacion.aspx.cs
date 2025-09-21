@@ -45,25 +45,23 @@ namespace WebPage
                         txbCelular.Text = dtAfiliado.Rows[0]["CelularAfiliado"].ToString();
                         txbDireccion.Text = dtAfiliado.Rows[0]["DireccionAfiliado"].ToString();
                         txbFechaNacimiento.Text = dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString();
+
                         if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
                         {
                             ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
                         }
+
                         txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
-                        if (dtAfiliado.Rows[0]["Parentesco"].ToString() != "")
-                        {
-                            ddlParentesco.SelectedIndex = Convert.ToInt16(ddlParentesco.Items.IndexOf(ddlParentesco.Items.FindByValue(dtAfiliado.Rows[0]["Parentesco"].ToString())));
-                        }
-                        
+
                         if (dtAfiliado.Rows[0]["idTipoDocumento"].ToString() == "3")
                         {
-                            ddlParentesco.Items.Add(new ListItem("Seleccione", ""));
+                            ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
                             ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
                             ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
                         }
                         else
                         {
-                            ddlParentesco.Items.Add(new ListItem("Seleccione", ""));
+                            ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
                             ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
                             ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
                             ddlParentesco.Items.Add(new ListItem("Hermano/a ", "Hermano/a"));
@@ -72,7 +70,12 @@ namespace WebPage
                             ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
                             ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
                         }
-                        ddlParentesco.DataBind();
+
+                        if (dtAfiliado.Rows[0]["Parentesco"].ToString() != "")
+                        {
+                            ddlParentesco.SelectedValue = dtAfiliado.Rows[0]["Parentesco"].ToString();
+                        }
+
                         txbContacto.Text = dtAfiliado.Rows[0]["ContactoAfiliado"].ToString();
                         ViewState["EmailAfiliado"] = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
                         ViewState["ClaveAfiliado"] = dtAfiliado.Rows[0]["ClaveAfiliado"].ToString();
