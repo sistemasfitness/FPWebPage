@@ -24,8 +24,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        //static int idIntegracion = 1; // Pruebas
-        static int idIntegracion = 4; // Producción
+        static int idIntegracion = 1; // Pruebas
+        //static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,7 +60,7 @@ namespace WebPage
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
-
+        
         protected async void btnPagar_Click(object sender, EventArgs e)
         {
             try
@@ -136,7 +136,7 @@ namespace WebPage
                     4,
                     Session["idReferencia"].ToString(), 
                     "Ninguno",
-                    152, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
+                    int.Parse(Session["idVendedor"].ToString()), // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,
                     Session["dataIdToken"].ToString(), 

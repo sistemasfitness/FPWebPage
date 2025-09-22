@@ -147,131 +147,129 @@ namespace WebPage
 
         protected void btnVerificar_Click(object sender, EventArgs e)
         {
-            //if (txbVerificacion.Text.ToString() == "4")
-            //{
-                try
+            try
+            {
+                clasesglobales cg = new clasesglobales();
+
+                int idAfiliado = ViewState["idAfiliado"] != null ? int.Parse(ViewState["idAfiliado"].ToString()) : 0;
+
+                DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
+
+                if (dtAfiliado.Rows.Count == 0)
                 {
-                    clasesglobales cg = new clasesglobales();
+                    MostrarAlerta("Error", "El usuario no se encuentra registrado en el sistema.", "error");
+                    return;
+                }
 
-                    int idAfiliado = ViewState["idAfiliado"] != null ? int.Parse(ViewState["idAfiliado"].ToString()) : 0;
+                DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
 
-                    DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
+                if (dtAfiliadoPlan.Rows.Count == 0)
+                {
+                    MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
+                    return;
+                }
 
-                    if (dtAfiliado.Rows.Count == 0)
+                // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
+
+                foreach (RepeaterItem item in rpParq.Items)
+                {
+                    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
                     {
-                        MostrarAlerta("Error", "El usuario no se encuentra registrado en el sistema.", "error");
-                        return;
+                        CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                        HiddenField hfidParq = (HiddenField)item.FindControl("hfidParq");
+
+                        int respuestaPARQ = chbRespuesta != null && chbRespuesta.Checked ? 1 : 0;
+
+                        cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
+                            int.Parse(hfidParq.Value.ToString()),
+                            idAfiliado,
+                            int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
+                            respuestaPARQ
+                        );
                     }
-
-                    DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
-
-                    if (dtAfiliadoPlan.Rows.Count == 0)
-                    {
-                        MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
-                        return;
-                    }
-
-                    // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
-
-                    foreach (RepeaterItem item in rpParq.Items)
-                    {
-                        if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-                        {
-                            CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
-                            HiddenField hfidParq = (HiddenField)item.FindControl("hfidParq");
-
-                            int respuestaPARQ = chbRespuesta != null && chbRespuesta.Checked ? 1 : 0;
-
-                            cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
-                                int.Parse(hfidParq.Value.ToString()),
-                                idAfiliado,
-                                int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
-                                respuestaPARQ
-                            );
-                        }
-                    }
+                }
 
                 // TODO: Actualizar el estado del plan del afiliado de "Pendiente" a "Activo" (AfiliadosPlanes).
 
-                    string origenWeb = Request.QueryString["web"];
+                string origenWeb = Request.QueryString["web"];
 
-                    if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
-                    {
-                        cg.ActualizarAfiliadoWeb(
-                            dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString(),
-                            txbNombres.Text,
-                            txbApellidos.Text,
-                            txbCelular.Text,
-                            txbCorreo.Text,
-                            txbDireccion.Text,
-                            txbFechaNacimiento.Text, 
-                            int.Parse(ddlEPS.SelectedItem.Value.ToString()),
-                            txbResponsable.Text, 
-                            ddlParentesco.SelectedItem.Value.ToString(),
-                            txbContacto.Text, 
-                            "Activo", 
-                            txbObservacionesPARQ.Text
-                        );
-                    }
-
-
-                    // ConsultarPreguntaParQPorEstado
-
-
-                    //foreach (RepeaterItem item in rpParq.Items)
-                    //{
-                    //    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-                    //    {
-                    //        CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
-                    //        HiddenField hfidParqAfiliado = (HiddenField)item.FindControl("hfidParqAfiliado");
-                    //        if (chbRespuesta != null && chbRespuesta.Checked)
-                    //        {
-                    //            // Aquí se puede acceder al valor del checkbox seleccionado
-                    //            string strQuery = "UPDATE ParqAfiliados SET Respuesta = 1 WHERE idParqAfiliado = " + hfidParqAfiliado.Value.ToString();
-
-                    //            try
-                    //            {
-                    //                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-                    //                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                    //                {
-                    //                    mysqlConexion.Open();
-                    //                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                    //                    {
-                    //                        cmd.CommandType = CommandType.Text;
-                    //                        cmd.ExecuteNonQuery();
-                    //                    }
-                    //                    mysqlConexion.Close();
-                    //                }
-                    //            }
-                    //            catch (Exception ex)
-                    //            {
-                    //                string respuesta = "ERROR: " + ex.Message;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-
-                    dtAfiliado.Dispose();
-                    dtAfiliadoPlan.Dispose();
-
-                    // Enviar correo de confirmación
-                    EnviarConfirmacion();
-
-                    //TODO: Pagina intermedia donde informa que le enviamos un correo al afiliado.
-                    Response.Redirect("gracias");
-
-                }
-                catch (Exception ex)
+                if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
                 {
-                    MostrarAlerta("Error", "Ocurrió un error inesperado al realizar la verificación.", "error");
-                    System.Diagnostics.Debug.WriteLine("Error en btnVerificar_Click: " + ex.ToString());
+                    cg.ActualizarAfiliadoWeb(
+                        dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString(),
+                        txbNombres.Text,
+                        txbApellidos.Text,
+                        txbCelular.Text,
+                        txbCorreo.Text,
+                        txbDireccion.Text,
+                        txbFechaNacimiento.Text, 
+                        int.Parse(ddlEPS.SelectedItem.Value.ToString()),
+                        txbResponsable.Text, 
+                        ddlParentesco.SelectedItem.Value.ToString(),
+                        txbContacto.Text, 
+                        "Activo", 
+                        txbObservacionesPARQ.Text
+                    );
+
+                    cg.ActualizarEstadoPagoPlanAfiliado(
+                        "Activo",
+                        idAfiliado
+                    );
                 }
-            //}
-            //else
-            //{
-            //    MostrarAlerta("Error", "Respuesta a la pregunta de validación incorrecta. Por favor, vuelve a intentar.", "error");
-            //}
+
+
+                // ConsultarPreguntaParQPorEstado
+
+
+                //foreach (RepeaterItem item in rpParq.Items)
+                //{
+                //    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                //    {
+                //        CheckBox chbRespuesta = (CheckBox)item.FindControl("chbRespuesta");
+                //        HiddenField hfidParqAfiliado = (HiddenField)item.FindControl("hfidParqAfiliado");
+                //        if (chbRespuesta != null && chbRespuesta.Checked)
+                //        {
+                //            // Aquí se puede acceder al valor del checkbox seleccionado
+                //            string strQuery = "UPDATE ParqAfiliados SET Respuesta = 1 WHERE idParqAfiliado = " + hfidParqAfiliado.Value.ToString();
+
+                //            try
+                //            {
+                //                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                //                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                //                {
+                //                    mysqlConexion.Open();
+                //                    using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
+                //                    {
+                //                        cmd.CommandType = CommandType.Text;
+                //                        cmd.ExecuteNonQuery();
+                //                    }
+                //                    mysqlConexion.Close();
+                //                }
+                //            }
+                //            catch (Exception ex)
+                //            {
+                //                string respuesta = "ERROR: " + ex.Message;
+                //            }
+                //        }
+                //    }
+                //}
+
+                dtAfiliado.Dispose();
+                dtAfiliadoPlan.Dispose();
+
+                // Enviar correo de confirmación
+                EnviarConfirmacion();
+
+                //TODO: Pagina intermedia donde informa que le enviamos un correo al afiliado.
+                Response.Redirect("gracias");
+
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error", "Ocurrió un error inesperado al realizar la verificación.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en btnVerificar_Click: " + ex.ToString());
+            }
         }
 
         private void EnviarConfirmacion()

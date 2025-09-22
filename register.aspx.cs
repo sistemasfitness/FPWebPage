@@ -32,7 +32,7 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                validarPlanes();
+                ValidarPlanes();
 
                 CambiarPlanSeleccionado();
 
@@ -63,6 +63,7 @@ namespace WebPage
             if (dt != null && dt.Rows.Count > 0 && Request.QueryString.Count > 0)
             {
                 string idPlanQS = Request.QueryString["idPlan"];
+                //string idPlanQS = Session["idPlan"].ToString();
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(idPlanQS));
 
@@ -104,9 +105,33 @@ namespace WebPage
             dt.Dispose();
         }
 
-        private void validarPlanes()
+        private void ValidarPlanes()
         {
+            //string token = Request.QueryString["data"];
+            //if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
+            //{
+            //    var qs = HttpUtility.ParseQueryString(payload);
+            //    string idPlan = qs["idPlan"];
+            //    string idVendedor = qs["idVendedor"];
+
+            //    Session["idPlan"] = idPlan;
+
+            //    if (string.IsNullOrEmpty(idVendedor))
+            //    {
+            //        Session["idVendedor"] = "152";
+            //    }
+            //    else
+            //    {
+            //        Session["idVendedor"] = idVendedor;
+            //    }
+            //}
+
+            //string idPlanQS = Session["idPlan"].ToString();
+
             string idPlanQS = Request.QueryString["idPlan"];
+            string idVendedorQS = string.IsNullOrEmpty(Request.QueryString["idVendedor"]) ? "152" : Request.QueryString["idVendedor"];
+
+            Session["idVendedor"] = idVendedorQS;
 
             //if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12" && idPlanQS != "16" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000 - 6+2 590.000 - 3+1 349.000
             //{
