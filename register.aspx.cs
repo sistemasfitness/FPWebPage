@@ -258,8 +258,7 @@ namespace WebPage
                         strEmail,
                         idGenero,
                         strFechaNac,
-                        idCiudad,
-                        idSede, 
+                        idSede,
                         "Pendiente"
                     );
                 }
@@ -275,7 +274,6 @@ namespace WebPage
                         strEmail,
                         idGenero,
                         strFechaNac,
-                        idCiudad,
                         idSede
                     );
 

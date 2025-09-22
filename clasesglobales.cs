@@ -7596,7 +7596,7 @@ namespace WebPage
             return dt;
         }
 
-        public string InsertarAfiliadoWeb(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede)
+        public string InsertarAfiliadoWeb(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idSede)
         {
             string respuesta = string.Empty;
             try
@@ -7616,7 +7616,6 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_correo", correo);
                         cmd.Parameters.AddWithValue("@p_id_genero", idGenero);
                         cmd.Parameters.AddWithValue("@p_fecha_nac", fechaNac);
-                        cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
                         cmd.Parameters.AddWithValue("@p_id_sede", idSede);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
@@ -7672,7 +7671,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarAfiliadoRegister(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idCiudad, int idSede, string estado)
+        public string ActualizarAfiliadoRegister(string documento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idSede, string estado)
         {
             string respuesta = string.Empty;
             try
@@ -7691,7 +7690,6 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_correo", correo);
                         cmd.Parameters.AddWithValue("@p_id_genero", idGenero);
                         cmd.Parameters.AddWithValue("@p_fecha_nac", fechaNac);
-                        cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
                         cmd.Parameters.AddWithValue("@p_id_sede", idSede);
                         cmd.Parameters.AddWithValue("@p_estado", estado);
                         cmd.ExecuteNonQuery();
