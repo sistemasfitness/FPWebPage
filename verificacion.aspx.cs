@@ -169,6 +169,8 @@ namespace WebPage
                     return;
                 }
 
+                int idAfiliadoPlan = int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+
                 // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
 
                 foreach (RepeaterItem item in rpParq.Items)
@@ -183,7 +185,7 @@ namespace WebPage
                         cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
                             int.Parse(hfidParq.Value.ToString()),
                             idAfiliado,
-                            int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString()),
+                            idAfiliadoPlan,
                             respuestaPARQ
                         );
                     }
@@ -213,7 +215,8 @@ namespace WebPage
 
                     cg.ActualizarEstadoPagoPlanAfiliado(
                         "Activo",
-                        idAfiliado
+                        idAfiliado,
+                        idAfiliadoPlan
                     );
                 }
 

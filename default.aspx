@@ -528,7 +528,7 @@
                     <div class="col-md-4">
                         <div class="img_container">
                             <a href="planes?id=1">
-                                <img src="img/planes/01_plan-easy_2025-09-08.jpg" class="img-responsive" />
+                                <img src="img/planes/plan_easy.jpg" class="img-responsive" />
                             </a>
                         </div>
                     </div>

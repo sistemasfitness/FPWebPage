@@ -7932,7 +7932,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarEstadoPagoPlanAfiliado(string estado, int idAfiliado)
+        public string ActualizarEstadoPagoPlanAfiliado(string estado, int idAfiliado, int idAfiliadoPlan)
         {
             string respuesta = string.Empty;
             try
@@ -7949,6 +7949,7 @@ namespace WebPage
 
                         cmd.Parameters.AddWithValue("@p_estado", estado);
                         cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
 
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
