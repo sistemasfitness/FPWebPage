@@ -291,6 +291,7 @@
     <Content Include="default.aspx" />
     <Content Include="default_.aspx" />
     <Content Include="descubrirplan.aspx" />
+    <Content Include="EncontrarFuentePago.aspx" />
     <Content Include="eliminarproductocarrito.aspx" />
     <Content Include="estudiafit.aspx" />
     <Content Include="favicon.ico" />
@@ -841,6 +842,13 @@
     </Compile>
     <Compile Include="descubrirplan.aspx.designer.cs">
       <DependentUpon>descubrirplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncontrarFuentePago.aspx.cs">
+      <DependentUpon>EncontrarFuentePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncontrarFuentePago.aspx.designer.cs">
+      <DependentUpon>EncontrarFuentePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="eliminarproductocarrito.aspx.cs">
       <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
