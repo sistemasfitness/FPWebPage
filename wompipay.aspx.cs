@@ -24,8 +24,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        //static int idIntegracion = 1; // Pruebas
-        static int idIntegracion = 4; // Producción
+        static int idIntegracion = 1; // Pruebas
+        //static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -204,8 +204,12 @@ namespace WebPage
                         System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
                     }
                 }
-                
+
                 dt.Dispose();
+
+                Response.Redirect("wompiexito", false);
+                Context.ApplicationInstance.CompleteRequest();
+                return;
             }
             catch (Exception ex)
             {
@@ -272,7 +276,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Ocurrió un error al procesar la transacción.", "error");
+                MostrarAlerta("Error inesperado", "Ocurrió un error al tokenizar la tarjeta.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
                 return false;
             }
@@ -364,13 +368,14 @@ namespace WebPage
 
                 // Espera y reintentos para obtener estado definitivo
                 string estado = null;
+                string estadoMensaje = null;
                 int maxIntentos = 5;
                 int intentos = 0;
 
                 do
                 {
                     await Task.Delay(1000); // Espera 1 segundos
-                    estado = await ConsultarTransaccionPorReferencia(reference);
+                    (estado, estadoMensaje) = await ConsultarTransaccionPorReferencia(reference);
                     intentos++;
                 }
                 while (estado == "PENDING" && intentos < maxIntentos);
@@ -379,7 +384,7 @@ namespace WebPage
                 {
                     if (estado == "DECLINED")
                     {
-                        MostrarAlerta("Transacción rechazada", "No se pudo procesar el pago con tu tarjeta. Intenta nuevamente.", "error");
+                        MostrarAlerta("Transacción rechazada", $"{estadoMensaje}.", "error");
                     } 
                     else
                     {
@@ -393,8 +398,12 @@ namespace WebPage
                 //Context.ApplicationInstance.CompleteRequest();
                 //return true;
 
-                string script = "window.location.replace('wompiexito.aspx');";
-                ClientScript.RegisterStartupScript(this.GetType(), "redirect", script, true);
+
+                // CÓDIGO INGENIERO
+                //string script = "window.location.replace('wompiexito.aspx');";
+                //ClientScript.RegisterStartupScript(this.GetType(), "redirect", script, true);
+                //return true;
+
                 return true;
             }
             catch (Exception ex)
@@ -405,7 +414,7 @@ namespace WebPage
             }
         }
 
-        private async Task<string> ConsultarTransaccionPorReferencia(string referencia)
+        private async Task<(string Estado, string EstadoMensaje)> ConsultarTransaccionPorReferencia(string referencia)
         {
             try
             {
@@ -417,24 +426,25 @@ namespace WebPage
                 if (json.status == "ERROR")
                 {
                     MostrarAlerta("Error al consultar", (string)json.message, "error");
-                    return null;
+                    return (null, null);
                 }
 
                 var data = json.data;
                 if (data == null || data.Count == 0)
                 {
                     MostrarAlerta("Sin resultados", "No se encontraron transacciones con esta referencia.", "info");
-                    return null;
+                    return (null, null);
                 }
 
                 string estado = data[0].status;
-                return estado; // Ejemplo: "APPROVED", "DECLINED", "PENDING"
+                string estadoMensaje = data[0].status_message;
+                return (estado, estadoMensaje); // Ejemplo: "APPROVED", "DECLINED", "PENDING"
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error inesperado", "No se pudo consultar el estado de la transacción.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en ConsultarTransaccionPorReferencia: " + ex.ToString());
-                return null;
+                return (null, null);
             }
         }
 

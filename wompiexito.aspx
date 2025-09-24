@@ -72,10 +72,10 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <div class="box_style_2" style="background-color: #1A1A1A">
-                    <div id="confirm" class="text-center" style="font-weight: 900;">
+                    <div id="confirm" class="text-center" >
                         <%--<i class="icon_check_alt2"></i>--%>
-                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por pertenecer a la familia Fitness People!</h3>
-                        <p style="color: #fff;">Hemos recibido tu pago.</p>
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por ser parte de la familia Fitness People!</h3>
+                        <p style="color: #fff; font-weight: 400;"><b>Confirmamos que tu pago fue recibido.</b></p>
                     </div>
                     <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
                     <table class="table table-striped nomargin">
@@ -93,7 +93,9 @@
                     <form runat="server">
                         <asp:Panel ID="pnlActivarPlan" runat="server">
                             <div style="margin-top: 30px; text-align: center;">
-                                <p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>
+                                <h3 style="font-weight: 900; color: #e3ff00;">¡Ojo! Recuerda que...</h3>
+                                <p style="font-weight: 400;">Para activar tu plan debes completar el formulario de verificación. Para ello, <b>haz clic en el siguiente botón.</b></p>
+                                <%--<p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>--%>
 
                                 <asp:Button ID="btnRedireccionarActivarPlan" 
                                             runat="server" CssClass="btn_slider" 
