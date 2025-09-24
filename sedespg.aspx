@@ -8,6 +8,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager (script) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ND126BW41D');
+    </script>
     <meta property="og:site_name" content="Fitness People" />
     <meta property="og:title" content="Fitness People" />
     <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
