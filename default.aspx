@@ -537,7 +537,7 @@
                 <div class="row text-center plans">
                     <div class="col-md-4">
                         <div class="img_container">
-                            <a href="planes?id=1">
+                            <a href="planes?id=18">
                                 <img src="img/planes/plan_easy.jpg" class="img-responsive" />
                             </a>
                         </div>

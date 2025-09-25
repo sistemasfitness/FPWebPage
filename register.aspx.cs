@@ -138,11 +138,44 @@ namespace WebPage
             //    Response.Redirect("default");
             //}
 
-            if (idPlanQS != "1" && idPlanQS != "12" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000
+
+            /* 
+             * 1. Planes de Migración:
+             * idPlanQS = 12 -> $2.000
+             * idPlanQS = 17 -> $89.000
+             * 
+             * 2. Plan de venta de Asesor:
+             * idPlanQS = 1 -> $99.000
+             * 
+             * 3. Planes de venta directos de la Página Web:
+             * idPlanQS = 18 -> $99.000
+             * idPlanQS = 19 -> $89.000
+            */
+
+            if (idPlanQS != "1" && idPlanQS != "12" && idPlanQS != "17" && idPlanQS != "18" && idPlanQS != "19")
             {
                 Response.Redirect("default");
             }
         }
+
+        //private void GestionarVendedor(string idPlan)
+        //{
+        //    string idVendedor = "";
+
+        //    if (!string.IsNullOrEmpty(Request.QueryString["idVendedor"]))
+        //    {
+        //        idVendedor = Request.QueryString["idVendedor"].ToString();
+        //        return;
+        //    }
+            
+        //    if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "18" || idPlan == "19")
+        //    {
+        //        idVendedor = "154";
+        //        return;
+        //    }
+
+        //    idVendedor = "152"; // Vendedor por defecto
+        //}
 
         private void CargarTipoDocumento()
         {
@@ -339,7 +372,7 @@ namespace WebPage
                     System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
                 }
 
-                if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17")
+                if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17" || idPlanQS == "18" || idPlanQS == "19")
                 {
                     Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
