@@ -129,9 +129,12 @@ namespace WebPage
             //string idPlanQS = Session["idPlan"].ToString();
 
             string idPlanQS = Request.QueryString["idPlan"];
-            string idVendedorQS = string.IsNullOrEmpty(Request.QueryString["idVendedor"]) ? "152" : Request.QueryString["idVendedor"];
+            GestionarVendedor(idPlanQS);
 
-            Session["idVendedor"] = idVendedorQS;
+            //string idVendedorQS = string.IsNullOrEmpty(Request.QueryString["idVendedor"]) ? "152" : Request.QueryString["idVendedor"];
+
+            //Session["idVendedor"] = idVendedorQS;
+
 
             //if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12" && idPlanQS != "16" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000 - 6+2 590.000 - 3+1 349.000
             //{
@@ -139,23 +142,45 @@ namespace WebPage
             //}
 
 
-            /* 
-             * 1. Planes de Migración:
-             * idPlanQS = 12 -> $2.000
-             * idPlanQS = 17 -> $89.000
+            /*
+             * 1. Plan de Asesores Comerciales:
+             * idPlanQS = "1"   ->  $99.000
              * 
-             * 2. Plan de venta de Asesor:
-             * idPlanQS = 1 -> $99.000
+             * 2. Planes de Migración:
+             * idPlanQS = "12"   -> $2.000
+             * idPlanQS = "17"   -> $89.000
              * 
-             * 3. Planes de venta directos de la Página Web:
-             * idPlanQS = 18 -> $99.000
-             * idPlanQS = 19 -> $89.000
+             * 3. Planes de Página Web:
+             * idPlanQS = "18"   -> $99.000
+             * idPlanQS = "19"   -> $89.000
             */
 
             if (idPlanQS != "1" && idPlanQS != "12" && idPlanQS != "17" && idPlanQS != "18" && idPlanQS != "19")
             {
                 Response.Redirect("default");
             }
+        }
+
+        private void GestionarVendedor(string idPlan)
+        {
+            string idVendedor = "";
+
+            if (!string.IsNullOrEmpty(Request.QueryString["idVendedor"]))
+            {
+                idVendedor = Request.QueryString["idVendedor"].ToString();
+            }
+
+            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "1")
+            {
+                idVendedor = "152";
+            }
+
+            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "18" || idPlan == "19")
+            {
+                idVendedor = "156";
+            }
+
+            Session["idVendedor"] = idVendedor;
         }
 
         //private void GestionarVendedor(string idPlan)
@@ -356,6 +381,11 @@ namespace WebPage
                     string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
                     string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
                     string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+
+                    //string urlTest = "https://api.siigo.com/";
+                    //string username = "sandbox@siigoapi.com";
+                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    //string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),

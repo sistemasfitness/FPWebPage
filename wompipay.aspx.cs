@@ -24,8 +24,8 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        static int idIntegracion = 1; // Pruebas
-        //static int idIntegracion = 4; // Producción
+        //static int idIntegracion = 1; // Pruebas
+        static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -160,6 +160,11 @@ namespace WebPage
                         string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
                         string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
                         string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+
+                        //string urlTest = "https://api.siigo.com/";
+                        //string username = "sandbox@siigoapi.com";
+                        //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                        //string partnerId = "SandboxSiigoApi";
 
                         // Creación de factura
                         var siigoClient = new SiigoClient(

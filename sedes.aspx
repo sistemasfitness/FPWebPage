@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager (script) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -18,10 +18,6 @@
         gtag('config', 'G-ND126BW41D');
     </script>
     <script src="js/fitnesspeople.js"></script>
-
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -75,14 +71,16 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <asp:Literal ID="ltImagenBG" runat="server"></asp:Literal>
-    <div id="sub_content_in">
-        <h1 style="font-weight: 900;">
-            <asp:Literal ID="ltNombreSede" runat="server" Visible="true"></asp:Literal></h1>
-        <p style="font-weight: 700;">
-            <asp:Literal ID="ltCiudadSede" runat="server" Visible="true"></asp:Literal>
-        </p>
-    </div>
+    <section>
+        <asp:Literal ID="ltImagenBG" runat="server"></asp:Literal>
+
+        <div id="sub_content_in">
+            <h1 style="font-weight: 900;">
+                <asp:Literal ID="ltNombreSede" runat="server" Visible="true"></asp:Literal></h1>
+            <p style="font-weight: 700;">
+                <asp:Literal ID="ltCiudadSede" runat="server" Visible="true"></asp:Literal>
+            </p>
+        </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
@@ -377,5 +375,9 @@
         });
 
     </script>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>
