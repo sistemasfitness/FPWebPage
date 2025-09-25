@@ -170,7 +170,7 @@ namespace WebPage
                 idVendedor = Request.QueryString["idVendedor"].ToString();
             }
 
-            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "1")
+            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "1" || idPlan == "12" || idPlan == "17")
             {
                 idVendedor = "152";
             }
@@ -182,25 +182,6 @@ namespace WebPage
 
             Session["idVendedor"] = idVendedor;
         }
-
-        //private void GestionarVendedor(string idPlan)
-        //{
-        //    string idVendedor = "";
-
-        //    if (!string.IsNullOrEmpty(Request.QueryString["idVendedor"]))
-        //    {
-        //        idVendedor = Request.QueryString["idVendedor"].ToString();
-        //        return;
-        //    }
-            
-        //    if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "18" || idPlan == "19")
-        //    {
-        //        idVendedor = "154";
-        //        return;
-        //    }
-
-        //    idVendedor = "152"; // Vendedor por defecto
-        //}
 
         private void CargarTipoDocumento()
         {
