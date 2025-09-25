@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager (script) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -387,5 +387,8 @@
 
     </script>
 
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>
