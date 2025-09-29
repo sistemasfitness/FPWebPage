@@ -285,6 +285,18 @@
 
     <uc1:loginregister runat="server" ID="loginregister" />
 
+    <!-- Modal - Plan Easy -->
+    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent;">
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <a href="register?idPlan=19" target="_blank">
+                    <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Search Menu -->
     <div class="search-overlay-menu">
         <span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -302,6 +314,34 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("idPlan") === "18") {
+                // Obtenemos el ID real del control ASP.NET
+                var documentoInput = $("#<%= txbDocumento.ClientID %>");
+
+                // 1. Cuando el usuario cambia de foco (blur)
+                documentoInput.on("blur", function () {
+                    if ($(this).val().trim() !== "") {
+                        $("#plan-easy").modal("show");
+                    }
+                });
+
+                // 2. Cuando presiona Enter
+                documentoInput.on("keypress", function (e) {
+                    if (e.which === 13 && $(this).val().trim() !== "") {
+                        e.preventDefault(); // evitar que dispare un submit
+                        $("#plan-easy").modal("show");
+                    }
+                });
+            }
+        });
+
+    </script>
+
     <script>
 
         function numberFormat(input) {
@@ -329,6 +369,20 @@
         }
 
     </script>
+
+    <style>
+
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+
+        .modal-dialog {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+    </style>
 
     <noscript>
         <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />

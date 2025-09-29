@@ -106,25 +106,25 @@ namespace WebPage
 
                 // 1. Inserción de afiliación de cliente al plan
                 cg.InsertarAfiliadoPlan(
-                    int.Parse(Session["idAfiliado"].ToString()),
-                    int.Parse(Session["idPlan"].ToString()),
+                    Convert.ToInt32(Session["idAfiliado"].ToString()),
+                    Convert.ToInt32(Session["idPlan"].ToString()),
                     Session["fechaInicioPlan"].ToString(),
                     Session["fechaFinPlan"].ToString(),
-                    int.Parse(Session["meses"].ToString()),
-                    int.Parse(Session["valorPlan"].ToString()),
+                    Convert.ToInt32(Session["meses"].ToString()),
+                    Convert.ToInt32(Session["valorPlan"].ToString()),
                     strDescripcion,
                     strEstado
                 );
 
                 // 2. Obtención de idAfiliadoPlan recién creado
-                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(Convert.ToInt32(Session["idAfiliado"].ToString()));
                 if (dt.Rows.Count == 0)
                 {
                     MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
                     return;
                 }
 
-                int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
+                int idAfiliadoPlan = Convert.ToInt32(dt.Rows[0]["idAfiliadoPlan"].ToString());
                 Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
                 // 3. Inserción de pago en base de datos
@@ -132,11 +132,11 @@ namespace WebPage
 
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
-                    int.Parse(Session["valorPlan"].ToString()),
+                    Convert.ToInt32(Session["valorPlan"].ToString()),
                     4,
                     Session["idReferencia"].ToString(), 
                     "Ninguno",
-                    int.Parse(Session["idVendedor"].ToString()), // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
+                    Convert.ToInt32(Session["idVendedor"].ToString()), // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,
                     Session["dataIdToken"].ToString(), 
@@ -181,7 +181,7 @@ namespace WebPage
                             Session["documentoAfiliado"].ToString(),
                             Session["codSiigoPlan"].ToString(),
                             Session["nombrePlan"].ToString(),
-                            int.Parse(Session["valorPlan"].ToString()),
+                            Convert.ToInt32(Session["valorPlan"].ToString()),
                             idSede
                         );
 
@@ -323,7 +323,7 @@ namespace WebPage
 
                 // Ejecutar el cobro inicial
                 bool transaccionCreada = await CrearTransaccionAsync(
-                    int.Parse(monto), 
+                    Convert.ToInt32(monto), 
                     moneda, 
                     hash256, 
                     Session["emailAfiliado"].ToString(), 
@@ -374,7 +374,7 @@ namespace WebPage
                 // Espera y reintentos para obtener estado definitivo
                 string estado = null;
                 string estadoMensaje = null;
-                int maxIntentos = 5;
+                int maxIntentos = 15;
                 int intentos = 0;
 
                 do

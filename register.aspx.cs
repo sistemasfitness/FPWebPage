@@ -65,7 +65,7 @@ namespace WebPage
                 string idPlanQS = Request.QueryString["idPlan"];
                 //string idPlanQS = Session["idPlan"].ToString();
 
-                DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(idPlanQS));
+                DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(idPlanQS));
 
                 string idPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["idPlan"].ToString() : "0";
                 string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
@@ -233,7 +233,7 @@ namespace WebPage
 
             clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(int.Parse(ddlCiudad.SelectedItem.Value.ToString()));
+            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString()));
 
             ddlSedes.DataSource = dt;
             ddlCiudad.DataTextField = "NombreSede";
@@ -252,7 +252,7 @@ namespace WebPage
                 //Guardamos los datos del afiliado
                 string strCedula = txbDocumento.Text.ToString();
                 Session.Add("documentoAfiliado", strCedula);
-                int idTipoDocumento = int.Parse(ddlTipoDocumento.SelectedItem.Value.ToString());
+                int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedItem.Value.ToString());
 
                 Session.Add("idAfiliado", "");
 
@@ -270,7 +270,7 @@ namespace WebPage
                 Session.Add("celularAfiliado", strCelular);
                 string strEmail = txbEmail.Text.ToString();
                 Session.Add("emailAfiliado", strEmail);
-                int idGenero = int.Parse(ddlGenero.SelectedItem.Value.ToString());
+                int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
                 string strFechaNac = txbFechaNac.Text.ToString();
 
                 string strFechaInicioPlan = txbFechaIni.Text.ToString();
@@ -278,10 +278,10 @@ namespace WebPage
                 string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
                 Session.Add("fechaFinPlan", strFechaFinPlan);
 
-                DataTable dtPlan = cg.ConsultarPlanWebPorId(int.Parse(Session["idPlan"].ToString()));
+                DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(Session["idPlan"].ToString()));
                 Session.Add("meses", dtPlan.Rows[0]["Meses"]);
-                int idCiudad = int.Parse(ddlCiudad.SelectedItem.Value.ToString());
-                int idSede = int.Parse(ddlSedes.SelectedItem.Value.ToString());
+                int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
+                int idSede = Convert.ToInt32(ddlSedes.SelectedItem.Value.ToString());
                 Session.Add("idSede", idSede);
                 string strValorPlan = hfValorPlan.Value;
                 Session.Add("valorPlan", strValorPlan);
@@ -590,7 +590,7 @@ namespace WebPage
 
             // Consultar datos del plan
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarPlanWebPorId(int.Parse(idPlan));
+            DataTable dt = cg.ConsultarPlanWebPorId(Convert.ToInt32(idPlan));
 
             if (dt == null || dt.Rows.Count == 0) return null;
 

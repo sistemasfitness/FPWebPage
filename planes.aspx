@@ -669,6 +669,18 @@
 
     <uc1:loginregister runat="server" ID="loginregister" />
 
+    <!-- Modal - Plan Easy -->
+    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent;">
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <a href="register?idPlan=19" target="_blank">
+                    <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Search Menu -->
     <div class="search-overlay-menu">
         <span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -685,6 +697,47 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") === "18") {
+                let modalShown = false;
+                let allowLeave = false;
+
+                // 1. Interceptar atrás desde el inicio
+                history.pushState({ modalBlock: true }, "", window.location.href);
+
+                window.addEventListener("popstate", function (e) {
+                    if (!allowLeave) {
+                        $("#plan-easy").modal("show");
+                        modalShown = true;
+
+                        // reponer el estado para que el usuario siga "en la misma página"
+                        history.pushState({ modalBlock: true }, "", window.location.href);
+                    } else {
+                        // si ya cerró el modal, ahora sí puede salir
+                        history.back();
+                    }
+                });
+
+                // 2. Interceptar cierre de pestaña
+                window.addEventListener("beforeunload", function (e) {
+                    if (!allowLeave) {
+                        $("#plan-easy").modal("show");
+                        modalShown = true;
+                        e.preventDefault();
+                        e.returnValue = ""; // obligatorio en Chrome
+                    }
+                });
+
+                // 3. Cuando cierre el modal manualmente -> permitir salida
+                $("#plan-easy").on("hidden.bs.modal", function () {
+                    allowLeave = true;
+                });
+            }
+        });
+    </script>
 
     <script>
 
@@ -767,6 +820,20 @@
     </script>
 
     <style>
+
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+
+        .modal-dialog {
+	        max-width: 100%;
+	        margin: 0 auto;
+        }
+
+    </style>
+
+    <%--<style>
         .progress-bar {
             width: 100%;
             height: 30px;
@@ -783,9 +850,9 @@
             background-size: 200% 100%;
             transition: width 0.5s linear;
         }
-    </style>
+    </style>--%>
 
-    <script>
+    <%--<script>
         function iniciarTemporizador(fechaInicioStr, fechaFinStr) {
             const fechaInicio = new Date(fechaInicioStr);
             const fechaFin = new Date(fechaFinStr);
@@ -817,7 +884,7 @@
             const intervalo = setInterval(actualizarBarra, 1000);
             actualizarBarra();
         }
-    </script>
+    </script>--%>
 
     <noscript>
         <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
