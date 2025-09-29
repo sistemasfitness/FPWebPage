@@ -256,7 +256,7 @@
                     <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
                 </form>--%>
                     <a href="gympass">
-                        <img src="img/concurso-gympass-2.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                        <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
                     </a>
                 </div>
             </div>

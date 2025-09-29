@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gympass.aspx.cs" Inherits="WebPage.gympass" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="concursogympass.aspx.cs" Inherits="WebPage.concursogympass" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -97,10 +97,10 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/banner_gym_pass.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/concurso-gympass.png" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">GYM PASS</h1>
-            <p>Una experiencia exclusiva por un día en Fitness People</p>
+            <p>Una experiencia exclusiva por 6 días en Fitness People</p>
         </div>
     </section>
     <!-- End section -->
@@ -130,12 +130,12 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label>Nro. de documento.</label>
-                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" placeholder="123456789" style="background: #FFF; color: #000;" required="" runat="server" oninput="numberFormat(this)" />
+                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" placeholder="123456789" style="background: #FFF; color: #000;" required="" runat="server" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 col-sm-4">
+                        <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label>Correo eléctronico.</label>
                                 <input type="email" id="email_contact" name="email_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="ejemplo@correo.com" required="" runat="server" />
@@ -144,14 +144,39 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label>Celular.</label>
-                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3133333333" required="" runat="server" oninput="numberFormat(this)" />
+                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3133333333" required="" runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                        <%--<div class="form-group">
+                                <label>Fecha que asistirá:</label>
+                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
+                            </div>--%>
+                            <div class="form-group">
+                                <label>Fecha de inicio.</label>
+                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
+                        <%--<div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label>Ciudad:</label>
+                                <select id="ddlCiudad" name="ddlCiudad" onchange="popSedes()" class="form-control" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="Bucaramanga">Bucaramanga</option>
+                                    <option value="Cúcuta">Cúcuta</option>
+                                    <option value="Floridablanca">Floridablanca</option>
+                                    <option value="Piedecuesta">Piedecuesta</option>
+                                </select>
+                            </div>
+                        </div>--%>
                         <div class="col-md-8 col-sm-8">
                             <div class="form-group">
                                 <label>Sede.</label>
+                                <%--<select id="ddlSede" name="ddlSede" class="form-control" required>
+                                    <option value="">Seleccione</option>
+                                </select>--%>
                                 <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" style="background: #FFF; color: #000;" AppendDataBoundItems="true">
                                     <asp:ListItem Text="Seleccione" Value="" />
                                 </asp:DropDownList>
@@ -159,8 +184,36 @@
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Fecha de asistencia.</label>
-                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
+                                <label>Código de Embajador.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="cod_embajador" name="cod_embajador" placeholder="Pepito123" required="" runat="server" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" style="display: flex; flex-direction: column;">
+                            <label for="captureFile">
+                                Captura donde se visualice que nos sigues en Instagram 
+                                <a href="https://www.instagram.com/fitnesspeople_colombia/" 
+                                   target="_blank" 
+                                   style="text-decoration: none; color: #E3FF00;">
+                                   @fitnesspeople_colombia
+                                </a>.
+                            </label>
+
+                            <div>
+                                <!-- Botón personalizado -->
+                                <label for="captureFile" class="custom-file-upload" id="archivoInicial">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i><br />
+                                    SUBIR CAPTURA
+                                </label>
+
+                                <!-- Input real oculto visualmente -->
+                                <input type="file" name="captureFile" id="captureFile" accept="image/*" class="form-control input-form" onchange="mostrarArchivoSeleccionado()" />
+
+                                <!-- Botón personalizado oculto -->
+                                <label for="captureFile" id="archivoSeleccionado" class="custom-file-upload" style="display: none;">
+                                    <i class="fa-solid fa-cloud-arrow-down"></i><br />
+                                    <p id="textoArchivoSeleccionado" class="nomargin" style="font-size: 2rem;"></p>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -195,10 +248,11 @@
                 </form>
             </div>
         </div>
+
         <!-- End col lg 9 -->
         <aside class="col-md-4">
             <div class="box_style_1">
-                <img src="img/gympass.jpg" alt="gympass" class="img-responsive" />
+                <img src="img/concurso-gympass-1.png" alt="gympass" class="img-responsive" />
             </div>
         </aside>
         <!--End aside -->
@@ -247,16 +301,6 @@
 
     <script>
 
-        function numberFormat(input) {
-            // Elimina cualquier cosa que no sea número
-            let value = input.value.replace(/\D/g, '');
-
-            // Limita a 4 dígitos (algunas tarjetas como Amex lo requieren)
-            value = value.substring(0, 10);
-
-            input.value = value;
-        }
-
         function habilitarBoton() {
             var check = document.getElementById("check_1");
             var boton = document.getElementById("<%= btnEnviar.ClientID %>");
@@ -268,7 +312,62 @@
             }
         }
 
+        function mostrarArchivoSeleccionado() {
+            var input = document.getElementById("captureFile");
+            var archivoInicial = document.getElementById("archivoInicial");
+            var archivoSeleccionado = document.getElementById("archivoSeleccionado");
+            var textoArchivoSeleccionado = document.getElementById("textoArchivoSeleccionado");
+
+            if (input.files.length > 0) {
+                archivoSeleccionado.style.display = "inline-block";
+                textoArchivoSeleccionado.textContent = "ARCHIVO SELECCIONADO: " + input.files[0].name;
+                archivoInicial.style.display = "none";
+            } else {
+                archivoSeleccionado.style.display = "none";
+                textoArchivoSeleccionado.textContent = "";
+                archivoInicial.style.display = "inline-block";
+            }
+        }
+
     </script>
+
+    <style>
+
+        .custom-file-upload {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            color: #555;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #e0e0e0;
+        }
+
+        .custom-file-upload i {
+            font-size: 40px;
+        }
+
+        #captureFile {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .input-form {
+            padding: 2.5rem;
+            color: black;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+    </style>
 
     <noscript>
         <img height="1" width="1" style="display: none"

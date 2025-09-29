@@ -234,6 +234,7 @@
     <Content Include="cart-page-1.html" />
     <Content Include="cart-page-2.html" />
     <Content Include="cart-page-3.html" />
+    <Content Include="concursogympass.aspx" />
     <Content Include="contacto.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -759,6 +760,13 @@
       <DependentUpon>carrito4.aspx</DependentUpon>
     </Compile>
     <Compile Include="clasesglobales.cs" />
+    <Compile Include="concursogympass.aspx.cs">
+      <DependentUpon>concursogympass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="concursogympass.aspx.designer.cs">
+      <DependentUpon>concursogympass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="contacto.aspx.cs">
       <DependentUpon>contacto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

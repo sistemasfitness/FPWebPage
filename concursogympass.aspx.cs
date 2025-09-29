@@ -1,11 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
-using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.Odbc;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -13,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace WebPage
 {
-    public partial class gympass : System.Web.UI.Page
+    public partial class concursogympass : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,6 +80,7 @@ namespace WebPage
                 string strSedeValor = ddlSede.SelectedItem.Value;
                 string strSedeTexto = ddlSede.SelectedItem.Text;
                 string strFechaAsistencia = date_contact.Value.ToString();
+                string strCodEmbajador = cod_embajador.Value.ToString();
 
                 // Validación de sede seleccionada
                 if (string.IsNullOrWhiteSpace(strSedeValor))
@@ -93,7 +92,7 @@ namespace WebPage
                 clasesglobales cg = new clasesglobales();
 
                 // Consulta de existencia de documento en la BD
-                DataTable dtConcursoGymPass = cg.ConsultarGymPassPorDocumento(strDocumento);
+                DataTable dtConcursoGymPass = cg.ConsultarConcursoGymPassPorDocumento(strDocumento);
 
                 if (dtConcursoGymPass.Rows.Count > 0)
                 {
@@ -101,16 +100,49 @@ namespace WebPage
                     return;
                 }
 
-                cg.InsertarGymPass(strNombre, strApellido, strDocumento, strCorreo, strCelular, int.Parse(strSedeValor), strFechaAsistencia);
+                DataTable dtCodEmbajador = cg.ConsultarCodigoEmbajador(strCodEmbajador);
+
+                if (dtCodEmbajador.Rows.Count <= 0)
+                {
+                    MostrarAlerta("Código inválido", "El código de embajador que ingresaste no es válido. Verifica y vuelve a intentarlo.", "error");
+                    return;
+                }
+
+                HttpPostedFile postedFile = Request.Files["captureFile"];
+                string nombreArchivo = "";
+
+                if (postedFile == null || postedFile.ContentLength <= 0)
+                {
+                    MostrarAlerta("Archivo requerido", "Por favor, debes cargar la captura de imagen que evidencia que nos estás siguiendo.", "warning");
+                    return;
+                }
+
+                string extension = Path.GetExtension(postedFile.FileName).ToLower();
+
+                if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
+                {
+                    MostrarAlerta("Archivo no válido", "Solo se permiten archivos en formato de imágenes (JPG o PNG).", "error");
+                    return;
+                }
+
+                nombreArchivo = DateTime.Now.ToString("yyyyMMdd-HHmmss_") + Path.GetFileName(postedFile.FileName.Replace(" ", "-"));
+                string rutaGuardado = Server.MapPath("img//estudiafit//concurso-gympass//") + nombreArchivo;
+                postedFile.SaveAs(rutaGuardado);
+
+                string codEmbajador = dtCodEmbajador.Rows[0]["CodigoEmb"].ToString();
+
+                cg.InsertarConcursoGymPass(strNombre, strApellido, strDocumento, strCorreo, strCelular, strFechaAsistencia, strSedeTexto, strCodEmbajador, nombreArchivo);
 
                 dtConcursoGymPass.Dispose();
+                dtCodEmbajador.Dispose();
 
                 // Función de limpieza de campos
                 LimpiarFormulario();
 
-                MostrarAlerta("Registro exitoso", "Felicitaciones, has ganado un día de cortesía en Fitness People.", "success");
+                MostrarAlerta("Registro exitoso", "Felicitaciones, has ganado 6 días de cortesía en Fitness People.", "success");
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MostrarAlerta("Error", "Ocurrió un error inesperado al procesar tu registro.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en btnEnviar_Click: " + ex.ToString());
@@ -146,9 +178,20 @@ namespace WebPage
             email_contact.Value = string.Empty;
             phone_contact.Value = string.Empty;
             date_contact.Value = string.Empty;
+            cod_embajador.Value = string.Empty;
 
             // DropDownList
             ddlSede.ClearSelection();
+
+            string script = @"
+            <script>
+                document.getElementById('captureFile').value = '';
+                document.getElementById('archivoSeleccionado').style.display = 'none';
+                document.getElementById('textoArchivoSeleccionado').textContent = '';
+                document.getElementById('archivoInicial').style.display = 'inline-block';
+            </script>";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "limpiarFile", script);
         }
     }
 }
