@@ -831,6 +831,12 @@
 	        margin: 0 auto;
         }
 
+        .modal-content.modal-popup {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
     </style>
 
     <%--<style>

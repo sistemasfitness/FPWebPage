@@ -218,7 +218,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error", "Ocurrió un error inesperado al procesar el pago.", "error");
+                MostrarAlerta("Error inesperado", "Hubo un problema interno al procesar tu pago.<br><br>Por favor, toma una captura de pantalla y comunícate con nosotros al número de WhatsApp para ayudarte.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
             }
         }
@@ -233,7 +233,7 @@ namespace WebPage
                     Session["meses"] == null || Session["valorPlan"] == null ||
                     Session["emailAfiliado"] == null)
                 {
-                    MostrarAlerta("Sesión incompleta", "Faltan datos requeridos para procesar el pago.", "warning");
+                    MostrarAlerta("Información incompleta", "Parece que nos faltó un dato para seguir con tu pago.<br><br>Por favor, cierra esta página y vuelve a intentarlo para que todo funcione correctamente.", "warning");
                     return false;
                 }
 
@@ -281,7 +281,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Ocurrió un error al tokenizar la tarjeta.", "error");
+                MostrarAlerta("Error inesperado", "Hubo un problema al procesar la tarjeta.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
                 return false;
             }
@@ -343,7 +343,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Ocurrió un error al crear la fuente de pago o procesar el primer cobro.", "error");
+                MostrarAlerta("Error inesperado", "No pudimos registrar el método de pago.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
                 return false;
             }
@@ -398,22 +398,11 @@ namespace WebPage
                     return false;
                 }
 
-                // Redireccionar solo si todo está OK
-                //Response.Redirect("wompiexito", false);
-                //Context.ApplicationInstance.CompleteRequest();
-                //return true;
-
-
-                // CÓDIGO INGENIERO
-                //string script = "window.location.replace('wompiexito.aspx');";
-                //ClientScript.RegisterStartupScript(this.GetType(), "redirect", script, true);
-                //return true;
-
                 return true;
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Ocurrió un error al intentar crear la transacción con Wompi.", "error");
+                MostrarAlerta("Error inesperado", "No pudimos procesar tu transacción.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
                 System.Diagnostics.Debug.WriteLine("Error en CrearTransaccionAsync: " + ex.ToString());
                 return false;
             }
