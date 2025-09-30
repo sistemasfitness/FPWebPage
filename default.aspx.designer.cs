@@ -78,6 +78,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
 
         /// <summary>
+        /// Control controlplanes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.planes controlplanes;
+
+        /// <summary>
         /// Control upContacto.
         /// </summary>
         /// <remarks>

@@ -45,7 +45,7 @@
         background-image: url('img/descubrir-plan/mainmenu-test.png');
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 991px) {
         .new-item-menu {
             background-image: none;
         }

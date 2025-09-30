@@ -259,6 +259,7 @@
     <Content Include="controls\mainmenu.ascx" />
     <Content Include="controls\mainmenulanding.ascx" />
     <Content Include="controls\mainmenunew.ascx" />
+    <Content Include="controls\planes.ascx" />
     <Content Include="corporativo.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
@@ -822,6 +823,13 @@
     </Compile>
     <Compile Include="controls\mainmenunew.ascx.designer.cs">
       <DependentUpon>mainmenunew.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\planes.ascx.cs">
+      <DependentUpon>planes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\planes.ascx.designer.cs">
+      <DependentUpon>planes.ascx</DependentUpon>
     </Compile>
     <Compile Include="corporativo.aspx.cs">
       <DependentUpon>corporativo.aspx</DependentUpon>
