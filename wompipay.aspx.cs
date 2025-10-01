@@ -41,13 +41,15 @@ namespace WebPage
             }
         }
 
-        private void MostrarAlerta(string titulo, string mensaje, string tipo)
+        private void MostrarAlerta(string titulo, string mensaje, string tipo, bool esHtml = false)
         {
             // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string contenido = esHtml ? $"html: '{mensaje}'" : $"text: '{mensaje}'";
+
             string script = $@"
             Swal.fire({{
                 title: '{titulo}',
-                text: '{mensaje}',
+                {contenido},
                 icon: '{tipo}', 
                 background: '#3C3C3C', 
                 showCloseButton: true, 
@@ -218,7 +220,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Hubo un problema interno al procesar tu pago.<br><br>Por favor, toma una captura de pantalla y comunícate con nosotros al número de WhatsApp para ayudarte.", "error");
+                MostrarAlerta("Error inesperado", "Hubo un problema interno al procesar tu pago.<br>Por favor, toma una captura de pantalla y comunícate con nosotros al número de WhatsApp para ayudarte.", "error", true);
                 System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
             }
         }
@@ -233,7 +235,7 @@ namespace WebPage
                     Session["meses"] == null || Session["valorPlan"] == null ||
                     Session["emailAfiliado"] == null)
                 {
-                    MostrarAlerta("Información incompleta", "Parece que nos faltó un dato para seguir con tu pago.<br><br>Por favor, cierra esta página y vuelve a intentarlo para que todo funcione correctamente.", "warning");
+                    MostrarAlerta("Información incompleta", "Parece que nos faltó un dato para seguir con tu pago.<br>Por favor, cierra esta página y vuelve a intentarlo para que todo funcione correctamente.", "warning", true);
                     return false;
                 }
 
@@ -281,7 +283,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "Hubo un problema al procesar la tarjeta.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
+                MostrarAlerta("Error inesperado", "Hubo un problema al procesar la tarjeta.<br>Por favor, cierra esta página e inténtalo nuevamente.", "error", true);
                 System.Diagnostics.Debug.WriteLine("Error en TokenizarTarjetaAsync: " + ex.ToString());
                 return false;
             }
@@ -343,7 +345,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "No pudimos registrar el método de pago.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
+                MostrarAlerta("Error inesperado", "No pudimos registrar el método de pago.<br>Por favor, cierra esta página e inténtalo nuevamente.", "error", true);
                 System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
                 return false;
             }
@@ -402,7 +404,7 @@ namespace WebPage
             }
             catch (Exception ex)
             {
-                MostrarAlerta("Error inesperado", "No pudimos procesar tu transacción.<br><br>Por favor, cierra esta página e inténtalo nuevamente.", "error");
+                MostrarAlerta("Error inesperado", "No pudimos procesar tu transacción.<br>Por favor, cierra esta página e inténtalo nuevamente.", "error", true);
                 System.Diagnostics.Debug.WriteLine("Error en CrearTransaccionAsync: " + ex.ToString());
                 return false;
             }
