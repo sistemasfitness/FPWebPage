@@ -181,6 +181,7 @@ namespace WebPage
             }
 
             Session["idVendedor"] = idVendedor;
+            ViewState["idVendedor"] = idVendedor;
         }
 
         private void CargarTipoDocumento()
@@ -260,6 +261,7 @@ namespace WebPage
                 if (dtAfiliado.Rows.Count > 0)
                 {
                     Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+                    ViewState["idAfiliado"] = dtAfiliado.Rows[0]["IdAfiliado"];
                 }
 
                 string strNombre = txbNombre.Text.ToString();
@@ -279,7 +281,8 @@ namespace WebPage
                 Session.Add("fechaFinPlan", strFechaFinPlan);
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(Session["idPlan"].ToString()));
-                Session.Add("meses", dtPlan.Rows[0]["Meses"]);
+                int meses = Convert.ToInt32(dtPlan.Rows[0]["Meses"]);
+                Session.Add("meses", meses);
                 int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
                 int idSede = Convert.ToInt32(ddlSedes.SelectedItem.Value.ToString());
                 Session.Add("idSede", idSede);
@@ -385,7 +388,20 @@ namespace WebPage
 
                 if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17" || idPlanQS == "18" || idPlanQS == "19")
                 {
-                    Response.Redirect("wompipay", false);
+                    string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}" +
+                                     $"&idPlan={idPlanQS}" +
+                                     $"&fechaIni={HttpUtility.UrlEncode(strFechaInicioPlan)}" +
+                                     $"&fechaFin={HttpUtility.UrlEncode(strFechaFinPlan)}" +
+                                     $"&idVendedor={HttpUtility.UrlEncode(ViewState["idVendedor"].ToString())}" +
+                                     $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}";
+
+                    TimeSpan ttl = TimeSpan.FromMinutes(30); // por ejemplo, token válido 30 minutos
+                    string token = UrlEncryptor.Encrypt(payload, ttl);
+
+                    // redirige pasando token (ya es url-safe, pero es buena práctica UrlEncode de todos modos)
+                    Response.Redirect($"wompipay.aspx?data={HttpUtility.UrlEncode(token)}", false);
+
+                    //Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }

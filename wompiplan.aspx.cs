@@ -64,30 +64,30 @@ namespace WebPage
             //
 
 
-            string token = Request.QueryString["data"];
-            if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
-            {
-                var qs = HttpUtility.ParseQueryString(payload);
-                string nroDoc = qs["nroDoc"];
-                string valorPlan = qs["valorPlan"];
+            //string token = Request.QueryString["data"];
+            //if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
+            //{
+            //    var qs = HttpUtility.ParseQueryString(payload);
+            //    string nroDoc = qs["nroDoc"];
+            //    string valorPlan = qs["valorPlan"];
 
-                _strReferencia = nroDoc + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-                _strMonto = $"{valorPlan}00";
+            //    _strReferencia = nroDoc + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+            //    _strMonto = $"{valorPlan}00";
 
-                string moneda = "COP";
-                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-                string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-                _strHash256 = ComputeSha256Hash(concatenado);
+            //    string moneda = "COP";
+            //    string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+            //    string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+            //    _strHash256 = ComputeSha256Hash(concatenado);
 
-                AlmacenarDatosPago(_strReferencia, nroDoc);
+            //    AlmacenarDatosPago(_strReferencia, nroDoc);
 
-                string strString = Convert.ToBase64String(Encoding.UTF8.GetBytes(nroDoc));
-                _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-            }
-            else
-            {
-                Response.Redirect("default");
-            }
+            //    string strString = Convert.ToBase64String(Encoding.UTF8.GetBytes(nroDoc));
+            //    _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+            //}
+            //else
+            //{
+            //    Response.Redirect("default");
+            //}
         }
 
         private void AlmacenarDatosPago(string referencia, string documento)

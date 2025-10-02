@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Data.Odbc;
@@ -24,13 +25,16 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        //static int idIntegracion = 1; // Pruebas
-        static int idIntegracion = 4; // Producción
+        static int idIntegracion = 1; // Pruebas
+        //static int idIntegracion = 4; // Producción
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if (Session["idAfiliado"].ToString() != "")
+
+                ValidarTokenURLEncryptor();
+
+                if (Session["idAfiliado"] != null)
                 {
                     ltValor.Text = Session["ltValorPlan"].ToString();
                 }
@@ -38,6 +42,15 @@ namespace WebPage
                 {
                     Response.Redirect("default");
                 }
+
+                //if (Session["idAfiliado"].ToString() != "")
+                //{
+                //    ltValor.Text = Session["ltValorPlan"].ToString();
+                //}
+                //else
+                //{
+                //    Response.Redirect("default");
+                //}
             }
         }
 
@@ -61,6 +74,27 @@ namespace WebPage
             }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+        }
+
+        private void ValidarTokenURLEncryptor()
+        {
+            string token = Request.QueryString["data"];
+
+            if (string.IsNullOrEmpty(token)) return;
+
+            if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
+            {
+                ViewState["nroDoc"] = q["nroDoc"];
+                ViewState["idPlan"] = q["idPlan"];
+                ViewState["fechaInicioPlan"] = q["fechaIni"];
+                ViewState["fechaFinPlan"] = q["fechaFin"];
+                ViewState["idVendedor"] = q["idVendedor"];
+                ViewState["idSede"] = q["idSede"];
+            }
+            else
+            {
+                Response.Redirect("default");
+            }
         }
         
         protected async void btnPagar_Click(object sender, EventArgs e)
@@ -96,7 +130,8 @@ namespace WebPage
                 }
 
                 clasesglobales cg = new clasesglobales();
-                string idPlanQS = Session["idPlan"].ToString();
+                //string idPlanQS = Session["idPlan"].ToString();
+                string idPlanQS = ViewState["idPlan"].ToString();
                 string strDescripcion = "Débito automático";
                 string strEstado = "Pendiente";
 
@@ -106,14 +141,37 @@ namespace WebPage
                     strEstado = "Activo";
                 }
 
+                DataTable dtPlan = cg.ConsultarPlanPorId(Convert.ToInt32(idPlanQS));
+                
+                ViewState["meses"] = dtPlan.Rows[0]["meses"].ToString();
+                ViewState["valorPlan"] = dtPlan.Rows[0]["precioTotal"].ToString();
+
+                int meses = Convert.ToInt32(ViewState["meses"]);
+                int valorPlan = Convert.ToInt32(ViewState["valorPlan"]);
+
+                // TODO: CAMBIAR LÓGICA: AL INSERTAR EL AFILIADO PLAN, DEVUELVE EL ID DEL REGISTRO CREADO
+
+                //
+
                 // 1. Inserción de afiliación de cliente al plan
+                //cg.InsertarAfiliadoPlan(
+                //    Convert.ToInt32(Session["idAfiliado"].ToString()),
+                //    Convert.ToInt32(Session["idPlan"].ToString()),
+                //    Session["fechaInicioPlan"].ToString(),
+                //    Session["fechaFinPlan"].ToString(),
+                //    Convert.ToInt32(Session["meses"].ToString()),
+                //    Convert.ToInt32(Session["valorPlan"].ToString()),
+                //    strDescripcion,
+                //    strEstado
+                //);
+
                 cg.InsertarAfiliadoPlan(
                     Convert.ToInt32(Session["idAfiliado"].ToString()),
-                    Convert.ToInt32(Session["idPlan"].ToString()),
-                    Session["fechaInicioPlan"].ToString(),
-                    Session["fechaFinPlan"].ToString(),
-                    Convert.ToInt32(Session["meses"].ToString()),
-                    Convert.ToInt32(Session["valorPlan"].ToString()),
+                    Convert.ToInt32(idPlanQS),
+                    ViewState["fechaInicioPlan"].ToString(),
+                    ViewState["fechaFinPlan"].ToString(),
+                    meses,
+                    valorPlan,
                     strDescripcion,
                     strEstado
                 );
@@ -128,6 +186,8 @@ namespace WebPage
 
                 int idAfiliadoPlan = Convert.ToInt32(dt.Rows[0]["idAfiliadoPlan"].ToString());
                 Session["idAfiliadoPlan"] = idAfiliadoPlan;
+
+                //
 
                 // 3. Inserción de pago en base de datos
                 string idSiigoFactura = null;
@@ -229,15 +289,15 @@ namespace WebPage
         {
             try
             {
-                // Validar sesiones necesarias
-                if (Session["idAfiliado"] == null || Session["idPlan"] == null ||
-                    Session["fechaInicioPlan"] == null || Session["fechaFinPlan"] == null ||
-                    Session["meses"] == null || Session["valorPlan"] == null ||
-                    Session["emailAfiliado"] == null)
-                {
-                    MostrarAlerta("Información incompleta", "Parece que nos faltó un dato para seguir con tu pago.<br>Por favor, cierra esta página y vuelve a intentarlo para que todo funcione correctamente.", "warning", true);
-                    return false;
-                }
+                //// Validar sesiones necesarias
+                //if (Session["idAfiliado"] == null || Session["idPlan"] == null ||
+                //    Session["fechaInicioPlan"] == null || Session["fechaFinPlan"] == null ||
+                //    Session["meses"] == null || Session["valorPlan"] == null ||
+                //    Session["emailAfiliado"] == null)
+                //{
+                //    MostrarAlerta("Información incompleta", "Parece que nos faltó un dato para seguir con tu pago.<br>Por favor, cierra esta página y vuelve a intentarlo para que todo funcione correctamente.", "warning", true);
+                //    return false;
+                //}
 
                 clasesglobales cg = new clasesglobales();
                 DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
