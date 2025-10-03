@@ -28,6 +28,18 @@ namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
+        protected int IdPlan
+        {
+            get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
+            set { ViewState["idPlan"] = value; }
+        }
+
+        protected int IdVendedor
+        {
+            get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
+            set { ViewState["idVendedor"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -68,8 +80,8 @@ namespace WebPage
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(idPlanQS));
 
                 string idPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["idPlan"].ToString() : "0";
-                string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
-                string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["CodSiigoPlan"].ToString() : "";
+                //string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
+                //string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["CodSiigoPlan"].ToString() : "";
 
                 if (idPlan != idPlanQS || idPlan == "0")
                 {
@@ -89,9 +101,9 @@ namespace WebPage
                 hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
                 ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
 
-                Session["idPlan"] = idPlanQS;
-                Session["nombrePlan"] = nombrePlan;
-                Session["codSiigoPlan"] = codSiigoPlan;
+                IdPlan = Convert.ToInt32(idPlanQS);
+                //Session["nombrePlan"] = nombrePlan;
+                //Session["codSiigoPlan"] = codSiigoPlan;
 
                 dtPlan.Dispose();
 
@@ -180,8 +192,8 @@ namespace WebPage
                 idVendedor = "156";
             }
 
-            Session["idVendedor"] = idVendedor;
-            ViewState["idVendedor"] = idVendedor;
+            //Session["idVendedor"] = idVendedor;
+            IdVendedor = Convert.ToInt32(idVendedor);
         }
 
         private void CargarTipoDocumento()
@@ -261,7 +273,6 @@ namespace WebPage
                 if (dtAfiliado.Rows.Count > 0)
                 {
                     Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
-                    ViewState["idAfiliado"] = dtAfiliado.Rows[0]["IdAfiliado"];
                 }
 
                 string strNombre = txbNombre.Text.ToString();
@@ -389,10 +400,10 @@ namespace WebPage
                 if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17" || idPlanQS == "18" || idPlanQS == "19")
                 {
                     string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}" +
-                                     $"&idPlan={idPlanQS}" +
+                                     $"&idPlan={HttpUtility.UrlEncode(idPlanQS)}" +
                                      $"&fechaIni={HttpUtility.UrlEncode(strFechaInicioPlan)}" +
                                      $"&fechaFin={HttpUtility.UrlEncode(strFechaFinPlan)}" +
-                                     $"&idVendedor={HttpUtility.UrlEncode(ViewState["idVendedor"].ToString())}" +
+                                     $"&idVendedor={HttpUtility.UrlEncode(IdVendedor.ToString())}" +
                                      $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}";
 
                     TimeSpan ttl = TimeSpan.FromMinutes(30); // por ejemplo, token válido 30 minutos

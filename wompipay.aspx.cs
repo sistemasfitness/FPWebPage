@@ -27,11 +27,121 @@ namespace WebPage
     {
         static int idIntegracion = 1; // Pruebas
         //static int idIntegracion = 4; // Producción
+
+        protected int IdAfiliado
+        {
+            get { return ViewState["idAfi"] != null ? (int)ViewState["idAfi"] : 0; }
+            set { ViewState["idAfi"] = value; }
+        }
+
+        protected string DocumentoAfiliado
+        {
+            get { return ViewState["nroDoc"]?.ToString(); }
+            set { ViewState["nroDoc"] = value; }
+        }
+
+        protected string CorreoAfiliado
+        {
+            get { return ViewState["correo"]?.ToString(); }
+            set { ViewState["correo"] = value; }
+        }
+
+        protected int IdPlan
+        {
+            get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
+            set { ViewState["idPlan"] = value; }
+        }
+
+        protected string NombrePlan
+        {
+            get { return ViewState["nombrePlan"]?.ToString(); }
+            set { ViewState["nombrePlan"] = value; }
+        }
+
+        protected int MesesPlan
+        {
+            get { return ViewState["meses"] != null ? (int)ViewState["meses"] : 0; }
+            set { ViewState["meses"] = value; }
+        }
+
+        protected int ValorPlan
+        {
+            get { return ViewState["valorPlan"] != null ? (int)ViewState["valorPlan"] : 0; }
+            set { ViewState["valorPlan"] = value; }
+        }
+
+        protected string CodSiigoPlan
+        {
+            get { return ViewState["codSiigoPlan"]?.ToString(); }
+            set { ViewState["codSiigoPlan"] = value; }
+        }
+
+        protected string FechaInicioPlan
+        {
+            get { return ViewState["fechaInicioPlan"]?.ToString(); }
+            set { ViewState["fechaInicioPlan"] = value; }
+        }
+
+        protected string FechaFinPlan
+        {
+            get { return ViewState["fechaFinPlan"]?.ToString(); }
+            set { ViewState["fechaFinPlan"] = value; }
+        }
+
+        protected int IdVendedor
+        {
+            get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
+            set { ViewState["idVendedor"] = value; }
+        }
+
+        protected int IdSede
+        {
+            get { return ViewState["idSede"] != null ? (int)ViewState["idSede"] : 0; }
+            set { ViewState["idSede"] = value; }
+        }
+
+        //
+
+        protected string IdReferencia
+        {
+            get { return ViewState["idReferencia"]?.ToString(); }
+            set { ViewState["idReferencia"] = value; }
+        }
+
+        protected string DataIdToken
+        {
+            get { return ViewState["dataIdToken"]?.ToString(); }
+            set { ViewState["dataIdToken"] = value; }
+        }
+
+        protected string DataIdFuentePago
+        {
+            get { return ViewState["dataIdFuentePago"]?.ToString(); }
+            set { ViewState["dataIdFuentePago"] = value; }
+        }
+
+        protected string DataIdTransaccion
+        {
+            get { return ViewState["dataIdTransaccion"]?.ToString(); }
+            set { ViewState["dataIdTransaccion"] = value; }
+        }
+
+        protected string AcceptanceToken
+        {
+            get { return ViewState["acceptance_token"]?.ToString(); }
+            set { ViewState["acceptance_token"] = value; }
+        }
+
+        protected string AcceptPersonalAuth
+        {
+            get { return ViewState["accept_personal_auth"]?.ToString(); }
+            set { ViewState["accept_personal_auth"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
                 ValidarTokenURLEncryptor();
 
                 if (Session["idAfiliado"] != null)
@@ -42,15 +152,6 @@ namespace WebPage
                 {
                     Response.Redirect("default");
                 }
-
-                //if (Session["idAfiliado"].ToString() != "")
-                //{
-                //    ltValor.Text = Session["ltValorPlan"].ToString();
-                //}
-                //else
-                //{
-                //    Response.Redirect("default");
-                //}
             }
         }
 
@@ -84,16 +185,44 @@ namespace WebPage
 
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
-                ViewState["nroDoc"] = q["nroDoc"];
-                ViewState["idPlan"] = q["idPlan"];
-                ViewState["fechaInicioPlan"] = q["fechaIni"];
-                ViewState["fechaFinPlan"] = q["fechaFin"];
-                ViewState["idVendedor"] = q["idVendedor"];
-                ViewState["idSede"] = q["idSede"];
+                DocumentoAfiliado = q["nroDoc"];
+                IdPlan = Convert.ToInt32(q["idPlan"]);
+                FechaInicioPlan = q["fechaIni"];
+                FechaFinPlan = q["fechaFin"];
+                IdVendedor = Convert.ToInt32(q["idVendedor"]);
+                IdSede = Convert.ToInt32(q["idSede"]);
             }
             else
             {
                 Response.Redirect("default");
+            }
+        }
+
+        private void ConsultarDatosAfiliadoYPlan()
+        {
+            try
+            {
+                clasesglobales cg = new clasesglobales();
+                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
+
+                IdAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? Convert.ToInt32(dtAfi.Rows[0]["idAfiliado"].ToString()) : 0;
+                CorreoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["emailAfiliado"].ToString() : null;
+
+                DataTable dtPlan = cg.ConsultarPlanPorId(IdPlan);
+
+                MesesPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["meses"].ToString()) : 0;
+                ValorPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["valor"].ToString()) : 0;
+
+                NombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["nombrePlan"].ToString() : null;
+                CodSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["codSiigoPlan"].ToString() : null;
+
+                dtAfi.Dispose();
+                dtPlan.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MostrarAlerta("Error inesperado", "No pudimos confirmar tu información.<br>Por favor, cierra esta página e inténtalo nuevamente.", "error", true);
+                System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
             }
         }
         
@@ -101,6 +230,9 @@ namespace WebPage
         {
             try
             {
+                // 1. Obtener datos necesarios del afiliado y del plan
+                ConsultarDatosAfiliadoYPlan();
+
                 string cardNumber = txbCreditCard.Text.Replace(" ", "");
                 if (!cardNumber.All(char.IsDigit))
                 {
@@ -129,55 +261,32 @@ namespace WebPage
                     return;
                 }
 
-                clasesglobales cg = new clasesglobales();
-                //string idPlanQS = Session["idPlan"].ToString();
-                string idPlanQS = ViewState["idPlan"].ToString();
                 string strDescripcion = "Débito automático";
                 string strEstado = "Pendiente";
 
-                if (idPlanQS == "12" || idPlanQS == "17")
+                if (IdPlan == 12 || IdPlan == 17)
                 {
                     strDescripcion = "Débito automático Migración Clez";
                     strEstado = "Activo";
                 }
 
-                DataTable dtPlan = cg.ConsultarPlanPorId(Convert.ToInt32(idPlanQS));
-                
-                ViewState["meses"] = dtPlan.Rows[0]["meses"].ToString();
-                ViewState["valorPlan"] = dtPlan.Rows[0]["precioTotal"].ToString();
-
-                int meses = Convert.ToInt32(ViewState["meses"]);
-                int valorPlan = Convert.ToInt32(ViewState["valorPlan"]);
-
                 // TODO: CAMBIAR LÓGICA: AL INSERTAR EL AFILIADO PLAN, DEVUELVE EL ID DEL REGISTRO CREADO
 
-                //
-
-                // 1. Inserción de afiliación de cliente al plan
-                //cg.InsertarAfiliadoPlan(
-                //    Convert.ToInt32(Session["idAfiliado"].ToString()),
-                //    Convert.ToInt32(Session["idPlan"].ToString()),
-                //    Session["fechaInicioPlan"].ToString(),
-                //    Session["fechaFinPlan"].ToString(),
-                //    Convert.ToInt32(Session["meses"].ToString()),
-                //    Convert.ToInt32(Session["valorPlan"].ToString()),
-                //    strDescripcion,
-                //    strEstado
-                //);
+                clasesglobales cg = new clasesglobales();
 
                 cg.InsertarAfiliadoPlan(
-                    Convert.ToInt32(Session["idAfiliado"].ToString()),
-                    Convert.ToInt32(idPlanQS),
-                    ViewState["fechaInicioPlan"].ToString(),
-                    ViewState["fechaFinPlan"].ToString(),
-                    meses,
-                    valorPlan,
+                    IdAfiliado,
+                    IdPlan,
+                    FechaInicioPlan,
+                    FechaFinPlan,
+                    MesesPlan,
+                    ValorPlan,
                     strDescripcion,
                     strEstado
                 );
 
                 // 2. Obtención de idAfiliadoPlan recién creado
-                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(Convert.ToInt32(Session["idAfiliado"].ToString()));
+                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(IdAfiliado);
                 if (dt.Rows.Count == 0)
                 {
                     MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error");
@@ -185,7 +294,7 @@ namespace WebPage
                 }
 
                 int idAfiliadoPlan = Convert.ToInt32(dt.Rows[0]["idAfiliadoPlan"].ToString());
-                Session["idAfiliadoPlan"] = idAfiliadoPlan;
+                //Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
                 //
 
@@ -194,30 +303,30 @@ namespace WebPage
 
                 cg.InsertarPagoPlanAfiliadoWeb(
                     idAfiliadoPlan,
-                    Convert.ToInt32(Session["valorPlan"].ToString()),
+                    ValorPlan,
                     4,
-                    Session["idReferencia"].ToString(), 
+                    IdReferencia, 
                     "Ninguno",
-                    Convert.ToInt32(Session["idVendedor"].ToString()), // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
+                    IdVendedor, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,
-                    Session["dataIdToken"].ToString(), 
-                    Session["dataIdFuentePago"].ToString(), 
-                    Session["dataIdTransaccion"].ToString(), 
+                    DataIdToken, 
+                    DataIdFuentePago, 
+                    DataIdTransaccion, 
                     null,
                     null,
                     null
                 );
 
-                if (idPlanQS != "12")
+                if (IdPlan != 12)
                 {
                     // 4. Intentar facturar en Siigo
                     try
                     {
                         //int idSede = Convert.ToInt32(Session["idSede"].ToString());
-                        int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
+                        //int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
 
-                        DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                        DataTable dtIntegracion = cg.ConsultarIntegracion(IdSede);
                         string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
                         string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
                         string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
@@ -240,11 +349,11 @@ namespace WebPage
                         // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
                         // ESTÁ COMENTADO PARA PRUEBAS LOCALES
                         idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                            Session["documentoAfiliado"].ToString(),
-                            Session["codSiigoPlan"].ToString(),
-                            Session["nombrePlan"].ToString(),
-                            Convert.ToInt32(Session["valorPlan"].ToString()),
-                            idSede
+                            DocumentoAfiliado,
+                            CodSiigoPlan,
+                            NombrePlan,
+                            ValorPlan,
+                            IdSede
                         );
 
                         // Siigo Pruebas
@@ -265,6 +374,8 @@ namespace WebPage
 
                         // Actualizar pago con id de factura
                         cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+
+                        dtIntegracion.Dispose();
                     }
                     catch (Exception siigoEx)
                     {
@@ -314,15 +425,15 @@ namespace WebPage
                     ObtenerTokensDeAceptacion();
 
                     string dataIdToken = rObjetc.data.id;
-                    Session["dataIdToken"] = dataIdToken;
+                    DataIdToken = dataIdToken;
 
                     // Creación de fuente de pago en Wompi
                     bool fuentePagoCreada = await CrearFuentePagoAsync(
-                        Session["emailAfiliado"].ToString(),
+                        CorreoAfiliado,
                         "CARD",
                         dataIdToken,
-                        Session["acceptance_token"].ToString(),
-                        Session["accept_personal_auth"].ToString()
+                        AcceptanceToken,
+                        AcceptPersonalAuth
                     );
 
                     if (!fuentePagoCreada)
@@ -368,14 +479,14 @@ namespace WebPage
                 }
 
                 string dataid = rObjetc.data.id.ToString();
-                Session["dataIdFuentePago"] = dataid;
+                DataIdFuentePago = dataid;
 
                 // Crear referencia única para el cobro
-                string reference = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                Session["idReferencia"] = reference;
+                string reference = DocumentoAfiliado + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                IdReferencia = reference;
 
                 // Calcular hash SHA256
-                string monto = Session["valorPlan"].ToString() + "00"; // en centavos
+                string monto = ValorPlan + "00"; // en centavos
                 string moneda = "COP";
 
                 string integrity_secret = dtIntegracionWompi.Rows[0]["integrity_secret"].ToString();
@@ -388,7 +499,7 @@ namespace WebPage
                     Convert.ToInt32(monto), 
                     moneda, 
                     hash256, 
-                    Session["emailAfiliado"].ToString(), 
+                    CorreoAfiliado, 
                     1, 
                     reference, 
                     Convert.ToInt32(dataid)
@@ -400,6 +511,8 @@ namespace WebPage
                     MostrarAlerta("Error de tokenización", $"La tarjeta no pudo ser procesada. Estado: {estado}", "error");
                     return false;
                 }
+
+                dtIntegracionWompi.Dispose();
 
                 return true;
             }
@@ -431,7 +544,7 @@ namespace WebPage
                 }
 
                 string dataid2 = rObjetc.data.id;
-                Session["dataIdTransaccion"] = dataid2;
+                DataIdTransaccion = dataid2;
 
                 // Espera y reintentos para obtener estado definitivo
                 string estado = null;
@@ -736,8 +849,8 @@ namespace WebPage
                 Root rObjetc = JsonConvert.DeserializeObject<Root>(respuesta);
 
                 // Guardar los tokens en la sesión
-                Session["acceptance_token"] = rObjetc.data.presigned_acceptance.acceptance_token;
-                Session["accept_personal_auth"] = rObjetc.data.presigned_personal_data_auth.acceptance_token;
+                AcceptanceToken = rObjetc.data.presigned_acceptance.acceptance_token;
+                AcceptPersonalAuth = rObjetc.data.presigned_personal_data_auth.acceptance_token;
             }
             catch (Exception ex)
             {
