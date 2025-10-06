@@ -33,7 +33,7 @@ namespace WebPage
                     else
                     {
                         ValidarAfiliadoWeb();
-                        CargarEps();
+                        //CargarEps();
 
                         txbFechaNacimiento.Attributes.Add("type", "date");
 
@@ -46,10 +46,10 @@ namespace WebPage
                         txbDireccion.Text = dtAfiliado.Rows[0]["DireccionAfiliado"].ToString();
                         txbFechaNacimiento.Text = dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString();
 
-                        if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
-                        {
-                            ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
-                        }
+                        //if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
+                        //{
+                        //    ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
+                        //}
 
                         txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
 
@@ -90,14 +90,14 @@ namespace WebPage
             }
         }
 
-        private void CargarEps()
-        {
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarEpss();
-            ddlEPS.DataSource = dt;
-            ddlEPS.DataBind();
-            dt.Dispose();
-        }
+        //private void CargarEps()
+        //{
+        //    clasesglobales cg = new clasesglobales();
+        //    DataTable dt = cg.ConsultarEpss();
+        //    ddlEPS.DataSource = dt;
+        //    ddlEPS.DataBind();
+        //    dt.Dispose();
+        //}
 
         private void ValidarAfiliadoWeb()
         {
@@ -205,7 +205,7 @@ namespace WebPage
                         txbCorreo.Text,
                         txbDireccion.Text,
                         txbFechaNacimiento.Text, 
-                        int.Parse(ddlEPS.SelectedItem.Value.ToString()),
+                        1,
                         txbResponsable.Text, 
                         ddlParentesco.SelectedItem.Value.ToString(),
                         txbContacto.Text, 
