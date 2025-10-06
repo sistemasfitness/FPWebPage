@@ -143,15 +143,6 @@ namespace WebPage
             if (!IsPostBack)
             {
                 ValidarTokenURLEncryptor();
-
-                if (Session["idAfiliado"] != null)
-                {
-                    ltValor.Text = Session["ltValorPlan"].ToString();
-                }
-                else
-                {
-                    Response.Redirect("default");
-                }
             }
         }
 
@@ -181,7 +172,11 @@ namespace WebPage
         {
             string token = Request.QueryString["data"];
 
-            if (string.IsNullOrEmpty(token)) return;
+            if (string.IsNullOrEmpty(token))
+            {
+                Response.Redirect("default");
+                return;
+            }
 
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
