@@ -28,159 +28,133 @@ namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
+        protected int IdPlan
+        {
+            get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
+            set { ViewState["idPlan"] = value; }
+        }
+
+        protected int IdVendedor
+        {
+            get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
+            set { ViewState["idVendedor"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ValidarPlanes();
+                ValidarPlan();
+
+                ConfigurarCamposFecha();
 
                 CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
-
-                txbFechaNac.Attributes.Add("type", "date");
-                txbFechaIni.Attributes.Add("type", "date");
-                txbFechaFin.Attributes.Add("type", "date");
-
-                DateTime dtHoy = DateTime.Now;
-                DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
-                DateTime dt14 = DateTime.Now.AddYears(-14);
-                DateTime dt100 = DateTime.Now.AddYears(-100);
-                txbFechaNac.Attributes.Add("min", dt100.Year.ToString() + "-" + string.Format("{0:MM}", dt100) + "-" + String.Format("{0:dd}", dt100));
-                txbFechaNac.Attributes.Add("max", dt14.Year.ToString() + "-" + string.Format("{0:MM}", dt14) + "-" + String.Format("{0:dd}", dt14));
-
-                txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
-                txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
             }
+        }
 
+        private void ConfigurarCamposFecha()
+        {
+            txbFechaNac.Attributes.Add("type", "date");
+            txbFechaIni.Attributes.Add("type", "date");
+            txbFechaFin.Attributes.Add("type", "date");
+
+            DateTime dtHoy = DateTime.Now;
+            DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
+            DateTime dt14 = DateTime.Now.AddYears(-14);
+            DateTime dt100 = DateTime.Now.AddYears(-100);
+            txbFechaNac.Attributes.Add("min", dt100.Year.ToString() + "-" + string.Format("{0:MM}", dt100) + "-" + String.Format("{0:dd}", dt100));
+            txbFechaNac.Attributes.Add("max", dt14.Year.ToString() + "-" + string.Format("{0:MM}", dt14) + "-" + String.Format("{0:dd}", dt14));
+
+            txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
+            txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
-
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarPlanesWeb();
-
-            if (dt != null && dt.Rows.Count > 0 && Request.QueryString.Count > 0)
-            {
-                string idPlanQS = Request.QueryString["idPlan"];
-                //string idPlanQS = Session["idPlan"].ToString();
-
-                DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(idPlanQS));
-
-                string idPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["idPlan"].ToString() : "0";
-                string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
-                string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["CodSiigoPlan"].ToString() : "";
-
-                if (idPlan != idPlanQS || idPlan == "0")
-                {
-                    Response.Redirect("default");
-                }
-
-                if (dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1")
-                {
-                    txbMetodoPago.Text = "Débito Automático";
-                } 
-                else
-                {
-                    txbMetodoPago.Text = "Pago Único";
-                }
-
-                txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
-                hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
-                ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
-
-                Session["idPlan"] = idPlanQS;
-                Session["nombrePlan"] = nombrePlan;
-                Session["codSiigoPlan"] = codSiigoPlan;
-
-                dtPlan.Dispose();
-
-                if (idPlanQS == "12" || idPlanQS == "17")  // Plan de migracion 2.000 y 89.000
-                {
-                    txbFechaIni.Enabled = false;
-                    txbFechaFin.Enabled = false;
-                }
-            }
-
-            dt.Dispose();
         }
 
-        private void ValidarPlanes()
+        private void ValidarPlan()
         {
-            //string token = Request.QueryString["data"];
-            //if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
-            //{
-            //    var qs = HttpUtility.ParseQueryString(payload);
-            //    string idPlan = qs["idPlan"];
-            //    string idVendedor = qs["idVendedor"];
-
-            //    Session["idPlan"] = idPlan;
-
-            //    if (string.IsNullOrEmpty(idVendedor))
-            //    {
-            //        Session["idVendedor"] = "152";
-            //    }
-            //    else
-            //    {
-            //        Session["idVendedor"] = idVendedor;
-            //    }
-            //}
-
-            //string idPlanQS = Session["idPlan"].ToString();
-
-            string idPlanQS = Request.QueryString["idPlan"];
-            GestionarVendedor(idPlanQS);
-
-            //string idVendedorQS = string.IsNullOrEmpty(Request.QueryString["idVendedor"]) ? "152" : Request.QueryString["idVendedor"];
-
-            //Session["idVendedor"] = idVendedorQS;
-
-
-            //if (idPlanQS != "1" && idPlanQS != "10" && idPlanQS != "12" && idPlanQS != "16" && idPlanQS != "17")  // Planes: Migracion 2.000 y 89.000 - Easy 99.000 - 6+2 590.000 - 3+1 349.000
-            //{
-            //    Response.Redirect("default");
-            //}
-
-
-            /*
-             * 1. Plan de Asesores Comerciales:
-             * idPlanQS = "1"   ->  $99.000
-             * 
-             * 2. Planes de Migración:
-             * idPlanQS = "12"   -> $2.000
-             * idPlanQS = "17"   -> $89.000
-             * 
-             * 3. Planes de Página Web:
-             * idPlanQS = "18"   -> $99.000
-             * idPlanQS = "19"   -> $89.000
-            */
-
-            if (idPlanQS != "1" && idPlanQS != "12" && idPlanQS != "17" && idPlanQS != "18" && idPlanQS != "19")
+            try
             {
-                Response.Redirect("default");
+                /*
+                 * 1. Plan de Asesores Comerciales:
+                 * idPlanQS = "1"   ->  $99.000
+                 * 
+                 * 2. Planes de Migración:
+                 * idPlanQS = "12"   -> $2.000
+                 * idPlanQS = "17"   -> $89.000
+                 * 
+                 * 3. Planes de Página Web:
+                 * idPlanQS = "18"   -> $99.000
+                 * idPlanQS = "19"   -> $89.000
+                */
+
+                clasesglobales cg = new clasesglobales();
+                DataTable dt = cg.ConsultarPlanesWeb();
+
+                if (dt != null && dt.Rows.Count > 0 && Request.QueryString.Count > 0)
+                {
+                    IdPlan = Convert.ToInt32(Request.QueryString["idPlan"]);
+
+                    DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
+
+                    int idPlanBD = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["idPlan"]) : 0;
+
+                    if (idPlanBD != IdPlan || idPlanBD == 0)
+                    {
+                        Response.Redirect("default");
+                    }
+
+                    if (dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1")
+                    {
+                        txbMetodoPago.Text = "Débito Automático";
+                    }
+                    else
+                    {
+                        txbMetodoPago.Text = "Pago Único";
+                    }
+
+                    txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                    hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
+                    ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
+
+                    dtPlan.Dispose();
+
+                    if (IdPlan == 12 || IdPlan == 17)  // Plan de migracion 2.000 y 89.000
+                    {
+                        txbFechaIni.Enabled = false;
+                        txbFechaFin.Enabled = false;
+                    }
+                }
+
+                dt.Dispose();
+
+                GestionarVendedor(IdPlan);
+
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ValidarPlan: " + ex.ToString());
             }
         }
 
-        private void GestionarVendedor(string idPlan)
+        private void GestionarVendedor(int idPlan)
         {
-            string idVendedor = "";
-
             if (!string.IsNullOrEmpty(Request.QueryString["idVendedor"]))
             {
-                idVendedor = Request.QueryString["idVendedor"].ToString();
+                IdVendedor = Convert.ToInt32(Request.QueryString["idVendedor"]);
             }
 
-            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "1" || idPlan == "12" || idPlan == "17")
+            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == 1 || idPlan == 12 || idPlan == 17)
             {
-                idVendedor = "152";
+                IdVendedor = 152;
             }
 
-            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == "18" || idPlan == "19")
+            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == 18 || idPlan == 19)
             {
-                idVendedor = "156";
+                IdVendedor = 156;
             }
-
-            Session["idVendedor"] = idVendedor;
         }
 
         private void CargarTipoDocumento()
@@ -249,47 +223,37 @@ namespace WebPage
             {
                 clasesglobales cg = new clasesglobales();
 
-                //Guardamos los datos del afiliado
+                // Almacenar datos del afiliado
                 string strCedula = txbDocumento.Text.ToString();
-                Session.Add("documentoAfiliado", strCedula);
                 int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedItem.Value.ToString());
 
-                Session.Add("idAfiliado", "");
+                int idAfiliado = 0;
 
                 DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
                 if (dtAfiliado.Rows.Count > 0)
                 {
-                    Session.Add("idAfiliado", dtAfiliado.Rows[0]["IdAfiliado"]);
+                    idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
                 }
+                dtAfiliado.Dispose();
 
                 string strNombre = txbNombre.Text.ToString();
-                Session.Add("nombreAfiliado", strNombre);
                 string strApellido = txbApellido.Text.ToString();
-                Session.Add("apellidoAfiliado", strApellido);
                 string strCelular = txbCelular.Text.ToString();
-                Session.Add("celularAfiliado", strCelular);
                 string strEmail = txbEmail.Text.ToString();
-                Session.Add("emailAfiliado", strEmail);
                 int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
                 string strFechaNac = txbFechaNac.Text.ToString();
 
                 string strFechaInicioPlan = txbFechaIni.Text.ToString();
-                Session.Add("fechaInicioPlan", strFechaInicioPlan);
                 string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
-                Session.Add("fechaFinPlan", strFechaFinPlan);
 
-                DataTable dtPlan = cg.ConsultarPlanWebPorId(Convert.ToInt32(Session["idPlan"].ToString()));
-                Session.Add("meses", dtPlan.Rows[0]["Meses"]);
                 int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
                 int idSede = Convert.ToInt32(ddlSedes.SelectedItem.Value.ToString());
-                Session.Add("idSede", idSede);
                 string strValorPlan = hfValorPlan.Value;
-                Session.Add("valorPlan", strValorPlan);
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
-                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos sus datos
-                if (Session["idAfiliado"].ToString() != "")
+                // 1. Actualizar afiliado
+                if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
                     //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
@@ -328,7 +292,7 @@ namespace WebPage
                 }
                 else
                 {
-                    //Si no existe el documento del afiliado, lo creamos como nuevo.
+                    // 2. Si no, registrar afiliado
                     cg.InsertarAfiliadoWeb(
                         strCedula,
                         idTipoDocumento,
@@ -344,33 +308,24 @@ namespace WebPage
                     //EnviarCorreoBienvenida();
                 }
 
-                DataTable dtAfiliado2 = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                Session.Add("idAfiliado", dtAfiliado2.Rows[0]["IdAfiliado"]);
-
-                dtAfiliado.Dispose();
-                dtAfiliado2.Dispose();
-                dtPlan.Dispose();
-
-                // Consultamos los datos de Siigo
-
-                string idPlanQS = Request.QueryString["idPlan"];
-                
+                // Registrar o consultar cliente en Siigo
                 try
                 {
                     DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string urlTest = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
                     string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
                     string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
                     string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    dtIntegracion.Dispose();
 
-                    //string urlTest = "https://api.siigo.com/";
+                    //string url = "https://api.siigo.com/";
                     //string username = "sandbox@siigoapi.com";
                     //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
                     //string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
-                        urlTest,
+                        url,
                         username,
                         accessKey,
                         partnerId
@@ -383,9 +338,20 @@ namespace WebPage
                     System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
                 }
 
-                if (idPlanQS == "1" || idPlanQS == "12" || idPlanQS == "17" || idPlanQS == "18" || idPlanQS == "19")
+
+                if (IdPlan == 1 || IdPlan == 12 || IdPlan == 17 || IdPlan == 18 || IdPlan == 19)
                 {
-                    Response.Redirect("wompipay", false);
+                    string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}" +
+                                     $"&idPlan={HttpUtility.UrlEncode(IdPlan.ToString())}" +
+                                     $"&fechaIni={HttpUtility.UrlEncode(strFechaInicioPlan)}" +
+                                     $"&fechaFin={HttpUtility.UrlEncode(strFechaFinPlan)}" +
+                                     $"&idVendedor={HttpUtility.UrlEncode(IdVendedor.ToString())}" +
+                                     $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}";
+
+                    TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
+                    string token = UrlEncryptor.Encrypt(payload, ttl);
+
+                    Response.Redirect($"wompipay.aspx?data={HttpUtility.UrlEncode(token)}", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
@@ -533,6 +499,9 @@ namespace WebPage
                 }
 
                 string json = await response.Content.ReadAsStringAsync();
+
+                json = json.Replace("\\u00a5", "Ñ").Replace("\\u00a4", "ñ");
+
                 dynamic personaADRES = JsonConvert.DeserializeObject<dynamic>(json);
 
                 if (personaADRES == null || personaADRES.nombre == null || personaADRES.apellido == null)
@@ -582,15 +551,10 @@ namespace WebPage
 
             // Validar fecha
             if (!DateTime.TryParse(strFechaInicio, out fechaInicio)) return null;
-            
-            // Obtener el ID del plan desde la sesión
-            if (Session["idPlan"] == null) return null;
-
-            string idPlan = Session["idPlan"].ToString();
 
             // Consultar datos del plan
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarPlanWebPorId(Convert.ToInt32(idPlan));
+            DataTable dt = cg.ConsultarPlanWebPorId(IdPlan);
 
             if (dt == null || dt.Rows.Count == 0) return null;
 

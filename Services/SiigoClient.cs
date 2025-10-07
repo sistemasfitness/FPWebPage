@@ -225,10 +225,11 @@ namespace WebPage.Services
 
             clasesglobales cg = new clasesglobales();
             DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-            int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 28006;
-            int costCenterDefault = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["costCenterDefault"].ToString()) : 621;
-            int idVendedor = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idVendedor"].ToString()) : 856;
-            int idPayment = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idPayment"].ToString()) : 9438;
+            int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 66444;
+            int costCenterDefault = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["costCenterDefault"].ToString()) : 13053;
+            int idVendedor = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idVendedor"].ToString()) : 51883;
+            int idPayment = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idPayment"].ToString()) : 59576;
+            dtIntegracion.Dispose();
 
             // Más Datos - Pruebas
             //int idTipoDocumento = 28006;

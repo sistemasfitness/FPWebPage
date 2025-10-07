@@ -2,6 +2,7 @@
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Net.Mail;
@@ -9,95 +10,161 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.Services;
 
 namespace WebPage
 {
     public partial class verificacion : System.Web.UI.Page
     {
+        protected int IdAfiliado
+        {
+            get { return ViewState["idAfi"] != null ? (int)ViewState["idAfi"] : 0; }
+            set { ViewState["idAfi"] = value; }
+        }
+
+        protected string DocumentoAfiliado
+        {
+            get { return ViewState["nroDoc"]?.ToString(); }
+            set { ViewState["nroDoc"] = value; }
+        }
+
+        protected string CorreoAfiliado
+        {
+            get { return ViewState["correo"]?.ToString(); }
+            set { ViewState["correo"] = value; }
+        }
+
+        protected int IdAfiliadoPlan
+        {
+            get { return ViewState["idAfiPlan"] != null ? (int)ViewState["idAfiPlan"] : 0; }
+            set { ViewState["idAfiPlan"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString.Count > 0)
-                {
-                    clasesglobales cg = new clasesglobales();
+                ValidarTokenURLEncryptor();
 
-                    int idAfiliado = int.Parse(Request.QueryString["id"].ToString());
-
-                    DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
-
-                    if (dtAfiliado.Rows.Count == 0)
-                    {
-                        Response.Redirect("default");
-                    }
-                    else
-                    {
-                        ValidarAfiliadoWeb();
-                        //CargarEps();
-
-                        txbFechaNacimiento.Attributes.Add("type", "date");
-
-                        hfIdAfiliado.Value = dtAfiliado.Rows[0]["IdAfiliado"].ToString();
-                        ViewState["idAfiliado"] = hfIdAfiliado.Value;
-                        txbNombres.Text = dtAfiliado.Rows[0]["NombreAfiliado"].ToString();
-                        txbApellidos.Text = dtAfiliado.Rows[0]["ApellidoAfiliado"].ToString();
-                        txbCorreo.Text = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
-                        txbCelular.Text = dtAfiliado.Rows[0]["CelularAfiliado"].ToString();
-                        txbDireccion.Text = dtAfiliado.Rows[0]["DireccionAfiliado"].ToString();
-                        txbFechaNacimiento.Text = dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString();
-
-                        //if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
-                        //{
-                        //    ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
-                        //}
-
-                        txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
-
-                        if (dtAfiliado.Rows[0]["idTipoDocumento"].ToString() == "3")
-                        {
-                            ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
-                            ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
-                            ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
-                        }
-                        else
-                        {
-                            ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
-                            ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
-                            ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
-                            ddlParentesco.Items.Add(new ListItem("Hermano/a ", "Hermano/a"));
-                            ddlParentesco.Items.Add(new ListItem("Hijo/a", "Hijo/a"));
-                            ddlParentesco.Items.Add(new ListItem("Primo/a", "Primo/a"));
-                            ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
-                            ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
-                        }
-
-                        if (dtAfiliado.Rows[0]["Parentesco"].ToString() != "")
-                        {
-                            ddlParentesco.SelectedValue = dtAfiliado.Rows[0]["Parentesco"].ToString();
-                        }
-
-                        txbContacto.Text = dtAfiliado.Rows[0]["ContactoAfiliado"].ToString();
-                        ViewState["EmailAfiliado"] = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
-                        ViewState["ClaveAfiliado"] = dtAfiliado.Rows[0]["ClaveAfiliado"].ToString();
-
-                        ListaPreguntasParq();
-                    }
-                }
-                else
-                {
-                    Response.Redirect("default");
-                }
+                CargarInformacion();
             }
         }
 
-        //private void CargarEps()
-        //{
-        //    clasesglobales cg = new clasesglobales();
-        //    DataTable dt = cg.ConsultarEpss();
-        //    ddlEPS.DataSource = dt;
-        //    ddlEPS.DataBind();
-        //    dt.Dispose();
-        //}
+        private void ValidarTokenURLEncryptor()
+        {
+            string token = Request.QueryString["data"];
+
+            if (string.IsNullOrEmpty(token))
+            {
+                Response.Redirect("default");
+                return;
+            }
+
+            if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
+            {
+                IdAfiliado = Convert.ToInt32(q["idAfi"]);
+            }
+            else
+            {
+                Response.Redirect("default");
+            }
+        }
+
+        private void CargarInformacion()
+        {
+            try
+            {
+                clasesglobales cg = new clasesglobales();
+
+                DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(IdAfiliado);
+
+                if (dtAfiliadoPlan.Rows.Count == 0)
+                {
+                    MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
+                    return;
+                }
+
+                IdAfiliadoPlan = int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
+
+                dtAfiliadoPlan.Dispose();
+
+
+                DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(IdAfiliado);
+
+                if (dtAfiliado.Rows.Count == 0)
+                {
+                    Response.Redirect("default");
+                    return;
+                }
+
+                DocumentoAfiliado = dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString();
+
+                CargarEps();
+
+                txbFechaNacimiento.Attributes.Add("type", "date");
+
+                hfIdAfiliado.Value = IdAfiliado.ToString();
+                txbNombres.Text = dtAfiliado.Rows[0]["NombreAfiliado"].ToString();
+                txbApellidos.Text = dtAfiliado.Rows[0]["ApellidoAfiliado"].ToString();
+                txbCorreo.Text = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
+                txbCelular.Text = dtAfiliado.Rows[0]["CelularAfiliado"].ToString();
+                txbDireccion.Text = dtAfiliado.Rows[0]["DireccionAfiliado"].ToString();
+                txbFechaNacimiento.Text = dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString();
+
+                if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
+                {
+                    ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
+                }
+
+                txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
+
+                if (dtAfiliado.Rows[0]["idTipoDocumento"].ToString() == "3")
+                {
+                    ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
+                    ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
+                    ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
+                }
+                else
+                {
+                    ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
+                    ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
+                    ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
+                    ddlParentesco.Items.Add(new ListItem("Hermano/a ", "Hermano/a"));
+                    ddlParentesco.Items.Add(new ListItem("Hijo/a", "Hijo/a"));
+                    ddlParentesco.Items.Add(new ListItem("Primo/a", "Primo/a"));
+                    ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
+                    ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
+                }
+
+                if (dtAfiliado.Rows[0]["Parentesco"].ToString() != "")
+                {
+                    ddlParentesco.SelectedValue = dtAfiliado.Rows[0]["Parentesco"].ToString();
+                }
+
+                txbContacto.Text = dtAfiliado.Rows[0]["ContactoAfiliado"].ToString();
+                CorreoAfiliado = dtAfiliado.Rows[0]["EmailAfiliado"].ToString();
+                //ViewState["ClaveAfiliado"] = dtAfiliado.Rows[0]["ClaveAfiliado"].ToString();
+
+                dtAfiliado.Dispose();
+
+                ListaPreguntasParq();
+
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error al cargar la información: " + ex.ToString());
+            }
+        }
+
+        private void CargarEps()
+        {
+            clasesglobales cg = new clasesglobales();
+            DataTable dt = cg.ConsultarEpss();
+
+            ddlEPS.DataSource = dt;
+            ddlEPS.DataBind();
+
+            dt.Dispose();
+        }
 
         private void ValidarAfiliadoWeb()
         {
@@ -151,26 +218,6 @@ namespace WebPage
             {
                 clasesglobales cg = new clasesglobales();
 
-                int idAfiliado = ViewState["idAfiliado"] != null ? int.Parse(ViewState["idAfiliado"].ToString()) : 0;
-
-                DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(idAfiliado);
-
-                if (dtAfiliado.Rows.Count == 0)
-                {
-                    MostrarAlerta("Error", "El usuario no se encuentra registrado en el sistema.", "error");
-                    return;
-                }
-
-                DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(idAfiliado);
-
-                if (dtAfiliadoPlan.Rows.Count == 0)
-                {
-                    MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
-                    return;
-                }
-
-                int idAfiliadoPlan = int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
-
                 // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
 
                 foreach (RepeaterItem item in rpParq.Items)
@@ -184,41 +231,36 @@ namespace WebPage
 
                         cg.InsertarRespuestasDePreguntasParQPorIdAfiliadoWeb(
                             int.Parse(hfidParq.Value.ToString()),
-                            idAfiliado,
-                            idAfiliadoPlan,
+                            IdAfiliado,
+                            IdAfiliadoPlan,
                             respuestaPARQ
                         );
                     }
                 }
 
-                // TODO: Actualizar el estado del plan del afiliado de "Pendiente" a "Activo" (AfiliadosPlanes).
+                // Actualizar el estado del plan del afiliado
+                cg.ActualizarEstadoAfiliadoPlan(
+                    "Activo",
+                    IdAfiliado,
+                    IdAfiliadoPlan
+                );
 
-                string origenWeb = Request.QueryString["web"];
-
-                if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
-                {
-                    cg.ActualizarAfiliadoWeb(
-                        dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString(),
-                        txbNombres.Text,
-                        txbApellidos.Text,
-                        txbCelular.Text,
-                        txbCorreo.Text,
-                        txbDireccion.Text,
-                        txbFechaNacimiento.Text, 
-                        1,
-                        txbResponsable.Text, 
-                        ddlParentesco.SelectedItem.Value.ToString(),
-                        txbContacto.Text, 
-                        "Activo", 
-                        txbObservacionesPARQ.Text
-                    );
-
-                    cg.ActualizarEstadoPagoPlanAfiliado(
-                        "Activo",
-                        idAfiliado,
-                        idAfiliadoPlan
-                    );
-                }
+                // Actualizar la información y estado del afiliado
+                cg.ActualizarAfiliadoWeb(
+                    DocumentoAfiliado,
+                    txbNombres.Text,
+                    txbApellidos.Text,
+                    txbCelular.Text,
+                    txbCorreo.Text,
+                    txbDireccion.Text,
+                    txbFechaNacimiento.Text, 
+                    int.Parse(ddlEPS.SelectedItem.Value.ToString()),
+                    txbResponsable.Text, 
+                    ddlParentesco.SelectedItem.Value.ToString(),
+                    txbContacto.Text, 
+                    "Activo", 
+                    txbObservacionesPARQ.Text
+                );
 
 
                 // ConsultarPreguntaParQPorEstado
@@ -258,15 +300,11 @@ namespace WebPage
                 //    }
                 //}
 
-                dtAfiliado.Dispose();
-                dtAfiliadoPlan.Dispose();
-
                 // Enviar correo de confirmación
                 EnviarConfirmacion();
 
-                //TODO: Pagina intermedia donde informa que le enviamos un correo al afiliado.
-                Response.Redirect("gracias");
-
+                Response.Redirect("gracias", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
@@ -281,7 +319,7 @@ namespace WebPage
 
             string strAsunto = "Bienvenido a Fitness People CMD";
             string strRemitente = "sistemas@fitnesspeoplecmd.com";
-            string strDestinatario = ViewState["EmailAfiliado"].ToString();
+            string strDestinatario = CorreoAfiliado;
             //string strDestinatario = "chrislemoce@gmail.com";
             string strMensaje = "Bienvenido a Fitness People CMD.\r\n\r\n" +
                 "Ahora haces parte de la familia Fitness People CMD. Ingresa a nuestra página web: fitnesspeoplecolombia.com\r\n"; // +

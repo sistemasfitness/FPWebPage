@@ -7737,6 +7737,37 @@ namespace WebPage
             return respuesta;
         }
 
+        public string ActualizarEstadoAfiliado(string estado, int idAfiliado)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_ESTADO_AFILIADO", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@p_estado", estado);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public DataTable ConsultarPlanesWeb()
         {
             DataTable dt = new DataTable();
@@ -7925,6 +7956,47 @@ namespace WebPage
             return respuesta;
         }
 
+        public int InsertarAfiliadoPlanYDevolverId(int idAfiliado, int idPlan, string fechaInicioPlan, string fechaFinalPlan, int meses, int valor, string observaciones, string estado)
+        {
+            int idAfiliadoPlan = 0;
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_AFILIADO_PLAN", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
+                        cmd.Parameters.AddWithValue("@p_fecha_inicio", fechaInicioPlan);
+                        cmd.Parameters.AddWithValue("@p_fecha_fin", fechaFinalPlan);
+                        cmd.Parameters.AddWithValue("@p_meses", meses);
+                        cmd.Parameters.AddWithValue("@p_valor", valor);
+                        cmd.Parameters.AddWithValue("@p_observaciones", observaciones);
+                        cmd.Parameters.AddWithValue("@p_estado", estado);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idAfiliadoPlan = Convert.ToInt32(reader["idAfiliadoPlan"]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en InsertarAfiliadoPlan: " + ex.Message);
+                idAfiliadoPlan = -1; // -1 indica error
+            }
+
+            return idAfiliadoPlan;
+        }
+
         public string InsertarPagoPlanAfiliadoWeb(int idAfiliadoPlan, int valor, int idMedioPago, string idReferencia, string banco, int idUsuario, string estado, string idSiigoFactura, string idDataToken, string idDataFuente, string idDataTransaccion, string codDatafono, string idTransaccionRRN, string numFacturaDatafono)
         {
             string respuesta = string.Empty;
@@ -7964,7 +8036,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarEstadoPagoPlanAfiliado(string estado, int idAfiliado, int idAfiliadoPlan)
+        public string ActualizarEstadoAfiliadoPlan(string estado, int idAfiliado, int idAfiliadoPlan)
         {
             string respuesta = string.Empty;
             try
