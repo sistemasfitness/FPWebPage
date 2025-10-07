@@ -318,7 +318,7 @@ namespace WebPage
                     string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
                     dtIntegracion.Dispose();
 
-                    //string urlTest = "https://api.siigo.com/";
+                    //string url = "https://api.siigo.com/";
                     //string username = "sandbox@siigoapi.com";
                     //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
                     //string partnerId = "SandboxSiigoApi";
