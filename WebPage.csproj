@@ -224,6 +224,7 @@
     <Content Include=".gitignore" />
     <Content Include="404.html" />
     <Content Include="actualizardatos.aspx" />
+    <Content Include="aniversario.aspx" />
     <Content Include="assets\validate.js" />
     <Content Include="blog.aspx" />
     <Content Include="blogpost.aspx" />
@@ -716,6 +717,13 @@
     </Compile>
     <Compile Include="actualizardatos.aspx.designer.cs">
       <DependentUpon>actualizardatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aniversario.aspx.cs">
+      <DependentUpon>aniversario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aniversario.aspx.designer.cs">
+      <DependentUpon>aniversario.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="blog.aspx.cs">
