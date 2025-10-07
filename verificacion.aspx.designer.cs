@@ -105,6 +105,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.TextBox txbFechaNacimiento;
 
         /// <summary>
+        /// Control ddlEPS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEPS;
+
+        /// <summary>
         /// Control txbResponsable.
         /// </summary>
         /// <remarks>
@@ -175,51 +184,6 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chAcepto1;
-
-        /// <summary>
-        /// Control chAcepto2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chAcepto2;
-
-        /// <summary>
-        /// Control CheckBox1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-
-        /// <summary>
-        /// Control CheckBox2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
-
-        /// <summary>
-        /// Control CheckBox3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
-
-        /// <summary>
-        /// Control CheckBox4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
 
         /// <summary>
         /// Control btnVerificar.
