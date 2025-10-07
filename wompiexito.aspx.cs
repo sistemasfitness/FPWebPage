@@ -13,7 +13,7 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                if (Session["idAfiliado"].ToString() != "")
+                if (Session["idAfiliado"] != null)
                 {
                     ltValor1.Text = Session["ltValorPlan"].ToString();
                     ltValor2.Text = Session["ltValorPlan"].ToString();

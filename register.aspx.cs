@@ -97,13 +97,10 @@ namespace WebPage
                 if (dt != null && dt.Rows.Count > 0 && Request.QueryString.Count > 0)
                 {
                     IdPlan = Convert.ToInt32(Request.QueryString["idPlan"]);
-                    //string idPlanQS = Session["idPlan"].ToString();
 
                     DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
 
                     int idPlanBD = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["idPlan"]) : 0;
-                    //string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["NombrePlan"].ToString() : "";
-                    //string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["CodSiigoPlan"].ToString() : "";
 
                     if (idPlanBD != IdPlan || idPlanBD == 0)
                     {
@@ -122,9 +119,6 @@ namespace WebPage
                     txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
                     hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
                     ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
-
-                    //Session["nombrePlan"] = nombrePlan;
-                    //Session["codSiigoPlan"] = codSiigoPlan;
 
                     dtPlan.Dispose();
 
@@ -229,7 +223,7 @@ namespace WebPage
             {
                 clasesglobales cg = new clasesglobales();
 
-                //Guardamos los datos del afiliado
+                // Almacenar datos del afiliado
                 string strCedula = txbDocumento.Text.ToString();
                 int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedItem.Value.ToString());
 
@@ -240,6 +234,7 @@ namespace WebPage
                 {
                     idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
                 }
+                dtAfiliado.Dispose();
 
                 string strNombre = txbNombre.Text.ToString();
                 string strApellido = txbApellido.Text.ToString();
@@ -257,7 +252,7 @@ namespace WebPage
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
-                //Buscamos el documento en la tabla afiliados. Si no existe, creamos el afiliado. Si existe, actualizamos sus datos
+                // 1. Actualizar afiliado
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
@@ -297,7 +292,7 @@ namespace WebPage
                 }
                 else
                 {
-                    //Si no existe el documento del afiliado, lo creamos como nuevo.
+                    // 2. Si no, registrar afiliado
                     cg.InsertarAfiliadoWeb(
                         strCedula,
                         idTipoDocumento,
@@ -313,10 +308,7 @@ namespace WebPage
                     //EnviarCorreoBienvenida();
                 }
 
-                dtAfiliado.Dispose();
-
-                // Consultamos los datos de Siigo
-                
+                // Registrar o consultar cliente en Siigo
                 try
                 {
                     DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
@@ -324,6 +316,7 @@ namespace WebPage
                     string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
                     string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
                     string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    dtIntegracion.Dispose();
 
                     //string urlTest = "https://api.siigo.com/";
                     //string username = "sandbox@siigoapi.com";
@@ -355,13 +348,10 @@ namespace WebPage
                                      $"&idVendedor={HttpUtility.UrlEncode(IdVendedor.ToString())}" +
                                      $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}";
 
-                    TimeSpan ttl = TimeSpan.FromMinutes(30); // por ejemplo, token válido 30 minutos
+                    TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
                     string token = UrlEncryptor.Encrypt(payload, ttl);
 
-                    // redirige pasando token (ya es url-safe, pero es buena práctica UrlEncode de todos modos)
                     Response.Redirect($"wompipay.aspx?data={HttpUtility.UrlEncode(token)}", false);
-
-                    //Response.Redirect("wompipay", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
