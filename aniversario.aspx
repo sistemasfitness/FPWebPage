@@ -86,559 +86,176 @@
         </div>--%>
     </section>
 
-    <form runat="server" id="form2">
-        <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+    <section id="planes" class="margin_60_35" style="margin: 10rem 0 5rem 0; padding-top: 10px; padding-bottom: 15px;">
+        <div class="container" id="scroll-to">
+            <div class="row text-center plans">
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <div class="video-container">
+                            <iframe
+                                src="https://youtube.com/embed/Kf3AB4K0W9E"
+                                title="ANIVERSARIO 13"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen="">
+                            </iframe>
+                        </div>
+                        <h3 style="font-weight: 900; color: #E3FF00;">ANIVERSARIO 13</h3>
+                    </div>
+                </div>
 
-        <section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
-                <p class="lead styled" style="color: #FFF;">
-                    <img src="img/icono_cmd_3.png" style="width: 100px;" /><br />
+                <div class="col-md-4">
+                    <div class="img_container plan-center">
+                        <div class="video-container">
+                            <iframe
+                                src="https://youtube.com/embed/cXTYjFLt37A"
+                                title="¡LO QUE VIENE!"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen="">
+                            </iframe>
+                        </div>
+                        <h3 style="font-weight: 900; color: #E3FF00;">¡LO QUE VIENE!</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="img_container">
+                        <div class="video-container">
+                            <iframe
+                                src="https://youtube.com/embed/VB9K9wW6FM4"
+                                title="ANIVERSARIO 14"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen="">
+                            </iframe>
+                        </div>
+                        <h3 style="font-weight: 900; color: #E3FF00;">ANIVERSARIO 14</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="margin_60_35" id="testimonials2">
+        <div class="container">
+            <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
+                <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
+                        ¡Celebra con nosotros los 15 años de Fitness People!
+                    </h2>
+
+                    <p class="lead" style="color: #FFF;">
+                    Un evento único lleno de energía, competencia, premios y mucha historia fitness.
+                    </p>
+
+                    <p class="lead" style="color: #FFF; margin-bottom: 30px;">
+                    ¡Nos preparamos para el evento del año!
                     <br />
-                    <b>Somos un Centro Médico Deportivo catalogado como una IPS.</b>
-                </p>
-            </div>
-            <!--  End container-->
-        </section>
+                    <i><strong>Este 9 de noviembre en Cajasan Campoalegre,</strong> ven a vivir la celebración más esperada!</i>
+                    </p>
 
-        <section class="margin_60_35" id="sedes" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+                    <p class="lead" style="color: #FFF;">
+                    Forma parte de un día lleno de acción, donde nuestras sedes competirán en un emocionante:
+                    <br />
+                    <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Desafío InterSedes.</strong></i>
+                    <br />
+                    <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Super Clase colectiva.</strong></i>
+                    </p>
 
-                <div class="row">
-                    <div class="owl-carousel team-carousel3" width="600px">
+                    <h3 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 20px;">
+                        ¿Que incluye la inscripción?
+                    </h3>
 
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=1">
-                                            <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <p class="lead" style="color: #FFF;">
+                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Entrada al Evento.
+                    <br />
+                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Kit oficial (Camiseta, Gorra, Tula Full style Fitness people).
+                    <br />
+                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Participación en desafíos (opcional).
+                    <br />
+                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Oportunidad de Ganar premios y reconocimientos especiales; ¡Es hora de demostrar tus habilidades!.
+                    </p>
+                </div>
 
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=2">
-                                            <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=3">
-                                            <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=4">
-                                            <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=5">
-                                            <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=6">
-                                            <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=7">
-                                            <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=8">
-                                            <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=9">
-                                            <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=10">
-                                            <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
+                    <a href="" target="_blank" >
+                        <img src="img/aniversario/aniversario-15.jpg" alt="" class="img-responsive" style="border-radius: 15px;" />
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <section class="margin_60_35" id="bg_gray1" style="background: #000;">
-            <div class="container">
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;">
+                <h4 style="font-weight: 900;">¿Estás listo para representar tu sede y llevarla a la victoria?</h4>
+                <a href="" target="_blank" >
+                    <img src="img/comprar_ahora.png" style="width: 300px;" />
+                </a>
             </div>
-        </section>
+            <!-- End row -->
+        </div>
+    </section>
 
-        <section class="margin_60_35" id="bg_gray2" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container">
-                <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
-                <!--Team Carousel -->
-                <div class="row">
-                    <div class="owl-carousel team-carousel4">
+    <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 15px;">
+        <div class="container" id="scroll-to3">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>NUESTROS TBT</h2>
+            <div class="text-center plans">
 
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/combat1.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/funcional.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/kick_boxing1.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/pilates.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/rumba.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/spinning1.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/xtreme.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/grupales/xtreme_2.jpg" style="width: 600px;" alt="" />
-                            </div>
-                        </div>
-
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/01_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <a href="#planes">
-                            <img src="img/inscribete_aqui.png" class="img-responsive" style="width: 300px; display: inline;" />
-                        </a>
+
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/02_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
-                <!--End Team Carousel-->
-            </div>
-            <!--  End container-->
-        </section>
 
-        <section class="margin_60_35" id="profesionales" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container" id="scroll-to2">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
-                <div class="row text-center plans">
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container">
-                            <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;">
-                                <br />
-                                Deportólogo</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container">
-                            <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;">
-                                <br />
-                                Fisioterapeuta</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container">
-                            <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;">
-                                <br />
-                                Nutricionista</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
-                        <div class="img_container">
-                            <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
-                            <p style="font-weight: 600; color: #FFF;">
-                                <br />
-                                Profesionales del deporte</p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- End row plans-->
-
-            </div>
-            <!--  End container-->
-        </section>
-
-        <section id="planes" class="margin_60_35" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container" id="scroll-to">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
-                <p class="lead styled" style="font-weight: 500; color: #FFF;">
-                    En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
-                </p>
-                <div class="row text-center plans">
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <div class="video-container">
-                                <iframe
-                                    src="https://youtube.com/embed/GtExucKG9vI"
-                                    title="Aniversario13"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen="">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="img_container plan-center">
-                            <div class="video-container">
-                                <iframe
-                                    src="https://youtube.com/embed/OO1RO4SEIfw"
-                                    title="Aniversario13"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen="">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <div class="video-container">
-                                <iframe
-                                    src="https://youtube.com/embed/3QOv_1BvI4I"
-                                    title="Aniversario13"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen="">
-                                </iframe>
-                            </div>
-                        </div>
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/03_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <uc1:planes runat="server" ID="controlplanes" />
-
-        <div id="newsletter_container" style="background-color: #000;">
-            <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                    <div id="message-newsletter"></div>
-                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
-                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                    </form>--%>
-                        <a href="gympass">
-                            <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
-                        </a>
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/04_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
+
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/05_galeria-aniversario_13.jpg" class="img-responsive" />
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/06_galeria-aniversario_13.jpg" class="img-responsive" />
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/07_galeria-aniversario_14.jpg" class="img-responsive" />
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                    <div class="img_container">
+                        <img src="img/aniversario/08_galeria-aniversario_14.jpg" class="img-responsive" />
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4 ultima-foto-galeria">
+                    <div class="img_container">
+                        <img src="img/aniversario/09_galeria-aniversario_14.jpg" class="img-responsive" />
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <%--<section id="feat">
-            <div class="container">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
-                <p class="lead styled" style="color: #FFF;">
-                    <b>Somos un Centro Médico Deportivo catalogado como una IPS.</b>
-                </p>
-                <div class="row">
-                    <div class="col-sm-4 fadeIn animated" data-wow-delay="0.2s">
-                        <div class="box_feat">
-                            <img src="img/svgtopng/Recurso-40.png" width="100px" />
-                            <h3 style="font-weight: 900; color: #FFF;">10 Sedes</h3>
-                            <p style="font-weight: 500; color: #FFF;">
-                                Tenemos 8 sedes en Bucaramanga y toda su área metropolitana y 2 sedes más en Cúcuta.<br />
-                                <a href="#" style="font-weight: 900; color: #FFF;">Más información</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 fadeIn animated" data-wow-delay="0.5s">
-                        <div class="box_feat">
-                            <img src="img/svgtopng/Recurso-39.png" width="100px" />
-                            <h3 style="font-weight: 900; color: #FFF;">Profesionales de la Salud</h3>
-                            <p style="font-weight: 500; color: #FFF;">
-                                Contamos con los mejores profesionales de la salud: Fisioterapeutas, médicos deportologos y nutricionistas.<br />
-                                <a href="#" style="font-weight: 900; color: #FFF;">Más información</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 fadeIn animated" data-wow-delay="1s">
-                        <div class="box_feat">
-                            <img src="img/svgtopng/Recurso-33.png" width="100px" />
-                            <h3 style="font-weight: 900; color: #FFF;">Clases individuales y grupales</h3>
-                            <p style="font-weight: 500; color: #FFF;">
-                                Más de 500 clases grupales y personalizadas al mes.<br />
-                                <a href="#" style="font-weight: 900; color: #FFF;">Más información</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>--%>
-
-        <section class="margin_60_35" id="bg_gray3">
-            <div class="container">
-                <h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>
-                <!--Team Carousel -->
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/coopfuturo.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/fecolsa.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/freskoop.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/cooprofesores.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!--End Team Carousel-->
-            </div>
-            <!--  End container-->
-        </section>
-        <!--  End section-->
-
-
-        <div id="seleccion_sede">
-            <div class="container margin_60">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        <%--<h3 style="font-weight: 600;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>--%>
-                        <div id="message-newsletter"></div>
-
-                        <asp:UpdatePanel ID="upContacto" runat="server">
-                            <ContentTemplate>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:HyperLink ID="hlContacto" runat="server" Target="_blank" CssClass="btn_slider">HABLA CON UN ASESOR</asp:HyperLink>
-                                        <%--<a href="https://wa.me/573146887259?text=Hola,%20estoy%20interesad@%20en%20los%20planes%20de%20Fitness%20People" target="_blank" class=" btn_full">HABLA CON UN ASESOR</a>--%>
-                                    </div>
-                                </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-
-                        <%--<button id="submit-newsletter" class="btn_1">HABLA CON UN ASESOR</button>--%>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End newsletter_container -->
-    </form>
+    </section>
 
     <uc1:footer runat="server" ID="footer" />
 
@@ -839,23 +456,45 @@
     </script>--%>
 
     <style>
-    .video-container {
-        position: relative;
-        padding-bottom: 177.78%; /* 16:9 es 56.25%, pero Shorts son 9:16 => 177.78% */
-        height: 0;
-        overflow: hidden;
-        max-width: 100%;
-        background: #000;
-        border-radius: 15px;
-    }
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 177.78%; /* 16:9 es 56.25%, pero Shorts son 9:16 => 177.78% */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 15px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        #testimonials3 .plans > [class*="col-"] {
+            margin-bottom: 20px; /* Espacio vertical entre filas */
+        }
+
+        /* Espacio horizontal entre columnas */
+        #testimonials3 .plans .img_container {
+            margin: 0 10px; /* agrega espacio lateral */
+        }
+
+        @media (max-width: 767px) { /* dispositivos pequeños (celulares) */
+            .plans .col-md-4 {
+                margin-bottom: 20px; /* separación vertical entre videos */
+            }
+
+            .ultima-foto-galeria {
+                display: none;
+            }
+        }
+
     </style>
 
     <noscript>
