@@ -219,7 +219,7 @@
                         <div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
-                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573105150340" class="phone" target="_blank">3105150340</a>
+                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573107842151" class="phone" target="_blank">310 7842151</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
                         </div>
                     </div>
