@@ -81,12 +81,12 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/aniversario-2025.jpg" data-natural-width="1400" data-natural-height="470">
-        <%--<div id="sub_content_in">
-            <h1 style="font-weight: 900;">PLAN EASY</h1>
-        </div>--%>
+        <div id="sub_content_in">
+            <h1 style="font-weight: 900;">ANIVERSARIO 15 AÑOS</h1>
+        </div>
     </section>
 
-    <section id="planes" class="margin_60_35" style="margin: 10rem 0 5rem 0; padding-top: 10px; padding-bottom: 15px;">
+    <section id="planes" class="margin_60_35" style="margin: 11rem 0 5rem 0; padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
             <div class="row text-center plans">
                 <div class="col-md-4">
@@ -140,53 +140,57 @@
     <section class="margin_60_35" id="testimonials2">
         <div class="container">
             <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
-                <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
-                        ¡Celebra con nosotros los 15 años de Fitness People!
-                    </h2>
+                <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-evenly;">
+                    <div style="margin-bottom: 20px;">
+                        <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
+                            ¡Celebra con nosotros los 15 años de Fitness People!
+                        </h2>
 
-                    <p class="lead" style="color: #FFF;">
-                    Un evento único lleno de energía, competencia, premios y mucha historia fitness.
-                    </p>
+                        <p class="lead" style="color: #FFF;">
+                        Un evento único lleno de energía, competencia, premios y mucha historia fitness.
+                        </p>
 
-                    <p class="lead" style="color: #FFF; margin-bottom: 30px;">
-                    ¡Nos preparamos para el evento del año!
-                    <br />
-                    <i><strong>Este 9 de noviembre en Cajasan Campoalegre,</strong> ven a vivir la celebración más esperada!</i>
-                    </p>
+                        <p class="lead" style="color: #FFF; margin-bottom: 30px;">
+                        ¡Nos preparamos para el evento del año!
+                        <br />
+                        <i><strong>Este 9 de noviembre en Cajasan Campoalegre,</strong> ven a vivir la celebración más esperada!</i>
+                        </p>
 
-                    <p class="lead" style="color: #FFF;">
-                    Forma parte de un día lleno de acción, donde nuestras sedes competirán en un emocionante:
-                    <br />
-                    <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Desafío InterSedes.</strong></i>
-                    <br />
-                    <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Super Clase colectiva.</strong></i>
-                    </p>
+                        <p class="lead" style="color: #FFF;">
+                        Forma parte de un día lleno de acción, donde nuestras sedes competirán en un emocionante:
+                        <br />
+                        <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Desafío entre Sedes.</strong></i>
+                        <br />
+                        <i class="fa fa-medal" style="color: #E3FF00;"></i> <i><strong>Super Clase colectiva.</strong></i>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 20px;">
+                            ¿Que incluye la inscripción?
+                        </h3>
 
-                    <h3 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 20px;">
-                        ¿Que incluye la inscripción?
-                    </h3>
-
-                    <p class="lead" style="color: #FFF;">
-                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Entrada al Evento.
-                    <br />
-                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Kit oficial (Camiseta, Gorra, Tula Full style Fitness people).
-                    <br />
-                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Participación en desafíos (opcional).
-                    <br />
-                    <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Oportunidad de Ganar premios y reconocimientos especiales; ¡Es hora de demostrar tus habilidades!.
-                    </p>
+                        <p class="lead" style="color: #FFF;">
+                        <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Entrada al Evento.
+                        <br />
+                        <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Kit oficial (Camiseta, Gorra, Tula Full style Fitness people).
+                        <br />
+                        <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Participación en desafíos (opcional).
+                        <br />
+                        <i class="fa-regular fa-square-check" style="color: #E3FF00;"></i> Oportunidad de Ganar premios y reconocimientos especiales; ¡Es hora de demostrar tus habilidades!.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
-                    <a href="" target="_blank" >
-                        <img src="img/aniversario/aniversario-15.jpg" alt="" class="img-responsive" style="border-radius: 15px;" />
+                    <a href="#" target="_blank" >
+                        <img src="img/aniversario/aniversario-15_02.jpeg" alt="/" class="img-responsive" style="border-radius: 15px;" />
                     </a>
                 </div>
             </div>
             <div class="row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;">
                 <h4 style="font-weight: 900;">¿Estás listo para representar tu sede y llevarla a la victoria?</h4>
-                <a href="" target="_blank" >
+                <a href="#" target="_blank" >
                     <img src="img/comprar_ahora.png" style="width: 300px;" />
                 </a>
             </div>
@@ -194,7 +198,7 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 15px;">
+    <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 100px;">
         <div class="container" id="scroll-to3">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>NUESTROS TBT</h2>
             <div class="text-center plans">
