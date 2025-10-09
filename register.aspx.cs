@@ -45,8 +45,8 @@ namespace WebPage
             if (!IsPostBack)
             {
                 // TODO: ESTE SOLO SE REALIZA PARA EL SERVER DE CAMILOWEB - BORRAR DESPUES
-                string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
-                Response.Redirect(urlRedirect);
+                //string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
+                //Response.Redirect(urlRedirect);
 
                 ValidarPlan();
 
