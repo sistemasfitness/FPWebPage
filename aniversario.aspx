@@ -183,14 +183,14 @@
                 </div>
 
                 <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
-                    <a href="#" target="_blank" >
+                    <a href="https://app.clez.co/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20151" target="_blank" >
                         <img src="img/aniversario/aniversario-15_02.jpeg" alt="/" class="img-responsive" style="border-radius: 15px;" />
                     </a>
                 </div>
             </div>
             <div class="row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;">
                 <h4 style="font-weight: 900;">¿Estás listo para representar tu sede y llevarla a la victoria?</h4>
-                <a href="#" target="_blank" >
+                <a href="https://app.clez.co/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=20151" target="_blank" >
                     <img src="img/comprar_ahora.png" style="width: 300px;" />
                 </a>
             </div>
