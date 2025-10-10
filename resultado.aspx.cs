@@ -25,8 +25,8 @@ namespace WebPage
         //    string imgInfo = respuestaPlan == "1" ? "resultado_03_transformacion-total-info.png" :
         //                     respuestaPlan == "2" ? "resultado_01_plan-easy-info.png" : "resultado_02_plan-6-meses-info.png";
 
-        //    string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.png" :
-        //                     respuestaPlan == "2" ? "resultado_01_plan-easy-foto.png" : "resultado_02_plan-6-meses-foto.png";
+        //    string imgFoto = respuestaPlan == "1" ? "resultado_03_transformacion-total-foto.jpg" :
+        //                     respuestaPlan == "2" ? "resultado_01_plan-easy-foto.jpg" : "resultado_02_plan-6-meses-foto.jpg";
 
         //    ltImagenInfoPlan.Text = "<img src=\"img/descubrir-plan/" + imgInfo + "\" alt=\"\" class=\"img-responsive\" />";
         //    ltImagenInfoFoto.Text = "<img src=\"img/descubrir-plan/" + imgFoto + "\" alt=\"\" class=\"img-responsive\" />";
