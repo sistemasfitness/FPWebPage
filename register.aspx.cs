@@ -315,17 +315,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    dtIntegracion.Dispose();
+                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    //dtIntegracion.Dispose();
 
-                    //string url = "https://api.siigo.com/";
-                    //string username = "sandbox@siigoapi.com";
-                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    //string partnerId = "SandboxSiigoApi";
+                    string url = "https://api.siigo.com/";
+                    string username = "sandbox@siigoapi.com";
+                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
