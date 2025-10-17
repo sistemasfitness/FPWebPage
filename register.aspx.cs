@@ -45,8 +45,8 @@ namespace WebPage
             if (!IsPostBack)
             {
                 // TODO: ESTE SOLO SE REALIZA PARA EL SERVER DE CAMILOWEB - BORRAR DESPUES
-                string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
-                Response.Redirect(urlRedirect);
+                //string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
+                //Response.Redirect(urlRedirect);
 
                 ValidarPlan();
 
@@ -70,12 +70,18 @@ namespace WebPage
             DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
             DateTime dt14 = DateTime.Now.AddYears(-14);
             DateTime dt100 = DateTime.Now.AddYears(-100);
+
             txbFechaNac.Attributes.Add("min", dt100.Year.ToString() + "-" + string.Format("{0:MM}", dt100) + "-" + String.Format("{0:dd}", dt100));
             txbFechaNac.Attributes.Add("max", dt14.Year.ToString() + "-" + string.Format("{0:MM}", dt14) + "-" + String.Format("{0:dd}", dt14));
 
             txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
             txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
             txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+
+            if (IdPlan != 12)
+            {
+                txbFechaIni.Attributes.Add("max", String.Format("{0:yyyy-MM-dd}", DateTime.Now.AddDays(3)));
+            }
         }
 
         private void ValidarPlan()
@@ -260,27 +266,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    //if (dtFechaFinPlan.Rows.Count > 0)
-                    //{
-                    //    // Obtener fecha de fin anterior
-                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    if (dtFechaFinPlan.Rows.Count > 0)
+                    {
+                        // Obtener fecha de fin anterior
+                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                    //    if (fechaInicioNuevo <= fechaFinAnterior)
-                    //    {
-                    //        MostrarAlerta(
-                    //            "Fecha de inicio inválida",
-                    //            "La fecha de inicio del plan debe ser posterior a la fecha de finalización de un plan activo.",
-                    //            "warning"
-                    //        );
+                        if (fechaInicioNuevo <= fechaFinAnterior)
+                        {
+                            MostrarAlerta(
+                                "Fechas en conflicto",
+                                "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
+                                "warning"
+                            );
 
-                    //        return;
-                    //    }
-                    //}
+                            return;
+                        }
+                    }
 
-                    //dtFechaFinPlan.Dispose();
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,

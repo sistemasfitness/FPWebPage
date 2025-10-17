@@ -8,6 +8,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
     <!-- Google Tag Manager (script) -->
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ND126BW41D"></script>
     <script>
@@ -199,16 +207,16 @@
                                                 <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4" style="color: #fff;">
                                             <div class="form-group">
-                                                <label style="color: #808080;">Fecha de inicio:</label>
+                                                <label>Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
                                                     AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <label style="color: #808080;">Fecha de fin:</label>
+                                                <label>Fecha de fin:</label>
                                                 <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>

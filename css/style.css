@@ -3638,6 +3638,16 @@ body.swal2-shown {
 .form-web textarea {
 	background-color: #3c3c3c;
 }
+
+input[type="date"],
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+	color: #fff !important;
+}
 /* Inputs de Formularios */
 
 /* infocontacto.aspx */
