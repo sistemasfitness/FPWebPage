@@ -18,7 +18,7 @@
             <div class="col-md-4">
                 <div class="img_container plan-center">
                     <a href="planes?id=10">
-                        <img src="img/planes/03_plan-6-mas-2_2025-09-08.jpg" class="img-fluid plan-img" />
+                        <img src="img/planes/03_plan-6-mas-2_2025-10-17.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <div class="img_container">
                     <a href="planes?id=16">
-                        <img src="img/planes/02_plan-3-mas-1_2025-09-08.jpg" class="img-fluid plan-img" />
+                        <img src="img/planes/02_plan-3-mas-1_2025-10-17.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
