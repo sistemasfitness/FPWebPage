@@ -207,16 +207,16 @@
                                                 <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4" style="color: #fff;">
                                             <div class="form-group">
-                                                <label style="color: #808080;">Fecha de inicio:</label>
+                                                <label>Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
                                                     AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <label style="color: #808080;">Fecha de fin:</label>
+                                                <label>Fecha de fin:</label>
                                                 <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
