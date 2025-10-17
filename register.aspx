@@ -245,8 +245,12 @@
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
                         <div class="box_style_2" style="color: black;">
-                            <div id="total_cart">
+                            <asp:Literal ID="ltPlanEasy" runat="server"></asp:Literal>
+                            <div id="total_cart" class="ocultar">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
@@ -345,6 +349,10 @@
                         $("#plan-easy").modal("show");
                     }
                 });
+            }
+
+            if (params.get("idPlan") === "19"){
+                document.querySelector('.ocultar').style.display = 'none';
             }
         });
 

@@ -123,10 +123,10 @@
                                 </div>          
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label for="ddlMes">Mes expira:</label>
+                                        <label for="ddlMes">Mes de expiración:</label>
                                         <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Mes" DataValueField="ddlMes" CssClass="form-control" >
-                                            <asp:ListItem Text="Mes" Value=""></asp:ListItem>
+                                            <asp:ListItem Text="Selecciona el mes" Value=""></asp:ListItem>
                                             <asp:ListItem Text="Enero" Value="01"></asp:ListItem>
                                             <asp:ListItem Text="Febrero" Value="02"></asp:ListItem>
                                             <asp:ListItem Text="Marzo" Value="03"></asp:ListItem>
@@ -144,10 +144,10 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label for="ddlAnho">Año expira:</label>
+                                        <label for="ddlAnho">Año de expiración:</label>
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" >
-                                            <asp:ListItem Text="Año" Value=""></asp:ListItem>
+                                            <asp:ListItem Text="Selecciona el año" Value=""></asp:ListItem>
                                             <asp:ListItem Text="2024" Value="24"></asp:ListItem>
                                             <asp:ListItem Text="2025" Value="25"></asp:ListItem>
                                             <asp:ListItem Text="2026" Value="26"></asp:ListItem>
@@ -168,16 +168,16 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <label for="txbCVC">CVC (Código de seguridad):</label>
+                                        <label for="txbCVC">Código de seguridad (CVC):</label>
                                         <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" 
-                                            MaxLength="4" placeholder="•••" oninput="formatCVC(this)" 
+                                            MaxLength="4" placeholder="123" oninput="formatCVC(this)" 
                                             required="" name="txbCVC"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="txbNombreTarjeta">Nombre en la tarjeta:</label>
-                                        <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" placeholder="Pepito Pérez" 
+                                        <label for="txbNombreTarjeta">Nombre impreso en la tarjeta:</label>
+                                        <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" placeholder="Nombre del titular" 
                                             name="txbNombreTarjeta"></asp:TextBox>
                                     </div>
                                 </div>
@@ -189,15 +189,21 @@
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
                         <div class="box_style_2" style="color: black;">
-                            <div id="total_cart">
+                            <asp:Literal ID="ltPlanEasy" runat="server"></asp:Literal>
+                            <div id="total_cart" class="divHidden">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
                                     <input type="checkbox" id="cbAutorizo1" onclick="validarAutorizaciones()" />
 
                                     <label for="cbAutorizo1">
-                                        <span>Acepto haber leido <b><a style="color: #000000; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a></b> para hacer este pago.</span>
+                                        <span>
+                                            Acepto haber leido <b><a style="color: #000000; text-decoration: revert;" href="https://wompi.com/assets/downloadble/reglamento-Usuarios-Colombia.pdf" target="_blank">los reglamentos y la politica de privacidad</a></b> para hacer este pago.
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">

@@ -1,4 +1,4 @@
-/*
+﻿/*
 Theme Name: Lovefit 
 Theme URI: http://www.ansonika.com/lovefit/
 Author: Ansonika
@@ -2009,11 +2009,9 @@ s.checkbox-holder {
 
 .checkbox {
 	position: relative;
-	display: block;
-}
-
-.checkbox {
-	position: relative;
+	display: flex;
+	align-items: flex-start;
+	cursor: pointer;
 }
 
 	.checkbox label:before {
@@ -2056,10 +2054,13 @@ s.checkbox-holder {
 	}
 
 	.checkbox input[type=checkbox] {
+		position: relative;
+		z-index: 2;
+		width: 18px;
+		height: 18px;
+		margin: 0;
 		opacity: 0;
-		position: absolute;
-		width: 0;
-		height: 0;
+		cursor: pointer;
 	}
 
 		.checkbox input[type=checkbox]:checked + label:after {
@@ -2073,6 +2074,84 @@ s.checkbox-holder {
 	white-space: normal;
 	color: #fff;
 }
+
+/*.checkbox {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;*/ /* 🔹 Añade espacio entre el checkbox y el texto */
+	/*cursor: pointer;
+}
+
+	.checkbox input[type=checkbox] {
+		position: relative;
+		z-index: 2;
+		width: 18px;
+		height: 18px;
+		margin: 0;
+		opacity: 0;
+		cursor: pointer;
+	}*/
+
+	/* Cuadro visual del checkbox */
+	/*.checkbox label {
+		position: relative;
+		padding-left: 28px;*/ /* 🔹 Espacio para el recuadro */
+		/*line-height: 20px;
+		cursor: pointer;
+	}*/
+
+		/* Recuadro base */
+		/*.checkbox label:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 18px;
+			height: 18px;
+			border: 2px solid black;
+			background: transparent;
+			transition: background-color 0.3s;
+			border-radius: 4px;*/ /* 🔹 Opción estética */
+		/*}*/
+
+		/* Check visual */
+		/*.checkbox label:after {
+			content: '';
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			width: 8px;
+			height: 8px;
+			opacity: 0;
+			background: black;
+			transition: all 0.3s ease;
+		}*/
+
+	/* Cuando está marcado */
+	/*.checkbox input[type=checkbox]:checked + label:after {
+		opacity: 1;
+	}*/
+
+	/* Texto */
+	/*.checkbox label span {
+		margin-left: 6px;
+		color: #000;
+		white-space: normal;
+	}
+
+	.checkbox label a {
+		color: #000;
+		text-decoration: underline;
+	}
+
+.checkbox-dark label:before {
+	border-color: #000;
+}
+
+.checkbox-dark label:after {
+	background: #000;
+}*/
 
 .btn.btn-submit {
 	width: 100%;
@@ -3437,7 +3516,7 @@ body.swal2-shown {
 }
 
 .swal2-close {
-	color: #E3FF00; /* bot�n de cerrar */
+	color: #E3FF00; /* botón de cerrar */
 }
 
 .swal2-close:hover{
@@ -3538,7 +3617,7 @@ body.swal2-shown {
 }
 
 /*  Hecho por: Carlos Rivera 
-	Controlar alto del slider para resoluciones m�viles y de escritorio
+	Controlar alto del slider para resoluciones móviles y de escritorio
 */
 #layerslider {
 	height: 800px; /* valor por defecto */
@@ -3678,10 +3757,10 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	z-index: 1; /* para que se vea por encima */
 }
 
-/* Ajuste en pantallas peque�as: todo igual */
+/* Ajuste en pantallas pequeñas: todo igual */
 @media (max-width: 991px) {
 	.plan-center {
-		transform: scale(1); /* ya no lo agranda en m�vil */
+		transform: scale(1); /* ya no lo agranda en móvil */
 	}
 }
 /* planes.ascx */

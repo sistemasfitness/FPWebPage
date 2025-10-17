@@ -52,11 +52,39 @@ namespace WebPage
 
                 ConfigurarCamposFecha();
 
+                CargarInformacionPlan();
+
                 CambiarPlanSeleccionado();
 
                 CargarTipoDocumento();
                 CargarGeneros();
                 CargarCiudades();
+            }
+        }
+
+        private void CargarInformacionPlan()
+        {
+            if (IdPlan == 18)
+            {
+                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+            }
+
+            if (IdPlan == 19)
+            {
+                ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px;'>
+                                        ANTES <span class='pull-right' style='text-decoration: line-through;'>$99.000</span>
+                                    </div>
+                                    <div id='total_cart'>
+                                        AHORA <span class='pull-right'>$89.000</span>
+                                    </div>";
+
+                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
             }
         }
 
@@ -266,27 +294,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Fechas en conflicto",
-                                "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Fechas en conflicto",
+                    //            "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,

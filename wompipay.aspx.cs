@@ -177,6 +177,8 @@ namespace WebPage
             if (!IsPostBack)
             {
                 ValidarTokenURLEncryptor();
+
+                //CargarInformacionPlan();
             }
         }
 
@@ -198,10 +200,43 @@ namespace WebPage
                 FechaFinPlan = q["fechaFin"];
                 IdVendedor = Convert.ToInt32(q["idVendedor"]);
                 IdSede = Convert.ToInt32(q["idSede"]);
+
+                LtValorPlan = Session["ltValorPlan"].ToString();
+                CargarInformacionPlan();
             }
             else
             {
                 Response.Redirect("default");
+            }
+        }
+
+        private void CargarInformacionPlan()
+        {
+            ltValor.Text = LtValorPlan;
+
+            if (IdPlan == 18)
+            {
+                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+            }
+
+            if (IdPlan == 19)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "hideCart", "document.querySelector('.divHidden').style.display='none';", true);
+
+                ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px;'>
+                                        ANTES <span class='pull-right' style='text-decoration: line-through;'>$99.000</span>
+                                    </div>
+                                    <div id='total_cart'>
+                                        AHORA <span class='pull-right'>$89.000</span>
+                                    </div>";
+
+                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
             }
         }
 
@@ -221,7 +256,6 @@ namespace WebPage
 
                 MesesPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["meses"].ToString()) : 0;
                 ValorPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["precioTotal"].ToString()) : 0;
-                LtValorPlan = Session["ltValorPlan"].ToString();
 
                 NombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["nombrePlan"].ToString() : null;
                 CodSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["codSiigoPlan"].ToString() : null;

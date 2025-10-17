@@ -195,6 +195,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.TextBox txbMetodoPago;
 
         /// <summary>
+        /// Control ltPlanEasy.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltPlanEasy;
+
+        /// <summary>
         /// Control ltValor.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltValor;
+
+        /// <summary>
+        /// Control ltInfoPlan.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltInfoPlan;
 
         /// <summary>
         /// Control cbAutorizo.
