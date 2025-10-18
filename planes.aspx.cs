@@ -32,7 +32,7 @@ namespace WebPage
                         ltTitulo.Text = dt.Rows[0]["TituloPlan"].ToString();
                         ltDescripcion.Text = dt.Rows[0]["DescripcionPlanWeb"].ToString();
 
-                        ltImagenMarketing.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
+                        ltImagenMarketing.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" >";
                         ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />";
                         ltImagenMarketing.Text += "</a>";
 
@@ -69,7 +69,7 @@ namespace WebPage
 
         private string GenerarBotonPago(string enlace)
         {
-            return $"<a href=\"{enlace}\" target=\"_blank\" >" +
+            return $"<a href=\"{enlace}\" >" +
                    "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\"></a>";
         }
         
