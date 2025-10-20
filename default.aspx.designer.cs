@@ -78,6 +78,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
 
         /// <summary>
+        /// Control controlservicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.servicios controlservicios;
+
+        /// <summary>
         /// Control controlplanes.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::WebPage.controls.planes controlplanes;
+
+        /// <summary>
+        /// Control controlaliados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.aliados controlaliados;
 
         /// <summary>
         /// Control upContacto.

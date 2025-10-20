@@ -254,6 +254,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="contrato.aspx" />
+    <Content Include="controls\aliados.ascx" />
     <Content Include="controls\footer.ascx" />
     <Content Include="controls\infocontacto.ascx" />
     <Content Include="controls\loginregister.ascx" />
@@ -261,6 +262,7 @@
     <Content Include="controls\mainmenulanding.ascx" />
     <Content Include="controls\mainmenunew.ascx" />
     <Content Include="controls\planes.ascx" />
+    <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
@@ -790,6 +792,13 @@
     <Compile Include="contrato.aspx.designer.cs">
       <DependentUpon>contrato.aspx</DependentUpon>
     </Compile>
+    <Compile Include="controls\aliados.ascx.cs">
+      <DependentUpon>aliados.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\aliados.ascx.designer.cs">
+      <DependentUpon>aliados.ascx</DependentUpon>
+    </Compile>
     <Compile Include="controls\footer.ascx.cs">
       <DependentUpon>footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -838,6 +847,13 @@
     </Compile>
     <Compile Include="controls\planes.ascx.designer.cs">
       <DependentUpon>planes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\servicios.ascx.cs">
+      <DependentUpon>servicios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\servicios.ascx.designer.cs">
+      <DependentUpon>servicios.ascx</DependentUpon>
     </Compile>
     <Compile Include="corporativo.aspx.cs">
       <DependentUpon>corporativo.aspx</DependentUpon>

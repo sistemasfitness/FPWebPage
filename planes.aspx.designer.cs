@@ -87,15 +87,6 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltBotonPago;
 
         /// <summary>
-        /// Control btnComprarPlan.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btnComprarPlan;
-
-        /// <summary>
         /// Control form2.
         /// </summary>
         /// <remarks>

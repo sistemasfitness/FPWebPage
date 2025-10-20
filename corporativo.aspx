@@ -129,7 +129,7 @@
     <!--  End section-->
     <!-- End container -->
 
-    <div id="newsletter_container" style="background-color: #000;">
+    <%--<div id="newsletter_container" style="background-color: #000;">
         <div class="container margin_60">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
@@ -142,11 +142,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <!-- End newsletter_container -->
 
     <div>
-        <asp:Literal ID="ltMapa" runat="server"></asp:Literal>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.764486790383!2d-73.11025033039041!3d7.119283530320726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f7e428fb6e5%3A0x3a67714ea25f138b!2sFitness%20People%20centro%20administrativo!5e0!3m2!1sen!2sco!4v1733155568363!5m2!1sen!2sco" style="width:100%; height:450px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <uc1:footer runat="server" ID="footer" />

@@ -294,27 +294,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    //if (dtFechaFinPlan.Rows.Count > 0)
-                    //{
-                    //    // Obtener fecha de fin anterior
-                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    if (dtFechaFinPlan.Rows.Count > 0)
+                    {
+                        // Obtener fecha de fin anterior
+                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                    //    if (fechaInicioNuevo <= fechaFinAnterior)
-                    //    {
-                    //        MostrarAlerta(
-                    //            "Fechas en conflicto",
-                    //            "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
-                    //            "warning"
-                    //        );
+                        if (fechaInicioNuevo <= fechaFinAnterior)
+                        {
+                            MostrarAlerta(
+                                "Fechas en conflicto",
+                                "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
+                                "warning"
+                            );
 
-                    //        return;
-                    //    }
-                    //}
+                            return;
+                        }
+                    }
 
-                    //dtFechaFinPlan.Dispose();
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,

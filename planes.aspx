@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planes.aspx.cs" Inherits="WebPage.planes" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -90,108 +91,6 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="testimonials" style="background: #000;">
-        <div class="container">
-            <div class="row">
-                <div class="owl-carousel team-carousel">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="barraProgreso" runat="server" visible="false" style="text-align: center;">
         <div class="container">
             <asp:Literal ID="litScriptFechas" runat="server" EnableViewState="false"></asp:Literal>
@@ -208,9 +107,9 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="testimonials2">
+    <section class="margin_60_35" id="plan">
         <div class="container">
-            <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
+            <div class="row info-planes" style="display: flex;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
                         <asp:Literal ID="ltTitulo" runat="server"></asp:Literal>
@@ -222,24 +121,26 @@
                     <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                 </div>
             </div>
-            <div class="row" style="display: flex; justify-content: center;">
+
+            <div class="row boton-comprar" style="display: flex; justify-content: center;">
                 <div class="col-md-12" style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
-                </div>
-                <div class="col-md-1" style="text-align: center; display: none;">
-                    <asp:HyperLink ID="btnComprarPlan" runat="server" CssClass="btn" Text="." />
                 </div>
             </div>
             <!-- End row -->
         </div>
     </section>
 
-    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+    <!-- Control Servicios -->
+    <uc1:servicios runat="server" ID="controlservicios" />
+    <!-- End Control Servicios -->
+
+    <section class="margin_60_35" id="planes2" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
 
             <div class="row">
-                <div class="owl-carousel team-carousel3" width="600px">
+                <div class="owl-carousel team-carousel2" width="600px">
                     <div class="team-item">
                         <div class="team-item-img">
                             <div class="img_wrapper">
@@ -400,7 +301,7 @@
             <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
             <!--Team Carousel -->
             <div class="row">
-                <div class="owl-carousel team-carousel4">
+                <div class="owl-carousel team-carousel3">
                     <div class="team-item">
                         <div class="team-item-img">
                             <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
@@ -713,7 +614,7 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
-    <script>
+    <%--<script>
         $(document).ready(function () {
             const params = new URLSearchParams(window.location.search);
             if (params.get("id") === "18") {
@@ -752,42 +653,17 @@
                 });
             }
         });
-    </script>
+    </script>--%>
 
     <script>
 
         'use strict';
-        $(".team-carousel").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 1000,
-            margin: 20,
-            autoplay: true,
-            smartSpeed: 300,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 2,
-                },
-                768: {
-                    items: 3,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
-
-        $(".team-carousel3").owlCarousel({
+        $(".team-carousel2").owlCarousel({
             items: 1,
             loop: true,
             autoHeight: true,
             autoWidth: false,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 10,
@@ -808,12 +684,12 @@
             }
         });
 
-        $(".team-carousel4").owlCarousel({
+        $(".team-carousel3").owlCarousel({
             items: 1,
             autoHeight: true,
             autoWidth: true,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 100,

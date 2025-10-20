@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
+<%@ Register Src="~/controls/aliados.ascx" TagPrefix="uc1" TagName="aliados" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
@@ -314,107 +316,9 @@
             </div>
         </section>
 
-        <section class="margin_60_35" id="bg_gray1" style="background: #000;">
-            <div class="container">
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Control Servicios -->
+        <uc1:servicios runat="server" ID="controlservicios" />
+        <!-- End Control Servicios -->
 
         <section class="margin_60_35" id="bg_gray2" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
@@ -539,7 +443,9 @@
             <!--  End container-->
         </section>
 
+        <!-- Control Planes -->
         <uc1:planes runat="server" ID="controlplanes" />
+        <!-- End Control Planes -->
 
         <div id="newsletter_container" style="background-color: #000;">
             <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
@@ -600,44 +506,9 @@
             </div>
         </section>--%>
 
-        <section class="margin_60_35" id="bg_gray3">
-            <div class="container">
-                <h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>
-                <!--Team Carousel -->
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/coopfuturo.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/fecolsa.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/freskoop.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/cooprofesores.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!--End Team Carousel-->
-            </div>
-            <!--  End container-->
-        </section>
-        <!--  End section-->
-
+        <!-- Control Aliados -->
+        <uc1:aliados runat="server" ID="controlaliados" />
+        <!-- End Control Aliados -->
 
         <div id="seleccion_sede">
             <div class="container margin_60">
@@ -721,6 +592,7 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
     <script>
         $('.jarallax').jarallax({
             videoLoop: true,
@@ -728,36 +600,10 @@
             videoLazyLoading: false
         });
 
-        'use strict';
-        $(".team-carousel").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 1000,
-            margin: 20,
-            autoplay: true,
-            smartSpeed: 300,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 2,
-                },
-                768: {
-                    items: 3,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
-
         $(".team-carousel2").owlCarousel({
             items: 4,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 10,
@@ -783,7 +629,7 @@
             loop: true,
             autoHeight: true,
             autoWidth: false,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 10,
@@ -809,7 +655,7 @@
             autoHeight: true,
             autoWidth: true,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 100,

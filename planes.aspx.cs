@@ -45,7 +45,7 @@ namespace WebPage
 
                         Session["origenPlanes"] = "WEB";
 
-                        ComprarPlan();
+                        //ComprarPlan();
                     }
                     else
                     {
@@ -73,10 +73,10 @@ namespace WebPage
                    "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\"></a>";
         }
         
-        private void ComprarPlan()
-        {
-            btnComprarPlan.NavigateUrl = $"register?idPlan={Request.QueryString["id"]}";
-        }
+        //private void ComprarPlan()
+        //{
+        //    btnComprarPlan.NavigateUrl = $"register?idPlan={Request.QueryString["id"]}";
+        //}
         
         private void GenerarBarraProgreso()
         {
