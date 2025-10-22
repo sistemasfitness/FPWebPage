@@ -27,6 +27,9 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
+                // Marca que el pago fue completado
+                Session["PagoCompletado"] = true;
+
                 ValidarTokenURLEncryptor();
 
                 GestionarActivarPlan();

@@ -174,26 +174,53 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Evitar que el navegador use versiones en caché
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+
             if (!IsPostBack)
             {
-                ValidarTokenURLEncryptor();
+                // Inicialización de estado de pago
+                // Solo inicializa la variable si aún no existe
+                if (Session["PagoCompletado"] == null)
+                    Session["PagoCompletado"] = false;
 
-                //CargarInformacionPlan();
+                ValidarTokenURLEncryptor();
             }
         }
 
         private void ValidarTokenURLEncryptor()
         {
-            string token = Request.QueryString["data"];
-
-            if (string.IsNullOrEmpty(token))
+            // 1. Si el usuario ya completó un pago, no puede volver aquí
+            if (Session["PagoCompletado"] != null && (bool)Session["PagoCompletado"] == true)
             {
-                Response.Redirect("default");
+                Response.Redirect("default", false);
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 
+            string token = Request.QueryString["data"];
+
+            // 2. Si no hay token en la URL, redirigir al inicio
+            if (string.IsNullOrEmpty(token))
+            {
+                Response.Redirect("default", false);
+                Context.ApplicationInstance.CompleteRequest();
+                return;
+            }
+
+            // 3. Intentar desencriptar el token
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
+                // 4. Verificar expiración
+                if (expiresUtc.HasValue && expiresUtc.Value < DateTime.UtcNow)
+                {
+                    Response.Redirect("default", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+
                 DocumentoAfiliado = q["nroDoc"];
                 IdPlan = Convert.ToInt32(q["idPlan"]);
                 FechaInicioPlan = q["fechaIni"];
@@ -206,7 +233,10 @@ namespace WebPage
             }
             else
             {
-                Response.Redirect("default");
+                // Token inválido
+                Response.Redirect("default", false);
+                Context.ApplicationInstance.CompleteRequest();
+                return;
             }
         }
 
@@ -344,8 +374,8 @@ namespace WebPage
                     idAfiliadoPlan,
                     ValorPlan,
                     4,
-                    IdReferencia, 
-                    "Ninguno",
+                    IdReferencia,
+                    "Wompi",
                     IdVendedor, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     idSiigoFactura,

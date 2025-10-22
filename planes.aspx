@@ -590,7 +590,7 @@
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
                 <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
-                <a href="register?idPlan=19" target="_blank">
+                <a href="register?idPlan=19">
                     <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
                 </a>
             </div>
@@ -654,6 +654,20 @@
             }
         });
     </script>--%>
+
+    <script>
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") === "18") {
+
+                setTimeout(function () {
+                    $("#plan-easy").modal("show");
+                }, 10000);
+            }
+        });
+
+    </script>
 
     <script>
 

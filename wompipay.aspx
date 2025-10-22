@@ -132,8 +132,8 @@
                                             MaxLength="19" placeholder="#### #### #### ####" oninput="formatCreditCard(this)" 
                                             required="" name="txbCreditCard"></asp:TextBox>
                                     </div>
-                                </div>          
-                                <div class="col-md-4 col-sm-4">
+                                </div>
+                                <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
                                         <label for="ddlMes">Mes de expiración:</label>
                                         <asp:DropDownList ID="ddlMes" runat="server" required="" AppendDataBoundItems="true"
@@ -154,7 +154,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
                                         <label for="ddlAnho">Año de expiración:</label>
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
@@ -178,7 +178,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
                                         <label for="txbCVC">Código de seguridad (CVC):</label>
                                         <asp:TextBox ID="txbCVC" CssClass="form-control" runat="server" 
@@ -242,12 +242,12 @@
                                 OnClientClick="return validarYEjecutarPago();" 
                                 OnClick="btnPagar_Click" />
                         </div>
-                        <div class="box_style_4">
+                        <%--<div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
                             <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573107842151" class="phone" target="_blank">310 7842151</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
-                        </div>
+                        </div>--%>
                     </div>
                 </aside>
             </form>
@@ -380,7 +380,7 @@
             // Ejecutar postback manualmente
             setTimeout(function () {
                 __doPostBack('<%= btnPagar.UniqueID %>', '');
-            }, 300); // Aumentado para asegurar que SweetAlert se vea
+            }, 50); // Aumentado para asegurar que SweetAlert se vea
         }
 
     </script>

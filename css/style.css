@@ -3740,9 +3740,11 @@ body.swal2-shown {
 .form-web input[type="email"],
 .form-web input[type="number"],
 .form-web input[type="date"],
-.form-web select, 
+.form-web select,
 .form-web textarea {
 	background-color: #3c3c3c;
+	font-size: 16px;
+	text-align: start;
 }
 
 input[type="date"],
@@ -3811,26 +3813,6 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	}
 }
 /* servicios.ascx | aliados.ascx */
-
-/* aliados.ascx */
-/*@media (max-width: 768px) {
-	.aliados {
-		margin: 30px 0;*/ /* menos espacio vertical */
-	/*}
-
-		.aliados .team-item-img img {
-			width: 90px !important;*/ /* antes tenías 140px */
-		/*}
-
-	.owl-carousel .owl-stage-outer {
-		height: auto !important;*/ /* deja que se ajuste */
-	/*}
-
-	.aliados .owl-carousel {
-		margin-top: 10px;
-	}
-}*/
-/* aliados.ascx */
 
 @media (max-width: 480px) {
 	#layerslider {

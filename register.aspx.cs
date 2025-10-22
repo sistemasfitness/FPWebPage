@@ -48,6 +48,8 @@ namespace WebPage
                 //string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
                 //Response.Redirect(urlRedirect);
 
+                Session["PagoCompletado"] = false;
+
                 ValidarPlan();
 
                 ConfigurarCamposFecha();
@@ -60,6 +62,9 @@ namespace WebPage
                 CargarGeneros();
                 CargarCiudades();
             }
+
+            // Agregar manualmente el onchange que llama al postback
+            txbFechaIni.Attributes["onchange"] = Page.ClientScript.GetPostBackEventReference(txbFechaIni, "");
         }
 
         private void CargarInformacionPlan()

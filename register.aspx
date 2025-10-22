@@ -106,7 +106,7 @@
                             <asp:UpdatePanel ID="upAfiliados" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nro. de Documento: *</label>
                                                 <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
@@ -114,7 +114,7 @@
                                                     MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Tipo de Documento: *</label>
                                                 <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
@@ -126,14 +126,14 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nombre(s): *</label>
                                                 <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
                                                     placeholder="Pepito" TabIndex="4"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Apellido(s): *</label>
                                                 <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
@@ -142,14 +142,14 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Email: *</label>
                                                 <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="ejemplo@correo.com" 
                                                     required=""></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Celular: *</label>
                                                 <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" 
@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Género: *</label>
                                                 <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
@@ -168,7 +168,7 @@
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Fecha de Nacimiento: *</label>
                                                 <asp:TextBox ID="txbFechaNac" CssClass="form-control" 
@@ -189,7 +189,7 @@
                             <asp:UpdatePanel ID="upSedes" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Ciudad: *</label>
                                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
@@ -199,7 +199,7 @@
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Sede: *</label>
                                                 <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" required=""
@@ -212,21 +212,21 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
                                                 <label>Valor del plan:</label>
                                                 <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" Enabled="false"></asp:TextBox>
                                                 <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4" style="color: #fff;">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
                                                 <label>Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                    AutoPostBack="true" OnTextChanged="CambiarFechaFin"></asp:TextBox>
+                                                    OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
                                                 <label>Fecha de fin:</label>
                                                 <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
@@ -286,12 +286,12 @@
                             </div>
                         </div>
 
-                        <div class="box_style_4">
+                        <%--<div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
                             <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573107842151" class="phone" target="_blank">310 7842151</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
-                        </div>
+                        </div>--%>
                     </div>
                 </aside>
             </form>
@@ -314,7 +314,7 @@
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
                 <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
-                <a href="register?idPlan=19" target="_blank">
+                <a href="register?idPlan=19">
                     <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
                 </a>
             </div>
@@ -338,6 +338,17 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const fechaIni = document.getElementById('<%= txbFechaIni.ClientID %>');
+            fechaIni.addEventListener("change", function() {
+                __doPostBack('<%= txbFechaIni.UniqueID %>', '');
+            });
+        });
+
+    </script>
 
     <script>
 

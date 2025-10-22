@@ -87,6 +87,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltBotonPago;
 
         /// <summary>
+        /// Control controlservicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.servicios controlservicios;
+
+        /// <summary>
         /// Control form2.
         /// </summary>
         /// <remarks>
