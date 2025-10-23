@@ -294,6 +294,40 @@
                         </div>--%>
                     </div>
                 </aside>
+
+                <div class="modal fade" id="cod-embajador" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-cod-embajador" style="width: 500px; min-width: 360px; background: #191919; border-color: #E3FF00;">
+                            <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+
+                            <div class="modal-header text-center" style="border-bottom: none; margin-top: 40px;">
+                                <h5 class="modal-title" id="modalEmbajadorLabel" style="font-size: 20px; font-weight: 700; color: #fff;">¿Tienes tu código de embajador?</h5>
+                            </div>
+
+                            <div class="modal-body text-center">
+                                <p class="text-center" style="font-size: 20px; color: #fff;">
+                                    ¿Qué esperas para cangearlo? <br /> Disfruta de un <b>10% de descuento</b> en tu Plan Easy. ¡Aprovecha este beneficio exclusivo!
+                                </p>
+
+                                <asp:TextBox ID="txtCodigoEmbajador" runat="server" CssClass="form-control text-center margin_30"
+                                    placeholder="Ej: FITJUAN10" />
+
+                                <asp:Label ID="lblMensajeEmbajador" runat="server" CssClass="mt-2 d-block" />
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-center" style="border-top: none; display: flex; gap: 15px;">
+                                <asp:Button ID="btnValidarEmbajador" 
+                                    runat="server" 
+                                    CssClass="btn-confirm-alert"
+                                    Text="Validar código" 
+                                    OnClick="btnValidarCodEmbajador_Click" 
+                                    CausesValidation="false" 
+                                    UseSubmitBehavior="false" />
+                                <button type="button" class="btn_full" data-dismiss="modal">Continuar sin código</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <!-- End row -->
@@ -341,6 +375,22 @@
 
     <script>
 
+        // Evitar validación HTML5 para el botón de ValidarEmbajador
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("<%= btnValidarEmbajador.ClientID %>");
+            if (btn) {
+                btn.addEventListener("click", function (e) {
+                    // Anula la validación HTML5 del formulario principal
+                    e.preventDefault();
+                    __doPostBack('<%= btnValidarEmbajador.UniqueID %>', '');
+                });
+            }
+        });
+
+    </script>
+
+    <script>
+
         document.addEventListener("DOMContentLoaded", function () {
             const fechaIni = document.getElementById('<%= txbFechaIni.ClientID %>');
             fechaIni.addEventListener("change", function() {
@@ -355,6 +405,14 @@
         $(document).ready(function () {
             const params = new URLSearchParams(window.location.search);
             if (params.get("idPlan") === "18") {
+
+                // Abriri modal para código de embajador
+                $("#cod-embajador").modal({
+                    backdrop: 'static', // evita cerrar al hacer clic afuera
+                    keyboard: false     // evita cerrar con Esc
+                });
+                $("#cod-embajador").modal("show");
+
                 // Obtenemos el ID real del control ASP.NET
                 var documentoInput = $("#<%= txbDocumento.ClientID %>");
 

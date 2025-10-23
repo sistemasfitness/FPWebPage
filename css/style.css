@@ -1993,6 +1993,14 @@ ul.contacts_info {
 		color: #fff;
 	}
 
+.modal-cod-embajador a.close-link {
+	font-size: 22px;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	color: #fff;
+}
+
 .popup-form {
 	width: 90%;
 	max-width: 375px;
@@ -3513,7 +3521,24 @@ body.swal2-shown {
 .alert {
 	color: #FFFFFF; /* Color de texto del popup */
 	border: 1px solid #FFFFFF;
+	font-size: 11px !important;
 }
+
+	.alert .swal2-title {
+		font-size: 20px !important;
+		font-weight: 700;
+		
+	}
+
+	.alert .swal2-html-container,
+	.alert .swal2-content {
+		font-size: 16px !important;
+		
+	}
+
+	.alert .swal2-confirm {
+		font-size: 13px !important;
+	}
 
 .swal2-close {
 	color: #E3FF00; /* botón de cerrar */

@@ -210,7 +210,7 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo1" onclick="validarAutorizaciones()" />
+                                    <input type="checkbox" id="cbAutorizo1" />
 
                                     <label for="cbAutorizo1">
                                         <span>
@@ -219,14 +219,14 @@
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo2" onclick="validarAutorizaciones()" />
+                                    <input type="checkbox" id="cbAutorizo2" />
 
                                     <label for="cbAutorizo2">
                                         <span>Acepto la <b><a style="color: #000000; text-decoration: revert;" href="https://wompi.com/assets/downloadble/autorizacion-tratamiento-datos-personales.pdf" target="_blank">autorización para la administración de datos personales.</a></b></span>
                                     </label>
                                 </div>
                                 <div class="checkbox checkbox-dark">
-                                    <input type="checkbox" id="cbAutorizo3" onclick="validarAutorizaciones()" />
+                                    <input type="checkbox" id="cbAutorizo3" />
 
                                     <label for="cbAutorizo3">
                                         <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
@@ -281,10 +281,9 @@
     <script src="js/functions.js"></script>
     <script>
 
-        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}) {
-            Swal.fire({
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
                 title: titulo,
-                text: mensaje,
                 icon: tipo,
                 background: '#3C3C3C',
                 showCloseButton: true,
@@ -294,7 +293,16 @@
                     confirmButton: 'btn-confirm-alert'
                 },
                 ...opcionesExtras
-            });
+            };
+
+            // Según el tipo de contenido
+            if (esHtml) {
+                config.html = mensaje;
+            } else {
+                config.text = mensaje;
+            }
+
+            Swal.fire(config);
         }
 
         function validarCamposFormulario() {
@@ -360,8 +368,8 @@
 
         function ejecutarPago() {
             mostrarAlerta(
-                'Procesando',
-                'Estamos procesando tu pago. Por favor espera...',
+                'Procesando pago',
+                'Tu pago se está realizando.<br><br><b>Por favor, no cierres ni recargues la página</b> mientras completamos la transacción. Esto puede tardar unos segundos...',
                 'info',
                 {
                     showCloseButton: false,
@@ -370,7 +378,8 @@
                     didOpen: () => {
                         Swal.showLoading();
                     }
-                }
+                }, 
+                true
             );
 
             // Deshabilitar el botón
