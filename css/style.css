@@ -448,7 +448,7 @@ header {
 	/*	height: 27px;*/
 	height: 40px;
 	width: auto;
-	margin: 12px 0 0 0;
+	margin: 8px 0 0 0;
 }
 
 ul#access_top {
@@ -1675,6 +1675,12 @@ a#filters_col_bt {
 }
 
 #total_cart {
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.total_cart {
 	font-size: 24px;
 	font-weight: 600;
 	margin-bottom: 10px;
@@ -3818,6 +3824,10 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	}
 }
 /* planes.ascx */
+
+.ocultar-etiqueta {
+    display: none;
+}
 
 /* servicios.ascx | aliados.ascx */
 @media (max-width: 768px) {

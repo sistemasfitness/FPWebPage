@@ -193,20 +193,16 @@
                                             <div class="form-group">
                                                 <label>Ciudad: *</label>
                                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
-                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true">
-                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
-                                                </asp:DropDownList>
+                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" 
+                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" />
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Sede: *</label>
-                                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" required=""
-                                                    AppendDataBoundItems="true" DataTextField="NombreSede" DataValueField="IdSede" 
-                                                    AutoPostBack="true">
-                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
-                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" required=""
+                                                    DataTextField="NombreSede" DataValueField="IdSede" 
+                                                    AutoPostBack="true" OnSelectedIndexChanged="ddlSede_SelectedIndexChanged" />
                                             </div>
                                         </div>
                                     </div>
@@ -258,9 +254,15 @@
                     <div class="theiaStickySidebar">
                         <div class="box_style_2" style="color: black;">
                             <asp:Literal ID="ltPlanEasy" runat="server"></asp:Literal>
-                            <div id="total_cart" class="ocultar">
+
+                            <%--<div id="total_cart" class="ocultar">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
-                            </div>
+                            </div>--%>
+
+                            <asp:Panel ID="pnlTotalCart" runat="server" CssClass="total_cart">
+                                TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </asp:Panel>
+
                             <div>
                                 <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
@@ -297,7 +299,7 @@
 
                 <div class="modal fade" id="cod-embajador" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document" style="display: flex; justify-content: center;">
-                        <div class="modal-content modal-cod-embajador" style="width: 500px; min-width: 360px; background: #191919; border-color: #E3FF00;">
+                        <div class="modal-content modal-cod-embajador" style="width: 500px; min-width: 340px; background: #191919; border-color: #E3FF00;">
                             <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
 
                             <div class="modal-header text-center" style="border-bottom: none; margin-top: 40px;">
@@ -323,7 +325,7 @@
                                     OnClick="btnValidarCodEmbajador_Click" 
                                     CausesValidation="false" 
                                     UseSubmitBehavior="false" />
-                                <button type="button" class="btn_full" data-dismiss="modal">Continuar sin código</button>
+                                <button type="button" class="btn_full" data-dismiss="modal">No tengo código</button>
                             </div>
                         </div>
                     </div>
@@ -406,34 +408,29 @@
             const params = new URLSearchParams(window.location.search);
             if (params.get("idPlan") === "18") {
 
-                // Abriri modal para código de embajador
+                // Mostrar modal código embajador (ahora sí se puede cerrar libremente)
                 $("#cod-embajador").modal({
-                    backdrop: 'static', // evita cerrar al hacer clic afuera
-                    keyboard: false     // evita cerrar con Esc
+                    backdrop: true, 
+                    keyboard: true
                 });
-                $("#cod-embajador").modal("show");
 
-                // Obtenemos el ID real del control ASP.NET
+                // Obtener ID real del control ASP.NET
                 var documentoInput = $("#<%= txbDocumento.ClientID %>");
 
-                // 1. Cuando el usuario cambia de foco (blur)
+                // Cuando pierde el foco
                 documentoInput.on("blur", function () {
                     if ($(this).val().trim() !== "") {
                         $("#plan-easy").modal("show");
                     }
                 });
 
-                // 2. Cuando presiona Enter
+                // Cuando presiona Enter
                 documentoInput.on("keypress", function (e) {
                     if (e.which === 13 && $(this).val().trim() !== "") {
                         e.preventDefault(); // evitar que dispare un submit
                         $("#plan-easy").modal("show");
                     }
                 });
-            }
-
-            if (params.get("idPlan") === "19"){
-                document.querySelector('.ocultar').style.display = 'none';
             }
         });
 

@@ -31,8 +31,8 @@
                 <%--<li><a href="tienda" style="font-weight: 900;">TIENDA</a></li>--%>
                 <%--<li><a href="blog" style="font-weight: 900;">BLOG</a></li>--%>
                 <li><a href="contacto" style="font-weight: 900;">CONTACTO</a></li>
-                <asp:Literal ID="ltMenuAfil" runat="server"></asp:Literal>
-                <asp:Literal ID="ltMenu2" runat="server"></asp:Literal>
+                <%--<asp:Literal ID="ltMenuAfil" runat="server"></asp:Literal>--%>
+                <%--<asp:Literal ID="ltMenu2" runat="server"></asp:Literal>--%>
                 <%--<li><a href="#" style="font-weight: 900;" data-toggle="modal" data-target="#register" class="visible-xs">REGISTRO</a></li>--%>
             </ul>
         </div>

@@ -60,7 +60,7 @@ namespace WebPage
 
                 CargarTipoDocumento();
                 CargarGeneros();
-                CargarCiudades();
+                CargarCiudadesYSedes();
             }
 
             // Agregar manualmente el onchange que llama al postback
@@ -110,6 +110,8 @@ namespace WebPage
 
             if (IdPlan == 19)
             {
+                pnlTotalCart.Visible = false;
+
                 ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px;'>
                                         ANTES <span class='pull-right' style='text-decoration: line-through;'>$99.000</span>
                                     </div>
@@ -253,42 +255,76 @@ namespace WebPage
             dt.Dispose();
         }
 
-        private void CargarCiudades()
+        private void CargarCiudadesYSedes()
         {
             clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarCiudadesSedesWeb();
-
-            ddlCiudad.DataSource = dt;
+            DataTable dtCiudad = cg.ConsultarCiudadesSedesWeb();
+            ddlCiudad.DataSource = dtCiudad;
             ddlCiudad.DataTextField = "NombreCiudadSede";
             ddlCiudad.DataValueField = "idCiudadSede";
             ddlCiudad.DataBind();
+            ddlCiudad.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dtCiudad.Dispose();
 
-            dt.Dispose();
-
-            ddlSedes.Enabled = false;
+            DataTable dtSede = cg.ConsultarSedesWeb();
+            ddlSede.DataSource = dtSede;
+            ddlSede.DataTextField = "NombreSede";
+            ddlSede.DataValueField = "IdSede";
+            ddlSede.DataBind();
+            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dtSede.Dispose();
         }
 
         protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
-            ddlSedes.Enabled = false;
+            clasesglobales cg = new clasesglobales();
+            ddlSede.Items.Clear();
 
-            if (string.IsNullOrEmpty(ddlCiudad.SelectedValue)) return;
+            // Si no seleccionó ciudad, mostrar todas las sedes
+            if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
+            {
+                DataTable dtTodasSedes = cg.ConsultarSedesWeb();
+                ddlSede.DataSource = dtTodasSedes;
+                ddlSede.DataTextField = "NombreSede";
+                ddlSede.DataValueField = "IdSede";
+                ddlSede.DataBind();
+                ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+                dtTodasSedes.Dispose();
+                return;
+            }
 
-            ddlSedes.Enabled = true;
+            // Si seleccionó una ciudad válida, filtrar las sedes
+            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedValue));
+            ddlSede.DataSource = dt;
+            ddlSede.DataTextField = "NombreSede";
+            ddlSede.DataValueField = "IdSede";
+            ddlSede.DataBind();
+            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dt.Dispose();
+        }
+
+        protected void ddlSede_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlSede.SelectedValue)) return;
 
             clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString()));
+            DataTable dtSede = cg.ConsultarSedePorId(Convert.ToInt32(ddlSede.SelectedValue));
 
-            ddlSedes.DataSource = dt;
-            ddlCiudad.DataTextField = "NombreSede";
-            ddlCiudad.DataValueField = "IdSede";
-            ddlSedes.DataBind();
+            if (dtSede != null && dtSede.Rows.Count > 0)
+            {
+                DataRow sedeInfo = dtSede.Rows[0];
+                string idCiudad = sedeInfo["idCiudadSede"].ToString();
 
-            dt.Dispose();
+                if (ddlCiudad.Items.FindByValue(idCiudad) != null)
+                {
+                    ddlCiudad.SelectedValue = idCiudad;
+                }
+            }
+
+            // liberar si tu implementación lo requiere
+            if (dtSede != null) dtSede.Dispose();
         }
 
         protected async void btnRegistrar_Click(object sender, EventArgs e)
@@ -321,7 +357,7 @@ namespace WebPage
                 string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
 
                 int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
-                int idSede = Convert.ToInt32(ddlSedes.SelectedItem.Value.ToString());
+                int idSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
                 string strValorPlan = hfValorPlan.Value;
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
@@ -330,27 +366,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    //if (dtFechaFinPlan.Rows.Count > 0)
-                    //{
-                    //    // Obtener fecha de fin anterior
-                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    if (dtFechaFinPlan.Rows.Count > 0)
+                    {
+                        // Obtener fecha de fin anterior
+                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                    //    if (fechaInicioNuevo <= fechaFinAnterior)
-                    //    {
-                    //        MostrarAlerta(
-                    //            "Fechas en conflicto",
-                    //            "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
-                    //            "warning"
-                    //        );
+                        if (fechaInicioNuevo <= fechaFinAnterior)
+                        {
+                            MostrarAlerta(
+                                "Fechas en conflicto",
+                                "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
+                                "warning"
+                            );
 
-                    //        return;
-                    //    }
-                    //}
+                            return;
+                        }
+                    }
 
-                    //dtFechaFinPlan.Dispose();
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,
@@ -385,17 +421,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    //dtIntegracion.Dispose();
+                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    dtIntegracion.Dispose();
 
-                    string url = "https://api.siigo.com/";
-                    string username = "sandbox@siigoapi.com";
-                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    string partnerId = "SandboxSiigoApi";
+                    //string url = "https://api.siigo.com/";
+                    //string username = "sandbox@siigoapi.com";
+                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    //string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
@@ -510,6 +546,9 @@ namespace WebPage
             {
                 // 2. Si no, buscar en ADRES
                 await BuscarPersonaADRES(documento);
+
+                // 3. Siempre cargar Ciudades y Sedes
+                CargarCiudadesYSedes();
             }
         }
 
@@ -520,42 +559,59 @@ namespace WebPage
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
 
-            if (dt.Rows.Count > 0)
-            {
-                ddlTipoDocumento.SelectedValue = dt.Rows[0]["idTipoDocumento"].ToString();
-                txbNombre.Text = dt.Rows[0]["NombreAfiliado"].ToString();
-                txbApellido.Text = dt.Rows[0]["ApellidoAfiliado"].ToString();
-                txbEmail.Text = dt.Rows[0]["EmailAfiliado"].ToString();
-                txbCelular.Text = dt.Rows[0]["CelularAfiliado"].ToString();
-                txbFechaNac.Text = dt.Rows[0]["FechaNacAfiliado"].ToString();
-                ddlGenero.SelectedValue = dt.Rows[0]["idGenero"].ToString();
-
-                DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(Convert.ToInt32(dt.Rows[0]["idSede"].ToString()));
-                ddlCiudad.SelectedValue = dtCiudad.Rows[0]["idCiudadSede"].ToString();
-
-                // Cargar las sedes de esa ciudad
-                DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(dtCiudad.Rows[0]["idCiudadSede"].ToString()));
-                ddlSedes.Items.Clear();
-                ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
-                ddlSedes.DataSource = dtSedes;
-                ddlSedes.DataTextField = "NombreSede";
-                ddlSedes.DataValueField = "IdSede";
-                ddlSedes.DataBind();
-
-                ddlSedes.SelectedValue = dt.Rows[0]["idSede"].ToString();
-
-                dt.Dispose();
-                dtCiudad.Dispose();
-                dtSedes.Dispose();
-
-                return true;
-            }
-            else
+            if (dt.Rows.Count == 0)
             {
                 LimpiarCampos();
                 dt.Dispose();
                 return false;
             }
+
+            // Cargar datos personales
+            DataRow afiliado = dt.Rows[0];
+            ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"].ToString();
+            txbNombre.Text = afiliado["NombreAfiliado"].ToString();
+            txbApellido.Text = afiliado["ApellidoAfiliado"].ToString();
+            txbEmail.Text = afiliado["EmailAfiliado"].ToString();
+            txbCelular.Text = afiliado["CelularAfiliado"].ToString();
+            txbFechaNac.Text = afiliado["FechaNacAfiliado"].ToString();
+            ddlGenero.SelectedValue = afiliado["idGenero"].ToString();
+
+            int idSede = Convert.ToInt32(afiliado["idSede"]);
+            DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(idSede);
+
+            if (dtCiudad != null && dtCiudad.Rows.Count > 0)
+            {
+                string idCiudad = dtCiudad.Rows[0]["idCiudadSede"].ToString();
+
+                // Seleccionar la ciudad correspondiente
+                if (ddlCiudad.Items.FindByValue(idCiudad) != null)
+                {
+                    ddlCiudad.SelectedValue = idCiudad;
+                }
+
+                // Recargar las sedes de esa ciudad
+                DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(idCiudad));
+
+                ddlSede.Items.Clear(); // Importante para evitar duplicados
+                ddlSede.DataSource = dtSedes;
+                ddlSede.DataTextField = "NombreSede";
+                ddlSede.DataValueField = "IdSede";
+                ddlSede.DataBind();
+                ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+
+                // Seleccionar la sede correcta del afiliado
+                if (ddlSede.Items.FindByValue(idSede.ToString()) != null)
+                {
+                    ddlSede.SelectedValue = idSede.ToString();
+                }
+
+                dtSedes.Dispose();
+            }
+
+            dt.Dispose();
+            dtCiudad?.Dispose();
+
+            return true;
         }
 
         protected async Task BuscarPersonaADRES(string documento)
@@ -601,8 +657,16 @@ namespace WebPage
             ddlGenero.ClearSelection();
             txbFechaNac.Text = "";
             ddlCiudad.ClearSelection();
-            ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(new ListItem("Selecciona una opción", ""));
+
+            // Cargar la lista completa de sedes
+            clasesglobales cg = new clasesglobales();
+            DataTable dtSedes = cg.ConsultarSedesWeb();
+            ddlSede.DataSource = dtSedes;
+            ddlSede.DataTextField = "NombreSede";
+            ddlSede.DataValueField = "IdSede";
+            ddlSede.DataBind();
+            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dtSedes.Dispose();
         }
 
         private void CambiarPlanSeleccionado()

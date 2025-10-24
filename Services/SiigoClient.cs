@@ -223,19 +223,19 @@ namespace WebPage.Services
             // Header - Producción
             // string partnerId = "ProductionSiigoApi";
 
-            //clasesglobales cg = new clasesglobales();
-            //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-            //int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 66444;
-            //int costCenterDefault = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["costCenterDefault"].ToString()) : 13053;
-            //int idVendedor = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idVendedor"].ToString()) : 51883;
-            //int idPayment = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idPayment"].ToString()) : 59576;
-            //dtIntegracion.Dispose();
+            clasesglobales cg = new clasesglobales();
+            DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+            int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 66444;
+            int costCenterDefault = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["costCenterDefault"].ToString()) : 13053;
+            int idVendedor = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idVendedor"].ToString()) : 51883;
+            int idPayment = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idPayment"].ToString()) : 59576;
+            dtIntegracion.Dispose();
 
             // Más Datos - Pruebas
-            int idTipoDocumento = 28006;
-            int costCenterDefault = 621;
-            int idVendedor = 856;
-            int idPayment = 9438;
+            //int idTipoDocumento = 28006;
+            //int costCenterDefault = 621;
+            //int idVendedor = 856;
+            //int idPayment = 9438;
 
             // Más Datos - Producción
             //int idTipoDocumento = 66444;

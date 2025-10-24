@@ -202,9 +202,15 @@
                     <div class="theiaStickySidebar">
                         <div class="box_style_2" style="color: black;">
                             <asp:Literal ID="ltPlanEasy" runat="server"></asp:Literal>
-                            <div id="total_cart" class="divHidden">
+
+                            <%--<div id="total_cart" class="divHidden">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
-                            </div>
+                            </div>--%>
+
+                            <asp:Panel ID="pnlTotalCart" runat="server" CssClass="total_cart">
+                                TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </asp:Panel>
+
                             <div>
                                 <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
@@ -376,20 +382,22 @@
                     allowOutsideClick: false,
                     showConfirmButton: false,
                     didOpen: () => {
+                        // 1️. Mostrar el loader
                         Swal.showLoading();
+
+                        // 2️. Deshabilitar el botón (evita doble clic)
+                        const btn = document.getElementById('<%= btnPagar.ClientID %>');
+                        if (btn) btn.disabled = true;
+
+                        // 3️. Esperar a que el modal se haya renderizado en pantalla (frame siguiente)
+                        requestAnimationFrame(() => {
+                            // 4️. Ejecutar el postback (se asegura que el modal ya está visible)
+                            __doPostBack('<%= btnPagar.UniqueID %>', '');
+                        });
                     }
-                }, 
+                },
                 true
             );
-
-            // Deshabilitar el botón
-            const btn = document.getElementById('<%= btnPagar.ClientID %>');
-            if (btn) btn.disabled = true;
-
-            // Ejecutar postback manualmente
-            setTimeout(function () {
-                __doPostBack('<%= btnPagar.UniqueID %>', '');
-            }, 50); // Aumentado para asegurar que SweetAlert se vea
         }
 
     </script>

@@ -141,13 +141,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudad;
 
         /// <summary>
-        /// Control ddlSedes.
+        /// Control ddlSede.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSede;
 
         /// <summary>
         /// Control txbValorPlan.
@@ -202,6 +202,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltPlanEasy;
+
+        /// <summary>
+        /// Control pnlTotalCart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTotalCart;
 
         /// <summary>
         /// Control ltValor.
