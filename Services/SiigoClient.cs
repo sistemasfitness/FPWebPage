@@ -36,6 +36,11 @@ namespace WebPage.Services
 
         public async Task<string> GetTokenAsync()
         {
+            string token = HttpContext.Current.Application["SiigoToken"]?.ToString();
+
+            if (!string.IsNullOrEmpty(token))
+                return token;
+
             var url = $"{_baseUrl}auth";
             var payload = new
             {
@@ -51,48 +56,28 @@ namespace WebPage.Services
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             dynamic obj = JsonConvert.DeserializeObject(jsonResponse);
-            return obj.access_token;
+
+            token = obj.access_token;
+
+            // Guardar token en memoria global
+            HttpContext.Current.Application["SiigoToken"] = token;
+            HttpContext.Current.Application["SiigoTokenExp"] = DateTime.Now.AddMinutes(50);
+
+            return token;
         }
 
         public async Task<string> RegisterCustomerAsync(string documento, string nombres, string apellidos, string celular, string correo)
         {
-            // TODO: Insertar en la base de datos esta información
-            // 1. Obtener configuración de Siigo desde la BD
-            //clasesglobales cg = new clasesglobales();
-            //DataTable dtConf = cg.ConsultarConfiguracionSiigo();
-
-            //string baseUrl = dtConf.Rows[0]["BaseUrl"].ToString();
-            //string username = dtConf.Rows[0]["Username"].ToString();
-            //string accessKey = dtConf.Rows[0]["AccessKey"].ToString();
-            //string partnerId = dtConf.Rows[0]["PartnerId"].ToString();
-
-            //string baseUrl = "https://api.siigo.com/";
-            // Datos - Pruebas
-            //string username = "sandbox@siigoapi.com";
-            //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-
-            // Datos - Producción
-            // string username = "contabilidad@fitnesspeoplecmd.com";
-            // string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-            // Header - Pruebas
-            //string partnerId = "SandboxSiigoApi";
-
-            // Header - Producción
-            // string header = "ProductionSiigoApi";
-
-            //var siigo = new SiigoClient(new HttpClient(), baseUrl, username, accessKey, partnerId);
-
-            // 2. Obtener token
+            // 1. Obtener token
             string token = await GetTokenAsync();
 
-            // 3. Consultar tipo de documento en BD
+            // 2. Consultar tipo de documento en BD
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarCodigoSiigoPorDocumento(documento);
             string codSiigo = dt.Rows[0]["CodSiigo"].ToString();
             dt.Dispose();
 
-            // 4. Crear el objeto Customer
+            // 3. Crear el objeto Customer
             Customer oCustomer = new Customer()
             {
                 person_type = "Person",
@@ -113,7 +98,7 @@ namespace WebPage.Services
                 }
             };
 
-            // 5. Crear cliente en Siigo
+            // 4. Crear cliente en Siigo
             string respuesta = await CreateCustomerAsync(oCustomer, token);
 
             return respuesta;
@@ -141,40 +126,13 @@ namespace WebPage.Services
 
         public async Task ManageCustomerAsync(string documento, string nombres, string apellidos, string celular, string correo)
         {
-            // TODO: Insertar en la base de datos esta información
-            // 1. Obtener configuración de Siigo desde la BD
-            //clasesglobales cg = new clasesglobales();
-            //DataTable dtConf = cg.ConsultarConfiguracionSiigo();
-
-            //string baseUrl = dtConf.Rows[0]["BaseUrl"].ToString();
-            //string username = dtConf.Rows[0]["Username"].ToString();
-            //string accessKey = dtConf.Rows[0]["AccessKey"].ToString();
-            //string partnerId = dtConf.Rows[0]["PartnerId"].ToString();
-
-            //string baseUrl = "https://api.siigo.com/";
-            // Datos - Pruebas
-            //string username = "sandbox@siigoapi.com";
-            //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-
-            // Datos - Producción
-            // string username = "contabilidad@fitnesspeoplecmd.com";
-            // string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-            // Header - Pruebas
-            //string partnerId = "SandboxSiigoApi";
-
-            // Header - Producción
-            // string header = "ProductionSiigoApi";
-
-            //var siigo = new SiigoClient(new HttpClient(), baseUrl, username, accessKey, partnerId);
-
-            // 2. Obtener token
+            // 1. Obtener token
             string token = await GetTokenAsync();
 
-            // 3. Consultar si el cliente ya existe
+            // 2. Consultar si el cliente ya existe
             bool exists = await CustomerExistsAsync(documento, token);
 
-            // 4. Si no existe, crearlo
+            // 3. Si no existe, crearlo
             if (!exists)
             {
                 await RegisterCustomerAsync(documento, nombres, apellidos, celular, correo);
@@ -198,31 +156,7 @@ namespace WebPage.Services
 
         public async Task<string> RegisterInvoiceAsync(string cedula, string codSiigoPlan, string nombrePlan, int precioPlan, int idSede)
         {
-            // TODO: Insertar en la base de datos esta información
-            // 1. Obtener configuración de Siigo desde la BD
-            //clasesglobales cg = new clasesglobales();
-            //DataTable dtConf = cg.ConsultarConfiguracionSiigo();
-
-            //string baseUrl = dtConf.Rows[0]["BaseUrl"].ToString();
-            //string username = dtConf.Rows[0]["Username"].ToString();
-            //string accessKey = dtConf.Rows[0]["AccessKey"].ToString();
-            //string partnerId = dtConf.Rows[0]["PartnerId"].ToString();
-
-            //string baseUrl = "https://api.siigo.com/";
-            // Datos - Pruebas
-            //string username = "sandbox@siigoapi.com";
-            //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-
-            // Datos - Producción
-            // string username = "contabilidad@fitnesspeoplecmd.com";
-            // string accessKey = "YjU2NWE3YjktYjlhZS00OTRkLWE3NDgtODc0MGUyYjhmYzNlOjh9QDZyKDdwPkE=";
-
-            // Header - Pruebas
-            //string partnerId = "SandboxSiigoApi";
-
-            // Header - Producción
-            // string partnerId = "ProductionSiigoApi";
-
+            // 1. Consultar información de integración en la BD
             clasesglobales cg = new clasesglobales();
             DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
             int idTipoDocumento = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? Convert.ToInt32(dtIntegracion.Rows[0]["idTipoDocumento"].ToString()) : 66444;
@@ -236,15 +170,6 @@ namespace WebPage.Services
             //int costCenterDefault = 621;
             //int idVendedor = 856;
             //int idPayment = 9438;
-
-            // Más Datos - Producción
-            //int idTipoDocumento = 66444;
-            //int costCenterDefault = 13053;
-            //int idVendedor = 51883;
-            // TODO: CAMBIAR ESTE MÉTODO DE PAGO YA QUE SE VAN A HACER MODIFICACIONES EN SIIGO
-            //int idPayment = 59576;
-
-            //var siigo = new SiigoClient(new HttpClient(), baseUrl, username, accessKey, partnerId);
 
             // 2. Obtener token
             string token = await GetTokenAsync();

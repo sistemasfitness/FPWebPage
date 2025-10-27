@@ -278,7 +278,11 @@
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar_Click" Enabled="false"/>
+                                <asp:Button ID="btnRegistrarAfiliado" runat="server" 
+                                    CssClass="btn_full" 
+                                    Text="Registrarme" 
+                                    OnClientClick="return validarYEjecutarPago();"
+                                    OnClick="btnRegistrar_Click" />
                             </div>
                         </div>
 
@@ -442,27 +446,106 @@
             // Elimina cualquier cosa que no sea número
             let value = input.value.replace(/\D/g, '');
 
-            // Limita a 4 dígitos (algunas tarjetas como Amex lo requieren)
+            // Limita a 10 dígitos (Cédula y Celular)
             value = value.substring(0, 10);
 
             input.value = value;
         }
 
-        window.onload = function () {
-            const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');
-            const btnRegistrar = document.getElementById('<%= btnRegistrarAfiliado.ClientID %>');
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
+                title: titulo,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            };
 
-            function toggleButton() {
-                btnRegistrar.disabled = !cbAutorizo.checked;
+            esHtml ? config.html = mensaje : config.text = mensaje;
+            return Swal.fire(config); // Retorna la promesa
+        }
+
+        function validarCamposFormulario() {
+
+            const campos = [
+                { id: "<%= txbDocumento.ClientID %>", msg: "Por favor, ingresa tu número de documento." }, 
+                { id: "<%= ddlTipoDocumento.ClientID %>", msg: "Por favor, selecciona el tipo de documento." },
+                { id: "<%= txbNombre.ClientID %>", msg: "Por favor, ingresa tu nombre." },
+                { id: "<%= txbApellido.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
+                { id: "<%= txbEmail.ClientID %>", msg: "Por favor, ingresa tu correo electrónico.", tipo: "email" },
+                { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." },
+                { id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
+                { id: "<%= txbFechaNac.ClientID %>", msg: "Por favor, ingresa tu fecha de nacimiento." },
+                { id: "<%= ddlCiudad.ClientID %>", msg: "Por favor, selecciona la ciudad donde deseas entrenar." },
+                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }
+            ];
+
+            for (const campo of campos) {
+                const el = document.getElementById(campo.id);
+                const valor = el?.value.trim();
+
+                if (!valor) {
+                    return mostrarAlerta(
+                        'Campo requerido', 
+                        campo.msg, 
+                        'warning'
+                    ).then(() => el.focus());
+                }
+
+                if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+                    return mostrarAlerta(
+                        'Correo inválido', 
+                        'El formato del correo eletrónico no es válido.<br> <b>Ej: usuario@dominio.com</b>', 
+                        'warning', 
+                        {},
+                        true
+                    ).then(() => el.focus());
+                }
             }
 
-            cbAutorizo.addEventListener('change', toggleButton);
+            return true;
+        }
 
-            // Inicializar el estado al cargar la página
-            toggleButton();
+        function validarYEjecutarPago() {
+            const cb1 = document.getElementById("cbAutorizo");
+
+            if (!cb1.checked) {
+                mostrarAlerta('Confirmación requerida', 'Debes autorizar el cobro recurrente para continuar con el registro.', 'warning');
+                return false;
+            }
+
+            const formularioOK = validarCamposFormulario();
+            if (formularioOK === true) {
+                return ejecutarPago();
+            }
+
+            return false;
+        }
+
+        function ejecutarPago() {
+            mostrarAlerta(
+                'Procesando registro',
+                'Estamos guardando tu información.<br><br><b>No cierres ni recargues la página</b><br>mientras te redirigimos a la pasarela de pago.',
+                'info',
+                {
+                    showCloseButton: false,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => Swal.showLoading()
+                },
+                true
+            );
+
+            return true;
         }
 
     </script>
+
 
     <style>
 

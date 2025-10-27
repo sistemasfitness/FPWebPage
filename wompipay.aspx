@@ -244,7 +244,6 @@
                             <asp:Button ID="btnPagar" runat="server"
                                 CssClass="btn_full"
                                 Text="Pagar"
-                                UseSubmitBehavior="false"
                                 OnClientClick="return validarYEjecutarPago();" 
                                 OnClick="btnPagar_Click" />
                         </div>
@@ -287,123 +286,6 @@
     <script src="js/functions.js"></script>
     <script>
 
-        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
-            const config = {
-                title: titulo,
-                icon: tipo,
-                background: '#3C3C3C',
-                showCloseButton: true,
-                confirmButtonText: 'Aceptar',
-                customClass: {
-                    popup: 'alert',
-                    confirmButton: 'btn-confirm-alert'
-                },
-                ...opcionesExtras
-            };
-
-            // Según el tipo de contenido
-            if (esHtml) {
-                config.html = mensaje;
-            } else {
-                config.text = mensaje;
-            }
-
-            Swal.fire(config);
-        }
-
-        function validarCamposFormulario() {
-            const tarjeta = document.getElementById("<%= txbCreditCard.ClientID %>");
-            const mes = document.getElementById("<%= ddlMes.ClientID %>");
-            const anho = document.getElementById("<%= ddlAnho.ClientID %>");
-            const cvc = document.getElementById("<%= txbCVC.ClientID %>");
-            const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");
-
-            if (!tarjeta.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de la tarjeta.', 'warning');
-                tarjeta.focus();
-                return false;
-            }
-
-            if (!mes.value) {
-                mostrarAlerta('Campo requerido', 'Por favor, selecciona el mes de expiración.', 'warning');
-                mes.focus();
-                return false;
-            }
-
-            if (!anho.value) {
-                mostrarAlerta('Campo requerido', 'Por favor, selecciona el año de expiración.', 'warning');
-                anho.focus();
-                return false;
-            }
-
-            if (!cvc.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el CVC de la tarjeta.', 'warning');
-                cvc.focus();
-                return false;
-            }
-
-            if (!nombre.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre del titular de la tarjeta.', 'warning');
-                nombre.focus();
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarYEjecutarPago() {
-            const cb1 = document.getElementById("cbAutorizo1");
-            const cb2 = document.getElementById("cbAutorizo2");
-            const cb3 = document.getElementById("cbAutorizo3");
-
-            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;
-            const formularioOK = validarCamposFormulario();
-
-            if (!autorizacionesOK) {
-                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
-                return false;
-            }
-
-            if (!formularioOK) {
-                return false;
-            }
-
-            ejecutarPago();
-            return false;
-        }
-
-        function ejecutarPago() {
-            mostrarAlerta(
-                'Procesando pago',
-                'Tu pago se está realizando.<br><br><b>Por favor, no cierres ni recargues la página</b> mientras completamos la transacción. Esto puede tardar unos segundos...',
-                'info',
-                {
-                    showCloseButton: false,
-                    allowOutsideClick: false,
-                    showConfirmButton: false,
-                    didOpen: () => {
-                        // 1️. Mostrar el loader
-                        Swal.showLoading();
-
-                        // 2️. Deshabilitar el botón (evita doble clic)
-                        const btn = document.getElementById('<%= btnPagar.ClientID %>');
-                        if (btn) btn.disabled = true;
-
-                        // 3️. Esperar a que el modal se haya renderizado en pantalla (frame siguiente)
-                        requestAnimationFrame(() => {
-                            // 4️. Ejecutar el postback (se asegura que el modal ya está visible)
-                            __doPostBack('<%= btnPagar.UniqueID %>', '');
-                        });
-                    }
-                },
-                true
-            );
-        }
-
-    </script>
-
-    <script>
-
         function formatCreditCard(input) {
             // Elimina todo lo que no sea número
             let value = input.value.replace(/\D/g, '');
@@ -426,6 +308,87 @@
             value = value.substring(0, 4);
 
             input.value = value;
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
+                title: titulo,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            };
+
+            esHtml ? config.html = mensaje : config.text = mensaje;
+            return Swal.fire(config); // Retorna la promesa
+        }
+
+        function validarCamposFormulario() {
+
+            const campos = [
+                { id: "<%= txbCreditCard.ClientID %>", msg: "Por favor, ingresa el número de la tarjeta." },
+                { id: "<%= ddlMes.ClientID %>", msg: "Por favor, selecciona el mes de expiración." },
+                { id: "<%= ddlAnho.ClientID %>", msg: "Por favor, selecciona el año de expiración." },
+                { id: "<%= txbCVC.ClientID %>", msg: "Por favor, ingresa el CVC de la tarjeta." },
+                { id: "<%= txbNombreTarjeta.ClientID %>", msg: "Por favor, ingresa el nombre del titular de la tarjeta." }
+            ];
+
+            for (const campo of campos) {
+                const el = document.getElementById(campo.id);
+                const valor = el?.value.trim();
+
+                if (!valor) {
+                    return mostrarAlerta(
+                        'Campo requerido',
+                        campo.msg,
+                        'warning'
+                    ).then(() => el.focus());
+                }
+            }
+
+            return true;
+        }
+
+        function validarYEjecutarPago() {
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
+            const cb3 = document.getElementById("cbAutorizo3");
+
+            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;
+            
+            if (!autorizacionesOK) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+                return false;
+            }
+
+            const formularioOK = validarCamposFormulario();
+            if (formularioOK == true) {
+                return ejecutarPago();
+            }
+
+            return false;
+        }
+
+        function ejecutarPago() {
+            mostrarAlerta(
+                'Procesando pago',
+                'Tu pago se está realizando.<br><br><b>Por favor, no cierres ni recargues la página</b> mientras completamos la transacción. Esto puede tardar unos segundos...',
+                'info',
+                {
+                    showCloseButton: false,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => Swal.showLoading()
+                },
+                true
+            );
+
+            return true;
         }
 
     </script>
