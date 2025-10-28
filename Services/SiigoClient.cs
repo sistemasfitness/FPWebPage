@@ -24,6 +24,7 @@ namespace WebPage.Services
         private readonly string _username;
         private readonly string _accessKey;
         private readonly string _partnerId;
+        private static readonly object _siigoTokenLock = new object();
 
         public SiigoClient(HttpClient httpClient, string baseUrl, string username, string accessKey, string partnerId)
         {
@@ -36,11 +37,15 @@ namespace WebPage.Services
 
         public async Task<string> GetTokenAsync()
         {
-            string token = HttpContext.Current.Application["SiigoToken"]?.ToString();
+            // Recuperar token y hora de expiración desde Application
+            var token = HttpContext.Current.Application["SiigoToken"] as string;
+            var expira = HttpContext.Current.Application["SiigoTokenExp"] as DateTime?;
 
-            if (!string.IsNullOrEmpty(token))
+            // Validar si el token existe y sigue vigente
+            if (!string.IsNullOrEmpty(token) && expira.HasValue && expira.Value > DateTime.Now)
                 return token;
 
+            // Si no existe o ya expiró, solicitar uno nuevo
             var url = $"{_baseUrl}auth";
             var payload = new
             {
@@ -59,7 +64,7 @@ namespace WebPage.Services
 
             token = obj.access_token;
 
-            // Guardar token en memoria global
+            // Guardar token y nueva fecha de expiración (50 minutos)
             HttpContext.Current.Application["SiigoToken"] = token;
             HttpContext.Current.Application["SiigoTokenExp"] = DateTime.Now.AddMinutes(50);
 
