@@ -8351,6 +8351,34 @@ namespace WebPage
             return dt;
         }
 
+        public string InsertarVentaEmbajador(int idAfiliado, int idAfiliadoPlan, string codEmbajador)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_VENTA_EMBAJADOR", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
+                        cmd.Parameters.AddWithValue("@p_cod_embajador", codEmbajador);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public string InsertarConcursoGymPass(string nombres, string apellidos, string documento, string correo, string celular, string fechaInicio, string sede, string codEmbajador, string archivoCaptura)
         {
             string respuesta = string.Empty;

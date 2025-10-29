@@ -44,10 +44,6 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                // TODO: ESTE SOLO SE REALIZA PARA EL SERVER DE CAMILOWEB - BORRAR DESPUES
-                //string urlRedirect = $"https://fitnesspeoplecmdcolombia.com/register?idPlan={Request.QueryString["idPlan"]}";
-                //Response.Redirect(urlRedirect);
-
                 Session["PagoCompletado"] = false;
 
                 ValidarPlan();
@@ -69,7 +65,7 @@ namespace WebPage
 
         protected void btnValidarCodEmbajador_Click(object sender, EventArgs e)
         {
-            string codigo = txtCodigoEmbajador.Text.Trim();
+            string codigo = txtCodigoEmbajador.Text.Trim().ToLower();
 
             if (string.IsNullOrEmpty(codigo))
             {
@@ -83,14 +79,16 @@ namespace WebPage
 
                 DataTable dtCodEmbajador = cg.ConsultarCodigoEmbajador(codigo);
 
-                if (dtCodEmbajador.Rows.Count <= 0)
+                if (dtCodEmbajador.Rows.Count > 0)
+                {
+                    Session["CodEmbajador"] = codigo;
+                    Response.Redirect("register?idPlan=19", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                else
                 {
                     lblMensajeEmbajador.Text = "<span style='font-size: 15px; font-weight: 700; color:red;'>El código de embajador que ingresaste no es válido. Verifica y vuelve a intentarlo.</span>";
-                    return;
                 }
-
-                Response.Redirect("register?idPlan=19", false);
-                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
@@ -366,27 +364,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Fechas en conflicto",
-                                "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Fechas en conflicto",
+                    //            "No es posible continuar debido a que las fechas seleccionadas se cruzan con otro plan que ya tienes activo.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,
@@ -421,17 +419,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    dtIntegracion.Dispose();
+                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    //dtIntegracion.Dispose();
 
-                    //string url = "https://api.siigo.com/";
-                    //string username = "sandbox@siigoapi.com";
-                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    //string partnerId = "SandboxSiigoApi";
+                    string url = "https://api.siigo.com/";
+                    string username = "sandbox@siigoapi.com";
+                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
