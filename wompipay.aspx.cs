@@ -385,7 +385,7 @@ namespace WebPage
                 string idSiigoFactura = null;
 
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
-                cg.InsertarPagoPlanAfiliadoWeb(
+                int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
                     idAfiliadoPlan,
                     ValorPlan,
                     4,
@@ -455,7 +455,7 @@ namespace WebPage
                         //);
 
                         // Actualizar pago con id de factura
-                        cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+                        cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
                     }
                     catch (Exception siigoEx)
                     {

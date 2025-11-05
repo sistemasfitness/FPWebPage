@@ -189,7 +189,7 @@ namespace WebPage
                     );
 
                     // Actualizar pago con id de factura
-                    cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
+                    //cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idSiigoFactura, idAfiliadoPlan);
                 }
                 catch (Exception siigoEx)
                 {
