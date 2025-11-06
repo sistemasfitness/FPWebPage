@@ -24,7 +24,7 @@ namespace WebPage
                     {
                         ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/banners/" + dt.Rows[0]["BannerWeb"].ToString() + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
                         ltBannerFull.Text += "<div id=\"sub_content_in\" style='align-content: end;'>";
-                        ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombrePlan"].ToString().ToUpper() + "</h1>";
+                        ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombreWeb"].ToString().ToUpper() + "</h1>";
                         ltBannerFull.Text += "<p>ENTRENA SIN PAUSAS, SIN VUELTAS, SIN EXCUSAS.</p>";
                         ltBannerFull.Text += "</div>";
                         ltBannerFull.Text += "</section>";
