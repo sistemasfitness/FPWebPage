@@ -17,8 +17,8 @@
 
             <div class="col-md-4">
                 <div class="img_container plan-center">
-                    <a href="planes?id=10">
-                        <img src="img/planes/03_plan-6-mas-2_2025-10-17.jpg" class="img-fluid plan-img" />
+                    <a href="planes?id=5">
+                        <img src="img/planes/plan-6-meses_2025-11-07.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>

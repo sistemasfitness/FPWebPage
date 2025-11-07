@@ -23,6 +23,7 @@ using MySql.Data.MySqlClient;
 using System.Web.Configuration;
 using System.Security.Policy;
 using WebPage.Services;
+using System.Linq;
 
 namespace WebPage
 {
@@ -32,6 +33,12 @@ namespace WebPage
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
             set { ViewState["idPlan"] = value; }
+        }
+
+        protected int ValorPlan
+        {
+            get { return ViewState["valorPlan"] != null ? (int)ViewState["valorPlan"] : 0; }
+            set { ViewState["valorPlan"] = value; }
         }
 
         protected int IdVendedor
@@ -46,17 +53,25 @@ namespace WebPage
             {
                 Session["PagoCompletado"] = false;
 
-                ValidarPlan();
+                if (ValidarParametrosURL())
+                {
+                    ValidarPlan();
 
-                ConfigurarCamposFecha();
+                    ConfigurarCamposFecha();
 
-                CargarInformacionPlan();
+                    CargarInformacionPlan();
 
-                CambiarPlanSeleccionado();
+                    CambiarPlanSeleccionado();
 
-                CargarTipoDocumento();
-                CargarGeneros();
-                CargarCiudadesYSedes();
+                    CargarTipoDocumento();
+                    CargarGeneros();
+                    CargarCiudadesYSedes();
+
+                    if (!string.IsNullOrEmpty(txbFechaIni.Text))
+                    {
+                        txbFechaFin.Text = CalcularFechaFinPlan(txbFechaIni.Text);
+                    }
+                }
             }
 
             // Agregar manualmente el onchange que llama al postback
@@ -93,6 +108,89 @@ namespace WebPage
             catch (Exception ex)
             {
                 lblMensajeEmbajador.Text = "<span style='font-size: 15px; font-weight: 700; color:red;'>Error: " + ex.Message + "</span>";
+            }
+        }
+
+        private bool ValidarParametrosURL()
+        {
+            try
+            {
+                // Validar existencia de idPlan
+                if (Request.QueryString["idPlan"] == null)
+                {
+                    Response.Redirect("default");
+                    return false;
+                }
+
+                // Convertir idPlan
+                int idPlan;
+                if (!int.TryParse(Request.QueryString["idPlan"], out idPlan))
+                {
+                    Response.Redirect("default");
+                    return false;
+                }
+
+                // Validar que el plan esté dentro de los conocidos
+                int[] planesPermitidos = { 1, 12, 17, 18, 19, 20, 21 };
+                if (!planesPermitidos.Contains(idPlan))
+                {
+                    Response.Redirect("default");
+                    return false;
+                }
+
+                // Si el idVendedor viene en el link, convertirlo, si no, dejarlo en 0 temporalmente
+                int idVendedor = 0;
+                if (Request.QueryString["idVendedor"] != null)
+                {
+                    if (!int.TryParse(Request.QueryString["idVendedor"], out idVendedor))
+                    {
+                        Response.Redirect("default");
+                        return false;
+                    }
+                }
+
+                // Asignar vendedor automático según el plan si no se envió
+                if (idVendedor == 0)
+                {
+                    if (idPlan == 1 || idPlan == 12 || idPlan == 17)
+                        idVendedor = 152;
+                    else if (idPlan == 18 || idPlan == 19)
+                        idVendedor = 156;
+                    else if (idPlan == 20 || idPlan == 21)
+                        idVendedor = 152; // o 156 según el caso
+                }
+
+                // Validar que el vendedor esté permitido (solo 152 o 156)
+                int[] vendedoresPermitidos = { 152, 156 };
+                if (!vendedoresPermitidos.Contains(idVendedor))
+                {
+                    Response.Redirect("default");
+                    return false;
+                }
+
+                // Validar relación plan–vendedor
+                bool combinacionValida =
+                    ((idPlan == 1 || idPlan == 12 || idPlan == 17) && idVendedor == 152) ||
+                    ((idPlan == 18 || idPlan == 19) && idVendedor == 156) ||
+                    ((idPlan == 20 || idPlan == 21) && (idVendedor == 152 || idVendedor == 156));
+
+                if (!combinacionValida)
+                {
+                    Response.Redirect("default");
+                    return false;
+                }
+
+                // Guardar resultados
+                IdPlan = idPlan;
+                IdVendedor = idVendedor;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ValidarParametrosURL: " + ex.ToString());
+                Response.Redirect("default");
+                return false;
             }
         }
 
@@ -135,17 +233,21 @@ namespace WebPage
             DateTime dt14 = DateTime.Now.AddYears(-14);
             DateTime dt100 = DateTime.Now.AddYears(-100);
 
-            txbFechaNac.Attributes.Add("min", dt100.Year.ToString() + "-" + string.Format("{0:MM}", dt100) + "-" + String.Format("{0:dd}", dt100));
-            txbFechaNac.Attributes.Add("max", dt14.Year.ToString() + "-" + string.Format("{0:MM}", dt14) + "-" + String.Format("{0:dd}", dt14));
+            txbFechaNac.Attributes.Add("min", dt100.ToString("yyyy-MM-dd"));
+            txbFechaNac.Attributes.Add("max", dt14.ToString("yyyy-MM-dd"));
 
-            txbFechaIni.Attributes.Add("value", dtHoy.Year.ToString() + "-" + string.Format("{0:MM}", dtHoy) + "-" + String.Format("{0:dd}", dtHoy));
-            txbFechaFin.Attributes.Add("value", dtHoyUnAnnio.Year.ToString() + "-" + string.Format("{0:MM}", dtHoyUnAnnio) + "-" + String.Format("{0:dd}", dtHoyUnAnnio));
-            txbFechaIni.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+            string fechaHoy = dtHoy.ToString("yyyy-MM-dd");
+            txbFechaIni.Attributes["value"] = fechaHoy;
+            txbFechaIni.Text = fechaHoy;
+
+            string fechaUnAnnio = dtHoyUnAnnio.ToString("yyyy-MM-dd");
+            txbFechaFin.Attributes["value"] = fechaUnAnnio;
+            txbFechaFin.Text = fechaUnAnnio;
+
+            txbFechaIni.Attributes["min"] = DateTime.Now.ToString("yyyy-MM-dd");
 
             if (IdPlan != 12)
-            {
-                txbFechaIni.Attributes.Add("max", String.Format("{0:yyyy-MM-dd}", DateTime.Now.AddDays(3)));
-            }
+                txbFechaIni.Attributes["max"] = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
         }
 
         private void ValidarPlan()
@@ -163,6 +265,8 @@ namespace WebPage
                  * 3. Planes de Página Web:
                  * idPlanQS = "18"   -> $99.000
                  * idPlanQS = "19"   -> $89.000
+                 * idPlanQS = "20"   -> $49.900   Promoción
+                 * idPlanQS = "21"   -> $9.900    Promoción
                 */
 
                 clasesglobales cg = new clasesglobales();
@@ -170,64 +274,59 @@ namespace WebPage
 
                 if (dt != null && dt.Rows.Count > 0 && Request.QueryString.Count > 0)
                 {
-                    IdPlan = Convert.ToInt32(Request.QueryString["idPlan"]);
-
                     DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
 
-                    int idPlanBD = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["idPlan"]) : 0;
+                    if (dtPlan == null || dtPlan.Rows.Count == 0)
+                    {
+                        Response.Redirect("default");
+                        return;
+                    }
+
+                    int idPlanBD = Convert.ToInt32(dtPlan.Rows[0]["idPlan"]);
 
                     if (idPlanBD != IdPlan || idPlanBD == 0)
                     {
                         Response.Redirect("default");
+                        return;
                     }
 
-                    if (dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1")
+                    // Mostrar método de pago
+                    txbMetodoPago.Text = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1"
+                        ? "Débito Automático"
+                        : "Pago Único";
+
+                    DataTable dtPlanPromocion = cg.ConsultarPlanPromocionPorId(idPlanBD);
+
+                    if (dtPlanPromocion != null && dtPlanPromocion.Rows.Count > 0 && !dtPlanPromocion.Columns.Contains("Error"))
                     {
-                        txbMetodoPago.Text = "Débito Automático";
+                        ValorPlan = Convert.ToInt32(dtPlanPromocion.Rows[0]["PrecioProm"].ToString());
+                        txbValorPlan.Text = ValorPlan.ToString();
+                        hfValorPlan.Value = ValorPlan.ToString();
+                        ltValor.Text = "$" + string.Format("{0:N0}", ValorPlan);
                     }
                     else
                     {
-                        txbMetodoPago.Text = "Pago Único";
+                        ValorPlan = Convert.ToInt32(dtPlan.Rows[0]["PrecioTotal"].ToString());
+                        txbValorPlan.Text = ValorPlan.ToString();
+                        hfValorPlan.Value = ValorPlan.ToString();
+                        ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(ValorPlan));
                     }
-
-                    txbValorPlan.Text = dtPlan.Rows[0]["PrecioTotal"].ToString();
-                    hfValorPlan.Value = dtPlan.Rows[0]["PrecioTotal"].ToString();
-                    ltValor.Text = "$" + string.Format("{0:N0}", Convert.ToDecimal(dtPlan.Rows[0]["PrecioTotal"]));
-
-                    dtPlan.Dispose();
 
                     if (IdPlan == 12 || IdPlan == 17)  // Plan de migracion 2.000 y 89.000
                     {
                         txbFechaIni.Enabled = false;
                         txbFechaFin.Enabled = false;
                     }
+
+                    dtPlanPromocion?.Dispose();
+                    dtPlan.Dispose();
                 }
 
                 dt.Dispose();
 
-                GestionarVendedor(IdPlan);
-
             } catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error en ValidarPlan: " + ex.ToString());
-            }
-        }
-
-        private void GestionarVendedor(int idPlan)
-        {
-            if (!string.IsNullOrEmpty(Request.QueryString["idVendedor"]))
-            {
-                IdVendedor = Convert.ToInt32(Request.QueryString["idVendedor"]);
-            }
-
-            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == 1 || idPlan == 12 || idPlan == 17)
-            {
-                IdVendedor = 152;
-            }
-
-            if (string.IsNullOrEmpty(Request.QueryString["idVendedor"]) && idPlan == 18 || idPlan == 19)
-            {
-                IdVendedor = 156;
             }
         }
 
@@ -344,19 +443,18 @@ namespace WebPage
                 }
                 dtAfiliado.Dispose();
 
-                string strNombre = txbNombre.Text.ToString();
-                string strApellido = txbApellido.Text.ToString();
+                string strNombre = txbNombre.Text.ToUpper();
+                string strApellido = txbApellido.Text.ToUpper();
                 string strCelular = txbCelular.Text.ToString();
-                string strEmail = txbEmail.Text.ToString();
+                string strEmail = txbEmail.Text.ToLower();
                 int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
                 string strFechaNac = txbFechaNac.Text.ToString();
 
                 string strFechaInicioPlan = txbFechaIni.Text.ToString();
-                string strFechaFinPlan = CalcularFechaFinPlan(strFechaInicioPlan);
+                string strFechaFinPlan = txbFechaFin.Text.ToString();
 
                 int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
                 int idSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
-                string strValorPlan = hfValorPlan.Value;
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
@@ -364,27 +462,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Tienes un plan activo",
-                                "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Tienes un plan activo",
+                    //            "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,
@@ -419,17 +517,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    dtIntegracion.Dispose();
+                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    //dtIntegracion.Dispose();
 
-                    //string url = "https://api.siigo.com/";
-                    //string username = "sandbox@siigoapi.com";
-                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    //string partnerId = "SandboxSiigoApi";
+                    string url = "https://api.siigo.com/";
+                    string username = "sandbox@siigoapi.com";
+                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
@@ -446,11 +544,15 @@ namespace WebPage
                     System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
                 }
 
+                DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
+                bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
+                dtPlan.Dispose();
 
-                if (IdPlan == 1 || IdPlan == 12 || IdPlan == 17 || IdPlan == 18 || IdPlan == 19)
+                if (esDebitoAutomatico)
                 {
                     string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}" +
                                      $"&idPlan={HttpUtility.UrlEncode(IdPlan.ToString())}" +
+                                     $"&valorPlan={HttpUtility.UrlEncode(ValorPlan.ToString())}" +
                                      $"&fechaIni={HttpUtility.UrlEncode(strFechaInicioPlan)}" +
                                      $"&fechaFin={HttpUtility.UrlEncode(strFechaFinPlan)}" +
                                      $"&idVendedor={HttpUtility.UrlEncode(IdVendedor.ToString())}" +
