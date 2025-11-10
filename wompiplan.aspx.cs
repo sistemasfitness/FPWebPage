@@ -1,8 +1,10 @@
 ﻿using NPOI.OpenXmlFormats.Wordprocessing;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Xml;
 using System.Text;
@@ -27,6 +29,13 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ValidarTokenURLEncryptor();
+
+                //CargarInformacion();
+            }
+
             //string strCode = Request.QueryString["code"];
             //string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
 
@@ -40,8 +49,8 @@ namespace WebPage
             ////Hash Sha256 para Wompi
             //_strMonto = codes[1] + "00";
 
-            
-            //
+
+
 
             //string strDocumento = Request.QueryString["nroDoc"];
 
@@ -61,7 +70,7 @@ namespace WebPage
             //_strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
 
 
-            //
+
 
 
             //string token = Request.QueryString["data"];
@@ -90,18 +99,63 @@ namespace WebPage
             //}
         }
 
-        private void AlmacenarDatosPago(string referencia, string documento)
+        private void ValidarTokenURLEncryptor()
+        {
+            string token = Request.QueryString["data"];
+
+            if (string.IsNullOrEmpty(token))
+            {
+                Response.Redirect("default");
+                return;
+            }
+
+            if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
+            {
+                string[] codes = q[0].Split('_');
+
+                string strDocumento = codes[0];
+
+                clasesglobales cg = new clasesglobales();
+                DataTable dt = cg.ConsultarAfiliadoPorDocumento(strDocumento);
+
+                //Referencia unica para el pago.
+                _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+
+                //Hash Sha256 para Wompi
+                _strMonto = codes[1] + "00";
+
+                string moneda = "COP";
+                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+                string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+                _strHash256 = ComputeSha256Hash(concatenado);
+
+                AlmacenarDatosPago(_strReferencia, dt.Rows[0]["idAfiliado"].ToString(), codes[1]);
+                dt.Dispose();
+
+                string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
+
+                _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+
+            }
+            else
+            {
+                Response.Redirect("default");
+            }
+        }
+
+        private void AlmacenarDatosPago(string referencia, string strIdAfiliado, string valor)
         {
             clasesglobales cg = new clasesglobales();
 
-            int idAfiliado = Convert.ToInt32(Session["idAfiliado"].ToString());
-            int idPlan = Convert.ToInt16(Session["idPlan"].ToString());
-            string fechaInicioPlan = Session["fechaInicioPlan"].ToString();
-            string fechaFinPlan = Session["fechaFinPlan"].ToString();
-            int meses = Convert.ToInt16(Session["meses"].ToString());
-            int valorPlan = Convert.ToInt32(Session["valorPlan"].ToString());
+            int idAfiliado = Convert.ToInt32(strIdAfiliado);
+            int idPlan = 1;
+            string fechaInicioPlan = "2025-11-01";
+            string fechaFinPlan = "2026-11-01";
+            int meses = 12;
+            int valorPlan = Convert.ToInt32(valor);
 
-            cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, documento, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
+            cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
         }
 
         static string ComputeSha256Hash(string rawData)

@@ -22,121 +22,121 @@ namespace WebPage
         OdbcConnection myConnection = new OdbcConnection(ConfigurationManager.AppSettings["sConn"].ToString());
         protected void Page_Load(object sender, EventArgs e)
 		{
+            clasesglobales cg = new clasesglobales();
+
+
             string strCode = Request.QueryString["code"];
             string strDocumento = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
             string strReferencia = Request.QueryString["id"].ToString();
             string strEnv = Request.QueryString["env"].ToString();
 
             string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
-            DataTable dt = TraerDatos(strQuery);
+            DataTable dt = cg.TraerDatos(strQuery);
 
             if (dt.Rows.Count > 0)
             {
-                strQuery = "SELECT * FROM AfiliadosPlanes WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
-                    "AND EstadoPlan = 'Inactivo' ";
-                DataTable dt2 = TraerDatos(strQuery);
+                //strQuery = "SELECT * FROM AfiliadosPlanes WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
+                //    "AND EstadoPlan = 'Inactivo' ";
+                //DataTable dt2 = TraerDatos(strQuery);
 
-                if (dt2.Rows.Count > 0)
+                //if (dt2.Rows.Count > 0)
+                //{
+
+                try
                 {
-                    try
+                    strQuery = "INSERT INTO AfiliadosPlanes (idAfiliado, idPlan, FechaInicioPlan, " +
+                    "FechaFinalPlan, Meses, Valor, ObservacionesPlan, EstadoPlan " +
+                    "SELECT idAfiliado, idPlan, FechaInicioPlan, " +
+                    "FechaFinPlan, Meses, ValorPlan, 'Venta Wompi', 'Activo' " +
+                    "FROM PagoPlanAfiliadoPendiente WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
+
+                    string mensaje = cg.TraerDatosStr(strQuery);
+
+                    if (mensaje == "OK")
                     {
-                        strQuery = "INSERT INTO PagosPlanAfiliado (idAfiliadoPlan, Valor, idReferenciaWompi, env, fechahorapago) " +
+                        strQuery = "SELECT * FROM AfiliadosPlanes " +
+                        "WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
+                        "ORDER BY idAfiliadoPlan DESC LIMIT 1";
+
+                        DataTable dt2 = cg.TraerDatos(strQuery);
+
+                        //Ojo enviar el id del usuario que vende, canal de venta
+                        strQuery = "INSERT INTO PagosPlanAfiliado (idAfiliadoPlan, Valor, " +
+                            "idMedioPago, idReferencia, Banco, FechaHoraPago, EstadoPago) " +
                             "VALUES (" + dt2.Rows[0]["idAfiliadoPlan"].ToString() + ", " +
-                            "" + dt2.Rows[0]["Valor"].ToString() + ", " +
-                            "'" + strReferencia + "', " +
-                            "'" + strEnv + "', NOW()) ";
-                        OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-                        myConnection.Open();
-                        command.ExecuteNonQuery();
-                        command.Dispose();
-                        myConnection.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        string strMensaje = ex.Message;
-                    }
+                            "" + dt2.Rows[0]["Valor"].ToString() + ", 4, " +
+                            "'" + strReferencia + "', 'Wompi', " +
+                            "NOW()), 'Aprobado' ";
 
-                    try
-                    {
-                        strQuery = "UPDATE AfiliadosPlanes SET EstadoPlan = 'Activo' " +
-                            "WHERE idAfiliadoPlan = " + dt2.Rows[0]["idAfiliadoPlan"].ToString();
-                        OdbcCommand command = new OdbcCommand(strQuery, myConnection);
-                        myConnection.Open();
-                        command.ExecuteNonQuery();
-                        command.Dispose();
-                        myConnection.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        string strMensaje = ex.Message;
-                    }
+                        mensaje = cg.TraerDatosStr(strQuery);
 
-                    // Post a Armatura para crear el usuario
-                    PostArmatura(strDocumento);
+                        if (mensaje == "OK")
+                        {
+                            strQuery = "DELETE FROM PagoPlanAfiliadoPendiente " +
+                                "WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
 
+                            mensaje = cg.TraerDatosStr(strQuery);
+                        }
+                    }
                 }
+                catch (Exception ex)
+                {
+                    string strMensaje = ex.Message;
+                }
+
+                    //// Post a Armatura para crear el usuario
+                    //PostArmatura(strDocumento);
+
+                //}
             }
-        }
-
-        private DataTable TraerDatos(string strQuery)
-        {
-            myConnection.Open();
-            DataTable dt = new DataTable();
-
-            OdbcCommand sqlCmd = new OdbcCommand(strQuery, myConnection);
-            OdbcDataAdapter sqlDA = new OdbcDataAdapter(sqlCmd);
-            sqlDA.Fill(dt);
-            myConnection.Close();
-
-            return dt;
         }
 
         private void PostArmatura(string strDocumento)
         {
-            string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
-            DataTable dt = TraerDatos(strQuery);
+            //string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
+            //DataTable dt = TraerDatos(strQuery);
 
-            string strGenero = "";
-            if (dt.Rows[0]["idGenero"].ToString() == "1")
-            {
-                strGenero = "M";
-            }
-            if (dt.Rows[0]["idGenero"].ToString() == "2")
-            {
-                strGenero = "F";
-            }
+            //string strGenero = "";
+            //if (dt.Rows[0]["idGenero"].ToString() == "1")
+            //{
+            //    strGenero = "M";
+            //}
+            //if (dt.Rows[0]["idGenero"].ToString() == "2")
+            //{
+            //    strGenero = "F";
+            //}
 
-            Persona oPersona = new Persona()
-            {
-                pin = "" + dt.Rows[0]["DocumentoAfiliado"].ToString() + "",
-                name = "" + dt.Rows[0]["NombreAfiliado"].ToString() + "",
-                lastName = "" + dt.Rows[0]["ApellidoAfiliado"].ToString() + "",
-                gender = strGenero,
-                personPhoto = "",
-                certType = "",
-                certNumber = "",
-                mobilePhone = "" + dt.Rows[0]["CelularAfiliado"].ToString() + "",
-                personPwd = "",
-                birthday = "" + String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dt.Rows[0]["FechaNacAfiliado"].ToString())) + "",
-                isSendMail = "false",
-                email = "" + dt.Rows[0]["EmailAfiliado"].ToString() + "",
-                deptCode = "01",
-                ssn = "",
-                cardNo = "",
-                supplyCards = "",
-                carPlate = "",
-                accStartTime = "2025-01-01 08:00:00",
-                accEndTime = "2025-02-25 23:00:00",
-                accLevelIds = "402883f08df57ba4018df57cddf70490",
-                hireDate = ""
-            };
+            //Persona oPersona = new Persona()
+            //{
+            //    pin = "" + dt.Rows[0]["DocumentoAfiliado"].ToString() + "",
+            //    name = "" + dt.Rows[0]["NombreAfiliado"].ToString() + "",
+            //    lastName = "" + dt.Rows[0]["ApellidoAfiliado"].ToString() + "",
+            //    gender = strGenero,
+            //    personPhoto = "",
+            //    certType = "",
+            //    certNumber = "",
+            //    mobilePhone = "" + dt.Rows[0]["CelularAfiliado"].ToString() + "",
+            //    personPwd = "",
+            //    birthday = "" + String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dt.Rows[0]["FechaNacAfiliado"].ToString())) + "",
+            //    isSendMail = "false",
+            //    email = "" + dt.Rows[0]["EmailAfiliado"].ToString() + "",
+            //    deptCode = "01",
+            //    ssn = "",
+            //    cardNo = "",
+            //    supplyCards = "",
+            //    carPlate = "",
+            //    accStartTime = "2025-01-01 08:00:00",
+            //    accEndTime = "2025-02-25 23:00:00",
+            //    accLevelIds = "402883f08df57ba4018df57cddf70490",
+            //    hireDate = ""
+            //};
 
-            string contenido = JsonConvert.SerializeObject(oPersona, Formatting.Indented);
+            //string contenido = JsonConvert.SerializeObject(oPersona, Formatting.Indented);
             
-            string url = "https://aone.armaturacolombia.co/api/person/add/?access_token=D2BCF6E6BD09DECAA1266D9F684FFE3F5310AD447D107A29974F71E1989AABDB";
-            string rta = EnviarPeticion(url, contenido);
+            //string url = "https://aone.armaturacolombia.co/api/person/add/?access_token=D2BCF6E6BD09DECAA1266D9F684FFE3F5310AD447D107A29974F71E1989AABDB";
+            //string rta = EnviarPeticion(url, contenido);
 
-            ltMensaje.Text = rta;
+            //ltMensaje.Text = rta;
 
         }
 
