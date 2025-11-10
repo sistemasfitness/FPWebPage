@@ -45,7 +45,7 @@ namespace WebPage
                 try
                 {
                     strQuery = "INSERT INTO AfiliadosPlanes (idAfiliado, idPlan, FechaInicioPlan, " +
-                    "FechaFinalPlan, Meses, Valor, ObservacionesPlan, EstadoPlan " +
+                    "FechaFinalPlan, Meses, Valor, ObservacionesPlan, EstadoPlan) " +
                     "SELECT idAfiliado, idPlan, FechaInicioPlan, " +
                     "FechaFinPlan, Meses, ValorPlan, 'Venta Wompi', 'Activo' " +
                     "FROM PagoPlanAfiliadoPendiente WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
@@ -66,7 +66,7 @@ namespace WebPage
                             "VALUES (" + dt2.Rows[0]["idAfiliadoPlan"].ToString() + ", " +
                             "" + dt2.Rows[0]["Valor"].ToString() + ", 4, " +
                             "'" + strReferencia + "', 'Wompi', " +
-                            "NOW()), 'Aprobado' ";
+                            "NOW(), 'Aprobado') ";
 
                         mensaje = cg.TraerDatosStr(strQuery);
 

@@ -130,7 +130,7 @@ namespace WebPage
                 string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
                 _strHash256 = ComputeSha256Hash(concatenado);
 
-                AlmacenarDatosPago(_strReferencia, dt.Rows[0]["idAfiliado"].ToString(), codes[1]);
+                AlmacenarDatosPago(_strReferencia, dt.Rows[0]["idAfiliado"].ToString(), codes[1], codes[2]);
                 dt.Dispose();
 
                 string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
@@ -144,18 +144,24 @@ namespace WebPage
             }
         }
 
-        private void AlmacenarDatosPago(string referencia, string strIdAfiliado, string valor)
+        private void AlmacenarDatosPago(string referencia, string strIdAfiliado, string valor, string strIdPlan)
         {
             clasesglobales cg = new clasesglobales();
 
-            int idAfiliado = Convert.ToInt32(strIdAfiliado);
-            int idPlan = 1;
-            string fechaInicioPlan = "2025-11-01";
-            string fechaFinPlan = "2026-11-01";
-            int meses = 12;
-            int valorPlan = Convert.ToInt32(valor);
+            DataTable dt = cg.ConsultarPlanPorId(Convert.ToInt32(strIdPlan));
 
-            cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
+            if (dt.Rows.Count > 0)
+            {
+                int intMesesPlan = Convert.ToInt32(dt.Rows[0]["meses"].ToString());
+                int idAfiliado = Convert.ToInt32(strIdAfiliado);
+                int idPlan = Convert.ToInt32(strIdPlan);
+                string fechaInicioPlan = DateTime.Now.ToString("yyyy-MM-dd");
+                string fechaFinPlan = DateTime.Now.AddMonths(intMesesPlan).ToString("yyyy-MM-dd");
+                int meses = intMesesPlan;
+                int valorPlan = Convert.ToInt32(valor);
+
+                cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
+            }
         }
 
         static string ComputeSha256Hash(string rawData)
