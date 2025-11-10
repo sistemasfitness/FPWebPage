@@ -198,7 +198,8 @@ namespace WebPage
         {
             if (IdPlan == 18)
             {
-                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
+                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
@@ -208,14 +209,49 @@ namespace WebPage
             {
                 pnlTotalCart.Visible = false;
 
-                ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px;'>
+                ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px; margin-bottom: 0;'>
                                         ANTES <span class='pull-right' style='text-decoration: line-through;'>$99.000</span>
                                     </div>
                                     <div id='total_cart'>
                                         AHORA <span class='pull-right'>$89.000</span>
                                     </div>";
 
-                ltInfoPlan.Text = @"<i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
+                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+            }
+
+            if (IdPlan == 20)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
+                                        2 MESES <span class='pull-right'>$49.900</span>
+                                    </div>
+                                    <div id='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS <span class='pull-right'>$99.000</span>
+                                    </div>";
+
+                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+            }
+
+            if (IdPlan == 21)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
+                                        2 MESES <span class='pull-right'>$9.900</span>
+                                    </div>
+                                    <div id='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS <span class='pull-right'>$89.000</span>
+                                    </div>";
+
+                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
                                     <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
@@ -462,27 +498,27 @@ namespace WebPage
                 if (idAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    //if (dtFechaFinPlan.Rows.Count > 0)
-                    //{
-                    //    // Obtener fecha de fin anterior
-                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    if (dtFechaFinPlan.Rows.Count > 0)
+                    {
+                        // Obtener fecha de fin anterior
+                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                    //    if (fechaInicioNuevo <= fechaFinAnterior)
-                    //    {
-                    //        MostrarAlerta(
-                    //            "Tienes un plan activo",
-                    //            "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
-                    //            "warning"
-                    //        );
+                        if (fechaInicioNuevo <= fechaFinAnterior)
+                        {
+                            MostrarAlerta(
+                                "Tienes un plan activo",
+                                "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
+                                "warning"
+                            );
 
-                    //        return;
-                    //    }
-                    //}
+                            return;
+                        }
+                    }
 
-                    //dtFechaFinPlan.Dispose();
+                    dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,
@@ -517,17 +553,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    //dtIntegracion.Dispose();
+                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    dtIntegracion.Dispose();
 
-                    string url = "https://api.siigo.com/";
-                    string username = "sandbox@siigoapi.com";
-                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    string partnerId = "SandboxSiigoApi";
+                    //string url = "https://api.siigo.com/";
+                    //string username = "sandbox@siigoapi.com";
+                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    //string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
