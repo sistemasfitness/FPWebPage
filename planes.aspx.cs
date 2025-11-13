@@ -17,14 +17,22 @@ namespace WebPage
                 if (Request.QueryString["id"].ToString() != "")
                 {
                     clasesglobales cg = new clasesglobales();
-                    string strQuery = "SELECT * " +
-                        "FROM Planes WHERE idPlan <> 9 AND idPlan <> 12 AND idPlan = " + Request.QueryString["id"].ToString();
-                    DataTable dt = cg.TraerDatos(strQuery);
+                    //string strQuery = "SELECT * " +
+                    //    "FROM Planes WHERE idPlan <> 9 AND idPlan <> 12 AND idPlan = " + Request.QueryString["id"].ToString();
+                    //DataTable dt = cg.TraerDatos(strQuery);
+
+                    DataTable dt = cg.ConsultarPlanWebPorId(Convert.ToInt32(Request.QueryString["id"].ToString()));
+
                     if (dt.Rows.Count > 0)
                     {
-                        ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/banners/" + dt.Rows[0]["BannerWeb"].ToString() + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
+                        ltBannerFull.Text = "<section class=\"parallax_window_in\" " +
+                            "data-parallax=\"scroll\" " +
+                            "data-image-src=\"img/banners/" + dt.Rows[0]["BannerWeb"].ToString() + "\" " +
+                            "data-natural-width=\"1400\" data-natural-height=\"470\" " +
+                            "onclick=\"window.location.href='" + dt.Rows[0]["EnlacePago"].ToString() + "';\" " +
+                            "style=\"cursor:pointer;\">";
+                        //ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombreWeb"].ToString().ToUpper() + "</h1>";
                         ltBannerFull.Text += "<div id=\"sub_content_in\" style='align-content: end;'>";
-                        ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombreWeb"].ToString().ToUpper() + "</h1>";
                         ltBannerFull.Text += "</div>";
                         ltBannerFull.Text += "</section>";
 
@@ -51,9 +59,11 @@ namespace WebPage
                         Response.Redirect("default");
                     }
 
+                    dt.Dispose();
+
                     //GenerarBarraProgreso();
 
-                    strQuery = "SELECT * FROM CiudadesSedes " +
+                    string strQuery = "SELECT * FROM CiudadesSedes " +
                         "WHERE idCiudadSede <> 5 ";
                     DataTable dt1 = cg.TraerDatos(strQuery);
 

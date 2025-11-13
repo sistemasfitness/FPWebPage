@@ -586,16 +586,26 @@
     <uc1:loginregister runat="server" ID="loginregister" />
 
     <!-- Modal - Plan Easy -->
-    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+    <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
                 <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
                 <a href="register?idPlan=19">
                     <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
                 </a>
+                <!-- Contador dentro del modal -->
+                <div id="barraProgresoEasy" style="text-align: center; margin-top: 10px;">
+                    <h4 style="font-weight: 700; color: #FFF; margin: 0;">⏳ ¡Tu promo expira pronto!</h4>
+
+                    <p style="font-size: 4rem; font-weight: 800; color: #e3ff00; margin-bottom: 0; width: 100%;" id="time-remaining-easy"></p>
+
+                    <div class="progress-bar" style="width: 100%;">
+                        <div id="progress-fill-easy" class="progress-fill"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <!-- Search Menu -->
     <div class="search-overlay-menu">
@@ -655,19 +665,62 @@
         });
     </script>--%>
 
-    <script>
+    <%--<script>
+
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    document.getElementById("time-remaining-easy").textContent = "Tiempo terminado";
+                    document.getElementById("time-remaining-easy").style.fontSize = "3.7rem";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        }
 
         $(document).ready(function () {
             const params = new URLSearchParams(window.location.search);
             if (params.get("id") === "18") {
 
-                setTimeout(function () {
+                function abrirModalEasy() {
                     $("#plan-easy").modal("show");
-                }, 10000);
+                    iniciarTemporizadorEasy(10); // 2 minutos = 120 segundos
+                }
+
+                setTimeout(function () {
+                    abrirModalEasy();
+                }, 5000);
             }
         });
 
-    </script>
+    </script>--%>
 
     <script>
 
@@ -761,6 +814,28 @@
             background-size: 200% 100%;
             transition: width 0.5s linear;
         }
+    </style>--%>
+
+    <%--<style>
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
+        }
+
     </style>--%>
 
     <%--<script>

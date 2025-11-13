@@ -96,12 +96,12 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
+    <%--<section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
         <div id="hero_video">
             <div id="sub_content">
                 <div class="mobile_fix">
-                    <%--<h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
-                    <p>Transforma tu cuerpo y tu vida</p>--%>
+                    <h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
+                    <p>Transforma tu cuerpo y tu vida</p>
                 </div>
             </div>
             <!-- End sub_content -->
@@ -113,19 +113,23 @@
                 <li><span class="number">4</span>&nbsp;Ciudades</li>
             </ul>
         </div>
-    </section>
+    </section>--%>
     <!-- End Header video -->
 
     <!-- Slider -->
-    <%--<div id="full-slider-wrapper">
-        <div id="layerslider" style="width: 100%;">
+    <div id="full-slider-wrapper">
+        <div id="layerslider">
             <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;" style="cursor: pointer;" onclick="window.open('planeasy.aspx','_blank')">
-                <img id="slide1-img" src="img/slides/banner_4.jpg" class="ls-bg" width="1600" height="100%" />
+            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;" style="cursor: pointer;" onclick="window.location.href='planes?id=19'">
+                <img id="slide1-img" src="img/slides/banner-principal_plan-easy.jpg" class="ls-bg" />
             </div>
             <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;" style="cursor: pointer;" onclick="window.open('plan3plus3.aspx','_blank')">
-                <img id="slide2-img" src="img/slides/banner_5.jpg" class="ls-bg" width="1600" height="100%" />
+            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=5'">
+                <img id="slide2-img" src="img/slides/banner-principal_plan-6-meses.jpg" class="ls-bg" />
+            </div>
+            <!-- third slide -->
+            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:4;" style="cursor: pointer;" onclick="window.location.href='planes?id=16'">
+                <img id="slide3-img" src="img/slides/banner-principal_plan-3-meses.jpg" class="ls-bg" />
             </div>
 
             <div id="count" class="hidden-xs">
@@ -136,7 +140,7 @@
                 </ul>
             </div>
         </div>
-    </div>--%>
+    </div>
     <!-- End layerslider -->
     <!-- End SubHeader ============================================ -->
     <form runat="server" id="form2">
@@ -675,17 +679,31 @@
             }
         });
 
+        //$('#layerslider').layerSlider({
+        //    autoStart: true,
+        //    navButtons: false,
+        //    navStartStop: false,
+        //    showCircleTimer: false,
+        //    responsive: true,
+        //    responsiveUnder: 1400,
+        //    layersContainer: 1170,
+        //    skinsPath: 'layerslider/skins/'
+        //    // Please make sure that you didn't forget to add a comma to the line endings
+        //    // except the last line!
+        //});
+
         $('#layerslider').layerSlider({
             autoStart: true,
             navButtons: false,
             navStartStop: false,
             showCircleTimer: false,
             responsive: true,
-            responsiveUnder: 1400,
-            layersContainer: 1170,
-            skinsPath: 'layerslider/skins/'
-            // Please make sure that you didn't forget to add a comma to the line endings
-            // except the last line!
+            responsiveUnder: 0,       // Permite escalar en todos los tamaños
+            layersContainer: 0,       // Usa el 100% del ancho (no fijo a 1170)
+            skin: 'default',
+            skinsPath: 'layerslider/skins/',
+            hoverPrevNext: false,
+            pauseOnHover: false
         });
 
         function setPanels() {

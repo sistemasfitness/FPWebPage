@@ -312,7 +312,15 @@
 
                             <div class="modal-body text-center">
                                 <p class="text-center" style="font-size: 20px; color: #fff;">
-                                    ¿Qué esperas para cangearlo? <br /> Disfruta de un <b>10% de descuento</b> en tu Plan Easy. ¡Aprovecha este beneficio exclusivo!
+                                    ¡Genial! Actívalo y disfruta de un plan con un beneficio exclusivo:
+                                </p>
+                                <p style="font-size: 20px; color: #fff;">
+                                    <i class="fa fa-circle-check" style="color: #E3FF00;"></i><b> Los 2 primeros meses pagas $49.900</b><br />
+                                    <i class="fa fa-circle-check" style="color: #E3FF00;"></i><b> Despúes pagas $99.000</b>
+                                </p>
+
+                                <p style="font-size: 20px; color: #fff;">
+                                    ¡Aprovecha esta oportunidad exclusiva y entrena con el mejor precio!
                                 </p>
 
                                 <asp:TextBox ID="txtCodigoEmbajador" runat="server" CssClass="form-control text-center margin_30"
@@ -350,13 +358,60 @@
     <uc1:loginregister runat="server" ID="loginregister" />
 
     <!-- Modal - Plan Easy -->
-    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+    <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
+                <!-- Contador dentro del modal -->
+                <div id="barraProgresoEasy" style="text-align: center; margin-top: 10px; background-color: #111820;">
+                    <h4 style="font-weight: 700; color: #FFF; margin: 0;">⏳ ¡Tu promo expira pronto!</h4>
+
+                    <p style="font-size: 4rem; font-weight: 800; color: #e3ff00; margin-bottom: 0; width: 100%;" id="time-remaining-easy"></p>
+                </div>
+
                 <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
                 <a href="register?idPlan=19">
                     <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
                 </a>
+                <div class="progress-bar" style="width: 100%;">
+                    <div id="progress-fill-easy" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>--%>
+
+    <!-- Modal - Plan Easy -->
+    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                <!-- Contenedor relativo -->
+                <div style="position: relative; width: 100%;">
+
+                <!-- Contador -->
+                <div id="barraProgresoEasy"
+                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                    id="time-remaining-easy"></p>
+                </div>
+
+                <!-- Imagen -->
+                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                <!-- Capa clickeable -->
+                <a href="register?idPlan=21"
+                    style="position: absolute; inset: 0; z-index: 10;"></a>
+                </div>
+
+                <!-- Botón de cierre -->
+                <a href="#" class="close-link" data-dismiss="modal"
+                    style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                    <i class="icon_close_alt2"></i>
+                </a>
+
+                <!-- Barra de progreso -->
+                <div class="progress-bar" style="width: 100%;">
+                    <div id="progress-fill-easy" class="progress-fill"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -408,9 +463,45 @@
 
     <script>
 
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        }
+
         $(document).ready(function () {
             const params = new URLSearchParams(window.location.search);
-            if (params.get("idPlan") === "18") {
+            if (params.get("idPlan") === "19") {
 
                 // Mostrar modal código embajador (ahora sí se puede cerrar libremente)
                 $("#cod-embajador").modal({
@@ -421,20 +512,38 @@
                 // Obtener ID real del control ASP.NET
                 var documentoInput = $("#<%= txbDocumento.ClientID %>");
 
-                // Cuando pierde el foco
+                function abrirModalEasy() {
+                    $("#plan-easy").modal("show");
+                    iniciarTemporizadorEasy(120); // 2 minutos = 120 segundos
+                }
+
                 documentoInput.on("blur", function () {
                     if ($(this).val().trim() !== "") {
-                        $("#plan-easy").modal("show");
+                        abrirModalEasy();
                     }
                 });
 
-                // Cuando presiona Enter
                 documentoInput.on("keypress", function (e) {
                     if (e.which === 13 && $(this).val().trim() !== "") {
-                        e.preventDefault(); // evitar que dispare un submit
-                        $("#plan-easy").modal("show");
+                        e.preventDefault();
+                        abrirModalEasy();
                     }
                 });
+
+                //// Cuando pierde el foco
+                //documentoInput.on("blur", function () {
+                //    if ($(this).val().trim() !== "") {
+                //        $("#plan-easy").modal("show");
+                //    }
+                //});
+
+                //// Cuando presiona Enter
+                //documentoInput.on("keypress", function (e) {
+                //    if (e.which === 13 && $(this).val().trim() !== "") {
+                //        e.preventDefault(); // evitar que dispare un submit
+                //        $("#plan-easy").modal("show");
+                //    }
+                //});
             }
         });
 
@@ -563,6 +672,32 @@
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
+        }
+
+    </style>
+
+    <style>
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
+        }
+
+        @media (max-width: 768px) {
+            
         }
 
     </style>

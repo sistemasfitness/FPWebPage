@@ -111,18 +111,26 @@ namespace WebPage
 
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
-                string[] codes = q[0].Split('_');
+                if (expiresUtc.HasValue && expiresUtc.Value < DateTime.UtcNow)
+                {
+                    Response.Redirect("default", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
 
-                string strDocumento = codes[0];
-
-                clasesglobales cg = new clasesglobales();
-                DataTable dt = cg.ConsultarAfiliadoPorDocumento(strDocumento);
+                int idAfiliado = Convert.ToInt32(q["idAfi"]);
+                string documento = q["nroDoc"];
+                int idPlan = Convert.ToInt32(q["idPlan"]);
+                int valorPlan = Convert.ToInt32(q["valorPlan"]);
+                string fechaInicioPlan = q["fechaIni"];
+                string fechaFinPlan = q["fechaFin"];
+                int totalMeses = Convert.ToInt32(q["totalMeses"]);
 
                 //Referencia unica para el pago.
-                _strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
+                _strReferencia = documento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
 
                 //Hash Sha256 para Wompi
-                _strMonto = codes[1] + "00";
+                _strMonto = $"{valorPlan}00";
 
                 string moneda = "COP";
                 string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
@@ -130,13 +138,13 @@ namespace WebPage
                 string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
                 _strHash256 = ComputeSha256Hash(concatenado);
 
-                AlmacenarDatosPago(_strReferencia, dt.Rows[0]["idAfiliado"].ToString(), codes[1], codes[2]);
-                dt.Dispose();
+                clasesglobales cg = new clasesglobales();
 
-                string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
+                cg.InsertarPagoPlanAfiliadoPendienteWeb(_strReferencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, totalMeses, valorPlan);
+
+                string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(documento));
 
                 _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-
             }
             else
             {
@@ -144,23 +152,19 @@ namespace WebPage
             }
         }
 
-        private void AlmacenarDatosPago(string referencia, string strIdAfiliado, string valor, string strIdPlan)
+        private void AlmacenarDatosPago(string referencia, int idAfiliado, int valorPlan, int idPlan)
         {
             clasesglobales cg = new clasesglobales();
 
-            DataTable dt = cg.ConsultarPlanPorId(Convert.ToInt32(strIdPlan));
+            DataTable dt = cg.ConsultarPlanPorId(Convert.ToInt32(idPlan));
 
             if (dt.Rows.Count > 0)
             {
-                int intMesesPlan = Convert.ToInt32(dt.Rows[0]["meses"].ToString());
-                int idAfiliado = Convert.ToInt32(strIdAfiliado);
-                int idPlan = Convert.ToInt32(strIdPlan);
+                int mesesPlan = Convert.ToInt32(dt.Rows[0]["meses"].ToString());
                 string fechaInicioPlan = DateTime.Now.ToString("yyyy-MM-dd");
-                string fechaFinPlan = DateTime.Now.AddMonths(intMesesPlan).ToString("yyyy-MM-dd");
-                int meses = intMesesPlan;
-                int valorPlan = Convert.ToInt32(valor);
+                string fechaFinPlan = DateTime.Now.AddMonths(mesesPlan).ToString("yyyy-MM-dd");
 
-                cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, meses, valorPlan);
+                cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, mesesPlan, valorPlan);
             }
         }
 

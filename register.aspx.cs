@@ -29,6 +29,12 @@ namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
+        protected int IdAfiliado
+        {
+            get { return ViewState["idAfi"] != null ? (int)ViewState["idAfi"] : 0; }
+            set { ViewState["idAfi"] = value; }
+        }
+
         protected int IdPlan
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
@@ -39,6 +45,12 @@ namespace WebPage
         {
             get { return ViewState["valorPlan"] != null ? (int)ViewState["valorPlan"] : 0; }
             set { ViewState["valorPlan"] = value; }
+        }
+
+        protected int TotalMeses
+        {
+            get { return ViewState["totalMeses"] != null ? (int)ViewState["totalMeses"] : 0; }
+            set { ViewState["totalMeses"] = value; }
         }
 
         protected int IdVendedor
@@ -97,7 +109,7 @@ namespace WebPage
                 if (dtCodEmbajador.Rows.Count > 0)
                 {
                     Session["CodEmbajador"] = codigo;
-                    Response.Redirect("register?idPlan=19", false);
+                    Response.Redirect("register?idPlan=20&idVendedor=156", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 else
@@ -131,7 +143,7 @@ namespace WebPage
                 }
 
                 // Validar que el plan esté dentro de los conocidos
-                int[] planesPermitidos = { 1, 12, 17, 18, 19, 20, 21 };
+                int[] planesPermitidos = { 1, 5, 12, 17, 18, 19, 20, 21 };
                 if (!planesPermitidos.Contains(idPlan))
                 {
                     Response.Redirect("default");
@@ -152,7 +164,7 @@ namespace WebPage
                 // Asignar vendedor automático según el plan si no se envió
                 if (idVendedor == 0)
                 {
-                    if (idPlan == 1 || idPlan == 12 || idPlan == 17)
+                    if (idPlan == 1 || idPlan == 5 || idPlan == 12 || idPlan == 17)
                         idVendedor = 152;
                     else if (idPlan == 18 || idPlan == 19)
                         idVendedor = 156;
@@ -172,7 +184,7 @@ namespace WebPage
                 bool combinacionValida =
                     ((idPlan == 1 || idPlan == 12 || idPlan == 17) && idVendedor == 152) ||
                     ((idPlan == 18 || idPlan == 19) && idVendedor == 156) ||
-                    ((idPlan == 20 || idPlan == 21) && (idVendedor == 152 || idVendedor == 156));
+                    ((idPlan == 5 || idPlan == 20 || idPlan == 21) && (idVendedor == 152 || idVendedor == 156));
 
                 if (!combinacionValida)
                 {
@@ -210,7 +222,7 @@ namespace WebPage
                 pnlTotalCart.Visible = false;
 
                 ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px; margin-bottom: 0;'>
-                                        ANTES <span class='pull-right' style='text-decoration: line-through;'>$99.000</span>
+                                        ANTES <span class='pull-right' style='text-decoration: line-through;'>$149.000</span>
                                     </div>
                                     <div id='total_cart'>
                                         AHORA <span class='pull-right'>$89.000</span>
@@ -245,7 +257,7 @@ namespace WebPage
                 pnlTotalCart.Visible = false;
 
                 ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
-                                        2 MESES <span class='pull-right'>$9.900</span>
+                                        PRIMER MES <span class='pull-right'>$9.900</span>
                                     </div>
                                     <div id='total_cart' style='font-size: 15px;'>
                                         DESPUÉS <span class='pull-right'>$89.000</span>
@@ -470,12 +482,12 @@ namespace WebPage
                 string strCedula = txbDocumento.Text.ToString();
                 int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedItem.Value.ToString());
 
-                int idAfiliado = 0;
+                IdAfiliado = 0;
 
                 DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
                 if (dtAfiliado.Rows.Count > 0)
                 {
-                    idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
+                    IdAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
                 }
                 dtAfiliado.Dispose();
 
@@ -495,30 +507,30 @@ namespace WebPage
                 Session.Add("ltValorPlan", strLtValor);
 
                 // 1. Actualizar afiliado
-                if (idAfiliado != 0)
+                if (IdAfiliado != 0)
                 {
                     // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    //DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
-                    {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
+                    //if (dtFechaFinPlan.Rows.Count > 0)
+                    //{
+                    //    // Obtener fecha de fin anterior
+                    //    DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                    //    DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
 
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Tienes un plan activo",
-                                "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
-                                "warning"
-                            );
+                    //    if (fechaInicioNuevo <= fechaFinAnterior)
+                    //    {
+                    //        MostrarAlerta(
+                    //            "Tienes un plan activo",
+                    //            "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
+                    //            "warning"
+                    //        );
 
-                            return;
-                        }
-                    }
+                    //        return;
+                    //    }
+                    //}
 
-                    dtFechaFinPlan.Dispose();
+                    //dtFechaFinPlan.Dispose();
 
                     cg.ActualizarAfiliadoRegister(
                         strCedula,
@@ -553,17 +565,17 @@ namespace WebPage
                 // Registrar o consultar cliente en Siigo
                 try
                 {
-                    DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
-                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                    dtIntegracion.Dispose();
+                    //DataTable dtIntegracion = cg.ConsultarIntegracion(idSede);
+                    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                    //dtIntegracion.Dispose();
 
-                    //string url = "https://api.siigo.com/";
-                    //string username = "sandbox@siigoapi.com";
-                    //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                    //string partnerId = "SandboxSiigoApi";
+                    string url = "https://api.siigo.com/";
+                    string username = "sandbox@siigoapi.com";
+                    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                    string partnerId = "SandboxSiigoApi";
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
@@ -601,10 +613,19 @@ namespace WebPage
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
-                //else if (idPlanQS == "10" || idPlanQS == "16")
+                //else
                 //{
-                //    string payload = $"nroDoc={HttpUtility.UrlEncode(strCedula)}&valorPlan={HttpUtility.UrlEncode(strValorPlan)}";
-                //    string token = UrlEncryptor.Encrypt(payload);
+                //    string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}" +
+                //                     $"&nroDoc={HttpUtility.UrlEncode(strCedula)}" +
+                //                     $"&idPlan={HttpUtility.UrlEncode(IdPlan.ToString())}" +
+                //                     $"&valorPlan={HttpUtility.UrlEncode(ValorPlan.ToString())}" +
+                //                     $"&fechaIni={HttpUtility.UrlEncode(strFechaInicioPlan)}" +
+                //                     $"&fechaFin={HttpUtility.UrlEncode(strFechaFinPlan)}" +
+                //                     $"&totalMeses={HttpUtility.UrlEncode(TotalMeses.ToString())}";
+
+                //    TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
+                //    string token = UrlEncryptor.Encrypt(payload, ttl);
+
                 //    Response.Redirect($"wompiplan?data={HttpUtility.UrlEncode(token)}", false);
                 //    Context.ApplicationInstance.CompleteRequest();
                 //    return;
@@ -841,10 +862,10 @@ namespace WebPage
             int.TryParse(row["Meses"].ToString(), out meses);
             int.TryParse(row["MesesCortesia"].ToString(), out mesesCortesia);
 
-            int totalMeses = meses + mesesCortesia;
+            TotalMeses = meses + mesesCortesia;
 
             // Calcular la fecha final sumando meses
-            DateTime fechaFin = fechaInicio.AddMonths(totalMeses);
+            DateTime fechaFin = fechaInicio.AddMonths(TotalMeses);
 
             dt.Dispose();
 

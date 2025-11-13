@@ -3851,7 +3851,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 @media (max-width: 480px) {
 	#layerslider {
-		height: 70vh !important;
+		height: 90vh !important;
 	}
 
 	/* resultado.aspx */
