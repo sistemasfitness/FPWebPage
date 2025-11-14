@@ -3650,9 +3650,9 @@ body.swal2-shown {
 /*  Hecho por: Carlos Rivera 
 	Controlar alto del slider para resoluciones móviles y de escritorio
 */
-#layerslider {
-	height: 800px; /* valor por defecto */
-}
+/*#layerslider {
+	height: 800px;*/ /* valor por defecto */
+/*}*/
 
 /* planes.aspx */
 .info-planes .col-6:first-child {
@@ -3850,9 +3850,9 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 /* servicios.ascx | aliados.ascx */
 
 @media (max-width: 480px) {
-	#layerslider {
+	/*#layerslider {
 		height: 90vh !important;
-	}
+	}*/
 
 	/* resultado.aspx */
 	.banner-descubrir-plan {
@@ -3865,3 +3865,109 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	}
 	/* resultado.aspx */
 }
+
+/* Slider en página principal */
+#full-slider-wrapper {
+	width: 100%;
+	height: 90vh;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+/* Evitar padding y centrado en el contenedor interno */
+#layerslider,
+#layerslider .ls-slide,
+#layerslider .ls-bg {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+}
+
+	/* Estilo definitivo de las imágenes */
+	#layerslider .ls-bg {
+		width: 100% !important;
+		height: 100% !important;
+		object-fit: cover !important;
+		object-position: center center !important;
+		position: absolute !important;
+		left: 0 !important;
+		top: 0 !important;
+		transform: none !important;
+	}
+
+/* Evitar animaciones de resize que causan el salto */
+.ls-curtile img,
+.ls-nexttile img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	transform: none !important;
+}
+
+/* (Opcional) quitar la transición que hace el cambio brusco de tamaño */
+.ls-slide,
+.ls-bg {
+	transition: none !important;
+}
+
+/* Estilo visual  */
+.ls-nav-prev,
+.ls-nav-next {
+	background: rgba(0, 0, 0, 0.4);
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	opacity: 1 !important;
+	visibility: visible !important;
+	position: absolute !important;
+	top: 50% !important;
+	transform: translateY(-50%);
+	z-index: 100;
+	cursor: pointer;
+}
+
+	.ls-nav-prev {
+		left: 25px !important;
+	}
+
+	.ls-nav-next {
+		right: 25px !important;
+	}
+
+	.ls-nav-prev:hover,
+	.ls-nav-next:hover {
+		background: rgba(0, 0, 0, 0.7);
+	}
+
+	/* Usar las mismas flechas del Owl Carousel */
+	.ls-nav-prev::before,
+	.ls-nav-next::before {
+		font-family: 'fontello'; /* o la fuente que use tu Owl Carousel */
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		speak: none;
+		display: inline-block;
+		font-size: 24px;
+		color: #fff;
+		position: relative;
+	}
+
+	/* Flechas específicas */
+	.ls-nav-prev::before {
+		content: "\e89a"; /* igual que tu Owl */
+		left: -2px;
+		position: relative;
+	}
+
+	.ls-nav-next::before {
+		content: "\e89b"; /* igual que tu Owl */
+		right: -2px;
+		position: relative;
+	}

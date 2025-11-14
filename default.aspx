@@ -598,11 +598,11 @@
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
 
     <script>
-        $('.jarallax').jarallax({
-            videoLoop: true,
-            videoPlayOnlyVisible: false,
-            videoLazyLoading: false
-        });
+        //$('.jarallax').jarallax({
+        //    videoLoop: true,
+        //    videoPlayOnlyVisible: false,
+        //    videoLazyLoading: false
+        //});
 
         $(".team-carousel2").owlCarousel({
             items: 4,
@@ -694,29 +694,27 @@
 
         $('#layerslider').layerSlider({
             autoStart: true,
-            navButtons: false,
+            navButtons: true,
             navStartStop: false,
             showCircleTimer: false,
             responsive: true,
-            responsiveUnder: 0,       // Permite escalar en todos los tamaños
-            layersContainer: 0,       // Usa el 100% del ancho (no fijo a 1170)
+            responsiveUnder: 0,
+            layersContainer: 1170,
             skin: 'default',
-            skinsPath: 'layerslider/skins/',
-            hoverPrevNext: false,
-            pauseOnHover: false
+            skinsPath: 'layerslider/skins/'
         });
 
-        function setPanels() {
-            var windowWidth = window.innerWidth;
-            console.log(windowWidth);
-            if (windowWidth < 500) {
-                document.getElementById('img1').src = 'img/slides/slide_1_v.jpg';
-            }
-            else {
-                document.getElementById('img1').src = 'img/slides/slide_1.jpg';
-                //document.getElementById('layerslider').style = 'width:100%;height:667px;';
-            }
-        }
+        //function setPanels() {
+        //    var windowWidth = window.innerWidth;
+        //    console.log(windowWidth);
+        //    if (windowWidth < 500) {
+        //        document.getElementById('img1').src = 'img/slides/slide_1_v.jpg';
+        //    }
+        //    else {
+        //        document.getElementById('img1').src = 'img/slides/slide_1.jpg';
+        //        //document.getElementById('layerslider').style = 'width:100%;height:667px;';
+        //    }
+        //}
     </script>
     <%--<script src="js/pop_up.min.js"></script>
     <script src="js/pop_up_func.js"></script>--%>

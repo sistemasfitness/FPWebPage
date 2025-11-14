@@ -398,7 +398,7 @@
                 <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
 
                 <!-- Capa clickeable -->
-                <a href="register?idPlan=21"
+                <a href="register?idPlan=21&idVendedor=156"
                     style="position: absolute; inset: 0; z-index: 10;"></a>
                 </div>
 
@@ -694,10 +694,6 @@
             background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
             background-size: 200% 100%;
             transition: width 1s linear;
-        }
-
-        @media (max-width: 768px) {
-            
         }
 
     </style>

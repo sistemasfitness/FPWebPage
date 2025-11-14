@@ -891,22 +891,3 @@ body * .ls-container .ls-webkit-hack,
 .ls-forcehide {
 	display: none !important;
 }
-
-#layerslider,
-#layerslider .ls-slide,
-#layerslider .ls-bg {
-	
-	height: 100% !important;
-}
-
-	#layerslider .ls-bg {
-		object-fit: cover !important; /* hace el efecto cover */
-		object-position: center center !important;
-	}
-
-
-#full-slider-wrapper {
-	
-	height: 100vh; /* ocupa el alto de la pantalla */
-	overflow: hidden;
-}
