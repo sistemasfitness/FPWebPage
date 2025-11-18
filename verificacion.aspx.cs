@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
+using System.Net.Http;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -62,7 +64,33 @@ namespace WebPage
 
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
+                if (expiresUtc.HasValue && expiresUtc.Value < DateTime.UtcNow)
+                {
+                    Response.Redirect("default");
+                    return;
+                }
+
                 IdAfiliado = Convert.ToInt32(q["idAfi"]);
+                string nroDoc = q["nroDoc"];
+                int idPlan = Convert.ToInt32(q["idPlan"]);
+                string fechaIniPlan = q["fechaIni"];
+                string fechaFinPlan = q["fechaFin"];
+                int totalMeses = Convert.ToInt32(q["totalMeses"]);
+                int valor = Convert.ToInt32(q["valor"]);
+                string descripcion = q["descripcion"];
+                string estado = q["estado"];
+                string referencia = q["refe"];
+                int idVendedor = Convert.ToInt32(q["idVendedor"]);
+                int idSede = Convert.ToInt32(q["idSede"]);
+
+                string pagoUnico = q["pagoUnico"].ToString();
+
+                if (bool.TryParse(pagoUnico, out bool esPagoUnico) && esPagoUnico)
+                {
+                    string idTransaccion = Request.QueryString["id"];
+
+                    AlmacenarInformacionPagoUnico(nroDoc, idPlan, fechaIniPlan, fechaFinPlan, totalMeses, valor, descripcion, estado, referencia, idTransaccion, idVendedor, idSede);
+                }
             }
             else
             {
@@ -164,6 +192,108 @@ namespace WebPage
             ddlEPS.DataBind();
 
             dt.Dispose();
+        }
+
+        private void AlmacenarInformacionPagoUnico(string nroDoc, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valor, string descripcion, string estado, string referencia, string idTransaccion, int idVendedor, int idSede)
+        {
+            clasesglobales cg = new clasesglobales();
+            int idAfiliadoPlan = 0;
+            int idPago = 0;
+
+            try
+            {
+                // 1. Inserción de AfiliadoPlan en la Base de Datos
+                idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
+                    IdAfiliado,
+                    idPlan,
+                    fechaIniPlan,
+                    fechaFinPlan,
+                    totalMeses,
+                    valor,
+                    descripcion,
+                    estado
+                );
+
+                // 2. Inserción de PagoPlanAfiliado en la Base de Datos
+                idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
+                    idAfiliadoPlan,
+                    valor,
+                    4,
+                    referencia,
+                    "Wompi",
+                    idVendedor, // TODO: QUEMADO DE MOMENTO
+                    "Aprobado",
+                    null,
+                    null,
+                    null,
+                    idTransaccion,
+                    null,
+                    null,
+                    null
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error registrando el AfiliadoPlan y PagoPlanPlanAfiliado: " + ex.ToString());
+            }
+
+            // 3. Facturar en Siigo
+            //try
+            //{
+            //    //DataTable dtIntegracion = cg.ConsultarIntegracion(IdSede);
+            //    //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+            //    //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+            //    //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+            //    //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+            //    //dtIntegracion.Dispose();
+
+            //    string url = "https://api.siigo.com/";
+            //    string username = "sandbox@siigoapi.com";
+            //    string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+            //    string partnerId = "SandboxSiigoApi";
+
+            //    // Creación de factura
+            //    var siigoClient = new SiigoClient(
+            //        new HttpClient(),
+            //        url,
+            //        username,
+            //        accessKey,
+            //        partnerId
+            //    );
+
+            //    // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+            //    // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+            //    //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+            //    //    DocumentoAfiliado,
+            //    //    CodSiigoPlan,
+            //    //    NombrePlan,
+            //    //    ValorPlan,
+            //    //    IdSede
+            //    //);
+
+            //    // Siigo Pruebas
+            //    //    //int idTipoDocumento = 28006;
+            //    //    //int costCenterDefault = 621;
+            //    //    //int idVendedor = 856;
+            //    //    //int idPayment = 9438;
+            //    string codSiigoPlan = "COD2433";
+            //    string nombrePlan = "Pago de suscripción";
+            //    int precioPlan = 10000;
+            //    string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+            //        nroDoc,
+            //        codSiigoPlan,
+            //        nombrePlan,
+            //        precioPlan,
+            //        idSede
+            //    );
+
+            //    // Actualizar pago con id de factura
+            //    cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
+            //}
+            //catch (Exception siigoEx)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+            //}
         }
 
         private void ValidarAfiliadoWeb()
@@ -300,8 +430,9 @@ namespace WebPage
                 //    }
                 //}
 
+                // TODO: Comentado para realizar pruebas
                 // Enviar correo de confirmación
-                EnviarConfirmacion();
+                //EnviarConfirmacion();
 
                 Response.Redirect("gracias", false);
                 Context.ApplicationInstance.CompleteRequest();

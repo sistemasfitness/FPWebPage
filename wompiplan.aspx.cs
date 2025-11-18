@@ -125,6 +125,17 @@ namespace WebPage
                 string fechaInicioPlan = q["fechaIni"];
                 string fechaFinPlan = q["fechaFin"];
                 int totalMeses = Convert.ToInt32(q["totalMeses"]);
+                int idVendedor = Convert.ToInt32(q["idVendedor"]);
+                int idSede = Convert.ToInt32(q["idSede"]);
+
+                clasesglobales cg = new clasesglobales();
+
+                DataTable dtPlan = cg.ConsultarPlanPorId(idPlan);
+                string nombrePlan = dtPlan.Rows[0]["NombrePlan"].ToString();
+                dtPlan.Dispose();
+
+                string descripcion = $"Pago único de {nombrePlan}";
+                string estado = "Pendiente";
 
                 //Referencia unica para el pago.
                 _strReferencia = documento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
@@ -138,33 +149,38 @@ namespace WebPage
                 string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
                 _strHash256 = ComputeSha256Hash(concatenado);
 
-                clasesglobales cg = new clasesglobales();
 
-                cg.InsertarPagoPlanAfiliadoPendienteWeb(_strReferencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, totalMeses, valorPlan);
+                //cg.InsertarPagoPlanAfiliadoPendienteWeb(_strReferencia, idAfiliado, documento, idPlan, fechaInicioPlan, fechaFinPlan, totalMeses, valorPlan);
 
-                string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(documento));
+                string payload = $"idAfi={HttpUtility.UrlEncode(idAfiliado.ToString())}" +
+                                 $"&nroDoc={HttpUtility.UrlEncode(documento)}" +
+                                 $"&idPlan={HttpUtility.UrlEncode(idPlan.ToString())}" +
+                                 $"&fechaIni={HttpUtility.UrlEncode(fechaInicioPlan)}" +
+                                 $"&fechaFin={HttpUtility.UrlEncode(fechaFinPlan)}" +
+                                 $"&valor={HttpUtility.UrlEncode(valorPlan.ToString())}" +
+                                 $"&totalMeses={HttpUtility.UrlEncode(totalMeses.ToString())}" +
+                                 $"&descripcion{HttpUtility.UrlEncode(descripcion)}" +
+                                 $"&estado{HttpUtility.UrlEncode(estado)}" +
+                                 $"&refe={HttpUtility.UrlEncode(_strReferencia)}" +
+                                 $"&idVendedor={HttpUtility.UrlEncode(idVendedor.ToString())}" +
+                                 $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}" +
+                                 $"&pagoUnico=true";
 
-                _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+                TimeSpan ttl = TimeSpan.FromMinutes(100000); // Token válido 10 minutos
+                string tokenUrl = UrlEncryptor.Encrypt(payload, ttl);
+
+                //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(documento));
+
+                //_strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
+
+
+                //_strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
+
+                _strRedireccion = $"https://localhost:44382/verificacion?data={HttpUtility.UrlEncode(tokenUrl)}";
             }
             else
             {
                 Response.Redirect("default");
-            }
-        }
-
-        private void AlmacenarDatosPago(string referencia, int idAfiliado, int valorPlan, int idPlan)
-        {
-            clasesglobales cg = new clasesglobales();
-
-            DataTable dt = cg.ConsultarPlanPorId(Convert.ToInt32(idPlan));
-
-            if (dt.Rows.Count > 0)
-            {
-                int mesesPlan = Convert.ToInt32(dt.Rows[0]["meses"].ToString());
-                string fechaInicioPlan = DateTime.Now.ToString("yyyy-MM-dd");
-                string fechaFinPlan = DateTime.Now.AddMonths(mesesPlan).ToString("yyyy-MM-dd");
-
-                cg.InsertarPagoPlanAfiliadoPendienteWeb(referencia, idAfiliado, idPlan, fechaInicioPlan, fechaFinPlan, mesesPlan, valorPlan);
             }
         }
 

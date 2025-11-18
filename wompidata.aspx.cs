@@ -50,7 +50,7 @@ namespace WebPage
                     "FechaFinPlan, Meses, ValorPlan, 'Venta Wompi', 'Activo' " +
                     "FROM PagoPlanAfiliadoPendiente WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
 
-                    string mensaje = cg.TraerDatosStr(strQuery);
+                        string mensaje = cg.TraerDatosStr(strQuery);
 
                     if (mensaje == "OK")
                     {

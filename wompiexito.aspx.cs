@@ -85,7 +85,8 @@ namespace WebPage
 
         protected void btnRedireccionarActivarPlan_Click(object sender, EventArgs e)
         {
-            string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}";
+            string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}" +
+                             $"&pagoUnico=false";
 
             TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
             string token = UrlEncryptor.Encrypt(payload, ttl);

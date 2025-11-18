@@ -5668,7 +5668,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPagoPlanAfiliadoPendienteWeb(string referencia, int idAfiliado, int idPlan, string fechaInicioPlan, string fechaFinPlan, int meses, int valorPlan)
+        public string InsertarPagoPlanAfiliadoPendienteWeb(string referencia, int idAfiliado, string documento, int idPlan, string fechaInicioPlan, string fechaFinPlan, int meses, int valorPlan)
         {
             string respuesta = string.Empty;
             try
@@ -5682,6 +5682,7 @@ namespace WebPage
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_referencia", referencia);
                         cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
+                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documento);
                         cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
                         cmd.Parameters.AddWithValue("@p_fecha_ini_plan", fechaInicioPlan);
                         cmd.Parameters.AddWithValue("@p_fecha_fin_plan", fechaFinPlan);
