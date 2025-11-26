@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
@@ -7,87 +8,271 @@ using System.Data.Odbc;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.Xml;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebPage.Services;
 using static WebPage.register;
 
 namespace WebPage
 {
 	public partial class wompidata : System.Web.UI.Page
 	{
-        OdbcConnection myConnection = new OdbcConnection(ConfigurationManager.AppSettings["sConn"].ToString());
-        protected void Page_Load(object sender, EventArgs e)
+        protected string DocumentoAfiliado
+        {
+            get { return ViewState["nroDoc"]?.ToString(); }
+            set { ViewState["nroDoc"] = value; }
+        }
+
+        protected string IdTransaccion
+        {
+            get { return ViewState["idTransaccion"]?.ToString(); }
+            set { ViewState["idTransaccion"] = value; }
+        }
+
+        protected async void Page_Load(object sender, EventArgs e)
 		{
-            clasesglobales cg = new clasesglobales();
-
-
-            string strCode = Request.QueryString["code"];
-            string strDocumento = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
-            string strReferencia = Request.QueryString["id"].ToString();
-            string strEnv = Request.QueryString["env"].ToString();
-
-            string strQuery = "SELECT * FROM Afiliados WHERE DocumentoAfiliado = '" + strDocumento + "'";
-            DataTable dt = cg.TraerDatos(strQuery);
-
-            if (dt.Rows.Count > 0)
+            if (!IsPostBack)
             {
-                //strQuery = "SELECT * FROM AfiliadosPlanes WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
-                //    "AND EstadoPlan = 'Inactivo' ";
-                //DataTable dt2 = TraerDatos(strQuery);
-
-                //if (dt2.Rows.Count > 0)
-                //{
-
                 try
                 {
-                    strQuery = "INSERT INTO AfiliadosPlanes (idAfiliado, idPlan, FechaInicioPlan, " +
-                    "FechaFinalPlan, Meses, Valor, ObservacionesPlan, EstadoPlan) " +
-                    "SELECT idAfiliado, idPlan, FechaInicioPlan, " +
-                    "FechaFinPlan, Meses, ValorPlan, 'Venta Wompi', 'Activo' " +
-                    "FROM PagoPlanAfiliadoPendiente WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
+                    string code = Request.QueryString["code"];
 
-                        string mensaje = cg.TraerDatosStr(strQuery);
-
-                    if (mensaje == "OK")
-                    {
-                        strQuery = "SELECT * FROM AfiliadosPlanes " +
-                        "WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString() + " " +
-                        "ORDER BY idAfiliadoPlan DESC LIMIT 1";
-
-                        DataTable dt2 = cg.TraerDatos(strQuery);
-
-                        //Ojo enviar el id del usuario que vende, canal de venta
-                        strQuery = "INSERT INTO PagosPlanAfiliado (idAfiliadoPlan, Valor, " +
-                            "idMedioPago, idReferencia, Banco, FechaHoraPago, EstadoPago) " +
-                            "VALUES (" + dt2.Rows[0]["idAfiliadoPlan"].ToString() + ", " +
-                            "" + dt2.Rows[0]["Valor"].ToString() + ", 4, " +
-                            "'" + strReferencia + "', 'Wompi', " +
-                            "NOW(), 'Aprobado') ";
-
-                        mensaje = cg.TraerDatosStr(strQuery);
-
-                        if (mensaje == "OK")
-                        {
-                            strQuery = "DELETE FROM PagoPlanAfiliadoPendiente " +
-                                "WHERE idAfiliado = " + dt.Rows[0]["idAfiliado"].ToString();
-
-                            mensaje = cg.TraerDatosStr(strQuery);
-                        }
+                    if (string.IsNullOrEmpty(code)) 
+                    { 
+                        Response.Redirect("default", false);
+                        return;
                     }
+
+                    // Decodifica y guarda el documento
+                    DocumentoAfiliado = Encoding.Unicode.GetString(Convert.FromBase64String(code));
+
+                    // Lee el ID de la transacción según Wompi
+                    IdTransaccion = Request.QueryString["id"]
+                                 ?? Request.QueryString["transaction_id"];
+
+                    if (string.IsNullOrEmpty(IdTransaccion))
+                    {
+                        Response.Redirect("default", false);
+                        return;
+                    }
+
+                    // Procesa todo
+                    await ProcesarTransaccionWompiAsync();
                 }
                 catch (Exception ex)
                 {
-                    string strMensaje = ex.Message;
+                    System.Diagnostics.Debug.WriteLine("Error en Page_Load: " + ex.ToString());
+                }
+            }
+
+            //        //// Post a Armatura para crear el usuario
+            //        //PostArmatura(strDocumento);
+
+            //    //}
+            //}
+        }
+
+        private async Task ProcesarTransaccionWompiAsync()
+        {
+            try
+            {
+                string estado = null;
+                string mensajeEstado = null;
+                string referencia = null;
+
+                // Intentos para esperar aprobación
+                const int maxIntentos = 15;
+                int intentos = 0;
+
+                do
+                {
+                    await Task.Delay(1000);
+                    (referencia, estado, mensajeEstado) = await ObtenerEstadoTransaccionAsync(IdTransaccion);
+                    intentos++;
+                }
+                while (estado == "PENDING" && intentos < maxIntentos);
+
+                clasesglobales cg = new clasesglobales();
+
+                if (estado == "APPROVED")
+                {
+                    DataTable dtPago = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
+
+                    if (dtPago.Rows.Count > 0)
+                    {
+                        await RegistrarPagoAprobadoAsync(
+                            Convert.ToInt32(dtPago.Rows[0]["idAfiliado"]),
+                            DocumentoAfiliado,
+                            Convert.ToInt32(dtPago.Rows[0]["idPlan"]),
+                            Convert.ToDateTime(dtPago.Rows[0]["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToDateTime(dtPago.Rows[0]["fechaFinPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToInt32(dtPago.Rows[0]["mesesPlan"]),
+                            Convert.ToInt32(dtPago.Rows[0]["valorPlan"]),
+                            dtPago.Rows[0]["descripcionPlan"].ToString(),
+                            "Aprobado",
+                            referencia,
+                            IdTransaccion,
+                            Convert.ToInt32(dtPago.Rows[0]["idVendedor"]),
+                            Convert.ToInt32(dtPago.Rows[0]["idSede"])
+                        );
+                    }
                 }
 
-                    //// Post a Armatura para crear el usuario
-                    //PostArmatura(strDocumento);
+                cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, estado);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ProcesarTransaccionWompiAsync: " + ex.ToString());
+            }
+        }
 
-                //}
+        private async Task RegistrarPagoAprobadoAsync(int idAfiliado, string nroDoc, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valor, string descripcion, string estado, string referencia, string idTransaccion, int idVendedor, int idSede)
+        {
+            clasesglobales cg = new clasesglobales();
+            int idAfiliadoPlan = 0;
+            int idPago = 0;
+
+            try
+            {
+                // 1. Inserción de AfiliadoPlan en la Base de Datos
+                idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
+                    idAfiliado,
+                    idPlan,
+                    fechaIniPlan,
+                    fechaFinPlan,
+                    totalMeses,
+                    valor,
+                    descripcion,
+                    estado
+                );
+
+                // 2. Inserción de PagoPlanAfiliado en la Base de Datos
+                idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
+                    idAfiliadoPlan,
+                    valor,
+                    4,
+                    referencia,
+                    "Wompi",
+                    idVendedor,
+                    "Aprobado",
+                    null,
+                    null,
+                    null,
+                    idTransaccion,
+                    null,
+                    null,
+                    null
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error registrando el AfiliadoPlan y PagoPlanPlanAfiliado: " + ex.ToString());
+            }
+
+            // 3. Facturar en Siigo
+            try
+            {
+                //DataTable dtIntegracion = cg.ConsultarIntegracion(IdSede);
+                //string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
+                //string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
+                //string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
+                //string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
+                //dtIntegracion.Dispose();
+
+                string url = "https://api.siigo.com/";
+                string username = "sandbox@siigoapi.com";
+                string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+                string partnerId = "SandboxSiigoApi";
+
+                // Creación de factura
+                var siigoClient = new SiigoClient(
+                    new HttpClient(),
+                    url,
+                    username,
+                    accessKey,
+                    partnerId
+                );
+
+                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                //    DocumentoAfiliado,
+                //    CodSiigoPlan,
+                //    NombrePlan,
+                //    ValorPlan,
+                //    IdSede
+                //);
+
+                // Siigo Pruebas
+                //    //int idTipoDocumento = 28006;
+                //    //int costCenterDefault = 621;
+                //    //int idVendedor = 856;
+                //    //int idPayment = 9438;
+                string codSiigoPlan = "COD2433";
+                string nombrePlan = "Pago de suscripción";
+                int precioPlan = 10000;
+                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                    nroDoc,
+                    codSiigoPlan,
+                    nombrePlan,
+                    precioPlan,
+                    idSede
+                );
+
+                // Actualizar pago con id de factura
+                cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
+            }
+            catch (Exception siigoEx)
+            {
+                System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+            }
+        }
+
+        protected async Task<(string idReferencia, string estado, string estadoMensaje)> ObtenerEstadoTransaccionAsync(string idTransaccion)
+        {
+            try
+            {
+                // PRUEBAS:
+                string url = $"https://sandbox.wompi.co/v1/transactions/{idTransaccion}";
+
+                // PRODUCCION:
+                //string url = $"https://production.wompi.co/v1/transactions/{idTransaccion}";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetAsync(url);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return (null, null, null);
+                    }
+
+                    string json = await response.Content.ReadAsStringAsync();
+
+                    dynamic transaccion = JsonConvert.DeserializeObject<dynamic>(json);
+
+                    if (transaccion == null)
+                    {
+                        return (null, null, null);
+                    }
+
+                    string idReferencia = transaccion.data.reference;
+                    string estado = transaccion.data.status;
+                    string mensajeEstado = transaccion.data.status_message;
+
+                    return (idReferencia, estado, mensajeEstado);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error en ConsultarEstadoTransaccion: " + ex.ToString());
+                return (null, null, null);
             }
         }
 

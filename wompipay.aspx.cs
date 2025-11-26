@@ -512,6 +512,7 @@ namespace WebPage
                 Session["ltValorPlan"] = LtValorPlan;
 
                 string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}" +
+                                 $"&nroDoc={HttpUtility.UrlEncode(DocumentoAfiliado)}" +
                                  $"&idPlan={HttpUtility.UrlEncode(IdPlan.ToString())}";
 
                 TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos

@@ -42,11 +42,17 @@ namespace WebPage
             set { ViewState["idAfiPlan"] = value; }
         }
 
+        protected bool PagoUnico
+        {
+            get { return ViewState["pagoUnico"] != null ? (bool)ViewState["pagoUnico"] : false; }
+            set { ViewState["pagoUnico"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ValidarTokenURLEncryptor();
+                //ValidarTokenURLEncryptor();
 
                 CargarInformacion();
             }
@@ -102,30 +108,31 @@ namespace WebPage
         {
             try
             {
+                DocumentoAfiliado = Request.QueryString["nroDoc"];
+
                 clasesglobales cg = new clasesglobales();
+
+                DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
+
+                if (dtAfiliado.Rows.Count == 0)
+                {
+                    Response.Redirect("default", false);
+                    return;
+                }
+
+                IdAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
 
                 DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(IdAfiliado);
 
                 if (dtAfiliadoPlan.Rows.Count == 0)
                 {
-                    MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
+                    Response.Redirect("default", false);
                     return;
                 }
 
                 IdAfiliadoPlan = int.Parse(dtAfiliadoPlan.Rows[0]["idAfiliadoPlan"].ToString());
 
                 dtAfiliadoPlan.Dispose();
-
-
-                DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(IdAfiliado);
-
-                if (dtAfiliado.Rows.Count == 0)
-                {
-                    Response.Redirect("default");
-                    return;
-                }
-
-                DocumentoAfiliado = dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString();
 
                 CargarEps();
 

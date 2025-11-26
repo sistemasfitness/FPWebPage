@@ -22,166 +22,208 @@ namespace WebPage
         private string _strReferencia;
         private string _strHash256;
         private string _strRedireccion;
+        private string _strCorreo;
+        private string _strNombre;
+        private string _strTelefono;
         protected string strMonto { get { return this._strMonto; } }
         protected string strReferencia { get { return this._strReferencia; } }
         protected string strHash256 { get { return this._strHash256; } }
         protected string strRedireccion { get { return this._strRedireccion; } }
+        protected string strCorreo { get { return this._strCorreo; } }
+        protected string strNombre { get { return this._strNombre; } }
+        protected string strTelefono { get { return this._strTelefono; } }
+
+        protected string IdReferencia
+        {
+            get { return Session["idReferencia"]?.ToString(); }
+            set { Session["idReferencia"] = value; }
+        }
+
+        protected int IdAfiliado
+        {
+            get { return ViewState["idAfi"] != null ? (int)ViewState["idAfi"] : 0; }
+            set { ViewState["idAfi"] = value; }
+        }
+
+        protected int IdPlan
+        {
+            get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
+            set { ViewState["idPlan"] = value; }
+        }
+
+        protected int MesesPlan
+        {
+            get { return ViewState["meses"] != null ? (int)ViewState["meses"] : 0; }
+            set { ViewState["meses"] = value; }
+        }
+
+        protected int ValorPlan
+        {
+            get { return ViewState["valorPlan"] != null ? (int)ViewState["valorPlan"] : 0; }
+            set { ViewState["valorPlan"] = value; }
+        }
+
+        protected string FechaInicioPlan
+        {
+            get { return ViewState["fechaInicioPlan"]?.ToString(); }
+            set { ViewState["fechaInicioPlan"] = value; }
+        }
+
+        protected string FechaFinPlan
+        {
+            get { return ViewState["fechaFinPlan"]?.ToString(); }
+            set { ViewState["fechaFinPlan"] = value; }
+        }
+
+        protected string DescripcionPlan
+        {
+            get { return ViewState["descripcionPlan"]?.ToString(); }
+            set { ViewState["descripcionPlan"] = value; }
+        }
+
+        protected string EstadoPago
+        {
+            get { return ViewState["estadoPago"]?.ToString(); }
+            set { ViewState["estadoPago"] = value; }
+        }
+
+        protected int IdVendedor
+        {
+            get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
+            set { ViewState["idVendedor"] = value; }
+        }
+
+        protected int IdSede
+        {
+            get { return ViewState["idSede"] != null ? (int)ViewState["idSede"] : 0; }
+            set { ViewState["idSede"] = value; }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ValidarTokenURLEncryptor();
+                if (!ValidarTokenURLEncryptor()) return;
 
-                //CargarInformacion();
+                GenerarReferencia(_nroDocumento);
+
+                PrepararPago();
             }
-
-            //string strCode = Request.QueryString["code"];
-            //string strData = Encoding.Unicode.GetString(Convert.FromBase64String(strCode));
-
-            //string[] codes = strData.Split('_');
-
-            //string strDocumento = codes[0];
-
-            ////Referencia unica para el pago.
-            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-
-            ////Hash Sha256 para Wompi
-            //_strMonto = codes[1] + "00";
-
-
-
-
-            //string strDocumento = Request.QueryString["nroDoc"];
-
-            //_strReferencia = strDocumento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-            //_strMonto = Request.QueryString["valorPlan"] + "00";
-
-            //string moneda = "COP";
-            //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-            //string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-            //_strHash256 = ComputeSha256Hash(concatenado);
-
-            //AlmacenarDatosPago(_strReferencia, strDocumento);
-
-            //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(strDocumento));
-
-            //_strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-
-
-
-
-
-            //string token = Request.QueryString["data"];
-            //if (!string.IsNullOrEmpty(token) && UrlEncryptor.TryDecrypt(token, out string payload))
-            //{
-            //    var qs = HttpUtility.ParseQueryString(payload);
-            //    string nroDoc = qs["nroDoc"];
-            //    string valorPlan = qs["valorPlan"];
-
-            //    _strReferencia = nroDoc + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-            //    _strMonto = $"{valorPlan}00";
-
-            //    string moneda = "COP";
-            //    string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-            //    string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-            //    _strHash256 = ComputeSha256Hash(concatenado);
-
-            //    AlmacenarDatosPago(_strReferencia, nroDoc);
-
-            //    string strString = Convert.ToBase64String(Encoding.UTF8.GetBytes(nroDoc));
-            //    _strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-            //}
-            //else
-            //{
-            //    Response.Redirect("default");
-            //}
+            else
+            {
+                // en postbacks solo recuperar el valor del ViewState
+                if (IdReferencia != null)
+                    _strReferencia = IdReferencia;
+            }
         }
 
-        private void ValidarTokenURLEncryptor()
+        private string _nroDocumento;
+
+        private bool ValidarTokenURLEncryptor()
         {
             string token = Request.QueryString["data"];
 
             if (string.IsNullOrEmpty(token))
             {
-                Response.Redirect("default");
-                return;
+                Response.Redirect("default", true);
+                return false;
             }
 
-            if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
+            if (!UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
-                if (expiresUtc.HasValue && expiresUtc.Value < DateTime.UtcNow)
-                {
-                    Response.Redirect("default", false);
-                    Context.ApplicationInstance.CompleteRequest();
-                    return;
-                }
+                Response.Redirect("default", true);
+                return false;
+            }
 
-                int idAfiliado = Convert.ToInt32(q["idAfi"]);
-                string documento = q["nroDoc"];
-                int idPlan = Convert.ToInt32(q["idPlan"]);
-                int valorPlan = Convert.ToInt32(q["valorPlan"]);
-                string fechaInicioPlan = q["fechaIni"];
-                string fechaFinPlan = q["fechaFin"];
-                int totalMeses = Convert.ToInt32(q["totalMeses"]);
-                int idVendedor = Convert.ToInt32(q["idVendedor"]);
-                int idSede = Convert.ToInt32(q["idSede"]);
+            if (expiresUtc.HasValue && expiresUtc.Value < DateTime.UtcNow)
+            {
+                Response.Redirect("default", true);
+                return false;
+            }
 
-                clasesglobales cg = new clasesglobales();
+            IdAfiliado = Convert.ToInt32(q["idAfi"]);
+            _nroDocumento = q["nroDoc"];
+            IdPlan = Convert.ToInt32(q["idPlan"]);
+            ValorPlan = Convert.ToInt32(q["valorPlan"]);
+            FechaInicioPlan = q["fechaIni"];
+            FechaFinPlan = q["fechaFin"];
+            MesesPlan = Convert.ToInt32(q["totalMeses"]);
+            IdVendedor = Convert.ToInt32(q["idVendedor"]);
+            IdSede = Convert.ToInt32(q["idSede"]);
+            
 
-                DataTable dtPlan = cg.ConsultarPlanPorId(idPlan);
-                string nombrePlan = dtPlan.Rows[0]["NombrePlan"].ToString();
-                dtPlan.Dispose();
+            clasesglobales cg = new clasesglobales();
 
-                string descripcion = $"Pago único de {nombrePlan}";
-                string estado = "Pendiente";
+            DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(_nroDocumento);
 
-                //Referencia unica para el pago.
+            if (dtAfi.Rows.Count > 0)
+            {
+                _strCorreo = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+                _strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString() + " " + dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
+                _strTelefono = dtAfi.Rows[0]["CelularAfiliado"].ToString();
+            }
+
+            dtAfi.Dispose();
+
+            DataTable dtPlan = cg.ConsultarPlanPorId(IdPlan);
+            string nombrePlan = dtPlan.Rows[0]["NombrePlan"].ToString();
+            dtPlan.Dispose();
+
+            DescripcionPlan = $"Pago de {nombrePlan}";
+            EstadoPago = "PENDING";
+
+            return true;
+        }
+
+        private void GenerarReferencia(string documento)
+        {
+            if (IdReferencia == null)
+            {
                 _strReferencia = documento + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "fp";
-
-                //Hash Sha256 para Wompi
-                _strMonto = $"{valorPlan}00";
-
-                string moneda = "COP";
-                string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
-
-                string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
-                _strHash256 = ComputeSha256Hash(concatenado);
-
-
-                //cg.InsertarPagoPlanAfiliadoPendienteWeb(_strReferencia, idAfiliado, documento, idPlan, fechaInicioPlan, fechaFinPlan, totalMeses, valorPlan);
-
-                string payload = $"idAfi={HttpUtility.UrlEncode(idAfiliado.ToString())}" +
-                                 $"&nroDoc={HttpUtility.UrlEncode(documento)}" +
-                                 $"&idPlan={HttpUtility.UrlEncode(idPlan.ToString())}" +
-                                 $"&fechaIni={HttpUtility.UrlEncode(fechaInicioPlan)}" +
-                                 $"&fechaFin={HttpUtility.UrlEncode(fechaFinPlan)}" +
-                                 $"&valor={HttpUtility.UrlEncode(valorPlan.ToString())}" +
-                                 $"&totalMeses={HttpUtility.UrlEncode(totalMeses.ToString())}" +
-                                 $"&descripcion{HttpUtility.UrlEncode(descripcion)}" +
-                                 $"&estado{HttpUtility.UrlEncode(estado)}" +
-                                 $"&refe={HttpUtility.UrlEncode(_strReferencia)}" +
-                                 $"&idVendedor={HttpUtility.UrlEncode(idVendedor.ToString())}" +
-                                 $"&idSede={HttpUtility.UrlEncode(idSede.ToString())}" +
-                                 $"&pagoUnico=true";
-
-                TimeSpan ttl = TimeSpan.FromMinutes(100000); // Token válido 10 minutos
-                string tokenUrl = UrlEncryptor.Encrypt(payload, ttl);
-
-                //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(documento));
-
-                //_strRedireccion = "https://fitnesspeoplecolombia.com/wompidata?code=" + strString;
-
-
-                //_strRedireccion = "https://localhost:44382/wompidata?code=" + strString;
-
-                _strRedireccion = $"https://localhost:44382/verificacion?data={HttpUtility.UrlEncode(tokenUrl)}";
+                IdReferencia = _strReferencia;
             }
             else
             {
-                Response.Redirect("default");
+                _strReferencia = IdReferencia;
             }
+        }
+
+        private void PrepararPago()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            _strMonto = $"{ValorPlan}00";
+            string moneda = "COP";
+            string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
+
+            string concatenado = _strReferencia + _strMonto + moneda + integrity_secret;
+            _strHash256 = ComputeSha256Hash(concatenado);
+
+            // Insertar pago si no existe
+            DataTable dtPago = cg.ConsultarPagoPlanAfiliadoPendienteWeb(_strReferencia);
+
+            if (dtPago.Rows.Count == 0)
+            {
+                cg.InsertarPagoPlanAfiliadoPendienteWeb(
+                    IdAfiliado,
+                    _nroDocumento,
+                    IdPlan,
+                    FechaInicioPlan,
+                    FechaFinPlan,
+                    EstadoPago,
+                    ValorPlan,
+                    MesesPlan,
+                    DescripcionPlan,
+                    _strReferencia,
+                    IdVendedor,
+                    IdSede
+                );
+            }
+
+            dtPago.Dispose();
+
+            string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(_nroDocumento));
+            _strRedireccion = $"https://localhost:44382/wompidata?code={strString}";
         }
 
         static string ComputeSha256Hash(string rawData)

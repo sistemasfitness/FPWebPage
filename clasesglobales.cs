@@ -5423,10 +5423,10 @@ namespace WebPage
                 string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
                 using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PAGO_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PAGOS_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@p_referencia", referencia);
+                        cmd.Parameters.AddWithValue("@p_id_referencia", referencia);
 
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
                         {
@@ -5668,7 +5668,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPagoPlanAfiliadoPendienteWeb(string referencia, int idAfiliado, string documento, int idPlan, string fechaInicioPlan, string fechaFinPlan, int meses, int valorPlan)
+        public string InsertarPagoPlanAfiliadoPendienteWeb(int idAfiliado, string documentoAfiliado, int idPlan, string fechaInicioPlan, string fechaFinPlan, string estadoPago, int valorPlan, int mesesPlan, string descripcionPlan, string idReferencia, int idVendedor, int idSede)
         {
             string respuesta = string.Empty;
             try
@@ -5677,17 +5677,51 @@ namespace WebPage
                 using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
                 {
                     mysqlConexion.Open();
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_PAGO_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_PAGOS_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@p_referencia", referencia);
                         cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
-                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documento);
+                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documentoAfiliado);
                         cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
-                        cmd.Parameters.AddWithValue("@p_fecha_ini_plan", fechaInicioPlan);
-                        cmd.Parameters.AddWithValue("@p_fecha_fin_plan", fechaFinPlan);
-                        cmd.Parameters.AddWithValue("@p_meses", meses);
+                        cmd.Parameters.AddWithValue("@p_fecha_inicio_plan", fechaInicioPlan);
+                        cmd.Parameters.AddWithValue("@p_fecha_final_plan", fechaFinPlan);
+                        cmd.Parameters.AddWithValue("@p_estado_pago", estadoPago);
                         cmd.Parameters.AddWithValue("@p_valor_plan", valorPlan);
+                        cmd.Parameters.AddWithValue("@p_meses_plan", mesesPlan);
+                        cmd.Parameters.AddWithValue("@p_descripcion_plan", descripcionPlan);
+                        cmd.Parameters.AddWithValue("@p_id_referencia", idReferencia);
+                        cmd.Parameters.AddWithValue("@p_id_vendedor", idVendedor);
+                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string ActualizarEstadoPagoPlanAfiliadoPendienteWeb(string documentoAfiliado, string idReferencia, string estadoPago)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_ESTADO_PAGOS_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documentoAfiliado);
+                        cmd.Parameters.AddWithValue("@p_id_referencia", idReferencia);
+                        cmd.Parameters.AddWithValue("@p_estado_pago", estadoPago);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }

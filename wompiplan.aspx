@@ -106,7 +106,10 @@
                     data-amount-in-cents="<%=strMonto%>"
                     data-reference="<%=strReferencia%>"
                     data-signature:integrity="<%=strHash256%>"
-                    data-redirect-url="<%=strRedireccion%>">
+                    data-redirect-url="<%=strRedireccion%>"
+                    data-customer-email="<%=strCorreo%>"
+                    data-customer-full-name="<%=strNombre%>"
+                    data-customer-phone-number="<%=strTelefono%>">
                 </script>
             </form>
         </div>
