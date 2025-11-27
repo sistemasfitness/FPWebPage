@@ -674,10 +674,6 @@
             box-shadow: none !important;
         }
 
-    </style>
-
-    <style>
-
         .progress-bar {
             width: 100%;
             height: 20px;

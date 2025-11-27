@@ -35,40 +35,26 @@ namespace WebPage
             set { ViewState["idTransaccion"] = value; }
         }
 
-        protected async void Page_Load(object sender, EventArgs e)
+        protected async Task Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
             {
-                try
-                {
-                    string code = Request.QueryString["code"];
+                string code = Request.QueryString["code"];
+                string id = Request.QueryString["id"]
+                                ?? Request.QueryString["transaction_id"];
 
-                    if (string.IsNullOrEmpty(code)) 
-                    { 
-                        Response.Redirect("default", false);
-                        return;
-                    }
-
-                    // Decodifica y guarda el documento
-                    DocumentoAfiliado = Encoding.Unicode.GetString(Convert.FromBase64String(code));
-
-                    // Lee el ID de la transacción según Wompi
-                    IdTransaccion = Request.QueryString["id"]
-                                 ?? Request.QueryString["transaction_id"];
-
-                    if (string.IsNullOrEmpty(IdTransaccion))
-                    {
-                        Response.Redirect("default", false);
-                        return;
-                    }
-
-                    // Procesa todo
-                    await ProcesarTransaccionWompiAsync();
+                if (string.IsNullOrEmpty(code) || string.IsNullOrEmpty(id)) 
+                { 
+                    Response.Redirect("default", false);
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error en Page_Load: " + ex.ToString());
-                }
+
+                // Decodifica y guarda el documento
+                DocumentoAfiliado = Encoding.Unicode.GetString(Convert.FromBase64String(code));
+                IdTransaccion = id;
+
+                // Procesa todo
+                await ProcesarTransaccionWompiAsync();
             }
 
             //        //// Post a Armatura para crear el usuario
@@ -98,29 +84,55 @@ namespace WebPage
                 }
                 while (estado == "PENDING" && intentos < maxIntentos);
 
+                if (string.IsNullOrEmpty(referencia)) return;
+
+                estado = estado ?? "ERROR";
+
                 clasesglobales cg = new clasesglobales();
 
                 if (estado == "APPROVED")
                 {
-                    DataTable dtPago = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
+                    DataTable dtPagoReg = cg.ConsultarPagoPorReferencia(referencia);
 
-                    if (dtPago.Rows.Count > 0)
+                    if (dtPagoReg.Rows.Count > 0)
+                    {
+                        dtPagoReg.Dispose();
+                        return;
+                    }
+
+                    dtPagoReg.Dispose();
+
+
+                    DataTable dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
+
+                    if (dtPagoPen.Rows.Count == 0)
+                    {
+                        dtPagoPen.Dispose();
+                        cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, "SIN_MATCH");
+                        return;
+                    }
+
+                    var row = dtPagoPen.Rows[0];
+
+                    if (dtPagoPen.Rows.Count > 0)
                     {
                         await RegistrarPagoAprobadoAsync(
-                            Convert.ToInt32(dtPago.Rows[0]["idAfiliado"]),
+                            Convert.ToInt32(row["idAfiliado"]),
                             DocumentoAfiliado,
-                            Convert.ToInt32(dtPago.Rows[0]["idPlan"]),
-                            Convert.ToDateTime(dtPago.Rows[0]["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
-                            Convert.ToDateTime(dtPago.Rows[0]["fechaFinPlan"]).ToString("yyyy-MM-dd"),
-                            Convert.ToInt32(dtPago.Rows[0]["mesesPlan"]),
-                            Convert.ToInt32(dtPago.Rows[0]["valorPlan"]),
-                            dtPago.Rows[0]["descripcionPlan"].ToString(),
+                            Convert.ToInt32(row["idPlan"]),
+                            Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToInt32(row["mesesPlan"]),
+                            Convert.ToInt32(row["valorPlan"]),
+                            row["descripcionPlan"].ToString(),
                             "Aprobado",
                             referencia,
                             IdTransaccion,
-                            Convert.ToInt32(dtPago.Rows[0]["idVendedor"]),
-                            Convert.ToInt32(dtPago.Rows[0]["idSede"])
+                            Convert.ToInt32(row["idVendedor"]),
+                            Convert.ToInt32(row["idSede"])
                         );
+
+                        dtPagoPen.Dispose();
                     }
                 }
 
