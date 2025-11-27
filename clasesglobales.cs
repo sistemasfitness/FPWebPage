@@ -5766,6 +5766,35 @@ namespace WebPage
             return respuesta;
         }
 
+        public string EliminarRegistroPagoPlanAfiliadoPendienteWeb(string idReferencia)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ELIMINAR_PAGO_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_referencia", idReferencia);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public string ActualizarIdSiigoFacturaDePagoPlanAfiliado(int idPago, string idSiigoFactura)
         {
             string respuesta = string.Empty;

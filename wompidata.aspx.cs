@@ -35,7 +35,7 @@ namespace WebPage
             set { ViewState["idTransaccion"] = value; }
         }
 
-        protected async Task Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
             {
@@ -68,14 +68,14 @@ namespace WebPage
         {
             try
             {
+                const int maxIntentos = 15;
+                int intentos = 0;
+
                 string estado = null;
                 string mensajeEstado = null;
                 string referencia = null;
 
-                // Intentos para esperar aprobación
-                const int maxIntentos = 15;
-                int intentos = 0;
-
+                // 1. Polling del estado
                 do
                 {
                     await Task.Delay(1000);
@@ -84,59 +84,61 @@ namespace WebPage
                 }
                 while (estado == "PENDING" && intentos < maxIntentos);
 
+                // Si Wompi no devolvió referencia, no hay nada más que hacer
                 if (string.IsNullOrEmpty(referencia)) return;
 
                 estado = estado ?? "ERROR";
 
                 clasesglobales cg = new clasesglobales();
 
+                // 2. Buscar el pago pendiente
+                DataTable dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
+
+                if (dtPagoPen.Rows.Count == 0) return;
+
+                // 3.Si fue aprobada
                 if (estado == "APPROVED")
                 {
-                    DataTable dtPagoReg = cg.ConsultarPagoPorReferencia(referencia);
-
-                    if (dtPagoReg.Rows.Count > 0)
+                    // 3.1 Validar si ya fue registrado antes
+                    using (var dtPagoReg = cg.ConsultarPagoPorReferencia(referencia))
                     {
-                        dtPagoReg.Dispose();
-                        return;
+                        if (dtPagoReg.Rows.Count > 0)
+                        {
+                            // Ya fue registrado antes → solo limpiar el pendiente
+                            cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+                            return;
+                        }
                     }
 
-                    dtPagoReg.Dispose();
-
-
-                    DataTable dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
-
-                    if (dtPagoPen.Rows.Count == 0)
-                    {
-                        dtPagoPen.Dispose();
-                        cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, "SIN_MATCH");
-                        return;
-                    }
-
+                    // 3.2 Registrar el pago aprobado
                     var row = dtPagoPen.Rows[0];
 
-                    if (dtPagoPen.Rows.Count > 0)
-                    {
-                        await RegistrarPagoAprobadoAsync(
-                            Convert.ToInt32(row["idAfiliado"]),
-                            DocumentoAfiliado,
-                            Convert.ToInt32(row["idPlan"]),
-                            Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
-                            Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
-                            Convert.ToInt32(row["mesesPlan"]),
-                            Convert.ToInt32(row["valorPlan"]),
-                            row["descripcionPlan"].ToString(),
-                            "Aprobado",
-                            referencia,
-                            IdTransaccion,
-                            Convert.ToInt32(row["idVendedor"]),
-                            Convert.ToInt32(row["idSede"])
-                        );
-
-                        dtPagoPen.Dispose();
-                    }
+                    await RegistrarPagoAprobadoAsync(
+                        Convert.ToInt32(row["idAfiliado"]),
+                        DocumentoAfiliado,
+                        Convert.ToInt32(row["idPlan"]),
+                        Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
+                        Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
+                        Convert.ToInt32(row["mesesPlan"]),
+                        Convert.ToInt32(row["valorPlan"]),
+                        row["descripcionPlan"].ToString(),
+                        referencia,
+                        IdTransaccion,
+                        Convert.ToInt32(row["idVendedor"]),
+                        Convert.ToInt32(row["idSede"])
+                    );
                 }
 
+                // 4. Actualizar estado real del pago pendiente
                 cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, estado);
+
+                // 5. Si NO está pendiente → eliminar registro
+                if (estado != "PENDING")
+                {
+                    cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+                }
+
+                Session["idReferencia"] = null;
             }
             catch (Exception ex)
             {
@@ -144,7 +146,7 @@ namespace WebPage
             }
         }
 
-        private async Task RegistrarPagoAprobadoAsync(int idAfiliado, string nroDoc, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valor, string descripcion, string estado, string referencia, string idTransaccion, int idVendedor, int idSede)
+        private async Task RegistrarPagoAprobadoAsync(int idAfiliado, string nroDoc, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valor, string descripcion, string referencia, string idTransaccion, int idVendedor, int idSede)
         {
             clasesglobales cg = new clasesglobales();
             int idAfiliadoPlan = 0;
@@ -161,7 +163,7 @@ namespace WebPage
                     totalMeses,
                     valor,
                     descripcion,
-                    estado
+                    "Activo"
                 );
 
                 // 2. Inserción de PagoPlanAfiliado en la Base de Datos
