@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="wompiwebhook.aspx.cs" Inherits="WebPage.wompiwebhook" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiwebhook.aspx.cs" Inherits="WebPage.wompiwebhook" EnableEventValidation="false" %>
+<%@ Import Namespace="System.IO" %>
 
 <!DOCTYPE html>
 
