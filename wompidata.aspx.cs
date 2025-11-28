@@ -91,46 +91,51 @@ namespace WebPage
 
                 clasesglobales cg = new clasesglobales();
 
+                bool existePendiente = false;
+
                 // 2. Buscar el pago pendiente
-                DataTable dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia);
-
-                if (dtPagoPen.Rows.Count == 0) return;
-
-                // 3.Si fue aprobada
-                if (estado == "APPROVED")
+                using (var dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia))
                 {
-                    // 3.1 Validar si ya fue registrado antes
-                    using (var dtPagoReg = cg.ConsultarPagoPorReferencia(referencia))
+                    existePendiente = dtPagoPen.Rows.Count > 0;
+
+                    if (!existePendiente) return;
+
+                    // 3. Si está aprobado → registrar el pago
+                    if (estado == "APPROVED")
                     {
-                        if (dtPagoReg.Rows.Count > 0)
+                        // 3.1 Validar si ya fue registrado antes
+                        using (var dtPagoReg = cg.ConsultarPagoPorReferencia(referencia))
                         {
-                            // Ya fue registrado antes → solo limpiar el pendiente
-                            cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
-                            return;
+                            if (dtPagoReg.Rows.Count > 0)
+                            {
+                                // Ya fue registrado antes → solo limpiar el pendiente
+                                cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+                                return;
+                            }
                         }
+
+                        // 3.2 Registrar el pago aprobado
+                        var row = dtPagoPen.Rows[0];
+
+                        await RegistrarPagoAprobadoAsync(
+                            Convert.ToInt32(row["idAfiliado"]),
+                            DocumentoAfiliado,
+                            Convert.ToInt32(row["idPlan"]),
+                            Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
+                            Convert.ToInt32(row["mesesPlan"]),
+                            Convert.ToInt32(row["valorPlan"]),
+                            row["descripcionPlan"].ToString(),
+                            referencia,
+                            IdTransaccion,
+                            Convert.ToInt32(row["idVendedor"]),
+                            Convert.ToInt32(row["idSede"])
+                        );
                     }
-
-                    // 3.2 Registrar el pago aprobado
-                    var row = dtPagoPen.Rows[0];
-
-                    await RegistrarPagoAprobadoAsync(
-                        Convert.ToInt32(row["idAfiliado"]),
-                        DocumentoAfiliado,
-                        Convert.ToInt32(row["idPlan"]),
-                        Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
-                        Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
-                        Convert.ToInt32(row["mesesPlan"]),
-                        Convert.ToInt32(row["valorPlan"]),
-                        row["descripcionPlan"].ToString(),
-                        referencia,
-                        IdTransaccion,
-                        Convert.ToInt32(row["idVendedor"]),
-                        Convert.ToInt32(row["idSede"])
-                    );
                 }
 
-                // 4. Actualizar estado real del pago pendiente
-                cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, estado);
+                // 4. Actualizar estado real del pago pendiente - NO ES NECESARIO, PERO PUEDE QUE LO SEA EN UN FUTURO
+                //cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, estado);
 
                 // 5. Si NO está pendiente → eliminar registro
                 if (estado != "PENDING")
