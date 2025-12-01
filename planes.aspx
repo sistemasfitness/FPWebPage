@@ -9,6 +9,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -586,6 +587,43 @@
     <uc1:loginregister runat="server" ID="loginregister" />
 
     <!-- Modal - Plan Easy -->
+    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                <!-- Contenedor relativo -->
+                <div style="position: relative; width: 100%;">
+
+                <!-- Contador -->
+                <div id="barraProgresoEasy"
+                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                    id="time-remaining-easy"></p>
+                </div>
+
+                <!-- Imagen -->
+                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                <!-- Capa clickeable -->
+                <a href="register?idPlan=21&idVendedor=156"
+                    style="position: absolute; inset: 0; z-index: 10;"></a>
+                </div>
+
+                <!-- Botón de cierre -->
+                <a href="#" class="close-link" data-dismiss="modal"
+                    style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                    <i class="icon_close_alt2"></i>
+                </a>
+
+                <!-- Barra de progreso -->
+                <div class="progress-bar" style="width: 100%;">
+                    <div id="progress-fill-easy" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal - Plan Easy -->
     <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
@@ -623,6 +661,61 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <script>
+
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        };
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") !== "20") return;
+
+            const triggerPoint = $("#planes2").offset().top;
+
+            $(window).on("scroll", function () {
+                if ($(window).scrollTop() >= triggerPoint - 300) {
+                    $("#plan-easy").modal("show");
+                    iniciarTemporizadorEasy(120);
+                    $(window).off("scroll"); // evitar que se repita
+                }
+            });
+        });
+
+    </script>
 
     <%--<script>
         $(document).ready(function () {
@@ -777,6 +870,26 @@
         });
     </script>
 
+    <script>
+
+        function planAddToCart(contentId, contentName, value, paymentUrl) {
+
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                content_ids: contentId,
+                content_name: contentName,
+                value: value,
+                currency: 'COP',
+                content_type: 'product'
+            });
+
+            setTimeout(function () {
+                window.location.href = paymentUrl;
+            }, 150);
+        }
+
+    </script>
+
     <style>
 
         body.modal-open {
@@ -785,14 +898,32 @@
         }
 
         .modal-dialog {
-	        max-width: 100%;
-	        margin: 0 auto;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .modal-content.modal-popup {
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
         }
 
     </style>

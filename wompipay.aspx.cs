@@ -20,6 +20,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebPage.Services;
 using static WebPage.register;
+using static WebPage.Services.SiigoClient;
 
 namespace WebPage
 {
@@ -44,6 +45,18 @@ namespace WebPage
         {
             get { return ViewState["correo"]?.ToString(); }
             set { ViewState["correo"] = value; }
+        }
+
+        protected string NombreAfiliado
+        {
+            get { return ViewState["nombre"]?.ToString(); }
+            set { ViewState["nombre"] = value; }
+        }
+
+        protected string TelefonoAfiliado
+        {
+            get { return ViewState["celular"]?.ToString(); }
+            set { ViewState["celular"] = value; }
         }
 
         //
@@ -331,6 +344,8 @@ namespace WebPage
 
                 IdAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? Convert.ToInt32(dtAfi.Rows[0]["idAfiliado"].ToString()) : 0;
                 CorreoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["emailAfiliado"].ToString() : null;
+                NombreAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["nombreAfiliado"].ToString() + " " + dtAfi.Rows[0]["apellidoAfiliado"].ToString() : null;
+                TelefonoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["celularAfiliado"].ToString() : null;
 
                 dtAfi.Dispose();
 
@@ -633,6 +648,8 @@ namespace WebPage
                     moneda, 
                     hash256, 
                     CorreoAfiliado, 
+                    NombreAfiliado, 
+                    TelefonoAfiliado, 
                     1,
                     IdReferencia, 
                     Convert.ToInt32(DataIdFuentePago)
@@ -655,13 +672,13 @@ namespace WebPage
             }
         }
 
-        private async Task<bool> CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        private async Task<bool> CrearTransaccionAsync(int amount_in_cents, string currency, string signature, string customer_email, string customer_full_name, string customer_phone, int installments, string reference, int payment_source_id)
         {
             try
             {
                 string url = $"{Url}transactions";
 
-                string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, installments, reference, payment_source_id);
+                string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, customer_full_name, customer_phone, installments, reference, payment_source_id);
 
                 Root3 rObjetc = JsonConvert.DeserializeObject<Root3>(respuesta);
 
@@ -840,7 +857,7 @@ namespace WebPage
             }
         }
 
-        public async Task<string> GetPostTransaccionAsync(string url, int amount_in_cents, string currency, string signature, string customer_email, int installments, string reference, int payment_source_id)
+        public async Task<string> GetPostTransaccionAsync(string url, int amount_in_cents, string currency, string signature, string customer_email, string customer_full_name, string customer_phone, int installments, string reference, int payment_source_id)
         {
             var oTransaccion = new Transaccion
             {
@@ -850,7 +867,13 @@ namespace WebPage
                 customer_email = customer_email,
                 payment_method = new PaymentMethod { installments = installments },
                 reference = reference,
-                payment_source_id = payment_source_id
+                payment_source_id = payment_source_id,
+                customer_data = new CustomerData
+                {
+                    email = customer_email,
+                    full_name = customer_full_name,
+                    phone_number = customer_phone
+                }
             };
 
             string json = JsonConvert.SerializeObject(oTransaccion);
@@ -990,11 +1013,19 @@ namespace WebPage
             public PaymentMethod payment_method { get; set; }
             public string reference { get; set; }
             public int payment_source_id { get; set; }
+            public CustomerData customer_data { get; set; }
         }
 
         public class PaymentMethod
         {
             public int installments { get; set; }
+        }
+
+        public class CustomerData
+        {
+            public string email { get; set; }
+            public string full_name { get; set; }
+            public string phone_number { get; set; }
         }
 
         public class Data1
