@@ -9,6 +9,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -867,6 +868,26 @@
                 }
             }
         });
+    </script>
+
+    <script>
+
+        function planAddToCart(contentId, contentName, value, paymentUrl) {
+
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                content_ids: contentId,
+                content_name: contentName,
+                value: value,
+                currency: 'COP',
+                content_type: 'product'
+            });
+
+            setTimeout(function () {
+                window.location.href = paymentUrl;
+            }, 150);
+        }
+
     </script>
 
     <style>
