@@ -1825,7 +1825,9 @@ ul#cat_nav {
 }
 
 .panel-title a {
-	display: block;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	color: #444;
 }
 
