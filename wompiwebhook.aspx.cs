@@ -109,7 +109,7 @@ namespace WebPage
             clasesglobales cg = new clasesglobales();
 
             // 1. Buscar el pendiente
-            using (var dtPendiente = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia))
+            using (var dtPendiente = cg.ConsultarPagoPorReferenciaPendienteWeb(referencia))
             {
                 if (dtPendiente.Rows.Count == 0)
                 {

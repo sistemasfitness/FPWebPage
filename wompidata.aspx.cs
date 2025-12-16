@@ -29,6 +29,18 @@ namespace WebPage
             set { ViewState["nroDoc"] = value; }
         }
 
+        protected int IdPlan
+        {
+            get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
+            set { ViewState["idPlan"] = value; }
+        }
+
+        protected int IdVendedor
+        {
+            get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
+            set { ViewState["idVendedor"] = value; }
+        }
+
         protected string IdTransaccion
         {
             get { return ViewState["idTransaccion"]?.ToString(); }
@@ -40,8 +52,7 @@ namespace WebPage
             if (!IsPostBack)
             {
                 string code = Request.QueryString["code"];
-                string id = Request.QueryString["id"]
-                                ?? Request.QueryString["transaction_id"];
+                string id = Request.QueryString["id"] ?? Request.QueryString["transaction_id"];
 
                 if (string.IsNullOrEmpty(code) || string.IsNullOrEmpty(id)) 
                 { 
@@ -49,8 +60,14 @@ namespace WebPage
                     return;
                 }
 
-                // Decodifica y guarda el documento
-                DocumentoAfiliado = Encoding.Unicode.GetString(Convert.FromBase64String(code));
+                // Decodificar y almacenar
+                string decoded = Encoding.Unicode.GetString(Convert.FromBase64String(code));
+                string[] partes = decoded.Split('|');
+
+                DocumentoAfiliado = partes.Length > 0 ? partes[0] : null;
+                IdPlan = partes.Length > 1 ? Convert.ToInt32(partes[1]) : 0;
+                IdVendedor = partes.Length > 2 ? Convert.ToInt32(partes[2]) : 0;
+
                 IdTransaccion = id;
 
                 // Procesa todo
@@ -74,18 +91,24 @@ namespace WebPage
                 string estado = null;
                 string mensajeEstado = null;
                 string referencia = null;
+                int valorPlan = 0;
 
                 // 1. Polling del estado
                 do
                 {
                     await Task.Delay(1000);
-                    (referencia, estado, mensajeEstado) = await ObtenerEstadoTransaccionAsync(IdTransaccion);
+                    (referencia, estado, mensajeEstado, valorPlan) = await ObtenerEstadoTransaccionAsync(IdTransaccion);
+                    valorPlan = valorPlan / 100;
                     intentos++;
                 }
                 while (estado == "PENDING" && intentos < maxIntentos);
 
-                // Si Wompi no devolvió referencia, no hay nada más que hacer
-                if (string.IsNullOrEmpty(referencia)) return;
+                // Si Wompi no devolvió referencia → no podemos continuar
+                if (string.IsNullOrEmpty(referencia))
+                {
+                    RenderizarVistaSegunEstado("ERROR", "No se pudo consultar el estado de la transacción.", valorPlan);
+                    return;
+                }
 
                 estado = estado ?? "ERROR";
 
@@ -94,11 +117,19 @@ namespace WebPage
                 bool existePendiente = false;
 
                 // 2. Buscar el pago pendiente
-                using (var dtPagoPen = cg.ConsultarPagoPlanAfiliadoPendienteWeb(referencia))
+                using (var dtPagoPen = cg.ConsultarPagoPorReferenciaPendienteWeb(referencia))
                 {
                     existePendiente = dtPagoPen.Rows.Count > 0;
 
-                    if (!existePendiente) return;
+                    // SI EXISTE PENDIENTE → obtener valor del plan, incluso si no fue aprobado
+                    if (existePendiente) valorPlan = Convert.ToInt32(dtPagoPen.Rows[0]["valorPlan"]);
+
+                    // Si no existe pendiente, igual mostramos la vista (porque ya se usó o fue procesado antes)
+                    if (!existePendiente)
+                    {
+                        RenderizarVistaSegunEstado(estado, mensajeEstado, valorPlan);
+                        return;
+                    }
 
                     // 3. Si está aprobado → registrar el pago
                     if (estado == "APPROVED")
@@ -110,6 +141,7 @@ namespace WebPage
                             {
                                 // Ya fue registrado antes → solo limpiar el pendiente
                                 cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+                                RenderizarVistaSegunEstado(estado, mensajeEstado, valorPlan);
                                 return;
                             }
                         }
@@ -124,7 +156,7 @@ namespace WebPage
                             Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
                             Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
                             Convert.ToInt32(row["mesesPlan"]),
-                            Convert.ToInt32(row["valorPlan"]),
+                            valorPlan,
                             row["descripcionPlan"].ToString(),
                             referencia,
                             IdTransaccion,
@@ -138,12 +170,9 @@ namespace WebPage
                 //cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(DocumentoAfiliado, referencia, estado);
 
                 // 5. Si NO está pendiente → eliminar registro
-                if (estado != "PENDING")
-                {
-                    cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
-                }
+                if (estado != "PENDING") cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
 
-                Session["idReferencia"] = null;
+                RenderizarVistaSegunEstado(estado, mensajeEstado, valorPlan);
             }
             catch (Exception ex)
             {
@@ -194,6 +223,8 @@ namespace WebPage
                 System.Diagnostics.Debug.WriteLine("Error registrando el AfiliadoPlan y PagoPlanPlanAfiliado: " + ex.ToString());
             }
 
+            if (idAfiliadoPlan <= 0 || idPago <= 0) return;
+
             // 3. Facturar en Siigo
             try
             {
@@ -209,7 +240,6 @@ namespace WebPage
                 string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
                 string partnerId = "SandboxSiigoApi";
 
-                // Creación de factura
                 var siigoClient = new SiigoClient(
                     new HttpClient(),
                     url,
@@ -218,6 +248,21 @@ namespace WebPage
                     partnerId
                 );
 
+                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(nroDoc);
+
+                if (dtAfi.Rows.Count == 0) return;
+
+                // Obtener datos del afiliado
+                string strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString();
+                string strApellido = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
+                string strCelular = dtAfi.Rows[0]["CelularAfiliado"].ToString();
+                string strEmail = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+                dtAfi.Dispose();
+                
+                // 3.1. Gestionar afiliado en Siigo 
+                await siigoClient.ManageCustomerAsync(nroDoc, strNombre, strApellido, strCelular, strEmail);
+
+                // 3.2. Crear factura en Siigo
                 // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
                 // ESTÁ COMENTADO PARA PRUEBAS LOCALES
                 //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
@@ -229,10 +274,6 @@ namespace WebPage
                 //);
 
                 // Siigo Pruebas
-                //    //int idTipoDocumento = 28006;
-                //    //int costCenterDefault = 621;
-                //    //int idVendedor = 856;
-                //    //int idPayment = 9438;
                 string codSiigoPlan = "COD2433";
                 string nombrePlan = "Pago de suscripción";
                 int precioPlan = 10000;
@@ -244,7 +285,7 @@ namespace WebPage
                     idSede
                 );
 
-                // Actualizar pago con id de factura
+                // 3.3. Actualizar el Id de la factura en Siigo en el pago
                 cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
             }
             catch (Exception siigoEx)
@@ -253,7 +294,7 @@ namespace WebPage
             }
         }
 
-        protected async Task<(string idReferencia, string estado, string estadoMensaje)> ObtenerEstadoTransaccionAsync(string idTransaccion)
+        protected async Task<(string idReferencia, string estado, string estadoMensaje, int precio)> ObtenerEstadoTransaccionAsync(string idTransaccion)
         {
             try
             {
@@ -269,7 +310,7 @@ namespace WebPage
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        return (null, null, null);
+                        return (null, null, null, 0);
                     }
 
                     string json = await response.Content.ReadAsStringAsync();
@@ -278,21 +319,85 @@ namespace WebPage
 
                     if (transaccion == null)
                     {
-                        return (null, null, null);
+                        return (null, null, null, 0);
                     }
 
                     string idReferencia = transaccion.data.reference;
                     string estado = transaccion.data.status;
                     string mensajeEstado = transaccion.data.status_message;
+                    int precio = transaccion.data.amount_in_cents;
 
-                    return (idReferencia, estado, mensajeEstado);
+                    return (idReferencia, estado, mensajeEstado, precio);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error en ConsultarEstadoTransaccion: " + ex.ToString());
-                return (null, null, null);
+                return (null, null, null, 0);
             }
+        }
+
+        private void RenderizarVistaSegunEstado(string estado, string mensajeEstado, int valorPago)
+        {
+            switch (estado)
+            {
+                case "APPROVED":
+                    ltTituloPrincipal.Text = "<h1 style='font-weight: 900'>¡Pago Exitoso!</h1>";
+                    ltTitulo.Text = "<h3 style='font-weight: 900; color: #e3ff00;'>¡Gracias por tu compra!</h3>";
+                    ltMensaje.Text = "<p style='color: #fff;'>Tu pago fue aprobado correctamente.</p>";
+
+                    pnlResumen.Visible = true;
+                    ltValor.Text = valorPago.ToString("C0");
+                    ltTotal.Text = valorPago.ToString("C0");
+
+                    pnlContinuar.Visible = true;
+                    pnlRegresar.Visible = false;
+                    break;
+
+                case "DECLINED":
+                    ltTituloPrincipal.Text = "<h1 style='font-weight: 900'>Pago Rechazado</h1>";
+                    ltTitulo.Text = "<h3 style='font-weight: 900; color: #ff4d4d;'>¡Ups!</h3>";
+                    ltMensaje.Text = $"<p style='color: #fff;'>Tu pago fue rechazado: <br /><b>{mensajeEstado}</b></p>";
+
+                    pnlResumen.Visible = false;
+                    pnlContinuar.Visible = false;
+                    pnlRegresar.Visible = true;
+                    break;
+
+                case "VOIDED":
+                case "ERROR":
+                    ltTituloPrincipal.Text = "<h1 style='font-weight: 900'>Error en el pago</h1>";
+                    ltTitulo.Text = "<h3 style='font-weight: 900; color: #ff4d4d;'>Algo salió mal</h3>";
+                    ltMensaje.Text = $"<p style='color: #fff;'>No pudimos procesar tu pago: <br /><b>{mensajeEstado}</b></p>";
+
+                    pnlResumen.Visible = false;
+                    pnlContinuar.Visible = false;
+                    pnlRegresar.Visible = true;
+                    break;
+
+                case "PENDING":
+                default:
+                    ltTituloPrincipal.Text = "<h1 style='font-weight: 900'>Procesando...</h1>";
+                    ltTitulo.Text = "<h3 style='font-weight: 900; color: #e3ff00;'>Estamos verificando tu pago</h3>";
+                    ltMensaje.Text = "<p style='color: #fff;'>Esto puede tardar algunos segundos...</p>";
+
+                    pnlResumen.Visible = false;
+                    pnlContinuar.Visible = false;
+                    pnlRegresar.Visible = false;
+                    break;
+            }
+        }
+
+        protected void btnRedireccionarActivarPlan_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"verificacion.aspx?nroDoc={DocumentoAfiliado}", false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        protected void btnRedireccionarRegresarRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"register.aspx?token1={IdPlan}&token2={IdVendedor}", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         private void PostArmatura(string strDocumento)

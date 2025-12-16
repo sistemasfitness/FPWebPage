@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebPage
@@ -44,8 +43,6 @@ namespace WebPage
                         ltBotonPago.Text = htmlBoton;
                         ltBotonPago2.Text = htmlBoton;
                         ltBotonPago3.Text = htmlBoton;
-
-                        Session["origenPlanes"] = "WEB";
                     }
                     else
                     {

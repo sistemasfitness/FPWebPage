@@ -174,7 +174,7 @@ namespace WebPage.Services
             int idTipoDocumento = 28006;
             int costCenterDefault = 621;
             int idVendedor = 856;
-            int idPayment = 9438;
+            int idPayment = 10916;
 
             // 2. Obtener token
             string token = await GetTokenAsync();

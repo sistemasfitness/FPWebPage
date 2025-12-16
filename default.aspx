@@ -120,15 +120,15 @@
     <div id="full-slider-wrapper">
         <div id="layerslider">
             <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;" style="cursor: pointer;" onclick="window.location.href='planes?id=19'">
+            <div class="ls-slide" data-ls="slidedelay: 2000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=19'">
                 <img id="slide1-img" src="img/slides/banner-principal_plan-easy.jpg" class="ls-bg" />
             </div>
             <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=5'">
+            <div class="ls-slide" data-ls="slidedelay: 2000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=5'">
                 <img id="slide2-img" src="img/slides/banner-principal_plan-6-meses.jpg" class="ls-bg" />
             </div>
             <!-- third slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:4;" style="cursor: pointer;" onclick="window.location.href='planes?id=16'">
+            <div class="ls-slide" data-ls="slidedelay: 2000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=16'">
                 <img id="slide3-img" src="img/slides/banner-principal_plan-3-meses.jpg" class="ls-bg" />
             </div>
 

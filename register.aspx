@@ -8,6 +8,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -235,13 +236,13 @@
                         <!--End step -->
                         <div class="form_title">
                             <h3 style="font-weight: 900; color: #e3ff00;"><strong>3</strong>Información del pago</h3>
-                            <p style="color: #fff;">Método de pago elegido.</p>
+                            <p style="color: #fff;">Tipo de pago elegido.</p>
                         </div>
                         <div class="step">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Método:</label>
+                                        <label>Tipo:</label>
                                         <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" Enabled="false" 
                                             TabIndex="4"></asp:TextBox>
                                     </div>
@@ -281,7 +282,7 @@
                                 <asp:Button ID="btnRegistrarAfiliado" runat="server" 
                                     CssClass="btn_full" 
                                     Text="Registrarme" 
-                                    OnClientClick="return validarYEjecutarPago();"
+                                    OnClientClick="afiliadoFormSubmit(); return validarYEjecutarPago();"
                                     OnClick="btnRegistrar_Click" />
                             </div>
                         </div>
@@ -651,6 +652,27 @@
             );
 
             return true;
+        }
+
+    </script>
+
+    <script>
+
+        function afiliadoFormSubmit() {
+
+            var nombre = document.getElementById('<%= txbNombre.ClientID %>').value;
+            var apellido = document.getElementById('<%= txbApellido.ClientID %>').value;
+            var correo = document.getElementById('<%= txbEmail.ClientID %>').value;
+            var telefono = document.getElementById('<%= txbCelular.ClientID %>').value;
+
+            window.dataLayer.push({
+                event: 'custom_form_submit',
+                formData: {
+                    name: nombre + ' ' + apellido, 
+                    email: correo, 
+                    phone: telefono
+                }
+            });
         }
 
     </script>

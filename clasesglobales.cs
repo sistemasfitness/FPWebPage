@@ -5149,6 +5149,38 @@ namespace WebPage
             return dt;
         }
 
+        public DataTable ConsultarVendedorPorId(int idUsuario)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_VENDEDOR_POR_ID", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_usuario", idUsuario);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
         public string InsertarAfiliadoWeb(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, int idGenero, string fechaNac, int idSede)
         {
             string respuesta = string.Empty;
@@ -5201,10 +5233,7 @@ namespace WebPage
                         cmd.Parameters.AddWithValue("@p_celular", celular);
                         cmd.Parameters.AddWithValue("@p_correo", correo);
                         cmd.Parameters.AddWithValue("@p_direccion", direccion);
-                        //cmd.Parameters.AddWithValue("@p_id_genero", idGenero);
                         cmd.Parameters.AddWithValue("@p_fecha_nac", fechaNac);
-                        //cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
-                        //cmd.Parameters.AddWithValue("@p_id_sede", idSede);
                         cmd.Parameters.AddWithValue("@p_id_eps", idEps);
                         cmd.Parameters.AddWithValue("@p_responsable", responsable);
                         cmd.Parameters.AddWithValue("@p_parentesco", parentesco);
@@ -5414,7 +5443,7 @@ namespace WebPage
             return dt;
         }
 
-        public DataTable ConsultarPagoPlanAfiliadoPendienteWeb(string referencia)
+        public DataTable ConsultarPagoPorReferenciaPendienteWeb(string referencia)
         {
             DataTable dt = new DataTable();
 
@@ -5423,7 +5452,7 @@ namespace WebPage
                 string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
                 using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PAGOS_PLAN_AFILIADO_PENDIENTE_WEB", mysqlConexion))
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_PAGO_POR_REFERENCIA_PENDIENTE_WEB", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_id_referencia", referencia);

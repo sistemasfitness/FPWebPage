@@ -89,7 +89,7 @@
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">Pago a través de Wompi</h1>
-            <p style="font-weight: 900;">¡Paga de manera segura y sin complicaciones!</p>
+            <p style="font-weight: 900;">¡Rápido, seguro y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
@@ -97,23 +97,45 @@
 
     <div class="container margin_60_35" style="color: #fff">
         <div class="row">
-            Botón de Pago.
-            <form id="form" runat="server">
-                <script src="https://checkout.wompi.co/widget.js"
-                    data-render="button"
-                    data-public-key="pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv"
-                    data-currency="COP"
-                    data-amount-in-cents="<%=strMonto%>"
-                    data-reference="<%=strReferencia%>"
-                    data-signature:integrity="<%=strHash256%>"
-                    data-redirect-url="<%=strRedireccion%>"
-                    data-customer-email="<%=strCorreo%>"
-                    data-customer-full-name="<%=strNombre%>"
-                    data-customer-phone-number="<%=strTelefono%>">
-                </script>
-            </form>
+            <div class="col-md-offset-3 col-md-6">
+                <div class="box_style_2" style="background-color: #1A1A1A">
+                    <div id="confirm" class="text-center">
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Estás a un paso de completar tu compra!</h3>
+                        <p style="color: #fff; font-weight: 400;">Haz clic en el botón <b>“Paga con Wompi”</b> para continuar.</p>
+                    </div>
+
+                    <div class="text-center">
+                        <form id="form" runat="server">
+                            <script src="https://checkout.wompi.co/widget.js"
+                                data-render="button"
+                                data-public-key="<%=KeyPub%>"
+                                data-currency="COP"
+                                data-amount-in-cents="<%=strMonto%>"
+                                data-reference="<%=IdReferencia%>"
+                                data-signature:integrity="<%=strHash256%>"
+                                data-redirect-url="<%=strRedireccion%>"
+                                data-customer-email="<%=strCorreo%>"
+                                data-customer-full-name="<%=strNombre%>"
+                                data-customer-phone-number="<%=strTelefono%>">
+                            </script>
+                        </form>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Recuerda que...!</h3>
+                        <p style="font-weight: 400;">
+                            Cuando finalices tu pago, asegúrate de hacer clic en <b>“Finalizar mi proceso”</b> o <b>“Regresar al comercio”</b>.
+                        </p>
+                        <p style="font-weight: 400;">
+                            <b>Solo así podremos validar y confirmar tu compra.</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- End row -->
     </div>
+    <!-- End container -->
 
     <uc1:footer runat="server" ID="footer" />
 

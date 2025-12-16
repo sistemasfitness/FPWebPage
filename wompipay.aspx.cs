@@ -479,6 +479,21 @@ namespace WebPage
                             partnerId
                         );
 
+                        DataTable dtAfi = cg.ConsultarAfiliadoPorId(IdAfiliado);
+
+                        if (dtAfi.Rows.Count == 0) return;
+
+                        // Obtener datos del afiliado
+                        string nroDoc = dtAfi.Rows[0]["DocumentoAfiliado"].ToString();
+                        string strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString();
+                        string strApellido = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
+                        string strCelular = dtAfi.Rows[0]["CelularAfiliado"].ToString();
+                        string strEmail = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+                        dtAfi.Dispose();
+
+                        await siigoClient.ManageCustomerAsync(nroDoc, strNombre, strApellido, strCelular, strEmail);
+
+                        // PRODUCCIÓN
                         // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
                         // ESTÁ COMENTADO PARA PRUEBAS LOCALES
                         //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
@@ -489,11 +504,7 @@ namespace WebPage
                         //    IdSede
                         //);
 
-                        // Siigo Pruebas
-                        //    //int idTipoDocumento = 28006;
-                        //    //int costCenterDefault = 621;
-                        //    //int idVendedor = 856;
-                        //    //int idPayment = 9438;
+                        // PRUEBAS
                         string codSiigoPlan = "COD2433";
                         string nombrePlan = "Pago de suscripción";
                         int precioPlan = 10000;

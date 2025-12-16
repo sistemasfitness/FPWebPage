@@ -876,11 +876,15 @@
 
             window.dataLayer.push({
                 event: 'add_to_cart',
-                content_ids: contentId,
-                content_name: contentName,
-                value: value,
-                currency: 'COP',
-                content_type: 'product'
+                ecommerce: {
+                    items: [{
+                        item_id: contentId,
+                        item_name: contentName,
+                        price: value,
+                        currency: 'COP',
+                        quantity: 1
+                    }]
+                }
             });
 
             setTimeout(function () {

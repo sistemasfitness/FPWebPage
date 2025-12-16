@@ -151,7 +151,7 @@
             <aside class="col-md-4">
                 <div class="box_style_2">
                     <h5 style="font-weight: 900;">Información de Contacto</h5>
-                    <p>Calle 45 No. 35 - 23 Piso 2<br/>
+                    <p>Carrera 35A #51 - 59, Cabecera del llano<br/>
                         (+57) 318 707 7584<br/>
                         <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
                     </p>
@@ -181,10 +181,10 @@
                             <br/>
                             <small>Lunes a Sábado 8am - 7pm</small>
                         </li>
-				                    <li><strong>Ejecutivo Corporativo</strong><br/>
+				        <li><strong>Ejecutivo Corporativo</strong><br/>
                             <a href="https://wa.me/573006859461" style="color: #333333;" target="_blank">(+57) 300 685 9461</a>
                             <br/>
-                            <a href="mailto:lidercorporativa@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">lidercorporativa@fitnesspeoplecmd.com</a>
+                            <a href="mailto:lidercorporativo@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">lidercorporativo@fitnesspeoplecmd.com</a>
                             <br/>
                             <small>Lunes a Sábado 8am - 7pm</small>
                         </li>

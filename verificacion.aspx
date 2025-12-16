@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label></label>
+                                    <label>Teléfono</label>
                                     <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" required=""></asp:TextBox>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label>Celular de contacto en caso de emergencia:</label>
+                                    <label>Teléfono de contacto en caso de emergencia:</label>
                                     <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server" 
                                         name="txbContacto"></asp:TextBox>
                                 </div>
