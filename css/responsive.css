@@ -19,7 +19,7 @@
 		height: 288px;
 	}
 	.plan-tall + .plan {
-		border: solid #dddddd 1px;
+		/*border: solid #dddddd 1px;*/
 	}
 	.plan-tall {
 		margin-right: 0;
@@ -27,7 +27,7 @@
 	.col-md-4.plan:first-child {
 		margin-right: 0;
 		margin-left: 0;
-		border-right: solid #dddddd 1px;
+		/*border-right: solid #dddddd 1px;*/
 	}
 }
 
@@ -43,6 +43,9 @@
 	}
 	header {
 		padding: 5px 10px 15px 10px;
+	}
+	.plans {
+		margin: 0px auto 0px;
 	}
 }
 /* Tablet*/
@@ -239,13 +242,13 @@
 	.col-md-4.plan:last-child {
 		margin-right: 0px;
 		margin-left: 0px;
-		border-width: 1px 1px 1px 1px;
+		/*border-width: 1px 1px 1px 1px;*/
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
 	.plan-tall + .plan {
-		border-left: 1px;
-		border: solid #dddddd;
+		/*border-left: 1px;
+		border: solid #dddddd;*/
 	}
 	.plan-tall {
 		margin-right: 0;
