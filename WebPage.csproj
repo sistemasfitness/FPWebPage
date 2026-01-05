@@ -648,6 +648,7 @@
     <Content Include="newsletter.aspx" />
     <Content Include="peoplewear.html" />
     <Content Include="plan3plus3.aspx" />
+    <Content Include="planesEasy.aspx" />
     <Content Include="planeasy.aspx" />
     <Content Include="planes.aspx" />
     <Content Include="planesKiosco.aspx" />
@@ -948,6 +949,13 @@
     </Compile>
     <Compile Include="plan3plus3.aspx.designer.cs">
       <DependentUpon>plan3plus3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planesEasy.aspx.cs">
+      <DependentUpon>planesEasy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planesEasy.aspx.designer.cs">
+      <DependentUpon>planesEasy.aspx</DependentUpon>
     </Compile>
     <Compile Include="planeasy.aspx.cs">
       <DependentUpon>planeasy.aspx</DependentUpon>
