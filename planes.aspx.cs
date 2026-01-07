@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebPage
@@ -165,5 +167,16 @@ namespace WebPage
         {
             Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
         }
+
+        //protected void btnRedireccionarRegresarRegister_Click(object sender, EventArgs e)
+        //{
+        //    clasesglobales cg = new clasesglobales();
+        //    DataTable dtToken = cg.ConsultarTokenPorIdPlanYIdVendedor(21, 156);
+
+        //    string token = dtToken.Rows.Count > 0 ? dtToken.Rows[0]["token"].ToString() : "";
+
+        //    Response.Redirect($"register.aspx?token={token}", false);
+        //    Context.ApplicationInstance.CompleteRequest();
+        //}
     }
 }

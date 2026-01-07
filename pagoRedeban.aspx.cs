@@ -127,160 +127,160 @@ namespace WebPage
             }
         }
 
-        protected async void tmrRespuesta_Tick(object sender, EventArgs e)
-        {
-            string urlRedirect = $"register?idPlan={Session["idPlan"]}";
-            int intentos = (int)(Session["intentos"] ?? 0);
+        //protected async void tmrRespuesta_Tick(object sender, EventArgs e)
+        //{
+        //    string urlRedirect = $"register?idPlan={Session["idPlan"]}";
+        //    int intentos = (int)(Session["intentos"] ?? 0);
 
-            string idTransaccion = Session["idTransaccion"]?.ToString();
-            string token = Session["token"]?.ToString();
-            var redebanClient = CrearRedebanClient();
+        //    string idTransaccion = Session["idTransaccion"]?.ToString();
+        //    string token = Session["token"]?.ToString();
+        //    var redebanClient = CrearRedebanClient();
 
-            if (intentos >= 15)
-            {
-                tmrRespuesta.Enabled = false;
+        //    if (intentos >= 15)
+        //    {
+        //        tmrRespuesta.Enabled = false;
 
-                if (!string.IsNullOrEmpty(idTransaccion) && !string.IsNullOrEmpty(token))
-                {
-                    // Intentar borrar la transacción pendiente para evitar Cod:06
-                    string resultadoBorrar = await redebanClient.BorrarTransaccionAsync(idTransaccion, token);
+        //        if (!string.IsNullOrEmpty(idTransaccion) && !string.IsNullOrEmpty(token))
+        //        {
+        //            // Intentar borrar la transacción pendiente para evitar Cod:06
+        //            string resultadoBorrar = await redebanClient.BorrarTransaccionAsync(idTransaccion, token);
 
-                    // Registrar el resultado para depuración
-                    System.Diagnostics.Debug.WriteLine($"BorrarTransaccion: {resultadoBorrar}");
-                }
+        //            // Registrar el resultado para depuración
+        //            System.Diagnostics.Debug.WriteLine($"BorrarTransaccion: {resultadoBorrar}");
+        //        }
 
-                LimpiarPago();
-                MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning", urlRedirect);
-                return;
-            }
+        //        LimpiarPago();
+        //        MostrarAlerta("Tiempo excedido", "No se recibió respuesta del datáfono. Por favor, intente nuevamente.", "warning", urlRedirect);
+        //        return;
+        //    }
 
-            Session["intentos"] = intentos + 1;
+        //    Session["intentos"] = intentos + 1;
 
-            if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
-            {
-                tmrRespuesta.Enabled = false;
-                LimpiarPago();
-                MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error", urlRedirect);
-                return;
-            }
+        //    if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(token))
+        //    {
+        //        tmrRespuesta.Enabled = false;
+        //        LimpiarPago();
+        //        MostrarAlerta("Error", "No hay datos de transacción para consultar.", "error", urlRedirect);
+        //        return;
+        //    }
 
-            string respuesta = await redebanClient.ConsultarRespuestaAsync(idTransaccion, token);
+        //    string respuesta = await redebanClient.ConsultarRespuestaAsync(idTransaccion, token);
 
-            if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))))
-            {
-                tmrRespuesta.Enabled = false;
+        //    if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:0") || respuesta.Contains("Msj:00"))))
+        //    {
+        //        tmrRespuesta.Enabled = false;
 
-                string[] partesRespuesta = respuesta.Split(',');
+        //        string[] partesRespuesta = respuesta.Split(',');
 
-                Session["idTransaccionRRN"] = partesRespuesta[12];
-                Session["numReciboDatafono"] = partesRespuesta[10];
+        //        Session["idTransaccionRRN"] = partesRespuesta[12];
+        //        Session["numReciboDatafono"] = partesRespuesta[10];
 
-                await ProcesarPagoExitosoAsync();
-            }
-            else if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))))
-            {
-                tmrRespuesta.Enabled = false;
-                LimpiarPago();
-                MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error", urlRedirect);
-            }
-        }
+        //        await ProcesarPagoExitosoAsync();
+        //    }
+        //    else if ((respuesta.Contains("Cod:00") && (respuesta.Contains("Msj:1") || respuesta.Contains("Msj:01"))))
+        //    {
+        //        tmrRespuesta.Enabled = false;
+        //        LimpiarPago();
+        //        MostrarAlerta("Pago rechazado", "La transacción fue rechazada.", "error", urlRedirect);
+        //    }
+        //}
 
-        private async Task ProcesarPagoExitosoAsync()
-        {
-            string urlRedirect = $"planesKiosco?codDatafono={Session["codDatafono"]}";
+        //private async Task ProcesarPagoExitosoAsync()
+        //{
+        //    string urlRedirect = $"planesKiosco?codDatafono={Session["codDatafono"]}";
 
-            try
-            {
-                // 1. Creación de factura en Siigo
-                var siigoClient = new SiigoClient(
-                    new HttpClient(),
-                    "https://api.siigo.com/",
-                    "sandbox@siigoapi.com",
-                    "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
-                    "SandboxSiigoApi"
-                );
+        //    try
+        //    {
+        //        // 1. Creación de factura en Siigo
+        //        var siigoClient = new SiigoClient(
+        //            new HttpClient(),
+        //            "https://api.siigo.com/",
+        //            "sandbox@siigoapi.com",
+        //            "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=",
+        //            "SandboxSiigoApi"
+        //        );
 
-                // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
-                // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                //    Session["documentoAfiliado"].ToString(), 
-                //    Session["codSiigoPlan"].ToString(), 
-                //    Session["nombrePlan"].ToString(),
-                //    int.Parse(Session["valorPlan"].ToString())
-                //);
+        //        // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
+        //        // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+        //        //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+        //        //    Session["documentoAfiliado"].ToString(), 
+        //        //    Session["codSiigoPlan"].ToString(), 
+        //        //    Session["nombrePlan"].ToString(),
+        //        //    int.Parse(Session["valorPlan"].ToString())
+        //        //);
 
-                // Siigo Pruebas
-                //int idTipoDocumento = 28006;
-                //int costCenterDefault = 621;
-                //int idVendedor = 856;
-                //int idPayment = 9438;
-                int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
-                string codSiigoPlan = "COD2433";
-                string nombrePlan = "Pago de suscripción";
-                int precioPlanSiigo = 10000;
-                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                    Session["documentoAfiliado"].ToString(),
-                    codSiigoPlan,
-                    nombrePlan,
-                    precioPlanSiigo,
-                    idSede
-                );
+        //        // Siigo Pruebas
+        //        //int idTipoDocumento = 28006;
+        //        //int costCenterDefault = 621;
+        //        //int idVendedor = 856;
+        //        //int idPayment = 9438;
+        //        int idSede = Session["idSede"] != null ? Convert.ToInt32(Session["idSede"].ToString()) : 0;
+        //        string codSiigoPlan = "COD2433";
+        //        string nombrePlan = "Pago de suscripción";
+        //        int precioPlanSiigo = 10000;
+        //        string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+        //            Session["documentoAfiliado"].ToString(),
+        //            codSiigoPlan,
+        //            nombrePlan,
+        //            precioPlanSiigo,
+        //            idSede
+        //        );
 
-                clasesglobales cg = new clasesglobales();
+        //        clasesglobales cg = new clasesglobales();
 
-                // 3. Registro de afiliación en la base de datos (AfiliadoPlan)
-                cg.InsertarAfiliadoPlan(
-                    int.Parse(Session["idAfiliado"].ToString()),
-                    int.Parse(Session["idPlan"].ToString()),
-                    Session["fechaInicioPlan"].ToString(),
-                    Session["fechaFinPlan"].ToString(),
-                    int.Parse(Session["meses"].ToString()),
-                    int.Parse(Session["valorPlan"].ToString()),
-                    "Débito automático", // TODO: Cambiar dependiendo el plan
-                    "Pendiente"
-                );
+        //        // 3. Registro de afiliación en la base de datos (AfiliadoPlan)
+        //        cg.InsertarAfiliadoPlan(
+        //            int.Parse(Session["idAfiliado"].ToString()),
+        //            int.Parse(Session["idPlan"].ToString()),
+        //            Session["fechaInicioPlan"].ToString(),
+        //            Session["fechaFinPlan"].ToString(),
+        //            int.Parse(Session["meses"].ToString()),
+        //            int.Parse(Session["valorPlan"].ToString()),
+        //            "Débito automático", // TODO: Cambiar dependiendo el plan
+        //            "Pendiente"
+        //        );
 
-                // 4. Obtención de idAfiliadoPlan recién creado
-                DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
-                if (dt.Rows.Count == 0)
-                {
-                    MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error", urlRedirect);
-                    return;
-                }
+        //        // 4. Obtención de idAfiliadoPlan recién creado
+        //        DataTable dt = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(int.Parse(Session["idAfiliado"].ToString()));
+        //        if (dt.Rows.Count == 0)
+        //        {
+        //            MostrarAlerta("Error", "No se pudo recuperar el plan del afiliado.", "error", urlRedirect);
+        //            return;
+        //        }
 
-                int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
-                Session["idAfiliadoPlan"] = idAfiliadoPlan;
+        //        int idAfiliadoPlan = int.Parse(dt.Rows[0]["idAfiliadoPlan"].ToString());
+        //        Session["idAfiliadoPlan"] = idAfiliadoPlan;
 
-                //string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                string codDatafono = Session["codDatafono"].ToString();
+        //        //string referencia = Session["documentoAfiliado"].ToString() + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+        //        string codDatafono = Session["codDatafono"].ToString();
 
-                // 5. Registro de pago en la base de datos (PagosPlanAfiliado)
-                cg.InsertarPagoPlanAfiliadoWeb(
-                    idAfiliadoPlan,
-                    int.Parse(Session["valorPlan"].ToString()),
-                    3,
-                    Session["idTransaccion"].ToString(),
-                    "Ninguno",
-                    152, 
-                    "Pendiente",
-                    idSiigoFactura,
-                    null,
-                    null,
-                    null,
-                    codDatafono,
-                    Session["idTransaccionRRN"].ToString(),
-                    Session["numReciboDatafono"].ToString()
-                );
+        //        // 5. Registro de pago en la base de datos (PagosPlanAfiliado)
+        //        cg.InsertarPagoPlanAfiliadoWeb(
+        //            idAfiliadoPlan,
+        //            int.Parse(Session["valorPlan"].ToString()),
+        //            3,
+        //            Session["idTransaccion"].ToString(),
+        //            "Ninguno",
+        //            152, 
+        //            "Pendiente",
+        //            idSiigoFactura,
+        //            null,
+        //            null,
+        //            null,
+        //            codDatafono,
+        //            Session["idTransaccionRRN"].ToString(),
+        //            Session["numReciboDatafono"].ToString()
+        //        );
 
-                LimpiarTodo();
-                MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", urlRedirect);
-            }
-            catch (Exception ex)
-            {
-                MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno. Por favor, comunicarse con el área de sistemas.", "error", urlRedirect);
-                System.Diagnostics.Debug.WriteLine("Error en ProcesarPagoExitosoAsync: " + ex.ToString());
-            }
-        }
+        //        LimpiarTodo();
+        //        MostrarAlerta("Pago Aprobado", "La transacción fue realizada exitosamente.", "success", urlRedirect);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MostrarAlerta("Error", "El pago fue aprobado, pero ocurrió un error en el registro interno. Por favor, comunicarse con el área de sistemas.", "error", urlRedirect);
+        //        System.Diagnostics.Debug.WriteLine("Error en ProcesarPagoExitosoAsync: " + ex.ToString());
+        //    }
+        //}
 
         private RedebanClient CrearRedebanClient()
         {

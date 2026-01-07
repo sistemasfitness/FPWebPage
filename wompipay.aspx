@@ -160,7 +160,6 @@
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" >
                                             <asp:ListItem Text="Selecciona el año" Value=""></asp:ListItem>
-                                            <asp:ListItem Text="2024" Value="24"></asp:ListItem>
                                             <asp:ListItem Text="2025" Value="25"></asp:ListItem>
                                             <asp:ListItem Text="2026" Value="26"></asp:ListItem>
                                             <asp:ListItem Text="2027" Value="27"></asp:ListItem>
@@ -175,6 +174,7 @@
                                             <asp:ListItem Text="2036" Value="36"></asp:ListItem>
                                             <asp:ListItem Text="2037" Value="37"></asp:ListItem>
                                             <asp:ListItem Text="2038" Value="38"></asp:ListItem>
+                                            <asp:ListItem Text="2039" Value="39"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>

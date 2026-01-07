@@ -1,25 +1,26 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Npgsql;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
-using System.Web;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.Odbc;
-using System.Configuration;
-using System.Text;
-using System.Net.Mail;
-using MySql.Data.MySqlClient;
-using System.Web.Configuration;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.IO;
-using System.Net;
+using System.Diagnostics;
 //using static WebPage.reportepagosmulticanal;
 using System.Globalization;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
-using Npgsql;
-using System.Diagnostics;
+using System.Text;
+using System.Web;
+using System.Web.Configuration;
 
 namespace WebPage
 {
@@ -4988,38 +4989,6 @@ namespace WebPage
             return respuesta;
         }
 
-        public string ActualizarPagoPlanAfiliadoToken(string idDataToken, int idAfiliadoPlan)
-        {
-            string respuesta = string.Empty;
-            try
-            {
-                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-
-                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                {
-                    mysqlConexion.Open(); // Abrir conexión antes de usarla
-
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_PAGO_PLAN_AFILIADO_TOKEN", mysqlConexion))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Parámetros de entrada
-                        cmd.Parameters.AddWithValue("@p_id_data_token", idDataToken);
-                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
-
-                        cmd.ExecuteNonQuery();
-                        respuesta = "OK";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                respuesta = "ERROR: " + ex.Message;
-            }
-
-            return respuesta;
-        }
-
         public string ActualizarPagoPlanAfiliadoFuentePago(string idDataFuente, int idAfiliadoPlan)
         {
             string respuesta = string.Empty;
@@ -5534,39 +5503,6 @@ namespace WebPage
                 dt.Rows.Add(ex.Message);
             }
             return dt;
-        }
-
-        public string InsertarAfiliadoPlan(int idAfiliado, int idPlan, string fechaInicioPlan, string fechaFinalPlan, int meses, int valor, string observaciones, string estado)
-        {
-            string respuesta = string.Empty;
-            try
-            {
-                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
-                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                {
-                    mysqlConexion.Open();
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_AFILIADO_PLAN", mysqlConexion))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado);
-                        cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
-                        cmd.Parameters.AddWithValue("@p_fecha_inicio", fechaInicioPlan);
-                        cmd.Parameters.AddWithValue("@p_fecha_fin", fechaFinalPlan);
-                        cmd.Parameters.AddWithValue("@p_meses", meses);
-                        cmd.Parameters.AddWithValue("@p_valor", valor);
-                        cmd.Parameters.AddWithValue("@p_observaciones", observaciones);
-                        cmd.Parameters.AddWithValue("@p_estado", estado);
-                        cmd.ExecuteNonQuery();
-                        respuesta = "OK";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                respuesta = "ERROR: " + ex.Message;
-            }
-
-            return respuesta;
         }
 
         public int InsertarAfiliadoPlanYDevolverId(int idAfiliado, int idPlan, string fechaInicioPlan, string fechaFinalPlan, int meses, int valor, string observaciones, string estado)
@@ -6172,19 +6108,18 @@ namespace WebPage
             return dt;
         }
 
-        public DataTable ConsultarIntegracion(int idSede)
+        public DataTable ConsultarCiudadSedeSiigoPorId(int idCiudadSede)
         {
             DataTable dt = new DataTable();
-
             try
             {
                 string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
                 using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_INTEGRACION_POR_ID_SEDE", mysqlConexion))
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_CIUDADES_SEDES_SIIGO_POR_ID", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+                        cmd.Parameters.AddWithValue("@p_id_ciudad_sede", idCiudadSede);
 
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
                         {
@@ -6204,7 +6139,7 @@ namespace WebPage
             return dt;
         }
 
-        public DataTable ConsultarIntegracionWompi(int idIntegracion)
+        public DataTable ConsultarIntegracionPorId(int idIntegracion)
         {
             DataTable dt = new DataTable();
 
@@ -6213,7 +6148,7 @@ namespace WebPage
                 string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
                 using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_INTEGRACION_WOMPI", mysqlConexion))
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_INTEGRACION_POR_ID", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_id_integracion", idIntegracion);
@@ -6234,6 +6169,101 @@ namespace WebPage
             }
 
             return dt;
+        }
+
+        // Token idPlan y idVendedor
+
+        public DataTable ConsultarTokenPorIdPlanYIdVendedor(int idPlan, int idVendedor)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_TOKEN_POR_PLAN_VENDEDOR", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
+                        cmd.Parameters.AddWithValue("@p_id_vendedor", idVendedor);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public DataTable ConsultarToken(string token)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_CONSULTAR_TOKEN", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_token", token);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public string InsertarTokenPlanVendedor(int idPlan, int idVendedor, string token)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_INSERTAR_TOKEN_PLAN_VENDEDOR", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_plan", idPlan);
+                        cmd.Parameters.AddWithValue("@p_id_vendedor", idVendedor);
+                        cmd.Parameters.AddWithValue("@p_token", token);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
         }
 
         #endregion

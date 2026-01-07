@@ -20,8 +20,12 @@ namespace WebPage
 {
     public partial class wompiplan : System.Web.UI.Page
     {
-        static int idIntegracion = 1; // Pruebas
-        //static int idIntegracion = 4; // Producción
+        // PRUEBAS
+        //static int idIntegracionWompi = 1; // WOMPI
+
+
+        // PRODUCCIÓN
+        static int idIntegracionWompi = 4; // WOMPI
 
         private string _strMonto;
         private string _strHash256;
@@ -196,7 +200,7 @@ namespace WebPage
             string moneda = "COP";
             //string integrity_secret = "test_integrity_ECI40KcjCePVzQFu1rlkqQDWxwnQ6lAD";
 
-            IdReferencia = $"{DocumentoAfiliado}_{DateTime.Now.ToString("yyyyMMddHHmmss")}fp";
+            IdReferencia = $"FP_{DocumentoAfiliado}_{DateTime.Now.ToString("yyyyMMddHHmmss")}";
 
             string concatenado = $"{IdReferencia}{_strMonto}{moneda}{IntegritySecret}";
 
@@ -219,24 +223,24 @@ namespace WebPage
 
             //string strString = Convert.ToBase64String(Encoding.Unicode.GetBytes(DocumentoAfiliado));
 
-            string data = $"{DocumentoAfiliado}|{IdPlan}|{IdVendedor}";
+            string data = $"{DocumentoAfiliado}|{IdPlan}|{IdVendedor}|{IdSede}";
 
             string strData = Convert.ToBase64String(Encoding.Unicode.GetBytes(data));
 
             // PRODUCCIÓN
-            //_strRedireccion = $"https://fitnesspeoplecolombia.com/wompidata?code={strString}";
+            _strRedireccion = $"https://fitnesspeoplecolombia.com/wompidata?code={strData}";
 
             // PRUEBAS
             //_strRedireccion = $"https://localhost:44382/wompidata?code={strString}";
 
-            _strRedireccion = $"https://judicable-kale-lilied.ngrok-free.dev/wompidata?code={strData}";
+            //_strRedireccion = $"https://judicable-kale-lilied.ngrok-free.dev/wompidata?code={strData}";
         }
 
         private void ConsultarIntegracionWompi()
         {
             clasesglobales cg = new clasesglobales();
 
-            DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
+            DataTable dtIntegracionWompi = cg.ConsultarIntegracionPorId(idIntegracionWompi);
 
             IntegritySecret = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["integrity_secret"].ToString() : null;
             KeyPub = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPub"].ToString() : null;

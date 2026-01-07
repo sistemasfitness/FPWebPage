@@ -84,9 +84,9 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan-easy_2026-01-05.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">PLAN EASY</h1>
+            <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
         </div>
     </section>
     <!-- End section -->
@@ -116,28 +116,26 @@
 		    <div class="row plans">
 
 			    <div class="plan col-md-4">
-                    <img src="img/planes/01_plan-focus.jpg" alt="img" />
+                    <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">Plan Easy</h2>
+                        <h2 class="plan-title">EASY FAST</h2>
 
-                        <p>Para quienes forjan su disciplina desde el primer día.</p>
+                        <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
 
-                        <p class="plan-price" style="margin-bottom: 20px;">$99.000/mes</p>
+                        <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
 
                         <p>Permanencia mínima: 12 meses</p>
 
                         <div class="text-center">
-                            <a href="#" class="btn_full">Comprar ya</a>
+                            <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
                         </div>
 
                         <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Acceso a 8 sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Asesoramiento por profesionales en planta.</li>
-                            <li><i class="fa fa-circle-check"></i>Zonas de entrenamiento.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a más de 800 clases grupales por mes.</li>
-                            <li><i class="fa fa-circle-check"></i>Descuento en valoraciones.</li>
-                            <li><i class="fa fa-circle-check"></i>Servicio los 7 días de la semana.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                            <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                            <li><i class="fa fa-circle-check"></i>Ideal para empezar sin pagos adicionales.</li>
                         </ul>
                     </div>
 			    </div>
@@ -147,63 +145,57 @@
 				    <%--<span class="ribbon-2"></span>--%>
                     <p class="ribbon-3">Más beneficios</p>
 
-                    <img src="img/planes/01_plan-focus.jpg" alt="img" />
+                    <img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">Plan Vuelve a Entrenar #1</h2>
+                        <h2 class="plan-title">EASY PRO</h2>
 
-                        <p>Para quienes entrenan con enfoque y acompañamiento integral.</p>
+                        <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                        <p class="plan-price">PRIMER MES $9.900</p>
-                        <p>DESPUÉS $89.000/mes</p>
+                        <p class="plan-price" style="margin-bottom: 20px;">$ 129.900/mes</p>
+                        <%--<p>DESPUÉS $89.000/mes</p>--%>
 
-                        <p>Permanencia mínima: 12 meses</p>
+                        <p>Sin permanencia</p>
 
                         <div class="text-center">
-                            <a href="#" class="btn-confirm-alert">Comprar ya</a>
+                            <a href="register?token=EvdXpvlvF6zFWrKFwZfu" class="btn-confirm-alert">Comprar ya</a>
                         </div>
                         
                         <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Inscripción totalmente gratis.</li>
-                            <li><i class="fa fa-circle-check"></i>Sin cuota de mantenimiento.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas nuestras sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Requisito contar con EPS activa.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las clases grupales.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las zonas de entrenamiento.</li>
-                            <li><i class="fa fa-circle-check"></i>Entrenadores profesionales a tu disposición.</li>
-                            <li><i class="fa fa-circle-check"></i>Valoración física con fisioterapeuta gratis.</li>
-                            <li><i class="fa fa-circle-check"></i>Descuentos en servicios asistenciales.</li>
-                            <li><i class="fa fa-circle-check"></i>SIN opción de congelar o aplazar.</li>
-                            <li><i class="fa fa-circle-check"></i>Penalidad por retiro anticipado.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                            <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                            <li><i class="fa fa-circle-check"></i>Nutrición incluida.</li>
+                            <li><i class="fa fa-circle-check"></i>Fisioterapia incluida.</li>
                         </ul>
                     </div>
 			    </div>
 			    <!-- End col-md-4 -->
 
 			    <div class="plan col-md-4">
-                    <img src="img/planes/01_plan-focus.jpg" alt="img" />
+                    <img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">Plan Vuelve a Entrenar #2</h2>
+                        <h2 class="plan-title">EASY FLEX</h2>
 
-                        <p>La experiencia Fitness People en su nivel más alto.</p>
+                        <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
 
-                        <p class="plan-price">2 MESES $49.900</p>
-                        <p>DESPUÉS $99.000</p>
+                        <p class="plan-price" style="margin-bottom: 20px;">$ 165.900</p>
+                        <%--<p>DESPUÉS $99.000</p>--%>
 
-                        <p>Permanencia mínima: 12 meses</p>
+                        <p>Sin permanencia</p>
 
                         <div class="text-center">
-                            <a href="#" class="btn_full">Comprar ya</a>
+                            <a href="register?token=QTXXAbI22Wv9gJcNALSH" class="btn_full">Comprar ya</a>
                         </div>
 
                         <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Acceso a 8 sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Asesoramiento por profesionales en planta.</li>
-                            <li><i class="fa fa-circle-check"></i>Zonas de entrenamiento.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a más de 800 clases grupales por mes.</li>
-                            <li><i class="fa fa-circle-check"></i>Descuento en valoraciones.</li>
-                            <li><i class="fa fa-circle-check"></i>Servicio los 7 días de la semana.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                            <li><i class="fa fa-circle-check"></i>Pago por un único mes.</li>
+                            <li><i class="fa fa-circle-check"></i>Sin débito automático.</li>
+                            <li><i class="fa fa-circle-check"></i>Membresía NO incluida.</li>
+                            <li><i class="fa fa-circle-check"></i>Requiere pago adicional de membresía ($190.000 – pago único).</li>
+                            <li><i class="fa fa-circle-check"></i>Ideal si quieres probar o entrenar por un mes puntual.</li>
                         </ul>
                     </div>
 			    </div>
@@ -657,7 +649,7 @@
     <uc1:loginregister runat="server" ID="loginregister" />
 
     <!-- Modal - Plan Easy -->
-    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+    <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent; position: relative;">
                 <!-- Contenedor relativo -->
@@ -691,7 +683,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <!-- Modal - Plan Easy -->
     <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
@@ -732,7 +724,7 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
-    <script>
+    <%--<script>
 
         // Inicia el temporizador de 2 minutos
         function iniciarTemporizadorEasy(duracionSegundos) {
@@ -785,7 +777,7 @@
             });
         });
 
-    </script>
+    </script>--%>
 
     <%--<script>
         $(document).ready(function () {

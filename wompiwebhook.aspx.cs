@@ -67,188 +67,188 @@ namespace WebPage
             }
         }
 
-        private void ProcesarWebhook()
-        {
-            string body = new StreamReader(Request.InputStream).ReadToEnd();
+        //private void ProcesarWebhook()
+        //{
+        //    string body = new StreamReader(Request.InputStream).ReadToEnd();
 
-            if (string.IsNullOrWhiteSpace(body))
-            {
-                Response.StatusCode = 400; // Bad request
-                //Response.Write("BODY EMPTY");
-                //WriteJson(new { error = "BODY_EMPTY" });
-                SendJson("{\"error\":\"BODY_EMPTY\"}");
-                return;
-            }
+        //    if (string.IsNullOrWhiteSpace(body))
+        //    {
+        //        Response.StatusCode = 400; // Bad request
+        //        //Response.Write("BODY EMPTY");
+        //        //WriteJson(new { error = "BODY_EMPTY" });
+        //        SendJson("{\"error\":\"BODY_EMPTY\"}");
+        //        return;
+        //    }
 
-            dynamic data = JsonConvert.DeserializeObject(body);
+        //    dynamic data = JsonConvert.DeserializeObject(body);
 
-            if (data == null || data.@event == null)
-            {
-                Response.StatusCode = 400;
-                //Response.Write("INVALID JSON");
-                //WriteJson(new { error = "INVALID_JSON" });
-                SendJson("{\"error\":\"INVALID_JSON\"}");
-                return;
-            }
+        //    if (data == null || data.@event == null)
+        //    {
+        //        Response.StatusCode = 400;
+        //        //Response.Write("INVALID JSON");
+        //        //WriteJson(new { error = "INVALID_JSON" });
+        //        SendJson("{\"error\":\"INVALID_JSON\"}");
+        //        return;
+        //    }
 
-            string tipoEvento = data.@event;
-            string idTransaccion = data.data.transaction.id;
-            string referencia = data.data.transaction.reference;
-            string estado = data.data.transaction.status;
-            string mensajeEstado = data.data.transaction.status_message;
+        //    string tipoEvento = data.@event;
+        //    string idTransaccion = data.data.transaction.id;
+        //    string referencia = data.data.transaction.reference;
+        //    string estado = data.data.transaction.status;
+        //    string mensajeEstado = data.data.transaction.status_message;
 
-            if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(referencia))
-            {
-                Response.StatusCode = 400;
-                //Response.Write("MISSING DATA");
-                //WriteJson(new { error = "MISSING_DATA" });
-                SendJson("{\"error\":\"MISSING_DATA\"}");
-                return;
-            }
+        //    if (string.IsNullOrEmpty(idTransaccion) || string.IsNullOrEmpty(referencia))
+        //    {
+        //        Response.StatusCode = 400;
+        //        //Response.Write("MISSING DATA");
+        //        //WriteJson(new { error = "MISSING_DATA" });
+        //        SendJson("{\"error\":\"MISSING_DATA\"}");
+        //        return;
+        //    }
 
-            clasesglobales cg = new clasesglobales();
+        //    clasesglobales cg = new clasesglobales();
 
-            // 1. Buscar el pendiente
-            using (var dtPendiente = cg.ConsultarPagoPorReferenciaPendienteWeb(referencia))
-            {
-                if (dtPendiente.Rows.Count == 0)
-                {
-                    // No existe → Caso "SIN_MATCH"
-                    cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb("0", referencia, "SIN_MATCH");
+        //    // 1. Buscar el pendiente
+        //    using (var dtPendiente = cg.ConsultarPagoPorReferenciaPendienteWeb(referencia))
+        //    {
+        //        if (dtPendiente.Rows.Count == 0)
+        //        {
+        //            // No existe → Caso "SIN_MATCH"
+        //            cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb("0", referencia, "SIN_MATCH");
 
-                    Response.StatusCode = 200;
-                    //Response.Write("NO MATCH - OK");
-                    //WriteJson(new { error = "NO_MATCH" });
-                    SendJson("{\"error\":\"NO_MATCH\"}");
-                    return;
-                }
+        //            Response.StatusCode = 200;
+        //            //Response.Write("NO MATCH - OK");
+        //            //WriteJson(new { error = "NO_MATCH" });
+        //            SendJson("{\"error\":\"NO_MATCH\"}");
+        //            return;
+        //        }
 
-                // Extraemos la info
-                var row = dtPendiente.Rows[0];
-                string documento = row["documento"].ToString();
+        //        // Extraemos la info
+        //        var row = dtPendiente.Rows[0];
+        //        string documento = row["documento"].ToString();
 
-                // 2. SI EL PAGO ESTÁ APROBADO
-                if (estado == "APPROVED")
-                {
-                    // 2.1 ¿Ya existe un pago registrado? (evitar duplicados)
-                    using (var dtPagoReg = cg.ConsultarPagoPorReferencia(referencia))
-                    {
-                        if (dtPagoReg.Rows.Count > 0)
-                        {
-                            cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+        //        // 2. SI EL PAGO ESTÁ APROBADO
+        //        if (estado == "APPROVED")
+        //        {
+        //            // 2.1 ¿Ya existe un pago registrado? (evitar duplicados)
+        //            using (var dtPagoReg = cg.ConsultarPagoPorReferencia(referencia))
+        //            {
+        //                if (dtPagoReg.Rows.Count > 0)
+        //                {
+        //                    cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
 
-                            Response.StatusCode = 200;
-                            //Response.Write("ALREADY REGISTERED");
-                            //WriteJson(new { status = "ALREADY_REGISTERED" });
-                            SendJson("{\"error\":\"ALREADY_REGISTERED\"}");
-                            return;
-                        }
-                    }
+        //                    Response.StatusCode = 200;
+        //                    //Response.Write("ALREADY REGISTERED");
+        //                    //WriteJson(new { status = "ALREADY_REGISTERED" });
+        //                    SendJson("{\"error\":\"ALREADY_REGISTERED\"}");
+        //                    return;
+        //                }
+        //            }
 
-                    // 2.2 Registrar
-                    RegistrarPagoAprobado(row, referencia, idTransaccion);
-                }
+        //            // 2.2 Registrar
+        //            RegistrarPagoAprobado(row, referencia, idTransaccion);
+        //        }
 
-                // 3. Actualizar estado según webhook
-                cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(
-                    documento,
-                    referencia,
-                    estado
-                );
+        //        // 3. Actualizar estado según webhook
+        //        cg.ActualizarEstadoPagoPlanAfiliadoPendienteWeb(
+        //            documento,
+        //            referencia,
+        //            estado
+        //        );
 
-                // 4. Eliminar solo si NO está pendiente
-                if (estado != "PENDING")
-                {
-                    cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
-                }
-            }
+        //        // 4. Eliminar solo si NO está pendiente
+        //        if (estado != "PENDING")
+        //        {
+        //            cg.EliminarRegistroPagoPlanAfiliadoPendienteWeb(referencia);
+        //        }
+        //    }
 
-            Response.StatusCode = 200;
-            //Response.Write("OK");
-            //WriteJson(new { status = "OK" });
-            SendJson("{\"status\":\"OK\"}");
-        }
+        //    Response.StatusCode = 200;
+        //    //Response.Write("OK");
+        //    //WriteJson(new { status = "OK" });
+        //    SendJson("{\"status\":\"OK\"}");
+        //}
 
-        private async void RegistrarPagoAprobado(DataRow row, string referencia, string idTransaccion)
-        {
-            try
-            {
-                clasesglobales cg = new clasesglobales();
+        //private async void RegistrarPagoAprobado(DataRow row, string referencia, string idTransaccion)
+        //{
+        //    try
+        //    {
+        //        clasesglobales cg = new clasesglobales();
 
-                int idAfiliado = Convert.ToInt32(row["idAfiliado"]);
-                int idPlan = Convert.ToInt32(row["idPlan"]);
-                string fechaIni = Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd");
-                string fechaFin = Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd");
-                int mesesPlan = Convert.ToInt32(row["mesesPlan"]);
-                int valor = Convert.ToInt32(row["valorPlan"]);
-                string descripcion = row["descripcionPlan"].ToString();
-                string documento = row["documento"].ToString();
-                int idVendedor = Convert.ToInt32(row["idVendedor"]);
-                int idSede = Convert.ToInt32(row["idSede"]);
+        //        int idAfiliado = Convert.ToInt32(row["idAfiliado"]);
+        //        int idPlan = Convert.ToInt32(row["idPlan"]);
+        //        string fechaIni = Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd");
+        //        string fechaFin = Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd");
+        //        int mesesPlan = Convert.ToInt32(row["mesesPlan"]);
+        //        int valor = Convert.ToInt32(row["valorPlan"]);
+        //        string descripcion = row["descripcionPlan"].ToString();
+        //        string documento = row["documento"].ToString();
+        //        int idVendedor = Convert.ToInt32(row["idVendedor"]);
+        //        int idSede = Convert.ToInt32(row["idSede"]);
 
-                // 1. Registrar AfiliadoPlan
-                int idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
-                    idAfiliado, idPlan, fechaIni, fechaFin, mesesPlan, valor, descripcion, "Activo"
-                );
+        //        // 1. Registrar AfiliadoPlan
+        //        int idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
+        //            idAfiliado, idPlan, fechaIni, fechaFin, mesesPlan, valor, descripcion, "Activo"
+        //        );
 
-                // 2. Registrar Pago
-                int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
-                    idAfiliadoPlan,
-                    valor,
-                    4,
-                    referencia,
-                    "Wompi",
-                    idVendedor,
-                    "Aprobado",
-                    null, null, null,
-                    idTransaccion,
-                    null, null, null
-                );
+        //        // 2. Registrar Pago
+        //        int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
+        //            idAfiliadoPlan,
+        //            valor,
+        //            4,
+        //            referencia,
+        //            "Wompi",
+        //            idVendedor,
+        //            "Aprobado",
+        //            null, null, null,
+        //            idTransaccion,
+        //            null, null, null
+        //        );
 
-                // 3. Crear factura en Siigo
-                await RegistrarFacturaSiigo(documento, idPago, idSede);
+        //        // 3. Crear factura en Siigo
+        //        await RegistrarFacturaSiigo(documento, idPago, idSede);
 
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error registrando pago aprobado: " + ex.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Error registrando pago aprobado: " + ex.ToString());
+        //    }
+        //}
 
-        private async System.Threading.Tasks.Task RegistrarFacturaSiigo(string nroDoc, int idPago, int idSede)
-        {
-            try
-            {
-                clasesglobales cg = new clasesglobales();
+        //private async System.Threading.Tasks.Task RegistrarFacturaSiigo(string nroDoc, int idPago, int idSede)
+        //{
+        //    try
+        //    {
+        //        clasesglobales cg = new clasesglobales();
 
-                string url = "https://api.siigo.com/";
-                string username = "sandbox@siigoapi.com";
-                string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                string partnerId = "SandboxSiigoApi";
+        //        string url = "https://api.siigo.com/";
+        //        string username = "sandbox@siigoapi.com";
+        //        string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
+        //        string partnerId = "SandboxSiigoApi";
 
-                var siigo = new SiigoClient(
-                    new HttpClient(),
-                    url,
-                    username,
-                    accessKey,
-                    partnerId
-                );
+        //        var siigo = new SiigoClient(
+        //            new HttpClient(),
+        //            url,
+        //            username,
+        //            accessKey,
+        //            partnerId
+        //        );
 
-                string codProducto = "COD2433";
-                string descripcion = "Pago de suscripción";
-                int precio = 10000;
+        //        string codProducto = "COD2433";
+        //        string descripcion = "Pago de suscripción";
+        //        int precio = 10000;
 
-                string idSiigo = await siigo.RegisterInvoiceAsync(
-                    nroDoc, codProducto, descripcion, precio, idSede
-                );
+        //        string idSiigo = await siigo.RegisterInvoiceAsync(
+        //            nroDoc, codProducto, descripcion, precio, idSede
+        //        );
 
-                cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigo);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + ex.ToString());
-            }
-        }
+        //        cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigo);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + ex.ToString());
+        //    }
+        //}
 
         private void SendJson(string json)
         {

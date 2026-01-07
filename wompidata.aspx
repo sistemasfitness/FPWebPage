@@ -114,7 +114,7 @@
 
                                     <tr style="font-weight: 900; background-color: #e3ff00; color: black;">
                                         <td>TOTAL</td>
-                                        <td class=""><strong class="pull-right"><asp:Literal ID="ltTotal" runat="server"></asp:Literal></strong></td>
+                                        <td><strong class="pull-right"><asp:Literal ID="ltTotal" runat="server"></asp:Literal></strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,8 +136,8 @@
 
                         <asp:Panel ID="pnlContinuar" runat="server" Visible="false">
                             <div style="margin-top: 30px; text-align: center;">
-                                <h3 style="font-weight: 900; color: #e3ff00;">¡Continúa!</h3>
-                                <p style="font-weight: 400;">Completa tu proceso dando clic aquí:</p>
+                                <h3 style="font-weight: 900; color: #e3ff00;">¡Ojo! Recuerda que...</h3>
+                                <p style="font-weight: 400;">Para activar tu plan debes completar el formulario de verificación. Para ello, <b>haz clic en el siguiente botón.</b></p>
 
                                 <asp:Button 
                                     ID="btnContinuar" 

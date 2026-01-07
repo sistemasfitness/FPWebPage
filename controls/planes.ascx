@@ -9,24 +9,24 @@
         <div class="row text-center plans">
             <div class="col-md-4">
                 <div class="img_container">
-                    <a href="planes?id=19">
-                        <img src="img/planes/01_plan-easy_2025-11-12.jpg" class="img-fluid plan-img" />
+                    <a href="~/planesEasy.aspx" runat="server">
+                        <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="img_container plan-center">
-                    <a href="planes?id=5">
-                        <img src="img/planes/plan-6-meses_2025-11-07.jpg" class="img-fluid plan-img" />
+                    <a href="planes?id=7">
+                        <img src="img/planes/plan-12-meses_2026-01-05.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="img_container">
-                    <a href="planes?id=16">
-                        <img src="img/planes/02_plan-3-mas-1_2025-10-17.jpg" class="img-fluid plan-img" />
+                    <a href="planes?id=5">
+                        <img src="img/planes/plan-6-meses_2026-01-05.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
@@ -64,20 +64,24 @@
             <div class="container" style="display: flex; flex-direction: column;">
                 <div class="row">
                     <div class="card-row-tarifas">
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
-                            <img src="img/tarifas/01_plan-referencia-1-mes.png" class="img-responsive" />
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/01_tarifa-plan-easy_2025-01-05.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
-                            <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/02_tarifa-plan-3-meses_2025-01-05.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
-                            <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/03_tarifa-plan-6-meses_2025-01-05.png" class="img-responsive" />
                         </div>
 
-                        <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
-                            <img src="img/tarifas/04_plan-referencia-10-meses.png" class="img-responsive" />
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/04_tarifa-plan-10-meses_2025-01-05.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/05_tarifa-plan-12-meses_2025-01-05.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
