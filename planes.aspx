@@ -293,6 +293,50 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+
+                <!-- Modal - Plan Easy -->
+                <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+                    <div class="modal-dialog" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                            <!-- Contenedor relativo -->
+                            <div style="position: relative; width: 100%;">
+                                <!-- Contador -->
+                                <div id="barraProgresoEasy"
+                                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                                    id="time-remaining-easy"></p>
+                                </div>
+
+                                <!-- Imagen -->
+                                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                                <!-- Capa clickeable                                             | ¡¡¡COMENTAR ANCLA SI SE VUELVEN A UTILIZAR LOS MODALES!!! -->
+                                <a href="register?idPlan=21&idVendedor=156"                     
+                                    style="position: absolute; inset: 0; z-index: 10;"></a>
+
+                                <asp:LinkButton 
+                                    ID="lnkRegister"
+                                    runat="server"
+                                    Style="position:absolute; inset:0; z-index:10; display:block; background:transparent;"
+                                    OnClick="btnRedireccionarRegresarRegister_Click">
+                                </asp:LinkButton>
+                            </div>
+
+                            <!-- Botón de cierre -->
+                            <a href="#" class="close-link" data-dismiss="modal"
+                                style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                                <i class="icon_close_alt2"></i>
+                            </a>
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-bar" style="width: 100%;">
+                                <div id="progress-fill-easy" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
+
             </form>
         </div>
     </section>
@@ -587,43 +631,6 @@
     <uc1:loginregister runat="server" ID="loginregister" />
 
     <!-- Modal - Plan Easy -->
-    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
-        <div class="modal-dialog" style="display: flex; justify-content: center;">
-            <div class="modal-content modal-popup" style="background: transparent; position: relative;">
-                <!-- Contenedor relativo -->
-                <div style="position: relative; width: 100%;">
-
-                <!-- Contador -->
-                <div id="barraProgresoEasy"
-                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
-                    align-items: center; justify-content: flex-start; padding-top: 40%;">
-                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
-                    id="time-remaining-easy"></p>
-                </div>
-
-                <!-- Imagen -->
-                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
-
-                <!-- Capa clickeable -->
-                <a href="register?idPlan=21&idVendedor=156"
-                    style="position: absolute; inset: 0; z-index: 10;"></a>
-                </div>
-
-                <!-- Botón de cierre -->
-                <a href="#" class="close-link" data-dismiss="modal"
-                    style="position: absolute; top: 10px; right: 10px; z-index: 20;">
-                    <i class="icon_close_alt2"></i>
-                </a>
-
-                <!-- Barra de progreso -->
-                <div class="progress-bar" style="width: 100%;">
-                    <div id="progress-fill-easy" class="progress-fill"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal - Plan Easy -->
     <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
         <div class="modal-dialog" style="display: flex; justify-content: center;">
             <div class="modal-content modal-popup" style="background: transparent;">
@@ -662,7 +669,9 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
-    <script>
+    <%--<script>
+
+        // Modal - Plan Easy
 
         // Inicia el temporizador de 2 minutos
         function iniciarTemporizadorEasy(duracionSegundos) {
@@ -715,7 +724,9 @@
             });
         });
 
-    </script>
+    </script>--%>
+
+
 
     <%--<script>
         $(document).ready(function () {
@@ -876,11 +887,15 @@
 
             window.dataLayer.push({
                 event: 'add_to_cart',
-                content_ids: contentId,
-                content_name: contentName,
-                value: value,
-                currency: 'COP',
-                content_type: 'product'
+                ecommerce: {
+                    items: [{
+                        item_id: contentId,
+                        item_name: contentName,
+                        price: value,
+                        currency: 'COP',
+                        quantity: 1
+                    }]
+                }
             });
 
             setTimeout(function () {

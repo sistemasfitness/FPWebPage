@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,6 +22,12 @@ namespace WebPage
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
             set { ViewState["idPlan"] = value; }
+        }
+
+        protected string DocumentoAfiliado
+        {
+            get { return ViewState["nroDoc"]?.ToString(); }
+            set { ViewState["nroDoc"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,6 +56,7 @@ namespace WebPage
             if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
             {
                 IdAfiliado = Convert.ToInt32(q["idAfi"]);
+                DocumentoAfiliado = q["nroDoc"];
                 IdPlan = Convert.ToInt32(q["idPlan"]);
             }
             else
@@ -85,13 +93,17 @@ namespace WebPage
 
         protected void btnRedireccionarActivarPlan_Click(object sender, EventArgs e)
         {
-            string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}";
-
-            TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
-            string token = UrlEncryptor.Encrypt(payload, ttl);
-
-            Response.Redirect($"verificacion.aspx?data={HttpUtility.UrlEncode(token)}", false);
+            Response.Redirect($"verificacion.aspx?nroDoc={DocumentoAfiliado}", false);
             Context.ApplicationInstance.CompleteRequest();
+
+            //string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}" +
+            //                 $"&pagoUnico=false";
+
+            //TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
+            //string token = UrlEncryptor.Encrypt(payload, ttl);
+
+            //Response.Redirect($"verificacion.aspx?data={HttpUtility.UrlEncode(token)}", false);
+            //Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

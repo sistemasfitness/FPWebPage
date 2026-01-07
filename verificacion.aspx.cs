@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
+using System.Net.Http;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -44,29 +46,7 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                ValidarTokenURLEncryptor();
-
                 CargarInformacion();
-            }
-        }
-
-        private void ValidarTokenURLEncryptor()
-        {
-            string token = Request.QueryString["data"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                Response.Redirect("default");
-                return;
-            }
-
-            if (UrlEncryptor.TryDecryptToCollection(token, out NameValueCollection q, out DateTime? expiresUtc))
-            {
-                IdAfiliado = Convert.ToInt32(q["idAfi"]);
-            }
-            else
-            {
-                Response.Redirect("default");
             }
         }
 
@@ -74,13 +54,25 @@ namespace WebPage
         {
             try
             {
+                DocumentoAfiliado = Request.QueryString["nroDoc"];
+
                 clasesglobales cg = new clasesglobales();
+
+                DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
+
+                if (dtAfiliado.Rows.Count == 0)
+                {
+                    Response.Redirect("default", false);
+                    return;
+                }
+
+                IdAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
 
                 DataTable dtAfiliadoPlan = cg.ConsultarIdAfiliadoPlanPorIdAfiliado(IdAfiliado);
 
                 if (dtAfiliadoPlan.Rows.Count == 0)
                 {
-                    MostrarAlerta("Error", "No se encuentran planes vinculados con este afiliado.", "error");
+                    Response.Redirect("default", false);
                     return;
                 }
 
@@ -88,18 +80,7 @@ namespace WebPage
 
                 dtAfiliadoPlan.Dispose();
 
-
-                DataTable dtAfiliado = cg.ConsultarAfiliadoPorId(IdAfiliado);
-
-                if (dtAfiliado.Rows.Count == 0)
-                {
-                    Response.Redirect("default");
-                    return;
-                }
-
-                DocumentoAfiliado = dtAfiliado.Rows[0]["DocumentoAfiliado"].ToString();
-
-                CargarEps();
+                //CargarEps();
 
                 txbFechaNacimiento.Attributes.Add("type", "date");
 
@@ -111,10 +92,10 @@ namespace WebPage
                 txbDireccion.Text = dtAfiliado.Rows[0]["DireccionAfiliado"].ToString();
                 txbFechaNacimiento.Text = dtAfiliado.Rows[0]["FechaNacAfiliado"].ToString();
 
-                if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
-                {
-                    ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
-                }
+                //if (dtAfiliado.Rows[0]["idEps"].ToString() != "")
+                //{
+                //    ddlEPS.SelectedIndex = Convert.ToInt16(ddlEPS.Items.IndexOf(ddlEPS.Items.FindByValue(dtAfiliado.Rows[0]["idEps"].ToString())));
+                //}
 
                 txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
 
@@ -155,48 +136,15 @@ namespace WebPage
             }
         }
 
-        private void CargarEps()
-        {
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarEpss();
-
-            ddlEPS.DataSource = dt;
-            ddlEPS.DataBind();
-
-            dt.Dispose();
-        }
-
-        private void ValidarAfiliadoWeb()
-        {
-            string origenWeb = Request.QueryString["web"];
-            ViewState["origenWeb"] = origenWeb;
-
-            if (!string.IsNullOrEmpty(origenWeb) && origenWeb.ToLower() == "true")
-            {
-                //id_parrafo.Visible = false;
-                //txbNombres.Enabled = false;
-                //txbApellidos.Enabled = false;
-                //txbCorreo.Enabled = false;
-                //txbCelular.Enabled = false;
-            }
-        }
-
-        //private void CargarDatosAfiliado(int idAfiliado)
+        //private void CargarEps()
         //{
         //    clasesglobales cg = new clasesglobales();
-        //    DataTable dt = cg.ConsultarAfiliadoPorId(idAfiliado);
+        //    DataTable dt = cg.ConsultarEpss();
 
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        hfIdAfiliado.Value = dt.Rows[0]["IdAfiliado"].ToString();
-        //        ViewState["idAfiliado"] = hfIdAfiliado.Value;
-        //        txbNombres.Text = dt.Rows[0]["NombreAfiliado"].ToString();
-        //        txbApellidos.Text = dt.Rows[0]["ApellidoAfiliado"].ToString();
-        //        txbCorreo.Text = dt.Rows[0]["EmailAfiliado"].ToString();
-        //        txbCelular.Text = dt.Rows[0]["CelularAfiliado"].ToString();
-        //        ViewState["EmailAfiliado"] = dt.Rows[0]["EmailAfiliado"].ToString();
-        //        ViewState["ClaveAfiliado"] = dt.Rows[0]["ClaveAfiliado"].ToString();
-        //    }
+        //    ddlEPS.DataSource = dt;
+        //    ddlEPS.DataBind();
+
+        //    dt.Dispose();
         //}
 
         private void ListaPreguntasParq()
@@ -254,7 +202,7 @@ namespace WebPage
                     txbCorreo.Text,
                     txbDireccion.Text,
                     txbFechaNacimiento.Text, 
-                    int.Parse(ddlEPS.SelectedItem.Value.ToString()),
+                    1/*int.Parse(ddlEPS.SelectedItem.Value.ToString())*/,
                     txbResponsable.Text, 
                     ddlParentesco.SelectedItem.Value.ToString(),
                     txbContacto.Text, 
@@ -300,8 +248,9 @@ namespace WebPage
                 //    }
                 //}
 
+                // TODO: Comentado para realizar pruebas
                 // Enviar correo de confirmación
-                EnviarConfirmacion();
+                //EnviarConfirmacion();
 
                 Response.Redirect("gracias", false);
                 Context.ApplicationInstance.CompleteRequest();

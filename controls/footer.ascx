@@ -19,7 +19,7 @@
             <div class="col-md-3 col-sm-6">
                 <h4 style="color: #e3ff00; font-weight: 900;">Nosotros</h4>
                 <ul>
-                    <li><a href="sede_pg">Sedes</a></li>
+                    <li><a href="sedespg">Sedes</a></li>
                     <li><a href="default#planes">Planes</a></li>
                     <li><a href="corporativo">Corporativo</a></li>
                     <li><a href="servicios">Servicios</a></li>

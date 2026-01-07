@@ -8,6 +8,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -235,13 +236,13 @@
                         <!--End step -->
                         <div class="form_title">
                             <h3 style="font-weight: 900; color: #e3ff00;"><strong>3</strong>Información del pago</h3>
-                            <p style="color: #fff;">Método de pago elegido.</p>
+                            <p style="color: #fff;">Tipo de pago elegido.</p>
                         </div>
                         <div class="step">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Método:</label>
+                                        <label>Tipo:</label>
                                         <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" Enabled="false" 
                                             TabIndex="4"></asp:TextBox>
                                     </div>
@@ -271,7 +272,7 @@
                                     <asp:CheckBox ID="cbAutorizo" runat="server" />
 
                                     <label for="cbAutorizo">
-                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
+                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro<asp:Label ID="lbTipoCobro" runat="server"></asp:Label>.</span>
                                     </label>
                                 </div>
                             </div>
@@ -281,7 +282,7 @@
                                 <asp:Button ID="btnRegistrarAfiliado" runat="server" 
                                     CssClass="btn_full" 
                                     Text="Registrarme" 
-                                    OnClientClick="return validarYEjecutarPago();"
+                                    OnClientClick="afiliadoFormSubmit(); return validarYEjecutarPago();"
                                     OnClick="btnRegistrar_Click" />
                             </div>
                         </div>
@@ -301,7 +302,9 @@
                     </div>
                 </aside>
 
-                <div class="modal fade" id="cod-embajador" tabindex="-1" role="dialog">
+
+                <!-- Modal - Embajadores -->
+                <%--<div class="modal fade" id="cod-embajador" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document" style="display: flex; justify-content: center;">
                         <div class="modal-content modal-cod-embajador" style="width: 500px; min-width: 340px; background: #191919; border-color: #E3FF00;">
                             <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
@@ -341,7 +344,52 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
+
+
+                <!-- Modal - Plan Easy -->
+                <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+                    <div class="modal-dialog" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                            <!-- Contenedor relativo -->
+                            <div style="position: relative; width: 100%;">
+                                <!-- Contador -->
+                                <div id="barraProgresoEasy"
+                                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                                    id="time-remaining-easy"></p>
+                                </div>
+
+                                <!-- Imagen -->
+                                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                                <!-- Capa clickeable                                             | ¡¡¡COMENTAR ANCLA SI SE VUELVEN A UTILIZAR LOS MODALES!!! -->
+                                <a href="register?idPlan=21&idVendedor=156"
+                                    style="position: absolute; inset: 0; z-index: 10;"></a>
+
+                                <asp:LinkButton 
+                                    ID="lnkRegister"
+                                    runat="server"
+                                    Style="position:absolute; inset:0; z-index:10; display:block; background:transparent;"
+                                    OnClick="btnRedireccionarRegresarRegister_Click">
+                                </asp:LinkButton>
+                            </div>
+
+                            <!-- Botón de cierre -->
+                            <a href="#" class="close-link" data-dismiss="modal"
+                                style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                                <i class="icon_close_alt2"></i>
+                            </a>
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-bar" style="width: 100%;">
+                                <div id="progress-fill-easy" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
+
             </form>
         </div>
         <!-- End row -->
@@ -379,42 +427,6 @@
         </div>
     </div>--%>
 
-    <!-- Modal - Plan Easy -->
-    <div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
-        <div class="modal-dialog" style="display: flex; justify-content: center;">
-            <div class="modal-content modal-popup" style="background: transparent; position: relative;">
-                <!-- Contenedor relativo -->
-                <div style="position: relative; width: 100%;">
-
-                <!-- Contador -->
-                <div id="barraProgresoEasy"
-                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
-                    align-items: center; justify-content: flex-start; padding-top: 40%;">
-                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
-                    id="time-remaining-easy"></p>
-                </div>
-
-                <!-- Imagen -->
-                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
-
-                <!-- Capa clickeable -->
-                <a href="register?idPlan=21&idVendedor=156"
-                    style="position: absolute; inset: 0; z-index: 10;"></a>
-                </div>
-
-                <!-- Botón de cierre -->
-                <a href="#" class="close-link" data-dismiss="modal"
-                    style="position: absolute; top: 10px; right: 10px; z-index: 20;">
-                    <i class="icon_close_alt2"></i>
-                </a>
-
-                <!-- Barra de progreso -->
-                <div class="progress-bar" style="width: 100%;">
-                    <div id="progress-fill-easy" class="progress-fill"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Search Menu -->
     <div class="search-overlay-menu">
@@ -434,7 +446,7 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
-    <script>
+    <%--<script>
 
         // Evitar validación HTML5 para el botón de ValidarEmbajador
         document.addEventListener("DOMContentLoaded", function () {
@@ -448,7 +460,7 @@
             }
         });
 
-    </script>
+    </script>--%>
 
     <script>
 
@@ -461,7 +473,7 @@
 
     </script>
 
-    <script>
+    <%--<script>
 
         // Inicia el temporizador de 2 minutos
         function iniciarTemporizadorEasy(duracionSegundos) {
@@ -501,7 +513,7 @@
 
         $(document).ready(function () {
             const params = new URLSearchParams(window.location.search);
-            if (params.get("idPlan") === "19") {
+            if (params.get("token") === "Doyf9lC0O0w3PgmVqO0A") {
 
                 // Mostrar modal código embajador (ahora sí se puede cerrar libremente)
                 $("#cod-embajador").modal({
@@ -547,7 +559,7 @@
             }
         });
 
-    </script>
+    </script>--%>
 
     <script>
 
@@ -624,7 +636,7 @@
             const cb1 = document.getElementById("cbAutorizo");
 
             if (!cb1.checked) {
-                mostrarAlerta('Confirmación requerida', 'Debes autorizar el cobro recurrente para continuar con el registro.', 'warning');
+                mostrarAlerta('Confirmación requerida', 'Debes autorizar para continuar con el registro.', 'warning');
                 return false;
             }
 
@@ -655,6 +667,27 @@
 
     </script>
 
+    <script>
+
+        function afiliadoFormSubmit() {
+
+            var nombre = document.getElementById('<%= txbNombre.ClientID %>').value;
+            var apellido = document.getElementById('<%= txbApellido.ClientID %>').value;
+            var correo = document.getElementById('<%= txbEmail.ClientID %>').value;
+            var telefono = document.getElementById('<%= txbCelular.ClientID %>').value;
+
+            window.dataLayer.push({
+                event: 'custom_form_submit',
+                formData: {
+                    name: nombre + ' ' + apellido, 
+                    email: correo, 
+                    phone: telefono
+                }
+            });
+        }
+
+    </script>
+
 
     <style>
 
@@ -673,10 +706,6 @@
             border: none !important;
             box-shadow: none !important;
         }
-
-    </style>
-
-    <style>
 
         .progress-bar {
             width: 100%;

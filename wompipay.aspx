@@ -85,7 +85,7 @@
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">Pago a través de Wompi</h1>
-            <p style="font-weight: 900;">¡Paga de manera segura y sin complicaciones!</p>
+            <p style="font-weight: 900;">¡Rápido, seguro y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
@@ -160,7 +160,6 @@
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" >
                                             <asp:ListItem Text="Selecciona el año" Value=""></asp:ListItem>
-                                            <asp:ListItem Text="2024" Value="24"></asp:ListItem>
                                             <asp:ListItem Text="2025" Value="25"></asp:ListItem>
                                             <asp:ListItem Text="2026" Value="26"></asp:ListItem>
                                             <asp:ListItem Text="2027" Value="27"></asp:ListItem>
@@ -175,6 +174,7 @@
                                             <asp:ListItem Text="2036" Value="36"></asp:ListItem>
                                             <asp:ListItem Text="2037" Value="37"></asp:ListItem>
                                             <asp:ListItem Text="2038" Value="38"></asp:ListItem>
+                                            <asp:ListItem Text="2039" Value="39"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>

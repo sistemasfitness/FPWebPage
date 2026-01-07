@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label></label>
+                                    <label>Teléfono</label>
                                     <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" name="txbCelular" required=""></asp:TextBox>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>EPS:</label>
@@ -161,7 +161,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
@@ -174,15 +174,15 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>Parentesco:</label>
-                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control" 
+                                    <asp:DropDownList ID="ddlParentesco" runat="server" CssClass="form-control"
                                         AppendDataBoundItems="true">
                                     </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label>Celular de contacto en caso de emergencia:</label>
-                                    <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server" 
+                                    <label>Teléfono de contacto en caso de emergencia:</label>
+                                    <asp:TextBox ID="txbContacto" CssClass="form-control" runat="server"
                                         name="txbContacto"></asp:TextBox>
                                 </div>
                             </div>
@@ -197,14 +197,22 @@
                                                 <div class="col-lg-12">
                                                     <br />
                                                     <h4><b>CUESTIONARIO DE PREPARACION PARA LA ACTIVIDAD FISICA</b></h4>
-                                                    <p>Apreciado usuario: <b>Fitness People CMD</b> lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su <b>PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD</b> en un programa de entrenamiento.<br /><br />
-                                                      Seleccione la casilla de respuesta según sea el caso.</p>
+                                                    <p>
+                                                        Apreciado usuario: <b>Fitness People CMD</b> lo invita a responder el siguiente cuestionario, que contiene preguntas vitales para su salud antes de iniciar su <b>PROGRAMA DE PROMOCIÓN EN LA SALUD y PREVENCIÓN DE LA ENFERMEDAD</b> en un programa de entrenamiento.<br />
+                                                        <br />
+                                                        Seleccione la casilla de respuesta según sea el caso.
+                                                    </p>
                                                     <table class="table" style="background: #3c3c3c;">
                                                         <tr>
-                                                            <th>Pregunta</th>
-                                                            <th>Respuesta</th>
+                                                            <th>Preguntas</th>
+                                                            <th colspan="2">Respuestas</th>
                                                         </tr>
-                                                        <asp:Repeater ID="rpParq" runat="server" >
+                                                        <tr class="text-center">
+                                                            <td>&nbsp;</td>
+                                                            <td>Si</td>
+                                                            <td>No</td>
+                                                        </tr>
+                                                        <asp:Repeater ID="rpParq" runat="server">
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td style="vertical-align: middle;">
@@ -212,7 +220,10 @@
                                                                         <asp:HiddenField ID="hfIdParq" runat="server" Value='<%# Eval("idParq") %>' />
                                                                     </td>
                                                                     <td style="text-align: center; vertical-align: middle;">
-                                                                        <asp:CheckBox ID="chbRespuesta" runat="server" />
+                                                                        <asp:CheckBox ID="chbRespuestaSi" runat="server" />
+                                                                    </td>
+                                                                    <td style="text-align: center; vertical-align: middle;">
+                                                                        <asp:CheckBox ID="chbRespuestaNo" runat="server" />
                                                                     </td>
                                                                 </tr>
                                                             </ItemTemplate>
@@ -237,45 +248,196 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <p>SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS: Fitness People CMD lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
-                                    <p>SI RESPONDIÓ NO A TODAS LAS PREGUNTAS: Fitness People CMD le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
-                                      NOTAS:
-                                    </p>
-                                        <ol>
-                                            <li>Este cuestionario solo es aplicable a personas entre 18 y 69 años de edad.</li>
-                                            <li>Si está embarazada, antes de hacer ejercicio le sugerimos que consulte a su médico.</li>
-                                            <li>Si se produce algún cambio en su estado de salud en relación con las preguntas anteriores, le pedimos que informe inmediatamente al profesional responsable de su programa de entrenamiento.</li>
-                                            <li>Si el médico Deportólogo le restringe el entrenamiento, entonces se concluye que es una persona no apta para continuar con el plan de entrenamiento.</li>
-                                        </ol>
-                                      <p>Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar los datos personales como titular de la información y este cuestionario.</p>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <p><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
-                                    <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" />
+
+                                <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Autorizaciones</h3>
+                                <div class="panel-group" id="works">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">SI RESPONDIÓ SÍ A UNA O MÁS PREGUNTAS:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne_works" class="panel-collapse in" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>Fitness People CMD lo remitirá con el médico del deporte quien lo(a) examinará de manera amable y profesional evaluando de forma segura y diagnosticando con un tratamiento oportuno, por medio de un plan de entrenamiento de acuerdo a su estado de salud el cual le será entregado después de la valoración.</p>
+                                                            <p>Fitness People CMD le asignará una cita con un(a) valorador físico (Fisioterapeuta) quien lo(a) examinará y entregará una prescripción para iniciar su programa de promoción en su salud y prevención de la enfermedad mediante un plan de entrenamiento.
+                                                              NOTAS:
+                                                            </p>
+                                                            <ol>
+                                                                <li>Este cuestionario solo es aplicable a personas entre 18 y 69 años de edad.</li>
+                                                                <li>Si está embarazada, antes de hacer ejercicio le sugerimos que consulte a su médico.</li>
+                                                                <li>Si se produce algún cambio en su estado de salud en relación con las preguntas anteriores, le pedimos que informe inmediatamente al profesional responsable de su programa de entrenamiento.</li>
+                                                                <li>Si el médico Deportólogo le restringe el entrenamiento, entonces se concluye que es una persona no apta para continuar con el plan de entrenamiento.</li>
+                                                            </ol>
+                                                            <p>Fitness People CMD no asume ninguna responsabilidad por las personas que inicien actividades físicas y que tengan dudas, omitan y/u oculten información al llenar los datos personales como titular de la información y este cuestionario.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">CONDICIONES DEL PRESTADOR:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo_works" class="panel-collapse collapse" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>Manifiesto  expresa e inequívocamente, conocer y aceptar las condiciones de EL PRESTADOR, entidad a la que autorizo bajo mi absoluta responsabilidad mi inscripción y vinculación al programa de PROMOCIÓN EN LA SALUD Y PREVENCIÓN DE LA ENFERMEDAD A TRAVÉS DEL DEPORTE Y LA RECREACIÓN, con el fin de contribuir a promover el cuidado integral de mi salud. Manifiesto que se me ha informado sobre el funcionamiento y conocimiento de las instalaciones; que diligencio y acepto mediante mi firma electrónica; el PAR-Q PHYSICAL ACTIVITY READINNES QUESTIONNAIRE (Cuestionario de preparación para la actividad física); acepto mediante este consentimiento escrito la matricula; entregaré la información de mi real estado de salud y datos personales; incorporaré mi huella digital para el control de acceso biométrico y registro. Entiendo y acepto que para el uso y goce de los servicios, equipos e instalaciones hay términos, condiciones y restricciones, un reglamento interno en donde me explican los derechos, deberes, obligaciones, recomendaciones ambientales, manejo de higiene y salubridad, responsabilidades y medidas preventivas como usuario, También me informaron que daré inicio a un programa básico de adaptación (contiene ejercicios básicos susceptibles de modificación por parte de un profesional de planta, dependiendo de mis condiciones físicas); mientras ingreso a consulta con la fisioterapeuta para la valoración física y posterior solicitaré en recepción mi programa de entrenamiento para promover mi salud; Las valoraciones físicas de control tienen una frecuencia de tres meses, excepto cuando hayan cambios susceptibles en mi salud; si tengo una patología o evidencia en el PAR-Q seré remitido a valoración de medicina del deporte. PARAGRAFO PRIMERO: En caso de remisión a medicina deportiva el término para ser valorado y recibir las recomendaciones junto con el programa de entrenamiento es de 30 días hábiles. Posteriormente iniciaré el programa de entrenamiento con la asesoría y acompañamiento por parte del profesional de planta. Actualmente estoy afiliado a una E.P.S o A.R.S; en caso de no estar afiliado asumo completamente toda responsabilidad que cause la no afiliación a la seguridad social integral. PARAGRAFO SEGUNDO: TELECONSULTA: autorizo libre y voluntariamente me  sea realizada la consulta para valoración de medicina deportiva , Fisioterapia o Nutrición por la Modalidad de Tele-consulta; me fueron explicados los beneficios, tales como la facilidad al acceso, la oportunidad y resolutividad  en la prestación del servicio por medio del intercambio de datos; garantizando una atención integral, oportuna y de alta calidad en cualquiera de las fases de la atención en salud. Igualmente fui informado por  EL PRESTADOR, que cuenta con talento humano en salud con las capacidades técnico científicas y con las tecnologías de información y de comunicación suficientes y necesarias para brindar el apoyo en cualquiera de las fases de la atención de mi salud en las valoraciones en fisioterapia, nutrición y medicina del deporte por Telemedicina, entre los cuales me fueron informados.- i) En casos excepcionales, la información transmitida puede no ser suficiente (p. ej. Baja resolución de las imágenes) para permitir una toma apropiada de decisiones médicas por parte del médico.- ii) Podrían ocurrir demoras en la entrega de la valoración y programas de entrenamiento, debido a deficiencias o fallos en el equipo electrónico.- iii) El Usuario podrá  revocar en cualquier momento el consentimiento para consulta de valoración física o nutricional por modalidad de Telemedicina sin consecuencia alguna. Entiendo que EL PRESTADOR del servicio, no asume ninguna responsabilidad por la omisión, ocultamiento y/o incumplimiento en la información suministrada por  EL USUARIO en PAR-Q PHYSICAL ACTIVITY READINNES QUESTIONNAIRE (Cuestionario de preparación para la actividad física), en mi valoración física, así como la extralimitación de las prescripciones, entregadas por parte de los profesionales de la salud y el deporte y la violación al Reglamento interno; igualmente EL PRESTADOR, se reserva el derecho de admisión.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <asp:CheckBox ID="chAcepto2" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">AUTORIZACION DEL TITULAR PARA EL TRATAMIENTO Y PROTECCION DE LA INFORMACIÓN EN NUESTRAS BASES DE DATOS:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree_works" class="panel-collapse collapse" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>Adhiero mi consentimiento autorizando a EL PRESTADOR, a realizar el tratamiento de los datos personales que se recolecten, almacenen, usen, circulen y supriman, en los documentos y medios tecnológicos empleados por EL PRESTADOR. Que como titular de la información autorizo de manera previa, expresa e informada e inequívoca a EL PRESTADOR, y/o a través de terceros para que realice recolección, uso, circulación, transmisión, transferencia, almacenamiento y supresión de mis datos personales, con la finalidad de ofrecer    nuestros productos y servicios, comunicar noticias y avisos promocionales, realizar estudios, actualizaciones de datos, acuerdos comerciales, contractuales, administrativos, de seguridad y en caso determinado informativo, cuando se trate de fotos y/o videos de EL PRESTADOR, que se publicarán en la página Web de EL PRESTADOR para el desarrollo de la misión institucional, de conformidad con lo establecido en la Ley Estatutaria 1581 de 2012. Que EL PRESTADOR, siendo el responsable del tratamiento de datos, por sí misma o en  asocio con otros, propende por la protección de los derechos de sus usuarios, contratistas, proveedores y demás partes interesadas, tipificadas en la Constitución Política y en la Ley Estatutaria 1581 de 2012, descritos en el Título II Principios Rectores. Los titulares de la  información podrán ejercer sus derechos, condiciones de legalidad y procedimientos para el tratamiento de la información, en el Manual de Protección de Datos Personales, ubicado en la página web: www.fitnesspeoplecolombia.com, a través de la línea telefónica 3153715258, o mediante comunicación escrita dirigida al correo electrónico direccionadministrativa@fitnesspeoplecmd.com. Que EL PRESTADOR, cuenta con un sistema de video vigilancia y control de acceso biométrico al interior de las instalaciones, los cuales tienen como finalidad la vigilancia de los espacios para garantizar la seguridad de usuarios, contratistas, proveedores y demás visitantes que ingresan a nuestras instalaciones. De igual manera el sistema de videovigilancia tiene otras finalidades, como son; la protección de equipos, dispositivos y elementos que allí se encuentren, para el Sistema de Gestión y Seguridad en el Trabajo SG-SST, accidentes e incidentes de trabajo,   eventos adversos y aspectos laborales en materia disciplinaria. Así mismo, se encuentran localizados avisos visibles y legibles al ingreso de  la Institución y en las demás áreas de videovigilancia, donde se indican a los titulares, acerca de la recolección de imágenes. Los procedimientos para el tratamiento que exige la norma los encontrarán en el Manual de Protección de Datos Personales, anexo sistema de videovigilancia. Que como titular cuento con la libertad de contestar las preguntas que se formulan en los formatos suministrados para los   diferentes procesos y a su vez autorizo que los datos sensibles recolectados se utilicen para cumplir la misión institucional a desarrollar en  las instalaciones de EL PRESTADOR.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <asp:CheckBox ID="chAcepto3" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">POLITICA DE SISTEMA DE PREVENCIÓN Y CONTROL DEL LAVADO DE ACTIVOS, LA FINANCIACION DEL TERRORISMO Y FINANCIAMIENTO DE LA PROLIFERACIÓN DE ARMAS DE DESTRUCCIÓN MASIVA:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour_works" class="panel-collapse collapse" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>El usuario conoce, entiende y acepta de manera voluntaria e inequívoca que EL PRESTADOR en cumplimiento de su obligación legal de prevenir y controlar el lavado de activos, la financiación del terrorismo y de la proliferación de armas de destrucción masiva, podrá cancelar sin previo aviso el contrato de prestación de servicios del USUARIO, cuando se observen o presenten uno o varios de los siguientes comportamientos. a. Cuando EL USUARIO haya sido incluido en listas internacionales tales como la ONU y la UNION EUROPEA. b. Cuando se verifique el inicio de una investigación o condena al titular o USUARIO por una autoridad competente relacionados con temas LAFT – FPADM o cualquier delito conexo en el código penal Colombiano. c. Cuando se detecten transacciones o actividad comercial entre EL USUARIO y una persona u organización vinculada en listas restrictivas / vinculantes o actividades ilícitas. d. Cuando se identifique que los pagos del USUARIO, está siendo empleado para mover recursos provenientes de actividades ilícitas o cuyo destino sea el patrocinio de actividades ilícitas. e. Si al requerir al USUARIO que presente justificación de operaciones catalogadas como inusuales o atípicas, éste se rehúse a suministrarla o entregue información errada, inexacta o inconsistente. LEGISLACION APLICABLE Ley 1581 de 2012 – Decreto Reglamentario 1377 de 2013 – Ley 1072 de 2015 COMPROMISO DEL USUARIO • Mantener actualizado sus datos personales • Mantener la confidencialidad de su clave / contraseña o método biométrico de acceso la cual es de uso personal e intransferible • No encontrarse involucrado por investigación o restricción o acción penal en especial con referente al lavado de activos.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <asp:CheckBox ID="chAcepto4" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFive_works">POLÍTICA DE CANCELACIÓN, SUSPENCIÓN, INCTIVACIÓN Y EXCLUSIÓN COMO USUARIO:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFive_works" class="panel-collapse collapse" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>Sin perjuicio de otras medidas EL PRESTADOR se reserva el DERECHO DE ADMISIÓN y a su exclusiva discreción de cancelar o suspender, inactivar de forma inmediata el registro como USUARIO en el caso en que se verifique cualquiera de los siguientes eventos. • Incumplir cualquiera de las cláusulas del contrato de prestación de servicios para el uso de las instalaciones y servicios: a. Objeto del contrato, b. MODULO 1.- TERMINOS, CONDICIONES Y RESTRICCIONES c. MODULO 2.- RECOMENDACIONES AMBIENTALES DE HIGIENE Y SALUBRIDAD d. MODULO 3.- RESPONSABILIDADES, MEDIDAS PREVENTIVAS Y RESTRICTIVAS e. MODULO 4.- REGLAMENTO INTERNO: Derechos, Deberes y obligaciones, • Omitir y/o ocultar información sobre su estado de salud • Incumplimiento de la política en el sistema de prevención y control de lavado de activos, la financiación del terrorismo y financiamiento de la proliferación de armas de destrucción masiva – SIPLAFT / FPADM • Si el USUARIO incurre en conductas en detrimento del PRESTADOR.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <asp:CheckBox ID="chAcepto5" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="font-weight: 600;">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseSix_works">DERECHOS DE PROPIEDAD INDUSTRIAL Y PROPIEDAD INTELCTUAL:<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseSix_works" class="panel-collapse collapse" style="background: #3c3c3c;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <p>El software usado para la comercialización del servicio y sus mecánicas adicionales y/o complementarias, el material gráfico, publicitario, fotográfico, de multimedia, audiovisual, o de diseño, así como los contenidos, textos y bases de datos; las marcas, nombres comerciales y signos distintivos contenidos en la pagina web www.fitnesspeoplecolombia.com son de propiedad del PRESTADOR que ha licenciado y concedido su uso, por tanto se considerará uso indebido de los mismos, cualquier modificación o alteración que realice EL USUARIO o cualquier tercero con fines comerciales sin autorización expresa del PRESTADOR.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group" style="margin-bottom: 0;">
+                                                            <p><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
+                                                            <asp:CheckBox ID="chAcepto6" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row margin_30">
                             <div class="col-md-12">
-                                <%--<div class="form-group">
-                                    <label style="color: #fff">Pregunta de validación: 3 + 1 =</label>
-                                    <asp:TextBox ID="txbVerificacion" CssClass="form-control" runat="server" name="txbVerificacion"></asp:TextBox>
-                                </div>--%>
                                 <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
-                                    Text="VERIFICAR" OnClick="btnVerificar_Click" UseSubmitBehavior="false" 
+                                    Text="VERIFICAR" OnClick="btnVerificar_Click" UseSubmitBehavior="false"
                                     OnClientClick="return validarYEjecutar();" />
-                                <%--<p><input type="submit" value="Verificar" class="btn_1" id="submit-contact" /></p>--%>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -321,23 +483,23 @@
      <script src="js/ion.rangeSlider.min.js"></script>
      <script src="js/switchery.min.js"></script>
      <script>
-         //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-         var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
-         elems.forEach(function (html) {
-             var switchery = new Switchery(html, {
-                 size: 'small', 
-                 color: '#E3FF00'
-             });
-         });
+        //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+        elems.forEach(function (html) {
+            var switchery = new Switchery(html, {
+                size: 'small',
+                color: '#E3FF00'
+            });
+        });
 
 
-         function validarCamposFormulario() {
+        function validarCamposFormulario() {
 
-             document.getElementById("btnVerificar").addEventListener("click", function (event) {
-                 event.preventDefault()
-             });
+            document.getElementById("btnVerificar").addEventListener("click", function (event) {
+                event.preventDefault()
+            });
 
-             const nombre = document.getElementById("<%= txbNombres.ClientID %>");
+            const nombre = document.getElementById("<%= txbNombres.ClientID %>");
              const apellido = document.getElementById("<%= txbApellidos.ClientID %>");
              const correo = document.getElementById("<%= txbCorreo.ClientID %>");
              const celular = document.getElementById("<%= txbCelular.ClientID %>");
@@ -352,87 +514,92 @@
                 const cvc = document.getElementById("<%= txbCVC.ClientID %>");
              const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");--%>
 
-             if (!nombre.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa nombre(s).', 'warning', nombre);
-                 return false;
-             }
+            if (!nombre.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa nombre(s).', 'warning', nombre);
+                return false;
+            }
 
-             if (!apellido.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa apellido(s).', 'warning', apellido);
-                 return false;
-             }
+            if (!apellido.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa apellido(s).', 'warning', apellido);
+                return false;
+            }
 
-             if (!correo.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el correo electrónico.', 'warning', correo);
-                 return false;
-             }
+            if (!correo.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el correo electrónico.', 'warning', correo);
+                return false;
+            }
 
-             if (!celular.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular.', 'warning', celular);
-                 return false;
-             }
+            if (!celular.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular.', 'warning', celular);
+                return false;
+            }
 
-             if (!direccion.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa la dirección.', 'warning', direccion);
-                 return false;
-             }
+            if (!direccion.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa la dirección.', 'warning', direccion);
+                return false;
+            }
 
-             if (!fechanacimiento.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa la fecha de nacimiento.', 'warning', fechanacimiento);
-                 return false;
-             }
+            if (!fechanacimiento.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa la fecha de nacimiento.', 'warning', fechanacimiento);
+                return false;
+            }
 
-             if (!responsable.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre de contacto en caso de emergencia.', 'warning', responsable);
-                 return false;
-             }
+            if (!responsable.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre de contacto en caso de emergencia.', 'warning', responsable);
+                return false;
+            }
 
-             if (!contacto.value.trim()) {
-                 mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular de contacto en caso de emergencia.', 'warning', contacto);
-                 return false;
-             }
+            if (!contacto.value.trim()) {
+                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular de contacto en caso de emergencia.', 'warning', contacto);
+                return false;
+            }
 
-             return true;
-         }
+            return true;
+        }
 
-         function validarYEjecutar() {
-             const cb1 = document.getElementById("chAcepto1");
+        function validarYEjecutar() {
+            const cb1 = document.getElementById("chAcepto1");
+            const cb2 = document.getElementById("chAcepto2");
+            const cb3 = document.getElementById("chAcepto3");
+            const cb4 = document.getElementById("chAcepto4");
+            const cb5 = document.getElementById("chAcepto5");
+            const cb6 = document.getElementById("chAcepto6");
 
-             const autorizacionesOK = cb1.checked;
-             const formularioOK = validarCamposFormulario();
+            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked && cb4.checked && cb5.checked && cb6.checked;
+            const formularioOK = validarCamposFormulario();
 
-             if (!autorizacionesOK) {
-                 mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
-                 return false;
-             }
+            if (!autorizacionesOK) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+                return false;
+            }
 
-             if (!formularioOK) {
-                 return false;
-             }
+            if (!formularioOK) {
+                return false;
+            }
 
-             setTimeout(function () {
-                 __doPostBack('<%= btnVerificar.UniqueID %>', '');
+            setTimeout(function () {
+                __doPostBack('<%= btnVerificar.UniqueID %>', '');
              }, 100);
-             return false;
-         }
+            return false;
+        }
 
-         function mostrarAlerta(titulo, mensaje, tipo, enfoque) {
-             Swal.fire({
-                 title: titulo,
-                 text: mensaje,
-                 icon: tipo,
-                 background: '#3C3C3C',
-                 showCloseButton: false,
-                 confirmButtonText: 'Aceptar',
-                 customClass: {
-                     popup: 'alert',
-                     confirmButton: 'btn-confirm-alert'
-                 },
-                 didClose: () => {
-                     enfoque.focus();
-                 }
-             });
-         }
+        function mostrarAlerta(titulo, mensaje, tipo, enfoque) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: false,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                didClose: () => {
+                    enfoque.focus();
+                }
+            });
+        }
      </script>
 
     <noscript>

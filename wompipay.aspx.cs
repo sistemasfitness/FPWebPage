@@ -26,8 +26,14 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        //static int idIntegracion = 1; // Pruebas
-        static int idIntegracion = 4; // Producción
+        // PRUEBAS
+        //static int idIntegracionWompi = 1; // WOMPI
+        //static int idIntegracionSiigo = 3; // SIIGO
+
+
+        // PRODUCCIÓN
+        static int idIntegracionWompi = 4; // WOMPI
+        static int idIntegracionSiigo = 6; // SIIGO
 
         protected int IdAfiliado
         {
@@ -123,13 +129,13 @@ namespace WebPage
 
         protected string CodEmbajador
         {
-            get { return ViewState["CodEmbajador"] as string; }
+            get { return ViewState["CodEmbajador"]?.ToString(); }
             set { ViewState["CodEmbajador"] = value; }
         }
 
-        //
+        // Wompi
 
-        protected string Url
+        protected string UrlWompi
         {
             get { return ViewState["urlWompi"]?.ToString(); }
             set { ViewState["urlWompi"] = value; }
@@ -189,6 +195,58 @@ namespace WebPage
         {
             get { return ViewState["accept_personal_auth"]?.ToString(); }
             set { ViewState["accept_personal_auth"] = value; }
+        }
+
+        // Siigo
+
+        protected string UrlSiigo
+        {
+            get { return ViewState["urlSiigo"]?.ToString(); }
+            set { ViewState["urlSiigo"] = value; }
+        }
+
+        protected string UserName
+        {
+            get { return ViewState["username"]?.ToString(); }
+            set { ViewState["username"] = value; }
+        }
+
+        protected string AccessKey
+        {
+            get { return ViewState["accessKey"]?.ToString(); }
+            set { ViewState["accessKey"] = value; }
+        }
+
+        protected string PartnerId
+        {
+            get { return ViewState["partnerId"]?.ToString(); }
+            set { ViewState["partnerId"] = value; }
+        }
+
+        //
+
+        protected int IdDocumentType
+        {
+            get { return ViewState["idDocumentType"] != null ? (int)ViewState["idDocumentType"] : 0; }
+            set { ViewState["idDocumentType"] = value; }
+        }
+
+        protected int IdCostCenter
+        {
+            get { return ViewState["idCostCenter"] != null ? (int)ViewState["idCostCenter"] : 0; }
+            set { ViewState["idCostCenter"] = value; }
+        }
+
+        protected int IdSellerUser
+        {
+            get { return ViewState["idSellerUser"] != null ? (int)ViewState["idSellerUser"] : 0; }
+            set { ViewState["idSellerUser"] = value; }
+        }
+
+        protected int IdPayment
+        {
+            get { return ViewState["idPayment"] != null ? (int)ViewState["idPayment"] : 0; }
+            set { ViewState["idPayment"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -258,7 +316,8 @@ namespace WebPage
                 IdSede = Convert.ToInt32(q["idSede"]);
 
                 LtValorPlan = Session["ltValorPlan"].ToString();
-                CargarInformacionPlan();
+                ltValor.Text = LtValorPlan;
+                //CargarInformacionPlan();      COMENTADO HASTA NUEVO AVISO
             }
             else
             {
@@ -269,108 +328,117 @@ namespace WebPage
             }
         }
 
-        private void CargarInformacionPlan()
-        {
-            ltValor.Text = LtValorPlan;
+        //private void CargarInformacionPlan()
+        //{
+        //    ltValor.Text = LtValorPlan;
 
-            if (IdPlan == 18)
-            {
-                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-            }
+        //    if (IdPlan == 18)
+        //    {
+        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+        //    }
 
-            if (IdPlan == 19)
-            {
-                pnlTotalCart.Visible = false;
+        //    if (IdPlan == 19)
+        //    {
+        //        pnlTotalCart.Visible = false;
 
-                ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px; margin-bottom: 0;'>
-                                        ANTES <span class='pull-right' style='text-decoration: line-through;'>$149.000</span>
-                                    </div>
-                                    <div id='total_cart'>
-                                        AHORA <span class='pull-right'>$89.000</span>
-                                    </div>";
+        //        ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px; margin-bottom: 0;'>
+        //                                ANTES <span class='pull-right' style='text-decoration: line-through;'>$149.000</span>
+        //                            </div>
+        //                            <div id='total_cart'>
+        //                                AHORA <span class='pull-right'>$89.000</span>
+        //                            </div>";
 
-                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-            }
+        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+        //    }
 
-            if (IdPlan == 20)
-            {
-                pnlTotalCart.Visible = false;
+        //    if (IdPlan == 20)
+        //    {
+        //        pnlTotalCart.Visible = false;
 
-                ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
-                                        2 MESES <span class='pull-right'>$49.900</span>
-                                    </div>
-                                    <div id='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS <span class='pull-right'>$99.000</span>
-                                    </div>";
+        //        ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
+        //                                2 MESES <span class='pull-right'>$49.900</span>
+        //                            </div>
+        //                            <div id='total_cart' style='font-size: 15px;'>
+        //                                DESPUÉS <span class='pull-right'>$99.000</span>
+        //                            </div>";
 
-                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-            }
+        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+        //    }
 
-            if (IdPlan == 21)
-            {
-                pnlTotalCart.Visible = false;
+        //    if (IdPlan == 21)
+        //    {
+        //        pnlTotalCart.Visible = false;
 
-                ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$9.900</span>
-                                    </div>
-                                    <div id='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS <span class='pull-right'>$89.000</span>
-                                    </div>";
+        //        ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
+        //                                PRIMER MES <span class='pull-right'>$9.900</span>
+        //                            </div>
+        //                            <div id='total_cart' style='font-size: 15px;'>
+        //                                DESPUÉS <span class='pull-right'>$89.000</span>
+        //                            </div>";
 
-                ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-                                    <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-            }
-        }
+        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
+        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
+        //    }
+        //}
 
         private void ConsultarInformacion()
         {
             try
             {
                 clasesglobales cg = new clasesglobales();
-                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
 
+                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
                 IdAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? Convert.ToInt32(dtAfi.Rows[0]["idAfiliado"].ToString()) : 0;
                 CorreoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["emailAfiliado"].ToString() : null;
                 NombreAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["nombreAfiliado"].ToString() + " " + dtAfi.Rows[0]["apellidoAfiliado"].ToString() : null;
                 TelefonoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["celularAfiliado"].ToString() : null;
-
                 dtAfi.Dispose();
 
                 DataTable dtPlan = cg.ConsultarPlanPorId(IdPlan);
-
                 MesesPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["meses"].ToString()) : 0;
-
                 NombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["nombrePlan"].ToString() : null;
                 CodSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["codSiigoPlan"].ToString() : null;
-
                 dtPlan.Dispose();
 
-                DataTable dtIntegracionWompi = cg.ConsultarIntegracionWompi(idIntegracion);
-
-                Url = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["urlTest"].ToString() : null;
+                DataTable dtIntegracionWompi = cg.ConsultarIntegracionPorId(idIntegracionWompi);
+                UrlWompi = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["url"].ToString() : null;
                 IntegritySecret = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["integrity_secret"].ToString() : null;
                 KeyPub = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPub"].ToString() : null;
                 KeyPriv = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPriv"].ToString() : null;
-
                 dtIntegracionWompi.Dispose();
+
+                DataTable dtIntegracionSiigo = cg.ConsultarIntegracionPorId(idIntegracionSiigo);
+                UrlSiigo = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["url"].ToString() : null;
+                UserName = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["username"].ToString() : null;
+                AccessKey = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["accessKey"].ToString() : null;
+                PartnerId = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["partnerId"].ToString() : null;
+
+                IdDocumentType = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idDocumentType"].ToString()) : 0;
+                IdSellerUser = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idSellerUser"].ToString()) : 0;
+                IdPayment = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idPayment"].ToString()) : 0;
+                dtIntegracionSiigo.Dispose();
+
+                DataTable dtSede = cg.ConsultarSedePorId(IdSede);
+                IdCostCenter = dtSede != null && dtSede.Rows.Count > 0 ? Convert.ToInt32(dtSede.Rows[0]["idCostCenterSiigo"].ToString()) : 0;
+                dtSede.Dispose();
             }
             catch (Exception ex)
             {
                 MostrarAlerta("Error inesperado", "No pudimos confirmar tu información.<br>Por favor, cierra esta página e inténtalo nuevamente.", "error", true);
-                System.Diagnostics.Debug.WriteLine("Error en CrearFuentePagoAsync: " + ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error en ConsultarInformacion: " + ex.ToString());
             }
         }
         
@@ -410,7 +478,7 @@ namespace WebPage
                     return;
                 }
 
-                string strDescripcion = "Débito automático";
+                string strDescripcion = $"Débito automático, Plan: {NombrePlan}, Precio: ${ValorPlan}";
                 string strEstado = "Pendiente";
 
                 if (IdPlan == 12 || IdPlan == 17)
@@ -433,8 +501,6 @@ namespace WebPage
                     strEstado
                 );
 
-                string idSiigoFactura = null;
-
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
                 int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
                     idAfiliadoPlan,
@@ -444,7 +510,7 @@ namespace WebPage
                     "Wompi",
                     IdVendedor, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
-                    idSiigoFactura,
+                    null,
                     DataIdToken, 
                     DataIdFuentePago, 
                     DataIdTransaccion, 
@@ -458,51 +524,77 @@ namespace WebPage
                     // 5. Facturar en Siigo
                     try
                     {
-                        DataTable dtIntegracion = cg.ConsultarIntegracion(IdSede);
-                        string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["urlTest"].ToString() : "0";
-                        string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : "0";
-                        string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : "0";
-                        string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : "0";
-                        dtIntegracion.Dispose();
-
-                        //string url = "https://api.siigo.com/";
-                        //string username = "sandbox@siigoapi.com";
-                        //string accessKey = "YmEzYTcyOGYtN2JhZi00OTIzLWE5ZjktYTgxNTVhNWUxZDM2Ojc0ODllKUZrSFM=";
-                        //string partnerId = "SandboxSiigoApi";
+                        string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
 
                         // Creación de factura
                         var siigoClient = new SiigoClient(
                             new HttpClient(),
-                            url,
-                            username,
-                            accessKey,
-                            partnerId
+                            UrlSiigo,
+                            UserName,
+                            AccessKey,
+                            PartnerId
                         );
 
+
+                        // COMENTADO HASTA NUEVO AVISO
+
+                        DataTable dtAfi = cg.ConsultarAfiliadoPorId(IdAfiliado);
+                        // Obtener datos del afiliado
+                        string strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString();
+                        string strApellido = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
+                        dtAfi.Dispose();
+
+                        DataTable dtCodSiigo = cg.ConsultarCodigoSiigoPorDocumento(DocumentoAfiliado);
+                        string idTipoDocSiigo = dtCodSiigo.Rows[0]["CodSiigo"].ToString();
+                        dtCodSiigo.Dispose();
+
+                        DataTable dtSede = cg.ConsultarSedePorId(IdSede);
+                        string strDireccion = dtSede.Rows[0]["DireccionSede"].ToString();
+                        int idCiudad = Convert.ToInt32(dtSede.Rows[0]["idCiudadSede"].ToString());
+                        dtSede.Dispose();
+
+                        DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
+                        string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
+                        string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
+                        dtCiudad.Dispose();
+
+                        await siigoClient.ManageCustomerAsync(idTipoDocSiigo, DocumentoAfiliado, strNombre, strApellido, strDireccion, codEstado, codCiudad, TelefonoAfiliado, CorreoAfiliado);
+
+                        // COMENTADO HASTA NUEVO AVISO
+
+
+                        // PRODUCCIÓN
                         // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
                         // ESTÁ COMENTADO PARA PRUEBAS LOCALES
-                        idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
                             DocumentoAfiliado,
                             CodSiigoPlan,
                             NombrePlan,
                             ValorPlan,
-                            IdSede
+                            IdSellerUser,
+                            IdDocumentType,
+                            fechaActual,
+                            IdCostCenter,
+                            IdPayment
                         );
 
-                        // Siigo Pruebas
-                        //    //int idTipoDocumento = 28006;
-                        //    //int costCenterDefault = 621;
-                        //    //int idVendedor = 856;
-                        //    //int idPayment = 9438;
+
+                        // PRUEBAS
+                        //if (idIntegracionSiigo == 3) IdCostCenter = 621;
+
                         //string codSiigoPlan = "COD2433";
                         //string nombrePlan = "Pago de suscripción";
                         //int precioPlan = 10000;
-                        //idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
                         //    DocumentoAfiliado,
                         //    codSiigoPlan,
                         //    nombrePlan,
                         //    precioPlan,
-                        //    IdSede
+                        //    IdSellerUser,
+                        //    IdDocumentType,
+                        //    fechaActual,
+                        //    IdCostCenter,
+                        //    IdPayment
                         //);
 
                         // Actualizar pago con id de factura
@@ -527,6 +619,7 @@ namespace WebPage
                 Session["ltValorPlan"] = LtValorPlan;
 
                 string payload = $"idAfi={HttpUtility.UrlEncode(IdAfiliado.ToString())}" +
+                                 $"&nroDoc={HttpUtility.UrlEncode(DocumentoAfiliado)}" +
                                  $"&idPlan={HttpUtility.UrlEncode(IdPlan.ToString())}";
 
                 TimeSpan ttl = TimeSpan.FromMinutes(10); // Token válido 10 minutos
@@ -569,7 +662,7 @@ namespace WebPage
         {
             try
             {
-                string url = $"{Url}tokens/cards";
+                string url = $"{UrlWompi}tokens/cards";
 
                 string respuesta = await GetPostAsync(url, creditcard, cvc, mes, anho, cardholder);
 
@@ -617,7 +710,7 @@ namespace WebPage
         {
             try
             {
-                string url = $"{Url}payment_sources";
+                string url = $"{UrlWompi}payment_sources";
 
                 string respuesta = await GetPostFuentePagoAsync(url, customer_email, type, token, acceptance_token, accept_personal_auth);
 
@@ -675,7 +768,7 @@ namespace WebPage
         {
             try
             {
-                string url = $"{Url}transactions";
+                string url = $"{UrlWompi}transactions";
 
                 string respuesta = await GetPostTransaccionAsync(url, amount_in_cents, currency, signature, customer_email, customer_full_name, customer_phone, installments, reference, payment_source_id);
 
@@ -905,7 +998,7 @@ namespace WebPage
 
         public async Task<string> GetPostConsultaTransaccionAsync(string idReferencia)
         {
-            string url = $"{Url}transactions?reference={idReferencia}";
+            string url = $"{UrlWompi}transactions?reference={idReferencia}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -933,7 +1026,7 @@ namespace WebPage
 
         private void ObtenerTokensDeAceptacion()
         {
-            string url = $"{Url}merchants/{KeyPub}";
+            string url = $"{UrlWompi}merchants/{KeyPub}";
 
             try
             {
