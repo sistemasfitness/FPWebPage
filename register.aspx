@@ -272,7 +272,7 @@
                                     <asp:CheckBox ID="cbAutorizo" runat="server" />
 
                                     <label for="cbAutorizo">
-                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
+                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro<asp:Label ID="lbTipoCobro" runat="server"></asp:Label>.</span>
                                     </label>
                                 </div>
                             </div>

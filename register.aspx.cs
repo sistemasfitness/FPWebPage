@@ -251,10 +251,15 @@ namespace WebPage
 
                 if (dtPlan == null || dtPlan.Rows.Count == 0) Response.Redirect("default", true);
 
+                bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
+
                 // Mostrar tipo de pago
-                txbMetodoPago.Text = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1"
+                txbMetodoPago.Text = esDebitoAutomatico
                     ? "Débito Automático"
                     : "Pago Único";
+
+                // Texto en autorización
+                lbTipoCobro.Text = esDebitoAutomatico ? " recurrente" : null;
 
                 DataTable dtPlanProm = cg.ConsultarPlanPromocionPorId(IdPlan);
 
