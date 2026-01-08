@@ -133,9 +133,15 @@
 
                         <ul class="plan-features">
                             <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                             <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                            <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Ideal para empezar sin pagos adicionales.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Nutrición incluida.</span></li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Fisioterapia incluida.</span></li>
                         </ul>
                     </div>
 			    </div>
@@ -163,8 +169,13 @@
                         
                         <ul class="plan-features">
                             <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                             <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                            <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
                             <li><i class="fa fa-circle-check"></i>Nutrición incluida.</li>
                             <li><i class="fa fa-circle-check"></i>Fisioterapia incluida.</li>
                         </ul>
@@ -191,11 +202,15 @@
 
                         <ul class="plan-features">
                             <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Pago por un único mes.</li>
-                            <li><i class="fa fa-circle-check"></i>Sin débito automático.</li>
-                            <li><i class="fa fa-circle-check"></i>Membresía NO incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Requiere pago adicional de membresía ($190.000 – pago único).</li>
-                            <li><i class="fa fa-circle-check"></i>Ideal si quieres probar o entrenar por un mes puntual.</li>
+                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan recurrente.</span></li>
+                            <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
+                            <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
+                            <li><i class="fa fa-circle-check"></i><span style="color: #191919;">Nutrición incluida.</span></li>
+                            <li><i class="fa fa-circle-check"></i><span style="color: #191919;">Fisioterapia incluida.</span></li>
                         </ul>
                     </div>
 			    </div>
