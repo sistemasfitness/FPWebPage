@@ -99,23 +99,7 @@ namespace WebPage
 
                 txbResponsable.Text = dtAfiliado.Rows[0]["ResponsableAfiliado"].ToString();
 
-                if (dtAfiliado.Rows[0]["idTipoDocumento"].ToString() == "3")
-                {
-                    ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
-                    ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
-                    ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
-                }
-                else
-                {
-                    ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
-                    ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
-                    ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
-                    ddlParentesco.Items.Add(new ListItem("Hermano/a ", "Hermano/a"));
-                    ddlParentesco.Items.Add(new ListItem("Hijo/a", "Hijo/a"));
-                    ddlParentesco.Items.Add(new ListItem("Primo/a", "Primo/a"));
-                    ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
-                    ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
-                }
+                CargarParentescos(Convert.ToInt32(dtAfiliado.Rows[0]["idTipoDocumento"]));
 
                 if (dtAfiliado.Rows[0]["Parentesco"].ToString() != "")
                 {
@@ -134,6 +118,25 @@ namespace WebPage
             {
                 System.Diagnostics.Debug.WriteLine("Error al cargar la información: " + ex.ToString());
             }
+        }
+
+        private void CargarParentescos(int idTipoDocumento)
+        {
+            ddlParentesco.Items.Clear();
+            ddlParentesco.Items.Add(new ListItem("Selecciona una opción", ""));
+
+            ddlParentesco.Items.Add(new ListItem("Padre/Madre", "Padre/Madre"));
+
+            if (idTipoDocumento != 3)
+            {
+                ddlParentesco.Items.Add(new ListItem("Esposo/a", "Esposo/a"));
+                ddlParentesco.Items.Add(new ListItem("Hermano/a", "Hermano/a"));
+                ddlParentesco.Items.Add(new ListItem("Hijo/a", "Hijo/a"));
+                ddlParentesco.Items.Add(new ListItem("Primo/a", "Primo/a"));
+                ddlParentesco.Items.Add(new ListItem("Sobrino/a", "Sobrino/a"));
+            }
+
+            ddlParentesco.Items.Add(new ListItem("Tutor/a", "Tutor/a"));
         }
 
         //private void CargarEps()
@@ -164,6 +167,12 @@ namespace WebPage
         {
             try
             {
+                if (string.IsNullOrEmpty(ddlParentesco.SelectedValue))
+                {
+                    MostrarAlerta("Campo requerido", "Debes seleccionar el parentesco del contacto de emergencia.", "warning");
+                    return;
+                }
+
                 clasesglobales cg = new clasesglobales();
 
                 // TODO: Validar que si el afiliado ya ha respondido las preguntas, no se vuelvan a insertar.
@@ -202,7 +211,7 @@ namespace WebPage
                     txbCorreo.Text,
                     txbDireccion.Text,
                     txbFechaNacimiento.Text, 
-                    1/*int.Parse(ddlEPS.SelectedItem.Value.ToString())*/,
+                    /*int.Parse(ddlEPS.SelectedItem.Value.ToString())*/
                     txbResponsable.Text, 
                     ddlParentesco.SelectedItem.Value.ToString(),
                     txbContacto.Text, 

@@ -607,14 +607,14 @@ namespace WebPage
                 }
 
                 // 6. Registrar pago para enbajador si la persona utiliza su código
-                if (!string.IsNullOrEmpty(CodEmbajador))
-                {
-                    cg.InsertarVentaEmbajador(
-                        IdAfiliado,
-                        idAfiliadoPlan,
-                        CodEmbajador
-                    );
-                }
+                //if (!string.IsNullOrEmpty(CodEmbajador))
+                //{
+                //    cg.InsertarVentaEmbajador(
+                //        IdAfiliado,
+                //        idAfiliadoPlan,
+                //        CodEmbajador
+                //    );
+                //}
 
                 Session["ltValorPlan"] = LtValorPlan;
 
@@ -716,7 +716,7 @@ namespace WebPage
 
                 Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
 
-                if (rObjetc.data.status != "AVAILABLE" || rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
+                if (rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
                 {
                     MostrarAlerta("Error en fuente de pago", "No se pudo crear la fuente de pago en Wompi.", "error");
                     return false;

@@ -283,7 +283,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
-                                                            <asp:CheckBox ID="chAcepto1" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto1" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -310,7 +310,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
-                                                            <asp:CheckBox ID="chAcepto2" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto2" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -337,7 +337,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
-                                                            <asp:CheckBox ID="chAcepto3" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto3" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -364,7 +364,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
-                                                            <asp:CheckBox ID="chAcepto4" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto4" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -391,7 +391,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
-                                                            <asp:CheckBox ID="chAcepto5" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto5" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -419,7 +419,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group" style="margin-bottom: 0;">
                                                             <p><b>Confirmo que he leído, comprendido y completado este cuestionario y todas las preguntas fueron respondidas bajo mi propia responsabilidad, para constancia:</b></p>
-                                                            <asp:CheckBox ID="chAcepto6" runat="server" Text="ACEPTO Y AUTORIZO" />
+                                                            <asp:CheckBox ID="chAcepto6" CssClass="chk-autorizacion" runat="server" Text="ACEPTO Y AUTORIZO" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -432,9 +432,14 @@
 
                         <div class="row margin_30">
                             <div class="col-md-12">
-                                <asp:Button ID="btnVerificar" runat="server" CssClass="btn_slider"
-                                    Text="VERIFICAR" OnClick="btnVerificar_Click" UseSubmitBehavior="false"
-                                    OnClientClick="return validarYEjecutar();" />
+                                <asp:Button 
+                                    ID="btnVerificar" 
+                                    runat="server" 
+                                    CssClass="btn_slider"
+                                    Text="VERIFICAR" 
+                                    OnClick="btnVerificar_Click" 
+                                    OnClientClick="return validarYEjecutar();" 
+                                    UseSubmitBehavior="false" />
                             </div>
                         </div>
 
@@ -482,124 +487,120 @@
      <!-- SPECIFIC SCRIPTS -->
      <script src="js/ion.rangeSlider.min.js"></script>
      <script src="js/switchery.min.js"></script>
+
      <script>
-        //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-        var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
-        elems.forEach(function (html) {
-            var switchery = new Switchery(html, {
-                size: 'small',
-                color: '#E3FF00'
-            });
-        });
+
+         //var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+         var elems = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+         elems.forEach(function (html) {
+             var switchery = new Switchery(html, {
+                 size: 'small',
+                 color: '#E3FF00'
+             });
+         });
+
+         // VALIDACIÓN DE FORMULARIO
+         function validarCamposFormulario() {
+             const campos = [
+                 { id: "<%= txbNombres.ClientID %>", msg: "Por favor, ingresa tu nombre." },
+                 { id: "<%= txbApellidos.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
+                 { id: "<%= txbCorreo.ClientID %>", msg: "Por favor, ingresa tu correo electrónico.", tipo: "correo" },
+                 { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." },
+                 { id: "<%= txbDireccion.ClientID %>", msg: "Por favor, ingresa la dirección en la que resides." },
+                 { id: "<%= txbFechaNacimiento.ClientID %>", msg: "Por favor, ingresa tu fecha de nacimiento.", tipo: "fecha" },
+                 { id: "<%= txbResponsable.ClientID %>", msg: "Por favor, ingresa el nombre del contacto de emergencia.", },
+                 { id: "<%= txbContacto.ClientID %>", msg: "Por favor, ingresa el teléfono del contacto de emergencia." }
+             ];
+
+             for (let campo of campos) {
+                 const input = document.getElementById(campo.id);
+
+                 if (!input || !input.value.trim()) {
+                     mostrarAlerta("Campo requerido", campo.msg, "warning", input);
+                     return false;
+                 }
+
+                 if (campo.tipo === "correo" && !correoValido(input.value)) {
+                     mostrarAlerta("Correo inválido", "Ingresa un correo electrónico válido.", "warning", input);
+                     return false;
+                 }
+
+                 if (campo.tipo === "fecha" && !fechaValida(input.value)) {
+                     mostrarAlerta("Fecha inválida", "La fecha de nacimiento no es válida.", "warning", input);
+                     return false;
+                 }
+             }
+
+             return true;
+         }
 
 
-        function validarCamposFormulario() {
+         // VALIDACIÓN DE CHECKBOX
+         function validarAutorizaciones() {
+             const contenedores = document.querySelectorAll(".chk-autorizacion");
 
-            document.getElementById("btnVerificar").addEventListener("click", function (event) {
-                event.preventDefault()
-            });
+             return [...contenedores].every(c => {
+                 const checkbox = c.querySelector("input[type='checkbox']");
+                 return checkbox && checkbox.checked;
+             });
+         }
 
-            const nombre = document.getElementById("<%= txbNombres.ClientID %>");
-             const apellido = document.getElementById("<%= txbApellidos.ClientID %>");
-             const correo = document.getElementById("<%= txbCorreo.ClientID %>");
-             const celular = document.getElementById("<%= txbCelular.ClientID %>");
-             const direccion = document.getElementById("<%= txbDireccion.ClientID %>");
-             const fechanacimiento = document.getElementById("<%= txbFechaNacimiento.ClientID %>");
-             const responsable = document.getElementById("<%= txbResponsable.ClientID %>");
-             const contacto = document.getElementById("<%= txbContacto.ClientID %>");
 
-             const observaciones = document.getElementById("<%= txbObservacionesPARQ.ClientID %>");
-             <%--const mes = document.getElementById("<%= ddlMes.ClientID %>");
-             const anho = document.getElementById("<%= ddlAnho.ClientID %>");
-                const cvc = document.getElementById("<%= txbCVC.ClientID %>");
-             const nombre = document.getElementById("<%= txbNombreTarjeta.ClientID %>");--%>
+         //FUNCIÓN PRINCIPAL
+         function validarYEjecutar() {
 
-            if (!nombre.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa nombre(s).', 'warning', nombre);
-                return false;
-            }
+             if (!validarAutorizaciones()) {
+                 mostrarAlerta(
+                     "Confirmación requerida",
+                     "Debes aceptar todas las autorizaciones para continuar.",
+                     "warning"
+                 );
+                 return false;
+             }
 
-            if (!apellido.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa apellido(s).', 'warning', apellido);
-                return false;
-            }
+             if (!validarCamposFormulario()) {
+                 return false;
+             }
 
-            if (!correo.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el correo electrónico.', 'warning', correo);
-                return false;
-            }
+             __doPostBack("<%= btnVerificar.UniqueID %>", "");
+             return false;
+         }
 
-            if (!celular.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular.', 'warning', celular);
-                return false;
-            }
 
-            if (!direccion.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa la dirección.', 'warning', direccion);
-                return false;
-            }
+         // VALIDACIONES AUXILIARES
+         function correoValido(correo) {
+             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+         }
 
-            if (!fechanacimiento.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa la fecha de nacimiento.', 'warning', fechanacimiento);
-                return false;
-            }
+         function fechaValida(fechaStr) {
+             const fecha = new Date(fechaStr);
+             const hoy = new Date();
 
-            if (!responsable.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el nombre de contacto en caso de emergencia.', 'warning', responsable);
-                return false;
-            }
+             if (isNaN(fecha.getTime())) return false;
+             if (fecha >= hoy) return false;
 
-            if (!contacto.value.trim()) {
-                mostrarAlerta('Campo requerido', 'Por favor, ingresa el número de celular de contacto en caso de emergencia.', 'warning', contacto);
-                return false;
-            }
+             return true;
+         }
 
-            return true;
-        }
 
-        function validarYEjecutar() {
-            const cb1 = document.getElementById("chAcepto1");
-            const cb2 = document.getElementById("chAcepto2");
-            const cb3 = document.getElementById("chAcepto3");
-            const cb4 = document.getElementById("chAcepto4");
-            const cb5 = document.getElementById("chAcepto5");
-            const cb6 = document.getElementById("chAcepto6");
+         // ALERTA REUTILIZABLE
+         function mostrarAlerta(titulo, mensaje, tipo, enfoque) {
+             Swal.fire({
+                 title: titulo,
+                 text: mensaje,
+                 icon: tipo,
+                 background: "#3C3C3C",
+                 confirmButtonText: "Aceptar",
+                 customClass: {
+                     popup: "alert",
+                     confirmButton: "btn-confirm-alert"
+                 },
+                 didClose: () => {
+                     if (enfoque) enfoque.focus();
+                 }
+             });
+         }
 
-            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked && cb4.checked && cb5.checked && cb6.checked;
-            const formularioOK = validarCamposFormulario();
-
-            if (!autorizacionesOK) {
-                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
-                return false;
-            }
-
-            if (!formularioOK) {
-                return false;
-            }
-
-            setTimeout(function () {
-                __doPostBack('<%= btnVerificar.UniqueID %>', '');
-             }, 100);
-            return false;
-        }
-
-        function mostrarAlerta(titulo, mensaje, tipo, enfoque) {
-            Swal.fire({
-                title: titulo,
-                text: mensaje,
-                icon: tipo,
-                background: '#3C3C3C',
-                showCloseButton: false,
-                confirmButtonText: 'Aceptar',
-                customClass: {
-                    popup: 'alert',
-                    confirmButton: 'btn-confirm-alert'
-                },
-                didClose: () => {
-                    enfoque.focus();
-                }
-            });
-        }
      </script>
 
     <noscript>
