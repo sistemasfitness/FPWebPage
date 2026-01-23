@@ -522,6 +522,8 @@ namespace WebPage
                 {
                     const int mesCobrado = 1;
                     cg.ActualizarFechaProximoCobro(IdAfiliadoPlan, mesCobrado);
+
+                    cg.EliminarHistorialCobrosRechazados(IdAfiliadoPlan);
                 }
 
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
