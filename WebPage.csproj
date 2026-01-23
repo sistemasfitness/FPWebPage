@@ -228,6 +228,7 @@
     <Content Include="assets\validate.js" />
     <Content Include="blog.aspx" />
     <Content Include="blogpost.aspx" />
+    <Content Include="cambioMetodoPago.aspx" />
     <Content Include="carrito1.aspx" />
     <Content Include="carrito2.aspx" />
     <Content Include="carrito3.aspx" />
@@ -742,6 +743,13 @@
     </Compile>
     <Compile Include="blogpost.aspx.designer.cs">
       <DependentUpon>blogpost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cambioMetodoPago.aspx.cs">
+      <DependentUpon>cambioMetodoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambioMetodoPago.aspx.designer.cs">
+      <DependentUpon>cambioMetodoPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="carrito1.aspx.cs">
       <DependentUpon>carrito1.aspx</DependentUpon>

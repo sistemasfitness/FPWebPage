@@ -35,6 +35,12 @@ namespace WebPage
         static int idIntegracionWompi = 4; // WOMPI
         static int idIntegracionSiigo = 6; // SIIGO
 
+        protected int IdAfiliadoPlan
+        {
+            get { return ViewState["idAfiPlan"] != null ? (int)ViewState["idAfiPlan"] : 0; }
+            set { ViewState["idAfiPlan"] = value; }
+        }
+
         protected int IdAfiliado
         {
             get { return ViewState["idAfi"] != null ? (int)ViewState["idAfi"] : 0; }
@@ -264,13 +270,13 @@ namespace WebPage
                     Session["PagoCompletado"] = false;
 
                 // Si viene un código de la sesión, se pasa al ViewState
-                if (Session["CodEmbajador"] is string codigo && !string.IsNullOrEmpty(codigo))
-                {
-                    CodEmbajador = codigo;
+                //if (Session["CodEmbajador"] is string codigo && !string.IsNullOrEmpty(codigo))
+                //{
+                //    CodEmbajador = codigo;
 
-                    // Limpias la variable de sesión inmediatamente después de usarla
-                    Session.Remove("CodEmbajador");
-                }
+                //    // Limpias la variable de sesión inmediatamente después de usarla
+                //    Session.Remove("CodEmbajador");
+                //}
 
                 ValidarTokenURLEncryptor();
             }
@@ -314,6 +320,15 @@ namespace WebPage
                 FechaFinPlan = q["fechaFin"];
                 IdVendedor = Convert.ToInt32(q["idVendedor"]);
                 IdSede = Convert.ToInt32(q["idSede"]);
+
+                if (int.TryParse(q["idAfiPlan"], out int idAfiPlan))
+                {
+                    IdAfiliadoPlan = idAfiPlan;
+                }
+                else
+                {
+                    IdAfiliadoPlan = 0;
+                }
 
                 LtValorPlan = Session["ltValorPlan"].ToString();
                 ltValor.Text = LtValorPlan;
@@ -489,21 +504,29 @@ namespace WebPage
 
                 clasesglobales cg = new clasesglobales();
 
-                // 3. Inserción de AfiliadoPlan en la Base de Datos
-                int idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
-                    IdAfiliado,
-                    IdPlan,
-                    FechaInicioPlan,
-                    FechaFinPlan,
-                    MesesPlan,
-                    ValorPlan,
-                    strDescripcion,
-                    strEstado
-                );
+                // 3. Gestión de AfiliadoPlan
+                if (IdAfiliadoPlan == 0) // SI NO EXISTE, CREAR AFILIADO PLAN
+                {
+                    IdAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
+                        IdAfiliado,
+                        IdPlan,
+                        FechaInicioPlan,
+                        FechaFinPlan,
+                        MesesPlan,
+                        ValorPlan,
+                        strDescripcion,
+                        strEstado
+                    );
+                } 
+                else
+                {
+                    const int mesCobrado = 1;
+                    cg.ActualizarFechaProximoCobro(IdAfiliadoPlan, mesCobrado);
+                }
 
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
                 int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
-                    idAfiliadoPlan,
+                    IdAfiliadoPlan,
                     ValorPlan,
                     4,
                     IdReferencia,
@@ -606,15 +629,16 @@ namespace WebPage
                     }
                 }
 
-                // 6. Registrar pago para enbajador si la persona utiliza su código
-                if (!string.IsNullOrEmpty(CodEmbajador))
-                {
-                    cg.InsertarVentaEmbajador(
-                        IdAfiliado,
-                        idAfiliadoPlan,
-                        CodEmbajador
-                    );
-                }
+                // COMENTADO DEBIDO A QUE NO SE UTILIZARÁ MÁS
+                // 6. Registrar pago para embajador si la persona utiliza su código
+                //if (!string.IsNullOrEmpty(CodEmbajador))
+                //{
+                //    cg.InsertarVentaEmbajador(
+                //        IdAfiliado,
+                //        IdAfiliadoPlan,
+                //        CodEmbajador
+                //    );
+                //}
 
                 Session["ltValorPlan"] = LtValorPlan;
 
@@ -716,7 +740,7 @@ namespace WebPage
 
                 Root2 rObjetc = JsonConvert.DeserializeObject<Root2>(respuesta);
 
-                if (rObjetc.data.status != "AVAILABLE" || rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
+                if (rObjetc.data == null || string.IsNullOrEmpty(rObjetc.data.id.ToString()))
                 {
                     MostrarAlerta("Error en fuente de pago", "No se pudo crear la fuente de pago en Wompi.", "error");
                     return false;
