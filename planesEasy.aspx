@@ -140,8 +140,8 @@
                             <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                             <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
-                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Nutrición incluida.</span></li>
-                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Fisioterapia incluida.</span></li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
+                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
 			    </div>
@@ -176,8 +176,8 @@
                             <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                             <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
-                            <li><i class="fa fa-circle-check"></i>Nutrición incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Fisioterapia incluida.</li>
+                            <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
+                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
 			    </div>
@@ -209,8 +209,8 @@
                             <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
                             <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
                             <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
-                            <li><i class="fa fa-circle-check"></i><span style="color: #191919;">Nutrición incluida.</span></li>
-                            <li><i class="fa fa-circle-check"></i><span style="color: #191919;">Fisioterapia incluida.</span></li>
+                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
+                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
 			    </div>

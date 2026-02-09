@@ -15,18 +15,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebPage.Services;
+using static WebPage.Services.SiigoClient;
 
 namespace WebPage
 {
     public partial class wompiplan : System.Web.UI.Page
     {
-        // PRUEBAS
-        //static int idIntegracionWompi = 1; // WOMPI
-
-
-        // PRODUCCIÓN
-        static int idIntegracionWompi = 4; // WOMPI
-
         private string _strMonto;
         private string _strHash256;
         private string _strRedireccion;
@@ -106,6 +100,12 @@ namespace WebPage
             set { ViewState["idVendedor"] = value; }
         }
 
+        protected int IdCanalVenta
+        {
+            get { return ViewState["idCanalVenta"] != null ? (int)ViewState["idCanalVenta"] : 0; }
+            set { ViewState["idCanalVenta"] = value; }
+        }
+
         protected int IdSede
         {
             get { return ViewState["idSede"] != null ? (int)ViewState["idSede"] : 0; }
@@ -170,9 +170,33 @@ namespace WebPage
             return true;
         }
 
+        private void ConsultarIntegracion()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtVendedor = cg.ConsultarUsuarioEmpleadoPorId(IdVendedor);
+            IdCanalVenta = dtVendedor.Rows.Count > 0 ? Convert.ToInt32(dtVendedor.Rows[0]["idCanalVenta"]) : 0;
+            dtVendedor.Dispose();
+
+            DataTable dtIntegracion = cg.ConsultarIntegracionEmpresaPorIdCanalVenta(IdCanalVenta);
+
+            foreach (DataRow row in dtIntegracion.Rows)
+            {
+                string codigo = row["codigo"].ToString();
+
+                switch (codigo)
+                {
+                    case "WOMPI":
+                        IntegritySecret = row["integrity_secret"].ToString();
+                        KeyPub = row["keyPub"].ToString();
+                        break;
+                }
+            }
+        }
+
         private void PrepararPago()
         {
-            ConsultarIntegracionWompi();
+            ConsultarIntegracion();
 
             clasesglobales cg = new clasesglobales();
 
@@ -231,21 +255,9 @@ namespace WebPage
             _strRedireccion = $"https://fitnesspeoplecolombia.com/wompidata?code={strData}";
 
             // PRUEBAS
-            //_strRedireccion = $"https://localhost:44382/wompidata?code={strString}";
+            //_strRedireccion = $"https://localhost:44382/wompidata?code={strData}";
 
             //_strRedireccion = $"https://judicable-kale-lilied.ngrok-free.dev/wompidata?code={strData}";
-        }
-
-        private void ConsultarIntegracionWompi()
-        {
-            clasesglobales cg = new clasesglobales();
-
-            DataTable dtIntegracionWompi = cg.ConsultarIntegracionPorId(idIntegracionWompi);
-
-            IntegritySecret = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["integrity_secret"].ToString() : null;
-            KeyPub = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPub"].ToString() : null;
-
-            dtIntegracionWompi.Dispose();
         }
 
         static string ComputeSha256Hash(string rawData)

@@ -18,7 +18,7 @@
             <div class="col-md-4">
                 <div class="img_container plan-center">
                     <a href="planes?id=7">
-                        <img src="img/planes/plan-12-meses_2026-01-05.jpg" class="img-fluid plan-img" />
+                        <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <div class="img_container">
                     <a href="planes?id=5">
-                        <img src="img/planes/plan-6-meses_2026-01-05.jpg" class="img-fluid plan-img" />
+                        <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
