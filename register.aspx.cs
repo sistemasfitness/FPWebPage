@@ -30,13 +30,6 @@ namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
-        // PRUEBAS
-        //static int idIntegracionSiigo = 3; // SIIGO
-
-
-        // PRODUCCIÓN
-        static int idIntegracionSiigo = 6; // SIIGO
-
         protected int IdPlan
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
@@ -61,6 +54,32 @@ namespace WebPage
             set { ViewState["idVendedor"] = value; }
         }
 
+        // Siigo
+
+        protected string UrlSiigo
+        {
+            get { return ViewState["urlSiigo"]?.ToString(); }
+            set { ViewState["urlSiigo"] = value; }
+        }
+
+        protected string UserName
+        {
+            get { return ViewState["username"]?.ToString(); }
+            set { ViewState["username"] = value; }
+        }
+
+        protected string AccessKey
+        {
+            get { return ViewState["accessKey"]?.ToString(); }
+            set { ViewState["accessKey"] = value; }
+        }
+
+        protected string PartnerId
+        {
+            get { return ViewState["partnerId"]?.ToString(); }
+            set { ViewState["partnerId"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -70,6 +89,8 @@ namespace WebPage
                 if (ValidarParametrosURL())
                 {
                     ValidarPlan();
+
+                    GestionarIntegracionSiigo();
 
                     ConfigurarCamposFecha();
 
@@ -147,6 +168,30 @@ namespace WebPage
             IdVendedor = Convert.ToInt32(dtToken.Rows[0]["idVendedor"]);
 
             return true;
+        }
+
+        private void GestionarIntegracionSiigo()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtVendedor = cg.ConsultarUsuarioEmpleadoPorId(IdVendedor);
+            int idCanalVenta = dtVendedor.Rows.Count > 0 ? Convert.ToInt32(dtVendedor.Rows[0]["idCanalVenta"]) : 0;
+            dtVendedor.Dispose();
+
+            DataTable dtIntegracion = cg.ConsultarIntegracionEmpresaPorIdCanalVenta(idCanalVenta);
+            
+            foreach (DataRow row in dtIntegracion.Rows)
+            {
+                string codigo = row["codigo"].ToString();
+
+                if (codigo == "SIIGO")
+                {
+                    UrlSiigo = row["url"].ToString();
+                    UserName = row["username"].ToString();
+                    AccessKey = row["accessKey"].ToString();
+                    PartnerId = row["partnerId"].ToString();
+                }
+            }
         }
 
         //private void CargarInformacionPlan()
@@ -487,23 +532,16 @@ namespace WebPage
                 // 3. Gestionar afiliado en Siigo
                 try
                 {
-                    DataTable dtIntegracion = cg.ConsultarIntegracionPorId(idIntegracionSiigo);
-                    string url = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["url"].ToString() : null;
-                    string username = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["username"].ToString() : null;
-                    string accessKey = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["accessKey"].ToString() : null;
-                    string partnerId = dtIntegracion != null && dtIntegracion.Rows.Count > 0 ? dtIntegracion.Rows[0]["partnerId"].ToString() : null;
-                    dtIntegracion.Dispose();
-
                     DataTable dtAfi = cg.ConsultarCodigoSiigoPorDocumento(strCedula);
                     string idTipoDocSiigo = dtAfi.Rows[0]["CodSiigo"].ToString();
                     dtAfi.Dispose();
 
                     var siigoClient = new SiigoClient(
                         new HttpClient(),
-                        url,
-                        username,
-                        accessKey,
-                        partnerId
+                        UrlSiigo,
+                        UserName,
+                        AccessKey,
+                        PartnerId
                     );
 
                     await siigoClient.ManageCustomerAsync(idTipoDocSiigo, strCedula, strNombre, strApellido, direccion, codEstado, codCiudad, strCelular, strEmail);

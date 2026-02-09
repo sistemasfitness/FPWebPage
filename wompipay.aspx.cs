@@ -26,14 +26,11 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
-        // PRUEBAS
-        //static int idIntegracionWompi = 1; // WOMPI
-        //static int idIntegracionSiigo = 3; // SIIGO
-
-
-        // PRODUCCIÓN
-        static int idIntegracionWompi = 4; // WOMPI
-        static int idIntegracionSiigo = 6; // SIIGO
+        protected int IdAfiliadoPlan
+        {
+            get { return ViewState["idAfiPlan"] != null ? (int)ViewState["idAfiPlan"] : 0; }
+            set { ViewState["idAfiPlan"] = value; }
+        }
 
         protected int IdAfiliado
         {
@@ -119,6 +116,12 @@ namespace WebPage
         {
             get { return ViewState["idVendedor"] != null ? (int)ViewState["idVendedor"] : 0; }
             set { ViewState["idVendedor"] = value; }
+        }
+
+        protected int IdCanalVenta
+        {
+            get { return ViewState["idCanalVenta"] != null ? (int)ViewState["idCanalVenta"] : 0; }
+            set { ViewState["idCanalVenta"] = value; }
         }
 
         protected int IdSede
@@ -264,13 +267,13 @@ namespace WebPage
                     Session["PagoCompletado"] = false;
 
                 // Si viene un código de la sesión, se pasa al ViewState
-                if (Session["CodEmbajador"] is string codigo && !string.IsNullOrEmpty(codigo))
-                {
-                    CodEmbajador = codigo;
+                //if (Session["CodEmbajador"] is string codigo && !string.IsNullOrEmpty(codigo))
+                //{
+                //    CodEmbajador = codigo;
 
-                    // Limpias la variable de sesión inmediatamente después de usarla
-                    Session.Remove("CodEmbajador");
-                }
+                //    // Limpias la variable de sesión inmediatamente después de usarla
+                //    Session.Remove("CodEmbajador");
+                //}
 
                 ValidarTokenURLEncryptor();
             }
@@ -314,6 +317,15 @@ namespace WebPage
                 FechaFinPlan = q["fechaFin"];
                 IdVendedor = Convert.ToInt32(q["idVendedor"]);
                 IdSede = Convert.ToInt32(q["idSede"]);
+
+                if (int.TryParse(q["idAfiPlan"], out int idAfiPlan))
+                {
+                    IdAfiliadoPlan = idAfiPlan;
+                }
+                else
+                {
+                    IdAfiliadoPlan = 0;
+                }
 
                 LtValorPlan = Session["ltValorPlan"].ToString();
                 ltValor.Text = LtValorPlan;
@@ -394,6 +406,44 @@ namespace WebPage
         //    }
         //}
 
+        private void GestionarIntegracion()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtVendedor = cg.ConsultarUsuarioEmpleadoPorId(IdVendedor);
+            IdCanalVenta = dtVendedor.Rows.Count > 0 ? Convert.ToInt32(dtVendedor.Rows[0]["idCanalVenta"]) : 0;
+            dtVendedor.Dispose();
+
+            DataTable dtIntegracion = cg.ConsultarIntegracionEmpresaPorIdCanalVenta(IdCanalVenta);
+
+            foreach (DataRow row in dtIntegracion.Rows)
+            {
+                string codigo = row["codigo"].ToString();
+
+                switch (codigo)
+                {
+                    case "WOMPI":
+                        UrlWompi = row["url"].ToString();
+                        IntegritySecret = row["integrity_secret"].ToString();
+                        KeyPub = row["keyPub"].ToString();
+                        KeyPriv = row["keyPriv"].ToString();
+                        break;
+
+                    case "SIIGO":
+                        UrlSiigo = row["url"].ToString();
+                        UserName = row["username"].ToString();
+                        AccessKey = row["accessKey"].ToString();
+                        PartnerId = row["partnerId"].ToString();
+
+                        IdDocumentType = Convert.ToInt32(row["idDocumentTypeSiigo"].ToString());
+                        IdSellerUser = Convert.ToInt32(row["idSellerUser"].ToString());
+                        IdPayment = Convert.ToInt32(row["idPayment"].ToString());
+                        IdCostCenter = Convert.ToInt32(row["idCostCenterSiigo"].ToString());
+                        break;
+                }
+            }
+        }
+
         private void ConsultarInformacion()
         {
             try
@@ -413,27 +463,7 @@ namespace WebPage
                 CodSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["codSiigoPlan"].ToString() : null;
                 dtPlan.Dispose();
 
-                DataTable dtIntegracionWompi = cg.ConsultarIntegracionPorId(idIntegracionWompi);
-                UrlWompi = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["url"].ToString() : null;
-                IntegritySecret = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["integrity_secret"].ToString() : null;
-                KeyPub = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPub"].ToString() : null;
-                KeyPriv = dtIntegracionWompi != null && dtIntegracionWompi.Rows.Count > 0 ? dtIntegracionWompi.Rows[0]["keyPriv"].ToString() : null;
-                dtIntegracionWompi.Dispose();
-
-                DataTable dtIntegracionSiigo = cg.ConsultarIntegracionPorId(idIntegracionSiigo);
-                UrlSiigo = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["url"].ToString() : null;
-                UserName = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["username"].ToString() : null;
-                AccessKey = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["accessKey"].ToString() : null;
-                PartnerId = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? dtIntegracionSiigo.Rows[0]["partnerId"].ToString() : null;
-
-                IdDocumentType = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idDocumentType"].ToString()) : 0;
-                IdSellerUser = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idSellerUser"].ToString()) : 0;
-                IdPayment = dtIntegracionSiigo != null && dtIntegracionSiigo.Rows.Count > 0 ? Convert.ToInt32(dtIntegracionSiigo.Rows[0]["idPayment"].ToString()) : 0;
-                dtIntegracionSiigo.Dispose();
-
-                DataTable dtSede = cg.ConsultarSedePorId(IdSede);
-                IdCostCenter = dtSede != null && dtSede.Rows.Count > 0 ? Convert.ToInt32(dtSede.Rows[0]["idCostCenterSiigo"].ToString()) : 0;
-                dtSede.Dispose();
+                GestionarIntegracion();
             }
             catch (Exception ex)
             {
@@ -478,7 +508,7 @@ namespace WebPage
                     return;
                 }
 
-                string strDescripcion = $"Débito automático, Plan: {NombrePlan}, Precio: ${ValorPlan}";
+                string strDescripcion = $"Débito automático";
                 string strEstado = "Pendiente";
 
                 if (IdPlan == 12 || IdPlan == 17)
@@ -489,21 +519,31 @@ namespace WebPage
 
                 clasesglobales cg = new clasesglobales();
 
-                // 3. Inserción de AfiliadoPlan en la Base de Datos
-                int idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
-                    IdAfiliado,
-                    IdPlan,
-                    FechaInicioPlan,
-                    FechaFinPlan,
-                    MesesPlan,
-                    ValorPlan,
-                    strDescripcion,
-                    strEstado
-                );
+                // 3. Gestión de AfiliadoPlan
+                if (IdAfiliadoPlan == 0) // SI NO EXISTE, CREAR AFILIADO PLAN
+                {
+                    IdAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
+                        IdAfiliado,
+                        IdPlan,
+                        FechaInicioPlan,
+                        FechaFinPlan,
+                        MesesPlan,
+                        ValorPlan,
+                        strDescripcion,
+                        strEstado
+                    );
+                } 
+                else
+                {
+                    const int mesCobrado = 1;
+                    cg.ActualizarFechaProximoCobro(IdAfiliadoPlan, mesCobrado);
+
+                    cg.EliminarHistorialCobrosRechazados(IdAfiliadoPlan);
+                }
 
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
                 int idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
-                    idAfiliadoPlan,
+                    IdAfiliadoPlan,
                     ValorPlan,
                     4,
                     IdReferencia,
@@ -511,6 +551,7 @@ namespace WebPage
                     IdVendedor, // TODO: Cambiar cuando se realice lógica [Validar que si la persona que intenta comprar un plan por la página, PERO tiene un registro en el CRM del mismo plan que está comprando por web, no queda la compra por web, sino, tiene en cuenta el CRM realizado anteriormente]
                     "Aprobado",
                     null,
+                    IdCanalVenta,
                     DataIdToken, 
                     DataIdFuentePago, 
                     DataIdTransaccion, 
@@ -563,9 +604,11 @@ namespace WebPage
                         // COMENTADO HASTA NUEVO AVISO
 
 
-                        // PRODUCCIÓN
-                        // TODO: NO ELIMINAR ESTO, SE USA EN LA CREACIÓN DE LA FACTURA
-                        // ESTÁ COMENTADO PARA PRUEBAS LOCALES
+                        // PRUEBAS
+                        //CodSiigoPlan = "COD2433";
+                        //NombrePlan = "Pago de suscripción";
+                        //ValorPlan = 1;
+
                         string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
                             DocumentoAfiliado,
                             CodSiigoPlan,
@@ -578,25 +621,6 @@ namespace WebPage
                             IdPayment
                         );
 
-
-                        // PRUEBAS
-                        //if (idIntegracionSiigo == 3) IdCostCenter = 621;
-
-                        //string codSiigoPlan = "COD2433";
-                        //string nombrePlan = "Pago de suscripción";
-                        //int precioPlan = 10000;
-                        //string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                        //    DocumentoAfiliado,
-                        //    codSiigoPlan,
-                        //    nombrePlan,
-                        //    precioPlan,
-                        //    IdSellerUser,
-                        //    IdDocumentType,
-                        //    fechaActual,
-                        //    IdCostCenter,
-                        //    IdPayment
-                        //);
-
                         // Actualizar pago con id de factura
                         cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
                     }
@@ -605,7 +629,8 @@ namespace WebPage
                         System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
                     }
                 }
-
+                
+				// COMENTADO DEBIDO A QUE NO SE UTILIZARÁ MÁS
                 // 6. Registrar pago para enbajador si la persona utiliza su código
                 //if (!string.IsNullOrEmpty(CodEmbajador))
                 //{

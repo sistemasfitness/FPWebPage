@@ -86,7 +86,7 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">REGISTRO</h1>
+            <h1 style="font-weight: 900;">¡Compra tu plan ahora!</h1>
             <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
