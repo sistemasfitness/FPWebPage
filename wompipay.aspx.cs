@@ -532,13 +532,6 @@ namespace WebPage
                         strDescripcion,
                         strEstado
                     );
-                } 
-                else
-                {
-                    const int mesCobrado = 1;
-                    cg.ActualizarFechaProximoCobro(IdAfiliadoPlan, mesCobrado);
-
-                    cg.EliminarHistorialCobrosRechazados(IdAfiliadoPlan);
                 }
 
                 // 4. Inserción de PagoPlanAfiliado en la Base de Datos
@@ -559,6 +552,8 @@ namespace WebPage
                     null,
                     null
                 );
+
+                GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
 
                 if (IdPlan != 12)
                 {
@@ -658,6 +653,32 @@ namespace WebPage
             {
                 MostrarAlerta("Error inesperado", "Hubo un problema interno al procesar tu pago.<br>Por favor, toma una captura de pantalla y comunícate con nosotros al número de WhatsApp para ayudarte.", "error", true);
                 System.Diagnostics.Debug.WriteLine("Error en btnPagar_Click: " + ex.ToString());
+            }
+        }
+
+        private void GestionarAfiliadoPlan(int idAfiliadoPlan, int idAfiliado)
+        {
+            const int mesCobrado = 1;
+
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtAfiPlan = cg.ConsultarAfiliadoPlanPorId(idAfiliadoPlan);
+
+            if (dtAfiPlan.Rows.Count == 0) return;
+
+            int mesesPlan = dtAfiPlan.Rows.Count > 0 ? Convert.ToInt32(dtAfiPlan.Rows[0]["Meses"]) : 0;
+
+            int totalMesesPagados = cg.ConsultarCantidadMesesPagadosPorIdAfiliadoPlan(idAfiliadoPlan);
+
+            if (totalMesesPagados >= mesesPlan)
+            {
+                cg.ActualizarEstadoAfiliadoPlan("Finalizado", idAfiliado, idAfiliadoPlan);
+            }
+            else
+            {
+                cg.ActualizarFechaProximoCobro(idAfiliadoPlan, mesCobrado);
+
+                cg.EliminarHistorialCobrosRechazados(idAfiliadoPlan);
             }
         }
 
