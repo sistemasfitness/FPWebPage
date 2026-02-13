@@ -6,6 +6,7 @@
         <p class="lead styled" style="font-weight: 500; color: #FFF;">
             En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
         </p>
+        <%--  + ANTES +  --%>
         <div class="row text-center plans">
             <div class="col-md-4">
                 <div class="img_container">
@@ -31,6 +32,48 @@
                 </div>
             </div>
         </div>
+
+        <%--  + AHORA +  --%>
+        <%--<div class="row text-center plans">
+            <div class="col-md-4">
+                <div class="img_container">
+                    <a href="planes?id=4">
+                        <img src="img/planes/plan-3-meses_2026-02-13.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container plan-center">
+                    <a href="planes?id=7">
+                        <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container">
+                    <a href="planes?id=5">
+                        <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center plans">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+                <div class="img_container plan-center">
+                    <a href="~/planesEasy.aspx" runat="server">
+                        <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>--%>
+
         <%--<div class="row text-center plans">
             <div class="col-md-0" style="display: none;">
                 <div class="img_container">

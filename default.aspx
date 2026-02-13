@@ -5,6 +5,7 @@
 <%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
 <%@ Register Src="~/controls/aliados.ascx" TagPrefix="uc1" TagName="aliados" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
+<%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -551,6 +552,8 @@
         </div>
         <!-- End newsletter_container -->
     </form>
+
+    <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
 
