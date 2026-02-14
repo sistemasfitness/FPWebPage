@@ -3,6 +3,7 @@
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
+<%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -193,6 +194,8 @@
         </div>
     </div>
     <!-- End newsletter_container -->
+
+    <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
 

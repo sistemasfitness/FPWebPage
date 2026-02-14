@@ -262,6 +262,7 @@
     <Content Include="controls\mainmenu.ascx" />
     <Content Include="controls\mainmenulanding.ascx" />
     <Content Include="controls\mainmenunew.ascx" />
+    <Content Include="controls\mapasedeadministrativa.ascx" />
     <Content Include="controls\planes.ascx" />
     <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
@@ -849,6 +850,13 @@
     </Compile>
     <Compile Include="controls\mainmenunew.ascx.designer.cs">
       <DependentUpon>mainmenunew.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\mapasedeadministrativa.ascx.cs">
+      <DependentUpon>mapasedeadministrativa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\mapasedeadministrativa.ascx.designer.cs">
+      <DependentUpon>mapasedeadministrativa.ascx</DependentUpon>
     </Compile>
     <Compile Include="controls\planes.ascx.cs">
       <DependentUpon>planes.ascx</DependentUpon>

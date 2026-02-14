@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="contacto.aspx.cs" Inherits="WebPage.contacto" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
+<%@ Register Src="~/controls/infocontacto.ascx" TagPrefix="uc1" TagName="infocontacto" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -97,7 +99,7 @@
                 <p style="color: #fff;">Solicita información a través del siguiente formulario:</p>
                 <div>
                     <div id="message-contact"></div>
-                    <form method="post" id="contacto" style="color: #FFF;">
+                    <form method="post" id="contacto" class="form-web" style="color: #FFF;">
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
@@ -136,70 +138,25 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <%--<div class="form-group">
                                     <label>Pregunta de validación: 3 + 1 =</label>
                                     <input type="text" id="verify_contact" class=" form-control styled" style="color: #FFF;" placeholder=" 3 + 1 ="/>
-                                </div>
-                                <p>
-                                    <input type="submit" value="ENVIAR" class="btn_slider" id="submit-contact"/></p>
+                                </div>--%>
+                                <p><input type="submit" value="ENVIAR" class="btn_slider" id="submit-contact"/></p>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <!-- End col lg 9 -->
-            <aside class="col-md-4">
-                <div class="box_style_2">
-                    <h5 style="font-weight: 900;">Información de Contacto</h5>
-                    <p>Carrera 35A #51 - 59, Cabecera del llano<br/>
-                        (+57) 318 707 7584<br/>
-                        <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
-                    </p>
-                    <h5 style="font-weight: 900;">Cómo llegar?</h5>
-                    <form action="http://maps.google.com/maps" method="get" target="_blank">
-                        <div class="form-group">
-                            <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled"/>
-                            <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander"/>
-                            <!-- Write here your end point -->
-                        </div>
-                        <input type="submit" value="OBTENER RUTA" class="btn_1 add_bottom_15"/>
-                    </form>
-                    <hr class="styled"/>
-                    <h5 style="font-weight: 900;">Departamentos</h5>
-                    <ul class="contacts_info">
-                        <li><strong>Contabilidad</strong><br/>
-                            <a href="https://wa.me/573187077584" style="color: #333333;" target="_blank">(+57) 318 707 7584</a>
-                            <br/>
-                            <a href="mailto:contabilidad@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">contabilidad@fitnesspeoplecmd.com</a>
-                            <br/>
-                            <small>Lunes a Viernes 9am - 6pm</small>
-                        </li>
-                        <li><strong>Área Comercial</strong><br/>
-                            <a href="https://wa.me/573138859790" style="color: #333333;" target="_blank">(+57) 313 885 9790</a>
-                            <br/>
-                            <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
-                            <br/>
-                            <small>Lunes a Sábado 8am - 7pm</small>
-                        </li>
-				        <li><strong>Ejecutivo Corporativo</strong><br/>
-                            <a href="https://wa.me/573006859461" style="color: #333333;" target="_blank">(+57) 300 685 9461</a>
-                            <br/>
-                            <a href="mailto:lidercorporativo@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">lidercorporativo@fitnesspeoplecmd.com</a>
-                            <br/>
-                            <small>Lunes a Sábado 8am - 7pm</small>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+                <uc1:infocontacto runat="server" id="infocontacto" />
             <!--End aside -->
         </div>
         <!-- End row -->
     </div>
     <!-- End container -->
 
-    <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.764486790383!2d-73.11025033039041!3d7.119283530320726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f7e428fb6e5%3A0x3a67714ea25f138b!2sFitness%20People%20centro%20administrativo!5e0!3m2!1sen!2sco!4v1733155568363!5m2!1sen!2sco" style="width:100%; height:450px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
 
