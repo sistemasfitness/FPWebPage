@@ -52,6 +52,12 @@ namespace WebPage
             set { ViewState["documentoAfi"] = value; }
         }
 
+        protected string DocumentoAfiliadoDuo
+        {
+            get { return ViewState["documentoAfiDuo"]?.ToString(); }
+            set { ViewState["documentoAfiDuo"] = value; }
+        }
+
         protected int IdPlan
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
@@ -167,6 +173,10 @@ namespace WebPage
             IdVendedor = Convert.ToInt32(q["idVendedor"]);
             IdSede = Convert.ToInt32(q["idSede"]);
 
+            DocumentoAfiliadoDuo = string.IsNullOrWhiteSpace(q["nroDocDuo"])
+                ? string.Empty
+                : q["nroDocDuo"].Trim();
+
             return true;
         }
 
@@ -230,9 +240,18 @@ namespace WebPage
 
             _strHash256 = ComputeSha256Hash(concatenado);
 
+
+            string documento = DocumentoAfiliado;
+
+            if (IdPlan == 32 && !string.IsNullOrWhiteSpace(DocumentoAfiliadoDuo))
+            {
+                documento = $"{DocumentoAfiliado}|{DocumentoAfiliadoDuo}";
+            }
+
+
             cg.InsertarPagoPlanAfiliadoPendienteWeb(
                 IdAfiliado,
-                DocumentoAfiliado,
+                documento,
                 IdPlan,
                 FechaInicioPlan,
                 FechaFinPlan,

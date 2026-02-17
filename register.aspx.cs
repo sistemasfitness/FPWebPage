@@ -1,35 +1,42 @@
-﻿using Newtonsoft.Json;
+﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
+using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Data.Common;
-using System.Data.Odbc;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using System.Data.Odbc;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Web.Script.Serialization;
-using System.Threading.Tasks;
-using MySqlX.XDevAPI;
-using NPOI.SS.Formula.Functions;
-using System.Globalization;
-using MySql.Data.MySqlClient;
-using System.Web.Configuration;
+using System.Security.Cryptography;
 using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.Script.Serialization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WebPage.Services;
-using System.Linq;
-using System.Collections.Specialized;
+using static WebPage.Services.SiigoClient;
 
 namespace WebPage
 {
     public partial class register : System.Web.UI.Page
     {
+        protected bool EsPlanDuo
+        {
+            get { return ViewState["esPlanDuo"] != null && (bool)ViewState["esPlanDuo"]; }
+            set { ViewState["esPlanDuo"] = value; }
+        }
+
         protected int IdPlan
         {
             get { return ViewState["idPlan"] != null ? (int)ViewState["idPlan"] : 0; }
@@ -284,6 +291,14 @@ namespace WebPage
 
             if (IdPlan != 12)
                 txbFechaIni.Attributes["max"] = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
+
+            if (IdPlan == 32)
+            {
+                txbFechaNac2.Attributes.Add("type", "date");
+
+                txbFechaNac2.Attributes.Add("min", dt100.ToString("yyyy-MM-dd"));
+                txbFechaNac2.Attributes.Add("max", dt14.ToString("yyyy-MM-dd"));
+            }
         }
 
         private void ValidarPlan()
@@ -295,6 +310,9 @@ namespace WebPage
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
 
                 if (dtPlan == null || dtPlan.Rows.Count == 0) Response.Redirect("default", true);
+
+                EsPlanDuo = IdPlan == 32;
+                ValidarVisibilidadFormulario(EsPlanDuo);
 
                 bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
 
@@ -336,6 +354,18 @@ namespace WebPage
             }
         }
 
+        private void ValidarVisibilidadFormulario(bool esPlanDuo)
+        {
+            if (esPlanDuo)
+            {
+                divPlanDuo.Visible = true;
+            }
+            else
+            {
+                divPlanDuo.Visible = false;
+            }
+        }
+
         private void CargarTipoDocumento()
         {
             clasesglobales cg = new clasesglobales();
@@ -343,6 +373,12 @@ namespace WebPage
 
             ddlTipoDocumento.DataSource = dt;
             ddlTipoDocumento.DataBind();
+
+            if (EsPlanDuo)
+            {
+                ddlTipoDocumento2.DataSource = dt;
+                ddlTipoDocumento2.DataBind();
+            }
 
             dt.Dispose();
         }
@@ -354,6 +390,12 @@ namespace WebPage
 
             ddlGenero.DataSource = dt;
             ddlGenero.DataBind();
+
+            if (EsPlanDuo)
+            {
+                ddlGenero2.DataSource = dt;
+                ddlGenero2.DataBind();
+            }
 
             dt.Dispose();
         }
@@ -440,15 +482,6 @@ namespace WebPage
                 string strCedula = txbDocumento.Text.ToString();
                 int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedItem.Value.ToString());
 
-                int idAfiliado = 0;
-
-                DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(strCedula);
-                if (dtAfiliado.Rows.Count > 0)
-                {
-                    idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
-                }
-                dtAfiliado.Dispose();
-
                 string strNombre = txbNombre.Text.ToUpper();
                 string strApellido = txbApellido.Text.ToUpper();
                 string strCelular = txbCelular.Text.ToString();
@@ -474,81 +507,30 @@ namespace WebPage
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
-                // 2. Gestionar a afiliado
-                if (idAfiliado != 0)
+                int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, idGenero, strFechaNac, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
+
+                string strCedula2 = "";
+
+                if (EsPlanDuo)
                 {
-                    // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
-                    DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(strCedula);
+                    strCedula2 = txbDocumento2.Text.Trim();
 
-                    if (dtFechaFinPlan.Rows.Count > 0)
+                    // VALIDACIÓN: No permitir misma cédula en plan dúo
+                    if (strCedula == strCedula2)
                     {
-                        // Obtener fecha de fin anterior
-                        DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
-                        DateTime fechaInicioNuevo = Convert.ToDateTime(strFechaInicioPlan);
-
-                        if (fechaInicioNuevo <= fechaFinAnterior)
-                        {
-                            MostrarAlerta(
-                                "Tienes un plan activo",
-                                "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
-                                "warning"
-                            );
-
-                            return;
-                        }
+                        MostrarAlerta("Documento duplicado", "En un plan dúo los dos afiliados deben tener documentos diferentes.", "warning");
+                        return;
                     }
 
-                    dtFechaFinPlan.Dispose();
+                    int tipoDoc2 = Convert.ToInt32(ddlTipoDocumento2.SelectedItem.Value.ToString());
+                    string nombre2 = txbNombre2.Text.ToUpper();
+                    string apellido2 = txbApellido2.Text.ToUpper();
+                    string celular2 = txbCelular2.Text.Trim();
+                    string email2 = txbEmail2.Text.ToLower();
+                    int genero2 = Convert.ToInt32(ddlGenero2.SelectedItem.Value.ToString());
+                    string fechaNac2 = txbFechaNac2.Text.Trim();
 
-                    cg.ActualizarAfiliadoRegister(
-                        strCedula,
-                        strNombre,
-                        strApellido,
-                        strCelular,
-                        strEmail,
-                        idGenero,
-                        strFechaNac,
-                        idSede,
-                        "Pendiente"
-                    );
-                }
-                else
-                {
-                    cg.InsertarAfiliadoWeb(
-                        strCedula,
-                        idTipoDocumento,
-                        strNombre,
-                        strApellido,
-                        strCelular,
-                        strEmail,
-                        idGenero,
-                        strFechaNac,
-                        idSede
-                    );
-
-                    //EnviarCorreoBienvenida();
-                }
-
-                // 3. Gestionar afiliado en Siigo
-                try
-                {
-                    DataTable dtAfi = cg.ConsultarCodigoSiigoPorDocumento(strCedula);
-                    string idTipoDocSiigo = dtAfi.Rows[0]["CodSiigo"].ToString();
-                    dtAfi.Dispose();
-
-                    var siigoClient = new SiigoClient(
-                        new HttpClient(),
-                        UrlSiigo,
-                        UserName,
-                        AccessKey,
-                        PartnerId
-                    );
-
-                    await siigoClient.ManageCustomerAsync(idTipoDocSiigo, strCedula, strNombre, strApellido, direccion, codEstado, codCiudad, strCelular, strEmail);
-                }
-                catch (Exception siigoEx)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error en ManageCustomer Siigo: " + siigoEx.Message);
+                    int idAfiliadoDuo = await GestionarAfiliado(strCedula2, tipoDoc2, nombre2, apellido2, celular2, email2, genero2, fechaNac2, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
                 }
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
@@ -570,6 +552,8 @@ namespace WebPage
                 // Agregar solo si NO es débito automático
                 if (!esDebitoAutomatico) parametros.Add("totalMeses", TotalMeses.ToString());
 
+                if (EsPlanDuo) parametros.Add("nroDocDuo", strCedula2);
+
                 // Convertir NameValueCollection → querystring
                 string payload = string.Join("&", parametros.AllKeys.Select(key => $"{key}={HttpUtility.UrlEncode(parametros[key])}"));
 
@@ -585,34 +569,218 @@ namespace WebPage
             }
             catch (Exception ex)
             {
+                if (ex.Message == "PLAN_ACTIVO") return;
+
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
             }
         }
 
+        private async Task<int> GestionarAfiliado(string documento, int tipoDoc, string nombre, string apellido, string celular, string email, int genero, string fechaNac, string fechaIniPlan, int idSede, string direccion, string codEstado, string codCiudad)
+        {
+            clasesglobales cg = new clasesglobales();
+
+            int idAfiliado = 0;
+
+            DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(documento);
+
+            if (dtAfiliado.Rows.Count > 0)
+            {
+                idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
+
+                bool tienePlanActivo = ConsultarPlanActivoAfiliado(documento, fechaIniPlan);
+
+                if (tienePlanActivo) throw new Exception("PLAN_ACTIVO");
+
+                cg.ActualizarAfiliadoRegister(
+                    documento,
+                    nombre,
+                    apellido,
+                    celular,
+                    email,
+                    genero,
+                    fechaNac,
+                    idSede,
+                    "Pendiente"
+                );
+            }
+            else
+            {
+                cg.InsertarAfiliadoWeb(
+                    documento,
+                    tipoDoc,
+                    nombre,
+                    apellido,
+                    celular,
+                    email,
+                    genero,
+                    fechaNac,
+                    idSede
+                );
+
+                // Vuelves a consultar para obtener el id
+                DataTable dtNew = cg.ConsultarAfiliadoPorDocumento(documento);
+                idAfiliado = Convert.ToInt32(dtNew.Rows[0]["IdAfiliado"]);
+                dtNew.Dispose();
+            }
+
+            dtAfiliado.Dispose();
+
+            // ---- Gestionar en Siigo ----
+            try
+            {
+                DataTable dtAfi = cg.ConsultarCodigoSiigoPorDocumento(documento);
+                string idTipoDocSiigo = dtAfi.Rows[0]["CodSiigo"].ToString();
+                dtAfi.Dispose();
+
+                var siigoClient = new SiigoClient(
+                    new HttpClient(),
+                    UrlSiigo,
+                    UserName,
+                    AccessKey,
+                    PartnerId
+                );
+
+                await siigoClient.ManageCustomerAsync(
+                    idTipoDocSiigo,
+                    documento,
+                    nombre,
+                    apellido,
+                    direccion,
+                    codEstado,
+                    codCiudad,
+                    celular,
+                    email
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error Siigo: " + ex.Message);
+            }
+
+            return idAfiliado;
+        }
+
+        private bool ConsultarPlanActivoAfiliado(string cedula, string fechaInicioPlan)
+        {
+            // IMPORTANTE: NO ELIMINAR - SOLO SE COMENTA PARA REALIZAR PRUEBAS
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtFechaFinPlan = cg.ConsultarFechaFinPlanPorDocumento(cedula);
+
+            if (dtFechaFinPlan.Rows.Count > 0)
+            {
+                // Obtener fecha de fin anterior
+                DateTime fechaFinAnterior = Convert.ToDateTime(dtFechaFinPlan.Rows[0]["FechaFinalPlan"]);
+                DateTime fechaInicioNuevo = Convert.ToDateTime(fechaInicioPlan);
+
+                if (fechaInicioNuevo <= fechaFinAnterior)
+                {
+                    MostrarAlerta(
+                        "Tienes un plan activo",
+                        "Ya tienes un plan en curso que cubre las fechas seleccionadas. Nuestro sistema procesará el cobro automáticamente cuando corresponda, así que no es necesario realizar otro pago. Solo asegúrate de tener saldo disponible en tu tarjeta.",
+                        "warning"
+                    );
+
+                    return true;
+                }
+            }
+
+            dtFechaFinPlan.Dispose();
+
+            return false;
+        }
+
+        public class FormularioAfiliado
+        {
+            public TextBox txbDocumento { get; set; }
+            public DropDownList ddlTipoDocumento { get; set; }
+            public TextBox txbNombre { get; set; }
+            public TextBox txbApellido { get; set; }
+            public TextBox txbEmail { get; set; }
+            public TextBox txbCelular { get; set; }
+            public TextBox txbFechaNac { get; set; }
+            public DropDownList ddlGenero { get; set; }
+
+            // Solo aplica para afiliado principal
+            public DropDownList ddlCiudad { get; set; }
+            public DropDownList ddlSede { get; set; }
+
+            public bool EsSecundario { get; set; }
+        }
+
+        private FormularioAfiliado ObtenerFormulario1()
+        {
+            return new FormularioAfiliado
+            {
+                txbDocumento = txbDocumento,
+                ddlTipoDocumento = ddlTipoDocumento,
+                txbNombre = txbNombre,
+                txbApellido = txbApellido,
+                txbEmail = txbEmail,
+                txbCelular = txbCelular,
+                txbFechaNac = txbFechaNac,
+                ddlGenero = ddlGenero,
+                ddlCiudad = ddlCiudad,
+                ddlSede = ddlSede,
+                EsSecundario = false
+            };
+        }
+
+        private FormularioAfiliado ObtenerFormulario2()
+        {
+            return new FormularioAfiliado
+            {
+                txbDocumento = txbDocumento2,
+                ddlTipoDocumento = ddlTipoDocumento2,
+                txbNombre = txbNombre2,
+                txbApellido = txbApellido2,
+                txbEmail = txbEmail2,
+                txbCelular = txbCelular2,
+                txbFechaNac = txbFechaNac2,
+                ddlGenero = ddlGenero2,
+                EsSecundario = true
+            };
+        }
+
         protected async void GestionarDatosUsuario(object sender, EventArgs e)
         {
-            string documento = txbDocumento.Text.Trim();
+            TextBox txt = (TextBox)sender;
+            string documento = txt.Text.Trim();
+
+            bool EsPlanDuo = IdPlan == 32;
+
+            FormularioAfiliado form;
+
+            if (txt.ID == "txbDocumento2")
+            {
+                if (!EsPlanDuo) return; // seguridad extra
+
+                form = ObtenerFormulario2();
+            }
+            else
+            {
+                form = ObtenerFormulario1();
+            }
 
             if (string.IsNullOrEmpty(documento))
             {
-                LimpiarCampos();
+                LimpiarCampos(form);
                 return;
             }
 
-            // 1. Buscar en BD
-            bool afiliadoExistente = BuscarAfiliado(documento);
+            bool existe = BuscarAfiliado(documento, form);
 
-            if (!afiliadoExistente)
+            if (!existe)
             {
-                // 2. Si no, buscar en ADRES
-                await BuscarPersonaADRES(documento);
+                await BuscarPersonaADRES(documento, form);
 
-                // 3. Siempre cargar Ciudades y Sedes
-                CargarCiudadesYSedes();
+                // Solo el principal necesita ciudades y sedes
+                if (!form.EsSecundario)
+                    CargarCiudadesYSedes();
             }
         }
 
-        protected bool BuscarAfiliado(string documento)
+        protected bool BuscarAfiliado(string documento, FormularioAfiliado form)
         {
             if (string.IsNullOrEmpty(documento)) return false;
 
@@ -621,112 +789,131 @@ namespace WebPage
 
             if (dt.Rows.Count == 0)
             {
-                LimpiarCampos();
+                LimpiarCampos(form);
                 dt.Dispose();
                 return false;
             }
 
-            // Cargar datos personales
             DataRow afiliado = dt.Rows[0];
-            ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"].ToString();
-            txbNombre.Text = afiliado["NombreAfiliado"].ToString();
-            txbApellido.Text = afiliado["ApellidoAfiliado"].ToString();
-            txbEmail.Text = afiliado["EmailAfiliado"].ToString();
-            txbCelular.Text = afiliado["CelularAfiliado"].ToString();
-            txbFechaNac.Text = afiliado["FechaNacAfiliado"].ToString();
-            ddlGenero.SelectedValue = afiliado["idGenero"].ToString();
 
-            int idSede = Convert.ToInt32(afiliado["idSede"]);
-            DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(idSede);
+            form.txbDocumento.Text = documento;
+            form.ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"].ToString();
+            form.txbNombre.Text = afiliado["NombreAfiliado"].ToString();
+            form.txbApellido.Text = afiliado["ApellidoAfiliado"].ToString();
+            form.txbEmail.Text = afiliado["EmailAfiliado"].ToString();
+            form.txbCelular.Text = afiliado["CelularAfiliado"].ToString();
+            form.txbFechaNac.Text = afiliado["FechaNacAfiliado"].ToString();
+            form.ddlGenero.SelectedValue = afiliado["idGenero"].ToString();
 
-            if (dtCiudad != null && dtCiudad.Rows.Count > 0)
+            // Solo si es afiliado principal
+            if (!form.EsSecundario)
             {
-                string idCiudad = dtCiudad.Rows[0]["idCiudadSede"].ToString();
+                int idSede = Convert.ToInt32(afiliado["idSede"]);
+                DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(idSede);
 
-                // Seleccionar la ciudad correspondiente
-                if (ddlCiudad.Items.FindByValue(idCiudad) != null)
+                if (dtCiudad != null && dtCiudad.Rows.Count > 0)
                 {
-                    ddlCiudad.SelectedValue = idCiudad;
+                    string idCiudad = dtCiudad.Rows[0]["idCiudadSede"].ToString();
+
+                    if (form.ddlCiudad.Items.FindByValue(idCiudad) != null)
+                        form.ddlCiudad.SelectedValue = idCiudad;
+
+                    DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(idCiudad));
+
+                    form.ddlSede.Items.Clear();
+                    form.ddlSede.DataSource = dtSedes;
+                    form.ddlSede.DataTextField = "NombreSede";
+                    form.ddlSede.DataValueField = "IdSede";
+                    form.ddlSede.DataBind();
+                    form.ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+
+                    if (form.ddlSede.Items.FindByValue(idSede.ToString()) != null)
+                        form.ddlSede.SelectedValue = idSede.ToString();
+
+                    dtSedes.Dispose();
                 }
 
-                // Recargar las sedes de esa ciudad
-                DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(idCiudad));
-
-                ddlSede.Items.Clear(); // Importante para evitar duplicados
-                ddlSede.DataSource = dtSedes;
-                ddlSede.DataTextField = "NombreSede";
-                ddlSede.DataValueField = "IdSede";
-                ddlSede.DataBind();
-                ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-
-                // Seleccionar la sede correcta del afiliado
-                if (ddlSede.Items.FindByValue(idSede.ToString()) != null)
-                {
-                    ddlSede.SelectedValue = idSede.ToString();
-                }
-
-                dtSedes.Dispose();
+                dtCiudad?.Dispose();
             }
 
             dt.Dispose();
-            dtCiudad?.Dispose();
-
             return true;
         }
 
-        protected async Task BuscarPersonaADRES(string documento)
+        protected async Task BuscarPersonaADRES(string documento, FormularioAfiliado form)
         {
+            if (string.IsNullOrEmpty(documento))
+            {
+                LimpiarCampos(form);
+                return;
+            }
+
             string url = $"https://pqrdsuperargo.supersalud.gov.co/api/api/adres/0/{documento}";
 
             using (HttpClient client = new HttpClient())
             {
-                var response = await client.GetAsync(url);
-
-                if (!response.IsSuccessStatusCode)
+                try
                 {
-                    LimpiarCampos();
-                    return;
+                    var response = await client.GetAsync(url);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        LimpiarCampos(form);
+                        return;
+                    }
+
+                    string json = await response.Content.ReadAsStringAsync();
+
+                    json = json.Replace("\\u00a5", "Ñ")
+                               .Replace("\\u00a4", "ñ");
+
+                    dynamic personaADRES = JsonConvert.DeserializeObject<dynamic>(json);
+
+                    if (personaADRES == null ||
+                        personaADRES.nombre == null ||
+                        personaADRES.apellido == null)
+                    {
+                        LimpiarCampos(form);
+                        return;
+                    }
+
+                    // Campos comunes (principal y secundario)
+                    form.txbDocumento.Text = documento;
+
+                    form.txbNombre.Text =
+                        $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}"
+                        .Trim()
+                        .ToUpper();
+
+                    form.txbApellido.Text =
+                        $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}"
+                        .Trim()
+                        .ToUpper();
+
+                    form.txbFechaNac.Text = personaADRES.fecha_nacimiento;
+                    form.ddlGenero.SelectedValue = personaADRES.sexo;
                 }
-
-                string json = await response.Content.ReadAsStringAsync();
-
-                json = json.Replace("\\u00a5", "Ñ").Replace("\\u00a4", "ñ");
-
-                dynamic personaADRES = JsonConvert.DeserializeObject<dynamic>(json);
-
-                if (personaADRES == null || personaADRES.nombre == null || personaADRES.apellido == null)
+                catch (Exception)
                 {
-                    LimpiarCampos();
-                    return;
+                    LimpiarCampos(form);
                 }
-
-                txbNombre.Text = $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}".Trim().ToUpper();
-                txbApellido.Text = $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}".Trim().ToUpper();
-                txbFechaNac.Text = personaADRES.fecha_nacimiento;
-                ddlGenero.SelectedValue = personaADRES.sexo;
             }
         }
 
-        private void LimpiarCampos()
+        private void LimpiarCampos(FormularioAfiliado form)
         {
-            ddlTipoDocumento.ClearSelection();
-            txbNombre.Text = "";
-            txbApellido.Text = "";
-            txbEmail.Text = "";
-            txbCelular.Text = "";
-            ddlGenero.ClearSelection();
-            txbFechaNac.Text = "";
-            ddlCiudad.ClearSelection();
+            form.txbNombre.Text = "";
+            form.txbApellido.Text = "";
+            form.txbEmail.Text = "";
+            form.txbCelular.Text = "";
+            form.txbFechaNac.Text = "";
+            form.ddlGenero.SelectedIndex = 0;
 
-            // Cargar la lista completa de sedes
-            clasesglobales cg = new clasesglobales();
-            DataTable dtSedes = cg.ConsultarSedesWeb();
-            ddlSede.DataSource = dtSedes;
-            ddlSede.DataTextField = "NombreSede";
-            ddlSede.DataValueField = "IdSede";
-            ddlSede.DataBind();
-            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-            dtSedes.Dispose();
+            if (!form.EsSecundario)
+            {
+                form.ddlCiudad.SelectedIndex = 0;
+                form.ddlSede.Items.Clear();
+            }
         }
 
         public string CalcularFechaFinPlan(string strFechaInicio)

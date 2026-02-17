@@ -274,6 +274,7 @@ namespace WebPage
 
                         await RegistrarPagoAprobadoAsync(
                             Convert.ToInt32(row["idAfiliado"]),
+                            row["documentoAfiliado"].ToString(),
                             Convert.ToInt32(row["idPlan"]),
                             Convert.ToDateTime(row["fechaInicioPlan"]).ToString("yyyy-MM-dd"),
                             Convert.ToDateTime(row["fechaFinPlan"]).ToString("yyyy-MM-dd"),
@@ -301,29 +302,51 @@ namespace WebPage
             }
         }
 
-        private async Task RegistrarPagoAprobadoAsync(int idAfiliado, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valorPlan, string descripcion, string referencia, string idTransaccion, int idVendedor)
+        private async Task RegistrarPagoAprobadoAsync(int idAfiliadoPrincipal, string documento, int idPlan, string fechaIniPlan, string fechaFinPlan, int totalMeses, int valorPlan, string descripcion, string referencia, string idTransaccion, int idVendedor)
         {
             clasesglobales cg = new clasesglobales();
-            int idAfiliadoPlan = 0;
-            int idPago = 0;
 
             try
             {
-                // 1. Inserción de AfiliadoPlan en la Base de Datos
-                idAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
-                    idAfiliado,
+                string[] documentos = documento.Split('|');
+                bool esPlanDuo = idPlan == 32 && documentos.Length == 2;
+
+                int valorPrincipal = valorPlan;
+                int valorSecundario = 0;
+
+                int mesesPlanPrincipal = totalMeses;
+                string fechaFinPrincipal = fechaFinPlan;
+
+                if (esPlanDuo)
+                {
+                    valorPrincipal = valorPlan / 2;
+                    valorSecundario = valorPlan - valorPrincipal; // evita problema de redondeo
+
+                    int mesesPorPersona = totalMeses / 2;
+
+                    DateTime fechaInicio = Convert.ToDateTime(fechaIniPlan);
+                    DateTime nuevaFechaFin = fechaInicio.AddMonths(mesesPorPersona);
+
+                    mesesPlanPrincipal = mesesPorPersona;
+                    fechaFinPrincipal = nuevaFechaFin.ToString("yyyy-MM-dd");
+                }
+
+                // ===============================
+                // 1️. CREAR AFILIADO PLAN PRINCIPAL
+                // ===============================
+                int idAfiliadoPlanPrincipal = cg.InsertarAfiliadoPlanYDevolverId(
+                    idAfiliadoPrincipal,
                     idPlan,
                     fechaIniPlan,
-                    fechaFinPlan,
-                    totalMeses,
-                    valorPlan,
+                    fechaFinPrincipal,
+                    mesesPlanPrincipal,
+                    valorPrincipal,
                     descripcion,
                     "Activo"
                 );
 
-                // 2. Inserción de PagoPlanAfiliado en la Base de Datos
-                idPago = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
-                    idAfiliadoPlan,
+                int idPagoPrincipal = cg.InsertarPagoPlanAfiliadoWebYDevolverId(
+                    idAfiliadoPlanPrincipal,
                     valorPlan,
                     4,
                     referencia,
@@ -339,86 +362,83 @@ namespace WebPage
                     null,
                     null
                 );
+
+                // ===============================
+                // 2. SI ES PLAN DÚO → CREAR SEGUNDO AFILIADO
+                // ===============================
+                if (esPlanDuo)
+                {
+                    string documentoSecundario = documentos[1];
+
+                    DataTable dtAfiSec = cg.ConsultarAfiliadoPorDocumento(documentoSecundario);
+
+                    if (dtAfiSec.Rows.Count > 0)
+                    {
+                        int idAfiliadoSecundario = Convert.ToInt32(dtAfiSec.Rows[0]["IdAfiliado"]);
+                        dtAfiSec.Dispose();
+
+                        int idAfiliadoPlanSecundario = cg.InsertarAfiliadoPlanYDevolverId(
+                            idAfiliadoSecundario,
+                            idPlan,
+                            fechaIniPlan,
+                            fechaFinPrincipal,
+                            mesesPlanPrincipal,
+                            valorSecundario,
+                            descripcion,
+                            "Activo"
+                        );
+
+                        cg.ActualizarPagoGrupoAfiliadoPlan(idAfiliadoPlanSecundario, idPagoPrincipal);
+                    }
+                }
+
+                // ===============================
+                // 3️. FACTURACIÓN EN SIIGO (solo una vez)
+                // ===============================
+
+                try
+                {
+                    string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    var siigoClient = new SiigoClient(
+                        new HttpClient(),
+                        UrlSiigo,
+                        UserName,
+                        AccessKey,
+                        PartnerId
+                    );
+
+                    DataTable dtPlan = cg.ConsultarPlanPorId(idPlan);
+                    string nombrePlan = dtPlan.Rows[0]["nombrePlan"].ToString();
+                    string codSiigoPlan = dtPlan.Rows[0]["codSiigoPlan"].ToString();
+                    dtPlan.Dispose();
+
+                    // PRUEBA
+                    codSiigoPlan = "COD2433";
+                    nombrePlan = "Pago de suscripción";
+
+                    string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
+                        documentos[0], // siempre facturamos al principal
+                        codSiigoPlan,
+                        nombrePlan,
+                        valorPlan, // FACTURA POR EL TOTAL
+                        IdSellerUser,
+                        IdDocumentType,
+                        fechaActual,
+                        IdCostCenter,
+                        IdPayment
+                    );
+
+                    cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPagoPrincipal, idSiigoFactura);
+                }
+                catch (Exception siigoEx)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+                }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error registrando el AfiliadoPlan y PagoPlanPlanAfiliado: " + ex.ToString());
-            }
-
-            if (idAfiliadoPlan <= 0 || idPago <= 0) return;
-
-            // 3. Facturar en Siigo
-            try
-            {
-                string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
-
-                var siigoClient = new SiigoClient(
-                    new HttpClient(),
-                    UrlSiigo,
-                    UserName,
-                    AccessKey,
-                    PartnerId
-                );
-
-
-                // COMENTADO HASTA NUEVO AVISO
-
-                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
-                // Obtener datos del afiliado
-                string strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString();
-                string strApellido = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
-                string strTelefono = dtAfi.Rows[0]["CelularAfiliado"].ToString();
-                string strCorreo = dtAfi.Rows[0]["EmailAfiliado"].ToString();
-                dtAfi.Dispose();
-
-                DataTable dtCodSiigo = cg.ConsultarCodigoSiigoPorDocumento(DocumentoAfiliado);
-                string idTipoDocSiigo = dtCodSiigo.Rows[0]["CodSiigo"].ToString();
-                dtCodSiigo.Dispose();
-
-                DataTable dtSede = cg.ConsultarSedePorId(IdSede);
-                string strDireccion = dtSede.Rows[0]["DireccionSede"].ToString();
-                int idCiudad = Convert.ToInt32(dtSede.Rows[0]["idCiudadSede"].ToString());
-                dtSede.Dispose();
-
-                DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
-                string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
-                string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
-                dtCiudad.Dispose();
-
-                await siigoClient.ManageCustomerAsync(idTipoDocSiigo, DocumentoAfiliado, strNombre, strApellido, strDireccion, codEstado, codCiudad, strTelefono, strCorreo);
-
-                // COMENTADO HASTA NUEVO AVISO
-
-
-                DataTable dtPlan = cg.ConsultarPlanPorId(IdPlan);
-                string nombrePlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["nombrePlan"].ToString() : null;
-                string codSiigoPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? dtPlan.Rows[0]["codSiigoPlan"].ToString() : null;
-                dtPlan.Dispose();
-
-
-                // PRUEBAS
-                //codSiigoPlan = "COD2433";
-                //nombrePlan = "Pago de suscripción";
-                //valorPlan = 1;
-
-                string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
-                    DocumentoAfiliado,
-                    codSiigoPlan,
-                    nombrePlan,
-                    valorPlan,
-                    IdSellerUser,
-                    IdDocumentType,
-                    fechaActual,
-                    IdCostCenter,
-                    IdPayment
-                );
-
-                // 3.3. Actualizar el Id de la factura en Siigo en el pago
-                cg.ActualizarIdSiigoFacturaDePagoPlanAfiliado(idPago, idSiigoFactura);
-            }
-            catch (Exception siigoEx)
-            {
-                System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
+                System.Diagnostics.Debug.WriteLine("Error registrando Plan: " + ex.ToString());
             }
         }
 

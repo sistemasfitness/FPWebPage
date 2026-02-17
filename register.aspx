@@ -177,6 +177,81 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="divPlanDuo" runat="server">
+                                        <h3 style="font-weight: 900; color: #e3ff00;">Información de tu dúo</h3>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Nro. de Documento: *</label>
+                                                    <asp:TextBox ID="txbDocumento2" CssClass="form-control" runat="server" 
+                                                        placeholder="1234567890" TabIndex="1" required="" oninput="numberFormat(this)"
+                                                        MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Tipo de Documento: *</label>
+                                                    <asp:DropDownList ID="ddlTipoDocumento2" runat="server" required=""
+                                                        AppendDataBoundItems="true" DataTextField="TipoDocumento" 
+                                                        DataValueField="idTipoDoc" CssClass="form-control">
+                                                        <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Nombre(s): *</label>
+                                                    <asp:TextBox ID="txbNombre2" CssClass="form-control" runat="server" required=""
+                                                        placeholder="Pepito" TabIndex="4"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Apellido(s): *</label>
+                                                    <asp:TextBox ID="txbApellido2" CssClass="form-control" runat="server" required=""
+                                                        placeholder="Pérez" TabIndex="2"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Email: *</label>
+                                                    <asp:TextBox ID="txbEmail2" CssClass="form-control" runat="server" placeholder="ejemplo@correo.com" 
+                                                        required=""></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Celular: *</label>
+                                                    <asp:TextBox ID="txbCelular2" CssClass="form-control" runat="server" placeholder="3001234567" 
+                                                        MaxLength="10" oninput="numberFormat(this)" required=""></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Género: *</label>
+                                                    <asp:DropDownList ID="ddlGenero2" runat="server" AppendDataBoundItems="true" 
+                                                        DataTextField="Genero" DataValueField="idGenero" required="" 
+                                                        CssClass="form-control" TabIndex="6">
+                                                        <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Fecha de Nacimiento: *</label>
+                                                    <asp:TextBox ID="txbFechaNac2" CssClass="form-control" 
+                                                        runat="server" name="txbFechaNac" required=""></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -594,7 +669,7 @@
         function validarCamposFormulario() {
 
             const campos = [
-                { id: "<%= txbDocumento.ClientID %>", msg: "Por favor, ingresa tu número de documento." }, 
+                { id: "<%= txbDocumento.ClientID %>", msg: "Por favor, ingresa tu número de documento." },
                 { id: "<%= ddlTipoDocumento.ClientID %>", msg: "Por favor, selecciona el tipo de documento." },
                 { id: "<%= txbNombre.ClientID %>", msg: "Por favor, ingresa tu nombre." },
                 { id: "<%= txbApellido.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
@@ -606,26 +681,62 @@
                 { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }
             ];
 
+            // Validación del afiliado principal
             for (const campo of campos) {
                 const el = document.getElementById(campo.id);
                 const valor = el?.value.trim();
 
                 if (!valor) {
-                    return mostrarAlerta(
-                        'Campo requerido', 
-                        campo.msg, 
-                        'warning'
-                    ).then(() => el.focus());
+                    return mostrarAlerta('Campo requerido', campo.msg, 'warning')
+                        .then(() => el.focus());
                 }
 
                 if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
                     return mostrarAlerta(
-                        'Correo inválido', 
-                        'El formato del correo eletrónico no es válido.<br> <b>Ej: usuario@dominio.com</b>', 
-                        'warning', 
+                        'Correo inválido',
+                        'El formato del correo electrónico no es válido.<br><b>Ej: usuario@dominio.com</b>',
+                        'warning',
                         {},
                         true
                     ).then(() => el.focus());
+                }
+            }
+
+            // Validación adicional SOLO si es Plan Dúo
+            const divPlanDuo = document.getElementById("<%= divPlanDuo.ClientID %>");
+            const esPlanDuo = divPlanDuo && divPlanDuo.offsetParent !== null;
+
+            if (esPlanDuo) {
+
+                const camposDuo = [
+                    { id: "<%= txbDocumento2.ClientID %>", msg: "Ingresa el número de documento de tu dúo." },
+                    { id: "<%= ddlTipoDocumento2.ClientID %>", msg: "Selecciona el tipo de documento de tu dúo." },
+                    { id: "<%= txbNombre2.ClientID %>", msg: "Ingresa el nombre de tu dúo." },
+                    { id: "<%= txbApellido2.ClientID %>", msg: "Ingresa los apellidos de tu dúo." },
+                    { id: "<%= txbEmail2.ClientID %>", msg: "Ingresa el correo electrónico de tu dúo.", tipo: "email" },
+                    { id: "<%= txbCelular2.ClientID %>", msg: "Ingresa el número de celular de tu dúo." },
+                    { id: "<%= ddlGenero2.ClientID %>", msg: "Selecciona el género de tu dúo." },
+                    { id: "<%= txbFechaNac2.ClientID %>", msg: "Ingresa la fecha de nacimiento de tu dúo." }
+                ];
+
+                for (const campo of camposDuo) {
+                    const el = document.getElementById(campo.id);
+                    const valor = el?.value.trim();
+
+                    if (!valor) {
+                        return mostrarAlerta('Campo requerido', campo.msg, 'warning')
+                            .then(() => el.focus());
+                    }
+
+                    if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+                        return mostrarAlerta(
+                            'Correo inválido',
+                            'El formato del correo electrónico del dúo no es válido.<br><b>Ej: usuario@dominio.com</b>',
+                            'warning',
+                            {},
+                            true
+                        ).then(() => el.focus());
+                    }
                 }
             }
 

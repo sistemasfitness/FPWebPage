@@ -5763,6 +5763,37 @@ namespace WebPage
             return respuesta;
         }
 
+        public string ActualizarPagoGrupoAfiliadoPlan(int idAfiliadoPlan, int idPagoGrupo)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_PAGO_GRUPO_AFILIADO_PLAN", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@p_id_afiliado_plan", idAfiliadoPlan);
+                        cmd.Parameters.AddWithValue("@p_id_pago_grupo", idPagoGrupo);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public string InsertarPagoPlanAfiliadoPendienteWeb(int idAfiliado, string documentoAfiliado, int idPlan, string fechaInicioPlan, string fechaFinPlan, string estadoPago, int valorPlan, int mesesPlan, string descripcionPlan, string idReferencia, int idVendedor, int idSede)
         {
             string respuesta = string.Empty;
