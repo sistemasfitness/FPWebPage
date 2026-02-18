@@ -7,38 +7,11 @@
             En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
         </p>
         <%--  + ANTES +  --%>
-        <div class="row text-center plans">
-            <div class="col-md-4">
-                <div class="img_container">
-                    <a href="~/planesEasy.aspx" runat="server">
-                        <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="img_container plan-center">
-                    <a href="planes?id=7">
-                        <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="img_container">
-                    <a href="planes?id=5">
-                        <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <%--  + AHORA +  --%>
         <%--<div class="row text-center plans">
             <div class="col-md-4">
                 <div class="img_container">
-                    <a href="planes?id=4">
-                        <img src="img/planes/plan-3-meses_2026-02-13.jpg" class="img-fluid plan-img" />
+                    <a href="~/planesEasy.aspx" runat="server">
+                        <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
                     </a>
                 </div>
             </div>
@@ -58,6 +31,33 @@
                     </a>
                 </div>
             </div>
+        </div>--%>
+
+        <%--  + AHORA +  --%>
+        <div class="row text-center plans">
+            <div class="col-md-4">
+                <div class="img_container">
+                    <a href="planes?id=5">
+                        <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container plan-center">
+                    <a href="planes?id=32">
+                        <img src="img/planes/plan-12-meses-duo_2026-02-17.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img_container">
+                    <a href="planes?id=7">
+                        <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="row text-center plans">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="col-md-4"></div>
-        </div>--%>
+        </div>
 
         <%--<div class="row text-center plans">
             <div class="col-md-0" style="display: none;">
@@ -125,6 +125,10 @@
 
                         <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
                             <img src="img/tarifas/05_tarifa-plan-12-meses_2025-01-05.png" class="img-responsive" />
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-4 add_bottom_15" >
+                            <img src="img/tarifas/06_tarifa-plan-12-meses-duo_2026-02-17.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
