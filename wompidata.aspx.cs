@@ -414,8 +414,8 @@ namespace WebPage
                     dtPlan.Dispose();
 
                     // PRUEBA
-                    codSiigoPlan = "COD2433";
-                    nombrePlan = "Pago de suscripción";
+                    //codSiigoPlan = "COD2433";
+                    //nombrePlan = "Pago de suscripción";
 
                     string idSiigoFactura = await siigoClient.RegisterInvoiceAsync(
                         documentos[0], // siempre facturamos al principal
