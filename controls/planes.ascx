@@ -35,43 +35,43 @@
 
         <%--  + AHORA +  --%>
         <div class="row text-center plans">
-            <div class="col-md-4">
-                <div class="img_container">
-                    <a href="planes?id=5">
-                        <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
-                    </a>
+            <div class="col-md-9">
+                <div class="col-md-6">
+                    <div class="img_container">
+                        <a href="planes?id=5">
+                            <img src="img/planes/plan-6-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="img_container plan-center">
-                    <a href="planes?id=32">
-                        <img src="img/planes/plan-12-meses-duo_2026-02-17.jpg" class="img-fluid plan-img" />
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="img_container">
-                    <a href="planes?id=7">
-                        <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
-                    </a>
+                <div class="col-md-6">
+                    <div class="img_container">
+                        <a href="planes?id=32">
+                            <img src="img/planes/plan-12-meses-duo_2026-02-17.jpg" class="img-fluid plan-img" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row text-center plans">
-            <div class="col-md-4"></div>
+            <div class="col-md-9">
+                <div class="col-md-6">
+                    <div class="img_container">
+                        <a href="planes?id=7">
+                            <img src="img/planes/plan-12-meses_2026-02-03.jpg" class="img-fluid plan-img" />
+                        </a>
+                    </div>
+                </div>
 
-            <div class="col-md-4">
-                <div class="img_container plan-center">
-                    <a href="~/planesEasy.aspx" runat="server">
-                        <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
-                    </a>
+                <div class="col-md-6">
+                    <div class="img_container">
+                        <a href="~/planesEasy.aspx" runat="server">
+                            <img src="img/planes/plan-easy_2026-01-05.jpg" class="img-fluid plan-img" />
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-4"></div>
         </div>
 
         <%--<div class="row text-center plans">

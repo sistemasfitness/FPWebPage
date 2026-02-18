@@ -2801,6 +2801,9 @@ label {
 .plans {
 	margin: 60px auto 0px 0;
 	zoom: 1;
+
+	display: flex;
+	justify-content: center;
 }
 
 	.plans:before,
