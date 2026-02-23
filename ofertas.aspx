@@ -99,6 +99,15 @@
 
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Titulo</h2>
 
+            <div class="plans-switch text-center">
+                <button class="switch-btn active" data-target="recurrentes">
+                    Pagos Recurrentes
+                </button>
+                <button class="switch-btn" data-target="unicos">
+                    Pagos Únicos
+                </button>
+            </div>
+
 		    <div class="row plans">
 			    <div class="plan plan-oferta col-md-4">
                     <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
@@ -257,20 +266,60 @@
                         </div>
                     </div>
 
-                    <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
+                    <div class="plan plan-oferta plan-tall plan-tall-oferta">
+                        <p class="ribbon-3">Más beneficios</p>
+
+                        <img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY FAST</h2>
+                            <h2 class="plan-title">EASY PRO</h2>
 
-                            <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
+                            <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 129.900/mes</p>
+                            <%--<p>DESPUÉS $89.000/mes</p>--%>
 
-                            <p>Permanencia mínima: 12 meses</p>
+                            <p>Sin permanencia</p>
 
                             <div class="text-center">
-                                <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
+                                <a href="register?token=EvdXpvlvF6zFWrKFwZfu" class="btn-confirm-alert">Comprar ya</a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+    
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
+                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plan plan-oferta">
+                        <img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">EASY FLEX</h2>
+
+                            <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
+
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 165.900</p>
+                            <%--<p>DESPUÉS $99.000</p>--%>
+
+                            <p>Sin permanencia</p>
+
+                            <div class="text-center">
+                                <a href="register?token=QTXXAbI22Wv9gJcNALSH" class="btn_full">Comprar ya</a>
                             </div>
 
                             <div class="plan-toggle">
@@ -282,11 +331,11 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
-                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan recurrente.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
@@ -329,56 +378,60 @@
                         </div>
                     </div>
 
-                    <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
+                    <div class="plan plan-oferta plan-tall plan-tall-oferta">
+                        <p class="ribbon-3">Más beneficios</p>
+
+                        <img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY FAST</h2>
+                            <h2 class="plan-title">EASY PRO</h2>
 
-                            <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
+                            <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 129.900/mes</p>
+                            <%--<p>DESPUÉS $89.000/mes</p>--%>
 
-                            <p>Permanencia mínima: 12 meses</p>
+                            <p>Sin permanencia</p>
 
                             <div class="text-center">
-                                <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
+                                <a href="register?token=EvdXpvlvF6zFWrKFwZfu" class="btn-confirm-alert">Comprar ya</a>
                             </div>
 
                             <div class="plan-toggle">
                                 <span>¿Qué incluye?</span>
                                 <i class="fa fa-chevron-down toggle-icon"></i>
                             </div>
-
+    
                             <ul class="plan-features">
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
+                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
+                        <img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY FAST</h2>
+                            <h2 class="plan-title">EASY FLEX</h2>
 
-                            <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
+                            <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 165.900</p>
+                            <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p>Permanencia mínima: 12 meses</p>
+                            <p>Sin permanencia</p>
 
                             <div class="text-center">
-                                <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
+                                <a href="register?token=QTXXAbI22Wv9gJcNALSH" class="btn_full">Comprar ya</a>
                             </div>
 
                             <div class="plan-toggle">
@@ -390,47 +443,11 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
-                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
-                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
-
-                        <div class="plan-info">
-                            <h2 class="plan-title">EASY FAST</h2>
-
-                            <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
-
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
-
-                            <p>Permanencia mínima: 12 meses</p>
-
-                            <div class="text-center">
-                                <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
-                            </div>
-
-                            <div class="plan-toggle">
-                                <span>¿Qué incluye?</span>
-                                <i class="fa fa-chevron-down toggle-icon"></i>
-                            </div>
-
-                            <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
-                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
-                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan recurrente.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
@@ -1222,38 +1239,31 @@
 
     <style>
 
-        body.modal-open {
-            padding-right: 0 !important;
-            overflow-y: auto !important;
+        .plans-switch {
+            display: flex;
+            justify-content: center;
         }
 
-        .modal-dialog {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        .modal-content.modal-popup {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
+        .switch-btn {
+            background: transparent;
+            border: 2px solid #d6ff00;
+            color: #d6ff00;
+            padding: 10px 25px;
+            margin: 0 10px;
+            font-weight: 600;
             border-radius: 30px;
-            overflow: hidden;
-            margin: 10px auto;
-            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .progress-fill {
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
-            background-size: 200% 100%;
-            transition: width 1s linear;
+        .switch-btn:hover {
+            background: #d6ff00;
+            color: #000;
+        }
+
+        .switch-btn.active {
+            background: #d6ff00;
+            color: #000;
         }
 
 
@@ -1288,6 +1298,10 @@
 
 
 
+        .plans-wrapper {
+            margin: 60px auto 0px 0;
+        }
+
         .plans-carousel {
             width: auto;
         }
@@ -1300,7 +1314,88 @@
 
     </style>
 
+
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const buttons = document.querySelectorAll(".switch-btn");
+            const recurrentes = document.querySelector(".plans");
+            const unicos = document.querySelector(".plans-wrapper");
+
+            unicos.style.display = "none";
+
+            const toggles = document.querySelectorAll(".plan-toggle");
+            const features = document.querySelectorAll(".plan-features");
+
+            let isOpen = false;
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function () {
+
+                    // Quitar activo a todos
+                    buttons.forEach(b => b.classList.remove("active"));
+
+                    // Activar el actual
+                    this.classList.add("active");
+
+                    const target = this.getAttribute("data-target");
+
+                    if (target === "recurrentes") {
+                        recurrentes.style.display = "flex";
+                        unicos.style.display = "none";
+                    } else {
+                        recurrentes.style.display = "none";
+                        unicos.style.display = "block";
+
+                        // Refrescar carrusel por si estaba oculto
+                        $('.plans-carousel').trigger('refresh.owl.carousel');
+                    }
+
+                    // Cerrar todos
+                    features.forEach(f => {
+                        f.classList.remove("open");
+                        f.style.maxHeight = null;
+                    });
+
+                    toggles.forEach(t => t.classList.remove("active"));
+
+                    isOpen = false;
+                });
+            });
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+
+                    if (!isOpen) {
+                        // Abrir todos
+                        features.forEach(f => {
+                            f.classList.add("open");
+                            f.style.maxHeight = f.scrollHeight + "px";
+                        });
+
+                        toggles.forEach(t => t.classList.add("active"));
+
+                        isOpen = true;
+                    } else {
+                        // Cerrar todos
+                        features.forEach(f => {
+                            f.classList.remove("open");
+                            f.style.maxHeight = null;
+                        });
+
+                        toggles.forEach(t => t.classList.remove("active"));
+
+                        isOpen = false;
+                    }
+
+                });
+            });
+
+        });
+    </script>
+
+
+    <%--<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1339,7 +1434,7 @@
 
         });
 
-    </script>
+    </script>--%>
 
     <script>
         $(document).ready(function () {
@@ -1349,7 +1444,7 @@
                 loop: true,
                 nav: true,
                 center: true,
-                margin: 30,
+                margin: 16,
                 responsiveClass: false,
                 responsive: {
                     0: {
