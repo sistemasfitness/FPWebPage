@@ -297,6 +297,7 @@
     <Content Include="css\style.css" />
     <Content Include="default.aspx" />
     <Content Include="default_.aspx" />
+    <Content Include="descripcionPlan.aspx" />
     <Content Include="descubrirplan.aspx" />
     <Content Include="EncontrarFuentePago.aspx" />
     <Content Include="eliminarproductocarrito.aspx" />
@@ -893,6 +894,13 @@
     </Compile>
     <Compile Include="default_.aspx.designer.cs">
       <DependentUpon>default_.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="descripcionPlan.aspx.cs">
+      <DependentUpon>descripcionPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descripcionPlan.aspx.designer.cs">
+      <DependentUpon>descripcionPlan.aspx</DependentUpon>
     </Compile>
     <Compile Include="descubrirplan.aspx.cs">
       <DependentUpon>descubrirplan.aspx</DependentUpon>

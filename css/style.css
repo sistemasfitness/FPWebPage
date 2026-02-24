@@ -249,7 +249,7 @@ a {
 		font-size: inherit;
 		color: #e3ff00;
 		width: 100%;
-		background: #1a1a1a;
+		background: #191919;
 		cursor: pointer;
 		padding: 12px 20px;
 		display: inline-block;
@@ -269,8 +269,39 @@ a {
 
 		a.btn_full:hover,
 		.btn_full:hover {
+			background: #0f0f0f;
+		}
+
+	a.btn_full_2,
+	.btn_full_2 {
+		border: none;
+		font-family: inherit;
+		font-size: inherit;
+		color: #e3ff00;
+		width: 100%;
+		background: #3C3C3C;
+		cursor: pointer;
+		padding: 12px 20px;
+		display: inline-block;
+		outline: none;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		text-transform: uppercase;
+		display: block;
+		text-align: center;
+		font-weight: 600;
+		margin-bottom: 5px;
+	}
+
+		a.btn_full_2:hover,
+		.btn_full_2:hover {
 			background: #333;
 		}
+
 
 	a.btn_outline,
 	.btn_outline {
@@ -2838,7 +2869,7 @@ label {
 }
 
 .plan-oferta:hover {
-	border: 1.5px solid #e3ff00;
+	border: 1px solid #e3ff00;
 	cursor: pointer;
 }
 
