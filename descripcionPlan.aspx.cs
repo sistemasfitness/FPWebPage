@@ -37,16 +37,16 @@ namespace WebPage
             switch (tipoPlan.ToLower())
             {
                 // ===============================
-                // EASY FAST
+                // PLAN BÁSICO MENSUAL
                 // ===============================
-                case "easy-fast":
+                case "basico-mensual":
 
                     linkPago = "register?token=DrgZnojOsKdggSIcXL0x";
 
                     lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes/plan-easy-fast_2026-01-05.jpg";
+                    imgPlan.Src = "img/planes-cards/plan-basico-mensual.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "EASY FAST";
+                    lblTitulo.InnerText = "Plan Básico Mensual";
                     lblDescripcion.InnerText = "Empezar fácil y sin costos extra.";
                     lblPrecio.InnerText = "$ 109.900/mes";
                     lblPermanencia.InnerText = "Permanencia mínima: 12 meses";
@@ -64,16 +64,16 @@ namespace WebPage
                     break;
 
                 // ===============================
-                // EASY PRO
+                // PLAN PRO FLEXIBLE
                 // ===============================
-                case "easy-pro":
+                case "pro-flexible":
 
                     linkPago = "register?token=EvdXpvlvF6zFWrKFwZfu";
 
                     lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes/plan-easy-pro_2026-01-05.jpg";
+                    imgPlan.Src = "img/planes-cards/plan-pro-flexible.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "EASY PRO";
+                    lblTitulo.InnerText = "Plan Pro Flexible";
                     lblDescripcion.InnerText = "Más beneficios desde el primer mes.";
                     lblPrecio.InnerText = "$ 129.900/mes";
                     lblPermanencia.InnerText = "Sin permanencia";
@@ -92,16 +92,16 @@ namespace WebPage
                     break;
 
                 // ===============================
-                // EASY FLEX
+                // PLAN MES A MES
                 // ===============================
-                case "easy-flex":
+                case "mes-a-mes":
 
                     linkPago = "register?token=QTXXAbI22Wv9gJcNALSH";
 
                     lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes/plan-easy-flex_2026-01-05.jpg";
+                    imgPlan.Src = "img/planes-cards/plan-mes-a-mes.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "EASY FLEX";
+                    lblTitulo.InnerText = "Plan Mes a Mes";
                     lblDescripcion.InnerText = "Un solo mes, sin débito automático.";
                     lblPrecio.InnerText = "$ 165.900";
                     lblPermanencia.InnerText = "Sin permanencia";
@@ -125,6 +125,8 @@ namespace WebPage
                     linkPago = "register?token=SuNLgEJA8mDDRgPB4EhN";
 
                     lnkBanner.HRef = linkPago;
+                    imgPlan.Src = "img/planes-cards/plan-3-meses.jpg";
+                    imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan 3 Meses";
                     lblDescripcion.InnerText = "Compromiso corto, resultados reales.";
                     lblPrecio.InnerText = "$ 349.000";
@@ -152,6 +154,8 @@ namespace WebPage
                     linkPago = "register?token=W70qV5GRiVWaIBk6ysD0";
 
                     lnkBanner.HRef = linkPago;
+                    imgPlan.Src = "img/planes-cards/plan-6-meses.jpg";
+                    imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan 6 Meses";
                     lblDescripcion.InnerText = "Invierte en ti y entrena sin excusas.";
                     lblPrecio.InnerText = "$ 590.000";
@@ -179,6 +183,8 @@ namespace WebPage
                     linkPago = "register?token=x6Is0joow5GVB8WVW9Rd";
 
                     lnkBanner.HRef = linkPago;
+                    imgPlan.Src = "img/planes-cards/plan-12-meses.jpg";
+                    imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan 12 Meses";
                     lblDescripcion.InnerText = "Entrena sin pausas durante todo un año.";
                     lblPrecio.InnerText = "$ 990.000";

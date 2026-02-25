@@ -195,6 +195,10 @@
 
     <style>
 
+        .plans {
+            margin: 0;
+        }
+
         .plan-toggle {
             cursor: pointer;
             font-weight: 600;
@@ -206,13 +210,6 @@
 
         .plan-features {
             padding: 0;
-        }
-
-
-        @media (max-width: 992px) {
-            .plans .col-md-4 {
-                margin-top: 60px;
-            }
         }
 
     </style>

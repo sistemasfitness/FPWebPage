@@ -109,10 +109,10 @@
 		    <div class="row plans plans-recu">
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-basico-mensual.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY FAST</h2>
+                            <h2 class="plan-title">Plan Básico Mensual</h2>
 
                             <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
 
@@ -157,10 +157,10 @@
                         <%--<span class="ribbon-2"></span>--%>
                         <p class="ribbon-3">Más beneficios</p>
 
-                        <img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-pro-flexible.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY PRO</h2>
+                            <h2 class="plan-title">Plan Pro Flexible</h2>
 
                             <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
@@ -203,10 +203,10 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">EASY FLEX</h2>
+                            <h2 class="plan-title">Plan Mes a Mes</h2>
 
                             <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
 
@@ -474,7 +474,7 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <%--<img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />--%>
+                        <img src="img/planes-cards/plan-3-meses.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan 3 Meses</h2>
@@ -521,7 +521,7 @@
                         <%--<span class="ribbon-2"></span>--%>
                         <%--<p class="ribbon-3">Más beneficios</p>--%>
 
-                        <%--<img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />--%>
+                        <img src="img/planes-cards/plan-6-meses.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan 6 Meses</h2>
@@ -566,7 +566,7 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <%--<img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />--%>
+                        <img src="img/planes-cards/plan-12-meses.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan 12 Meses</h2>
@@ -617,7 +617,7 @@
 
 
 
-    <a href="#" onclick="">
+    <a href="register?token=Zh7zCk8gZEArPIrmCG7Z">
         <section class="banner-promo">
             <div id="sub_content_in2">
                 <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
@@ -767,10 +767,20 @@
 
 
         .banner-promo {
-            background-image: url('img/banners/02_plan-3-meses_2025-11-20.jpg');
+            background-image: url('img/banners/plan-12-meses-duo_2026-02-25.jpg');
             background-size: cover;
             background-position: center;
             height: 470px;
+        }
+
+        @media (max-width: 1000px) {
+            .plans {
+                margin: 0 auto 0 0;
+            }
+
+            .banner-promo {
+                background-image: url('img/banners/plan-12-meses-duo_mobile_2026-02-25.jpg');
+            }
         }
 
     </style>

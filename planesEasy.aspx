@@ -116,10 +116,10 @@
 		    <div class="row plans">
 
 			    <div class="plan col-md-4">
-                    <img src="img/planes/plan-easy-fast_2026-01-05.jpg" alt="img" />
+                    <img src="img/planes-cards/plan-basico-mensual.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">EASY FAST</h2>
+                        <h2 class="plan-title">Plan Básico Mensual</h2>
 
                         <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
 
@@ -151,10 +151,10 @@
 				    <%--<span class="ribbon-2"></span>--%>
                     <p class="ribbon-3">Más beneficios</p>
 
-                    <img src="img/planes/plan-easy-pro_2026-01-05.jpg" alt="img" />
+                    <img src="img/planes-cards/plan-pro-flexible.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">EASY PRO</h2>
+                        <h2 class="plan-title">Plan Pro Flexible</h2>
 
                         <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
@@ -184,10 +184,10 @@
 			    <!-- End col-md-4 -->
 
 			    <div class="plan col-md-4">
-                    <img src="img/planes/plan-easy-flex_2026-01-05.jpg" alt="img" />
+                    <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
 
                     <div class="plan-info">
-                        <h2 class="plan-title">EASY FLEX</h2>
+                        <h2 class="plan-title">Plan Mes a Mes</h2>
 
                         <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
 
