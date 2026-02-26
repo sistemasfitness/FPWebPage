@@ -116,12 +116,13 @@
 
                             <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 109.900/mes</p>
+                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p>DESPUÉS $79.000/mes</p>
 
-                            <p>Permanencia mínima: 12 meses</p>
+                            <p>Permanencia mínima: 6 meses</p>
 
                             <div class="text-center">
-                                <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full">Comprar ya</a>
+                                <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full">Comprar ya</a>
                             </div>
 
                             <div class="plan-toggle">
@@ -130,9 +131,11 @@
                             </div>
 
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a única sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
@@ -145,7 +148,7 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=DrgZnojOsKdggSIcXL0x" class="btn_full_2">
+                        <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full_2">
                             ¡Comprar ahora!
                         </a>
                     </div>
@@ -164,13 +167,13 @@
 
                             <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 129.900/mes</p>
-                            <%--<p>DESPUÉS $89.000/mes</p>--%>
+                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p>DESPUÉS $99.000/mes</p>
 
-                            <p>Sin permanencia</p>
+                            <p>Permanencia mínima: 6 meses</p>
 
                             <div class="text-center">
-                                <a href="register?token=EvdXpvlvF6zFWrKFwZfu" class="btn-confirm-alert">Comprar ya</a>
+                                <a href="register?token=4MexIhysX3mcTNlQnfaN" class="btn-confirm-alert">Comprar ya</a>
                             </div>
 
                             <div class="plan-toggle">
@@ -179,9 +182,11 @@
                             </div>
         
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
@@ -194,7 +199,7 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=EvdXpvlvF6zFWrKFwZfu" class="btn_full_2">
+                        <a href="register?token=4MexIhysX3mcTNlQnfaN" class="btn_full_2">
                             ¡Comprar ahora!
                         </a>
                     </div>
@@ -210,8 +215,8 @@
 
                             <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 165.900</p>
-                            <%--<p>DESPUÉS $99.000</p>--%>
+                            <p class="plan-price">$ 165.000</p>
+                            <p>&nbsp;</p>
 
                             <p>Sin permanencia</p>
 
@@ -228,6 +233,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan recurrente.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
@@ -481,7 +488,7 @@
 
                             <p style="margin-bottom: 0;">Compromiso corto, resultados reales.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 349.000</p>
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 350.000</p>
 
                             <p>Sin permanencia</p>
 
@@ -496,9 +503,10 @@
 
                             <ul class="plan-features">
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
                                 <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
@@ -544,9 +552,10 @@
         
                             <ul class="plan-features">
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
                                 <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
@@ -589,9 +598,10 @@
 
                             <ul class="plan-features">
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
                                 <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
