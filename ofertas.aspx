@@ -95,10 +95,13 @@
     <section class="margin_60_35">
 	    <div class="container">
 
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Escoge tu plan a la medida</h2>
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Elige tu plan</h2>
 
             <div class="plans-switch text-center">
-                <button class="switch-btn active" data-target="recurrentes">
+                <button class="switch-btn active" data-target="mas-vendidos">
+                    Más Vendidos
+                </button>
+                <button class="switch-btn" data-target="recurrentes">
                     Pagos Recurrentes
                 </button>
                 <button class="switch-btn" data-target="unicos">
@@ -109,7 +112,7 @@
 		    <div class="row plans plans-recu">
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <img src="img/planes-cards/plan-basico-mensual.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-basico-mensual_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan Básico Mensual</h2>
@@ -117,12 +120,23 @@
                             <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
 
                             <p class="plan-price">$ 19.900 1er Mes</p>
-                            <p>DESPUÉS $79.000/mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 19.900 de Inscripción</p>
 
-                            <p>Permanencia mínima: 6 meses</p>
+                            <p>DESPUÉS $79.600/mes</p>
+
+                            <p>Fidelidad de 6 meses</p>
 
                             <div class="text-center">
-                                <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn_full" 
+                                   onclick="planAddToCart(
+                                       ['35'],
+                                       'Plan Básico Mensual',
+                                       39800,
+                                       'register?token=l1KUGxZPIEegdYnaJLP7'
+                                    ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -131,14 +145,12 @@
                             </div>
 
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>Acceso a única sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a ÚNICA sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
                                 <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
@@ -148,8 +160,15 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#"
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['35'],
+                               'Plan Básico Mensual',
+                               39800,
+                               'register?token=l1KUGxZPIEegdYnaJLP7'
+                            ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
@@ -160,20 +179,30 @@
                         <%--<span class="ribbon-2"></span>--%>
                         <p class="ribbon-3">Más beneficios</p>
 
-                        <img src="img/planes-cards/plan-pro-flexible.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-flexible-pro_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan Pro Flexible</h2>
+                            <h2 class="plan-title">Plan Flexible Pro</h2>
 
                             <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
                             <p class="plan-price">$ 19.900 1er Mes</p>
-                            <p>DESPUÉS $99.000/mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
+                            <p>DESPUÉS $99.500/mes</p>
 
-                            <p>Permanencia mínima: 6 meses</p>
+                            <p>Fidelidad de 6 meses</p>
 
                             <div class="text-center">
-                                <a href="register?token=4MexIhysX3mcTNlQnfaN" class="btn-confirm-alert">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['36'],
+                                       'Plan Flexible Pro',
+                                       29800,
+                                       'register?token=4MexIhysX3mcTNlQnfaN'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -182,14 +211,12 @@
                             </div>
         
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Plan por un solo mes.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
                                 <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
@@ -199,29 +226,49 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=4MexIhysX3mcTNlQnfaN" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['36'],
+                               'Plan Flexible Pro',
+                               29800,
+                               'register?token=4MexIhysX3mcTNlQnfaN'
+                           ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
 			    <!-- End col-md-4 -->
 
                 <div class="col-md-4" style="padding: 0;">
-                    <div class="plan plan-oferta">
+                    <div class="plan plan-oferta plan-tall-2">
+                        <p class="ribbon-3">Paga mes a mes</p>
+
                         <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan Mes a Mes</h2>
 
-                            <p style="margin-bottom: 0;">Un solo mes, sin débito automático.</p>
+                            <p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>
 
-                            <p class="plan-price">$ 165.000</p>
-                            <p>&nbsp;</p>
+                            <p class="plan-price">$ 174.900 1er Mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 190.000 de Inscripción</p>
 
-                            <p>Sin permanencia</p>
+                            <p>DESPUÉS $165.000/mes</p>
+
+                            <p>Sin fidelidad</p>
 
                             <div class="text-center">
-                                <a href="register?token=QTXXAbI22Wv9gJcNALSH" class="btn_full">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['31'],
+                                       'Plan Mes a Mes',
+                                       364900,
+                                       'register?token=QTXXAbI22Wv9gJcNALSH'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -235,9 +282,7 @@
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan recurrente.</span></li>
-                                <li><i class="fa fa-circle-check"></i>Plan por un solo mes.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
@@ -247,8 +292,15 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=QTXXAbI22Wv9gJcNALSH" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['31'],
+                               'Plan Mes a Mes',
+                               364900,
+                               'register?token=QTXXAbI22Wv9gJcNALSH'
+                           ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
@@ -481,19 +533,31 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <img src="img/planes-cards/plan-3-meses.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-3-meses_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan 3 Meses</h2>
+                            <h2 class="plan-title">Plan Trimestral</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 3 Meses</h4>
 
                             <p style="margin-bottom: 0;">Compromiso corto, resultados reales.</p>
 
                             <p class="plan-price" style="margin-bottom: 20px;">$ 350.000</p>
 
-                            <p>Sin permanencia</p>
+                            <p class="plan-title">&nbsp;</p>
+
+                            <p>Sin fidelidad</p>
 
                             <div class="text-center">
-                                <a href="register?token=SuNLgEJA8mDDRgPB4EhN" class="btn_full">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['4'],
+                                       'Plan Trimestral (Plan 3 Meses)',
+                                       350000,
+                                       'register?token=SuNLgEJA8mDDRgPB4EhN'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -502,10 +566,11 @@
                             </div>
 
                             <ul class="plan-features">
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">2 meses de cortesía.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
@@ -517,8 +582,15 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=SuNLgEJA8mDDRgPB4EhN" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['4'],
+                               'Plan Trimestral (Plan 3 Meses)',
+                               350000,
+                               'register?token=SuNLgEJA8mDDRgPB4EhN'
+                           ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
@@ -529,20 +601,32 @@
                         <%--<span class="ribbon-2"></span>--%>
                         <%--<p class="ribbon-3">Más beneficios</p>--%>
 
-                        <img src="img/planes-cards/plan-6-meses.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-6-meses_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan 6 Meses</h2>
+                            <h2 class="plan-title">Plan Pro</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 6 Meses</h4>
 
                             <p style="margin-bottom: 0;">Invierte en ti y entrena sin excusas.</p>
 
                             <p class="plan-price" style="margin-bottom: 20px;">$ 590.000</p>
                             <%--<p>DESPUÉS $89.000/mes</p>--%>
 
-                            <p>Sin permanencia</p>
+                            <p class="plan-title">&nbsp;</p>
+
+                            <p>Sin fidelidad</p>
 
                             <div class="text-center">
-                                <a href="register?token=W70qV5GRiVWaIBk6ysD0" class="btn-confirm-alert">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['5'],
+                                       'Plan Pro (Plan 6 Meses)',
+                                       590000,
+                                       'register?token=W70qV5GRiVWaIBk6ysD0'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -551,10 +635,11 @@
                             </div>
         
                             <ul class="plan-features">
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">2 meses de cortesía.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
@@ -566,8 +651,15 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=W70qV5GRiVWaIBk6ysD0" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['5'],
+                               'Plan Pro (Plan 6 Meses)',
+                               590000,
+                               'register?token=W70qV5GRiVWaIBk6ysD0'
+                           ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
@@ -575,20 +667,32 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta">
-                        <img src="img/planes-cards/plan-12-meses.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-12-meses_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan 12 Meses</h2>
+                            <h2 class="plan-title">Plan Año Imparable</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>
 
                             <p style="margin-bottom: 0;">Entrena sin pausas durante todo un año.</p>
 
                             <p class="plan-price" style="margin-bottom: 20px;">$ 990.000</p>
                             <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p>Sin permanencia</p>
+                            <p class="plan-title">+ 2 meses gratis</p>
+
+                            <p>Sin fidelidad</p>
 
                             <div class="text-center">
-                                <a href="register?token=x6Is0joow5GVB8WVW9Rd" class="btn_full">Comprar ya</a>
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['7'],
+                                       'Plan Año Imparable (Plan 12 Meses)',
+                                       990000,
+                                       'register?token=x6Is0joow5GVB8WVW9Rd'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
                             </div>
 
                             <div class="plan-toggle">
@@ -597,10 +701,11 @@
                             </div>
 
                             <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>2 meses de cortesía.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos nuevos.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
@@ -612,14 +717,212 @@
                     </div>
 
                     <div class="text-center" style="margin-top:15px;">
-                        <a href="register?token=x6Is0joow5GVB8WVW9Rd" class="btn_full_2">
-                            ¡Comprar ahora!
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['7'],
+                               'Plan Año Imparable (Plan 12 Meses)',
+                               990000,
+                               'register?token=x6Is0joow5GVB8WVW9Rd'
+                           ); return false;">
+                           ¡Comprar ahora!
                         </a>
                     </div>
                 </div>
                 <!-- End col-md-4 -->
             </div>
             <!-- End row plans unic -->
+
+            <div class="row plans plans-mas-vend">
+                <%--<div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta">
+                        <img src="img/planes-cards/plan-basico-mensual.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Básico Mensual</h2>
+
+                            <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
+
+                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p>DESPUÉS $79.000/mes</p>
+
+                            <p class="plan-title">&nbsp;</p>
+
+                            <p>Fidelidad de 6 meses</p>
+
+                            <div class="text-center">
+                                <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full">Comprar ya</a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">2 meses de cortesía.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a única sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Plan recurrente.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Plan por un solo mes.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="register?token=l1KUGxZPIEegdYnaJLP7" class="btn_full_2">
+                            ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>--%>
+                <!-- End col-md-4 -->
+
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall plan-tall-oferta">
+                        <%--<span class="ribbon-2"></span>--%>
+                        <%--<p class="ribbon-3">Más beneficios</p>--%>
+
+                        <img src="img/planes-cards/plan-flexible-pro_2026-02-27.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Flexible Pro</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan Débito Automático</h4>
+
+                            <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
+
+                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
+                            <p>DESPUÉS $99.500/mes</p>
+
+                            <p class="plan-title">&nbsp;</p>
+
+                            <p>Fidelidad de 6 meses</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['36'],
+                                       'Plan Flexible Pro',
+                                       29800,
+                                       'register?token=4MexIhysX3mcTNlQnfaN'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+        
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">2 meses de cortesía.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['36'],
+                               'Plan Flexible Pro',
+                               29800,
+                               'register?token=4MexIhysX3mcTNlQnfaN'
+                           ); return false;">
+                           ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta">
+                        <img src="img/planes-cards/plan-12-meses_2026-02-27.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Año Imparable</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>
+
+                            <p style="margin-bottom: 0;">Entrena sin pausas durante todo un año.</p>
+
+                            <p class="plan-price">$ 990.000</p>
+
+                            <p class="plan-title" style="font-size: 15px;">&nbsp;</p>
+
+                            <p>&nbsp;</p>
+
+                            <p class="plan-title">+ 2 meses gratis</p>
+
+                            <p>Sin fidelidad</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['7'],
+                                       'Plan Año Imparable (Plan 12 Meses)',
+                                       990000,
+                                       'register?token=x6Is0joow5GVB8WVW9Rd'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>2 meses de cortesía.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li style="font-size: 12px;"><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['7'],
+                               'Plan Año Imparable (Plan 12 Meses)',
+                               990000,
+                               'register?token=x6Is0joow5GVB8WVW9Rd'
+                           ); return false;">
+                           ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+            </div>
+            <!-- End row plans recu -->
 	    </div>
 	    <!--  End container-->
     </section>
@@ -627,13 +930,12 @@
 
 
 
-    <a href="register?token=Zh7zCk8gZEArPIrmCG7Z">
+    <%--<a href="register?token=Zh7zCk8gZEArPIrmCG7Z">
         <section class="banner-promo">
             <div id="sub_content_in2">
-                <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
             </div>
         </section>
-    </a>
+    </a>--%>
 
 
 
@@ -802,8 +1104,10 @@
             const buttons = document.querySelectorAll(".switch-btn");
             const recurrentes = document.querySelector(".plans-recu");
             const unicos = document.querySelector(".plans-unic");
+            const masVendidos = document.querySelector(".plans-mas-vend");
 
             unicos.style.display = "none";
+            recurrentes.style.display = "none";
 
             const toggles = document.querySelectorAll(".plan-toggle");
             const features = document.querySelectorAll(".plan-features");
@@ -824,12 +1128,15 @@
                     if (target === "recurrentes") {
                         recurrentes.style.display = "flex";
                         unicos.style.display = "none";
-                    } else {
+                        masVendidos.style.display = "none";
+                    } else if (target === "unicos") {
                         recurrentes.style.display = "none";
                         unicos.style.display = "flex";
-
-                        // Refrescar carrusel por si estaba oculto
-                        //$('.plans-carousel').trigger('refresh.owl.carousel');
+                        masVendidos.style.display = "none";
+                    } else {
+                        recurrentes.style.display = "none";
+                        unicos.style.display = "none";
+                        masVendidos.style.display = "flex";
                     }
 
                     // Cerrar todos

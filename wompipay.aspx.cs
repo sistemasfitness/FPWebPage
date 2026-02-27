@@ -329,7 +329,7 @@ namespace WebPage
 
                 LtValorPlan = Session["ltValorPlan"].ToString();
                 ltValor.Text = LtValorPlan;
-                //CargarInformacionPlan();      COMENTADO HASTA NUEVO AVISO
+                CargarInformacionPlan();
             }
             else
             {
@@ -405,6 +405,65 @@ namespace WebPage
         //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
         //    }
         //}
+
+        private void CargarInformacionPlan()
+        {
+            ltValor.Text = LtValorPlan;
+
+            if (IdPlan == 31)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 174.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 165.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 364.900</span>
+                                    </div>";
+            }
+
+            if (IdPlan == 35)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 19.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 79.600/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 19.900</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 39.800</span>
+                                    </div>";
+            }
+
+            if (IdPlan == 36)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 19.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 99.500/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 29.800</span>
+                                    </div>";
+            }
+        }
 
         private void GestionarIntegracion()
         {

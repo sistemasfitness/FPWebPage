@@ -2969,11 +2969,15 @@ ul.plan-features {
 	border-radius: 15px;
 	background-color: #191919;
 	/*margin-right: -30px;*/
-	position: relative;
 	z-index: 100;
 	/*border: solid #e3ff00;*/
 	position: relative;
 	color: #fff;
+}
+
+.plan-tall-2 {
+	position: relative;
+	z-index: 100;
 }
 
 .plan-tall-oferta {
