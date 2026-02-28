@@ -51,6 +51,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTitulo;
 
         /// <summary>
+        /// Control lblSubTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTitulo;
+
+        /// <summary>
         /// Control lblDescripcion.
         /// </summary>
         /// <remarks>
@@ -69,22 +78,40 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrecio;
 
         /// <summary>
-        /// Control lblPermanencia.
+        /// Control lblPrecioAdd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPermanencia;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrecioAdd;
 
         /// <summary>
-        /// Control lnkComprar.
+        /// Control lblPrecioDes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkComprar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrecioDes;
+
+        /// <summary>
+        /// Control lblFidelidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFidelidad;
+
+        /// <summary>
+        /// Control lnkComprar1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar1;
 
         /// <summary>
         /// Control rptBeneficios.

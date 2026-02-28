@@ -97,21 +97,24 @@
     <section class="margin_60_35">
 	    <div class="container">
             <div class="row plans plans-recu">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="plan">
                         <img id="imgPlan" runat="server" alt="Imagen del plan" />
 
                         <div class="plan-info">
                             <h2 class="plan-title" runat="server" id="lblTitulo"></h2>
+                            <h4 class="plan-title" style="font-size: 12px;" runat="server" id="lblSubTitulo"></h4>
 
                             <p style="margin-bottom: 0;" runat="server" id="lblDescripcion"></p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;" runat="server" id="lblPrecio"></p>
+                            <p class="plan-price" runat="server" id="lblPrecio"></p>
+                            <p class="plan-title" style="font-size: 15px;" runat="server" id="lblPrecioAdd"></p>
+                            <p runat="server" id="lblPrecioDes"></p>
 
-                            <p runat="server" id="lblPermanencia"></p>
+                            <p runat="server" id="lblFidelidad"></p>
 
                             <div class="text-center" style="margin-top:15px;">
-                                <asp:HyperLink ID="lnkComprar" runat="server" CssClass="btn_full">
+                                <asp:HyperLink ID="lnkComprar1" runat="server" CssClass="btn_full">
                                     Comprar ya
                                 </asp:HyperLink>
                             </div>
@@ -189,6 +192,8 @@
             setTimeout(function () {
                 window.location.href = paymentUrl;
             }, 150);
+
+            return false;
         }
 
     </script>

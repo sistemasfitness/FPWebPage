@@ -1,10 +1,15 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using WebPage.controls;
+using static NPOI.SS.Formula.PTG.ArrayPtg;
+using static WebPage.Services.SiigoClient;
 
 namespace WebPage
 {
@@ -34,6 +39,10 @@ namespace WebPage
 
             string linkPago = "";
 
+            string itemId = "";
+            string itemName = "";
+            string price = "";
+
             switch (tipoPlan.ToLower())
             {
                 // ===============================
@@ -41,52 +50,61 @@ namespace WebPage
                 // ===============================
                 case "basico-mensual":
 
-                    linkPago = "register?token=DrgZnojOsKdggSIcXL0x";
+                    linkPago = "register?token=l1KUGxZPIEegdYnaJLP7";
 
-                    lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes-cards/plan-basico-mensual.jpg";
+                    itemId = "35";
+                    itemName = "Plan Básico Mensual";
+                    price = "39800";
+
+                    imgPlan.Src = "img/planes-cards/plan-basico-mensual_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Básico Mensual";
+                    lblSubTitulo.InnerText = "Plan Débito Automático";
                     lblDescripcion.InnerText = "Empezar fácil y sin costos extra.";
-                    lblPrecio.InnerText = "$ 109.900/mes";
-                    lblPermanencia.InnerText = "Permanencia mínima: 12 meses";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblPrecio.InnerText = "$ 19.900 1er Mes";
+                    lblPrecioAdd.InnerText = "+ $ 19.900 de Inscripción";
+                    lblPrecioDes.InnerText = "DESPUÉS $79.600/mes";
+                    lblFidelidad.InnerText = "Fidelidad de 6 meses";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
-                    beneficios.Add("Acceso a todas las sedes.");
+                    beneficios.Add("Acceso a ÚNICA sede.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Pago mensual automático.");
-                    beneficios.Add("Plan recurrente.");
+                    beneficios.Add("FP App(Valoración y entrenamiento).");
+                    beneficios.Add("1 cortesía mensual para un amigo.");
                     beneficios.Add("Membresía incluida.");
                     beneficios.Add("Valoración física inicial.");
 
                     break;
 
                 // ===============================
-                // PLAN PRO FLEXIBLE
+                // PLAN FLEXIBLE PRO
                 // ===============================
-                case "pro-flexible":
+                case "flexible-pro":
 
-                    linkPago = "register?token=EvdXpvlvF6zFWrKFwZfu";
+                    linkPago = "register?token=4MexIhysX3mcTNlQnfaN";
 
-                    lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes-cards/plan-pro-flexible.jpg";
+                    itemId = "36";
+                    itemName = "Plan Flexible Pro";
+                    price = "29800";
+
+                    imgPlan.Src = "img/planes-cards/plan-flexible-pro_2026-02-27.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "Plan Pro Flexible";
+                    lblTitulo.InnerText = "Plan Flexible Pro";
+                    lblSubTitulo.InnerText = "Plan Débito Automático";
                     lblDescripcion.InnerText = "Más beneficios desde el primer mes.";
-                    lblPrecio.InnerText = "$ 129.900/mes";
-                    lblPermanencia.InnerText = "Sin permanencia";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblPrecio.InnerText = "$ 19.900 1er Mes";
+                    lblPrecioAdd.InnerText = "+ $ 9.900 de Inscripción";
+                    lblPrecioDes.InnerText = "DESPUÉS $99.500/mes";
+                    lblFidelidad.InnerText = "Fidelidad de 6 meses";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
                     beneficios.Add("Acceso a todas las sedes.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Pago mensual automático.");
-                    beneficios.Add("Plan recurrente.");
+                    beneficios.Add("FP App(Valoración y entrenamiento).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
                     beneficios.Add("Membresía incluida.");
-                    beneficios.Add("Cita inicial con nutricionista.");
                     beneficios.Add("Valoración física inicial.");
 
                     break;
@@ -98,20 +116,26 @@ namespace WebPage
 
                     linkPago = "register?token=QTXXAbI22Wv9gJcNALSH";
 
-                    lnkBanner.HRef = linkPago;
+                    itemId = "31";
+                    itemName = "Plan Mes a Mes";
+                    price = "364900";
+
                     imgPlan.Src = "img/planes-cards/plan-mes-a-mes.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Mes a Mes";
-                    lblDescripcion.InnerText = "Un solo mes, sin débito automático.";
-                    lblPrecio.InnerText = "$ 165.900";
-                    lblPermanencia.InnerText = "Sin permanencia";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblSubTitulo.InnerText = "Plan Débito Automático";
+                    lblDescripcion.InnerText = "Empieza y termina cuando quieras.";
+                    lblPrecio.InnerText = "$ 174.900 1er Mes";
+                    lblPrecioDes.InnerText = "DESPUÉS $165.000/mes";
+                    lblPrecioAdd.InnerText = "+ $ 190.000 de Inscripción";
+                    lblFidelidad.InnerText = "Sin fidelidad";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
                     beneficios.Add("Acceso a todas las sedes.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Plan por un solo mes.");
+                    beneficios.Add("FP App(Valoración y entrenamiento).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
                     beneficios.Add("Pago adicional de membresía ($190.000).");
                     beneficios.Add("Valoración física inicial.");
 
@@ -124,25 +148,27 @@ namespace WebPage
 
                     linkPago = "register?token=SuNLgEJA8mDDRgPB4EhN";
 
-                    lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes-cards/plan-3-meses.jpg";
+                    itemId = "4";
+                    itemName = "Plan Trimestral (Plan 3 Meses)";
+                    price = "350000";
+
+                    imgPlan.Src = "img/planes-cards/plan-3-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "Plan 3 Meses";
+                    lblTitulo.InnerText = "Plan Trimestral";
+                    lblSubTitulo.InnerText = "Plan 3 Meses";
                     lblDescripcion.InnerText = "Compromiso corto, resultados reales.";
-                    lblPrecio.InnerText = "$ 349.000";
-                    lblPermanencia.InnerText = "Sin permanencia";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblPrecio.InnerText = "$ 350.000";
+                    lblFidelidad.InnerText = "Sin fidelidad";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
                     beneficios.Add("Acceso a todas las sedes.");
-                    beneficios.Add("5 cortesías mensuales para amigos nuevos.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Acompañamiento profesional.");
-                    beneficios.Add("Acceso al programa Extreme.");
-                    beneficios.Add("Precio especial en nutrición y medicina deportiva.");
+                    beneficios.Add("FP App (Valoración, entrenamiento y nutrición).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
+                    beneficios.Add("Membresía incluida.");
+                    beneficios.Add("Cita inicial con nutricionista.");
                     beneficios.Add("Valoración física inicial.");
-                    beneficios.Add("Descuentos en marcas aliadas.");
 
                     break;
 
@@ -153,25 +179,27 @@ namespace WebPage
 
                     linkPago = "register?token=W70qV5GRiVWaIBk6ysD0";
 
-                    lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes-cards/plan-6-meses.jpg";
+                    itemId = "5";
+                    itemName = "Plan Pro (Plan 6 Meses)";
+                    price = "590000";
+
+                    imgPlan.Src = "img/planes-cards/plan-6-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "Plan 6 Meses";
+                    lblTitulo.InnerText = "Plan Pro";
+                    lblSubTitulo.InnerText = "Plan 6 Meses";
                     lblDescripcion.InnerText = "Invierte en ti y entrena sin excusas.";
                     lblPrecio.InnerText = "$ 590.000";
-                    lblPermanencia.InnerText = "Sin permanencia";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblFidelidad.InnerText = "Sin fidelidad";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
                     beneficios.Add("Acceso a todas las sedes.");
-                    beneficios.Add("5 cortesías mensuales para amigos nuevos.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Acompañamiento profesional.");
-                    beneficios.Add("Acceso al programa Extreme.");
-                    beneficios.Add("Precio especial en nutrición y medicina deportiva.");
+                    beneficios.Add("FP App (Valoración, entrenamiento y nutrición).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
+                    beneficios.Add("Membresía incluida.");
+                    beneficios.Add("Cita inicial con nutricionista.");
                     beneficios.Add("Valoración física inicial.");
-                    beneficios.Add("Descuentos en marcas aliadas.");
 
                     break;
 
@@ -182,25 +210,28 @@ namespace WebPage
 
                     linkPago = "register?token=x6Is0joow5GVB8WVW9Rd";
 
-                    lnkBanner.HRef = linkPago;
-                    imgPlan.Src = "img/planes-cards/plan-12-meses.jpg";
+                    itemId = "7";
+                    itemName = "Plan Año Imparable (Plan 12 Meses)";
+                    price = "990000";
+
+                    imgPlan.Src = "img/planes-cards/plan-12-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
-                    lblTitulo.InnerText = "Plan 12 Meses";
+                    lblTitulo.InnerText = "Plan Año Imparable";
+                    lblSubTitulo.InnerText = "Plan 12 Meses";
                     lblDescripcion.InnerText = "Entrena sin pausas durante todo un año.";
                     lblPrecio.InnerText = "$ 990.000";
-                    lblPermanencia.InnerText = "Sin permanencia";
-                    lnkComprar.NavigateUrl = linkPago;
-                    lnkComprar2.NavigateUrl = linkPago;
+                    lblFidelidad.InnerText = "Sin fidelidad";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
 
+                    beneficios.Add("2 meses de cortesía.");
                     beneficios.Add("Acceso a todas las sedes.");
-                    beneficios.Add("5 cortesías mensuales para amigos nuevos.");
                     beneficios.Add("Acceso a todas las áreas de la sede.");
                     beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("Acompañamiento profesional.");
-                    beneficios.Add("Acceso al programa Extreme.");
-                    beneficios.Add("Precio especial en nutrición y medicina deportiva.");
+                    beneficios.Add("FP App (Valoración, entrenamiento y nutrición).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
+                    beneficios.Add("Membresía incluida.");
+                    beneficios.Add("Cita inicial con nutricionista.");
                     beneficios.Add("Valoración física inicial.");
-                    beneficios.Add("Descuentos en marcas aliadas.");
 
                     break;
 
@@ -215,5 +246,14 @@ namespace WebPage
             rptBeneficios.DataSource = beneficios.Select(x => new { Texto = x });
             rptBeneficios.DataBind();
         }
+
+        private void ConfigurarBtns(string itemId, string itemName, string price, string linkPago)
+        {
+            string script = $"return planAddToCart(['{itemId}'], '{itemName}', '{price}', '{linkPago}');";
+
+            lnkBanner.Attributes["onclick"] = script;
+            lnkComprar1.Attributes["onclick"] = script;
+            lnkComprar2.Attributes["onclick"] = script;
+        }                                              
     }
 }

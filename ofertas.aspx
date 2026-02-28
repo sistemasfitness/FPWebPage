@@ -153,7 +153,6 @@
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -176,7 +175,6 @@
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta plan-tall plan-tall-oferta">
-                        <%--<span class="ribbon-2"></span>--%>
                         <p class="ribbon-3">Más beneficios</p>
 
                         <img src="img/planes-cards/plan-flexible-pro_2026-02-27.jpg" alt="img" />
@@ -219,7 +217,6 @@
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
-                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -285,7 +282,6 @@
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Cita inicial con nutricionista.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -570,13 +566,10 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
-                                <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
-                                <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
-                                <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                                <li><i class="fa fa-circle-check"></i>Descuentos en marcas aliadas.</li>
                             </ul>
                         </div>
                     </div>
@@ -639,13 +632,10 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
-                                <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
-                                <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
-                                <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                                <li><i class="fa fa-circle-check"></i>Descuentos en marcas aliadas.</li>
                             </ul>
                         </div>
                     </div>
@@ -705,13 +695,10 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
-                                <li><i class="fa fa-circle-check"></i>Acompañamiento profesional.</li>
-                                <li><i class="fa fa-circle-check"></i>Acceso al programa Extreme.</li>
-                                <li><i class="fa fa-circle-check"></i>Precio especial en nutrición y medicina deportiva.</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                                <li><i class="fa fa-circle-check"></i>Descuentos en marcas aliadas.</li>
                             </ul>
                         </div>
                     </div>
@@ -833,7 +820,6 @@
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -901,7 +887,6 @@
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                                <li><i class="fa fa-circle-check"></i>Cita inicial con nutricionista.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -1060,10 +1045,6 @@
         }
 
         @media (max-width: 992px) {
-            .plans .col-md-4 {
-                margin-top: 60px;
-                /*gap: 60px;*/
-            }
 
             .plans-wrapper {
                 margin-top: 25px;
