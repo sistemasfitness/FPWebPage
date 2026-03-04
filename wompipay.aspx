@@ -108,23 +108,37 @@
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="icon-shield"></i></strong>Método de pago</h3><%--Opciones de pago--%>
-                            <%--<p style="color: #fff;">Selecciona la forma de pago:</p>--%>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Datos del comprador</h3>
+                            <p style="color: #fff;">Datos necesarios para confirmar tu pago. Deben coincidir con los de tu tarjeta.</p>
                         </div>
+
                         <div class="step">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <h4 style="font-weight: 900; color: #e3ff00;">
-                                            Tarjeta de Crédito/Débito
-                                        </h4>
-                                        <div style="height: 25px">
-                                            <img src="img/wompi/visa.svg" />
-                                            <img src="img/wompi/mastercard.svg" />
-                                            <img style="max-height: 100%;" src="img/wompi/amex.svg" />
-                                        </div>
+                                        <label for="txbCorreoTarjeta">Correo electrónico:</label>
+                                        <asp:TextBox ID="txbCorreoTarjeta" CssClass="form-control" runat="server" required="" placeholder="correo@ejemplo.com" 
+                                            name="txbCorreoTarjeta"></asp:TextBox>
                                     </div>
                                 </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="txbTelefonoTarjeta">Celular o Número telefónico:</label>
+                                        <asp:TextBox ID="txbTelefonoTarjeta" CssClass="form-control" runat="server" required="" placeholder="3001234567" 
+                                            name="txbTelefonoTarjeta"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End step -->
+
+                        <div class="form_title">
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Pago con tarjeta</h3>
+                            <p style="color: #fff;">Ingresa los datos de tu tarjeta para finalizar la compra.</p>
+                        </div>
+
+                        <div class="step">
+                            <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="txbCreditCard">Número de la tarjeta:</label>
@@ -160,7 +174,6 @@
                                         <asp:DropDownList ID="ddlAnho" runat="server" required="" AppendDataBoundItems="true"
                                             DataTextField="Anho" DataValueField="ddlAnho" CssClass="form-control" >
                                             <asp:ListItem Text="Selecciona el año" Value=""></asp:ListItem>
-                                            <asp:ListItem Text="2025" Value="25"></asp:ListItem>
                                             <asp:ListItem Text="2026" Value="26"></asp:ListItem>
                                             <asp:ListItem Text="2027" Value="27"></asp:ListItem>
                                             <asp:ListItem Text="2028" Value="28"></asp:ListItem>
@@ -175,6 +188,7 @@
                                             <asp:ListItem Text="2037" Value="37"></asp:ListItem>
                                             <asp:ListItem Text="2038" Value="38"></asp:ListItem>
                                             <asp:ListItem Text="2039" Value="39"></asp:ListItem>
+                                            <asp:ListItem Text="2040" Value="40"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -335,7 +349,9 @@
                 { id: "<%= ddlMes.ClientID %>", msg: "Por favor, selecciona el mes de expiración." },
                 { id: "<%= ddlAnho.ClientID %>", msg: "Por favor, selecciona el año de expiración." },
                 { id: "<%= txbCVC.ClientID %>", msg: "Por favor, ingresa el CVC de la tarjeta." },
-                { id: "<%= txbNombreTarjeta.ClientID %>", msg: "Por favor, ingresa el nombre del titular de la tarjeta." }
+                { id: "<%= txbNombreTarjeta.ClientID %>", msg: "Por favor, ingresa el nombre del titular de la tarjeta." },
+                { id: "<%= txbCorreoTarjeta.ClientID %>", msg: "Por favor, ingresa el correo electrónico del titular de la tarjeta.", tipo: "email" },
+                { id: "<%= txbTelefonoTarjeta.ClientID %>", msg: "Por favor, ingresa el número de celular del titular de la tarjeta." }
             ];
 
             for (const campo of campos) {
@@ -347,6 +363,16 @@
                         'Campo requerido',
                         campo.msg,
                         'warning'
+                    ).then(() => el.focus());
+                }
+
+                if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+                    return mostrarAlerta(
+                        'Correo inválido',
+                        'El formato del correo electrónico no es válido.<br><b>Ej: usuario@dominio.com</b>',
+                        'warning',
+                        {},
+                        true
                     ).then(() => el.focus());
                 }
             }

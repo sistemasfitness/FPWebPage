@@ -26,6 +26,12 @@ namespace WebPage
 {
     public partial class wompipay : System.Web.UI.Page
     {
+        protected bool EsAfiliadoPlanNuevo
+        {
+            get { return ViewState["esAfiPlanNuevo"] != null && (bool)ViewState["esAfiPlanNuevo"]; }
+            set { ViewState["esAfiPlanNuevo"] = value; }
+        }
+
         protected int IdAfiliadoPlan
         {
             get { return ViewState["idAfiPlan"] != null ? (int)ViewState["idAfiPlan"] : 0; }
@@ -44,19 +50,13 @@ namespace WebPage
             set { ViewState["nroDoc"] = value; }
         }
 
-        protected string CorreoAfiliado
+        protected string Correo
         {
             get { return ViewState["correo"]?.ToString(); }
             set { ViewState["correo"] = value; }
         }
 
-        protected string NombreAfiliado
-        {
-            get { return ViewState["nombre"]?.ToString(); }
-            set { ViewState["nombre"] = value; }
-        }
-
-        protected string TelefonoAfiliado
+        protected string Telefono
         {
             get { return ViewState["celular"]?.ToString(); }
             set { ViewState["celular"] = value; }
@@ -325,11 +325,14 @@ namespace WebPage
                 else
                 {
                     IdAfiliadoPlan = 0;
+                    EsAfiliadoPlanNuevo = true;
                 }
 
                 LtValorPlan = Session["ltValorPlan"].ToString();
                 ltValor.Text = LtValorPlan;
                 CargarInformacionPlan();
+
+                ConsultarInformacion();
             }
             else
             {
@@ -529,10 +532,12 @@ namespace WebPage
 
                 DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
                 IdAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? Convert.ToInt32(dtAfi.Rows[0]["idAfiliado"].ToString()) : 0;
-                CorreoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["emailAfiliado"].ToString() : null;
-                NombreAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["nombreAfiliado"].ToString() + " " + dtAfi.Rows[0]["apellidoAfiliado"].ToString() : null;
-                TelefonoAfiliado = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["celularAfiliado"].ToString() : null;
+                Correo = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["emailAfiliado"].ToString() : null;
+                Telefono = dtAfi != null && dtAfi.Rows.Count > 0 ? dtAfi.Rows[0]["celularAfiliado"].ToString() : null;
                 dtAfi.Dispose();
+
+                txbCorreoTarjeta.Text = Correo;
+                txbTelefonoTarjeta.Text = Telefono;
 
                 DataTable dtPlan = cg.ConsultarPlanPorId(IdPlan);
                 MesesPlan = dtPlan != null && dtPlan.Rows.Count > 0 ? Convert.ToInt32(dtPlan.Rows[0]["meses"].ToString()) : 0;
@@ -553,9 +558,6 @@ namespace WebPage
         {
             try
             {
-                // 1. Obtener datos necesarios
-                ConsultarInformacion();
-
                 string cardNumber = txbCreditCard.Text.Replace(" ", "");
                 if (!cardNumber.All(char.IsDigit))
                 {
@@ -597,7 +599,7 @@ namespace WebPage
                 clasesglobales cg = new clasesglobales();
 
                 // 3. Gestión de AfiliadoPlan
-                if (IdAfiliadoPlan == 0) // SI NO EXISTE, CREAR AFILIADO PLAN
+                if (EsAfiliadoPlanNuevo) // SI ES AFILIADO PLAN NUEVO, CREARLO
                 {
                     IdAfiliadoPlan = cg.InsertarAfiliadoPlanYDevolverId(
                         IdAfiliado,
@@ -630,11 +632,12 @@ namespace WebPage
                     null
                 );
 
-                GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
+                // 5. Si no es un AfiliadoPlan nuevo, se gestiona el plan actual para actualizar fechas o finalizarlo según corresponda
+                if (!EsAfiliadoPlanNuevo) GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
 
                 if (IdPlan != 12)
                 {
-                    // 5. Facturar en Siigo
+                    // 6. Facturar en Siigo
                     try
                     {
                         string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
@@ -673,8 +676,8 @@ namespace WebPage
                         System.Diagnostics.Debug.WriteLine("Error creando factura en Siigo: " + siigoEx.ToString());
                     }
                 }
-                
-				// COMENTADO DEBIDO A QUE NO SE UTILIZARÁ MÁS
+
+                // COMENTADO DEBIDO A QUE NO SE UTILIZARÁ MÁS
                 // 6. Registrar pago para enbajador si la persona utiliza su código
                 //if (!string.IsNullOrEmpty(CodEmbajador))
                 //{
@@ -771,7 +774,7 @@ namespace WebPage
 
                     // Creación de fuente de pago en Wompi
                     bool fuentePagoCreada = await CrearFuentePagoAsync(
-                        CorreoAfiliado,
+                        txbCorreoTarjeta.Text.Trim(),
                         "CARD",
                         DataIdToken,
                         AcceptanceToken,
@@ -831,14 +834,14 @@ namespace WebPage
 
                 // Ejecutar el cobro inicial
                 bool transaccionCreada = await CrearTransaccionAsync(
-                    Convert.ToInt32(monto), 
-                    moneda, 
-                    hash256, 
-                    CorreoAfiliado, 
-                    NombreAfiliado, 
-                    TelefonoAfiliado, 
+                    Convert.ToInt32(monto),
+                    moneda,
+                    hash256,
+                    txbCorreoTarjeta.Text.Trim(),
+                    txbNombreTarjeta.Text.Trim(),
+                    txbTelefonoTarjeta.Text.Trim(),
                     1,
-                    IdReferencia, 
+                    IdReferencia,
                     Convert.ToInt32(DataIdFuentePago)
                 );
 

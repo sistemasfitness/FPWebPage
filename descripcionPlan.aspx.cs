@@ -56,7 +56,7 @@ namespace WebPage
                     itemName = "Plan Básico Mensual";
                     price = "39800";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-basico-mensual_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-basico-mensual_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Básico Mensual";
@@ -89,7 +89,7 @@ namespace WebPage
                     itemName = "Plan Flexible Pro";
                     price = "29800";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-pro-flexible_2026-03-03.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-flexible-pro_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-flexible-pro_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Flexible Pro";
@@ -122,7 +122,7 @@ namespace WebPage
                     itemName = "Plan Mes a Mes Débito Automático";
                     price = "199900";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-03.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-mes-a-mes_2026-03-03.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Mes a Mes";
@@ -155,7 +155,7 @@ namespace WebPage
                     itemName = "Plan Trimestral (Plan 3 Meses)";
                     price = "350000";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-3-meses_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-3-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Trimestral";
@@ -187,7 +187,7 @@ namespace WebPage
                     itemName = "Plan Pro (Plan 6 Meses)";
                     price = "590000";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-6-meses_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-6-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Pro";
@@ -219,7 +219,7 @@ namespace WebPage
                     itemName = "Plan Año Imparable (Plan 12 Meses)";
                     price = "990000";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-12-meses_2026-03-03.jpg');";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-12-meses_2026-03-04.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-12-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Año Imparable";
