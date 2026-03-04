@@ -249,7 +249,7 @@ a {
 		font-size: inherit;
 		color: #e3ff00;
 		width: 100%;
-		background: #191919;
+		background: #000000;
 		cursor: pointer;
 		padding: 12px 20px;
 		display: inline-block;
@@ -269,7 +269,8 @@ a {
 
 		a.btn_full:hover,
 		.btn_full:hover {
-			background: #0f0f0f;
+			background: #e3ff00;
+			color: #191919;
 		}
 
 	a.btn_full_2,

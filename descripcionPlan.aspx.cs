@@ -56,6 +56,7 @@ namespace WebPage
                     itemName = "Plan Básico Mensual";
                     price = "39800";
 
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-basico-mensual_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Básico Mensual";
@@ -88,6 +89,7 @@ namespace WebPage
                     itemName = "Plan Flexible Pro";
                     price = "29800";
 
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-pro-flexible_2026-03-03.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-flexible-pro_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Flexible Pro";
@@ -114,21 +116,22 @@ namespace WebPage
                 // ===============================
                 case "mes-a-mes":
 
-                    linkPago = "register?token=QTXXAbI22Wv9gJcNALSH";
+                    linkPago = "register?token=qIKhrR9D6Jk3xbPRz4JX";
 
-                    itemId = "31";
-                    itemName = "Plan Mes a Mes";
-                    price = "364900";
+                    itemId = "37";
+                    itemName = "Plan Mes a Mes Débito Automático";
+                    price = "199900";
 
-                    imgPlan.Src = "img/planes-cards/plan-mes-a-mes.jpg";
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-03.jpg');";
+                    imgPlan.Src = "img/planes-cards/plan-mes-a-mes_2026-03-03.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Mes a Mes";
                     lblSubTitulo.InnerText = "Plan Débito Automático";
-                    lblDescripcion.InnerText = "Empieza y termina cuando quieras.";
-                    lblPrecio.InnerText = "$ 174.900 1er Mes";
+                    lblDescripcion.InnerText = "Impulso rápido, resultados visibles.";
+                    lblPrecio.InnerText = "$ 9.900 1er Mes";
                     lblPrecioDes.InnerText = "DESPUÉS $165.000/mes";
                     lblPrecioAdd.InnerText = "+ $ 190.000 de Inscripción";
-                    lblFidelidad.InnerText = "Sin fidelidad";
+                    lblFidelidad.InnerText = "Sin fidelidad (Renovación solo por 1 mes)";
                     ConfigurarBtns(itemId, itemName, price, linkPago);
 
                     beneficios.Add("Acceso a todas las sedes.");
@@ -152,6 +155,7 @@ namespace WebPage
                     itemName = "Plan Trimestral (Plan 3 Meses)";
                     price = "350000";
 
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-3-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Trimestral";
@@ -183,6 +187,7 @@ namespace WebPage
                     itemName = "Plan Pro (Plan 6 Meses)";
                     price = "590000";
 
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan_6-mas-2_2025-08-21.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-6-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Pro";
@@ -214,6 +219,7 @@ namespace WebPage
                     itemName = "Plan Año Imparable (Plan 12 Meses)";
                     price = "990000";
 
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-12-meses_2026-03-03.jpg');";
                     imgPlan.Src = "img/planes-cards/plan-12-meses_2026-02-27.jpg";
                     imgPlan.Visible = true;
                     lblTitulo.InnerText = "Plan Año Imparable";

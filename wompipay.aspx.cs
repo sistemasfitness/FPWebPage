@@ -463,6 +463,24 @@ namespace WebPage
                                         TOTAL <span class='pull-right'>$ 29.800</span>
                                     </div>";
             }
+
+            if (IdPlan == 37)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 9.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 165.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 199.900</span>
+                                    </div>";
+            }
         }
 
         private void GestionarIntegracion()
@@ -629,34 +647,6 @@ namespace WebPage
                             AccessKey,
                             PartnerId
                         );
-
-
-                        // COMENTADO HASTA NUEVO AVISO
-
-                        DataTable dtAfi = cg.ConsultarAfiliadoPorId(IdAfiliado);
-                        // Obtener datos del afiliado
-                        string strNombre = dtAfi.Rows[0]["NombreAfiliado"].ToString();
-                        string strApellido = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
-                        dtAfi.Dispose();
-
-                        DataTable dtCodSiigo = cg.ConsultarCodigoSiigoPorDocumento(DocumentoAfiliado);
-                        string idTipoDocSiigo = dtCodSiigo.Rows[0]["CodSiigo"].ToString();
-                        dtCodSiigo.Dispose();
-
-                        DataTable dtSede = cg.ConsultarSedePorId(IdSede);
-                        string strDireccion = dtSede.Rows[0]["DireccionSede"].ToString();
-                        int idCiudad = Convert.ToInt32(dtSede.Rows[0]["idCiudadSede"].ToString());
-                        dtSede.Dispose();
-
-                        DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
-                        string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
-                        string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
-                        dtCiudad.Dispose();
-
-                        await siigoClient.ManageCustomerAsync(idTipoDocSiigo, DocumentoAfiliado, strNombre, strApellido, strDireccion, codEstado, codCiudad, TelefonoAfiliado, CorreoAfiliado);
-
-                        // COMENTADO HASTA NUEVO AVISO
-
 
                         // PRUEBAS
                         //CodSiigoPlan = "COD2433";

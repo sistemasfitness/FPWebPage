@@ -257,7 +257,7 @@
 
                             <div class="text-center">
                                 <a href="#" 
-                                   class="btn-confirm-alert"
+                                   class="btn_full"
                                    onclick="planAddToCart(
                                        ['31'],
                                        'Plan Mes a Mes',
@@ -545,7 +545,7 @@
 
                             <div class="text-center">
                                 <a href="#" 
-                                   class="btn-confirm-alert"
+                                   class="btn_full"
                                    onclick="planAddToCart(
                                        ['4'],
                                        'Plan Trimestral (Plan 3 Meses)',
@@ -674,7 +674,7 @@
 
                             <div class="text-center">
                                 <a href="#" 
-                                   class="btn-confirm-alert"
+                                   class="btn_full"
                                    onclick="planAddToCart(
                                        ['7'],
                                        'Plan Año Imparable (Plan 12 Meses)',
@@ -862,7 +862,7 @@
 
                             <div class="text-center">
                                 <a href="#" 
-                                   class="btn-confirm-alert"
+                                   class="btn_full"
                                    onclick="planAddToCart(
                                        ['7'],
                                        'Plan Año Imparable (Plan 12 Meses)',

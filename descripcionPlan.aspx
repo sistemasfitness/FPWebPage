@@ -85,7 +85,7 @@
     <!-- SubHeader =============================================== -->
     <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
     <a id="lnkBanner" runat="server">
-        <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan_6-mas-2_2025-08-21.jpg" data-natural-width="1400" data-natural-height="470">
+        <section runat="server" id="secBanner">
             <div id="sub_content_in">
                 <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
             </div>
@@ -199,6 +199,18 @@
     </script>
 
     <style>
+
+        #lnkBanner {
+            cursor: pointer;
+        }
+
+        #secBanner {
+            width: 100%; 
+            height: 470px; 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
 
         .plans {
             margin: 0;
