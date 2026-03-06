@@ -650,6 +650,7 @@
     <Content Include="mainAfil.aspx" />
     <Content Include="newsletter.aspx" />
     <Content Include="ofertas.aspx" />
+    <Content Include="ofertasCounter.aspx" />
     <Content Include="ofertasDiaMujer.aspx" />
     <Content Include="peoplewear.html" />
     <Content Include="plan3plus3.aspx" />
@@ -975,6 +976,13 @@
     </Compile>
     <Compile Include="ofertas.aspx.designer.cs">
       <DependentUpon>ofertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasCounter.aspx.cs">
+      <DependentUpon>ofertasCounter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasCounter.aspx.designer.cs">
+      <DependentUpon>ofertasCounter.aspx</DependentUpon>
     </Compile>
     <Compile Include="ofertasDiaMujer.aspx.cs">
       <DependentUpon>ofertasDiaMujer.aspx</DependentUpon>
