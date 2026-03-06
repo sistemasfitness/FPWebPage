@@ -95,7 +95,7 @@
     <section class="margin_60_35">
 	    <div class="container">
 
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Para ti mujer</h2>
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>La fuerza de una mujer merece celebrarse todos los días.</h2>
 
             <div class="row plans plans-unic">
                 <div class="col-md-4" style="padding: 0;">
