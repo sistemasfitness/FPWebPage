@@ -1,0 +1,383 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ofertasDiaMujer.aspx.cs" Inherits="WebPage.ofertasDiaMujer" %>
+
+<%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
+<%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
+<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <script src="js/fitnesspeople.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
+    <meta name="author" content="Fitness People" />
+    <title>Fitness People</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon_.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png" />
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Kalam:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <!-- BASE CSS -->
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/menu.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
+    <link href="css/magnific-popup.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="layer"></div>
+    <!-- Mobile menu overlay mask -->
+    <!-- Header ================================================== -->
+    <header>
+        <div class="container-fluid">
+            <uc1:mainmenu runat="server" ID="mainmenu" />
+        </div>
+        <!-- End container -->
+    </header>
+    <!-- End Header =============================================== -->
+    <!-- SubHeader =============================================== -->
+    <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/02_plan-3-mas-1_2025-09-08.jpg" data-natural-width="1400" data-natural-height="470">
+        <div id="sub_content_in">
+            <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
+        </div>
+    </section>
+    <!-- End section -->
+    <!-- End SubHeader ============================================ -->
+
+    <section class="margin_60_35">
+	    <div class="container">
+
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Para ti mujer</h2>
+
+            <div class="row plans plans-unic">
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall plan-tall-oferta">
+                        <img src="img/planes-cards/plan-6-meses_2026-02-27.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Pro</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 6 Meses</h4>
+
+                            <p style="margin-bottom: 0;">Invierte en ti y entrena sin excusas.</p>
+
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 590.000</p>
+
+                            <p class="plan-title">+ 1 mes gratis</p>
+
+                            <p>Sin fidelidad</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                   class="btn-confirm-alert"
+                                   onclick="planAddToCart(
+                                       ['38'],
+                                       'Plan Pro (Plan 6 Meses + 1 Mes)',
+                                       590000,
+                                       'register?token=dsDuYMIAwjWgA3mqZMUW'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+        
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">2 meses de cortesía.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['38'],
+                               'Plan Pro (Plan 6 Meses + 1 Mes)',
+                               590000,
+                               'register?token=dsDuYMIAwjWgA3mqZMUW'
+                           ); return false;">
+                           ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta">
+                        <img src="img/planes-cards/plan-12-meses_2026-02-27.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Año Imparable</h2>
+                            <h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>
+
+                            <p style="margin-bottom: 0;">Entrena sin pausas durante todo un año.</p>
+
+                            <p class="plan-price" style="margin-bottom: 20px;">$ 990.000</p>
+
+                            <p class="plan-title">+ 2 meses gratis</p>
+
+                            <p>Sin fidelidad</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                   class="btn_full"
+                                   onclick="planAddToCart(
+                                       ['7'],
+                                       'Plan Año Imparable (Plan 12 Meses)',
+                                       990000,
+                                       'register?token=x6Is0joow5GVB8WVW9Rd'
+                                   ); return false;">
+                                   Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>2 meses de cortesía.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración, entrenamiento y nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="#" 
+                           class="btn_full_2"
+                           onclick="planAddToCart(
+                               ['7'],
+                               'Plan Año Imparable (Plan 12 Meses)',
+                               990000,
+                               'register?token=x6Is0joow5GVB8WVW9Rd'
+                           ); return false;">
+                           ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+            </div>
+            <!-- End row plans unic -->
+	    </div>
+	    <!--  End container-->
+    </section>
+    <!--  End section-->
+
+
+    <uc1:footer runat="server" ID="footer" />
+
+    <div id="toTop"></div>
+    <!-- Back to top button -->
+
+    <uc1:loginregister runat="server" ID="loginregister" />
+
+
+    <!-- Search Menu -->
+    <div class="search-overlay-menu">
+        <span class="search-overlay-close"><i class="icon_close"></i></span>
+        <form role="search" id="searchform" method="get">
+            <input value="" name="q" type="search" placeholder="Buscar..." />
+            <button type="submit">
+                <i class="icon-search-6"></i>
+            </button>
+        </form>
+    </div>
+    <!-- End Search Menu -->
+    <!-- COMMON SCRIPTS -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/common_scripts_min.js"></script>
+    <script src="assets/validate.js"></script>
+    <script src="js/functions.js"></script>
+
+
+    <script>
+
+        function planAddToCart(contentId, contentName, value, paymentUrl) {
+
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                ecommerce: {
+                    items: [{
+                        item_id: contentId,
+                        item_name: contentName,
+                        price: value,
+                        currency: 'COP',
+                        quantity: 1
+                    }]
+                }
+            });
+
+            setTimeout(function () {
+                window.location.href = paymentUrl;
+            }, 150);
+        }
+
+    </script>
+
+    <style>
+
+        .plans-switch {
+            display: flex;
+            justify-content: center;
+        }
+
+        .switch-btn {
+            background: transparent;
+            border: 2px solid #d6ff00;
+            color: #d6ff00;
+            padding: 10px 25px;
+            margin: 0 10px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .switch-btn:hover {
+            background: #d6ff00;
+            color: #000;
+        }
+
+        .switch-btn.active {
+            background: #d6ff00;
+            color: #000;
+        }
+
+
+
+        .plan-features {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.25s ease;
+        }
+
+        .plan-features.open {
+            opacity: 1;
+        }
+
+        .plan-toggle {
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-toggle .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .plan-toggle.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+
+
+        .plans-wrapper {
+            margin: 60px auto 0px 0;
+        }
+
+        .plans-carousel {
+            width: auto;
+        }
+
+        @media (max-width: 992px) {
+
+            .plans-wrapper {
+                margin-top: 25px;
+            }
+        }
+
+
+
+        .banner-promo {
+            background-image: url('img/banners/plan-12-meses-duo_2026-02-25.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 470px;
+        }
+
+        @media (max-width: 1000px) {
+            .plans {
+                margin: 0 auto 0 0;
+            }
+
+            .banner-promo {
+                background-image: url('img/banners/plan-12-meses-duo_mobile_2026-02-25.jpg');
+            }
+        }
+
+    </style>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
+</body>
+</html>
