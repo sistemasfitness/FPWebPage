@@ -145,6 +145,39 @@ namespace WebPage
                     break;
 
                 // ===============================
+                // PLAN MES A MES PROMO
+                // ===============================
+                case "mes-a-mes-promo":
+
+                    linkPago = "register?token=miHiH6m1HPn49QDPK9i0";
+
+                    itemId = "39";
+                    itemName = "Plan Mes a Mes Promo";
+                    price = "92400";
+
+                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-03.jpg');";
+                    imgPlan.Src = "img/planes-cards/plan-mes-a-mes_2026-03-03.jpg";
+                    imgPlan.Visible = true;
+                    lblTitulo.InnerText = "Plan Mes a Mes";
+                    lblSubTitulo.InnerText = "Plan Débito Automático";
+                    lblDescripcion.InnerText = "Impulso rápido, resultados visibles.";
+                    lblPrecio.InnerText = "$ 82.500 1er Mes";
+                    lblPrecioDes.InnerText = "DESPUÉS $165.000/mes";
+                    lblPrecioAdd.InnerText = "+ $ 9.900 de Inscripción";
+                    lblFidelidad.InnerText = "Sin fidelidad";
+                    ConfigurarBtns(itemId, itemName, price, linkPago);
+
+                    beneficios.Add("Acceso a todas las sedes.");
+                    beneficios.Add("Acceso a todas las áreas de la sede.");
+                    beneficios.Add("Clases grupales con profesores.");
+                    beneficios.Add("FP App(Valoración y entrenamiento).");
+                    beneficios.Add("5 cortesías mensuales para amigos.");
+                    beneficios.Add("Membresía incluida.");
+                    beneficios.Add("Valoración física inicial.");
+
+                    break;
+
+                // ===============================
                 // PLAN 3 MESES
                 // ===============================
                 case "3-meses":

@@ -300,6 +300,70 @@
                         </a>
                     </div>
                 </div>
+
+                <%--<div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall-2">
+                        <p class="ribbon-3">Paga mes a mes</p>
+
+                        <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Mes a Mes</h2>
+
+                            <p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>
+
+                            <p class="plan-price">$ 82.500 1er Mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
+
+                            <p>DESPUÉS $165.000/mes</p>
+
+                            <p>Sin fidelidad</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                    class="btn_full"
+                                    onclick="planAddToCart(
+                                        ['31'],
+                                        'Plan Mes a Mes',
+                                        92400,
+                                        'register?token=miHiH6m1HPn49QDPK9i0'
+                                    ); return false;">
+                                    Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
+                                <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top:15px;">
+                        <a href="#" 
+                            class="btn_full_2"
+                            onclick="planAddToCart(
+                                ['31'],
+                                'Plan Mes a Mes',
+                                92400,
+                                'register?token=miHiH6m1HPn49QDPK9i0'
+                            ); return false;">
+                            ¡Comprar ahora!
+                        </a>
+                    </div>
+                </div>--%>
 			    <!-- End col-md-4 -->
 		    </div>
 		    <!-- End row plans recu -->
