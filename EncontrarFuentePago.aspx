@@ -23,6 +23,8 @@
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar Payment Sources" OnClick="btnBuscar_Click" />
             <br /><br />
             <asp:TextBox ID="txtConsola" runat="server" CssClass="console" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="btnActualizarTokens" runat="server" Text="Actualizar Tokens" OnClick="btnActualizar_Click" />
         </div>
     </form>
 </body>

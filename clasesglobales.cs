@@ -5385,6 +5385,38 @@ namespace WebPage
             return respuesta;
         }
 
+        public string ActualizarDataTokenPorDataIdFuente(string idFuente, string idToken)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open(); // Abrir conexión antes de usarla
+
+                    using (MySqlCommand cmd = new MySqlCommand("Pa_ACTUALIZAR_TOKEN_POR_ID_FUENTE", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        cmd.Parameters.AddWithValue("@p_data_id_fuente", idFuente);
+                        cmd.Parameters.AddWithValue("@p_data_id_token", idToken);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public DataTable ConsultarPlanesWeb()
         {
             DataTable dt = new DataTable();
