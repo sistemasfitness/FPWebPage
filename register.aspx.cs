@@ -104,8 +104,8 @@ namespace WebPage
                     CargarInformacionPlan();
 
                     CargarTipoDocumento();
-                    CargarGeneros();
-                    CargarCiudadesYSedes();
+                    //CargarGeneros();
+                    //CargarCiudadesYSedes();
 
                     if (!string.IsNullOrEmpty(txbFechaIni.Text))
                     {
@@ -115,7 +115,7 @@ namespace WebPage
             }
 
             // Agregar manualmente el onchange que llama al postback
-            txbFechaIni.Attributes["onchange"] = Page.ClientScript.GetPostBackEventReference(txbFechaIni, "");
+            //txbFechaIni.Attributes["onchange"] = Page.ClientScript.GetPostBackEventReference(txbFechaIni, "");
         }
 
         // - COMENTADO HASTA NUEVO AVISO -
@@ -360,7 +360,6 @@ namespace WebPage
 
         private void ConfigurarCamposFecha()
         {
-            txbFechaNac.Attributes.Add("type", "date");
             txbFechaIni.Attributes.Add("type", "date");
             txbFechaFin.Attributes.Add("type", "date");
 
@@ -368,9 +367,6 @@ namespace WebPage
             DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
             DateTime dt14 = DateTime.Now.AddYears(-14);
             DateTime dt100 = DateTime.Now.AddYears(-100);
-
-            txbFechaNac.Attributes.Add("min", dt100.ToString("yyyy-MM-dd"));
-            txbFechaNac.Attributes.Add("max", dt14.ToString("yyyy-MM-dd"));
 
             string fechaHoy = dtHoy.ToString("yyyy-MM-dd");
             txbFechaIni.Attributes["value"] = fechaHoy;
@@ -384,14 +380,6 @@ namespace WebPage
 
             if (IdPlan != 12)
                 txbFechaIni.Attributes["max"] = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
-
-            if (IdPlan == 32)
-            {
-                txbFechaNac2.Attributes.Add("type", "date");
-
-                txbFechaNac2.Attributes.Add("min", dt100.ToString("yyyy-MM-dd"));
-                txbFechaNac2.Attributes.Add("max", dt14.ToString("yyyy-MM-dd"));
-            }
         }
 
         private void ValidarPlan()
@@ -405,14 +393,14 @@ namespace WebPage
                 if (dtPlan == null || dtPlan.Rows.Count == 0) Response.Redirect("default", true);
 
                 EsPlanDuo = IdPlan == 32;
-                ValidarVisibilidadFormulario(EsPlanDuo);
+                //ValidarVisibilidadFormulario(EsPlanDuo);
 
                 bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
 
                 // Mostrar tipo de pago
-                txbMetodoPago.Text = esDebitoAutomatico
-                    ? "Débito Automático"
-                    : "Pago Único";
+                //txbMetodoPago.Text = esDebitoAutomatico
+                //    ? "Débito Automático"
+                //    : "Pago Único";
 
                 // Texto en autorización
                 lbTipoCobro.Text = esDebitoAutomatico ? " recurrente" : null;
@@ -428,15 +416,15 @@ namespace WebPage
                     ValorPlan = Convert.ToInt32(dtPlan.Rows[0]["PrecioTotal"].ToString());
                 }
 
-                txbValorPlan.Text = ValorPlan.ToString();
-                hfValorPlan.Value = ValorPlan.ToString();
+                //txbValorPlan.Text = ValorPlan.ToString();
+                //hfValorPlan.Value = ValorPlan.ToString();
                 ltValor.Text = "$" + ValorPlan.ToString("N0");
 
-                if (IdPlan == 12 || IdPlan == 17)  // Plan de migracion 2.000 y 89.000
-                {
-                    txbFechaIni.Enabled = false;
-                    txbFechaFin.Enabled = false;
-                }
+                //if (IdPlan == 12 || IdPlan == 17)  // Plan de migracion 2.000 y 89.000
+                //{
+                //    txbFechaIni.Enabled = false;
+                //    txbFechaFin.Enabled = false;
+                //}
 
                 dtPlanProm?.Dispose();
                 dtPlan.Dispose();
@@ -447,17 +435,17 @@ namespace WebPage
             }
         }
 
-        private void ValidarVisibilidadFormulario(bool esPlanDuo)
-        {
-            if (esPlanDuo)
-            {
-                divPlanDuo.Visible = true;
-            }
-            else
-            {
-                divPlanDuo.Visible = false;
-            }
-        }
+        //private void ValidarVisibilidadFormulario(bool esPlanDuo)
+        //{
+        //    if (esPlanDuo)
+        //    {
+        //        divPlanDuo.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        divPlanDuo.Visible = false;
+        //    }
+        //}
 
         private void CargarTipoDocumento()
         {
@@ -467,103 +455,103 @@ namespace WebPage
             ddlTipoDocumento.DataSource = dt;
             ddlTipoDocumento.DataBind();
 
-            if (EsPlanDuo)
-            {
-                ddlTipoDocumento2.DataSource = dt;
-                ddlTipoDocumento2.DataBind();
-            }
+            //if (EsPlanDuo)
+            //{
+            //    ddlTipoDocumento2.DataSource = dt;
+            //    ddlTipoDocumento2.DataBind();
+            //}
 
             dt.Dispose();
         }
 
-        private void CargarGeneros()
-        {
-            clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarGeneros();
+        //private void CargarGeneros()
+        //{
+        //    clasesglobales cg = new clasesglobales();
+        //    DataTable dt = cg.ConsultarGeneros();
 
-            ddlGenero.DataSource = dt;
-            ddlGenero.DataBind();
+        //    ddlGenero.DataSource = dt;
+        //    ddlGenero.DataBind();
 
-            if (EsPlanDuo)
-            {
-                ddlGenero2.DataSource = dt;
-                ddlGenero2.DataBind();
-            }
+        //    if (EsPlanDuo)
+        //    {
+        //        ddlGenero2.DataSource = dt;
+        //        ddlGenero2.DataBind();
+        //    }
 
-            dt.Dispose();
-        }
+        //    dt.Dispose();
+        //}
 
-        private void CargarCiudadesYSedes()
-        {
-            clasesglobales cg = new clasesglobales();
+        //private void CargarCiudadesYSedes()
+        //{
+        //    clasesglobales cg = new clasesglobales();
 
-            DataTable dtCiudad = cg.ConsultarCiudadesSedesWeb();
-            ddlCiudad.DataSource = dtCiudad;
-            ddlCiudad.DataTextField = "NombreCiudadSede";
-            ddlCiudad.DataValueField = "idCiudadSede";
-            ddlCiudad.DataBind();
-            ddlCiudad.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-            dtCiudad.Dispose();
+        //    DataTable dtCiudad = cg.ConsultarCiudadesSedesWeb();
+        //    ddlCiudad.DataSource = dtCiudad;
+        //    ddlCiudad.DataTextField = "NombreCiudadSede";
+        //    ddlCiudad.DataValueField = "idCiudadSede";
+        //    ddlCiudad.DataBind();
+        //    ddlCiudad.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+        //    dtCiudad.Dispose();
 
-            DataTable dtSede = cg.ConsultarSedesWeb();
-            ddlSede.DataSource = dtSede;
-            ddlSede.DataTextField = "NombreSede";
-            ddlSede.DataValueField = "IdSede";
-            ddlSede.DataBind();
-            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-            dtSede.Dispose();
-        }
+        //    DataTable dtSede = cg.ConsultarSedesWeb();
+        //    ddlSede.DataSource = dtSede;
+        //    ddlSede.DataTextField = "NombreSede";
+        //    ddlSede.DataValueField = "IdSede";
+        //    ddlSede.DataBind();
+        //    ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+        //    dtSede.Dispose();
+        //}
 
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            clasesglobales cg = new clasesglobales();
-            ddlSede.Items.Clear();
+        //protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    clasesglobales cg = new clasesglobales();
+        //    ddlSede.Items.Clear();
 
-            // Si no seleccionó ciudad, mostrar todas las sedes
-            if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
-            {
-                DataTable dtTodasSedes = cg.ConsultarSedesWeb();
-                ddlSede.DataSource = dtTodasSedes;
-                ddlSede.DataTextField = "NombreSede";
-                ddlSede.DataValueField = "IdSede";
-                ddlSede.DataBind();
-                ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-                dtTodasSedes.Dispose();
-                return;
-            }
+        //    // Si no seleccionó ciudad, mostrar todas las sedes
+        //    if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
+        //    {
+        //        DataTable dtTodasSedes = cg.ConsultarSedesWeb();
+        //        ddlSede.DataSource = dtTodasSedes;
+        //        ddlSede.DataTextField = "NombreSede";
+        //        ddlSede.DataValueField = "IdSede";
+        //        ddlSede.DataBind();
+        //        ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+        //        dtTodasSedes.Dispose();
+        //        return;
+        //    }
 
-            // Si seleccionó una ciudad válida, filtrar las sedes
-            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedValue));
-            ddlSede.DataSource = dt;
-            ddlSede.DataTextField = "NombreSede";
-            ddlSede.DataValueField = "IdSede";
-            ddlSede.DataBind();
-            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-            dt.Dispose();
-        }
+        //    // Si seleccionó una ciudad válida, filtrar las sedes
+        //    DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedValue));
+        //    ddlSede.DataSource = dt;
+        //    ddlSede.DataTextField = "NombreSede";
+        //    ddlSede.DataValueField = "IdSede";
+        //    ddlSede.DataBind();
+        //    ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+        //    dt.Dispose();
+        //}
 
-        protected void ddlSede_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ddlSede.SelectedValue)) return;
+        //protected void ddlSede_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(ddlSede.SelectedValue)) return;
 
-            clasesglobales cg = new clasesglobales();
+        //    clasesglobales cg = new clasesglobales();
 
-            DataTable dtSede = cg.ConsultarSedePorId(Convert.ToInt32(ddlSede.SelectedValue));
+        //    DataTable dtSede = cg.ConsultarSedePorId(Convert.ToInt32(ddlSede.SelectedValue));
 
-            if (dtSede != null && dtSede.Rows.Count > 0)
-            {
-                DataRow sedeInfo = dtSede.Rows[0];
-                string idCiudad = sedeInfo["idCiudadSede"].ToString();
+        //    if (dtSede != null && dtSede.Rows.Count > 0)
+        //    {
+        //        DataRow sedeInfo = dtSede.Rows[0];
+        //        string idCiudad = sedeInfo["idCiudadSede"].ToString();
 
-                if (ddlCiudad.Items.FindByValue(idCiudad) != null)
-                {
-                    ddlCiudad.SelectedValue = idCiudad;
-                }
-            }
+        //        if (ddlCiudad.Items.FindByValue(idCiudad) != null)
+        //        {
+        //            ddlCiudad.SelectedValue = idCiudad;
+        //        }
+        //    }
 
-            // liberar si tu implementación lo requiere
-            if (dtSede != null) dtSede.Dispose();
-        }
+        //    // liberar si tu implementación lo requiere
+        //    if (dtSede != null) dtSede.Dispose();
+        //}
 
         protected async void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -579,52 +567,54 @@ namespace WebPage
                 string strApellido = txbApellido.Text.ToUpper();
                 string strCelular = txbCelular.Text.ToString();
                 string strEmail = txbEmail.Text.ToLower();
-                int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
-                string strFechaNac = txbFechaNac.Text.ToString();
+                //int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
+                //string strFechaNac = txbFechaNac.Text.ToString();
 
                 string strFechaInicioPlan = txbFechaIni.Text.ToString();
                 string strFechaFinPlan = txbFechaFin.Text.ToString();
 
-                int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
-                int idSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
+                //int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
+                //int idSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
 
-                DataTable dtSede = cg.ConsultarSedePorId(idSede);
-                string direccion = dtSede.Rows[0]["DireccionSede"].ToString();
-                dtSede.Dispose();
+                //DataTable dtSede = cg.ConsultarSedePorId(idSede);
+                //string direccion = dtSede.Rows[0]["DireccionSede"].ToString();
+                //dtSede.Dispose();
 
-                DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
-                string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
-                string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
-                dtCiudad.Dispose();
+                //DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
+                //string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
+                //string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
+                //dtCiudad.Dispose();
 
                 string strLtValor = ltValor.Text.ToString();
                 Session.Add("ltValorPlan", strLtValor);
 
-                int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, idGenero, strFechaNac, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
+                //int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, idGenero, strFechaNac, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
 
-                string strCedula2 = "";
+                int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail);
 
-                if (EsPlanDuo)
-                {
-                    strCedula2 = txbDocumento2.Text.Trim();
+                //string strCedula2 = "";
 
-                    // VALIDACIÓN: No permitir misma cédula en plan dúo
-                    if (strCedula == strCedula2)
-                    {
-                        MostrarAlerta("Documento duplicado", "En un plan dúo los dos afiliados deben tener documentos diferentes.", "warning");
-                        return;
-                    }
+                //if (EsPlanDuo)
+                //{
+                //    strCedula2 = txbDocumento2.Text.Trim();
 
-                    int tipoDoc2 = Convert.ToInt32(ddlTipoDocumento2.SelectedItem.Value.ToString());
-                    string nombre2 = txbNombre2.Text.ToUpper();
-                    string apellido2 = txbApellido2.Text.ToUpper();
-                    string celular2 = txbCelular2.Text.Trim();
-                    string email2 = txbEmail2.Text.ToLower();
-                    int genero2 = Convert.ToInt32(ddlGenero2.SelectedItem.Value.ToString());
-                    string fechaNac2 = txbFechaNac2.Text.Trim();
+                //    // VALIDACIÓN: No permitir misma cédula en plan dúo
+                //    if (strCedula == strCedula2)
+                //    {
+                //        MostrarAlerta("Documento duplicado", "En un plan dúo los dos afiliados deben tener documentos diferentes.", "warning");
+                //        return;
+                //    }
 
-                    int idAfiliadoDuo = await GestionarAfiliado(strCedula2, tipoDoc2, nombre2, apellido2, celular2, email2, genero2, fechaNac2, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
-                }
+                //    int tipoDoc2 = Convert.ToInt32(ddlTipoDocumento2.SelectedItem.Value.ToString());
+                //    string nombre2 = txbNombre2.Text.ToUpper();
+                //    string apellido2 = txbApellido2.Text.ToUpper();
+                //    string celular2 = txbCelular2.Text.Trim();
+                //    string email2 = txbEmail2.Text.ToLower();
+                //    int genero2 = Convert.ToInt32(ddlGenero2.SelectedItem.Value.ToString());
+                //    string fechaNac2 = txbFechaNac2.Text.Trim();
+
+                //    int idAfiliadoDuo = await GestionarAfiliado(strCedula2, tipoDoc2, nombre2, apellido2, celular2, email2, genero2, fechaNac2, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
+                //}
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
                 bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
@@ -639,13 +629,13 @@ namespace WebPage
                     { "fechaIni", strFechaInicioPlan },
                     { "fechaFin", strFechaFinPlan },
                     { "idVendedor", IdVendedor.ToString() },
-                    { "idSede", idSede.ToString() }
+                    //{ "idSede", idSede.ToString() }
                 };
 
                 // Agregar solo si NO es débito automático
                 if (!esDebitoAutomatico) parametros.Add("totalMeses", TotalMeses.ToString());
 
-                if (EsPlanDuo) parametros.Add("nroDocDuo", strCedula2);
+                //if (EsPlanDuo) parametros.Add("nroDocDuo", strCedula2);
 
                 // Convertir NameValueCollection → querystring
                 string payload = string.Join("&", parametros.AllKeys.Select(key => $"{key}={HttpUtility.UrlEncode(parametros[key])}"));
@@ -668,7 +658,92 @@ namespace WebPage
             }
         }
 
-        private async Task<int> GestionarAfiliado(string documento, int tipoDoc, string nombre, string apellido, string celular, string email, int genero, string fechaNac, string fechaIniPlan, int idSede, string direccion, string codEstado, string codCiudad)
+        //private async Task<int> GestionarAfiliado(string documento, int tipoDoc, string nombre, string apellido, string celular, string email, int genero, string fechaNac, string fechaIniPlan, int idSede, string direccion, string codEstado, string codCiudad)
+        //{
+        //    clasesglobales cg = new clasesglobales();
+
+        //    int idAfiliado = 0;
+
+        //    DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(documento);
+
+        //    if (dtAfiliado.Rows.Count > 0)
+        //    {
+        //        idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
+
+        //        bool tienePlanActivo = ConsultarPlanActivoAfiliado(documento, fechaIniPlan);
+
+        //        if (tienePlanActivo) throw new Exception("PLAN_ACTIVO");
+
+        //        cg.ActualizarAfiliadoRegister(
+        //            documento,
+        //            nombre,
+        //            apellido,
+        //            celular,
+        //            email,
+        //            genero,
+        //            fechaNac,
+        //            idSede,
+        //            "Pendiente"
+        //        );
+        //    }
+        //    else
+        //    {
+        //        cg.InsertarAfiliadoWeb(
+        //            documento,
+        //            tipoDoc,
+        //            nombre,
+        //            apellido,
+        //            celular,
+        //            email,
+        //            genero,
+        //            fechaNac,
+        //            idSede
+        //        );
+
+        //        // Vuelves a consultar para obtener el id
+        //        DataTable dtNew = cg.ConsultarAfiliadoPorDocumento(documento);
+        //        idAfiliado = Convert.ToInt32(dtNew.Rows[0]["IdAfiliado"]);
+        //        dtNew.Dispose();
+        //    }
+
+        //    dtAfiliado.Dispose();
+
+        //    // ---- Gestionar en Siigo ----
+        //    try
+        //    {
+        //        DataTable dtAfi = cg.ConsultarCodigoSiigoPorDocumento(documento);
+        //        string idTipoDocSiigo = dtAfi.Rows[0]["CodSiigo"].ToString();
+        //        dtAfi.Dispose();
+
+        //        var siigoClient = new SiigoClient(
+        //            new HttpClient(),
+        //            UrlSiigo,
+        //            UserName,
+        //            AccessKey,
+        //            PartnerId
+        //        );
+
+        //        await siigoClient.ManageCustomerAsync(
+        //            idTipoDocSiigo,
+        //            documento,
+        //            nombre,
+        //            apellido,
+        //            direccion,
+        //            codEstado,
+        //            codCiudad,
+        //            celular,
+        //            email
+        //        );
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Error Siigo: " + ex.Message);
+        //    }
+
+        //    return idAfiliado;
+        //}
+
+        private async Task<int> GestionarAfiliado(string documento, int tipoDoc, string nombre, string apellido, string celular, string email)
         {
             clasesglobales cg = new clasesglobales();
 
@@ -678,21 +753,15 @@ namespace WebPage
 
             if (dtAfiliado.Rows.Count > 0)
             {
-                idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["IdAfiliado"]);
-
-                bool tienePlanActivo = ConsultarPlanActivoAfiliado(documento, fechaIniPlan);
-
-                if (tienePlanActivo) throw new Exception("PLAN_ACTIVO");
-
                 cg.ActualizarAfiliadoRegister(
                     documento,
                     nombre,
                     apellido,
                     celular,
                     email,
-                    genero,
-                    fechaNac,
-                    idSede,
+                    1,
+                    null,
+                    1,
                     "Pendiente"
                 );
             }
@@ -705,9 +774,9 @@ namespace WebPage
                     apellido,
                     celular,
                     email,
-                    genero,
-                    fechaNac,
-                    idSede
+                    1,
+                    null,
+                    1
                 );
 
                 // Vuelves a consultar para obtener el id
@@ -738,9 +807,9 @@ namespace WebPage
                     documento,
                     nombre,
                     apellido,
-                    direccion,
-                    codEstado,
-                    codCiudad,
+                    "Boulevard Santander No. 18-45",
+                    "68",
+                    "68001",
                     celular,
                     email
                 );
@@ -811,49 +880,38 @@ namespace WebPage
                 txbApellido = txbApellido,
                 txbEmail = txbEmail,
                 txbCelular = txbCelular,
-                txbFechaNac = txbFechaNac,
-                ddlGenero = ddlGenero,
-                ddlCiudad = ddlCiudad,
-                ddlSede = ddlSede,
+                //txbFechaNac = txbFechaNac,
+                //ddlGenero = ddlGenero,
+                //ddlCiudad = ddlCiudad,
+                //ddlSede = ddlSede,
                 EsSecundario = false
             };
         }
 
-        private FormularioAfiliado ObtenerFormulario2()
-        {
-            return new FormularioAfiliado
-            {
-                txbDocumento = txbDocumento2,
-                ddlTipoDocumento = ddlTipoDocumento2,
-                txbNombre = txbNombre2,
-                txbApellido = txbApellido2,
-                txbEmail = txbEmail2,
-                txbCelular = txbCelular2,
-                txbFechaNac = txbFechaNac2,
-                ddlGenero = ddlGenero2,
-                EsSecundario = true
-            };
-        }
+        //private FormularioAfiliado ObtenerFormulario2()
+        //{
+        //    return new FormularioAfiliado
+        //    {
+        //        txbDocumento = txbDocumento2,
+        //        ddlTipoDocumento = ddlTipoDocumento2,
+        //        txbNombre = txbNombre2,
+        //        txbApellido = txbApellido2,
+        //        txbEmail = txbEmail2,
+        //        txbCelular = txbCelular2,
+        //        txbFechaNac = txbFechaNac2,
+        //        ddlGenero = ddlGenero2,
+        //        EsSecundario = true
+        //    };
+        //}
 
         protected async void GestionarDatosUsuario(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
             string documento = txt.Text.Trim();
 
-            bool EsPlanDuo = IdPlan == 32;
-
             FormularioAfiliado form;
 
-            if (txt.ID == "txbDocumento2")
-            {
-                if (!EsPlanDuo) return; // seguridad extra
-
-                form = ObtenerFormulario2();
-            }
-            else
-            {
-                form = ObtenerFormulario1();
-            }
+            form = ObtenerFormulario1();
 
             if (string.IsNullOrEmpty(documento))
             {
@@ -868,10 +926,109 @@ namespace WebPage
                 await BuscarPersonaADRES(documento, form);
 
                 // Solo el principal necesita ciudades y sedes
-                if (!form.EsSecundario)
-                    CargarCiudadesYSedes();
+                //if (!form.EsSecundario)
+                //    CargarCiudadesYSedes();
             }
         }
+
+        //protected async void GestionarDatosUsuario(object sender, EventArgs e)
+        //{
+        //    TextBox txt = (TextBox)sender;
+        //    string documento = txt.Text.Trim();
+
+        //    bool EsPlanDuo = IdPlan == 32;
+
+        //    FormularioAfiliado form;
+
+        //    if (txt.ID == "txbDocumento2")
+        //    {
+        //        if (!EsPlanDuo) return; // seguridad extra
+
+        //        form = ObtenerFormulario2();
+        //    }
+        //    else
+        //    {
+        //        form = ObtenerFormulario1();
+        //    }
+
+        //    if (string.IsNullOrEmpty(documento))
+        //    {
+        //        LimpiarCampos(form);
+        //        return;
+        //    }
+
+        //    bool existe = BuscarAfiliado(documento, form);
+
+        //    if (!existe)
+        //    {
+        //        await BuscarPersonaADRES(documento, form);
+
+        //        // Solo el principal necesita ciudades y sedes
+        //        //if (!form.EsSecundario)
+        //        //    CargarCiudadesYSedes();
+        //    }
+        //}
+
+
+        //protected bool BuscarAfiliado(string documento, FormularioAfiliado form)
+        //{
+        //    if (string.IsNullOrEmpty(documento)) return false;
+
+        //    clasesglobales cg = new clasesglobales();
+        //    DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
+
+        //    if (dt.Rows.Count == 0)
+        //    {
+        //        LimpiarCampos(form);
+        //        dt.Dispose();
+        //        return false;
+        //    }
+
+        //    DataRow afiliado = dt.Rows[0];
+
+        //    form.txbDocumento.Text = documento;
+        //    form.ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"].ToString();
+        //    form.txbNombre.Text = afiliado["NombreAfiliado"].ToString();
+        //    form.txbApellido.Text = afiliado["ApellidoAfiliado"].ToString();
+        //    form.txbEmail.Text = afiliado["EmailAfiliado"].ToString();
+        //    form.txbCelular.Text = afiliado["CelularAfiliado"].ToString();
+        //    form.txbFechaNac.Text = afiliado["FechaNacAfiliado"].ToString();
+        //    form.ddlGenero.SelectedValue = afiliado["idGenero"].ToString();
+
+        //    // Solo si es afiliado principal
+        //    if (!form.EsSecundario)
+        //    {
+        //        int idSede = Convert.ToInt32(afiliado["idSede"]);
+        //        DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(idSede);
+
+        //        if (dtCiudad != null && dtCiudad.Rows.Count > 0)
+        //        {
+        //            string idCiudad = dtCiudad.Rows[0]["idCiudadSede"].ToString();
+
+        //            if (form.ddlCiudad.Items.FindByValue(idCiudad) != null)
+        //                form.ddlCiudad.SelectedValue = idCiudad;
+
+        //            DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(idCiudad));
+
+        //            form.ddlSede.Items.Clear();
+        //            form.ddlSede.DataSource = dtSedes;
+        //            form.ddlSede.DataTextField = "NombreSede";
+        //            form.ddlSede.DataValueField = "IdSede";
+        //            form.ddlSede.DataBind();
+        //            form.ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+
+        //            if (form.ddlSede.Items.FindByValue(idSede.ToString()) != null)
+        //                form.ddlSede.SelectedValue = idSede.ToString();
+
+        //            dtSedes.Dispose();
+        //        }
+
+        //        dtCiudad?.Dispose();
+        //    }
+
+        //    dt.Dispose();
+        //    return true;
+        //}
 
         protected bool BuscarAfiliado(string documento, FormularioAfiliado form)
         {
@@ -895,43 +1052,69 @@ namespace WebPage
             form.txbApellido.Text = afiliado["ApellidoAfiliado"].ToString();
             form.txbEmail.Text = afiliado["EmailAfiliado"].ToString();
             form.txbCelular.Text = afiliado["CelularAfiliado"].ToString();
-            form.txbFechaNac.Text = afiliado["FechaNacAfiliado"].ToString();
-            form.ddlGenero.SelectedValue = afiliado["idGenero"].ToString();
 
-            // Solo si es afiliado principal
-            if (!form.EsSecundario)
-            {
-                int idSede = Convert.ToInt32(afiliado["idSede"]);
-                DataTable dtCiudad = cg.ConsultarCiudadSedePorIdSede(idSede);
-
-                if (dtCiudad != null && dtCiudad.Rows.Count > 0)
-                {
-                    string idCiudad = dtCiudad.Rows[0]["idCiudadSede"].ToString();
-
-                    if (form.ddlCiudad.Items.FindByValue(idCiudad) != null)
-                        form.ddlCiudad.SelectedValue = idCiudad;
-
-                    DataTable dtSedes = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(idCiudad));
-
-                    form.ddlSede.Items.Clear();
-                    form.ddlSede.DataSource = dtSedes;
-                    form.ddlSede.DataTextField = "NombreSede";
-                    form.ddlSede.DataValueField = "IdSede";
-                    form.ddlSede.DataBind();
-                    form.ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
-
-                    if (form.ddlSede.Items.FindByValue(idSede.ToString()) != null)
-                        form.ddlSede.SelectedValue = idSede.ToString();
-
-                    dtSedes.Dispose();
-                }
-
-                dtCiudad?.Dispose();
-            }
-
-            dt.Dispose();
             return true;
         }
+
+        //protected async Task BuscarPersonaADRES(string documento, FormularioAfiliado form)
+        //{
+        //    if (string.IsNullOrEmpty(documento))
+        //    {
+        //        LimpiarCampos(form);
+        //        return;
+        //    }
+
+        //    string url = $"https://pqrdsuperargo.supersalud.gov.co/api/api/adres/0/{documento}";
+
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        try
+        //        {
+        //            var response = await client.GetAsync(url);
+
+        //            if (!response.IsSuccessStatusCode)
+        //            {
+        //                LimpiarCampos(form);
+        //                return;
+        //            }
+
+        //            string json = await response.Content.ReadAsStringAsync();
+
+        //            json = json.Replace("\\u00a5", "Ñ")
+        //                       .Replace("\\u00a4", "ñ");
+
+        //            dynamic personaADRES = JsonConvert.DeserializeObject<dynamic>(json);
+
+        //            if (personaADRES == null ||
+        //                personaADRES.nombre == null ||
+        //                personaADRES.apellido == null)
+        //            {
+        //                LimpiarCampos(form);
+        //                return;
+        //            }
+
+        //            // Campos comunes (principal y secundario)
+        //            form.txbDocumento.Text = documento;
+
+        //            form.txbNombre.Text =
+        //                $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}"
+        //                .Trim()
+        //                .ToUpper();
+
+        //            form.txbApellido.Text =
+        //                $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}"
+        //                .Trim()
+        //                .ToUpper();
+
+        //            form.txbFechaNac.Text = personaADRES.fecha_nacimiento;
+        //            form.ddlGenero.SelectedValue = personaADRES.sexo;
+        //        }
+        //        catch (Exception)
+        //        {
+        //            LimpiarCampos(form);
+        //        }
+        //    }
+        //}
 
         protected async Task BuscarPersonaADRES(string documento, FormularioAfiliado form)
         {
@@ -982,9 +1165,6 @@ namespace WebPage
                         $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}"
                         .Trim()
                         .ToUpper();
-
-                    form.txbFechaNac.Text = personaADRES.fecha_nacimiento;
-                    form.ddlGenero.SelectedValue = personaADRES.sexo;
                 }
                 catch (Exception)
                 {
@@ -993,20 +1173,28 @@ namespace WebPage
             }
         }
 
+        //private void LimpiarCampos(FormularioAfiliado form)
+        //{
+        //    form.txbNombre.Text = "";
+        //    form.txbApellido.Text = "";
+        //    form.txbEmail.Text = "";
+        //    form.txbCelular.Text = "";
+        //    form.txbFechaNac.Text = "";
+        //    form.ddlGenero.SelectedIndex = 0;
+
+        //    if (!form.EsSecundario)
+        //    {
+        //        form.ddlCiudad.SelectedIndex = 0;
+        //        form.ddlSede.Items.Clear();
+        //    }
+        //}
+
         private void LimpiarCampos(FormularioAfiliado form)
         {
             form.txbNombre.Text = "";
             form.txbApellido.Text = "";
             form.txbEmail.Text = "";
             form.txbCelular.Text = "";
-            form.txbFechaNac.Text = "";
-            form.ddlGenero.SelectedIndex = 0;
-
-            if (!form.EsSecundario)
-            {
-                form.ddlCiudad.SelectedIndex = 0;
-                form.ddlSede.Items.Clear();
-            }
         }
 
         public string CalcularFechaFinPlan(string strFechaInicio)

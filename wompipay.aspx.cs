@@ -276,6 +276,8 @@ namespace WebPage
                 //}
 
                 ValidarTokenURLEncryptor();
+
+                CargarCiudadesYSedes();
             }
         }
 
@@ -316,7 +318,7 @@ namespace WebPage
                 FechaInicioPlan = q["fechaIni"];
                 FechaFinPlan = q["fechaFin"];
                 IdVendedor = Convert.ToInt32(q["idVendedor"]);
-                IdSede = Convert.ToInt32(q["idSede"]);
+                //IdSede = Convert.ToInt32(q["idSede"]);
 
                 if (int.TryParse(q["idAfiPlan"], out int idAfiPlan))
                 {
@@ -408,6 +410,80 @@ namespace WebPage
         //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
         //    }
         //}
+
+
+        private void CargarCiudadesYSedes()
+        {
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtCiudad = cg.ConsultarCiudadesSedesWeb();
+            ddlCiudad.DataSource = dtCiudad;
+            ddlCiudad.DataTextField = "NombreCiudadSede";
+            ddlCiudad.DataValueField = "idCiudadSede";
+            ddlCiudad.DataBind();
+            ddlCiudad.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dtCiudad.Dispose();
+
+            DataTable dtSede = cg.ConsultarSedesWeb();
+            ddlSede.DataSource = dtSede;
+            ddlSede.DataTextField = "NombreSede";
+            ddlSede.DataValueField = "IdSede";
+            ddlSede.DataBind();
+            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dtSede.Dispose();
+        }
+
+        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clasesglobales cg = new clasesglobales();
+            ddlSede.Items.Clear();
+
+            // Si no seleccionó ciudad, mostrar todas las sedes
+            if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
+            {
+                DataTable dtTodasSedes = cg.ConsultarSedesWeb();
+                ddlSede.DataSource = dtTodasSedes;
+                ddlSede.DataTextField = "NombreSede";
+                ddlSede.DataValueField = "IdSede";
+                ddlSede.DataBind();
+                ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+                dtTodasSedes.Dispose();
+                return;
+            }
+
+            // Si seleccionó una ciudad válida, filtrar las sedes
+            DataTable dt = cg.ConsultarSedesPorIdCiudadWeb(Convert.ToInt32(ddlCiudad.SelectedValue));
+            ddlSede.DataSource = dt;
+            ddlSede.DataTextField = "NombreSede";
+            ddlSede.DataValueField = "IdSede";
+            ddlSede.DataBind();
+            ddlSede.Items.Insert(0, new ListItem("Selecciona una opción", ""));
+            dt.Dispose();
+        }
+
+        protected void ddlSede_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlSede.SelectedValue)) return;
+
+            clasesglobales cg = new clasesglobales();
+
+            DataTable dtSede = cg.ConsultarSedePorId(Convert.ToInt32(ddlSede.SelectedValue));
+
+            if (dtSede != null && dtSede.Rows.Count > 0)
+            {
+                DataRow sedeInfo = dtSede.Rows[0];
+                string idCiudad = sedeInfo["idCiudadSede"].ToString();
+
+                if (ddlCiudad.Items.FindByValue(idCiudad) != null)
+                {
+                    ddlCiudad.SelectedValue = idCiudad;
+                }
+            }
+
+            // liberar si tu implementación lo requiere
+            if (dtSede != null) dtSede.Dispose();
+        }
+
 
         private void CargarInformacionPlan()
         {
@@ -576,6 +652,21 @@ namespace WebPage
         {
             try
             {
+                clasesglobales cg = new clasesglobales();
+
+                int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
+                IdSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
+
+                DataTable dtSede = cg.ConsultarSedePorId(IdSede);
+                string direccion = dtSede.Rows[0]["DireccionSede"].ToString();
+                dtSede.Dispose();
+
+                DataTable dtCiudad = cg.ConsultarCiudadSedeSiigoPorId(idCiudad);
+                string codEstado = dtCiudad.Rows[0]["CodigoEstado"].ToString();
+                string codCiudad = dtCiudad.Rows[0]["CodigoCiudad"].ToString();
+                dtCiudad.Dispose();
+
+
                 string cardNumber = txbCreditCard.Text.Replace(" ", "");
                 if (!cardNumber.All(char.IsDigit))
                 {
@@ -614,8 +705,6 @@ namespace WebPage
                     strEstado = "Activo";
                 }
 
-                clasesglobales cg = new clasesglobales();
-
                 // 3. Gestión de AfiliadoPlan
                 if (EsAfiliadoPlanNuevo) // SI ES AFILIADO PLAN NUEVO, CREARLO
                 {
@@ -653,12 +742,40 @@ namespace WebPage
                 // 5. Si no es un AfiliadoPlan nuevo, se gestiona el plan actual para actualizar fechas o finalizarlo según corresponda
                 if (!EsAfiliadoPlanNuevo) GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
 
+                //
+
+                DataTable dtAfi = cg.ConsultarAfiliadoPorDocumento(DocumentoAfiliado);
+                string nombreAfi = dtAfi.Rows[0]["NombreAfiliado"].ToString();
+                string apellidoAfi = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
+                string celularAfi = dtAfi.Rows[0]["CelularAfiliado"].ToString();
+                string correoAfi = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+
+                cg.ActualizarAfiliadoRegister(
+                    DocumentoAfiliado,
+                    nombreAfi,
+                    apellidoAfi,
+                    celularAfi,
+                    correoAfi,
+                    1,
+                    null,
+                    IdSede,
+                    "Pendiente"
+                );
+
+                dtAfi.Dispose();
+
+                //
+
                 if (IdPlan != 12)
                 {
                     // 6. Facturar en Siigo
                     try
                     {
                         string fechaActual = DateTime.Now.ToString("yyyy-MM-dd");
+
+                        DataTable dtAfili = cg.ConsultarCodigoSiigoPorDocumento(DocumentoAfiliado);
+                        string idTipoDocSiigo = dtAfili.Rows[0]["CodSiigo"].ToString();
+                        dtAfili.Dispose();
 
                         // Creación de factura
                         var siigoClient = new SiigoClient(
@@ -667,6 +784,18 @@ namespace WebPage
                             UserName,
                             AccessKey,
                             PartnerId
+                        );
+
+                        await siigoClient.ManageCustomerAsync(
+                            idTipoDocSiigo,
+                            DocumentoAfiliado,
+                            nombreAfi,
+                            apellidoAfi,
+                            direccion,
+                            codEstado,
+                            codCiudad,
+                            celularAfi,
+                            correoAfi
                         );
 
                         // PRUEBAS

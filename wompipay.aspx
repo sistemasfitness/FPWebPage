@@ -108,13 +108,13 @@
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Datos del comprador</h3>
-                            <p style="color: #fff;">Datos necesarios para confirmar tu pago. Deben coincidir con los de tu tarjeta.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Información del plan</h3>
+                            <p style="color: #fff;">Elige donde quieres entrenar</p>
                         </div>
 
                         <div class="step">
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
+                                <%--<div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="txbCorreoTarjeta">Correo electrónico:</label>
                                         <asp:TextBox ID="txbCorreoTarjeta" CssClass="form-control" runat="server" required="" placeholder="correo@ejemplo.com" 
@@ -127,7 +127,28 @@
                                         <asp:TextBox ID="txbTelefonoTarjeta" CssClass="form-control" runat="server" required="" placeholder="3001234567" 
                                             name="txbTelefonoTarjeta"></asp:TextBox>
                                     </div>
-                                </div>
+                                </div>--%>
+                                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                                <asp:UpdatePanel ID="upAfiliados" runat="server">
+                                    <ContentTemplate>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Ciudad: *</label>
+                                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
+                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" 
+                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Sede: *</label>
+                                                <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" required=""
+                                                    DataTextField="NombreSede" DataValueField="IdSede" 
+                                                    AutoPostBack="true" OnSelectedIndexChanged="ddlSede_SelectedIndexChanged" />
+                                            </div>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                         <!--End step -->
@@ -205,6 +226,20 @@
                                         <label for="txbNombreTarjeta">Nombre impreso en la tarjeta:</label>
                                         <asp:TextBox ID="txbNombreTarjeta" CssClass="form-control" runat="server" required="" placeholder="Nombre del titular" 
                                             name="txbNombreTarjeta"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="txbCorreoTarjeta">Correo electrónico de comprador:</label>
+                                        <asp:TextBox ID="txbCorreoTarjeta" CssClass="form-control" runat="server" required="" placeholder="correo@ejemplo.com" 
+                                            name="txbCorreoTarjeta"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="txbTelefonoTarjeta">Teléfono del comprador:</label>
+                                        <asp:TextBox ID="txbTelefonoTarjeta" CssClass="form-control" runat="server" required="" placeholder="3001234567" 
+                                            name="txbTelefonoTarjeta"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +386,9 @@
                 { id: "<%= txbCVC.ClientID %>", msg: "Por favor, ingresa el CVC de la tarjeta." },
                 { id: "<%= txbNombreTarjeta.ClientID %>", msg: "Por favor, ingresa el nombre del titular de la tarjeta." },
                 { id: "<%= txbCorreoTarjeta.ClientID %>", msg: "Por favor, ingresa el correo electrónico del titular de la tarjeta.", tipo: "email" },
-                { id: "<%= txbTelefonoTarjeta.ClientID %>", msg: "Por favor, ingresa el número de celular del titular de la tarjeta." }
+                { id: "<%= txbTelefonoTarjeta.ClientID %>", msg: "Por favor, ingresa el número de celular del titular de la tarjeta." },
+                { id: "<%= ddlCiudad.ClientID %>", msg: "Por favor, selecciona la ciudad donde deseas entrenar." },
+                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }
             ];
 
             for (const campo of campos) {

@@ -99,7 +99,7 @@
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Información inicial</h3>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong></strong>Información inicial</h3>
                             <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
@@ -157,8 +157,11 @@
                                                     MaxLength="10" oninput="numberFormat(this)" required=""></asp:TextBox>
                                             </div>
                                         </div>
+
+                                        <asp:TextBox ID="txbFechaIni" runat="server" name="txbFechaIni" Visible="false" OnTextChanged="CambiarFechaFin"></asp:TextBox>
+                                        <asp:TextBox ID="txbFechaFin" runat="server" name="txbFechaFin" Visible="false"></asp:TextBox>
                                     </div>
-                                    <div class="row">
+                                    <%--<div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Género: *</label>
@@ -176,9 +179,9 @@
                                                     runat="server" name="txbFechaNac" required=""></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--%>
 
-                                    <div id="divPlanDuo" runat="server">
+                                    <%--<div id="divPlanDuo" runat="server">
                                         <h3 style="font-weight: 900; color: #e3ff00;">Información de tu dúo</h3>
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -251,17 +254,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--%>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
                         <!--End step -->
-                        <div class="form_title">
+                        <%--<div class="form_title">
                             <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
                             <p style="color: #fff;">Elige las opciones de tu plan.</p>
-                        </div>
+                        </div>--%>
 
-                        <div class="step">
+                        <%--<div class="step">
                             <asp:UpdatePanel ID="upSedes" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
@@ -323,7 +326,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <aside class="col-md-4" id="sidebar">
@@ -537,7 +540,7 @@
 
     </script>--%>
 
-    <script>
+    <%--<script>
 
         document.addEventListener("DOMContentLoaded", function () {
             const fechaIni = document.getElementById('<%= txbFechaIni.ClientID %>');
@@ -546,7 +549,7 @@
             });
         });
 
-    </script>
+    </script>--%>
 
     <%--<script>
 
@@ -674,11 +677,11 @@
                 { id: "<%= txbNombre.ClientID %>", msg: "Por favor, ingresa tu nombre." },
                 { id: "<%= txbApellido.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
                 { id: "<%= txbEmail.ClientID %>", msg: "Por favor, ingresa tu correo electrónico.", tipo: "email" },
-                { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." },
-                { id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
+                { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." }
+                <%--{ id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
                 { id: "<%= txbFechaNac.ClientID %>", msg: "Por favor, ingresa tu fecha de nacimiento." },
                 { id: "<%= ddlCiudad.ClientID %>", msg: "Por favor, selecciona la ciudad donde deseas entrenar." },
-                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }
+                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }--%>
             ];
 
             // Validación del afiliado principal
@@ -703,7 +706,7 @@
             }
 
             // Validación adicional SOLO si es Plan Dúo
-            const divPlanDuo = document.getElementById("<%= divPlanDuo.ClientID %>");
+            <%--const divPlanDuo = document.getElementById("<%= divPlanDuo.ClientID %>");
             const esPlanDuo = divPlanDuo && divPlanDuo.offsetParent !== null;
 
             if (esPlanDuo) {
@@ -738,7 +741,7 @@
                         ).then(() => el.focus());
                     }
                 }
-            }
+            }--%>
 
             return true;
         }

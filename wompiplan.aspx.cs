@@ -171,7 +171,8 @@ namespace WebPage
             FechaFinPlan = q["fechaFin"];
             MesesPlan = Convert.ToInt32(q["totalMeses"]);
             IdVendedor = Convert.ToInt32(q["idVendedor"]);
-            IdSede = Convert.ToInt32(q["idSede"]);
+            //IdSede = Convert.ToInt32(q["idSede"]);
+            IdSede = 1;
 
             DocumentoAfiliadoDuo = string.IsNullOrWhiteSpace(q["nroDocDuo"])
                 ? string.Empty
