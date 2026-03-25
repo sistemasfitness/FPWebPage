@@ -4,6 +4,7 @@
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
 <%@ Register Src="~/controls/aliados.ascx" TagPrefix="uc1" TagName="aliados" %>
+<%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -159,167 +160,9 @@
             <!--  End container-->
         </section>
 
-        <section class="margin_60_35" id="sedes" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
-
-                <div class="row">
-                    <div class="owl-carousel team-carousel3" width="600px">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=1">
-                                            <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=2">
-                                            <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=3">
-                                            <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=4">
-                                            <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=5">
-                                            <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=6">
-                                            <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=7">
-                                            <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=8">
-                                            <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=9">
-                                            <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=10">
-                                            <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
-            </div>
-        </section>
+        <!-- Control Sedes -->
+        <uc1:sedes runat="server" ID="sedes" />
+        <!-- End Control Sedes -->
 
         <!-- Control Servicios -->
         <uc1:servicios runat="server" ID="controlservicios" />
@@ -533,7 +376,7 @@
                                                 DataValueField="idSede" CssClass="form-control"
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlNombresSedes_SelectedIndexChanged"
                                                 Style="background-color: #3c3c3c;">
-                                                <asp:ListItem Text="Selecciona una sede" Value=""></asp:ListItem>
+                                                <%--<asp:ListItem Text="Selecciona una sede" Value=""></asp:ListItem>--%>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
@@ -627,32 +470,6 @@
                 },
                 1000: {
                     items: 4,
-                }
-            }
-        });
-
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            nav: true,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 2,
                 }
             }
         });

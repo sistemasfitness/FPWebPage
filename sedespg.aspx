@@ -2,6 +2,7 @@
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
+<%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -104,75 +105,13 @@
     <!-- End Header video -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="sedes" style="padding-top: 0px;">
-        <div class="container margin_60">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+    <!-- Control Sedes -->
+    <form runat="server" id="form1" class="form-web" style="color: #fff;">
+        <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-            <form runat="server" id="form1">
-                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </form>
-
-            <div class="row">
-
-                <div class="owl-carousel team-carousel3">
-                    <asp:Repeater ID="rpSedes" runat="server">
-                        <ItemTemplate>
-                            <div class="team-item">
-                                <div class="team-item-img">
-                                    <img src="img/sedes/galeria/<%# Eval("ImagenPrincipal") %>" class="img-responsive" alt="" />
-                                    <div class="team-item-detail">
-                                        <div class="team-item-detail-inner">
-                                            <h4 style="font-weight: 900;"><%# Eval("NombreSede") %></h4>
-                                            <p>
-                                                <%# Eval("DireccionSede") %><br />
-                                                <%# Eval("NombreCiudadSede") %><br />
-                                                <%# Eval("TelefonoSede") %>
-                                            </p>
-                                            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="team-item-info">
-                                    <h4 style="font-weight: 900; color: #fff;"><%# Eval("NombreSede") %></h4>
-                                    <p style="color: #fff;"><%# Eval("NombreCiudadSede") %></p>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
+        <uc1:sedes runat="server" ID="sedes" />
+    </form>
+    <!-- End Control Sedes -->
 
     <uc1:planes runat="server" ID="controlplanes" />
 
@@ -233,32 +172,6 @@
             videoLoop: true,
             videoPlayOnlyVisible: false,
             videoLazyLoading: false
-        });
-
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 2,
-                }
-            }
         });
 
         $('#layerslider').layerSlider({

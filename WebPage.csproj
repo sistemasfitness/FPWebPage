@@ -264,6 +264,7 @@
     <Content Include="controls\mainmenunew.ascx" />
     <Content Include="controls\mapasedeadministrativa.ascx" />
     <Content Include="controls\planes.ascx" />
+    <Content Include="controls\sedes.ascx" />
     <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
     <Content Include="css\animate.css" />
@@ -868,6 +869,13 @@
     </Compile>
     <Compile Include="controls\planes.ascx.designer.cs">
       <DependentUpon>planes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\sedes.ascx.cs">
+      <DependentUpon>sedes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\sedes.ascx.designer.cs">
+      <DependentUpon>sedes.ascx</DependentUpon>
     </Compile>
     <Compile Include="controls\servicios.ascx.cs">
       <DependentUpon>servicios.ascx</DependentUpon>

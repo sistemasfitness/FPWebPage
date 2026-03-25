@@ -2,6 +2,7 @@
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
+<%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -151,7 +152,6 @@
                             <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
                             <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago adicional de membresía ($190.000).</span></li>
                             <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
@@ -196,7 +196,6 @@
                             <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                             <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                             <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Pago adicional de membresía ($190.000).</span></li>
                             <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
@@ -211,8 +210,8 @@
 
                         <p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>
 
-                        <p class="plan-price">$ 174.900 1er Mes</p>
-                        <p class="plan-title" style="font-size: 15px;">+ $ 190.000 de Inscripción</p>
+                        <p class="plan-price">$ 82.500 1er Mes</p>
+                        <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
 
                         <p>DESPUÉS $165.000/mes</p>
 
@@ -224,8 +223,8 @@
                                onclick="planAddToCart(
                                    ['31'],
                                    'Plan Mes a Mes',
-                                   364900,
-                                   'register?token=QTXXAbI22Wv9gJcNALSH'
+                                   92400,
+                                   'register?token=miHiH6m1HPn49QDPK9i0'
                                ); return false;">
                                Comprar ya
                             </a>
@@ -238,8 +237,7 @@
                             <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
                             <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                             <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                            <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Membresía incluida.</span></li>
-                            <li><i class="fa fa-circle-check"></i>Pago adicional de membresía ($190.000).</li>
+                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                             <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                         </ul>
                     </div>
@@ -258,166 +256,13 @@
     <uc1:servicios runat="server" ID="controlservicios" />
     <!-- End Control Servicios -->
 
-    <section class="margin_60_35" id="planes2" style="padding-top: 10px; padding-bottom: 15px;">
-        <div class="container">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+    <!-- Control Sedes -->
+    <form runat="server" id="form1" class="form-web" style="color: #fff;">
+        <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-            <div class="row">
-                <div class="owl-carousel team-carousel2" width="600px">
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=1">
-                                        <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=2">
-                                        <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=3">
-                                        <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=4">
-                                        <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=5">
-                                        <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=6">
-                                        <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=7">
-                                        <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=8">
-                                        <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=9">
-                                        <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <div class="img_wrapper">
-                                <div class="img_container">
-                                    <a href="sedes?id=10">
-                                        <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <form runat="server" id="form2">
-                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </form>
-        </div>
-    </section>
+        <uc1:sedes runat="server" ID="sedes" />
+    </form>
+    <!-- End Control Sedes -->
 
     <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">

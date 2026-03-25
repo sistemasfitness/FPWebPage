@@ -15,29 +15,29 @@ namespace WebPage
 
         }
 
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlSedes.Enabled = true;
-            clasesglobales cg = new clasesglobales();
+        //protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    ddlSedes.Enabled = true;
+        //    clasesglobales cg = new clasesglobales();
 
-            string strQuery = "SELECT * " +
-            "FROM Sedes " +
-            "WHERE idCiudadSede = " + ddlCiudad.SelectedItem.Value.ToString() + " " +
-            "AND idSede <> 11 ";
-            DataTable dt = cg.TraerDatos(strQuery);
+        //    string strQuery = "SELECT * " +
+        //    "FROM Sedes " +
+        //    "WHERE idCiudadSede = " + ddlCiudad.SelectedItem.Value.ToString() + " " +
+        //    "AND idSede <> 11 ";
+        //    DataTable dt = cg.TraerDatos(strQuery);
 
-            ListItem li = new ListItem("Seleccione", "");
-            ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(li);
-            ddlSedes.DataSource = dt;
-            ddlSedes.DataBind();
+        //    ListItem li = new ListItem("Seleccione", "");
+        //    ddlSedes.Items.Clear();
+        //    ddlSedes.Items.Add(li);
+        //    ddlSedes.DataSource = dt;
+        //    ddlSedes.DataBind();
 
-            dt.Dispose();
-        }
+        //    dt.Dispose();
+        //}
 
-        protected void ddlSedes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
-        }
+        //protected void ddlSedes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
+        //}
     }
 }

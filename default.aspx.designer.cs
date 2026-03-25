@@ -42,31 +42,13 @@ namespace WebPage
         protected global::System.Web.UI.ScriptManager sm1;
 
         /// <summary>
-        /// Control upSedes.
+        /// Control sedes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upSedes;
-
-        /// <summary>
-        /// Control ddlCiudad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCiudad;
-
-        /// <summary>
-        /// Control ddlSedes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
+        protected global::WebPage.controls.sedes sedes;
 
         /// <summary>
         /// Control controlservicios.
