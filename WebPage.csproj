@@ -661,6 +661,7 @@
     <Content Include="planesKiosco.aspx" />
     <Content Include="producto.aspx" />
     <Content Include="pagoRedeban.aspx" />
+    <Content Include="promoPagosUnicos.aspx" />
     <Content Include="register.aspx" />
     <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -1040,6 +1041,13 @@
     </Compile>
     <Compile Include="producto.aspx.designer.cs">
       <DependentUpon>producto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promoPagosUnicos.aspx.cs">
+      <DependentUpon>promoPagosUnicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promoPagosUnicos.aspx.designer.cs">
+      <DependentUpon>promoPagosUnicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="pagoRedeban.aspx.cs">
