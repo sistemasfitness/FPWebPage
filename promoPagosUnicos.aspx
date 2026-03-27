@@ -85,7 +85,7 @@
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/plan-easy_2026-01-05.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/promo-2026-03-26.jpeg" data-natural-width="1900" >
         <div id="sub_content_in">
             <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
         </div>
@@ -93,7 +93,7 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section id="barraProgreso" runat="server" visible="false" style="text-align: center;">
+    <%--<section id="barraProgreso" runat="server" visible="false" style="text-align: center;">
         <div class="container">
             <asp:Literal ID="litScriptFechas" runat="server" EnableViewState="false"></asp:Literal>
 
@@ -107,12 +107,12 @@
 
             <p style="font-size: 3rem; font-weight: 900; color: #FFF;" id="time-remaining"></p>
         </div>
-    </section>
+    </section>--%>
 
     <section class="margin_60_35">
 	    <div class="container">
 
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestros Planes</h2>
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>No te quedes sin la tuya</h2>
 
 		    <div class="row plans">
 
@@ -121,29 +121,29 @@
                         <%--<span class="ribbon-2"></span>--%>
                         <%--<p class="ribbon-3">Más beneficios</p>--%>
 
-                        <img src="img/planes-cards/plan-6-meses.jpg" alt="img" />
+                        <img src="img/planes-cards/promo_plan-12-meses_renovacion.jpeg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan Pro</h2>
-                            <h4 class="plan-title" style="font-size: 12px;">Plan 6 Meses</h4>
+                            <h2 class="plan-title">Plan Activo</h2>
+                            <%--<h4 class="plan-title" style="font-size: 12px;">Plan 6 Meses</h4>--%>
 
-                            <p style="margin-bottom: 0;">Invierte en ti y entrena sin excusas.</p>
+                            <p>Si eres un usuario activo en Fitness People, este plan es para ti.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 590.000</p>
-                            <%--<p>DESPUÉS $89.000/mes</p>--%>
+                            <p class="plan-price" style="margin-bottom: 0;">$ 687.500</p>
+                            <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p class="plan-title">&nbsp;</p>
+                            <p class="plan-title" style="margin-bottom: 10px;">&nbsp;</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-title">+ Camiseta de la selección</p>
 
                             <div class="text-center">
                                 <a href="#" 
                                    class="btn-confirm-alert"
                                    onclick="planAddToCart(
-                                       ['5'],
-                                       'Plan Pro (Plan 6 Meses)',
-                                       590000,
-                                       'register?token=W70qV5GRiVWaIBk6ysD0'
+                                       ['40'],
+                                       'Plan Activo',
+                                       687500,
+                                       'https://checkout.wompi.co/l/vFFOO7'
                                    ); return false;">
                                    Comprar ya
                                 </a>
@@ -155,7 +155,6 @@
                             </div>
         
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">2 meses de cortesía.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
@@ -166,47 +165,36 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="text-center" style="margin-top:15px;">
-                        <a href="#" 
-                           class="btn_full_2"
-                           onclick="planAddToCart(
-                               ['5'],
-                               'Plan Pro (Plan 6 Meses)',
-                               590000,
-                               'register?token=W70qV5GRiVWaIBk6ysD0'
-                           ); return false;">
-                           ¡Comprar ahora!
-                        </a>
-                    </div>
                 </div>
                 <!-- End col-md-4 -->
 
                 <div class="col-md-4" style="padding: 0;">
-                    <div class="plan plan-oferta">
-                        <img src="img/planes-cards/plan-12-meses.jpg" alt="img" />
+                    <div class="plan plan-oferta plan-tall-2">
+                        <p class="ribbon-3">Más beneficios</p>
+
+                        <img src="img/planes-cards/promo_plan-12-meses_nuevos.jpeg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan Año Imparable</h2>
-                            <h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>
+                            <h2 class="plan-title">Plan Usuarios Nuevos</h2>
+                            <%--<h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>--%>
 
-                            <p style="margin-bottom: 0;">Entrena sin pausas durante todo un año.</p>
+                            <p>Si eres un usuario nuevo en Fitness People, este plan es para ti.</p>
 
-                            <p class="plan-price" style="margin-bottom: 20px;">$ 990.000</p>
+                            <p class="plan-price" style="margin-bottom: 0;">$ 783.750</p>
                             <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p class="plan-title">+ 2 meses gratis</p>
+                            <p class="plan-title" style="margin-bottom: 10px;">+ 1 mes gratis</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-title">+ Camiseta de la selección</p>
 
                             <div class="text-center">
                                 <a href="#" 
                                    class="btn_full"
                                    onclick="planAddToCart(
-                                       ['7'],
-                                       'Plan Año Imparable (Plan 12 Meses)',
-                                       990000,
-                                       'register?token=x6Is0joow5GVB8WVW9Rd'
+                                       ['41'],
+                                       'Plan Usuarios Nuevos',
+                                       783750,
+                                       'https://checkout.wompi.co/l/jBHroB'
                                    ); return false;">
                                    Comprar ya
                                 </a>
@@ -218,7 +206,6 @@
                             </div>
 
                             <ul class="plan-features">
-                                <li><i class="fa fa-circle-check"></i>2 meses de cortesía.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
@@ -228,19 +215,6 @@
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="text-center" style="margin-top:15px;">
-                        <a href="#" 
-                           class="btn_full_2"
-                           onclick="planAddToCart(
-                               ['7'],
-                               'Plan Año Imparable (Plan 12 Meses)',
-                               990000,
-                               'register?token=x6Is0joow5GVB8WVW9Rd'
-                           ); return false;">
-                           ¡Comprar ahora!
-                        </a>
                     </div>
                 </div>
 
