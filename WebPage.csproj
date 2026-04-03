@@ -653,6 +653,9 @@
     <Content Include="ofertas.aspx" />
     <Content Include="ofertasCounter.aspx" />
     <Content Include="ofertasDiaMujer.aspx" />
+    <Content Include="ofertasMasVendidos.aspx" />
+    <Content Include="ofertasPagosRecurrentes.aspx" />
+    <Content Include="ofertasPagosUnicos.aspx" />
     <Content Include="peoplewear.html" />
     <Content Include="plan3plus3.aspx" />
     <Content Include="planesEasy.aspx" />
@@ -999,6 +1002,27 @@
     </Compile>
     <Compile Include="ofertasDiaMujer.aspx.designer.cs">
       <DependentUpon>ofertasDiaMujer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasMasVendidos.aspx.cs">
+      <DependentUpon>ofertasMasVendidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasMasVendidos.aspx.designer.cs">
+      <DependentUpon>ofertasMasVendidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasPagosRecurrentes.aspx.cs">
+      <DependentUpon>ofertasPagosRecurrentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasPagosRecurrentes.aspx.designer.cs">
+      <DependentUpon>ofertasPagosRecurrentes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasPagosUnicos.aspx.cs">
+      <DependentUpon>ofertasPagosUnicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasPagosUnicos.aspx.designer.cs">
+      <DependentUpon>ofertasPagosUnicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="plan3plus3.aspx.cs">
       <DependentUpon>plan3plus3.aspx</DependentUpon>

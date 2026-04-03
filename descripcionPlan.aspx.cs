@@ -50,7 +50,7 @@ namespace WebPage
                 // ===============================
                 case "basico-mensual":
 
-                    linkPago = "register?token=l1KUGxZPIEegdYnaJLP7";
+                    linkPago = "https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3700";
 
                     itemId = "35";
                     itemName = "Plan Básico Mensual";
@@ -83,7 +83,7 @@ namespace WebPage
                 // ===============================
                 case "flexible-pro":
 
-                    linkPago = "register?token=4MexIhysX3mcTNlQnfaN";
+                    linkPago = "https://www.dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3701";
 
                     itemId = "36";
                     itemName = "Plan Flexible Pro";
@@ -114,42 +114,42 @@ namespace WebPage
                 // ===============================
                 // PLAN MES A MES
                 // ===============================
-                case "mes-a-mes":
+                //case "mes-a-mes":
 
-                    linkPago = "register?token=qIKhrR9D6Jk3xbPRz4JX";
+                //    linkPago = "register?token=qIKhrR9D6Jk3xbPRz4JX";
 
-                    itemId = "37";
-                    itemName = "Plan Mes a Mes Débito Automático";
-                    price = "199900";
+                //    itemId = "37";
+                //    itemName = "Plan Mes a Mes Débito Automático";
+                //    price = "199900";
 
-                    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-04.jpg');";
-                    imgPlan.Src = "img/planes-cards/plan-mes-a-mes_2026-03-03.jpg";
-                    imgPlan.Visible = true;
-                    lblTitulo.InnerText = "Plan Mes a Mes";
-                    lblSubTitulo.InnerText = "Plan Débito Automático";
-                    lblDescripcion.InnerText = "Impulso rápido, resultados visibles.";
-                    lblPrecio.InnerText = "$ 9.900 1er Mes";
-                    lblPrecioDes.InnerText = "DESPUÉS $165.000/mes";
-                    lblPrecioAdd.InnerText = "+ $ 190.000 de Inscripción";
-                    lblFidelidad.InnerText = "Sin fidelidad (Renovación solo por 1 mes)";
-                    ConfigurarBtns(itemId, itemName, price, linkPago);
+                //    secBanner.Attributes["style"] += "background-image:url('img/banners/plan-mes-a-mes_2026-03-04.jpg');";
+                //    imgPlan.Src = "img/planes-cards/plan-mes-a-mes_2026-03-03.jpg";
+                //    imgPlan.Visible = true;
+                //    lblTitulo.InnerText = "Plan Mes a Mes";
+                //    lblSubTitulo.InnerText = "Plan Débito Automático";
+                //    lblDescripcion.InnerText = "Impulso rápido, resultados visibles.";
+                //    lblPrecio.InnerText = "$ 9.900 1er Mes";
+                //    lblPrecioDes.InnerText = "DESPUÉS $165.000/mes";
+                //    lblPrecioAdd.InnerText = "+ $ 190.000 de Inscripción";
+                //    lblFidelidad.InnerText = "Sin fidelidad (Renovación solo por 1 mes)";
+                //    ConfigurarBtns(itemId, itemName, price, linkPago);
 
-                    beneficios.Add("Acceso a todas las sedes.");
-                    beneficios.Add("Acceso a todas las áreas de la sede.");
-                    beneficios.Add("Clases grupales con profesores.");
-                    beneficios.Add("FP App(Valoración y entrenamiento).");
-                    beneficios.Add("5 cortesías mensuales para amigos.");
-                    beneficios.Add("Pago adicional de membresía ($190.000).");
-                    beneficios.Add("Valoración física inicial.");
+                //    beneficios.Add("Acceso a todas las sedes.");
+                //    beneficios.Add("Acceso a todas las áreas de la sede.");
+                //    beneficios.Add("Clases grupales con profesores.");
+                //    beneficios.Add("FP App(Valoración y entrenamiento).");
+                //    beneficios.Add("5 cortesías mensuales para amigos.");
+                //    beneficios.Add("Pago adicional de membresía ($190.000).");
+                //    beneficios.Add("Valoración física inicial.");
 
-                    break;
+                //    break;
 
                 // ===============================
                 // PLAN MES A MES PROMO
                 // ===============================
                 case "mes-a-mes-promo":
 
-                    linkPago = "register?token=miHiH6m1HPn49QDPK9i0";
+                    linkPago = "https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3702";
 
                     itemId = "39";
                     itemName = "Plan Mes a Mes Promo";
@@ -182,7 +182,7 @@ namespace WebPage
                 // ===============================
                 case "3-meses":
 
-                    linkPago = "register?token=SuNLgEJA8mDDRgPB4EhN";
+                    linkPago = "https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3705";
 
                     itemId = "4";
                     itemName = "Plan Trimestral (Plan 3 Meses)";
@@ -214,7 +214,7 @@ namespace WebPage
                 // ===============================
                 case "6-meses":
 
-                    linkPago = "register?token=W70qV5GRiVWaIBk6ysD0";
+                    linkPago = "https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3704";
 
                     itemId = "5";
                     itemName = "Plan Pro (Plan 6 Meses)";
@@ -246,7 +246,7 @@ namespace WebPage
                 // ===============================
                 case "12-meses":
 
-                    linkPago = "register?token=x6Is0joow5GVB8WVW9Rd";
+                    linkPago = "https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3703";
 
                     itemId = "7";
                     itemName = "Plan Año Imparable (Plan 12 Meses)";

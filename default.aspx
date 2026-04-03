@@ -122,15 +122,16 @@
     <div id="full-slider-wrapper">
         <div id="layerslider">
             <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planesEasy'">
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planesEasy';">
                 <img id="slide1-img" src="img/slides/banner-plan-easy_2026-01-06.jpg" class="ls-bg" />
             </div>
             <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=7'">
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3703';">
                 <img id="slide2-img" src="img/slides/banner-plan-12-meses_2026-01-06.jpg" class="ls-bg" />
             </div>
+
             <!-- third slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planes?id=5'">
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3704';">
                 <img id="slide3-img" src="img/slides/banner-plan-6-meses_2026-01-06.jpg" class="ls-bg" />
             </div>
 
@@ -248,7 +249,7 @@
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -257,7 +258,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -266,7 +267,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -275,7 +276,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">

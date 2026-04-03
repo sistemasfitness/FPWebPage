@@ -114,136 +114,154 @@
 
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestros Planes</h2>
 
-		    <div class="row plans">
+		    <div class="row plans plans-recu">
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall-2">
+                        <%--<p class="ribbon-3" style="width: 250px;">Entrena en una sola sede</p>--%>
 
-			    <div class="plan col-md-4">
-                    <img src="img/planes-cards/plan-basico-mensual_2026-02-27.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-basico-mensual_2026-02-27.jpg" alt="img" />
 
-                    <div class="plan-info">
-                        <h2 class="plan-title">Plan Básico Mensual</h2>
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Básico Mensual</h2>
 
-                        <p style="margin-bottom: 0;">Empezar fácil y sin costos extra.</p>
+                            <%--<p style="margin-bottom: 0;">Ideal si entrenas siempre en una sola sede.</p>--%>
+                            <p style="margin-bottom: 10px;">Entrena en una sola sede.</p>
 
-                        <p class="plan-price">$ 19.900 1er Mes</p>
-                        <p class="plan-title" style="font-size: 15px;">+ $ 19.900 de Inscripción</p>
+                            <%--<p class="plan-price">$ 19.900 1er Mes</p>--%>
+                            <p class="plan-price">$ 39.800 1er Mes</p>
 
-                        <p>DESPUÉS $79.600/mes</p>
+                            <p class="plan-title" style="font-size: 15px;">+ $ 19.900 de Inscripción</p>
 
-                        <p>Fidelidad de 6 meses</p>
+                            <p>DESPUÉS $79.600/mes</p>
 
-                        <div class="text-center">
-                            <a href="#" 
-                               class="btn_full" 
-                               onclick="planAddToCart(
-                                   ['35'],
-                                   'Plan Básico Mensual',
-                                   39800,
-                                   'register?token=l1KUGxZPIEegdYnaJLP7'
-                                ); return false;">
-                               Comprar ya
-                            </a>
+                            <p>Fidelidad de 6 meses</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                    class="btn_full" 
+                                    onclick="planAddToCart(
+                                        ['35'],
+                                        'Plan Básico Mensual',
+                                        39800,
+                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3700'
+                                    ); return false;">
+                                    Comprar ya
+                                </a>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a ÚNICA sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">FP App (Nutrición).</span></li>
+                                <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
                         </div>
-
-                        <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Acceso a ÚNICA sede.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
-                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                            <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                            <li><i class="fa fa-circle-check"></i>1 cortesía mensual para un amigo.</li>
-                            <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                        </ul>
                     </div>
-			    </div>
+                </div>
 			    <!-- End col-md-4 -->
 
-			    <div class="plan plan-tall col-md-4">
-				    <%--<span class="ribbon-2"></span>--%>
-                    <p class="ribbon-3">Más beneficios</p>
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall plan-tall-oferta">
+                        <p class="ribbon-3">Más recomendado</p>
 
-                    <img src="img/planes-cards/plan-flexible-pro_2026-02-27.jpg" alt="img" />
+                        <img src="img/planes-cards/plan-flexible-pro_2026-02-27.jpg" alt="img" />
 
-                    <div class="plan-info">
-                        <h2 class="plan-title">Plan Flexible Pro</h2>
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Flexible Pro</h2>
 
-                        <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
+                            <%--<p style="margin-bottom: 0;">Entrena en todas nuestras sedes.</p>--%>
+                            <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
 
-                        <p class="plan-price">$ 19.900 1er Mes</p>
-                        <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
-                        <p>DESPUÉS $99.500/mes</p>
+                            <p class="plan-price">$ 19.900 1er Mes</p>
 
-                        <p>Fidelidad de 6 meses</p>
+                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
 
-                        <div class="text-center">
-                            <a href="#" 
-                                class="btn-confirm-alert"
-                                onclick="planAddToCart(
-                                    ['36'],
-                                    'Plan Flexible Pro',
-                                    29800,
-                                    'register?token=4MexIhysX3mcTNlQnfaN'
-                                ); return false;">
-                                Comprar ya
-                            </a>
-                        </div>
+                            <p>DESPUÉS $99.500/mes</p>
+
+                            <p>Fidelidad de 6 meses</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                    class="btn-confirm-alert"
+                                    onclick="planAddToCart(
+                                        ['36'],
+                                        'Plan Flexible Pro',
+                                        29800,
+                                        'https://www.dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3701'
+                                    ); return false;">
+                                    Comprar ya
+                                </a>
+                            </div>
         
-                        <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
-                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                            <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                            <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
-                            <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                        </ul>
-                    </div>
-			    </div>
-			    <!-- End col-md-4 -->
-
-			    <div class="plan col-md-4">
-                    <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
-
-                    <div class="plan-info">
-                        <h2 class="plan-title">Plan Mes a Mes</h2>
-
-                        <p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>
-
-                        <p class="plan-price">$ 82.500 1er Mes</p>
-                        <p class="plan-title" style="font-size: 15px;">+ $ 9.900 de Inscripción</p>
-
-                        <p>DESPUÉS $165.000/mes</p>
-
-                        <p>Sin fidelidad</p>
-
-                        <div class="text-center">
-                            <a href="#" 
-                               class="btn-confirm-alert"
-                               onclick="planAddToCart(
-                                   ['31'],
-                                   'Plan Mes a Mes',
-                                   92400,
-                                   'register?token=miHiH6m1HPn49QDPK9i0'
-                               ); return false;">
-                               Comprar ya
-                            </a>
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
                         </div>
-
-                        <ul class="plan-features">
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
-                            <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
-                            <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                            <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                            <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
-                            <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
-                            <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
-                            <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
-                        </ul>
                     </div>
-			    </div>
+                </div>
 			    <!-- End col-md-4 -->
 
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall-2">
+                        <%--<p class="ribbon-3">Paga mes a mes</p>--%>
+
+                        <img src="img/planes-cards/plan-mes-a-mes.jpg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Mes a Mes</h2>
+
+                            <%--<p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>--%>
+                            <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
+
+                            <p class="plan-price">$ 165.000 1er Mes</p>
+
+                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+
+                            <p>RENOVACIÓN MES A MES</p>
+
+                            <p>Sin fidelidad</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                    class="btn_full"
+                                    onclick="planAddToCart(
+                                        ['31'],
+                                        'Plan Mes a Mes',
+                                        92400,
+                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3702'
+                                    ); return false;">
+                                    Comprar ya
+                                </a>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+			    <!-- End col-md-4 -->
 		    </div>
 		    <!-- End row plans-->
 
@@ -613,6 +631,28 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <style>
+
+        @media (max-width: 1000px) {
+            .plans {
+                margin: 0 auto 0 0;
+            }
+
+            .plans-recu > div:nth-child(1) {
+                order: 2;
+            }
+
+            .plans-recu > div:nth-child(2) {
+                order: 1; /* Este se va primero */
+            }
+
+            .plans-recu > div:nth-child(3) {
+                order: 3;
+            }
+        }
+
+    </style>
 
     <%--<script>
 

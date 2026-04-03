@@ -143,7 +143,7 @@
                                        ['40'],
                                        'Plan Activo',
                                        687500,
-                                       'https://checkout.wompi.co/l/vFFOO7'
+                                       'https://dash.fitmewise.com/admin/register/app/6977e8685a1b2-4164'
                                    ); return false;">
                                    Comprar ya
                                 </a>
@@ -194,7 +194,7 @@
                                        ['41'],
                                        'Plan Usuarios Nuevos',
                                        783750,
-                                       'https://checkout.wompi.co/l/jBHroB'
+                                       'https://dash.fitmewise.com/admin/register/app/6977e8685a1b2-4165'
                                    ); return false;">
                                    Comprar ya
                                 </a>
