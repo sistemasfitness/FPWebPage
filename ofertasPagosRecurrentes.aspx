@@ -92,7 +92,7 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="add_top_60 add_bottom_75">
+    <section id="planes" class="add_top_60 add_bottom_75">
 	    <div class="container">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Elige tu plan</h2>
 
@@ -263,6 +263,21 @@
 		    <!-- End row plans recu -->
 	    </div>
 	    <!--  End container-->
+
+        <div class="container">
+            <div id="paymentModal" class="payment-modal">
+                <div id="paymentContainer" class="payment-container">
+
+                    <div id="paymentHeader" class="payment-header">
+                        <h2 style="font-weight: 900; color: #E3FF00;">Paso 1: Crea tu perfil y empieza hoy en Fitness People</h2>
+                        <button type="button" onclick="closePayment()" class="btn-close">✕</button>
+                    </div>
+
+                    <iframe id="paymentFrame" src=""></iframe>
+
+                </div>
+            </div>
+        </div>
     </section>
     <!--  End section-->
 
@@ -294,6 +309,66 @@
 
     <script>
 
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        function openPaymentInline(url) {
+
+            if (isMobile()) {
+                // 🔥 abrir fuera del iframe (100% confiable)
+                window.location.href = url;
+                return;
+            }
+
+            const container = document.getElementById("paymentContainer");
+            const iframe = document.getElementById("paymentFrame");
+            const header = document.getElementById("paymentHeader");
+
+            // Mostrar el contenedor
+            container.style.display = "block";
+
+            // Mostrar botón cerrar
+            header.style.display = "flex";
+
+            // Cargar URL en el iframe
+            iframe.src = url;
+
+            // Bajar suavemente hasta el iframe
+            setTimeout(() => {
+                container.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 100);
+        }
+
+
+        function closePayment() {
+
+            const container = document.getElementById("paymentContainer");
+            const iframe = document.getElementById("paymentFrame");
+            const planes = document.getElementById("planes");
+            const header = document.getElementById("paymentHeader");
+
+            // Limpiar iframe (detiene el proceso)
+            iframe.src = "";
+
+            // Ocultar contenedor
+            container.style.display = "none";
+
+            // Ocultar botón cerrar otra vez
+            header.style.display = "none";
+
+            // Subir suavemente a los planes
+            setTimeout(() => {
+                planes.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 100);
+        }
+
         function planAddToCart(contentId, contentName, value, paymentUrl) {
 
             window.dataLayer.push({
@@ -310,13 +385,63 @@
             });
 
             setTimeout(function () {
-                window.open(paymentUrl, '_blank');
+                openPaymentInline(paymentUrl);
             }, 150);
         }
 
     </script>
 
     <style>
+
+        .payment-container {
+            display: none;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .payment-header {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-close {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        #paymentFrame {
+            width: 100%;
+            height: 85vh;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* 📱 Mobile */
+        @media (max-width: 768px) {
+            #paymentFrame {
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .payment-header {
+                position: sticky;
+                top: 35px;
+                padding: 10px;
+                z-index: 10;
+                background-color: #000000;
+            }
+        }
+
 
         .plan-features {
             overflow: hidden;
