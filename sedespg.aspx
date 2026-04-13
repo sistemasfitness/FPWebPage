@@ -97,9 +97,9 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sedes/banners/prado.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/terminos_legales.webp" data-natural-width="1900">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">SEDES</h1>
+            <h1 style="font-weight: 900; text-shadow: 3px 3px 4px black;">SEDES</h1>
         </div>
     </section>
     <!-- End Header video -->
@@ -115,23 +115,23 @@
 
     <uc1:planes runat="server" ID="controlplanes" />
 
-    <div id="newsletter_container" style="background-color: #000;">
+    <%--<div id="newsletter_container" style="background-color: #000;">
         <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                    ///<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
                 <div id="message-newsletter"></div>
                 <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
                     <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
                     <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                </form>--%>
+                </form>//
                     <a href="gympass">
                         <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
                     </a>
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <!-- End newsletter_container -->
 
     <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="corporativo.aspx.cs" Inherits="WebPage.corporativo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="somos.aspx.cs" Inherits="WebPage.corporativo" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
@@ -84,7 +84,7 @@
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/corporative.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">CORPORATIVO</h1>
+            <h1 style="font-weight: 900;">SOBRE NOSOTROS</h1>
         </div>
     </section>
     <!-- End section -->
@@ -94,8 +94,8 @@
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; ">Quienes somos</h2>
-                    <p class="lead" style="color: #FFF;">Con más de <strong>13 años</strong> de experiencia en el mercado, en Fitness People nos distinguimos por un modelo de negocio enfocado en ofrecer un servicio de calidad excepcional, promoviendo la salud a través del deporte.</p>
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; ">Quiénes Somos</h2>
+                    <p style="color: #FFF;">Con más de <strong>15 años</strong> de experiencia en el mercado, en Fitness People nos distinguimos por un modelo de negocio enfocado en ofrecer un servicio de calidad excepcional, promoviendo la salud a través del deporte.</p>
                     <p style="color: #FFF;">Contamos con un equipo altamente capacitado, el mejor equipamiento deportivo y una amplia gama de actividades innovadoras, lo que hace que nuestros clientes no solo practiquen activiades físicas, sino que disfruten cada momento de su experiencia.<br /><br />Fundada y dirigida por el <strong>Ingeniero Industrial Yerson Suárez</strong>, nuestra empresa nació con el propósito de generar empleo en Santander y contribuir al bienestar integral de las personas, promoviendo no solo una mejor salud y condición física, sino también la motivación, la excelencia y la mejora continua.</p>
                 </div>
                 <div class="col-md-5 col-md-offset-1">

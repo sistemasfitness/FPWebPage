@@ -19,11 +19,11 @@
             <div class="col-md-3 col-sm-6">
                 <h4 style="color: #e3ff00; font-weight: 900;">Nosotros</h4>
                 <ul>
+                    <li><a href="somos">Quiénes Somos</a></li>
                     <li><a href="sedespg">Sedes</a></li>
                     <li><a href="default#planes">Planes</a></li>
-                    <li><a href="corporativo">Corporativo</a></li>
                     <%--<li><a href="servicios">Servicios</a></li>--%>
-                    <li><a href="#">Blog</a></li>
+                    <%--<li><a href="#">Blog</a></li>--%>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -33,7 +33,7 @@
                     <li><a href="contacto">Contacto</a></li>
                     <li><a href="terminoslegales">Términos legales</a></li>
                     <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd1ggDGONN_KsXL1gf7uWGHiPyyj7YRpt5deUqVjQmPNKmezg/viewform?pli=1" target="_blank">Trabaja con nosotros</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <%--<li><a href="#">FAQs</a></li>--%>
                 </ul>
             </div>
             <div class="col-md-3 hidden-sm hidden-xs">

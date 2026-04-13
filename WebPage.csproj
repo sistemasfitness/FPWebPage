@@ -266,7 +266,7 @@
     <Content Include="controls\planes.ascx" />
     <Content Include="controls\sedes.ascx" />
     <Content Include="controls\servicios.ascx" />
-    <Content Include="corporativo.aspx" />
+    <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
     <Content Include="css\blog.css" />
@@ -888,12 +888,12 @@
     <Compile Include="controls\servicios.ascx.designer.cs">
       <DependentUpon>servicios.ascx</DependentUpon>
     </Compile>
-    <Compile Include="corporativo.aspx.cs">
-      <DependentUpon>corporativo.aspx</DependentUpon>
+    <Compile Include="somos.aspx.cs">
+      <DependentUpon>somos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="corporativo.aspx.designer.cs">
-      <DependentUpon>corporativo.aspx</DependentUpon>
+    <Compile Include="somos.aspx.designer.cs">
+      <DependentUpon>somos.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
