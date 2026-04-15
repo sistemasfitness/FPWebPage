@@ -1014,6 +1014,12 @@ a#view_all {
 	color: #fff;
 }
 
+#aliados {
+	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
 #sedes {
 	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
 	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;

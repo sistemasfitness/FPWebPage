@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="aliados.ascx.cs" Inherits="WebPage.controls.aliados" %>
 
-<section class="margin_60_35 aliados" id="bg_gray3">
+<section class="margin_60_35 aliados" id="aliados">
     <div class="container">
         <h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>
 
@@ -77,7 +77,7 @@
 <style>
 
     .logo-item {
-        height: 80px;
+        height: 150px;
         width: 150px;
         display: flex;
         align-items: center;
