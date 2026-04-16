@@ -141,7 +141,7 @@ h6 {
 		text-align: center;
 		margin: 0 0 45px 0;
 		padding: 0;
-		font-size: 36px;
+		font-size: 30px;
 		color: #ed5434;
 		text-transform: uppercase;
 	}
@@ -1011,6 +1011,16 @@ a#view_all {
 #bg_gray3 {
 	/*background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;*/
 	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+.bg_gray {
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+.bg_gray-2 {
+	background: #1A1A1A url(../img/bg_subscribe.png) no-repeat left top;
 	color: #fff;
 }
 
