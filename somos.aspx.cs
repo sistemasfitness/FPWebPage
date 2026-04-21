@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace WebPage
 {
-    public partial class corporativo : System.Web.UI.Page
+    public partial class somos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

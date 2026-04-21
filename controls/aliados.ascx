@@ -12,10 +12,10 @@
                     </a>
                 </div>
 
-                <div class="logo-item logo-item-horizontal">
-                    <a href="https://www.eforsalud.edu.co" target="_blank" rel="noopener noreferrer">
-                        <img src="img/aliados/logo_eforsalud.png"  alt="Eforsalud" />
-                    </a>
+                <div class="logo-item">
+                    <a href="https://medplus.com.co/" target="_blank" rel="noopener noreferrer">
+                        <img src="img/aliados/logo_medplus.png"  alt="MedPlus" />
+                    </a>  
                 </div>
 
                 <div class="logo-item">
@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="logo-item">
-                    <a href="https://portal.upb.edu.co" target="_blank" rel="noopener noreferrer">
-                        <img src="img/aliados/logo_universidad-pontificia-bolivariana.png"  alt="Universidad Pontificia Bolivariana" />
+                    <a href="https://www.essa.com.co" target="_blank" rel="noopener noreferrer">
+                        <img src="img/aliados/logo_essa.png"  alt="ESSA Grupo Epm" />
                     </a>
                 </div>
 
@@ -55,15 +55,15 @@
                 </div>
 
                 <div class="logo-item">
-                    <a href="https://www.genteutil.net/" target="_blank" rel="noopener noreferrer">
-                        <img src="img/aliados/logo_gente-util.png"  alt="GENTE UTIL" />
-                    </a>
+                    <a href="https://www.coopetel.coop" target="_blank" rel="noopener noreferrer">
+                        <img src="img/aliados/logo_coopetel.png"  alt="COOPETEL" />
+                    </a>  
                 </div>
 
-                <div class="logo-item logo-item-horizontal" rel="noopener noreferrer">
-                    <a href="https://www.uniminuto.edu/" target="_blank">
-                        <img src="img/aliados/logo_uniminuto.png"  alt="UNIMINUTO" />
-                    </a>
+                <div class="logo-item">
+                    <a href="https://marval.com.co" target="_blank" rel="noopener noreferrer">
+                        <img src="img/aliados/logo_marval.png"  alt="Marval SAS" />
+                    </a>  
                 </div>
             </div>
         </div>
@@ -83,10 +83,6 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-    }
-
-    .logo-item-horizontal {
-        width: 250px; 
     }
 
     .logo-item img {

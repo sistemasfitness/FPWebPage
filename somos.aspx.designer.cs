@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class corporativo
+    public partial class somos
     {
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="somos.aspx.cs" Inherits="WebPage.corporativo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="somos.aspx.cs" Inherits="WebPage.somos" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>

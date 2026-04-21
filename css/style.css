@@ -1014,11 +1014,6 @@ a#view_all {
 	color: #fff;
 }
 
-.bg_gray {
-	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
-	color: #fff;
-}
-
 .bg_gray-2 {
 	background: #1A1A1A url(../img/bg_subscribe.png) no-repeat left top;
 	color: #fff;
@@ -1051,8 +1046,18 @@ a#view_all {
 	color: #fff;
 }
 
-#bg_black1 {
-	background: #1a1a1a url(../img/bg_subscribe.png) no-repeat left top;
+.bg_black {
+	background: #000000 url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+.bg_gray {
+	background: #3C3C3C url(../img/bg_subscribe.png) no-repeat left top;
+	color: #fff;
+}
+
+.bg_dark-gray {
+	background: #1A1A1A url(../img/bg_subscribe.png) no-repeat left top;
 	color: #fff;
 }
 

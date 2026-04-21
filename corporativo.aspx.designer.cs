@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class corporativo1
+    public partial class corporativo
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace WebPage
         protected global::WebPage.controls.mainmenu mainmenu;
 
         /// <summary>
-        /// Control mapasedeadministrativa.
+        /// Control mapasedeadministrativa1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::WebPage.controls.mapasedeadministrativa mapasedeadministrativa;
+        protected global::WebPage.controls.mapasedeadministrativa mapasedeadministrativa1;
 
         /// <summary>
         /// Control footer.

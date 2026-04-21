@@ -339,10 +339,6 @@
     <Content Include="img\blog\ARTICULO-3-1200x800-1.jpg" />
     <Content Include="img\cards.png" />
     <Content Include="img\check_radio_sheet.png" />
-    <Content Include="img\clientes\coopfuturo.png" />
-    <Content Include="img\clientes\cooprofesores.png" />
-    <Content Include="img\clientes\fecolsa.png" />
-    <Content Include="img\clientes\freskoop.png" />
     <Content Include="img\corporativo.png" />
     <Content Include="img\course_1.jpg" />
     <Content Include="img\course_2.jpg" />
