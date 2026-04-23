@@ -25,7 +25,7 @@
                 </li>
                 <li><a href="sedespg" style="font-weight: 900;">SEDES</a></li>
                 <%--<li class="new-item-menu"><a href="descubrirplan" style="font-weight: 900; color: black;">TEST</a></li>--%>
-                <li><a href="#planes" style="font-weight: 900;">PLANES</a></li>
+                <li><a href="default#planes" style="font-weight: 900;">PLANES</a></li>
                 <li><a href="somos" style="font-weight: 900;">NOSOTROS</a></li>
                 <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
 

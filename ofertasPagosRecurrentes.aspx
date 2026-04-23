@@ -122,10 +122,10 @@
                                 <a href="#" 
                                     class="btn_full" 
                                     onclick="planAddToCart(
-                                        ['35'],
+                                        ['41'],
                                         'Plan Básico Mensual',
-                                        39800,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3700'
+                                        59700,
+                                        'register?token=4wCAVQZWA8KMirx9Q8hs'
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -176,10 +176,10 @@
                                 <a href="#" 
                                     class="btn-confirm-alert"
                                     onclick="planAddToCart(
-                                        ['36'],
+                                        ['40'],
                                         'Plan Flexible Pro',
-                                        29800,
-                                        'https://www.dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3701'
+                                        19900,
+                                        'register?token=aKsoXcm34Ca4sMKeHraR'
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -230,10 +230,10 @@
                                 <a href="#" 
                                     class="btn_full"
                                     onclick="planAddToCart(
-                                        ['31'],
+                                        ['42'],
                                         'Plan Mes a Mes',
-                                        92400,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3702'
+                                        165000,
+                                        'register?token=nji06llzEYJSdjPNh2Dg'
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -315,7 +315,7 @@
 
         function openPaymentInline(url) {
 
-            if (isMobile()) {
+            if (isMobile() || url.includes("register?token=")) {
                 // 🔥 abrir fuera del iframe (100% confiable)
                 window.location.href = url;
                 return;

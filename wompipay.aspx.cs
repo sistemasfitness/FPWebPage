@@ -489,43 +489,7 @@ namespace WebPage
         {
             ltValor.Text = LtValorPlan;
 
-            if (IdPlan == 31)
-            {
-                pnlTotalCart.Visible = false;
-
-                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 174.900</span>
-                                    </div>
-                                    <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 165.000/mes
-                                    </div>
-                                    <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
-                                    </div>
-                                    <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 364.900</span>
-                                    </div>";
-            }
-
-            if (IdPlan == 35)
-            {
-                pnlTotalCart.Visible = false;
-
-                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 19.900</span>
-                                    </div>
-                                    <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 79.600/mes
-                                    </div>
-                                    <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 19.900</span>
-                                    </div>
-                                    <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 39.800</span>
-                                    </div>";
-            }
-
-            if (IdPlan == 36)
+            if (IdPlan == 40)
             {
                 pnlTotalCart.Visible = false;
 
@@ -536,48 +500,84 @@ namespace WebPage
                                         DESPUÉS $ 99.500/mes
                                     </div>
                                     <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                        SIN INSCRIPCIÓN
                                     </div>
                                     <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 29.800</span>
+                                        TOTAL <span class='pull-right'>$ 19.900</span>
                                     </div>";
             }
 
-            if (IdPlan == 37)
+            if (IdPlan == 41)
             {
                 pnlTotalCart.Visible = false;
 
                 ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 9.900</span>
+                                        PRIMER MES <span class='pull-right'>$ 39.800</span>
                                     </div>
                                     <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 165.000/mes
+                                        DESPUÉS $ 79.600/mes
                                     </div>
                                     <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 19.900</span>
                                     </div>
                                     <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 199.900</span>
+                                        TOTAL <span class='pull-right'>$ 59.700</span>
                                     </div>";
             }
 
-            if (IdPlan == 39)
+            if (IdPlan == 42)
             {
                 pnlTotalCart.Visible = false;
 
                 ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 82.500</span>
+                                        PRIMER MES <span class='pull-right'>$ 165.000</span>
                                     </div>
                                     <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 165.000/mes
+                                        RENOVACIÓN MES A MES
                                     </div>
                                     <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                        SIN INSCRIPCIÓN
                                     </div>
                                     <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 92.400</span>
+                                        TOTAL <span class='pull-right'>$ 165.000</span>
                                     </div>";
             }
+
+            //if (IdPlan == 37)
+            //{
+            //    pnlTotalCart.Visible = false;
+
+            //    ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+            //                            PRIMER MES <span class='pull-right'>$ 9.900</span>
+            //                        </div>
+            //                        <div class='total_cart' style='font-size: 15px;'>
+            //                            DESPUÉS $ 165.000/mes
+            //                        </div>
+            //                        <div class='total_cart'>
+            //                            INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
+            //                        </div>
+            //                        <div class='total_cart'>
+            //                            TOTAL <span class='pull-right'>$ 199.900</span>
+            //                        </div>";
+            //}
+
+            //if (IdPlan == 39)
+            //{
+            //    pnlTotalCart.Visible = false;
+
+            //    ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+            //                            PRIMER MES <span class='pull-right'>$ 82.500</span>
+            //                        </div>
+            //                        <div class='total_cart' style='font-size: 15px;'>
+            //                            DESPUÉS $ 165.000/mes
+            //                        </div>
+            //                        <div class='total_cart'>
+            //                            INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+            //                        </div>
+            //                        <div class='total_cart'>
+            //                            TOTAL <span class='pull-right'>$ 92.400</span>
+            //                        </div>";
+            //}
         }
 
         private void GestionarIntegracion()
@@ -1045,7 +1045,7 @@ namespace WebPage
                 {
                     if (estado == "DECLINED")
                     {
-                        MostrarAlerta("Transacción rechazada", $"{estadoMensaje}.", "error");
+                        MostrarAlerta("Transacción rechazada", $"{estadoMensaje}", "error");
                     } 
                     else
                     {
