@@ -122,25 +122,57 @@
     <div id="full-slider-wrapper">
         <div id="layerslider">
             <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='planesEasy';">
-                <img id="slide1-img" src="img/slides/banner-plan-easy_2026-01-06.jpg" class="ls-bg" />
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
+                <img class="ls-bg img-slider" 
+                     data-desktop="img/slides/slide-01_2026-04-27.jpeg"
+                     data-mobile="img/slides/slide-01_2026-04-27_mobile.jpeg"
+                     src="img/slides/slide-01_2026-04-27.jpeg" />
             </div>
+
+            <!-- fourth slide -->
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
+                <img class="ls-bg img-slider" 
+                     data-desktop="img/slides/slide-04_2026-04-29.jpeg"
+                     data-mobile="img/slides/slide-04_2026-04-29_mobile.jpeg"
+                     src="img/slides/slide-04_2026-04-29.jpeg" />
+            </div>
+
             <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3703';">
-                <img id="slide2-img" src="img/slides/banner-plan-12-meses_2026-01-06.jpg" class="ls-bg" />
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
+                <img class="ls-bg img-slider" 
+                     data-desktop="img/slides/slide-02_2026-04-27.jpeg"
+                     data-mobile="img/slides/slide-02_2026-04-27_mobile.jpeg"
+                     src="img/slides/slide-02_2026-04-27.jpeg" />
             </div>
 
             <!-- third slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;" style="cursor: pointer;" onclick="window.location.href='https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3704';">
-                <img id="slide3-img" src="img/slides/banner-plan-6-meses_2026-01-06.jpg" class="ls-bg" />
+            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
+                <img class="ls-bg img-slider" 
+                     data-desktop="img/slides/slide-03_2026-04-27.jpeg"
+                     data-mobile="img/slides/slide-03_2026-04-27_mobile.jpeg"
+                     src="img/slides/slide-03_2026-04-27.jpeg" />
             </div>
 
-            <div id="count" class="hidden-xs">
+            <div class="contenido-principal">
+                <h2 class="main_title" style="font-weight: 900; color: #FFF; text-shadow: 2px 2px 6px rgba(0,0,0,0.7);">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
+            </div>
+
+            <%--<div id="count" class="hidden-xs">
                 <ul>
                     <li><span class="number">2500</span>&nbsp;Clases</li>
                     <li><span class="number">10</span>&nbsp;Sedes</li>
                     <li><span class="number">4</span>&nbsp;Ciudades</li>
                 </ul>
+            </div>--%>
+        </div>
+
+        <div class="section-inferior">
+            <div class="contenido-primer-dia bg_dark-gray">
+                <h2 style="font-weight: 900; color: #FFF;">TU PRIMER DÍA EN FITNESS PEOPLE GRATIS</h2>
+                <a href="https://api.whatsapp.com/send?phone=573185483713&text=%C2%A1Hola!%0AQuiero%20recibir%20mi%20clase%20de%20cortes%C3%ADa%20en%20Fitness%20People." 
+                    class="btn-confirm-alert">
+                    Haz clic aquí
+                </a>
             </div>
         </div>
     </div>
@@ -149,7 +181,7 @@
     <form runat="server" id="form2">
         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-        <section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
+        <%--<section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
                 <p class="lead styled" style="color: #FFF;">
@@ -159,7 +191,7 @@
                 </p>
             </div>
             <!--  End container-->
-        </section>
+        </section>--%>
 
         <!-- Control Sedes -->
         <uc1:sedes runat="server" ID="sedes" />
@@ -557,6 +589,33 @@
         window.addEventListener('load', actualizarImagenSlider);
         window.addEventListener('resize', actualizarImagenSlider);
     </script>--%>
+
+
+    <script>
+
+        function cambiarImagenSlider() {
+            var imagenes = document.querySelectorAll(".img-slider");
+            var isTabletOrMobile = window.innerWidth <= 1024;
+
+            imagenes.forEach(function (img) {
+                var nueva = isTabletOrMobile ? img.dataset.mobile : img.dataset.desktop;
+
+                if (img.src.indexOf(nueva) === -1) {
+                    img.src = nueva;
+                }
+            });
+        }
+
+        window.addEventListener("load", cambiarImagenSlider);
+        // Ejecutar al redimensionar (con pequeño debounce)
+        let resizeTimeout;
+        window.addEventListener("resize", function () {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(cambiarImagenSlider, 200);
+        });
+
+    </script>
+
 
     <noscript>
         <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
