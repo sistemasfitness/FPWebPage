@@ -1045,19 +1045,24 @@ namespace WebPage
 
                 DataIdTransaccion = rObjetc.data.id;
 
-
                 string estado = null;
                 string estadoMensaje = null;
-                int maxIntentos = 15;
-                int intentos = 0;
+
+                // Tiempo máximo de espera
+                TimeSpan tiempoMaximo = TimeSpan.FromSeconds(90);
+
+                // Cada cuánto consultar
+                TimeSpan intervaloConsulta = TimeSpan.FromSeconds(3);
+
+                DateTime inicio = DateTime.Now;
 
                 do
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(intervaloConsulta);
+
                     (estado, estadoMensaje) = await ConsultarTransaccionPorReferencia(reference);
-                    intentos++;
                 }
-                while (estado == "PENDING" && intentos < maxIntentos);
+                while (estado == "PENDING" && DateTime.Now - inicio < tiempoMaximo);
 
                 if (estado != "APPROVED")
                 {
@@ -1065,10 +1070,15 @@ namespace WebPage
                     {
                         MostrarAlerta("Transacción rechazada", $"{estadoMensaje}", "error");
                     } 
-                    else
+                    else if (estado == "PENDING")
+                    {
+                        MostrarAlerta("Transacción en proceso", "Tu pago aún está siendo confirmado. Por favor comunicate con un asesor.", "warning");
+                    }
+                    else 
                     {
                         MostrarAlerta("Transacción rechazada", $"Estado de la tarjeta: {estado ?? "Desconocido"}", "error");
                     }
+
                     return false;
                 }
 
