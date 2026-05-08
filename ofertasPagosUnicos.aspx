@@ -33,6 +33,24 @@
     </script>
     <!-- End Microsoft Clarity -->
 
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.track('PageView');
+            ttq.page();
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
     <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -139,8 +157,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
@@ -195,8 +213,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
@@ -250,8 +268,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>

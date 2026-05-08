@@ -33,6 +33,24 @@
     </script>
     <!-- End Microsoft Clarity -->
 
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.track('PageView');
+            ttq.page();
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
     <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -122,9 +140,9 @@
 
                             <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p class="plan-price">$ 9.900 1er Mes</p>
                             <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
-                            <p>DESPUÉS $99.500/mes</p>
+                            <p>DESPUÉS $99.000/mes</p>
 
                             <p class="plan-title">&nbsp;</p>
 
@@ -136,7 +154,7 @@
                                     onclick="planAddToCart(
                                         ['40'],
                                         'Plan Flexible Pro',
-                                        19900,
+                                        9900,
                                         'register?token=aKsoXcm34Ca4sMKeHraR'
                                     ); return false;">
                                     Comprar ya
@@ -153,8 +171,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
@@ -208,8 +226,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-xmark"></i><span style="color: #191919;">Pago mensual automático.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
@@ -223,19 +241,15 @@
             <!-- End row plans recu -->
 
 		    <div class="row plans plans-recu">
-                <div class="col-md-4" style="padding: 0;">
+                <%--<div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta plan-tall-2">
-                        <%--<p class="ribbon-3" style="width: 250px;">Entrena en una sola sede</p>--%>
-
                         <img src="img/planes-cards/plan-basico-mensual_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
                             <h2 class="plan-title">Plan Básico Mensual</h2>
 
-                            <%--<p style="margin-bottom: 0;">Ideal si entrenas siempre en una sola sede.</p>--%>
                             <p style="margin-bottom: 10px;">Entrena en una sola sede.</p>
 
-                            <%--<p class="plan-price">$ 19.900 1er Mes</p>--%>
                             <p class="plan-price">$ 39.800 1er Mes</p>
 
                             <p class="plan-title" style="font-size: 15px;">+ $ 19.900 de Inscripción</p>
@@ -275,8 +289,60 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div>--%>
 			    <!-- End col-md-4 -->
+
+                <div class="col-md-4" style="padding: 0;">
+                    <div class="plan plan-oferta plan-tall-2">
+                        <img src="img/planes-cards/plan-transformate.jpeg" alt="img" />
+
+                        <div class="plan-info">
+                            <h2 class="plan-title">Plan Transformate</h2>
+
+                            <p style="margin-bottom: 10px;">Entrena para lograr tu mejor versión.</p>
+
+                            <p class="plan-price">$ 29.900 1er Mes</p>
+
+                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+
+                            <p>DESPUÉS $130.000/mes</p>
+
+                            <p>Fidelidad de 6 meses</p>
+
+                            <div class="text-center">
+                                <a href="#" 
+                                    class="btn_full" 
+                                    onclick="planAddToCart(
+                                        ['43'],
+                                        'Plan Transformate',
+                                        29900,
+                                        'register?token=XK6ZYbmaYkihB41O73I8'
+                                    ); return false;">
+                                    Comprar ya
+                                </a>
+                            </div>
+
+                            <div class="plan-toggle">
+                                <span>¿Qué incluye?</span>
+                                <i class="fa fa-chevron-down toggle-icon"></i>
+                            </div>
+
+                            <ul class="plan-features">
+                                <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
+                                <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
+                                <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para un amigos.</li>
+                                <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
+                                <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Comunidad VIP.</li>
+                                <li><i class="fa fa-circle-check"></i>Valoración física trimestral (4 en un año).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
 
                 <div class="col-md-4" style="padding: 0;">
                     <div class="plan plan-oferta plan-tall plan-tall-oferta">
@@ -290,11 +356,11 @@
                             <%--<p style="margin-bottom: 0;">Entrena en todas nuestras sedes.</p>--%>
                             <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
 
-                            <p class="plan-price">$ 19.900 1er Mes</p>
+                            <p class="plan-price">$ 9.900 1er Mes</p>
 
                             <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
 
-                            <p>DESPUÉS $99.500/mes</p>
+                            <p>DESPUÉS $99.000/mes</p>
 
                             <p>Fidelidad de 6 meses</p>
 
@@ -304,7 +370,7 @@
                                     onclick="planAddToCart(
                                         ['40'],
                                         'Plan Flexible Pro',
-                                        19900,
+                                        9900,
                                         'register?token=aKsoXcm34Ca4sMKeHraR'
                                     ); return false;">
                                     Comprar ya
@@ -320,11 +386,12 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-xmark"></i><span style="color: #3C3C3C;">Comunidad VIP.</span></li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -374,11 +441,12 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a TODAS las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Pago mensual automático.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
+                                <li><i class="fa fa-circle-check"></i>Comunidad VIP.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
                             </ul>
                         </div>
@@ -431,8 +499,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
@@ -449,7 +517,7 @@
                         <img src="img/planes-cards/plan-12-meses_2026-02-27.jpg" alt="img" />
 
                         <div class="plan-info">
-                            <h2 class="plan-title">Plan Año Imparable</h2>
+                            <h2 class="plan-title" style="font-size: 17px;">Plan Año Imparable</h2>
                             <h4 class="plan-title" style="font-size: 12px;">Plan 12 Meses</h4>
 
                             <p style="margin-bottom: 0;">Entrena sin pausas durante todo un año.</p>
@@ -487,8 +555,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>
@@ -542,8 +610,8 @@
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las sedes.</li>
                                 <li><i class="fa fa-circle-check"></i>Acceso a todas las áreas de la sede.</li>
                                 <li><i class="fa fa-circle-check"></i>Clases grupales con profesores.</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Valoración y entrenamiento).</li>
-                                <li><i class="fa fa-circle-check"></i>FP App (Nutrición).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Plan de entrenamiento).</li>
+                                <li><i class="fa fa-circle-check"></i>FP App (Tips de nutrición).</li>
                                 <li><i class="fa fa-circle-check"></i>5 cortesías mensuales para amigos.</li>
                                 <li><i class="fa fa-circle-check"></i>Membresía incluida.</li>
                                 <li><i class="fa fa-circle-check"></i>Valoración física inicial.</li>

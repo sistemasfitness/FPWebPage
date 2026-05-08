@@ -274,16 +274,16 @@ namespace WebPage
                 pnlTotalCart.Visible = false;
 
                 ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 19.900</span>
+                                        PRIMER MES <span class='pull-right'>$ 9.900</span>
                                     </div>
                                     <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 99.500/mes
+                                        DESPUÉS $ 99.000/mes
                                     </div>
                                     <div class='total_cart'>
                                         SIN INSCRIPCIÓN
                                     </div>
                                     <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 19.900</span>
+                                        TOTAL <span class='pull-right'>$ 9.900</span>
                                     </div>";
             }
 
@@ -320,6 +320,24 @@ namespace WebPage
                                     </div>
                                     <div class='total_cart'>
                                         TOTAL <span class='pull-right'>$ 165.000</span>
+                                    </div>";
+            }
+
+            if (IdPlan == 43)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 29.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 130.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        SIN INSCRIPCIÓN
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 29.900</span>
                                     </div>";
             }
 
