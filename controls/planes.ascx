@@ -341,7 +341,7 @@
                         <h2 class="plan-title">Plan Flexible Pro</h2>
 
                         <%--<p style="margin-bottom: 0;">Entrena en todas nuestras sedes.</p>--%>
-                        <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
+                        <p style="margin-bottom: 10px;">Entrena en todas nuestras sedes.</p>
 
                         <p class="plan-price">$ 9.900 1er Mes</p>
 
@@ -395,8 +395,8 @@
                     <div class="plan-info">
                         <h2 class="plan-title">Plan Mes a Mes</h2>
 
-                        <%--<p style="margin-bottom: 0;">Empieza y termina cuando quieras.</p>--%>
-                        <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
+                        <p style="margin-bottom: 10px">Empieza y termina cuando quieras.</p>
+                        <%--<p style="margin-bottom: 10px;">Entrena en todas nuestras sedes.</p>--%>
 
                         <p class="plan-price">$ 165.000 1er Mes</p>
 

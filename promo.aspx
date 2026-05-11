@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="descripcionPlan.aspx.cs" Inherits="WebPage.descripcionPlan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="promo.aspx.cs" Inherits="WebPage.promo" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
@@ -32,6 +32,24 @@
         })(window, document, "clarity", "script", "tqldhc207r");
     </script>
     <!-- End Microsoft Clarity -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.page();
+            ttq.track('PageView');
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
 
     <script src="js/fitnesspeople.js"></script>
 
@@ -83,21 +101,18 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <%--<asp:Literal ID="ltBannerFull" runat="server"></asp:Literal>--%>
-    <a id="lnkBanner" runat="server">
-        <section runat="server" id="secBanner">
-            <div id="sub_content_in">
-                <%--<h1 style="font-weight: 900;">PLANES EASY MENSUALES</h1>--%>
-            </div>
-        </section>
-    </a>
+    <section id="secBanner" class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/terminos_legales.webp" data-natural-width="1900">
+        <div id="sub_content_in">
+            <%--<h1 style="font-weight: 900;"></h1>--%>
+        </div>
+    </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35">
+    <section class="margin_60 section-principal-promo">
 	    <div class="container">
             <div class="row plans plans-recu">
-                <div class="col-md-5">
+                <div class="col-md-5" style="padding: 0;">
                     <div class="plan">
                         <img id="imgPlan" runat="server" alt="Imagen del plan" />
 
@@ -110,6 +125,7 @@
                             <p class="plan-price" runat="server" id="lblPrecio"></p>
                             <p class="plan-title" style="font-size: 15px;" runat="server" id="lblPrecioAdd"></p>
                             <p runat="server" id="lblPrecioDes"></p>
+                            <p class="plan-price" runat="server" style="font-size: 18px; margin-bottom: 10px;" id="lblPrecioDesUnico"></p>
 
                             <p runat="server" id="lblFidelidad"></p>
 
@@ -132,12 +148,6 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
-                    </div>
-
-                    <div class="text-center" style="margin-top:15px;">
-                        <asp:HyperLink ID="lnkComprar2" runat="server" CssClass="btn_full_2">
-                            Comprar ahora
-                        </asp:HyperLink>
                     </div>
                 </div>
             </div>
@@ -200,18 +210,6 @@
 
     <style>
 
-        #lnkBanner {
-            cursor: pointer;
-        }
-
-        #secBanner {
-            width: 100%; 
-            height: 470px; 
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-
         .plans {
             margin: 0;
         }
@@ -227,6 +225,21 @@
 
         .plan-features {
             padding: 0;
+        }
+
+        @media (max-width: 767px) {
+            .section-principal-promo {
+                padding-top: 30px;
+            }
+
+            #secBanner {
+                display: none !important;
+            }
+
+            .parallax-mirror,
+            .parallax-slider {
+                display: none !important;
+            }
         }
 
     </style>

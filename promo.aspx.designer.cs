@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class descripcionPlan
+    public partial class promo
     {
 
         /// <summary>
@@ -22,24 +22,6 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::WebPage.controls.mainmenu mainmenu;
-
-        /// <summary>
-        /// Control lnkBanner.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkBanner;
-
-        /// <summary>
-        /// Control secBanner.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secBanner;
 
         /// <summary>
         /// Control imgPlan.
@@ -105,6 +87,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrecioDes;
 
         /// <summary>
+        /// Control lblPrecioDesUnico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrecioDesUnico;
+
+        /// <summary>
         /// Control lblFidelidad.
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptBeneficios;
-
-        /// <summary>
-        /// Control lnkComprar2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkComprar2;
 
         /// <summary>
         /// Control footer.

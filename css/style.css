@@ -2729,7 +2729,7 @@ ul.list_3 {
 
 /*-------- 3.6 Parallax bg --------*/
 .parallax_window_in {
-	height: 500px;
+	height: 400px;
 	position: relative;
 	display: table;
 	width: 100%;
