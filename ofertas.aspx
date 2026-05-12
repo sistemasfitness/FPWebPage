@@ -142,11 +142,11 @@
 
                             <p class="plan-price">$ 9.900 1er Mes</p>
                             <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
-                            <p>DESPUÉS $99.000/mes</p>
+                            <p class="plan-sub-title-white">DESPUÉS $99.000/mes</p>
 
                             <p class="plan-title">&nbsp;</p>
 
-                            <p>Fidelidad de 6 meses</p>
+                            <p class="plan-sub-title-white">Fidelidad de 6 meses</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -197,11 +197,11 @@
 
                             <p class="plan-title" style="font-size: 15px;">&nbsp;</p>
 
-                            <p>&nbsp;</p>
+                            <p class="plan-sub-title-white">&nbsp;</p>
 
                             <p class="plan-title">+ 2 meses gratis</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title-white">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -303,11 +303,11 @@
 
                             <p class="plan-price">$ 29.900 1er Mes</p>
 
-                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+                            <p class="plan-sub-title">Sin inscripción</p>
 
-                            <p>DESPUÉS $130.000/mes</p>
+                            <p class="plan-sub-title-white">DESPUÉS $130.000/mes</p>
 
-                            <p>Fidelidad de 6 meses</p>
+                            <p class="plan-sub-title">Fidelidad de 6 meses</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -358,11 +358,11 @@
 
                             <p class="plan-price">$ 9.900 1er Mes</p>
 
-                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+                            <p class="plan-sub-title">Sin inscripción</p>
 
-                            <p>DESPUÉS $99.000/mes</p>
+                            <p class="plan-sub-title-white">DESPUÉS $99.000/mes</p>
 
-                            <p>Fidelidad de 6 meses</p>
+                            <p class="plan-sub-title">Fidelidad de 6 meses</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -413,11 +413,11 @@
 
                             <p class="plan-price">$ 165.000 1er Mes</p>
 
-                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+                            <p class="plan-sub-title">Sin inscripción</p>
 
-                            <p>RENOVACIÓN MES A MES</p>
+                            <p class="plan-sub-title-white">RENOVACIÓN MES A MES</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -470,11 +470,11 @@
                             <p class="plan-price">$ 350.000</p>
                             <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">&nbsp;</p>
+                            <p class="plan-sub-title">&nbsp;</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 116.666/mes</p>
+                            <p class="plan-title-white">≈ $ 116.666/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -526,11 +526,11 @@
                             <%--<p>DESPUÉS $99.000</p>--%>
 
                             <%--<p class="plan-title" style="margin-bottom: 7px;">+ 2 meses gratis</p>--%>
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">+ 2 meses gratis</p>
+                            <p class="plan-sub-title">+ 2 meses gratis</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 70.714/mes</p>
+                            <p class="plan-title-white">≈ $ 70.714/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -581,11 +581,11 @@
 
                             <p class="plan-price">$ 590.000</p>
 
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">&nbsp;</p>
+                            <p class="plan-sub-title">&nbsp;</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 98.333/mes</p>
+                            <p class="plan-title-white">≈ $ 98.333/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 

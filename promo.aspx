@@ -123,11 +123,11 @@
                             <p style="margin-bottom: 0;" runat="server" id="lblDescripcion"></p>
 
                             <p class="plan-price" runat="server" id="lblPrecio"></p>
-                            <p class="plan-title" style="font-size: 15px;" runat="server" id="lblPrecioAdd"></p>
-                            <p runat="server" id="lblPrecioDes"></p>
-                            <p class="plan-price" runat="server" style="font-size: 18px; margin-bottom: 10px;" id="lblPrecioDesUnico"></p>
+                            <p class="plan-sub-title" runat="server" id="lblPrecioAdd"></p>
+                            <p class="plan-sub-title-white" runat="server" id="lblPrecioDes"></p>
+                            <p class="plan-title-white" runat="server" id="lblPrecioDesUnico"></p>
 
-                            <p runat="server" id="lblFidelidad"></p>
+                            <p class="plan-sub-title" runat="server" id="lblFidelidad"></p>
 
                             <div class="text-center" style="margin-top:15px;">
                                 <asp:HyperLink ID="lnkComprar1" runat="server" CssClass="btn_full">

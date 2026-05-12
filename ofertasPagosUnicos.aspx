@@ -128,11 +128,11 @@
                             <p class="plan-price">$ 350.000</p>
                             <%--<p>DESPUÉS $99.000</p>--%>
 
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">&nbsp;</p>
+                            <p class="plan-sub-title">&nbsp;</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 116.666/mes</p>
+                            <p class="plan-title-white">≈ $ 116.666/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -184,11 +184,11 @@
                             <%--<p>DESPUÉS $99.000</p>--%>
 
                             <%--<p class="plan-title" style="margin-bottom: 7px;">+ 2 meses gratis</p>--%>
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">+ 2 meses gratis</p>
+                            <p class="plan-sub-title">+ 2 meses gratis</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 70.714/mes</p>
+                            <p class="plan-title-white">≈ $ 70.714/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -239,11 +239,11 @@
 
                             <p class="plan-price">$ 590.000</p>
 
-                            <p class="plan-title" style="margin-bottom: 10px; font-size: 15px;">&nbsp;</p>
+                            <p class="plan-sub-title">&nbsp;</p>
 
-                            <p class="plan-price" style="font-size: 18px; margin-bottom: 20px;">≈ $ 98.333/mes</p>
+                            <p class="plan-title-white">≈ $ 98.333/mes</p>
 
-                            <p>Sin fidelidad</p>
+                            <p class="plan-sub-title">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 

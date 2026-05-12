@@ -2970,6 +2970,27 @@ label {
 		height: 1px;
 	}
 
+.plan-title-white {
+	margin-top: 0;
+	line-height: 1;
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.plan-sub-title, .plan-sub-title-white {
+	margin-top: 0;
+	line-height: 1;
+	font-size: 15px;
+	color: #e3ff00;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.plan-sub-title-white {
+	color: #ffffff;
+}
+
 .plan-price {
 	/*margin: 0 auto 20px;
 	width: 110px;
