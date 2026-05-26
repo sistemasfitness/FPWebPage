@@ -264,7 +264,7 @@
                                 <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
                             <div style="font-size: 13px">
-                                <div class="checkbox checkbox-dark">
+                                <%--<div class="checkbox checkbox-dark">
                                     <input type="checkbox" id="cbAutorizo1" />
 
                                     <label for="cbAutorizo1">
@@ -285,6 +285,18 @@
 
                                     <label for="cbAutorizo3">
                                         <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro recurrente.</span>
+                                    </label>
+                                </div>--%>
+
+                                <div class="checkbox checkbox-dark">
+                                    <input type="checkbox" id="cbAutorizo" />
+
+                                    <label for="cbAutorizo" style="text-align: justify; line-height: 17px;">
+                                        <span>
+                                            Autorizo a 
+                                            <b>Fitness People Centro Médico Deportivo S.A.S.</b> 
+                                            a realizar cobros recurrentes automáticos a la tarjeta registrada, de acuerdo con el plan seleccionado.
+                                        </span>
                                     </label>
                                 </div>
                             </div>
@@ -418,14 +430,21 @@
         }
 
         function validarYEjecutarPago() {
-            const cb1 = document.getElementById("cbAutorizo1");
-            const cb2 = document.getElementById("cbAutorizo2");
-            const cb3 = document.getElementById("cbAutorizo3");
+            //const cb1 = document.getElementById("cbAutorizo1");
+            //const cb2 = document.getElementById("cbAutorizo2");
+            //const cb3 = document.getElementById("cbAutorizo3");
 
-            const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;
+            //const autorizacionesOK = cb1.checked && cb2.checked && cb3.checked;
             
-            if (!autorizacionesOK) {
-                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+            //if (!autorizacionesOK) {
+            //    mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+            //    return false;
+            //}
+
+            const cb = document.getElementById("cbAutorizo");
+            
+            if (!cb.checked) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar la autorización para continuar.', 'warning');
                 return false;
             }
 

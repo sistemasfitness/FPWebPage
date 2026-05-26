@@ -99,7 +99,7 @@
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong></strong>Información inicial</h3>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="fa-solid fa-shield-halved"></i></strong>Información inicial</h3>
                             <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
@@ -110,15 +110,14 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nro. de Documento: *</label>
-                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" 
-                                                    placeholder="1234567890" TabIndex="1" required="" oninput="numberFormat(this)"
-                                                    MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="1234567890" MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                                <p style="color: #fff; font-size: 12px; color: #e3ff00; margin-top: 5px; text-align: justify; line-height: 15px;"><i class="fa-solid fa-circle-info" style="font-weight: 900; margin-right: 5px;"></i>Al ingresar tu número de documento, algunos datos podrán completarse automáticamente mediante procesos de validación con fuentes autorizadas, con el fin de agilizar tu registro.</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Tipo de Documento: *</label>
-                                                <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
+                                                <asp:DropDownList ID="ddlTipoDocumento" runat="server"
                                                     AppendDataBoundItems="true" DataTextField="TipoDocumento" 
                                                     DataValueField="idTipoDoc" CssClass="form-control">
                                                     <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
@@ -130,15 +129,13 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nombre(s): *</label>
-                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
-                                                    placeholder="Pepito" TabIndex="4"></asp:TextBox>
+                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" placeholder="Pepito" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Apellido(s): *</label>
-                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
-                                                    placeholder="Pérez" TabIndex="2"></asp:TextBox>
+                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" placeholder="Pérez" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -146,15 +143,13 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Email: *</label>
-                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="ejemplo@correo.com" 
-                                                    required=""></asp:TextBox>
+                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" TextMode="Email" placeholder="ejemplo@correo.com" autocomplete="email"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Celular: *</label>
-                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" 
-                                                    MaxLength="10" oninput="numberFormat(this)" required=""></asp:TextBox>
+                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" MaxLength="10" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
                                             </div>
                                         </div>
 
@@ -177,81 +172,6 @@
                                                 <label>Fecha de Nacimiento: *</label>
                                                 <asp:TextBox ID="txbFechaNac" CssClass="form-control" 
                                                     runat="server" name="txbFechaNac" required=""></asp:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>--%>
-
-                                    <%--<div id="divPlanDuo" runat="server">
-                                        <h3 style="font-weight: 900; color: #e3ff00;">Información de tu dúo</h3>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Nro. de Documento: *</label>
-                                                    <asp:TextBox ID="txbDocumento2" CssClass="form-control" runat="server" 
-                                                        placeholder="1234567890" TabIndex="1" required="" oninput="numberFormat(this)"
-                                                        MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Tipo de Documento: *</label>
-                                                    <asp:DropDownList ID="ddlTipoDocumento2" runat="server" required=""
-                                                        AppendDataBoundItems="true" DataTextField="TipoDocumento" 
-                                                        DataValueField="idTipoDoc" CssClass="form-control">
-                                                        <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Nombre(s): *</label>
-                                                    <asp:TextBox ID="txbNombre2" CssClass="form-control" runat="server" required=""
-                                                        placeholder="Pepito" TabIndex="4"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Apellido(s): *</label>
-                                                    <asp:TextBox ID="txbApellido2" CssClass="form-control" runat="server" required=""
-                                                        placeholder="Pérez" TabIndex="2"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Email: *</label>
-                                                    <asp:TextBox ID="txbEmail2" CssClass="form-control" runat="server" placeholder="ejemplo@correo.com" 
-                                                        required=""></asp:TextBox>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Celular: *</label>
-                                                    <asp:TextBox ID="txbCelular2" CssClass="form-control" runat="server" placeholder="3001234567" 
-                                                        MaxLength="10" oninput="numberFormat(this)" required=""></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Género: *</label>
-                                                    <asp:DropDownList ID="ddlGenero2" runat="server" AppendDataBoundItems="true" 
-                                                        DataTextField="Genero" DataValueField="idGenero" required="" 
-                                                        CssClass="form-control" TabIndex="6">
-                                                        <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Fecha de Nacimiento: *</label>
-                                                    <asp:TextBox ID="txbFechaNac2" CssClass="form-control" 
-                                                        runat="server" name="txbFechaNac" required=""></asp:TextBox>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>--%>
@@ -347,10 +267,36 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <asp:CheckBox ID="cbAutorizo" runat="server" />
+                                    <%--<asp:CheckBox ID="cbAutorizo" runat="server" />--%>
 
-                                    <label for="cbAutorizo">
+                                    <%--<label for="cbAutorizo">
                                         <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro<asp:Label ID="lbTipoCobro" runat="server"></asp:Label>.</span>
+                                    </label>--%>
+
+                                    <input type="checkbox" id="cbAutorizo1" />
+
+                                    <label for="cbAutorizo1" style="text-align: justify; line-height: 17px;">
+                                        <span>Autorizo el 
+                                            <b>
+                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">
+                                                    tratamiento de mis datos personales conforme a la Política de Tratamiento de Datos Personales de Fitness People Centro Médico Deportivo S.A.S.
+                                                </a>
+                                            </b> y la normativa vigente en Colombia.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox checkbox-dark">
+                                    <input type="checkbox" id="cbAutorizo2" />
+
+                                    <label for="cbAutorizo2" style="text-align: justify; line-height: 17px;">
+                                        <span>Acepto los
+                                            <b>
+                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/terminoslegales" target="_blank">
+                                                    reglamentos, términos y condiciones y la política de privacidad de Fitness People Centro Médico Deportivo S.A.S.
+                                                </a>
+                                            </b>
+                                        </span>
                                     </label>
                                 </div>
                             </div>
@@ -360,7 +306,7 @@
                                 <asp:Button ID="btnRegistrarAfiliado" runat="server" 
                                     CssClass="btn_full" 
                                     Text="Registrarme" 
-                                    OnClientClick="afiliadoFormSubmit(); return validarYEjecutarPago();"
+                                    OnClientClick="afiliadoFormSubmit(); return iniciarProcesoPago();"
                                     OnClick="btnRegistrar_Click" />
                             </div>
                         </div>
@@ -639,7 +585,7 @@
 
     </script>--%>
 
-    <script>
+    <%--<script>
 
         function numberFormat(input) {
             // Elimina cualquier cosa que no sea número
@@ -678,10 +624,10 @@
                 { id: "<%= txbApellido.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
                 { id: "<%= txbEmail.ClientID %>", msg: "Por favor, ingresa tu correo electrónico.", tipo: "email" },
                 { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." }
-                <%--{ id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
+                // { id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
                 { id: "<%= txbFechaNac.ClientID %>", msg: "Por favor, ingresa tu fecha de nacimiento." },
                 { id: "<%= ddlCiudad.ClientID %>", msg: "Por favor, selecciona la ciudad donde deseas entrenar." },
-                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }--%>
+                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }//
             ];
 
             // Validación del afiliado principal
@@ -705,52 +651,17 @@
                 }
             }
 
-            // Validación adicional SOLO si es Plan Dúo
-            <%--const divPlanDuo = document.getElementById("<%= divPlanDuo.ClientID %>");
-            const esPlanDuo = divPlanDuo && divPlanDuo.offsetParent !== null;
-
-            if (esPlanDuo) {
-
-                const camposDuo = [
-                    { id: "<%= txbDocumento2.ClientID %>", msg: "Ingresa el número de documento de tu dúo." },
-                    { id: "<%= ddlTipoDocumento2.ClientID %>", msg: "Selecciona el tipo de documento de tu dúo." },
-                    { id: "<%= txbNombre2.ClientID %>", msg: "Ingresa el nombre de tu dúo." },
-                    { id: "<%= txbApellido2.ClientID %>", msg: "Ingresa los apellidos de tu dúo." },
-                    { id: "<%= txbEmail2.ClientID %>", msg: "Ingresa el correo electrónico de tu dúo.", tipo: "email" },
-                    { id: "<%= txbCelular2.ClientID %>", msg: "Ingresa el número de celular de tu dúo." },
-                    { id: "<%= ddlGenero2.ClientID %>", msg: "Selecciona el género de tu dúo." },
-                    { id: "<%= txbFechaNac2.ClientID %>", msg: "Ingresa la fecha de nacimiento de tu dúo." }
-                ];
-
-                for (const campo of camposDuo) {
-                    const el = document.getElementById(campo.id);
-                    const valor = el?.value.trim();
-
-                    if (!valor) {
-                        return mostrarAlerta('Campo requerido', campo.msg, 'warning')
-                            .then(() => el.focus());
-                    }
-
-                    if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
-                        return mostrarAlerta(
-                            'Correo inválido',
-                            'El formato del correo electrónico del dúo no es válido.<br><b>Ej: usuario@dominio.com</b>',
-                            'warning',
-                            {},
-                            true
-                        ).then(() => el.focus());
-                    }
-                }
-            }--%>
-
             return true;
         }
 
         function validarYEjecutarPago() {
-            const cb1 = document.getElementById("cbAutorizo");
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
 
-            if (!cb1.checked) {
-                mostrarAlerta('Confirmación requerida', 'Debes autorizar para continuar con el registro.', 'warning');
+            const autorizacionesOk = cb1.checked && cb2.checked;
+
+            if (!autorizacionesOk) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
                 return false;
             }
 
@@ -779,6 +690,287 @@
             return true;
         }
 
+    </script>--%>
+
+    <script>
+
+        let procesandoPago = false;
+
+        function limpiarTexto(texto) {
+            return texto.trim().replace(/\s+/g, ' ');
+        }
+
+        function permitirSoloNumeros(e) {
+
+            const tecla = e.key;
+
+            // Permitir teclas especiales
+            const especiales = [
+                "Backspace",
+                "Delete",
+                "ArrowLeft",
+                "ArrowRight",
+                "Tab"
+            ];
+
+            if (especiales.includes(tecla))
+                return true;
+
+            // Solo números
+            if (!/^\d$/.test(tecla)) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function permitirSoloLetras(e) {
+
+            const tecla = e.key;
+
+            const especiales = [
+                "Backspace",
+                "Delete",
+                "ArrowLeft",
+                "ArrowRight",
+                "Tab",
+                " "
+            ];
+
+            if (especiales.includes(tecla))
+                return true;
+
+            // Letras con tildes y ñ
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]$/.test(tecla)) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function marcarError(el) {
+            el.classList.add("input-error");
+        }
+
+        function limpiarError(el) {
+            el.classList.remove("input-error");
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
+                title: titulo,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            };
+
+            esHtml ? config.html = mensaje : config.text = mensaje;
+            return Swal.fire(config); // Retorna la promesa
+        }
+
+        function validarDocumento(valor) {
+            if (!/^\d{5,10}$/.test(valor)) return "El número de documento debe contener entre 5 y 10 dígitos."
+
+            if (/^0+$/.test(valor)) return "El número de documento no es válido.";
+
+            return null;
+        }
+
+        function validarNombre(valor, campo) {
+            const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+
+            if (!regex.test(valor)) return `El campo ${campo} solo debe contener letras y espacios.`;
+
+            if (valor.length < 2) return `El campo ${campo} debe tener al menos 2 caracteres.`;
+
+            return null;
+        }
+
+        function validarEmail(valor) {
+            valor = valor.toLowerCase();
+
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!regex.test(valor)) return "El formato del correo electrónico no es válido. Ej: usuario@dominio.com.";
+
+            return null;
+        }
+
+        function validarCelular(valor) {
+            if (!/^3\d{9}$/.test(valor)) return "El número de celular debe iniciar en 3 y tener 10 dígitos."
+
+            return null;
+        }
+
+        function validarCamposFormulario() {
+            const campos = [
+                {
+                    id: "<%= txbDocumento.ClientID %>",
+                    msg: "Por favor, ingresa tu número de documento.",
+                    validar: validarDocumento
+                },
+                {
+                    id: "<%= ddlTipoDocumento.ClientID %>",
+                    msg: "Por favor, selecciona el tipo de documento."
+                },
+                {
+                    id: "<%= txbNombre.ClientID %>",
+                    msg: "Por favor, ingresa tu nombre.",
+                    validar: (v) => validarNombre(v, "Nombre")
+                },
+                {
+                    id: "<%= txbApellido.ClientID %>",
+                    msg: "Por favor, ingresa tus apellidos.",
+                    validar: (v) => validarNombre(v, "Apellido")
+                },
+                {
+                    id: "<%= txbEmail.ClientID %>",
+                    msg: "Por favor, ingresa tu correo electrónico.",
+                    validar: validarEmail
+                },
+                {
+                    id: "<%= txbCelular.ClientID %>",
+                    msg: "Por favor, ingresa tu número de celular.",
+                    validar: validarCelular
+                }
+            ];
+
+            for (const campo of campos) {
+
+                const el = document.getElementById(campo.id);
+
+                limpiarError(el);
+
+                let valor = "";
+
+                // Dropdown
+                if (el.tagName === "SELECT") {
+                    valor = el.value;
+                }
+                else {
+                    valor = limpiarTexto(el.value);
+                    el.value = valor;
+                }
+
+                // Campo vacío
+                if (!valor) {
+
+                    marcarError(el);
+
+                    mostrarAlerta(
+                        'Campo requerido',
+                        campo.msg,
+                        'warning'
+                    );
+
+                    el.focus();
+
+                    return false;
+                }
+
+                // Validaciones especiales
+                if (campo.validar) {
+
+                    const error = campo.validar(valor);
+
+                    if (error) {
+
+                        marcarError(el);
+
+                        mostrarAlerta(
+                            'Validación incorrecta',
+                            error,
+                            'warning'
+                        );
+
+                        el.focus();
+
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        function validarAutorizaciones() {
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
+
+            const autorizacionesOk = cb1.checked && cb2.checked;
+
+            if (!autorizacionesOk) {
+                mostrarAlerta(
+                    'Confirmación requerida',
+                    'Debes aceptar las autorizaciones para continuar.',
+                    'warning'
+                );
+
+                return false;
+            }
+
+            return true;
+        }
+
+        function bloquearBotonPago() {
+            const btn = document.getElementById("<%= btnRegistrarAfiliado.ClientID %>");
+
+            btn.disabled = true;
+
+            btn.style.opacity = "0.7";
+
+            btn.value = "Procesando...";
+        }
+
+        function iniciarProcesoPago() {
+            if (procesandoPago) return false;
+
+            const formularioOK = validarCamposFormulario();
+
+            if (!formularioOK) return false;
+
+            const autorizacionesOK = validarAutorizaciones();
+
+            if (!autorizacionesOK) return false;
+
+            procesandoPago = true;
+
+            setTimeout(() => {
+
+                bloquearBotonPago();
+
+                mostrarAlerta(
+                    'Procesando registro',
+                    'Estamos guardando tu información.<br><br><b>No cierres ni recargues la página</b><br>mientras te redirigimos a la pasarela de pago.',
+                    'info',
+                    {
+                        showCloseButton: false,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        didOpen: () => Swal.showLoading()
+                    },
+                    true
+                );
+
+            }, 100);
+
+            // PERMITIR POSTBACK
+            return true;
+        }
+
+        document.addEventListener("input", function (e) {
+            e.target.classList.remove("input-error");
+        });
+
     </script>
 
     <script>
@@ -793,14 +985,22 @@
             window.dataLayer.push({
                 event: 'custom_form_submit',
                 formData: {
-                    name: nombre + ' ' + apellido, 
-                    email: correo, 
+                    name: nombre + ' ' + apellido,
+                    email: correo,
                     phone: telefono
                 }
             });
         }
 
     </script>
+
+    <style>
+
+        .input-error {
+            border: 2px solid #ff4d4f !important;
+        }
+
+    </style>
 
 
     <style>

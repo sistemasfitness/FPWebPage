@@ -345,73 +345,6 @@ namespace WebPage
             }
         }
 
-        //private void CargarInformacionPlan()
-        //{
-        //    ltValor.Text = LtValorPlan;
-
-        //    if (IdPlan == 18)
-        //    {
-        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $99.000 cada mes.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (6 meses).<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-        //    }
-
-        //    if (IdPlan == 19)
-        //    {
-        //        pnlTotalCart.Visible = false;
-
-        //        ltPlanEasy.Text = @"<div id='total_cart' style='font-size: 15px; margin-bottom: 0;'>
-        //                                ANTES <span class='pull-right' style='text-decoration: line-through;'>$149.000</span>
-        //                            </div>
-        //                            <div id='total_cart'>
-        //                                AHORA <span class='pull-right'>$89.000</span>
-        //                            </div>";
-
-        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Entrena por $89.000 cada mes.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-        //    }
-
-        //    if (IdPlan == 20)
-        //    {
-        //        pnlTotalCart.Visible = false;
-
-        //        ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
-        //                                2 MESES <span class='pull-right'>$49.900</span>
-        //                            </div>
-        //                            <div id='total_cart' style='font-size: 15px;'>
-        //                                DESPUÉS <span class='pull-right'>$99.000</span>
-        //                            </div>";
-
-        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-        //    }
-
-        //    if (IdPlan == 21)
-        //    {
-        //        pnlTotalCart.Visible = false;
-
-        //        ltPlanEasy.Text = @"<div id='total_cart' style='margin-bottom: 0;'>
-        //                                PRIMER MES <span class='pull-right'>$9.900</span>
-        //                            </div>
-        //                            <div id='total_cart' style='font-size: 15px;'>
-        //                                DESPUÉS <span class='pull-right'>$89.000</span>
-        //                            </div>";
-
-        //        ltInfoPlan.Text = @"Lo que debes saber de tu plan:<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> Débito automático (12 meses).<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 10 sedes + valoración profesional.<br/>
-        //                            <i class='fa fa-circle-check' style='color: #000000;'></i> 2 invitaciones cada mes.";
-        //    }
-        //}
-
-
         private void CargarCiudadesYSedes()
         {
             clasesglobales cg = new clasesglobales();
@@ -484,7 +417,6 @@ namespace WebPage
             if (dtSede != null) dtSede.Dispose();
         }
 
-
         private void CargarInformacionPlan()
         {
             ltValor.Text = LtValorPlan;
@@ -540,24 +472,6 @@ namespace WebPage
                                     </div>
                                     <div class='total_cart'>
                                         TOTAL <span class='pull-right'>$ 165.000</span>
-                                    </div>";
-            }
-
-            if (IdPlan == 43)
-            {
-                pnlTotalCart.Visible = false;
-
-                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>$ 29.900</span>
-                                    </div>
-                                    <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 130.000/mes
-                                    </div>
-                                    <div class='total_cart'>
-                                        SIN INSCRIPCIÓN
-                                    </div>
-                                    <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 29.900</span>
                                     </div>";
             }
 
@@ -758,7 +672,7 @@ namespace WebPage
                 );
 
                 // 5. Si no es un AfiliadoPlan nuevo, se gestiona el plan actual para actualizar fechas o finalizarlo según corresponda
-                if (!EsAfiliadoPlanNuevo) GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
+                //if (!EsAfiliadoPlanNuevo) GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);
 
                 //
 
@@ -775,7 +689,7 @@ namespace WebPage
                     celularAfi,
                     correoAfi,
                     1,
-                    null,
+                    "",
                     IdSede,
                     "Pendiente"
                 );

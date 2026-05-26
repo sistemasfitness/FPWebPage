@@ -159,24 +159,6 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.Literal ltInfoPlan;
 
         /// <summary>
-        /// Control cbAutorizo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAutorizo;
-
-        /// <summary>
-        /// Control lbTipoCobro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoCobro;
-
-        /// <summary>
         /// Control btnRegistrarAfiliado.
         /// </summary>
         /// <remarks>
