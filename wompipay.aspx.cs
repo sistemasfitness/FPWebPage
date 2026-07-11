@@ -475,41 +475,23 @@ namespace WebPage
                                     </div>";
             }
 
-            //if (IdPlan == 37)
-            //{
-            //    pnlTotalCart.Visible = false;
+            if (IdPlan == 43)
+            {
+                pnlTotalCart.Visible = false;
 
-            //    ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-            //                            PRIMER MES <span class='pull-right'>$ 9.900</span>
-            //                        </div>
-            //                        <div class='total_cart' style='font-size: 15px;'>
-            //                            DESPUÉS $ 165.000/mes
-            //                        </div>
-            //                        <div class='total_cart'>
-            //                            INSCRIPCIÓN <span class='pull-right'>$ 190.000</span>
-            //                        </div>
-            //                        <div class='total_cart'>
-            //                            TOTAL <span class='pull-right'>$ 199.900</span>
-            //                        </div>";
-            //}
-
-            //if (IdPlan == 39)
-            //{
-            //    pnlTotalCart.Visible = false;
-
-            //    ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-            //                            PRIMER MES <span class='pull-right'>$ 82.500</span>
-            //                        </div>
-            //                        <div class='total_cart' style='font-size: 15px;'>
-            //                            DESPUÉS $ 165.000/mes
-            //                        </div>
-            //                        <div class='total_cart'>
-            //                            INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
-            //                        </div>
-            //                        <div class='total_cart'>
-            //                            TOTAL <span class='pull-right'>$ 92.400</span>
-            //                        </div>";
-            //}
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>$ 29.900</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 130.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        SIN INSCRIPCIÓN
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 29.900</span>
+                                    </div>";
+            }
         }
 
         private void GestionarIntegracion()
@@ -963,7 +945,7 @@ namespace WebPage
                 string estadoMensaje = null;
 
                 // Tiempo máximo de espera
-                TimeSpan tiempoMaximo = TimeSpan.FromSeconds(90);
+                TimeSpan tiempoMaximo = TimeSpan.FromMinutes(5);
 
                 // Cada cuánto consultar
                 TimeSpan intervaloConsulta = TimeSpan.FromSeconds(3);

@@ -88,7 +88,7 @@ namespace WebPage
                     linkPago = "register?token=XK6ZYbmaYkihB41O73I8";
 
                     itemId = "43";
-                    itemName = "Plan Transformate";
+                    itemName = "Plan Transfórmate";
                     price = "29900";
 
                     //secBanner.Attributes["style"] += "background-image:url('img/banners/plan-basico-mensual_2026-03-04.jpg');";

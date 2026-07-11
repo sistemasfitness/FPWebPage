@@ -140,13 +140,16 @@
                                 <i class="fa fa-chevron-down toggle-icon"></i>
                             </div>
 
-                            <asp:Repeater ID="rptBeneficios" runat="server">
-                                <ItemTemplate>
-                                    <ul class="plan-features">
-                                        <li><i class="fa fa-circle-check"></i><%# Eval("Texto") %></li>
-                                    </ul>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                            <ul class="plan-features">
+                                <asp:Repeater ID="rptBeneficios" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <i class="fa fa-circle-check"></i>
+                                            <%# Eval("Texto") %>
+                                        </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -184,6 +187,47 @@
 
     <script>
 
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toggles = document.querySelectorAll(".plan-toggle");
+            const features = document.querySelectorAll(".plan-features");
+
+            let isOpen = false;
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+
+                    if (!isOpen) {
+                        // Abrir todos
+                        features.forEach(f => {
+                            f.classList.add("open");
+                            f.style.maxHeight = f.scrollHeight + "px";
+                        });
+
+                        toggles.forEach(t => t.classList.add("active"));
+
+                        isOpen = true;
+                    } else {
+                        // Cerrar todos
+                        features.forEach(f => {
+                            f.classList.remove("open");
+                            f.style.maxHeight = null;
+                        });
+
+                        toggles.forEach(t => t.classList.remove("active"));
+
+                        isOpen = false;
+                    }
+
+                });
+            });
+
+        });
+
+    </script>
+
+    <script>
+
         function planAddToCart(contentId, contentName, value, paymentUrl) {
 
             window.dataLayer.push({
@@ -214,17 +258,32 @@
             margin: 0;
         }
 
+        .plan-features {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.25s ease;
+        }
+
+        .plan-features.open {
+            opacity: 1;
+        }
+
         .plan-toggle {
             cursor: pointer;
             font-weight: 600;
-            margin: 15px 0;
+            margin-top: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .plan-features {
-            padding: 0;
+        .plan-toggle .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .plan-toggle.active .toggle-icon {
+            transform: rotate(180deg);
         }
 
         @media (max-width: 767px) {

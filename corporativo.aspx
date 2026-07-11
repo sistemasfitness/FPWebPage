@@ -604,6 +604,10 @@
             .container-beneficios-description .container-description-card .description-text {
                 font-size: 14px;
             }
+
+            .asesores-cards {
+                flex-direction: column;
+            }
         }
 
     </style>

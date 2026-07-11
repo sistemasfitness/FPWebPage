@@ -113,7 +113,41 @@
     <section id="planes" class="margin_60_35">
 	    <div class="container">
 
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Elige tu plan</h2>
+            <div class="container" id="planesSelector">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="main_title" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">¿Dónde quieres entrenar? Selecciona tu sede y luego elige tu plan</h3>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Ciudad:</label>
+                                <select id="ddlCiudadPlanes" class="form-control" style="background:#1A1A1A;"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Sede:</label>
+                                <select id="ddlSedePlanes" class="form-control" style="background:#1A1A1A;"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="">
+                    <p id="mensaje"
+                        style="
+                            display:none;
+                            color:#E3FF00;
+                            font-weight:700;
+                            text-align:center;
+                            text-decoration: underline;
+                        ">
+                    </p>
+                </div>
+            </div>
 
             <div class="plans-switch text-center">
                 <button class="switch-btn active" data-target="mas-vendidos">
@@ -140,11 +174,13 @@
 
                             <p style="margin-bottom: 0;">Más beneficios desde el primer mes.</p>
 
-                            <p class="plan-price">$ 9.900 1er Mes</p>
-                            <p class="plan-title" style="font-size: 15px;">Sin inscripción</p>
+                            <p class="plan-price">GRATIS 1er Mes</p>
+                            <p class="plan-title" style="font-size: 15px;">$ 9.900 de inscripción</p>
                             <p class="plan-sub-title-white">DESPUÉS $99.000/mes</p>
 
-                            <p class="plan-title">&nbsp;</p>
+                            <%--<p class="plan-title">&nbsp;</p>--%>
+
+                            <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
 
                             <p class="plan-sub-title-white">Fidelidad de 6 meses</p>
 
@@ -154,8 +190,7 @@
                                     onclick="planAddToCart(
                                         ['40'],
                                         'Plan Flexible Pro',
-                                        9900,
-                                        'register?token=aKsoXcm34Ca4sMKeHraR'
+                                        9900
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -201,16 +236,15 @@
 
                             <p class="plan-title">+ 2 meses gratis</p>
 
-                            <p class="plan-sub-title-white">Sin fidelidad</p>
+                            <p class="plan-sub-title-white" style="margin-top: 35px;">Sin fidelidad</p>
 
                             <div class="text-center">
                                 <a href="#" 
                                     class="btn_full"
                                     onclick="planAddToCart(
                                         ['7'],
-                                        'Plan Año Imparable (Plan 12 Meses)',
-                                        990000,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3703'
+                                        'Plan Año Imparable',
+                                        990000
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -309,14 +343,15 @@
 
                             <p class="plan-sub-title">Fidelidad de 6 meses</p>
 
+                            <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
+
                             <div class="text-center">
                                 <a href="#" 
                                     class="btn_full" 
                                     onclick="planAddToCart(
                                         ['43'],
                                         'Plan Transformate',
-                                        29900,
-                                        'register?token=XK6ZYbmaYkihB41O73I8'
+                                        29900
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -356,13 +391,15 @@
                             <%--<p style="margin-bottom: 0;">Entrena en todas nuestras sedes.</p>--%>
                             <p style="margin-bottom: 10px;">Entrena en todas nuestra sedes.</p>
 
-                            <p class="plan-price">$ 9.900 1er Mes</p>
+                            <p class="plan-price">GRATIS 1er Mes</p>
 
-                            <p class="plan-sub-title">Sin inscripción</p>
+                            <p class="plan-sub-title">$ 9.900 de inscripción</p>
 
                             <p class="plan-sub-title-white">DESPUÉS $99.000/mes</p>
 
                             <p class="plan-sub-title">Fidelidad de 6 meses</p>
+
+                            <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
 
                             <div class="text-center">
                                 <a href="#" 
@@ -370,8 +407,7 @@
                                     onclick="planAddToCart(
                                         ['40'],
                                         'Plan Flexible Pro',
-                                        9900,
-                                        'register?token=aKsoXcm34Ca4sMKeHraR'
+                                        9900
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -419,14 +455,15 @@
 
                             <p class="plan-sub-title">Sin fidelidad</p>
 
+                            <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
+
                             <div class="text-center">
                                 <a href="#" 
                                     class="btn_full"
                                     onclick="planAddToCart(
                                         ['42'],
                                         'Plan Mes a Mes',
-                                        165000,
-                                        'register?token=nji06llzEYJSdjPNh2Dg'
+                                        165000
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -481,9 +518,8 @@
                                     class="btn_full"
                                     onclick="planAddToCart(
                                         ['4'],
-                                        'Plan Trimestral (Plan 3 Meses)',
-                                        350000,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3705'
+                                        'Plan Trimestral',
+                                        350000
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -537,9 +573,8 @@
                                     class="btn-confirm-alert"
                                     onclick="planAddToCart(
                                         ['7'],
-                                        'Plan Año Imparable (Plan 12 Meses)',
-                                        990000,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3703'
+                                        'Plan Año Imparable',
+                                        990000
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -592,9 +627,8 @@
                                     class="btn_full"
                                     onclick="planAddToCart(
                                         ['5'],
-                                        'Plan Pro (Plan 6 Meses)',
-                                        590000,
-                                        'https://dash.fitmewise.com/admin/register/app/69a5f4eb88e88-3704'
+                                        'Plan Pro',
+                                        590000
                                     ); return false;">
                                     Comprar ya
                                 </a>
@@ -681,14 +715,270 @@
 
     <script>
 
-        function isMobile() {
-            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const sedes = {
+            "Boulevard": "Bucaramanga",
+            "Cabecera": "Bucaramanga",
+            "El Prado": "Bucaramanga",
+            "Provenza": "Bucaramanga",
+            "Ciudadela": "Bucaramanga",
+            "Cañaveral": "Floridablanca",
+            "DeLaCuesta": "Piedecuesta",
+            "Parque Central": "Piedecuesta",
+            "Jardin Plaza": "Cúcuta",
+            "Ceiba II": "Cúcuta"
+        };
+
+        const planesLinks = {
+            "Plan Transformate": {      // PLAN TRASFORMATE DEBITO AUTOMATICO
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-4484",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-4513",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-4511",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4512",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-4493",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4491",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4494",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-4510",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-4509",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-4492"
+            },
+
+            "Plan Flexible Pro": {      // PLAN FLEXIBLE PRO DEBITO AUTOMATICO
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
+            },
+
+            "Plan Mes a Mes": {      // PLAN MES A MES
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2822",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2726",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3382",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3462",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3062",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2902",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4000",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3302",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3222",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2982"
+            },
+
+            "Plan Trimestral": {    // PLAN TRIMESTRAL LINK             $ 350.000        
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-3929",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-3877",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3880",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4154",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3965",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4144",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4004",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3305",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3225",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2985"
+            },
+
+            "Plan Año Imparable": {     // PLAN ANUAL LINK   $ 990.000
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-3918",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-3874",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3878",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4152",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3958",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4142",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3994",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3303",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3223",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2983"
+            },
+
+            "Plan Pro": {               // PLAN SEMESTRAL
+                "Boulevard": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2824",
+                "Cabecera": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-3865",
+                "El Prado": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3384",
+                "Provenza": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3464",
+                "Ciudadela": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3064",
+                "Cañaveral": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2904",
+                "DeLaCuesta": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3144",
+                "Parque Central": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-4659",
+                "Jardin Plaza": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-4658",
+                "Ceiba II": "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-4657"
+            }
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const ddlCiudad = document.getElementById("ddlCiudadPlanes");
+            const ddlSede = document.getElementById("ddlSedePlanes");
+
+            const ciudades = [...new Set(Object.values(sedes))];
+
+            // Default
+            ddlCiudad.innerHTML = '<option value="">Selecciona una opción</option>';
+            ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
+
+            // Llenar ciudades
+            ciudades.forEach(ciudad => {
+                const option = document.createElement("option");
+
+                option.value = ciudad;
+                option.textContent = ciudad;
+
+                ddlCiudad.appendChild(option);
+            });
+
+            // Llenar sedes por ciudad
+            Object.keys(sedes).forEach(sede => {
+                const option = document.createElement("option");
+
+                option.value = sede;
+                option.textContent = sede;
+
+                ddlSede.appendChild(option);
+            });
+
+            // Evento Cambio ciudad
+            ddlCiudad.addEventListener("change", function () {
+
+                limpiarMensaje();
+
+                const ciudadSeleccionada = this.value;
+
+                ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
+
+                Object.keys(sedes).forEach(sede => {
+                    const ciudad = sedes[sede];
+
+                    if (!ciudadSeleccionada || ciudad === ciudadSeleccionada) {
+                        const option = document.createElement("option");
+
+                        option.value = sede;
+                        option.textContent = sede;
+
+                        ddlSede.appendChild(option);
+                    }
+                });
+            });
+
+            // Evento Cambio sede -> Seleccionar ciudad automáticamente
+            ddlSede.addEventListener("change", function () {
+
+                limpiarMensaje();
+
+                const sedeSeleccionada = this.value;
+
+                if (!sedeSeleccionada) return;
+
+                ddlCiudad.value = sedes[sedeSeleccionada];
+            });
+        });
+
+        function mostrarMensaje(textMensaje) {
+            const mensaje = document.getElementById("mensaje");
+
+            mensaje.style.display = "block";
+            mensaje.textContent = textMensaje;
+
+            document.getElementById("planesSelector")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+        }
+
+        function limpiarMensaje() {
+            const mensaje = document.getElementById("mensaje");
+
+            mensaje.style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const buttons = document.querySelectorAll(".switch-btn");
+            const recurrentes = document.querySelector(".plans-recu");
+            const unicos = document.querySelector(".plans-unic");
+            const masVendidos = document.querySelector(".plans-mas-vend");
+
+            unicos.style.display = "none";
+            recurrentes.style.display = "none";
+
+            const toggles = document.querySelectorAll(".plan-toggle");
+            const features = document.querySelectorAll(".plan-features");
+
+            let isOpen = false;
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function () {
+
+                    // Quitar activo a todos
+                    buttons.forEach(b => b.classList.remove("active"));
+
+                    // Activar el actual
+                    this.classList.add("active");
+
+                    const target = this.getAttribute("data-target");
+
+                    if (target === "recurrentes") {
+                        recurrentes.style.display = "flex";
+                        unicos.style.display = "none";
+                        masVendidos.style.display = "none";
+                    } else if (target === "unicos") {
+                        recurrentes.style.display = "none";
+                        unicos.style.display = "flex";
+                        masVendidos.style.display = "none";
+                    } else {
+                        recurrentes.style.display = "none";
+                        unicos.style.display = "none";
+                        masVendidos.style.display = "flex";
+                    }
+
+                    // Cerrar todos
+                    features.forEach(f => {
+                        f.classList.remove("open");
+                        f.style.maxHeight = null;
+                    });
+
+                    toggles.forEach(t => t.classList.remove("active"));
+
+                    isOpen = false;
+                });
+            });
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+
+                    if (!isOpen) {
+                        // Abrir todos
+                        features.forEach(f => {
+                            f.classList.add("open");
+                            f.style.maxHeight = f.scrollHeight + "px";
+                        });
+
+                        toggles.forEach(t => t.classList.add("active"));
+
+                        isOpen = true;
+                    } else {
+                        // Cerrar todos
+                        features.forEach(f => {
+                            f.classList.remove("open");
+                            f.style.maxHeight = null;
+                        });
+
+                        toggles.forEach(t => t.classList.remove("active"));
+
+                        isOpen = false;
+                    }
+
+                });
+            });
+
+        });
 
         function openPaymentInline(url) {
 
-            if (isMobile() || url.includes("register?token=")) {
-                // 🔥 abrir fuera del iframe (100% confiable)
+            if (url.includes("register?token=")) {
                 window.location.href = url;
                 return;
             }
@@ -741,7 +1031,36 @@
             }, 100);
         }
 
-        function planAddToCart(contentId, contentName, value, paymentUrl) {
+        function planAddToCart(contentId, contentName, value, directUrl = null) {
+
+            let paymentUrl = "";
+
+            if (directUrl) {
+                limpiarMensaje();
+
+                paymentUrl = directUrl;
+            }
+
+            if (!directUrl) {
+
+                const sede = document.getElementById("ddlSedePlanes").value;
+                const ciudad = document.getElementById("ddlCiudadPlanes").value;
+
+                if (!sede || !ciudad) {
+                    mostrarMensaje("Debes seleccionar una ciudad y sede antes de continuar.");
+
+                    return;
+                }
+
+                limpiarMensaje();
+
+                if (!planesLinks[contentName] || !planesLinks[contentName][sede]) {
+                    mostrarMensaje("No existe enlace configurado para esta sede.");
+                    return;
+                }
+
+                paymentUrl = planesLinks[contentName][sede];
+            }
 
             window.dataLayer.push({
                 event: 'add_to_cart',
@@ -756,9 +1075,7 @@
                 }
             });
 
-            setTimeout(function () {
-                openPaymentInline(paymentUrl);
-            }, 150);
+            openPaymentInline(paymentUrl);
         }
 
     </script>
@@ -808,17 +1125,26 @@
             .payment-header {
                 position: sticky;
                 top: 35px;
-                padding: 10px;
+                padding: 10px 0;
                 z-index: 10;
                 background-color: #000000;
+            }
+
+            .payment-header h2 {
+                margin-top: 30px;
+                font-size: 17px;
             }
         }
 
 
+        .plans {
+            margin: 50px auto 0px 0;
+        }
 
         .plans-switch {
             display: flex;
             justify-content: center;
+            margin: 10px 20px;
         }
 
         .switch-btn {
@@ -842,7 +1168,6 @@
             background: #d6ff00;
             color: #000;
         }
-
 
 
         .plan-features {
@@ -875,44 +1200,15 @@
 
 
 
-        .plans-wrapper {
-            margin: 60px auto 0px 0;
-            /*gap: 16px;*/
-        }
-
-        .plans-carousel {
-            width: auto;
-        }
-
-        @media (max-width: 992px) {
-
-            .plans-wrapper {
-                margin-top: 25px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            /*.plans-wrapper {
-                padding: 25px;
-            }*/
-        }
-
-
-
-        .banner-promo {
-            background-image: url('img/banners/plan-12-meses-duo_2026-02-25.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 470px;
-        }
-
         @media (max-width: 1000px) {
             .plans {
                 margin: 0 auto 0 0;
             }
+        }
 
-            .banner-promo {
-                background-image: url('img/banners/plan-12-meses-duo_mobile_2026-02-25.jpg');
+        @media (max-width: 768px) {
+            .switch-btn {
+                padding: 5px 13px;            
             }
         }
 
