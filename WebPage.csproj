@@ -267,6 +267,7 @@
     <Content Include="controls\sedes.ascx" />
     <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
+    <Content Include="exclusivoweb.aspx" />
     <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
@@ -891,6 +892,13 @@
     </Compile>
     <Compile Include="corporativo.aspx.designer.cs">
       <DependentUpon>corporativo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exclusivoweb.aspx.cs">
+      <DependentUpon>exclusivoweb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exclusivoweb.aspx.designer.cs">
+      <DependentUpon>exclusivoweb.aspx</DependentUpon>
     </Compile>
     <Compile Include="somos.aspx.cs">
       <DependentUpon>somos.aspx</DependentUpon>
