@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="mainmenu.ascx.cs" Inherits="WebPage.controls.mainmenu" %>
 <div class="row">
-    <%--<a href="https://api.whatsapp.com/send/?phone=573225924971&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="whatsapp" target="_blank"> <img src="../img/whatsapp-8.png" class="img-responsive" /></a>--%>
+    <a href="https://api.whatsapp.com/send/?phone=573107842151&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="whatsapp" target="_blank"> <img src="../img/whatsapp-8.png" class="img-responsive" /></a>
     <div class="col-xs-3">
         <a href="default" id="logo">
             <img src="img/logos/logo_2026-04-27.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
