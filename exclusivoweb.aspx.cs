@@ -30,7 +30,10 @@ namespace WebPage
             string price;
             string texto;
 
+            lblSubTituloUp.Visible = false;
+
             lnkComprar2.Visible = false;
+            lnkComprar4.Visible = false;
 
             switch (tipoPlan.ToLower())
             {
@@ -51,6 +54,7 @@ namespace WebPage
                     price = "9900";
                     texto = "ACTIVA TU PLAN";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price);
+                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price);
 
                     lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
 
@@ -66,22 +70,27 @@ namespace WebPage
 
                     lblTituloPrecio.InnerHtml = "PAGA HOY <br /> $590.000";
                     lblSubTituloPrecio1.InnerText = "6 MESES DE ACCESO";
-                    lblSubTituloPrecio2.InnerText = "ANTES $790.000";
-                    lblSubTituloPrecio2.Attributes["style"] += "text-decoration: line-through;";
+                    lblSubTituloPrecio2.Visible = false;
+
+                    lblSubTituloUp.Visible = true;
+                    lblSubTituloUp.InnerText = "ANTES $790.000";
 
                     itemId = "2";
                     itemName = "Plan 6 Meses + 2 Meses";
                     price = "590000";
                     texto = "COMPRAR CON 2 MESES GRATIS";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price);
+                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price);
 
                     lnkComprar2.Visible = true;
+                    lnkComprar4.Visible = true;
 
                     string itemId2 = "3";
                     string itemName2 = "Plan 6 Meses";
                     string price2 = "590000";
                     string texto2 = "COMPRAR SIN 2 MESES GRATIS";
                     ConfigurarBtn(lnkComprar2, texto2, itemId2, itemName2, price2);
+                    ConfigurarBtn(lnkComprar4, texto2, itemId2, itemName2, price2);
 
                     lblTextoFinal.InnerHtml = "Sin inscripción <br /> Sin administración <br /> Sin permanencia obligatoria";
 

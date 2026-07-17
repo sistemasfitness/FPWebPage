@@ -132,6 +132,8 @@
                 </div>
 
                 <div class="price">
+                    <p class="sub-title-up" runat="server" id="lblSubTituloUp"></p>
+
                     <h3 runat="server" id="lblTituloPrecio"></h3>
 
                     <p class="inscription" runat="server" id="lblSubTituloPrecio1"></p>
@@ -193,16 +195,22 @@
                         </div>
                     </div>
 
-                    <div class="row" style="">
+                    <div class="row">
                         <p id="mensaje"
                             style="
-                                display:none;
-                                color:#E3FF00;
-                                font-weight:700;
-                                text-align:center;
+                                display: none;
+                                color: #E3FF00;
+                                font-weight: 700;
+                                text-align: center;
                                 text-decoration: underline;
                             ">
                         </p>
+                    </div>
+
+                    <div class="plans-switch text-center" style="margin-top: 5px;">
+                        <asp:HyperLink ID="lnkComprar3" runat="server" CssClass="switch-btn active"></asp:HyperLink>
+
+                        <asp:HyperLink ID="lnkComprar4" runat="server" CssClass="switch-btn"></asp:HyperLink>
                     </div>
                 </div>
             </div>
@@ -576,10 +584,11 @@
             border: 1px solid #d6ff00;
             border-radius: 10px;
             flex: 1;
+            margin-bottom: 15px;
         }
 
         .card-principal .benefits .benefits-details i {
-            font-size: 50px;
+            font-size: 35px;
         }
 
         .card-principal .benefits .benefits-details p {
@@ -598,10 +607,17 @@
         }
 
         .card-principal .price h3 {
+            margin-top: 0px;
             font-size: 40px;
             font-weight: bold;
             color: #d6ff00;
             line-height: 1;
+        }
+
+        .card-principal .price .sub-title-up {
+            font-weight: bold;
+            font-size: 25px;
+            text-decoration: line-through;
         }
 
         .card-principal .price p {
@@ -652,7 +668,7 @@
         }
 
         .card-secundaria .benefits .benefits-details i {
-            font-size: 40px;
+            font-size: 30px;
             padding: 10px;
             border: 1px solid #d6ff00;
             border-radius: 10px;
@@ -663,6 +679,14 @@
             font-size: 15px;
             font-weight: 500;
             margin-bottom: 0;
+        }
+
+        .card-secundaria .plans-switch {
+            margin: 0;
+        }
+
+        .card-secundaria .switch-btn {
+            padding: 7px 15px;
         }
 
         .card-secundaria .sede .title {
@@ -711,6 +735,13 @@
 
             .card-secundaria .sede .title p {
                 font-size: 12px;
+            }
+        }
+
+        @media(max-width: 992px){
+            .card-secundaria .plans-switch {
+                flex-direction: column;
+                gap: 12px;
             }
         }
 

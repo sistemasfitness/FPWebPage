@@ -42,6 +42,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTitulo;
 
         /// <summary>
+        /// Control lblSubTituloUp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTituloUp;
+
+        /// <summary>
         /// Control lblTituloPrecio.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,24 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTextoFinal;
+
+        /// <summary>
+        /// Control lnkComprar3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar3;
+
+        /// <summary>
+        /// Control lnkComprar4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar4;
 
         /// <summary>
         /// Control footer.
