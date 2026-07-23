@@ -464,10 +464,10 @@
 
     <div class="container_styled_1">
         <div class="container margin_60_35">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>PREGUNTAS FRECUENTES</h2>
+
             <div class="row">
                 <div class="col-md-12">
-
-                    <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
                     <div class="panel-group" id="works">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -477,7 +477,9 @@
                             </div>
                             <div id="collapseOne_works" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
+                                    <b>Sí, puedes cancelar tu suscripción en cualquier momento.</b> Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda realizar la solicitud con al menos <b>5 días de anticipación</b> a tu próximo cobro.
+                                    <br />
+                                    Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
                                 </div>
                             </div>
                         </div>
@@ -513,15 +515,12 @@
                             </div>
                             <div id="collapseFour_works" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
+                                    Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- End panel-group -->
-
-
-
                 </div>
                 <!-- End col-md-9 -->
             </div>
