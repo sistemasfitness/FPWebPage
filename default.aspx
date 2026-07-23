@@ -405,11 +405,6 @@
             </div>
         </section>--%>
 
-        <!-- Control Aliados -->
-        <uc1:aliados runat="server" ID="controlaliados" />
-        <!-- End Control Aliados -->
-
-
         <div class="container_styled_1">
             <div class="container margin_60_35">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>PREGUNTAS FRECUENTES</h2>
@@ -477,6 +472,10 @@
             <!-- End container -->
         </div>
 
+
+        <!-- Control Aliados -->
+        <uc1:aliados runat="server" ID="controlaliados" />
+        <!-- End Control Aliados -->
 
 
         <div id="seleccion_sede">
