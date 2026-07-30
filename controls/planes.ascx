@@ -180,7 +180,8 @@
                                 onclick="planAddToCart(
                                     ['40'],
                                     'Plan Flexible Pro',
-                                    9900
+                                    9900, 
+                                    'register?token=TKIlFPP8XYRC9l1rfGjR'
                                 ); return false;">
                                 Comprar ya
                             </a>
@@ -229,7 +230,7 @@
                         <p class="plan-sub-title-white" style="margin-top: 35px;">Sin fidelidad</p>
 
                         <div class="text-center">
-                            <a href="#" 
+                            <a href="#"
                                 class="btn_full"
                                 onclick="planAddToCart(
                                     ['7'],
@@ -397,7 +398,8 @@
                                 onclick="planAddToCart(
                                     ['40'],
                                     'Plan Flexible Pro',
-                                    9900
+                                    9900, 
+                                    'register?token=TKIlFPP8XYRC9l1rfGjR'
                                 ); return false;">
                                 Comprar ya
                             </a>

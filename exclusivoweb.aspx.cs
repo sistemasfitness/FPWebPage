@@ -29,6 +29,7 @@ namespace WebPage
             string itemName;
             string price;
             string texto;
+            string tokenId;
 
             lblSubTituloUp.Visible = false;
 
@@ -53,8 +54,9 @@ namespace WebPage
                     itemName = "Plan Flexible Pro";
                     price = "9900";
                     texto = "ACTIVA TU PLAN";
-                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price);
-                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price);
+                    tokenId = "register?token=TKIlFPP8XYRC9l1rfGjR";
+                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
+                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
 
                     lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
 
@@ -79,8 +81,9 @@ namespace WebPage
                     itemName = "Plan 6 Meses + 2 Meses";
                     price = "590000";
                     texto = "COMPRAR CON 2 MESES GRATIS";
-                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price);
-                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price);
+                    tokenId = "register?token=iIcy3afZs7mlj4oUOKT8";
+                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
+                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
 
                     lnkComprar2.Visible = true;
                     lnkComprar4.Visible = true;
@@ -89,8 +92,8 @@ namespace WebPage
                     string itemName2 = "Plan 6 Meses";
                     string price2 = "590000";
                     string texto2 = "COMPRAR SIN 2 MESES GRATIS";
-                    ConfigurarBtn(lnkComprar2, texto2, itemId2, itemName2, price2);
-                    ConfigurarBtn(lnkComprar4, texto2, itemId2, itemName2, price2);
+                    ConfigurarBtn(lnkComprar2, texto2, itemId2, itemName2, price2, tokenId);
+                    ConfigurarBtn(lnkComprar4, texto2, itemId2, itemName2, price2, tokenId);
 
                     lblTextoFinal.InnerHtml = "Sin inscripción <br /> Sin administración <br /> Sin permanencia obligatoria";
 
@@ -98,7 +101,7 @@ namespace WebPage
             }
         }
 
-        private void ConfigurarBtn(HyperLink boton, string texto, string itemId, string itemName, string price)
+        private void ConfigurarBtn(HyperLink boton, string texto, string itemId, string itemName, string price, string tokenId)
         {
             boton.Text = texto;
 
@@ -106,7 +109,8 @@ namespace WebPage
                 $@"planAddToCart(
                     ['{itemId}'], 
                     '{itemName}', 
-                    '{price}'); 
+                    '{price}', 
+                    '{tokenId}'); 
                 return false;";
         }
     }

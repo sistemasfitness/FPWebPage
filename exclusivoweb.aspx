@@ -396,6 +396,11 @@
         }
 
         function openPaymentInline(url) {
+            if (url.includes("register?token=")) {
+                window.location.href = url;
+                return;
+            }
+
             const container = document.getElementById("paymentContainer");
             const iframe = document.getElementById("paymentFrame");
             const header = document.getElementById("paymentHeader");
@@ -444,6 +449,12 @@
 
         function planAddToCart(contentId, contentName, value, directUrl = null) {
             let paymentUrl = "";
+
+            if (directUrl) {
+                limpiarMensaje();
+
+                paymentUrl = directUrl;
+            }
 
             if (!directUrl) {
 

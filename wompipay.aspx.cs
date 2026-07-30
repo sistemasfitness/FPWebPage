@@ -492,6 +492,24 @@ namespace WebPage
                                         TOTAL <span class='pull-right'>$ 29.900</span>
                                     </div>";
             }
+
+            if (IdPlan == 45)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>GRATIS</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 99.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 9.900</span>
+                                    </div>";
+            }
         }
 
         private void GestionarIntegracion()
@@ -652,6 +670,23 @@ namespace WebPage
                     null,
                     null
                 );
+
+                // Lógica que permite guardar información de la tarjeta utilizada en compras
+
+                //string fechaExp = $"{ddlMes.SelectedValue}/{ddlAnho.SelectedValue}";
+
+                //if (idPago > 0)
+                //{
+                //    cg.ActualizarPagoPlanAfiliadoTarjeta(
+                //        idPago, 
+                //        txbNombreTarjeta.Text.Trim(),
+                //        cardNumber,
+                //        fechaExp,
+                //        cvc
+                //    );
+                //}
+
+                //
 
                 // 5. Si no es un AfiliadoPlan nuevo, se gestiona el plan actual para actualizar fechas o finalizarlo según corresponda
                 //if (!EsAfiliadoPlanNuevo) GestionarAfiliadoPlan(IdAfiliadoPlan, IdAfiliado);

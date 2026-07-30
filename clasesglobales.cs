@@ -5792,6 +5792,41 @@ namespace WebPage
             return respuesta;
         }
 
+        public string ActualizarPagoPlanAfiliadoTarjeta(int idPago, string nombreTarjeta, string numeroTarjeta, string fechaExpTarjeta, string codigoSegTarjeta)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open(); // Abrir conexión antes de usarla
+
+                    using (MySqlCommand cmd = new MySqlCommand("PA_ACTUALIZAR_PAGO_PLAN_AFILIADO_TARJETA", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        cmd.Parameters.AddWithValue("@p_id_pago", idPago);
+                        cmd.Parameters.AddWithValue("@p_nombre_tarjeta", nombreTarjeta);
+                        cmd.Parameters.AddWithValue("@p_numero_tarjeta", numeroTarjeta);
+                        cmd.Parameters.AddWithValue("@p_fecha_exp_tarjeta", fechaExpTarjeta);
+                        cmd.Parameters.AddWithValue("@p_cod_seg_tarjeta", codigoSegTarjeta);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public string ActualizarEstadoAfiliadoPlan(string estado, int idAfiliado, int idAfiliadoPlan)
         {
             string respuesta = string.Empty;

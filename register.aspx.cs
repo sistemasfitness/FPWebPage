@@ -84,7 +84,7 @@ namespace WebPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("default", true);
+            //Response.Redirect("default", true);
 
             if (!IsPostBack)
             {
@@ -269,6 +269,24 @@ namespace WebPage
                                     </div>
                                     <div class='total_cart'>
                                         TOTAL <span class='pull-right'>$ 29.900</span>
+                                    </div>";
+            }
+
+            if (IdPlan == 45)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
+                                        PRIMER MES <span class='pull-right'>GRATIS</span>
+                                    </div>
+                                    <div class='total_cart' style='font-size: 15px;'>
+                                        DESPUÉS $ 99.000/mes
+                                    </div>
+                                    <div class='total_cart'>
+                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                    </div>
+                                    <div class='total_cart'>
+                                        TOTAL <span class='pull-right'>$ 9.900</span>
                                     </div>";
             }
         }
