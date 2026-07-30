@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="exclusivoweb.aspx.cs" Inherits="WebPage.exclusivoweb" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="exclusivowebfw.aspx.cs" Inherits="WebPage.exclusivowebfw" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
@@ -174,14 +174,6 @@
                 <div class="sede" id="planesSelector">
                     <div class="row">
                         <div class="col-12 title">
-                            <h3>¿QUÉ ESTÁS ESPERANDO?</h3>
-
-                            <p>Entrena con la Familia Fitness People Ya!</p>
-                        </div>
-                    </div>
-
-                    <%--<div class="row">
-                        <div class="col-12 title">
                             <h3>¿DÓNDE QUIERES ENTRENAR?</h3>
 
                             <p>Selecciona tu sede y luego activa tu plan</p>
@@ -214,7 +206,7 @@
                                 text-decoration: underline;
                             ">
                         </p>
-                    </div>--%>
+                    </div>
 
                     <div class="plans-switch text-center" style="margin-top: 5px;">
                         <asp:HyperLink ID="lnkComprar3" runat="server" CssClass="switch-btn active"></asp:HyperLink>
@@ -225,7 +217,7 @@
             </div>
         </div>
 
-        <%--<div class="container">
+        <div class="container">
             <div id="paymentModal" class="payment-modal">
                 <div id="paymentContainer" class="payment-container">
 
@@ -238,7 +230,7 @@
 
                 </div>
             </div>
-        </div>--%>
+        </div>
     </section>
 
 
@@ -271,161 +263,133 @@
 
     <script>
 
-        //const sedes = {
-        //    "Boulevard": "Bucaramanga",
-        //    "Cabecera": "Bucaramanga",
-        //    "El Prado": "Bucaramanga",
-        //    "Provenza": "Bucaramanga",
-        //    "Ciudadela": "Bucaramanga",
-        //    "Cañaveral": "Floridablanca",
-        //    "DeLaCuesta": "Piedecuesta",
-        //    "Parque Central": "Piedecuesta",
-        //    "Jardin Plaza": "Cúcuta",
-        //    "Ceiba II": "Cúcuta"
-        //};
+        const sedes = {
+            "Boulevard": "Bucaramanga",
+            "Cabecera": "Bucaramanga",
+            "El Prado": "Bucaramanga",
+            "Provenza": "Bucaramanga",
+            "Ciudadela": "Bucaramanga",
+            "Cañaveral": "Floridablanca",
+            "DeLaCuesta": "Piedecuesta",
+            "Parque Central": "Piedecuesta",
+            "Jardin Plaza": "Cúcuta",
+            "Ceiba II": "Cúcuta"
+        };
 
-        //const planesLinks = {
-        //    "Plan Flexible Pro": {      // PLAN FLEXIBLE PRO DEBITO AUTOMATICO
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
-        //    },
-        //    "Plan 6 Meses": {      //  PLAN 6 MESES $590.000
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-3927",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-3875",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3879",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4153",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3964",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4143",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4003",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3304",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3224",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2984"
-        //    },
-        //    "Plan 6 Meses + 2 Meses": {      // PLAN 6 MESES $590.000
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2759",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2646",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3318",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3398",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-2999",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2838",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3078",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3239",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3158",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2918"
-        //    }
-        //}
+        const planesLinks = {
+            "Plan Flexible Pro": {      // PLAN FLEXIBLE PRO DEBITO AUTOMATICO
+                "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
+                "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+                "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
+                "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
+                "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
+                "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
+                "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
+                "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
+                "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
+                "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
+            }
+        }
 
-        //document.addEventListener("DOMContentLoaded", function () {
-        //    const ddlCiudad = document.getElementById("ddlCiudadPlanes");
-        //    const ddlSede = document.getElementById("ddlSedePlanes");
+        document.addEventListener("DOMContentLoaded", function () {
+            const ddlCiudad = document.getElementById("ddlCiudadPlanes");
+            const ddlSede = document.getElementById("ddlSedePlanes");
 
-        //    const ciudades = [...new Set(Object.values(sedes))];
+            const ciudades = [...new Set(Object.values(sedes))];
 
-        //    // Default
-        //    ddlCiudad.innerHTML = '<option value="">Selecciona una opción</option>';
-        //    ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
+            // Default
+            ddlCiudad.innerHTML = '<option value="">Selecciona una opción</option>';
+            ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
 
-        //    // Llenar ciudades
-        //    ciudades.forEach(ciudad => {
-        //        const option = document.createElement("option");
+            // Llenar ciudades
+            ciudades.forEach(ciudad => {
+                const option = document.createElement("option");
 
-        //        option.value = ciudad;
-        //        option.textContent = ciudad;
+                option.value = ciudad;
+                option.textContent = ciudad;
 
-        //        ddlCiudad.appendChild(option);
-        //    });
+                ddlCiudad.appendChild(option);
+            });
 
-        //    // Llenar sedes por ciudad
-        //    Object.keys(sedes).forEach(sede => {
-        //        const option = document.createElement("option");
+            // Llenar sedes por ciudad
+            Object.keys(sedes).forEach(sede => {
+                const option = document.createElement("option");
 
-        //        option.value = sede;
-        //        option.textContent = sede;
+                option.value = sede;
+                option.textContent = sede;
 
-        //        ddlSede.appendChild(option);
-        //    });
+                ddlSede.appendChild(option);
+            });
 
-        //    // Evento Cambio ciudad
-        //    ddlCiudad.addEventListener("change", function () {
+            // Evento Cambio ciudad
+            ddlCiudad.addEventListener("change", function () {
 
-        //        limpiarMensaje();
+                limpiarMensaje();
 
-        //        const ciudadSeleccionada = this.value;
+                const ciudadSeleccionada = this.value;
 
-        //        ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
+                ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
 
-        //        Object.keys(sedes).forEach(sede => {
-        //            const ciudad = sedes[sede];
+                Object.keys(sedes).forEach(sede => {
+                    const ciudad = sedes[sede];
 
-        //            if (!ciudadSeleccionada || ciudad === ciudadSeleccionada) {
-        //                const option = document.createElement("option");
+                    if (!ciudadSeleccionada || ciudad === ciudadSeleccionada) {
+                        const option = document.createElement("option");
 
-        //                option.value = sede;
-        //                option.textContent = sede;
+                        option.value = sede;
+                        option.textContent = sede;
 
-        //                ddlSede.appendChild(option);
-        //            }
-        //        });
-        //    });
+                        ddlSede.appendChild(option);
+                    }
+                });
+            });
 
-        //    // Evento Cambio sede -> Seleccionar ciudad automáticamente
-        //    ddlSede.addEventListener("change", function () {
+            // Evento Cambio sede -> Seleccionar ciudad automáticamente
+            ddlSede.addEventListener("change", function () {
 
-        //        limpiarMensaje();
+                limpiarMensaje();
 
-        //        const sedeSeleccionada = this.value;
+                const sedeSeleccionada = this.value;
 
-        //        if (!sedeSeleccionada) return;
+                if (!sedeSeleccionada) return;
 
-        //        ddlCiudad.value = sedes[sedeSeleccionada];
-        //    });
-        //});
+                ddlCiudad.value = sedes[sedeSeleccionada];
+            });
+        });
 
-        //function mostrarMensaje(textMensaje) {
-        //    const mensaje = document.getElementById("mensaje");
+        function mostrarMensaje(textMensaje) {
+            const mensaje = document.getElementById("mensaje");
 
-        //    mensaje.style.display = "block";
-        //    mensaje.textContent = textMensaje;
+            mensaje.style.display = "block";
+            mensaje.textContent = textMensaje;
 
-        //    document.getElementById("planesSelector")
-        //        .scrollIntoView({
-        //            behavior: "smooth",
-        //            block: "center"
-        //        });
-        //}
+            document.getElementById("planesSelector")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+        }
 
-        //function limpiarMensaje() {
-        //    const mensaje = document.getElementById("mensaje");
+        function limpiarMensaje() {
+            const mensaje = document.getElementById("mensaje");
 
-        //    mensaje.style.display = "none";
-        //}
+            mensaje.style.display = "none";
+        }
 
         function openPaymentInline(url) {
-            if (url.includes("register?token=")) {
-                window.location.href = url;
-                return;
-            }
 
-            //const container = document.getElementById("paymentContainer");
-            //const iframe = document.getElementById("paymentFrame");
-            //const header = document.getElementById("paymentHeader");
+            const container = document.getElementById("paymentContainer");
+            const iframe = document.getElementById("paymentFrame");
+            const header = document.getElementById("paymentHeader");
 
-            //// Mostrar el contenedor
-            //container.style.display = "block";
+            // Mostrar el contenedor
+            container.style.display = "block";
 
-            //// Mostrar botón cerrar
-            //header.style.display = "flex";
+            // Mostrar botón cerrar
+            header.style.display = "flex";
 
-            //// Cargar URL en el iframe
-            //iframe.src = url;
+            // Cargar URL en el iframe
+            iframe.src = url;
 
             // Bajar suavemente hasta el iframe
             setTimeout(() => {
@@ -436,59 +400,53 @@
             }, 100);
         }
 
-        //function closePayment() {
-        //    const container = document.getElementById("paymentContainer");
-        //    const iframe = document.getElementById("paymentFrame");
-        //    const planes = document.getElementById("planes");
-        //    const header = document.getElementById("paymentHeader");
+        function closePayment() {
+            const container = document.getElementById("paymentContainer");
+            const iframe = document.getElementById("paymentFrame");
+            const planes = document.getElementById("planes");
+            const header = document.getElementById("paymentHeader");
 
-        //    // Limpiar iframe (detiene el proceso)
-        //    iframe.src = "";
+            // Limpiar iframe (detiene el proceso)
+            iframe.src = "";
 
-        //    // Ocultar contenedor
-        //    container.style.display = "none";
+            // Ocultar contenedor
+            container.style.display = "none";
 
-        //    // Ocultar botón cerrar otra vez
-        //    header.style.display = "none";
+            // Ocultar botón cerrar otra vez
+            header.style.display = "none";
 
-        //    // Subir suavemente a los planes
-        //    setTimeout(() => {
-        //        planes.scrollIntoView({
-        //            behavior: "smooth",
-        //            block: "start"
-        //        });
-        //    }, 100);
-        //}
+            // Subir suavemente a los planes
+            setTimeout(() => {
+                planes.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 100);
+        }
 
         function planAddToCart(contentId, contentName, value, directUrl = null) {
             let paymentUrl = "";
 
-            if (directUrl) {
-                // limpiarMensaje();
+            if (!directUrl) {
 
-                paymentUrl = directUrl;
+                const sede = document.getElementById("ddlSedePlanes").value;
+                const ciudad = document.getElementById("ddlCiudadPlanes").value;
+
+                if (!sede || !ciudad) {
+                    mostrarMensaje("Debes seleccionar una ciudad y sede antes de continuar.");
+
+                    return;
+                }
+
+                limpiarMensaje();
+
+                if (!planesLinks[contentName] || !planesLinks[contentName][sede]) {
+                    mostrarMensaje("No existe enlace configurado para esta sede.");
+                    return;
+                }
+
+                paymentUrl = planesLinks[contentName][sede];
             }
-
-            //if (!directUrl) {
-
-            //    const sede = document.getElementById("ddlSedePlanes").value;
-            //    const ciudad = document.getElementById("ddlCiudadPlanes").value;
-
-            //    if (!sede || !ciudad) {
-            //        mostrarMensaje("Debes seleccionar una ciudad y sede antes de continuar.");
-
-            //        return;
-            //    }
-
-            //    limpiarMensaje();
-
-            //    if (!planesLinks[contentName] || !planesLinks[contentName][sede]) {
-            //        mostrarMensaje("No existe enlace configurado para esta sede.");
-            //        return;
-            //    }
-
-            //    paymentUrl = planesLinks[contentName][sede];
-            // }
 
             window.dataLayer.push({
                 event: 'add_to_cart',

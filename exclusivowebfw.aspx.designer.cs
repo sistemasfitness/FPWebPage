@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class _default
+    public partial class exclusivowebfw
     {
 
         /// <summary>
@@ -24,49 +24,103 @@ namespace WebPage
         protected global::WebPage.controls.mainmenu mainmenu;
 
         /// <summary>
-        /// Control form2.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTitulo;
 
         /// <summary>
-        /// Control sm1.
+        /// Control lblSubTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager sm1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTitulo;
 
         /// <summary>
-        /// Control sedes.
+        /// Control lblSubTituloUp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::WebPage.controls.sedes sedes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTituloUp;
 
         /// <summary>
-        /// Control controlservicios.
+        /// Control lblTituloPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::WebPage.controls.servicios controlservicios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloPrecio;
 
         /// <summary>
-        /// Control controlplanes.
+        /// Control lblSubTituloPrecio1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::WebPage.controls.planes controlplanes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTituloPrecio1;
+
+        /// <summary>
+        /// Control lblSubTituloPrecio2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTituloPrecio2;
+
+        /// <summary>
+        /// Control lnkComprar1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar1;
+
+        /// <summary>
+        /// Control lnkComprar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar2;
+
+        /// <summary>
+        /// Control lblTextoFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTextoFinal;
+
+        /// <summary>
+        /// Control lnkComprar3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar3;
+
+        /// <summary>
+        /// Control lnkComprar4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkComprar4;
 
         /// <summary>
         /// Control preguntasfrecuentes.
@@ -78,51 +132,6 @@ namespace WebPage
         protected global::WebPage.controls.preguntasfrecuentes preguntasfrecuentes;
 
         /// <summary>
-        /// Control controlaliados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebPage.controls.aliados controlaliados;
-
-        /// <summary>
-        /// Control upContacto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upContacto;
-
-        /// <summary>
-        /// Control ddlNombresSedes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNombresSedes;
-
-        /// <summary>
-        /// Control hlContacto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlContacto;
-
-        /// <summary>
-        /// Control mapasedeadministrativa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebPage.controls.mapasedeadministrativa mapasedeadministrativa;
-
-        /// <summary>
         /// Control footer.
         /// </summary>
         /// <remarks>
@@ -130,14 +139,5 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::WebPage.controls.footer footer;
-
-        /// <summary>
-        /// Control loginregister.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebPage.controls.loginregister loginregister;
     }
 }

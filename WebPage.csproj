@@ -264,10 +264,12 @@
     <Content Include="controls\mainmenunew.ascx" />
     <Content Include="controls\mapasedeadministrativa.ascx" />
     <Content Include="controls\planes.ascx" />
+    <Content Include="controls\preguntasfrecuentes.ascx" />
     <Content Include="controls\sedes.ascx" />
     <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
     <Content Include="exclusivoweb.aspx" />
+    <Content Include="exclusivowebfw.aspx" />
     <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
@@ -872,6 +874,13 @@
     <Compile Include="controls\planes.ascx.designer.cs">
       <DependentUpon>planes.ascx</DependentUpon>
     </Compile>
+    <Compile Include="controls\preguntasfrecuentes.ascx.cs">
+      <DependentUpon>preguntasfrecuentes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\preguntasfrecuentes.ascx.designer.cs">
+      <DependentUpon>preguntasfrecuentes.ascx</DependentUpon>
+    </Compile>
     <Compile Include="controls\sedes.ascx.cs">
       <DependentUpon>sedes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -899,6 +908,13 @@
     </Compile>
     <Compile Include="exclusivoweb.aspx.designer.cs">
       <DependentUpon>exclusivoweb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exclusivowebfw.aspx.cs">
+      <DependentUpon>exclusivowebfw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exclusivowebfw.aspx.designer.cs">
+      <DependentUpon>exclusivowebfw.aspx</DependentUpon>
     </Compile>
     <Compile Include="somos.aspx.cs">
       <DependentUpon>somos.aspx</DependentUpon>
