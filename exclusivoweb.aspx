@@ -140,6 +140,8 @@
                     <p class="inscription" runat="server" id="lblSubTituloPrecio1"></p>
 
                     <p runat="server" id="lblSubTituloPrecio2"></p>
+
+                    <p class="inscription" runat="server" id="lblFidelidad"></p>
                 </div>
 
                 <div class="plans-switch text-center" style="flex-direction: column; gap: 12px;">
@@ -243,7 +245,86 @@
 
 
     <!-- Control Preguntas Frecuentes -->
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
+    <div class="container_styled_1">
+        <div class="container margin_60_35">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>PREGUNTAS FRECUENTES</h2>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel-group" id="works">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseOne_works">¿Cómo funciona el primer pago de la promoción?<i class="indicator icon_minus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne_works" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Con esta promoción, tu <b>primer mes de entrenamiento es de $0</b> y solo pagas una <b>inscripción de $9.900.</b> Sin embargo, en ese mismo primer cobro también se realiza el pago correspondiente al <b>segundo mes de entrenamiento ($99.000).</b>
+                                    <br />
+                                    En total, el <b>primer pago es de $108.900</b> ($9.900 de inscripción + $99.000 del segundo mes). Después de este pago, tu siguiente cobro se realizará <b>a partir del tercer mes</b> de entrenamiento, de acuerdo con la periodicidad de tu plan.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseTwo_works">¿Puedo cancelar mi suscripción?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <b>Sí, puedes cancelar tu suscripción en cualquier momento.</b> Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda realizar la solicitud con al menos <b>5 días de anticipación</b> a tu próximo cobro.
+                                    <br />
+                                    Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseThree_works">¿Cómo funcionan los pagos automáticos?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Al activar tu plan, vincula una tarjeta para que el cobro mensual se realice de forma automática. Es cómodo, seguro y te evita preocupaciones. Te notificamos antes de cada cobro.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFour_works">¿Qué sucede si cambio de sede?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    ¡No hay problema!¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#works" href="#collapseFive_works">¿Qué métodos de pago aceptan?<i class="indicator icon_plus_alt2 pull-right"></i></a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive_works" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End panel-group -->
+                </div>
+                <!-- End col-md-9 -->
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End container -->
+    </div>
     <!-- End Control Preguntas Frecuentes -->
 
 

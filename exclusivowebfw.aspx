@@ -140,6 +140,8 @@
                     <p class="inscription" runat="server" id="lblSubTituloPrecio1"></p>
 
                     <p runat="server" id="lblSubTituloPrecio2"></p>
+
+                    <p class="inscription" runat="server" id="lblFidelidad"></p>
                 </div>
 
                 <div class="plans-switch text-center" style="flex-direction: column; gap: 12px;">
