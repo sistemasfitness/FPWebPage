@@ -4274,3 +4274,61 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 }
 
 /* register */
+
+/* preguntas-frecuentes */
+
+.section-prin-logos-met-pagos {
+	margin-top: 10px;
+}
+
+	.section-prin-logos-met-pagos p {
+		font-weight: bold;
+	}
+
+.section-prin-logos {
+	display: flex;
+	gap: 50px;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.section-logos-met-pagos {
+	margin-top: 10px;
+}
+
+	.section-logos-met-pagos p {
+		margin-bottom: 0;
+	}
+
+.logos-met-pagos {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+	.logos-met-pagos.cred img {
+		width: 35px;
+		height: auto;
+	}
+
+	.logos-met-pagos.deb img {
+		width: 50px;
+		height: auto;
+	}
+
+@media (max-width: 992px) {
+	.section-prin-logos-met-pagos p {
+		margin-bottom: 10px;
+	}
+
+	.section-prin-logos {
+		gap: 20px;
+	}
+
+	.logos-met-pagos.deb img {
+		width: 40px;
+	}
+}
+
+/* preguntas-frecuentes */
