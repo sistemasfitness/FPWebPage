@@ -4222,3 +4222,55 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		right: -2px;
 		position: relative;
 	}
+
+
+/* register */
+
+.info-plan {
+	margin-bottom: 0;
+}
+
+	.info-plan .title {
+		font-weight: bold;
+		font-size: 13px;
+		margin-bottom: 0;
+	}
+
+	.info-plan .sub-title {
+		font-weight: bold;
+		margin-bottom: 0;
+	}
+
+	.info-plan .text {
+		font-size: 11px;
+	}
+
+.info-plan-conditions .condition-pri {
+	font-weight: bold;
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+.info-plan-conditions .condition-sec {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.info-plan-precie .title {
+	font-size: 22px;
+	margin-bottom: 0;
+}
+
+.info-plan-precie .sub-title {
+	font-size: 14px;
+}
+
+.info-plan-precie .registration {
+	font-size: 22px;
+}
+
+.info-plan-precie .total {
+	font-size: 22px;
+}
+
+/* register */

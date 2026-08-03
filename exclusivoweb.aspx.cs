@@ -49,7 +49,7 @@ namespace WebPage
                     lblTituloPrecio.InnerHtml = "PRIMER MES <br /> GRATIS";
                     lblSubTituloPrecio1.InnerText = "$ 9.900 DE INSCRIPCIÓN";
                     lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
-                    lblFidelidad.InnerText = "FIDELIDAD DE 12 MESES";
+                    lblFidelidad.InnerText = "FIDELIDAD DE 12 MESES, APLICA MULTA";
 
                     itemId = "1";
                     itemName = "Plan Flexible Pro";

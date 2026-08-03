@@ -276,17 +276,47 @@ namespace WebPage
             {
                 pnlTotalCart.Visible = false;
 
-                ltPlanEasy.Text = @"<div class='total_cart' style='margin-bottom: 0;'>
-                                        PRIMER MES <span class='pull-right'>GRATIS</span>
+                ltPlanEasy.Text = @"<div class='total_cart info-plan'>
+                                        <p class='title'>PLAN</p>
+
+                                        <p class='sub-title'>FLEXIBLE PRO</p>
+
+                                        <p class='text'>Acceso total a sedes y áreas, clases grupales, plan de entrenamiento y nutrición en la FP App, 5 cortesías mensuales, membresía incluida, pago automático y valoración física inicial.</p>
                                     </div>
-                                    <div class='total_cart' style='font-size: 15px;'>
-                                        DESPUÉS $ 99.000/mes
+                                    <div class='total_cart info-plan-conditions'>
+                                        <p class='condition-pri'>DÉBITO AUTOMÁTICO</p>
+
+                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA MULTA</p>
                                     </div>
-                                    <div class='total_cart'>
-                                        INSCRIPCIÓN <span class='pull-right'>$ 9.900</span>
+                                    <div class='total_cart info-plan-precie'>
+                                        <p class='title'>PRIMER MES <span class='pull-right'>GRATIS</span></p>
+
+                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+
+                                        <p class='registration'>INSCRIPCIÓN <span class='pull-right'>$ 9.900</span></p>
+
+                                        <p class='total'>TOTAL <span class='pull-right'>$ 9.900</span></p>
+                                    </div>";
+            }
+
+            if (IdPlan == 46)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart info-plan'>
+                                        <p class='title'>PLAN</p>
+
+                                        <p class='sub-title'>SEMESTRAL</p>
+
+                                        <p class='text'>Acceso total a sedes y áreas, clases grupales, FP App, 5 cortesías mensuales, membresía incluida y valoración física inicial.</p>
                                     </div>
-                                    <div class='total_cart'>
-                                        TOTAL <span class='pull-right'>$ 9.900</span>
+                                    <div class='total_cart info-plan-conditions'>
+                                        <p class='condition-pri'>PAGO ÚNICO</p>
+
+                                        <p class='condition-sec'>SIN FIDELIDAD</p>
+                                    </div>
+                                    <div class='total_cart info-plan-precie'>
+                                        <p class='title'>PAGA HOY <span class='pull-right'>$ 590.000</span></p>
                                     </div>";
             }
         }

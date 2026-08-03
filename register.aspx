@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebPage.register" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -262,33 +263,6 @@
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
                             </asp:Panel>
 
-
-
-                            <div class='total_cart info-plan'>
-                                <p class="title">PLAN</p>
-
-                                <p class="sub-title">FLEXIBLE PRO</p>
-
-                                <p class="text">Acceso total a sedes y áreas, clases grupales, plan de entrenamiento y nutrición en la FP App, 5 cortesías mensuales, membresía incluida, pago automático y valoración física inicial.</p>
-                            </div>
-                            <div class='total_cart info-plan-conditions'>
-                                <p class="condition-pri" style="font-weight: bold; font-size: 13px; margin-bottom: 0;">DÉBITO AUTOMÁTICO</p>
-
-                                <p class="condition-sec" style="font-weight: bold; font-size: 13px;">FIDELIDAD DE 12 MESES</p>
-                            </div>
-                            <div class='total_cart info-plan-precie'>
-                                <p style="font-weight: bold; font-size: 14px;">PRIMER MES <span class='pull-right'>GRATIS</span></p>
-
-                                <p style="font-weight: bold; font-size: 14px;">INSCRIPCIÓN (Una vez) <span class='pull-right'>$9.900</span></p>
-
-                                <p style="font-weight: bold; font-size: 14px;">SEGUNDO MES (Pago adelantado) <span class='pull-right'>$99.000</span></p>
-
-                                <p style="font-weight: bold; font-size: 17px;">TOTAL <span class='pull-right'>$108.900</span></p>
-                            </div>
-
-
-
-
                             <div>
                                 <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
@@ -446,6 +420,10 @@
         <!-- End row -->
     </div>
     <!-- End container -->
+
+    <!-- Control Preguntas Frecuentes -->
+    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
+    <!-- End Control Preguntas Frecuentes -->
 
     <!-- End footer -->
     <uc1:footer runat="server" id="footer" />
@@ -1031,34 +1009,6 @@
 
 
     <style>
-
-
-
-        .info-plan {
-            margin-bottom: 0;
-        }
-
-        .info-plan .title {
-            font-weight: bold; 
-            font-size: 13px; 
-            margin-bottom: 0;
-        }
-
-        .info-plan .sub-title {
-            font-weight: bold; 
-            margin-bottom: 0;
-        }
-
-        .info-plan .text {
-            font-size: 11px;
-        }
-
-        .info-plan-conditions {
-
-        }
-
-
-
 
         body.modal-open {
             padding-right: 0 !important;

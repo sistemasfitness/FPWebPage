@@ -172,7 +172,7 @@
 
                         <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
 
-                        <p class="plan-sub-title-white">Fidelidad de 6 meses</p>
+                        <p class="plan-sub-title-white">Fidelidad de 12 meses, Aplica multa</p>
 
                         <div class="text-center">
                             <a href="#" 
@@ -388,7 +388,7 @@
 
                         <p class="plan-sub-title-white">DESPUÉS $99.000/mes</p>
 
-                        <p class="plan-sub-title">Fidelidad de 6 meses</p>
+                        <p class="plan-sub-title">Fidelidad de 12 meses, Aplica multa</p>
 
                         <p class="plan-sub-title-white-2">No aplica para pagos en efectivo, <br /> transferencia ni datáfono.</p>
 

@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" Async="true" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -321,6 +322,10 @@
         <!-- End row -->
     </div>
     <!-- End container -->
+
+    <!-- Control Preguntas Frecuentes -->
+    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
+    <!-- End Control Preguntas Frecuentes -->
 
     <uc1:footer runat="server" ID="footer" />
     <!-- End footer -->
