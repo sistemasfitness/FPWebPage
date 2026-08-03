@@ -247,7 +247,7 @@
                                     <div class="section-prin-logos-met-pagos">
                                         <p>Tarjetas</p>
 
-                                        <div class="section-prin-logos">
+                                        <div class="section-prin-logos wp">
                                             <div class="section-logos-met-pagos">
                                                 <p>Crédito</p>
 
@@ -538,7 +538,7 @@
              margin-bottom: 5px;
         }
 
-        .section-prin-logos {
+        .section-prin-logos.wp {
             gap: 10px;
         }
 
