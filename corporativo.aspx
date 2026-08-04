@@ -265,15 +265,15 @@
 
                         <div class="asesores-cards">
                             <div class="card">
-                                <a href="https://api.whatsapp.com/send?phone=573118253056&text=Hola%20Michell%2C%20quiero%20informaci%C3%B3n%20sobre%20convenios%20corporativos%20para%20mi%20empresa." target="_blank">
+                                <a href="https://api.whatsapp.com/send?phone=573118253056&text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20convenios%20corporativos%20para%20mi%20empresa." target="_blank">
                                     <img src="img/aliados/asesor-1.png" />
                                     <span class="btn_full_2" style="margin-top: 10px;">Hablar con Michell</span>
                                 </a>
                             </div>
                             <div class="card">
-                                <a href="https://api.whatsapp.com/send?phone=573006859461&text=Hola%20Dar%C3%ADo%2C%20quiero%20informaci%C3%B3n%20sobre%20convenios%20corporativos%20para%20mi%20empresa." target="_blank">
-                                    <img src="img/aliados/asesor-2.png" />
-                                    <span class="btn_full_2" style="margin-top: 10px;">Hablar con Darío</span>
+                                <a href="https://api.whatsapp.com/send?phone=573006859461&text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20convenios%20corporativos%20para%20mi%20empresa." target="_blank">
+                                    <img src="img/aliados/asesor-3.png" />
+                                    <span class="btn_full_2" style="margin-top: 10px;">Hablar con Liliana</span>
                                 </a>
                             </div>
                         </div>

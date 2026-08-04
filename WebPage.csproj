@@ -224,6 +224,7 @@
     <Content Include=".gitignore" />
     <Content Include="404.html" />
     <Content Include="actualizardatos.aspx" />
+    <Content Include="agendaTuClase.aspx" />
     <Content Include="aniversario.aspx" />
     <Content Include="assets\validate.js" />
     <Content Include="blog.aspx" />
@@ -731,6 +732,13 @@
     </Compile>
     <Compile Include="actualizardatos.aspx.designer.cs">
       <DependentUpon>actualizardatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agendaTuClase.aspx.cs">
+      <DependentUpon>agendaTuClase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agendaTuClase.aspx.designer.cs">
+      <DependentUpon>agendaTuClase.aspx</DependentUpon>
     </Compile>
     <Compile Include="aniversario.aspx.cs">
       <DependentUpon>aniversario.aspx</DependentUpon>

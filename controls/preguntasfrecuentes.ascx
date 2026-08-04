@@ -41,7 +41,7 @@
                         </div>
                         <div id="collapseThree_works" class="panel-collapse collapse">
                             <div class="panel-body">
-                                ¡No hay problema!¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
+                                ¡No hay problema! ¡Puedes entrenar en cualquiera de nuestras sedes sin problema! 
                             </div>
                         </div>
                     </div>
