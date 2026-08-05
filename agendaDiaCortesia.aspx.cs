@@ -149,7 +149,7 @@ namespace WebPage
 
                 if (dtCortesia != null && dtCortesia.Rows.Count > 0)
                 {
-                    MostrarAlerta("Error", "Ya existe un registro con este número de documento.", "error");
+                    MostrarAlerta("Ya tienes una reserva", "Este número de documento ya tiene un Free Pass registrado. Si deseas cambiar la fecha de tu visita o necesitas ayuda, comunícate con nosotros.", "error");
                     return;
                 }
                 
@@ -164,6 +164,14 @@ namespace WebPage
                     idCiudad,
                     idSede
                 );
+
+                LimpiarFormulario();
+
+                DateTime fecha = Convert.ToDateTime(fechaCortesia);
+
+                string fechaMostrar = fecha.ToString("dddd d 'de' MMMM 'de' yyyy", new System.Globalization.CultureInfo("es-CO"));
+
+                MostrarAlerta("¡Reserva confirmada!", $"Tu Free Pass ha sido agendado correctamente para el día: {fechaMostrar}. ¡Te esperamos!", "success");
 
             }
             catch (Exception ex)
@@ -263,6 +271,20 @@ namespace WebPage
             }
 
             return true;
+        }
+
+        private void LimpiarFormulario()
+        {
+            txbNombre.Text = "";
+            txbCelular.Text = "";
+            txbDocumento.Text = "";
+            txbFechaCort.Text = "";
+
+            ddlTipoDocumento.SelectedIndex = 0;
+            ddlCiudad.SelectedIndex = 0;
+
+            ddlSede.Items.Clear();
+            CargarCiudadesYSedes();
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)

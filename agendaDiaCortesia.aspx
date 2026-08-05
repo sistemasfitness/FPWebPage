@@ -91,6 +91,8 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- SPECIFIC CSS -->
     <link href="layerslider/css/layerslider.css" rel="stylesheet" />
     <link href="css/pop_up.css" rel="stylesheet" />
@@ -112,16 +114,16 @@
     </header>
 
     
-    <section class="margin_60 bg_black section-principal-cards">
-        <div class="container">
-            <h2>Reserva tu clase y asegura tu entrenamiento en nuestro gimnasio</h2>
+    <section class="margin_60 bg_black" style="height: 100vh; display: flex; align-items: center;">
+        <div class="container section-cortesia">
+            <h2 class="main_title title">Agenda tu Free Pass</h2>
 
-            <p>Reserva tu entrenamiento de manera fácil y rápida. Nuestro sistema de reservas te permite elegir la sede, horario y modalidad que prefieras, garantizando tu espacio en nuestras clases. Planifica tu sesión con antelación y prepárate para alcanzar tus metas en el gym. ¡No pierdas tiempo y asegura tu lugar hoy mismo!</p>
+            <p class="lead styled text">Completa el formulario, selecciona la sede que prefieras y disfruta una clase de cortesía para conocer nuestras instalaciones, entrenar con acompañamiento profesional y vivir la experiencia Fitness People.</p>
 
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <button type="button" id="btnAbrirModal" class="btn_1">
-                        Reservar
+                <div class="plans-switch text-center">
+                    <button class="switch-btn active" type="button" id="btnAbrirModal">
+                        Reservar mi Free Pass
                     </button>
                 </div>
             </div>
@@ -132,12 +134,14 @@
         <div class="modal-content">
             <span class="cerrar">&times;</span>
 
-            <h2>Reserva tu Clase</h2>
+            <div class="row" style="text-align: center;">
+                <h2 style="color: #d6ff00; font-weight: 900;">Reserva tu Free Pass</h2>
 
-            <p class="descripcion">
-                Completa tus datos y asegura tu cupo.
-                Los campos con <span>*</span> son obligatorios.
-            </p>
+                <p class="descripcion" style="font-weight: 500;">
+                    Completa tus datos y asegura tu cupo.
+                    Todos campos son obligatorios.
+                </p>
+            </div>
 
             <div class="row">
                 <form id="form" runat="server" class="form-web">
@@ -173,7 +177,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Nro. de Documento: *</label>
-                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="1234567890" MaxLength="10" AutoPostBack="true" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="1234567890" MaxLength="10" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -211,11 +215,11 @@
                         </asp:UpdatePanel>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display: flex; justify-content: center;">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <asp:Button ID="btnRegistrar" runat="server" 
                                 CssClass="btn_full" 
-                                Text="Registrar día de Cortesía" 
+                                Text="AGENDAR FREE PASS" 
                                 OnClientClick="return iniciarProcesoRegistro();"
                                 OnClick="btnRegistrarCortesia" />
                         </div>
@@ -501,7 +505,7 @@
             return true;
         }
 
-        function bloquearBotonPago() {
+        function bloquearBotonRegistro() {
             const btn = document.getElementById("<%= btnRegistrar.ClientID %>");
 
             btn.disabled = true;
@@ -558,6 +562,27 @@
 
     <style>
 
+        .section-cortesia {
+
+        }
+
+        .section-cortesia .title {
+            font-size: 60px; 
+            font-weight: 900;
+            color: #d6ff00;
+        }
+
+        .section-cortesia .text {
+            font-size: 20px; 
+            font-weight: 500; 
+            color: #FFF;
+        }
+
+
+        .swal2-container {
+            z-index: 999999 !important;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -571,23 +596,25 @@
         }
 
         .modal-content {
-            background: black;
+            background: #1A1A1A;
             width: 90%;
-            max-width: 650px;
+            max-width: 550px;
             margin: 5% auto;
             padding: 30px;
+            border: 1px solid #d6ff00;
             border-radius: 10px;
             position: relative;
             animation: aparecer .25s ease;
+            color: white;
         }
 
         .cerrar {
             position: absolute;
             right: 20px;
-            top: 15px;
+            top: 10px;
             font-size: 30px;
             cursor: pointer;
-            color: #777;
+            color: #d6ff00;
         }
 
         .cerrar:hover {
@@ -603,6 +630,17 @@
                 opacity:1;
                 transform: translateY(0);
             }
+        }
+
+        @media (max-width: 992px) {
+            .modal {
+                padding: 0 !important;
+            }
+
+            .section-cortesia .title {
+                font-size: 40px; 
+            }
+
         }
 
     </style>
