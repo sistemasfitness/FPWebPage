@@ -6269,6 +6269,38 @@ namespace WebPage
             return respuesta;
         }
 
+        public string InsertarCortesia(int idTipoDocumento, string documento, string nombre, string celular, string fechaCortesia, int idCiudad, int idSede)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("PA_INSERTAR_CORTESIA", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_tipo_documento", idTipoDocumento);
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
+                        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+                        cmd.Parameters.AddWithValue("@p_celular", celular);
+                        cmd.Parameters.AddWithValue("@p_fecha_cortesia", fechaCortesia);
+                        cmd.Parameters.AddWithValue("@p_id_ciudad", idCiudad);
+                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         // Redeban - Datáfonos
         public DataTable ConsultarDatafonoPorCodigo(string codDatafono)
         {

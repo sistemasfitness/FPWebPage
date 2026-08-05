@@ -11,7 +11,7 @@ namespace WebPage
 {
 
 
-    public partial class agendaTuClase
+    public partial class agendaDiaCortesia
     {
 
         /// <summary>
@@ -69,13 +69,13 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.TextBox txbDocumento;
 
         /// <summary>
-        /// Control txbFechaIni.
+        /// Control txbFechaCort.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFechaIni;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaCort;
 
         /// <summary>
         /// Control sm1.
@@ -112,6 +112,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSede;
+
+        /// <summary>
+        /// Control btnRegistrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistrar;
 
         /// <summary>
         /// Control preguntasfrecuentes.
