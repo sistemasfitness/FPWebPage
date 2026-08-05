@@ -6269,7 +6269,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarCortesia(int idTipoDocumento, string documento, string nombre, string celular, string fechaCortesia, int idCiudad, int idSede)
+        public string InsertarDiaCortesia(int idTipoDocumento, string documento, string nombre, string celular, string fechaCortesia, int idCiudad, int idSede)
         {
             string respuesta = string.Empty;
             try
@@ -6299,6 +6299,38 @@ namespace WebPage
             }
 
             return respuesta;
+        }
+
+        public DataTable ConsultarDiaCortesiaPorDocumento(string documento)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("PA_CONSULTAR_CORTESIA_POR_DOCUMENTO", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
+
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
         }
 
         // Redeban - Datáfonos

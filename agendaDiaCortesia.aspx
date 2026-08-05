@@ -114,13 +114,15 @@
     
     <section class="margin_60 bg_black section-principal-cards">
         <div class="container">
-            <h3>Reserva tu clase y asegura tu entrenamiento en nuestro gimnasio</h3>
+            <h2>Reserva tu clase y asegura tu entrenamiento en nuestro gimnasio</h2>
 
             <p>Reserva tu entrenamiento de manera fácil y rápida. Nuestro sistema de reservas te permite elegir la sede, horario y modalidad que prefieras, garantizando tu espacio en nuestras clases. Planifica tu sesión con antelación y prepárate para alcanzar tus metas en el gym. ¡No pierdas tiempo y asegura tu lugar hoy mismo!</p>
 
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="https://fitnesspeoplecolombia.com/agendaTuClase.aspx" class="btn_1">Reservar Clase</a>
+                    <button type="button" id="btnAbrirModal" class="btn_1">
+                        Reservar
+                    </button>
                 </div>
             </div>
         </div>
@@ -214,7 +216,7 @@
                             <asp:Button ID="btnRegistrar" runat="server" 
                                 CssClass="btn_full" 
                                 Text="Registrar día de Cortesía" 
-                                OnClientClick="iniciarProcesoRegistro();"
+                                OnClientClick="return iniciarProcesoRegistro();"
                                 OnClick="btnRegistrarCortesia" />
                         </div>
                     </div>
@@ -222,12 +224,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- Control Preguntas Frecuentes -->
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
-    <!-- End Control Preguntas Frecuentes -->
 
 
     <uc1:footer runat="server" ID="footer" />
@@ -253,7 +249,50 @@
 
     <script>
 
-        let procesandoPago = false;
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const modal = document.getElementById("modalReserva");
+            const btnAbrir = document.getElementById("btnAbrirModal");
+            const btnCerrar = document.querySelector("#modalReserva .cerrar");
+
+            // Abrir modal
+            btnAbrir.addEventListener("click", function (e) {
+                e.preventDefault();
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden";
+            });
+
+            // Cerrar con la X
+            btnCerrar.addEventListener("click", function () {
+                cerrarModal();
+            });
+
+            // Cerrar haciendo clic fuera del contenido
+            window.addEventListener("click", function (e) {
+                if (e.target === modal) {
+                    cerrarModal();
+                }
+            });
+
+            // Cerrar con ESC
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && modal.style.display === "block") {
+                    cerrarModal();
+                }
+            });
+
+            function cerrarModal() {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+
+        });
+
+    </script>
+
+    <script>
+
+        let procesandoRegistro = false;
 
         function limpiarTexto(texto) {
             return texto.trim().replace(/\s+/g, ' ');
@@ -335,30 +374,12 @@
             return Swal.fire(config); // Retorna la promesa
         }
 
-        function validarDocumento(valor) {
-            if (!/^\d{5,10}$/.test(valor)) return "El número de documento debe contener entre 5 y 10 dígitos."
-
-            if (/^0+$/.test(valor)) return "El número de documento no es válido.";
-
-            return null;
-        }
-
-        function validarNombre(valor, campo) {
+        function validarNombre(valor) {
             const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
 
-            if (!regex.test(valor)) return `El campo ${campo} solo debe contener letras y espacios.`;
+            if (!regex.test(valor)) return `El nombre solo debe contener letras y espacios.`;
 
-            if (valor.length < 2) return `El campo ${campo} debe tener al menos 2 caracteres.`;
-
-            return null;
-        }
-
-        function validarEmail(valor) {
-            valor = valor.toLowerCase();
-
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!regex.test(valor)) return "El formato del correo electrónico no es válido. Ej: usuario@dominio.com.";
+            if (valor.length < 2) return `El nombre debe tener al menos 2 caracteres.`;
 
             return null;
         }
@@ -369,12 +390,27 @@
             return null;
         }
 
+        function validarDocumento(valor) {
+            if (!/^\d{5,10}$/.test(valor)) return "El número de documento debe contener entre 5 y 10 dígitos."
+
+            if (/^0+$/.test(valor)) return "El número de documento no es válido.";
+
+            return null;
+        }
+
+        function validarFecha(valor) {
+            if (valor.trim() === "")
+                return "Debes seleccionar la fecha de la cortesía.";
+
+            return null;
+        }
+
         function validarCamposFormulario() {
             const campos = [
                 {
                     id: "<%= txbNombre.ClientID %>",
-                    msg: "Por favor, ingresa tu nombre.",
-                    validar: (v) => validarNombre(v, "Nombre")
+                    msg: "Por favor, ingresa tu nombre completo.",
+                    validar: validarNombre
                 },
                 {
                     id: "<%= txbCelular.ClientID %>",
@@ -392,21 +428,24 @@
                 },
                 {
                     id: "<%= txbFechaCort.ClientID %>",
-                    msg: "Por favor, ingresa tu fecha de nacimiento."
+                    msg: "Por favor, selecciona la fecha que quieres agendar como cortesía."
                 },
                 {
                     id: "<%= ddlCiudad.ClientID %>",
-                    msg: "Por favor, selecciona la ciudad donde deseas entrenar."
+                    msg: "Por favor, selecciona una ciudad."
                 },
                 {
                     id: "<%= ddlSede.ClientID %>",
-                    msg: "Por favor, selecciona la sede donde deseas entrenar."
+                    msg: "Por favor, selecciona una sede."
                 }
             ];
 
             for (const campo of campos) {
 
                 const el = document.getElementById(campo.id);
+
+                if (!el)
+                    continue;
 
                 limpiarError(el);
 
@@ -462,25 +501,6 @@
             return true;
         }
 
-        function validarAutorizaciones() {
-            const cb1 = document.getElementById("cbAutorizo1");
-            const cb2 = document.getElementById("cbAutorizo2");
-
-            const autorizacionesOk = cb1.checked && cb2.checked;
-
-            if (!autorizacionesOk) {
-                mostrarAlerta(
-                    'Confirmación requerida',
-                    'Debes aceptar las autorizaciones para continuar.',
-                    'warning'
-                );
-
-                return false;
-            }
-
-            return true;
-        }
-
         function bloquearBotonPago() {
             const btn = document.getElementById("<%= btnRegistrar.ClientID %>");
 
@@ -488,29 +508,25 @@
 
             btn.style.opacity = "0.7";
 
-            btn.value = "Procesando...";
+            btn.value = "Registrando...";
         }
 
         function iniciarProcesoRegistro() {
-            if (procesandoPago) return false;
+            if (procesandoRegistro) return false;
 
             const formularioOK = validarCamposFormulario();
 
             if (!formularioOK) return false;
 
-            const autorizacionesOK = validarAutorizaciones();
-
-            if (!autorizacionesOK) return false;
-
-            procesandoPago = true;
+            procesandoRegistro = true;
 
             setTimeout(() => {
 
-                bloquearBotonPago();
+                bloquearBotonRegistro();
 
                 mostrarAlerta(
-                    'Procesando registro',
-                    'Estamos guardando tu información.<br><br><b>No cierres ni recargues la página</b><br>mientras te redirigimos a la pasarela de pago.',
+                    'Registrando',
+                    'Estamos registrando tu día de cortesía.<br><br><b>No cierres ni recargues la página.</b>',
                     'info',
                     {
                         showCloseButton: false,
@@ -529,10 +545,67 @@
         }
 
         document.addEventListener("input", function (e) {
-            e.target.classList.remove("input-error");
+            if (e.target.classList.contains("input-error"))
+                e.target.classList.remove("input-error");
+        });
+
+        document.addEventListener("change", function (e) {
+            if (e.target.classList.contains("input-error"))
+                e.target.classList.remove("input-error");
         });
 
     </script>
+
+    <style>
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(0,0,0,.6);
+        }
+
+        .modal-content {
+            background: black;
+            width: 90%;
+            max-width: 650px;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+            animation: aparecer .25s ease;
+        }
+
+        .cerrar {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .cerrar:hover {
+            color: #000;
+        }
+
+        @keyframes aparecer {
+            from{
+                opacity:0;
+                transform: translateY(-20px);
+            }
+            to{
+                opacity:1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
 
 
     <noscript>

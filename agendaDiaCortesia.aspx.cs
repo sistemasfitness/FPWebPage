@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,9 +15,18 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
+                ConfigurarFechaCortesia();
                 CargarTipoDocumento();
                 CargarCiudadesYSedes();
             }
+        }
+
+        private void ConfigurarFechaCortesia()
+        {
+            txbFechaCort.Attributes["type"] = "date";
+
+            // Fecha mínima permitida (hoy)
+            txbFechaCort.Attributes["min"] = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
         private void CargarTipoDocumento()
@@ -122,7 +132,30 @@ namespace WebPage
                 int idCiudad = Convert.ToInt32(ddlCiudad.SelectedItem.Value.ToString());
                 int idSede = Convert.ToInt32(ddlSede.SelectedItem.Value.ToString());
 
-                cg.InsertarCortesia(
+
+                bool validacionesOk = Validaciones(
+                    documento,
+                    idTipoDocumento,
+                    nombre,
+                    celular,
+                    fechaCortesia,
+                    idCiudad,
+                    idSede
+                );
+
+                if (!validacionesOk) return;
+
+                DataTable dtCortesia = cg.ConsultarDiaCortesiaPorDocumento(documento);
+
+                if (dtCortesia != null && dtCortesia.Rows.Count > 0)
+                {
+                    MostrarAlerta("Error", "Ya existe un registro con este número de documento.", "error");
+                    return;
+                }
+                
+                dtCortesia.Dispose();
+
+                cg.InsertarDiaCortesia(
                     idTipoDocumento, 
                     documento, 
                     nombre,
@@ -137,6 +170,99 @@ namespace WebPage
             {
                 MostrarAlerta("Error", "Ha ocurrido un error inesperado: " + ex.Message, "error");
             }
+        }
+
+        private bool Validaciones(string documento, int idTipoDocumento, string nombreCompleto, string celular, string fechaCortesia, int idCiudad, int idSede)
+        {
+            nombreCompleto = Regex.Replace(nombreCompleto, @"\s+", " ").Trim();
+
+            // DOCUMENTO
+
+            if (string.IsNullOrWhiteSpace(documento))
+            {
+                MostrarAlerta("Campo requerido", "Por favor, ingresa tu número de documento.", "warning");
+                return false;
+            }
+
+            if (!Regex.IsMatch(documento, @"^\d{5,10}$"))
+            {
+                MostrarAlerta("Error", "Ingresa un número de documento válido. Debe contener entre 5 y 10 dígitos.", "error");
+                return false;
+            }
+
+            if (Regex.IsMatch(documento, @"^0+$"))
+            {
+                MostrarAlerta("Error", "El número de documento no es válido.", "error");
+                return false;
+            }
+
+            // TIPO DOCUMENTO
+
+            if (idTipoDocumento <= 0)
+            {
+                MostrarAlerta("Campo requerido", "Por favor, selecciona el tipo de documento.", "warning");
+                return false;
+            }
+
+            // NOMBRE
+
+            if (string.IsNullOrWhiteSpace(nombreCompleto))
+            {
+                MostrarAlerta("Campo requerido", "Por favor, ingresa tu nombre completo.", "warning");
+                return false;
+            }
+
+            if (!Regex.IsMatch(nombreCompleto, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                MostrarAlerta("Error", "El nombre solo debe contener letras y espacios.", "error");
+                return false;
+            }
+
+            if (nombreCompleto.Length < 2)
+            {
+                MostrarAlerta("Error", "El nombre debe tener al menos 2 caracteres.", "error");
+                return false;
+            }
+
+            // CELULAR
+
+            if (string.IsNullOrWhiteSpace(celular))
+            {
+                MostrarAlerta("Campo requerido", "Por favor, ingresa tu número de celular.", "warning");
+                return false;
+            }
+
+            if (!Regex.IsMatch(celular, @"^3\d{9}$"))
+            {
+                MostrarAlerta("Error", "Ingresa un número de celular válido. Debe iniciar en 3 y tener 10 dígitos.", "error");
+                return false;
+            }
+
+            // FECHA CORTESIA
+
+            if (string.IsNullOrWhiteSpace(fechaCortesia))
+            {
+                MostrarAlerta("Campo requerido", "Por favor, selecciona la fecha que quieres agendar como cortesía.", "warning");
+                return false;
+            }
+
+            // CIUDAD
+
+            if (idCiudad <= 0)
+            {
+                MostrarAlerta("Campo requerido", "Por favor, selecciona la ciudad.", "warning");
+                return false;
+            }
+
+            // SEDE
+
+            if (idSede <= 0)
+            {
+                MostrarAlerta("Campo requerido", "Por favor, selecciona la sede.", "warning");
+                return false;
+            }
+
+            return true;
         }
 
         private void MostrarAlerta(string titulo, string mensaje, string tipo)
