@@ -244,45 +244,53 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
-                                    <div class="section-prin-logos-met-pagos">
-                                        <p>Tarjetas</p>
+                                    <div>
+                                        
 
-                                        <div class="section-prin-logos wp">
-                                            <div class="section-logos-met-pagos">
-                                                <p>Crédito</p>
+                                        <div class="section-prin-logos-met-pagos">
+                                            <p style="text-decoration: underline; margin-bottom: 10px;">
+                                                Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
+                                            </p>
 
-                                                <div class="logos-met-pagos cred">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Master Card" />
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Visa_Inc._logo_%281992%E2%80%931999%29.svg" alt="Visa" />
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" />
+                                            <p>Tarjetas</p>
+
+                                            <div class="section-prin-logos wp">
+                                                <div class="section-logos-met-pagos">
+                                                    <p>Crédito</p>
+
+                                                    <div class="logos-met-pagos cred">
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Master Card" />
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Visa_Inc._logo_%281992%E2%80%931999%29.svg" alt="Visa" />
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" />
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="section-logos-met-pagos">
-                                                <p>Débito</p>
+                                                <div class="section-logos-met-pagos">
+                                                    <p>Débito</p>
 
-                                                <div class="logos-met-pagos deb">
-                                                    <img src="https://static.wikia.nocookie.net/logopedia/images/d/db/Banco_Caja_Social_2011.png/revision/latest/scale-to-width-down/1000?cb=20210427194508&path-prefix=es" alt="Banco Caja Social" />
+                                                    <div class="logos-met-pagos deb">
+                                                        <img src="https://static.wikia.nocookie.net/logopedia/images/d/db/Banco_Caja_Social_2011.png/revision/latest/scale-to-width-down/1000?cb=20210427194508&path-prefix=es" alt="Banco Caja Social" />
 
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banco_de_Occidente_logo.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Banco de Occidente" />
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banco_de_Occidente_logo.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Banco de Occidente" />
 
-                                                    <img src="https://static.wikia.nocookie.net/logopedia/images/6/68/AVVillas2004.svg/revision/latest/scale-to-width-down/1000?cb=20240520173353" alt="Banco AV Villas" />
+                                                        <img src="https://static.wikia.nocookie.net/logopedia/images/6/68/AVVillas2004.svg/revision/latest/scale-to-width-down/1000?cb=20240520173353" alt="Banco AV Villas" />
 
-                                                    <img src="https://www.misole.co/wp-content/uploads/2019/12/logo-bancolombia.png" alt="Bancolombia" />
+                                                        <img src="https://www.misole.co/wp-content/uploads/2019/12/logo-bancolombia.png" alt="Bancolombia" />
 
-                                                    <img src="https://imagenes.portafolio.co/files/image_1200_600/uploads/2025/05/22/682f89397f3d1.png" alt="Banco Popular" />
+                                                        <img src="https://imagenes.portafolio.co/files/image_1200_600/uploads/2025/05/22/682f89397f3d1.png" alt="Banco Popular" />
 
-                                                    <img src="https://cdn.worldvectorlogo.com/logos/logo-banco-de-bogota.svg" alt="Banco de Bogotá" />
+                                                        <img src="https://cdn.worldvectorlogo.com/logos/logo-banco-de-bogota.svg" alt="Banco de Bogotá" />
 
-                                                    <img src="https://logos-world.net/wp-content/uploads/2023/02/Davivienda-Logo.png" alt="Davivienda" />
+                                                        <img src="https://logos-world.net/wp-content/uploads/2023/02/Davivienda-Logo.png" alt="Davivienda" />
 
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Citibank.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Citibank" />
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Citibank.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Citibank" />
 
-                                                    <img src="https://images.seeklogo.com/logo-png/16/1/colpatria-logo-png_seeklogo-168795.png" alt="Colpatria" />
+                                                        <img src="https://images.seeklogo.com/logo-png/16/1/colpatria-logo-png_seeklogo-168795.png" alt="Colpatria" />
 
-                                                    <img src="https://images.seeklogo.com/logo-png/9/1/multibank-panama-logo-png_seeklogo-95907.png" alt="Multibank" />
+                                                        <img src="https://images.seeklogo.com/logo-png/9/1/multibank-panama-logo-png_seeklogo-95907.png" alt="Multibank" />
 
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Logo_CorpBanca.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="CorpBanca" />
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Logo_CorpBanca.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="CorpBanca" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

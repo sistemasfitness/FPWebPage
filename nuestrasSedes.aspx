@@ -114,9 +114,173 @@
     </header>
 
     
-    <section class="margin_60 bg_black" style="height: 100vh; display: flex; align-items: center;">
-        <div class="container">
+    <section class="bg_black">
+        <div class="container container-sedes">
+            <div class="sedes-titulo">
+                <h3>¿En qué sedes quieres entrenar?</h3>
+            </div>
 
+            <div class="sedes-container">
+                <!-- Cabecera -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-01_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Cabecera" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-01_pregunta-seleccion.png"
+                             alt="Sede Cabecera" />
+                    </a>
+                </div>
+
+                <!-- El Prado -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=573017838639&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-02_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede El Prado" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-02_pregunta-seleccion.png"
+                             alt="Sede El Prado" />
+                    </a>
+                </div>
+
+                <!-- Boulevard -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-03_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Boulevard" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-03_pregunta-seleccion.png"
+                             alt="Sede Boulevard" />
+                    </a>
+                </div>
+
+                <!-- Cañaveral -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=573187098383&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-04_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Cañaveral" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-04_pregunta-seleccion.png"
+                             alt="Sede Cañaveral" />
+                    </a>
+                </div>
+
+                <!-- Ciudadela -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-05_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Ciudadela" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-05_pregunta-seleccion.png"
+                             alt="Sede Ciudadela" />
+                    </a>
+                </div>
+
+                <!-- De La Cuesta -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=573017839011&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-06_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede De La Cuesta" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-06_pregunta-seleccion.png"
+                             alt="Sede De La Cuesta" />
+                    </a>
+                </div>
+
+                <!-- Parque Central -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=573138840979&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-07_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Parque Central" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-07_pregunta-seleccion.png"
+                             alt="Sede Parque Central" />
+                    </a>
+                </div>
+
+                <!-- Provenza -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-08_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Provenza" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                             alt="Sede Provenza" />
+                    </a>
+                </div>
+
+                <!-- Ceiba II -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-09_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Ceiba II" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-09_pregunta-seleccion.png"
+                             alt="Sede Ceiba II" />
+                    </a>
+                </div>
+
+                <!-- Jardín Plaza -->
+                <div>
+                    <a class="sede-card"
+                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       target="_blank">
+
+                        <img src="img/descubrir-plan/04-10_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Jardín Plaza" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-10_pregunta-seleccion.png"
+                             alt="Sede Jardín Plaza" />
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -143,7 +307,72 @@
 
     <style>
 
+        .container-sedes {
+            padding: 90px 0;
+        }
 
+        .sedes-titulo h3 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #E3FF00;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .sedes-container {
+            display: grid;
+            align-content: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .sede-card {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 431 / 275;
+            overflow: hidden;
+        }
+
+        .sede-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sede-card .imagen-normal {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .sede-card .imagen-hover {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sede-card:hover .imagen-normal {
+            opacity: 0;
+        }
+
+        .sede-card:hover .imagen-hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+            .sedes-titulo h3 {
+                font-size: 30px;
+                padding: 0 20px;
+            }
+
+            .sedes-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
     </style>
 
