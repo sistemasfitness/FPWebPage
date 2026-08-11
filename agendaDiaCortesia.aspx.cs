@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -112,7 +113,7 @@ namespace WebPage
             if (dtSede != null) dtSede.Dispose();
         }
 
-        protected void btnRegistrarCortesia(object sender, EventArgs e)
+        protected async void btnRegistrarCortesia(object sender, EventArgs e)
         {
             try
             {
@@ -152,7 +153,7 @@ namespace WebPage
                     MostrarAlerta("Ya tienes una reserva", "Este número de documento ya tiene un Free Pass registrado. Si deseas cambiar la fecha de tu visita o necesitas ayuda, comunícate con nosotros.", "error");
                     return;
                 }
-                
+
                 dtCortesia.Dispose();
 
                 cg.InsertarDiaCortesia(
@@ -164,6 +165,39 @@ namespace WebPage
                     idCiudad,
                     idSede
                 );
+
+                //
+
+                try
+                {
+                    string tipoDoc = ddlTipoDocumento.SelectedItem.Text;
+                    string ciudad = ddlCiudad.SelectedItem.Text;
+                    string sede = ddlSede.SelectedItem.Text;
+
+                    string fechaActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    var googleSheets = new Services.GoogleSheetsHelper();
+
+                    var fila = new List<object>
+                    {
+                        tipoDoc,
+                        documento,
+                        nombre,
+                        celular,
+                        fechaActual,
+                        fechaCortesia,
+                        ciudad,
+                        sede
+                    };
+
+                    await googleSheets.AgregarFilaAsync("Registros!A:H", fila);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error en ValidarPlan: " + ex.ToString());
+                }
+
+                //
 
                 LimpiarFormulario();
 

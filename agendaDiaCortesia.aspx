@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="agendaDiaCortesia.aspx.cs" Inherits="WebPage.agendaDiaCortesia" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="agendaDiaCortesia.aspx.cs" Inherits="WebPage.agendaDiaCortesia" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>

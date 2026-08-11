@@ -28,6 +28,9 @@ publish/
 *.pdb
 *.ilk
 
+# Credenciales Google Sheets
+/App_Data/Google/*.json
+
 ### Git ###
 ## Evitar conflictos de merge
 *.orig
