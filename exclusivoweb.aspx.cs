@@ -27,7 +27,7 @@ namespace WebPage
         {
             string itemId;
             string itemName;
-            string price;
+            int price;
             string texto;
             string tokenId;
 
@@ -53,7 +53,7 @@ namespace WebPage
 
                     itemId = "1";
                     itemName = "Plan Flexible Pro";
-                    price = "9900";
+                    price = 9900;
                     texto = "ACTIVA TU PLAN";
                     tokenId = "register?token=TKIlFPP8XYRC9l1rfGjR";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
@@ -81,7 +81,7 @@ namespace WebPage
 
                     itemId = "2";
                     itemName = "Plan 6 Meses + 2 Meses";
-                    price = "590000";
+                    price = 590000;
                     texto = "COMPRAR CON 2 MESES GRATIS";
                     tokenId = "register?token=iIcy3afZs7mlj4oUOKT8";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
@@ -92,7 +92,7 @@ namespace WebPage
 
                     string itemId2 = "3";
                     string itemName2 = "Plan 6 Meses";
-                    string price2 = "590000";
+                    int price2 = 590000;
                     string texto2 = "COMPRAR SIN 2 MESES GRATIS";
                     ConfigurarBtn(lnkComprar2, texto2, itemId2, itemName2, price2, tokenId);
                     ConfigurarBtn(lnkComprar4, texto2, itemId2, itemName2, price2, tokenId);
@@ -116,7 +116,7 @@ namespace WebPage
 
                     itemId = "3";
                     itemName = "Plan Flexible Pro";
-                    price = "9900";
+                    price = 9900;
                     texto = "ACTIVA TU PLAN";
                     tokenId = "register?token=aKsoXcm34Ca4sMKeHraR";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
@@ -132,15 +132,15 @@ namespace WebPage
             }
         }
 
-        private void ConfigurarBtn(HyperLink boton, string texto, string itemId, string itemName, string price, string tokenId)
+        private void ConfigurarBtn(HyperLink boton, string texto, string itemId, string itemName, int price, string tokenId)
         {
             boton.Text = texto;
 
             boton.Attributes["onclick"] = 
                 $@"planAddToCart(
-                    ['{itemId}'], 
+                    '{itemId}', 
                     '{itemName}', 
-                    '{price}', 
+                    {price}, 
                     '{tokenId}'); 
                 return false;";
         }

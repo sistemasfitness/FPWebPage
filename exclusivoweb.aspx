@@ -463,6 +463,8 @@
         //}
 
         function planAddToCart(contentId, contentName, value, directUrl = null) {
+            var eventId = 'atc-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
+
             let paymentUrl = "";
 
             if (directUrl) {
@@ -492,8 +494,52 @@
             //    paymentUrl = planesLinks[contentName][sede];
             // }
 
+            // Enviar evento AddToCart a Meta Pixel
+            //fbq('track', 'AddToCart', {
+            //    content_ids: [contentId],
+            //    content_type: 'product',
+            //    content_name: contentName,
+            //    contents: [{
+            //        id: contentId,
+            //        quantity: 1
+            //    }],
+            //    currency: 'COP',
+            //    value: value
+            //});
+
+            // Enviar información a Google Tag Manager
+            window.dataLayer = window.dataLayer || [];
+
+            //window.dataLayer.push({
+            //    event: 'AddToCart',
+
+            //    ecommerce: {
+            //        items: [{
+            //            item_id: contentId,
+            //            item_name: contentName,
+            //            price: value,
+            //            currency: 'COP',
+            //            quantity: 1
+            //        }]
+            //    },
+
+            //    meta: {
+            //        content_ids: [contentId],
+            //        content_type: 'product',
+            //        content_name: contentName,
+            //        contents: [{
+            //            id: contentId,
+            //            quantity: 1
+            //        }],
+            //        currency: 'COP',
+            //        value: value
+            //    }
+            //});
+
+
             window.dataLayer.push({
-                event: 'add_to_cart',
+                event: 'AddToCart',
+                event_id: eventId,
                 ecommerce: {
                     items: [{
                         item_id: contentId,
@@ -502,10 +548,33 @@
                         currency: 'COP',
                         quantity: 1
                     }]
+                },
+                meta: {
+                    content_ids: [contentId],
+                    content_type: 'product',
+                    content_name: contentName,
+                    contents: [{
+                        id: contentId,
+                        quantity: 1,
+                        item_price: value
+                    }],
+                    currency: 'COP',
+                    value: value
                 }
             });
 
-            openPaymentInline(paymentUrl);
+
+            // Dar tiempo al Pixel antes de redireccionar
+            if (paymentUrl.includes("register?token=")) {
+
+                setTimeout(() => {
+                    window.location.href = paymentUrl;
+                }, 300);
+
+                return;
+            }
+
+            // openPaymentInline(paymentUrl);
         }
 
     </script>
