@@ -701,6 +701,112 @@
     </div>
 </section>
 
+<section class="fp-planes" id="membresias">
+    <div class="fpp-container">
+
+        <!-- Encabezado de la sección -->
+        <div class="fpp-head">
+            <div>
+                <p class="fpp-kicker">Membresías Fitness People</p>
+                <h2>Elige tu <span>plan</span></h2>
+            </div>
+            <a href="#" class="fpp-btn-ghost">Ver todos los planes</a>
+        </div>
+
+        <!-- Grid de 3 tarjetas -->
+        <div class="fpp-grid">
+
+            <!-- ================= PLAN MES A MES ================= -->
+            <article class="fpp-card">
+                <span class="fpp-plan-label">Plan</span>
+                <h3>Mes a Mes</h3>
+                <p class="fpp-mode">Pago mes a mes</p>
+                <p class="fpp-tagline">Libertad total, sin ataduras.</p>
+
+                <div class="fpp-price-now">
+                    <span class="fpp-amount">$165.000</span>
+                    <span class="fpp-period">/mes</span>
+                </div>
+                <div class="fpp-permanencia">Sin permanencia</div>
+
+                <hr class="fpp-divider">
+
+                <ul class="fpp-benefits">
+                    <li>Acceso a TODAS las sedes de Fitness People.</li>
+                    <li>Clases grupales con instructores certificados.</li>
+                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
+                    <li>Valoraciones físicas de seguimiento.</li>
+                    <li>Carné de afiliación.</li>
+                </ul>
+
+                <a href="#" class="fpp-btn fpp-btn--outline">¡Inscríbete ahora!</a>
+            </article>
+
+            <!-- ============ PLAN TRANSFÓRMATE (DESTACADO) ============ -->
+            <article class="fpp-card fpp-card--featured">
+                <div class="fpp-badge">Más popular</div>
+                <div class="fpp-plan-label">Plan</div>
+                <h3>Transfórmate</h3>
+                <div class="fpp-mode">Débito automático</div>
+                <div class="fpp-tagline">Tu cambio real empieza hoy.</div>
+
+                <div class="fpp-price-before">Normal <s>$130.000</s></div>
+                <div class="fpp-price-now">
+                    <span class="fpp-label">1er mes</span>
+                    <span class="fpp-amount">$29.900</span>
+                </div>
+                <div class="fpp-permanencia">Luego $130.000/mes · Permanencia de 6 meses</div>
+
+                <hr class="fpp-divider">
+
+                <ul class="fpp-benefits">
+                    <li>Acceso a TODAS las sedes de Fitness People.</li>
+                    <li>Clases grupales con instructores certificados.</li>
+                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
+                    <li>5 pases de invitado al mes.</li>
+                    <li>Valoraciones físicas de seguimiento.</li>
+                    <li>Carné de afiliación.</li>
+                </ul>
+
+                <a href="#" class="fpp-btn fpp-btn--solid">¡Inscríbete ahora!</a>
+            </article>
+
+            <!-- ================= PLAN AÑO IMPARABLE ================= -->
+            <article class="fpp-card">
+                <div class="fpp-plan-label">Plan</div>
+                <h3>Año Imparable</h3>
+                <div class="fpp-mode">Pago único anual</div>
+                <div class="fpp-tagline">El mejor precio por mes, garantizado.</div>
+
+                <div class="fpp-price-before">+ 2 meses GRATIS</div>
+                <div class="fpp-price-now">
+                    <span class="fpp-amount">$990.000</span>
+                    <span class="fpp-period">/año</span>
+                </div>
+                <div class="fpp-permanencia">Equivale a $70.700/mes aprox.</div>
+
+                <hr class="fpp-divider">
+
+                <ul class="fpp-benefits">
+                    <li>Acceso a TODAS las sedes de Fitness People.</li>
+                    <li>Clases grupales con instructores certificados.</li>
+                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
+                    <li>5 pases de invitado al mes.</li>
+                    <li>Valoraciones físicas de seguimiento.</li>
+                    <li>14 meses de entrenamiento pagando solo 12.</li>
+                </ul>
+
+            <a href="#" class="fpp-btn fpp-btn--outline">¡Inscríbete ahora!</a>
+            </article>
+        </div>
+
+        <!-- Nota final (gancho de clase de cortesía) -->
+        <p class="fpp-note">
+            ¿Primera vez en Fitness People? <a href="#">Tu primer día es GRATIS</a> — reserva tu clase de cortesía.
+        </p>
+    </div>
+</section>
+
 <script>
 
     const sedes = {
