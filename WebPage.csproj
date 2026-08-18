@@ -276,6 +276,7 @@
     <Content Include="controls\mainmenulanding.ascx" />
     <Content Include="controls\mainmenunew.ascx" />
     <Content Include="controls\mapasedeadministrativa.ascx" />
+    <Content Include="controls\PlanCard.ascx" />
     <Content Include="controls\planes.ascx" />
     <Content Include="controls\preguntasfrecuentes.ascx" />
     <Content Include="controls\sedes.ascx" />
@@ -887,6 +888,13 @@
     </Compile>
     <Compile Include="controls\mapasedeadministrativa.ascx.designer.cs">
       <DependentUpon>mapasedeadministrativa.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\PlanCard.ascx.cs">
+      <DependentUpon>PlanCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\PlanCard.ascx.designer.cs">
+      <DependentUpon>PlanCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="controls\planes.ascx.cs">
       <DependentUpon>planes.ascx</DependentUpon>

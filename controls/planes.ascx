@@ -716,18 +716,18 @@
         <!-- Grid de 3 tarjetas -->
         <div class="fpp-grid">
 
-            <!-- ================= PLAN MES A MES ================= -->
+            <!-- ================= PLAN TRANSFÓRMATE ================= -->
             <article class="fpp-card">
-                <span class="fpp-plan-label">Plan</span>
-                <h3>Mes a Mes</h3>
-                <p class="fpp-mode">Pago mes a mes</p>
-                <p class="fpp-tagline">Libertad total, sin ataduras.</p>
+                <div class="fpp-plan-label">Plan</div>
+                    <h3>Transfórmate</h3>
+                    <div class="fpp-mode">Débito automático</div>
+                <div class="fpp-tagline">Tu cambio real empieza hoy.</div>
 
                 <div class="fpp-price-now">
-                    <span class="fpp-amount">$165.000</span>
-                    <span class="fpp-period">/mes</span>
+                    <span class="fpp-label">1er mes</span>
+                    <span class="fpp-amount">$29.900</span>
                 </div>
-                <div class="fpp-permanencia">Sin permanencia</div>
+                <div class="fpp-permanencia">Luego $130.000/mes <br /> Permanencia de 6 meses</div>
 
                 <hr class="fpp-divider">
 
@@ -735,6 +735,7 @@
                     <li>Acceso a TODAS las sedes de Fitness People.</li>
                     <li>Clases grupales con instructores certificados.</li>
                     <li>FP App: planes de entrenamiento y tips de nutrición.</li>
+                    <li>5 pases de invitado al mes.</li>
                     <li>Valoraciones físicas de seguimiento.</li>
                     <li>Carné de afiliación.</li>
                 </ul>
@@ -742,20 +743,20 @@
                 <a href="#" class="fpp-btn fpp-btn--outline">¡Inscríbete ahora!</a>
             </article>
 
-            <!-- ============ PLAN TRANSFÓRMATE (DESTACADO) ============ -->
+            <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
             <article class="fpp-card fpp-card--featured">
                 <div class="fpp-badge">Más popular</div>
                 <div class="fpp-plan-label">Plan</div>
-                <h3>Transfórmate</h3>
+                <h3>Flexible Pro</h3>
                 <div class="fpp-mode">Débito automático</div>
-                <div class="fpp-tagline">Tu cambio real empieza hoy.</div>
+                <div class="fpp-tagline">La cuota más baja, todos los beneficios.</div>
 
-                <div class="fpp-price-before">Normal <s>$130.000</s></div>
+                <div class="fpp-price-before">Inscripción $9.900</div>
                 <div class="fpp-price-now">
                     <span class="fpp-label">1er mes</span>
-                    <span class="fpp-amount">$29.900</span>
+                    <span class="fpp-amount">GRATIS</span>
                 </div>
-                <div class="fpp-permanencia">Luego $130.000/mes · Permanencia de 6 meses</div>
+                <div class="fpp-permanencia">Luego $99.000/mes <br /> Permanencia de 12 meses</div>
 
                 <hr class="fpp-divider">
 
