@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="planes.ascx.cs" Inherits="WebPage.controls.planes" %>
 
+<%@ Register Src="~/controls/PlanCard.ascx" TagPrefix="uc" TagName="PlanCard" %>
+
 <section id="planes" class="margin_60">
     <div class="container" id="scroll-to">
         <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
@@ -707,103 +709,59 @@
         <!-- Encabezado de la sección -->
         <div class="fpp-head">
             <div>
-                <p class="fpp-kicker">Membresías Fitness People</p>
+                <p class="fpp-kicker">Planes Fitness People</p>
                 <h2>Elige tu <span>plan</span></h2>
             </div>
-            <a href="#" class="fpp-btn-ghost">Ver todos los planes</a>
+            <a href="#" class="fpp-btn-ghost">Ver planes especiales</a>
         </div>
 
-        <!-- Grid de 3 tarjetas -->
+        <!-- Planes -->
         <div class="fpp-grid">
 
-            <!-- ================= PLAN TRANSFÓRMATE ================= -->
-            <article class="fpp-card">
-                <div class="fpp-plan-label">Plan</div>
-                    <h3>Transfórmate</h3>
-                    <div class="fpp-mode">Débito automático</div>
-                <div class="fpp-tagline">Tu cambio real empieza hoy.</div>
-
-                <div class="fpp-price-now">
-                    <span class="fpp-label">1er mes</span>
-                    <span class="fpp-amount">$29.900</span>
-                </div>
-                <div class="fpp-permanencia">Luego $130.000/mes <br /> Permanencia de 6 meses</div>
-
-                <hr class="fpp-divider">
-
-                <ul class="fpp-benefits">
-                    <li>Acceso a TODAS las sedes de Fitness People.</li>
-                    <li>Clases grupales con instructores certificados.</li>
-                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
-                    <li>5 pases de invitado al mes.</li>
-                    <li>Valoraciones físicas de seguimiento.</li>
-                    <li>Carné de afiliación.</li>
-                </ul>
-
-                <a href="#" class="fpp-btn fpp-btn--outline">¡Inscríbete ahora!</a>
-            </article>
+            <!-- ================= PLAN MES A MES ================= -->
+            <uc:PlanCard
+                ID="MesAMes"
+                runat="server"
+                PlanId="MES_A_MES" />
 
             <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
-            <article class="fpp-card fpp-card--featured">
-                <div class="fpp-badge">Más popular</div>
-                <div class="fpp-plan-label">Plan</div>
-                <h3>Flexible Pro</h3>
-                <div class="fpp-mode">Débito automático</div>
-                <div class="fpp-tagline">La cuota más baja, todos los beneficios.</div>
-
-                <div class="fpp-price-before">Inscripción $9.900</div>
-                <div class="fpp-price-now">
-                    <span class="fpp-label">1er mes</span>
-                    <span class="fpp-amount">GRATIS</span>
-                </div>
-                <div class="fpp-permanencia">Luego $99.000/mes <br /> Permanencia de 12 meses</div>
-
-                <hr class="fpp-divider">
-
-                <ul class="fpp-benefits">
-                    <li>Acceso a TODAS las sedes de Fitness People.</li>
-                    <li>Clases grupales con instructores certificados.</li>
-                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
-                    <li>5 pases de invitado al mes.</li>
-                    <li>Valoraciones físicas de seguimiento.</li>
-                    <li>Carné de afiliación.</li>
-                </ul>
-
-                <a href="#" class="fpp-btn fpp-btn--solid">¡Inscríbete ahora!</a>
-            </article>
+            <uc:PlanCard
+                ID="PlanFlexiblePro"
+                runat="server"
+                PlanId="FLEXIBLE_PRO" />
 
             <!-- ================= PLAN AÑO IMPARABLE ================= -->
-            <article class="fpp-card">
-                <div class="fpp-plan-label">Plan</div>
-                <h3>Año Imparable</h3>
-                <div class="fpp-mode">Pago único anual</div>
-                <div class="fpp-tagline">El mejor precio por mes, garantizado.</div>
+            <uc:PlanCard
+                ID="PlanAnoImparable"
+                runat="server"
+                PlanId="ANIO_IMPARABLE" />
+        </div>
 
-                <div class="fpp-price-before">+ 2 meses GRATIS</div>
-                <div class="fpp-price-now">
-                    <span class="fpp-amount">$990.000</span>
-                    <span class="fpp-period">/año</span>
-                </div>
-                <div class="fpp-permanencia">Equivale a $70.700/mes aprox.</div>
+        <!-- Planes Especiales -->
+        <div class="fpp-grid">
 
-                <hr class="fpp-divider">
+            <!-- ================= PLAN MES A MES ================= -->
+            <uc:PlanCard
+                ID="MesAMes"
+                runat="server"
+                PlanId="MES_A_MES" />
 
-                <ul class="fpp-benefits">
-                    <li>Acceso a TODAS las sedes de Fitness People.</li>
-                    <li>Clases grupales con instructores certificados.</li>
-                    <li>FP App: planes de entrenamiento y tips de nutrición.</li>
-                    <li>5 pases de invitado al mes.</li>
-                    <li>Valoraciones físicas de seguimiento.</li>
-                    <li>14 meses de entrenamiento pagando solo 12.</li>
-                </ul>
+            <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
+            <uc:PlanCard
+                ID="PlanFlexiblePro"
+                runat="server"
+                PlanId="FLEXIBLE_PRO" />
 
-            <a href="#" class="fpp-btn fpp-btn--outline">¡Inscríbete ahora!</a>
-            </article>
+            <!-- ================= PLAN AÑO IMPARABLE ================= -->
+            <uc:PlanCard
+                ID="PlanAnoImparable"
+                runat="server"
+                PlanId="ANIO_IMPARABLE" />
         </div>
 
         <!-- Nota final (gancho de clase de cortesía) -->
         <p class="fpp-note">
-            ¿Primera vez en Fitness People? <a href="#">Tu primer día es GRATIS</a> — reserva tu clase de cortesía.
+            ¿Primera vez en Fitness People? <a href="https://fitnesspeoplecolombia.com/agendaDiaCortesia.aspx">Tu primer día es GRATIS</a> — reserva tu clase de cortesía.
         </p>
     </div>
 </section>

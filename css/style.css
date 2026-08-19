@@ -46,7 +46,6 @@ Author URI: http://themeforest.net/user/Ansonika/
 :root {
 	/* ====== PALETA FITNESS PEOPLE (editar aquí) ====== */
 	--fp-lime: #E3FF00; /* Verde lima del logo */
-	--fp-lime-hover: #b5dd12; /* Hover de botones */
 	--fp-lime-soft: rgba(200, 243, 29, .12);
 	--fp-bg: #0D0D0D; /* Fondo de la sección */
 	--fp-card: #161616; /* Fondo de tarjetas */
@@ -4335,7 +4334,6 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 /* ============ SECCIÓN ============ */
 .fp-planes {
-	/*font-family: 'Montserrat', Arial, sans-serif;*/
 	background: var(--fp-bg);
 	color: var(--fp-white);
 	padding: 90px 20px;
@@ -4564,13 +4562,23 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	letter-spacing: 1.5px;
 	text-transform: uppercase;
 	color: var(--fp-gray);
-	margin-bottom: 24px;
+}
+
+.fpp-nota-pago {
+	font-style: italic;
+	font-size: 10px;
+	font-weight: 800;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: var(--fp-gray);
+	text-decoration: underline;
+	margin-top: 15px;
 }
 
 .fpp-divider {
 	border: none;
 	border-top: 1px solid var(--fp-border);
-	margin-bottom: 24px;
+	margin: 24px 0;
 }
 
 .fpp-card--featured .fpp-divider {
@@ -4644,8 +4652,9 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 }
 
 	.fpp-btn--solid:hover {
-		background: var(--fp-lime-hover);
-		border-color: var(--fp-lime-hover);
+		color: black;
+		background: var(--fp-lime);
+		border-color: var(--fp-lime);
 		box-shadow: 0 8px 25px rgba(200, 243, 29, .35);
 	}
 

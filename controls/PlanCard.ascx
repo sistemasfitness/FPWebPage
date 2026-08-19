@@ -52,6 +52,11 @@
         <asp:Literal ID="litPermanencia" runat="server"></asp:Literal>
     </div>
 
+    <!-- Nota método de pago -->
+    <span id="spanNotaPago" runat="server" class="fpp-nota-pago">
+        <asp:Literal ID="litNotaPago" runat="server"></asp:Literal>
+    </span>
+
     <hr class="fpp-divider">
 
     <!-- Beneficios -->
@@ -70,7 +75,7 @@
         ID="lnkInscripcion"
         runat="server"
         CssClass="fpp-btn fpp-btn--outline">
-        ¡Inscríbete ahora!
+        ¡Comprar Ya!
     </asp:HyperLink>
 
 </article>

@@ -201,7 +201,7 @@
         <div class="section-inferior">
             <div class="contenido-primer-dia bg_dark-gray">
                 <h2 style="font-weight: 900; color: #FFF;">TU PRIMER DÍA EN FITNESS PEOPLE GRATIS</h2>
-                <a href="https://api.whatsapp.com/send?phone=573185483713&text=%C2%A1Hola!%0AQuiero%20recibir%20mi%20clase%20de%20cortes%C3%ADa%20en%20Fitness%20People." target="_blank"
+                <a href="https://fitnesspeoplecolombia.com/agendaDiaCortesia" target="_blank"
                     class="btn-confirm-alert">
                     Haz clic aquí
                 </a>
