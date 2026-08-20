@@ -712,51 +712,49 @@
                 <p class="fpp-kicker">Planes Fitness People</p>
                 <h2>Elige tu <span>plan</span></h2>
             </div>
-            <a href="#" class="fpp-btn-ghost">Ver planes especiales</a>
+            <a href="javascript:void(0);" class="fpp-btn-ghost" id="btnTipoPlanes">Ver planes especiales</a>
         </div>
 
-        <!-- Planes -->
-        <div class="fpp-grid">
+        <!-- Planes Más Vendidos -->
+        <div class="planes-mas-vendidos active">
+            <div class="fpp-grid ">
 
-            <!-- ================= PLAN MES A MES ================= -->
-            <uc:PlanCard
-                ID="MesAMes"
-                runat="server"
-                PlanId="MES_A_MES" />
+                <!-- ================= PLAN MES A MES ================= -->
+                <uc:PlanCard
+                    ID="MesAMes"
+                    runat="server"
+                    PlanId="MES_A_MES" />
 
-            <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
-            <uc:PlanCard
-                ID="PlanFlexiblePro"
-                runat="server"
-                PlanId="FLEXIBLE_PRO" />
+                <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
+                <uc:PlanCard
+                    ID="PlanFlexiblePro"
+                    runat="server"
+                    PlanId="FLEXIBLE_PRO" />
 
-            <!-- ================= PLAN AÑO IMPARABLE ================= -->
-            <uc:PlanCard
-                ID="PlanAnoImparable"
-                runat="server"
-                PlanId="ANIO_IMPARABLE" />
+                <!-- ================= PLAN AÑO IMPARABLE ================= -->
+                <uc:PlanCard
+                    ID="PlanAnoImparable"
+                    runat="server"
+                    PlanId="ANIO_IMPARABLE" />
+            </div>
         </div>
 
         <!-- Planes Especiales -->
-        <div class="fpp-grid">
+        <div class="planes-especiales">
+            <div class="fpp-grid">
 
-            <!-- ================= PLAN MES A MES ================= -->
-            <uc:PlanCard
-                ID="MesAMes"
-                runat="server"
-                PlanId="MES_A_MES" />
+                <!-- ================= PLAN ESTUDIANTES ================= -->
+                <uc:PlanCard
+                    ID="Estudiantes"
+                    runat="server"
+                    PlanId="ESTUDIANTES" />
 
-            <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
-            <uc:PlanCard
-                ID="PlanFlexiblePro"
-                runat="server"
-                PlanId="FLEXIBLE_PRO" />
-
-            <!-- ================= PLAN AÑO IMPARABLE ================= -->
-            <uc:PlanCard
-                ID="PlanAnoImparable"
-                runat="server"
-                PlanId="ANIO_IMPARABLE" />
+                <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
+                <uc:PlanCard
+                    ID="Residentes"
+                    runat="server"
+                    PlanId="RESIDENTES" />
+            </div>
         </div>
 
         <!-- Nota final (gancho de clase de cortesía) -->
@@ -765,6 +763,44 @@
         </p>
     </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const btn = document.getElementById("btnTipoPlanes");
+        const planesMasVendidos = document.querySelector(".planes-mas-vendidos");
+        const planesEspeciales = document.querySelector(".planes-especiales");
+
+        // Estado inicial
+        planesMasVendidos.classList.add("active");
+        planesEspeciales.classList.remove("active");
+        btn.textContent = "Ver planes especiales";
+
+        btn.addEventListener("click", function () {
+
+            if (planesMasVendidos.classList.contains("active")) {
+
+                // Ocultar planes y mostrar clases
+                planesMasVendidos.classList.remove("active");
+                planesEspeciales.classList.add("active");
+
+                // Cambiar texto del botón
+                btn.textContent = "Ver planes más vendidos";
+
+            } else {
+
+                // Ocultar clases y mostrar planes
+                planesMasVendidos.classList.add("active");
+                planesEspeciales.classList.remove("active");
+
+                // Cambiar texto del botón
+                btn.textContent = "Ver planes especiales";
+            }
+
+        });
+
+    });
+</script>
 
 <script>
 

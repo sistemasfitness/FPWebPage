@@ -4417,13 +4417,31 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		color: var(--fp-lime);
 	}
 
+.planes-mas-vendidos, .planes-especiales {
+	display: none;
+}
+
+	.planes-mas-vendidos.active, .planes-especiales.active {
+		display: flex;
+	}
+
 /* ============ GRID DE TARJETAS ============ */
 .fpp-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
 	gap: 26px;
 	align-items: stretch;
 }
+
+	.fpp-grid:has(> :nth-child(3)) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.fpp-grid:not(:has(> :nth-child(3))) {
+		grid-template-columns: repeat(2, 1fr);
+		justify-content: center;
+		max-width: 900px;
+		margin: 0 auto;
+	}
 
 .fpp-card {
 	background: var(--fp-card);
@@ -4564,7 +4582,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	color: var(--fp-gray);
 }
 
-.fpp-nota-pago {
+.fpp-nota {
 	font-style: italic;
 	font-size: 10px;
 	font-weight: 800;

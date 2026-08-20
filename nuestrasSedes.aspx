@@ -129,8 +129,13 @@
     
     <section class="bg_black">
         <div class="container container-sedes">
-            <div class="sedes-titulo">
-                <h3>¿En qué sedes quieres entrenar?</h3>
+
+            <!-- Encabezado de la sección -->
+            <div class="fpp-head">
+                <div>
+                    <p class="fpp-kicker">Sedes Fitness People</p>
+                    <h2>¿En qué <span>sede</span> quieres entrenar?</h2>
+                </div>
             </div>
 
             <div class="sedes-container">

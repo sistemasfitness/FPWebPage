@@ -78,14 +78,14 @@ namespace WebPage.controls
             // NOTA DE PAGO
             // ============================
 
-            if (!string.IsNullOrWhiteSpace(plan.NotaPago))
+            if (!string.IsNullOrWhiteSpace(plan.Nota))
             {
-                spanNotaPago.Visible = true;
-                litNotaPago.Text = plan.NotaPago;
+                spanNota.Visible = true;
+                litNota.Text = plan.Nota;
             }
             else
             {
-                spanNotaPago.Visible = false;
+                spanNota.Visible = false;
             }
 
             // ============================
@@ -138,7 +138,7 @@ namespace WebPage.controls
 
                         Permanencia = "Renovación mes a mes<br />Sin fidelidad",
 
-                        NotaPago = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
                         EsDestacado = false,
 
@@ -170,7 +170,7 @@ namespace WebPage.controls
 
                         Permanencia = "Después $99.000/mes<br />Fidelidad de 12 meses, aplica multa",
 
-                        NotaPago = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
                         EsDestacado = true,
 
@@ -217,6 +217,70 @@ namespace WebPage.controls
                     };
 
 
+                case "ESTUDIANTES":
+
+                    return new Plan
+                    {
+                        Nombre = "Estudiantes",
+                        Modalidad = "Débito automático",
+                        Tagline = "Haz de tu bienestar parte del día.",
+
+                        PrecioAntes = "Sin inscripción",
+                        LabelPrecio = "1er mes",
+                        Precio = "$59.700",
+                        Periodo = "",
+
+                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses, aplica multa",
+
+                        Nota = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
+
+                        EsDestacado = false,
+
+                        UrlInscripcion = "#",
+
+                        Beneficios = new List<string>
+                        {
+                            "Acceso a única sede de Fitness People.",
+                            "Precio preferencial durante 6 meses.",
+                            "3 días de cortesía para redimir.",
+                            "Beneficio exclusivo para estudiantes.",
+                            "Presenta tu carné estudiantil vigente."
+                        }
+                    };
+
+
+                case "RESIDENTES":
+
+                    return new Plan
+                    {
+                        Nombre = "Residentes",
+                        Modalidad = "Débito automático",
+                        Tagline = "Tu salud más cerca de ti.",
+
+                        PrecioAntes = "Sin inscripción",
+                        LabelPrecio = "",
+                        Precio = "$89.000",
+                        Periodo = "/mes",
+
+                        Permanencia = "Fidelidad de 6 meses, aplica multa",
+
+                        Nota = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
+
+                        EsDestacado = false,
+
+                        UrlInscripcion = "#",
+
+                        Beneficios = new List<string>
+                        {
+                            "Acceso a única sede de Fitness People.",
+                            "Precio preferencial durante 6 meses.",
+                            "3 días de cortesía para redimir.",
+                            "Beneficio exclusivo para residentes.",
+                            "Plan pensado para entrenar cerca de casa."
+                        }
+                    };
+
+
                 default:
 
                     return null;
@@ -241,7 +305,7 @@ namespace WebPage.controls
 
             public string Permanencia { get; set; }
 
-            public string NotaPago { get; set; }
+            public string Nota { get; set; }
 
             public bool EsDestacado { get; set; }
 

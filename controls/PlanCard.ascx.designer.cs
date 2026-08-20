@@ -132,22 +132,22 @@ namespace WebPage.controls
         protected global::System.Web.UI.WebControls.Literal litPermanencia;
 
         /// <summary>
-        /// Control spanNotaPago.
+        /// Control spanNota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanNotaPago;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanNota;
 
         /// <summary>
-        /// Control litNotaPago.
+        /// Control litNota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNotaPago;
+        protected global::System.Web.UI.WebControls.Literal litNota;
 
         /// <summary>
         /// Control rptBeneficios.

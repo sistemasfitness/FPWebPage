@@ -53,8 +53,8 @@
     </div>
 
     <!-- Nota método de pago -->
-    <span id="spanNotaPago" runat="server" class="fpp-nota-pago">
-        <asp:Literal ID="litNotaPago" runat="server"></asp:Literal>
+    <span id="spanNota" runat="server" class="fpp-nota">
+        <asp:Literal ID="litNota" runat="server"></asp:Literal>
     </span>
 
     <hr class="fpp-divider">
