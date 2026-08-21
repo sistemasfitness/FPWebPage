@@ -142,7 +142,7 @@
                 <!-- Cabecera -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573145202570&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-01_pregunta.png"
@@ -174,7 +174,7 @@
                 <!-- Boulevard -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573042163967&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-03_pregunta.png"
@@ -206,7 +206,7 @@
                 <!-- Ciudadela -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573006352865&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-05_pregunta.png"
@@ -254,7 +254,7 @@
                 <!-- Provenza -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573134107455&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-08_pregunta.png"
@@ -270,7 +270,7 @@
                 <!-- Ceiba II -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573112257540&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-09_pregunta.png"
@@ -286,7 +286,7 @@
                 <!-- Jardín Plaza -->
                 <div>
                     <a class="sede-card"
-                       href="https://api.whatsapp.com/send?phone=57...&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
+                       href="https://api.whatsapp.com/send?phone=573187168984&text=Hola%2C%20quisiera%20tener%20m%C3%A1s%20informaci%C3%B3n%20de%20la%20sede."
                        target="_blank">
 
                         <img src="img/descubrir-plan/04-10_pregunta.png"
