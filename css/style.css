@@ -4788,6 +4788,228 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 			text-decoration: underline;
 		}
 
+
+/* ============ PANEL LATERAL ============ */
+.fp-panel-sede {
+	position: fixed;
+	inset: 0;
+	z-index: 99999;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+	/* Panel activo */
+	.fp-panel-sede.active {
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+/* Fondo */
+.fp-panel-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, .70);
+	opacity: 0;
+	transition: opacity .30s ease;
+}
+
+.fp-panel-sede.active .fp-panel-overlay {
+	opacity: 1;
+}
+
+/* Contenedor lateral */
+.fp-panel-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: min(450px, 90vw);
+	height: 100%;
+	background: var(--fp-card);
+	padding: 45px 35px;
+	border-left: 1px solid var(--fp-border);
+	overflow-y: auto;
+	transform: translateX(100%);
+	transition: transform .35s ease;
+}
+
+.fp-panel-sede.active .fp-panel-content {
+	transform: translateX(0);
+}
+
+/* Botón cerrar */
+.fp-panel-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 42px;
+	height: 42px;
+	border: 1px solid var(--fp-border);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--fp-white);
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	transition: all .25s ease;
+}
+
+	.fp-panel-close:hover {
+		border-color: var(--fp-lime);
+		color: var(--fp-lime);
+		transform: rotate(90deg);
+	}
+
+/* Encabezado */
+.fp-panel-title {
+	padding-right: 45px;
+	margin-bottom: 40px;
+}
+
+	.fp-panel-title .fpp-kicker {
+		margin-bottom: 12px;
+	}
+
+	.fp-panel-title h3 {
+		color: var(--fp-white);
+		font-size: 34px;
+		font-weight: 900;
+		text-transform: uppercase;
+		line-height: 1.1;
+		margin-bottom: 15px;
+	}
+
+		.fp-panel-title h3 span {
+			color: var(--fp-lime);
+		}
+
+.fp-panel-description {
+	color: var(--fp-gray);
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* Selectores */
+.fp-sede-section {
+	margin-bottom: 25px;
+}
+
+	.fp-sede-section label {
+		display: block;
+		margin-bottom: 9px;
+		color: var(--fp-gray);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+	}
+
+	.fp-sede-section select {
+		width: 100%;
+		height: 54px;
+		padding: 0 15px;
+		border: 1px solid var(--fp-border);
+		border-radius: 9px;
+		background: #111;
+		color: var(--fp-white);
+		font-family: inherit;
+		font-size: 14px;
+		outline: none;
+		cursor: pointer;
+		transition: border-color .25s ease;
+	}
+
+		.fp-sede-section select:focus {
+			border-color: var(--fp-lime);
+		}
+
+		.fp-sede-section select:disabled {
+			opacity: .45;
+			cursor: not-allowed;
+		}
+
+/* ============ IFRAME ============ */
+.fp-iframe-container {
+	display: none;
+	width: 100%;
+	margin-top: 60px;
+	padding-top: 45px;
+	border-top: 1px solid var(--fp-border);
+}
+
+	.fp-iframe-container.active {
+		display: block;
+	}
+
+.fp-iframe-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 25px;
+}
+
+	.fp-iframe-header .fpp-kicker {
+		margin-bottom: 10px;
+	}
+
+	.fp-iframe-header h3 {
+		color: var(--fp-white);
+		font-size: 30px;
+		font-weight: 900;
+		text-transform: uppercase;
+	}
+
+		.fp-iframe-header h3 span {
+			color: var(--fp-lime);
+		}
+
+.fp-iframe-close {
+	flex-shrink: 0;
+	width: 42px;
+	height: 42px;
+	border: 1px solid var(--fp-border);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--fp-white);
+	font-size: 27px;
+	cursor: pointer;
+	transition: all .25s ease;
+}
+
+	.fp-iframe-close:hover {
+		border-color: var(--fp-lime);
+		color: var(--fp-lime);
+	}
+
+.fp-iframe-container iframe {
+	display: block;
+	width: 100%;
+	min-height: 700px;
+	border: 0;
+	border-radius: 15px;
+	background: #fff;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+	.fp-panel-content {
+		width: 100%;
+		padding: 40px 25px;
+	}
+
+	.fp-panel-title h3 {
+		font-size: 29px;
+	}
+
+	.fp-iframe-header h3 {
+		font-size: 24px;
+	}
+
+	.fp-iframe-container iframe {
+		min-height: 650px;
+	}
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 991px) {
 	.fpp-head {

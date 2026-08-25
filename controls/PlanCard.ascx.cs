@@ -106,13 +106,13 @@ namespace WebPage.controls
             {
                 cardPlan.Attributes["class"] = "fpp-card fpp-card--featured";
                 divBadge.Visible = true;
-                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid";
+                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid btn-comprar-plan";
             }
             else
             {
                 cardPlan.Attributes["class"] = "fpp-card";
                 divBadge.Visible = false;
-                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline";
+                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline btn-comprar-plan";
             }
         }
 
