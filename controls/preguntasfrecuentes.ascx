@@ -15,7 +15,7 @@
                         </div>
                         <div id="collapseOne_works" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <b>Sí, puedes cancelar tu suscripción en cualquier momento.</b> Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda realizar la solicitud con al menos <b>5 días de anticipación</b> a tu próximo cobro.
+                                Debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente <b>(3147041010).</b> Recuerda que si vas a realizar un <b>retiro anticipado debes informar con 60 días de anterioridad.</b>
                                 <br />
                                 Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
                             </div>

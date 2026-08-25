@@ -4132,50 +4132,78 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 }
 
 /* Slider en página principal */
+
+/* =========================================================
+   SLIDER PRINCIPAL - FITNESS PEOPLE
+   Desktop: 1600 x 667
+   Mobile:  1080 x 1920
+   ========================================================= */
+
 #full-slider-wrapper {
 	position: relative;
 	width: 100%;
-	height: 95vh;
-	display: flex;
-	flex-direction: column;
+	overflow: hidden;
 }
+
+/* ---------------------------------------------------------
+   LayerSlider
+   --------------------------------------------------------- */
 
 #layerslider {
-	flex: 1; /* 👈 ocupa todo el espacio restante */
-}
-
-/* Evitar padding y centrado en el contenedor interno */
-#layerslider,
-#layerslider .ls-slide,
-#layerslider .ls-bg {
+	position: relative;
 	width: 100% !important;
-	height: 100% !important;
-	object-fit: cover !important;
+	/* Proporción de las imágenes desktop:
+       1600 / 667 = 2.3988 */
+	aspect-ratio: 1600 / 700;
+	/*height: 100vh;*/
+	overflow: hidden;
 }
 
-	/* Estilo definitivo de las imágenes */
-	#layerslider .ls-bg {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
+	/* Slides */
+	#layerslider .ls-slide {
+		width: 100% !important;
+		height: 100% !important;
 	}
 
-/* Evitar animaciones de resize que causan el salto */
+	/* Imagen de fondo */
+	#layerslider .ls-bg {
+		width: 100% !important;
+		height: 100% !important;
+		object-fit: cover !important;
+		object-position: center center !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+
+/* =========================================================
+   EVITAR SALTOS DURANTE LAS TRANSICIONES
+   ========================================================= */
+
 .ls-curtile img,
 .ls-nexttile img {
 	width: 100% !important;
 	height: 100% !important;
 	object-fit: cover !important;
+	object-position: center center !important;
 	transform: none !important;
 }
 
-/* (Opcional) quitar la transición que hace el cambio brusco de tamaño */
+
+/* =========================================================
+   TRANSICIONES
+   ========================================================= */
+
 .ls-slide,
 .ls-bg {
 	transition: none !important;
 }
 
-/* Estilo visual  */
+
+/* =========================================================
+   FLECHA ANTERIOR / SIGUIENTE
+   ========================================================= */
+
 .ls-nav-prev,
 .ls-nav-next {
 	background: rgba(0, 0, 0, 0.4);
@@ -4194,23 +4222,27 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	cursor: pointer;
 }
 
-	.ls-nav-prev {
-		left: 25px !important;
-	}
+.ls-nav-prev {
+	left: 25px !important;
+}
 
-	.ls-nav-next {
-		right: 25px !important;
-	}
+.ls-nav-next {
+	right: 25px !important;
+}
 
 	.ls-nav-prev:hover,
 	.ls-nav-next:hover {
 		background: rgba(0, 0, 0, 0.7);
 	}
 
-	/* Usar las mismas flechas del Owl Carousel */
+
+	/* =========================================================
+   ICONOS DE LAS FLECHAS
+   ========================================================= */
+
 	.ls-nav-prev::before,
 	.ls-nav-next::before {
-		font-family: 'fontello'; /* o la fuente que use tu Owl Carousel */
+		font-family: 'fontello';
 		font-style: normal;
 		font-weight: normal;
 		font-variant: normal;
@@ -4223,18 +4255,79 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		position: relative;
 	}
 
-	/* Flechas específicas */
-	.ls-nav-prev::before {
-		content: "\e89a"; /* igual que tu Owl */
-		left: -2px;
-		position: relative;
+.ls-nav-prev::before {
+	content: "\e89a";
+	left: -2px;
+}
+
+.ls-nav-next::before {
+	content: "\e89b";
+	right: -2px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+	#full-slider-wrapper {
+		width: 100%;
+		overflow: hidden;
 	}
 
-	.ls-nav-next::before {
-		content: "\e89b"; /* igual que tu Owl */
-		right: -2px;
-		position: relative;
+	#layerslider {
+		width: 100% !important;
+		/* Proporción de las imágenes mobile:
+           1080 / 1920 = 0.5625 */
+		/*aspect-ratio: 1080 / 1920;*/
+		height: 100vh;
+		overflow: hidden;
 	}
+
+		#layerslider .ls-slide {
+			width: 100% !important;
+			height: 100vh !important;
+		}
+
+		#layerslider .ls-bg {
+			width: 100% !important;
+			height: 100vh !important;
+			object-fit: cover !important;
+			object-position: center center !important;
+		}
+
+	.ls-curtile img,
+	.ls-nexttile img {
+		width: 100% !important;
+		height: 100vh !important;
+		object-fit: cover !important;
+		object-position: center center !important;
+		transform: none !important;
+	}
+
+	/* Flechas más pequeñas en celular */
+
+	.ls-nav-prev,
+	.ls-nav-next {
+		width: 38px;
+		height: 38px;
+	}
+
+	.ls-nav-prev {
+		left: 10px !important;
+	}
+
+	.ls-nav-next {
+		right: 10px !important;
+	}
+
+		.ls-nav-prev::before,
+		.ls-nav-next::before {
+			font-size: 19px;
+		}
+}
 
 
 /* register */

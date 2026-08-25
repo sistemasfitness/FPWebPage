@@ -153,59 +153,27 @@
     <!-- Slider -->
     <div id="full-slider-wrapper">
         <div id="layerslider">
-            <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
-                <img class="ls-bg img-slider" 
-                     data-desktop="img/slides/slide-01_2026-04-27.jpeg"
-                     data-mobile="img/slides/slide-01_2026-04-27_mobile.jpeg"
-                     src="img/slides/slide-01_2026-04-27.jpeg" />
-            </div>
+            <!-- Slide 1 -->
+            <a href="agendaDiaCortesia">
+                <div class="ls-slide" data-ls="slidedelay: 8000; transition2d:85;">
+                    <img class="ls-bg img-slider"
+                         data-desktop="img/slides/slider1_2026-08-21.jpg"
+                         data-mobile="img/slides/slider1_2026-08-21_mobile.jpg"
+                         src="img/slides/slider1_2026-08-21.jpg"
+                         alt="Fitness People" />
+                </div>
+            </a>
 
-            <!-- fourth slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
-                <img class="ls-bg img-slider" 
-                     data-desktop="img/slides/slide-04_2026-04-29.jpeg"
-                     data-mobile="img/slides/slide-04_2026-04-29_mobile.jpeg"
-                     src="img/slides/slide-04_2026-04-29.jpeg" />
-            </div>
-
-            <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
-                <img class="ls-bg img-slider" 
-                     data-desktop="img/slides/slide-02_2026-04-27.jpeg"
-                     data-mobile="img/slides/slide-02_2026-04-27_mobile.jpeg"
-                     src="img/slides/slide-02_2026-04-27.jpeg" />
-            </div>
-
-            <!-- third slide -->
-            <div class="ls-slide" data-ls="slidedelay: 3000; transition2d:85;">
-                <img class="ls-bg img-slider" 
-                     data-desktop="img/slides/slide-03_2026-04-27.jpeg"
-                     data-mobile="img/slides/slide-03_2026-04-27_mobile.jpeg"
-                     src="img/slides/slide-03_2026-04-27.jpeg" />
-            </div>
-
-            <div class="contenido-principal">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF; text-shadow: 2px 2px 6px rgba(0,0,0,0.7);">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
-            </div>
-
-            <%--<div id="count" class="hidden-xs">
-                <ul>
-                    <li><span class="number">2500</span>&nbsp;Clases</li>
-                    <li><span class="number">10</span>&nbsp;Sedes</li>
-                    <li><span class="number">4</span>&nbsp;Ciudades</li>
-                </ul>
-            </div>--%>
-        </div>
-
-        <div class="section-inferior">
-            <div class="contenido-primer-dia bg_dark-gray">
-                <h2 style="font-weight: 900; color: #FFF;">TU PRIMER DÍA EN FITNESS PEOPLE GRATIS</h2>
-                <a href="https://fitnesspeoplecolombia.com/agendaDiaCortesia" target="_blank"
-                    class="btn-confirm-alert">
-                    Haz clic aquí
-                </a>
-            </div>
+            <!-- Slide 2 -->
+            <a href="agendaDiaCortesia">
+                <div class="ls-slide" data-ls="slidedelay: 8000; transition2d:85;">
+                    <img class="ls-bg img-slider"
+                         data-desktop="img/slides/slider2_2026-08-21.jpg"
+                         data-mobile="img/slides/slider2_2026-08-21_mobile.jpg"
+                         src="img/slides/slider2_2026-08-21.jpg"
+                         alt="Fitness People" />
+                </div>
+            </a>
         </div>
     </div>
     <!-- End layerslider -->
