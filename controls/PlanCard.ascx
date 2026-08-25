@@ -71,11 +71,12 @@
     </ul>
 
     <!-- Botón -->
-    <asp:HyperLink
-        ID="lnkInscripcion"
+    <button
+        type="button"
+        id="btnComprar"
         runat="server"
-        CssClass="fpp-btn fpp-btn--outline">
+        class="fpp-btn fpp-btn--outline btn-comprar-plan">
         ¡Comprar Ya!
-    </asp:HyperLink>
+    </button>
 
 </article>

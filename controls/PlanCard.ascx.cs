@@ -22,6 +22,9 @@ namespace WebPage.controls
             {
                 CargarPlan();
             }
+
+            // Identificar el plan en el botón
+            btnComprar.Attributes["data-plan-id"] = PlanId;
         }
 
         private void CargarPlan()
@@ -103,27 +106,21 @@ namespace WebPage.controls
             {
                 cardPlan.Attributes["class"] = "fpp-card fpp-card--featured";
                 divBadge.Visible = true;
-                lnkInscripcion.CssClass = "fpp-btn fpp-btn--solid";
+                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid";
             }
             else
             {
                 cardPlan.Attributes["class"] = "fpp-card";
                 divBadge.Visible = false;
-                lnkInscripcion.CssClass = "fpp-btn fpp-btn--outline";
+                btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline";
             }
-
-            // ============================
-            // ENLACE
-            // ============================
-
-            lnkInscripcion.NavigateUrl = plan.UrlInscripcion;
         }
 
         private Plan ObtenerPlan(string planId)
         {
             switch (planId.ToUpper())
             {
-                case "MES_A_MES": // id = 42
+                case "MES_A_MES":
 
                     return new Plan
                     {
@@ -141,8 +138,6 @@ namespace WebPage.controls
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
                         EsDestacado = false,
-
-                        UrlInscripcion = "#",
 
                         Beneficios = new List<string>
                         {
@@ -174,8 +169,6 @@ namespace WebPage.controls
 
                         EsDestacado = true,
 
-                        UrlInscripcion = "#",
-
                         Beneficios = new List<string>
                         {
                             "Acceso a todas las sedes de Fitness People.",
@@ -203,8 +196,6 @@ namespace WebPage.controls
                         Permanencia = "Equivale a $70.700/mes aprox.<br />Sin fidelidad",
 
                         EsDestacado = false,
-
-                        UrlInscripcion = "#",
 
                         Beneficios = new List<string>
                         {
@@ -236,8 +227,6 @@ namespace WebPage.controls
 
                         EsDestacado = false,
 
-                        UrlInscripcion = "#",
-
                         Beneficios = new List<string>
                         {
                             "Acceso a única sede de Fitness People.",
@@ -267,8 +256,6 @@ namespace WebPage.controls
                         Nota = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
                         EsDestacado = false,
-
-                        UrlInscripcion = "#",
 
                         Beneficios = new List<string>
                         {
@@ -308,8 +295,6 @@ namespace WebPage.controls
             public string Nota { get; set; }
 
             public bool EsDestacado { get; set; }
-
-            public string UrlInscripcion { get; set; }
 
             public List<string> Beneficios { get; set; }
         }

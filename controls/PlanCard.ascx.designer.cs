@@ -159,12 +159,12 @@ namespace WebPage.controls
         protected global::System.Web.UI.WebControls.Repeater rptBeneficios;
 
         /// <summary>
-        /// Control lnkInscripcion.
+        /// Control btnComprar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkInscripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnComprar;
     }
 }

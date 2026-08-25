@@ -4790,7 +4790,13 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 991px) {
-	.fpp-grid {
+	.fpp-head {
+		justify-content: center;
+	}
+
+	.fpp-grid,
+	.fpp-grid:has(> :nth-child(3)),
+	.fpp-grid:not(:has(> :nth-child(3))) {
 		grid-template-columns: 1fr;
 		max-width: 480px;
 		margin: 0 auto;

@@ -706,7 +706,7 @@
 <section class="fp-planes" id="membresias">
     <div class="fpp-container">
 
-        <!-- Encabezado de la sección -->
+        <!-- ================= ENCABEZADO ================= -->
         <div class="fpp-head">
             <div>
                 <p class="fpp-kicker">Planes Fitness People</p>
@@ -715,7 +715,7 @@
             <a href="javascript:void(0);" class="fpp-btn-ghost" id="btnTipoPlanes">Ver planes especiales</a>
         </div>
 
-        <!-- Planes Más Vendidos -->
+        <!-- ================= PLANES MÁS VENDIDOS ================= -->
         <div class="planes-mas-vendidos active">
             <div class="fpp-grid ">
 
@@ -739,7 +739,7 @@
             </div>
         </div>
 
-        <!-- Planes Especiales -->
+        <!-- ================= PLANES ESPECIALES ================= -->
         <div class="planes-especiales">
             <div class="fpp-grid">
 
@@ -749,7 +749,7 @@
                     runat="server"
                     PlanId="ESTUDIANTES" />
 
-                <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
+                <!-- ================= PLAN RESIDENTES ================= -->
                 <uc:PlanCard
                     ID="Residentes"
                     runat="server"
@@ -757,12 +757,131 @@
             </div>
         </div>
 
-        <!-- Nota final (gancho de clase de cortesía) -->
+
+        <!-- =====================================================
+             IFRAME DE INSCRIPCIÓN
+             Se muestra después de seleccionar la sede
+             ===================================================== -->
+        <div id="contenedorIframePlan" class="fp-iframe-container">
+
+            <div class="fp-iframe-header">
+
+                <div>
+                    <p class="fpp-kicker">Inscripción</p>
+                    <h3>Completa tu <span>registro</span></h3>
+                </div>
+
+                <button
+                    type="button"
+                    id="btnCerrarIframe"
+                    class="fp-iframe-close">
+                    &times;
+                </button>
+
+            </div>
+
+            <iframe
+                id="iframePlan"
+                src=""
+                title="Inscripción Fitness People"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+
+        <!-- ================= NOTA FINAL ================= -->
         <p class="fpp-note">
-            ¿Primera vez en Fitness People? <a href="https://fitnesspeoplecolombia.com/agendaDiaCortesia.aspx">Tu primer día es GRATIS</a> — reserva tu clase de cortesía.
+            ¿Primera vez en Fitness People? <a href="agendaDiaCortesia">Tu primer día es GRATIS</a> — reserva tu clase de cortesía.
         </p>
     </div>
 </section>
+
+
+<!-- =========================================================
+     PANEL LATERAL DE CIUDAD / SEDE
+     ========================================================= -->
+<div id="panelSede" class="fp-panel-sede">
+
+    <!-- Fondo oscuro -->
+    <div
+        id="panelSedeOverlay"
+        class="fp-panel-overlay">
+    </div>
+
+    <!-- Panel -->
+    <aside class="fp-panel-content">
+        <!-- Cerrar -->
+        <button
+            type="button"
+            id="btnCerrarSede"
+            class="fp-panel-close"
+            aria-label="Cerrar">
+            &times;
+        </button>
+
+        <!-- Encabezado -->
+        <div class="fp-panel-title">
+            <p class="fpp-kicker">
+                Comprar tu plan
+            </p>
+
+            <h3>
+                Elige tu <span>sede</span>
+            </h3>
+
+            <p class="fp-panel-description">
+                Selecciona la ciudad y la sede donde deseas realizar tu inscripción.
+            </p>
+        </div>
+
+        <!-- Ciudad -->
+        <div class="fp-sede-section">
+            <label for="ddlCiudad">
+                Ciudad
+            </label>
+
+            <select id="ddlCiudad">
+                <option value="">
+                    Selecciona una ciudad
+                </option>
+
+                <option value="bucaramanga">
+                    Bucaramanga
+                </option>
+
+                <option value="floridablanca">
+                    Floridablanca
+                </option>
+
+                <option value="piedecuesta">
+                    Piedecuesta
+                </option>
+
+                <option value="cucuta">
+                    Cúcuta
+                </option>
+            </select>
+        </div>
+
+        <!-- Sede -->
+        <div class="fp-sede-section">
+            <label for="ddlSede">
+                Sede
+            </label>
+
+            <select
+                id="ddlSede"
+                disabled>
+
+                <option value="">
+                    Primero selecciona una ciudad
+                </option>
+            </select>
+        </div>
+    </aside>
+</div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -801,6 +920,11 @@
 
     });
 </script>
+
+
+
+
+
 
 <script>
 
