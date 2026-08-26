@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -114,6 +115,33 @@ namespace WebPage.controls
                 divBadge.Visible = false;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline btn-comprar-plan";
             }
+
+            // ============================
+            // GOOGLE TAG MANAGER
+            // ============================
+
+            btnComprar.Attributes["data-plan-name"] = plan.Nombre;
+
+            string precioTexto = plan.Precio.ToString();
+
+            int precio = 0;
+
+            if (plan.Nombre.ToString() == "Flexible Pro" &&
+                precioTexto.Equals("GRATIS", StringComparison.OrdinalIgnoreCase))
+            {
+                precio = 9900;
+            }
+            else
+            {
+                string soloNumeros = Regex.Replace(precioTexto, @"[^\d]", "");
+
+                if (!string.IsNullOrEmpty(soloNumeros))
+                {
+                    precio = int.Parse(soloNumeros);
+                }
+            }
+
+            btnComprar.Attributes["data-plan-price"] = precio.ToString();
         }
 
         private Plan ObtenerPlan(string planId)
@@ -248,7 +276,7 @@ namespace WebPage.controls
 
                         PrecioAntes = "Sin inscripción",
                         LabelPrecio = "",
-                        Precio = "$89.000",
+                        Precio = "$89.900",
                         Periodo = "/mes",
 
                         Permanencia = "Fidelidad de 6 meses, aplica multa",

@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PlanCard.ascx.cs" Inherits="WebPage.controls.PlanCard" %>
 
 <article id="cardPlan" runat="server" class="fpp-card">
-
     <!-- Badge del plan destacado -->
     <div id="divBadge" runat="server" class="fpp-badge">
         Más popular
@@ -78,5 +77,4 @@
         class="fpp-btn fpp-btn--outline btn-comprar-plan">
         ¡Comprar Ya!
     </button>
-
 </article>
