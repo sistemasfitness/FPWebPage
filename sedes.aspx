@@ -1,14 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sedes.aspx.cs" Inherits="WebPage.sedes" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
-<%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!-- Google Tag Manager -->
     <%--<script>
         (function (w, d, s, l, i) {
@@ -42,6 +41,33 @@
     </script>
     <!-- End Microsoft Clarity -->
 
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.page();
+            ttq.track('PageView');
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
+    <meta property="og:site_name" content="Fitness People" />
+    <meta property="og:title" content="Fitness People" />
+    <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
+    <meta property="og:image" content="https://fitnesspeoplecolombia.com/img/sedes/boulevard__.jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="355" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
+
     <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -65,7 +91,7 @@
     <link href="css/animate.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/menu.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
@@ -73,6 +99,8 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- SPECIFIC CSS -->
     <link href="layerslider/css/layerslider.css" rel="stylesheet" />
@@ -95,172 +123,181 @@
         <div class="container-fluid">
             <uc1:mainmenu runat="server" ID="mainmenu" />
         </div>
-        <!-- End container -->
     </header>
-    <!-- End Header =============================================== -->
-    <!-- SubHeader =============================================== -->
-    <section>
-        <asp:Literal ID="ltImagenBG" runat="server"></asp:Literal>
 
-        <div id="sub_content_in">
-            <h1 style="font-weight: 900;">
-                <asp:Literal ID="ltNombreSede" runat="server" Visible="true"></asp:Literal></h1>
-            <p style="font-weight: 700;">
-                <asp:Literal ID="ltCiudadSede" runat="server" Visible="true"></asp:Literal>
-            </p>
-        </div>
-    </section>
-    <!-- End section -->
-    <!-- End SubHeader ============================================ -->
+    
+    <section class="bg_black">
+        <div class="container container-sedes">
 
-    <div class="container_styled_1">
-        <div class="container margin_60_35">
-            <div class="row">
-                <div class="col-md-6" style="margin-bottom: 3rem;">
-
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>Galería</em></h2>
-
-                    <div class="owl-carousel team-carousel3">
-
-                    <%--<div class="row magnific-gallery">--%>
-
-                        <asp:Repeater ID="rpGaleria" runat="server">
-                            <ItemTemplate>
-                                <%--<div class="col-sm-4">
-                                    <div class="img_wrapper">
-                                        <div class="img_container">
-                                            <a href="img/sedes/galeria/<%# Eval("NombreImagen") %>" title="<%# Eval("NombreSede") %>">
-                                                <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" width="800" height="533" class="img-responsive" alt="" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>--%>
-
-                                <div class="team-item">
-                                    <div class="team-item-img carousel-images-sedes">
-                                        <div class="img_container" style="height: 100%;">
-                                            <img src="img/sedes/galeria/<%# Eval("NombreImagen") %>" class="img-responsive" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    <%--</div>--%>
-                    </div>
-
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #FFF;"><em>
-                        <asp:Literal ID="ltNombreSede2" runat="server"></asp:Literal></em></h2>
-                    <hr />
-                    <%--<p class="lead"><i class="fa fa-city"></i> En la ciudad de <asp:Literal ID="ltCiudadSede2" runat="server"></asp:Literal></p><br />
-<h4><i class="fa fa-map-location-dot"></i> <asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
-<h4><i class="fab fa-whatsapp"></i> <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4><br />
-<h4><i class="fa fa-clock"></i> Horario: </h4>
-<p><asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>--%>
-                    <div class="box_style_general">
-                        <div class="form_title">
-                            <h3><strong><i class="fa fa-city"></i></strong></h3>
-                            <h4 style="padding-top: 10px; color: #FFF;">
-                                <asp:Literal ID="ltCiudadSede2" runat="server"></asp:Literal></h4>
-                        </div>
-                        <div class="step" style="padding: 0 0 20px 31px;"></div>
-                        <!--End step -->
-                        <div class="form_title">
-                            <h3><strong><i class="fa fa-map-location-dot"></i></strong></h3>
-                            <h4 style="padding-top: 10px; color: #FFF;">
-                                <asp:Literal ID="ltDireccionSede" runat="server"></asp:Literal></h4>
-                        </div>
-                        <div class="step" style="padding: 0 0 20px 31px;"></div>
-                        <!--End step -->
-                        <div class="form_title">
-                            <h3><strong><i class="fab fa-whatsapp"></i></strong></h3>
-                            <h4 style="padding-top: 10px; color: #FFF;">
-                                <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4>
-                        </div>
-                        <div class="step" style="padding: 0 0 20px 31px;"></div>
-                        <!--End step -->
-                        <div class="form_title">
-                            <h3 style="color: #FFF;"><strong><i class="fa fa-clock"></i></strong>Horario</h3>
-                        </div>
-                        <div class="step">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group" style="color: #FFF;">
-                                        <p>
-                                            <asp:Literal ID="ltHorarioSede" runat="server"></asp:Literal></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End step -->
-                    </div>
+            <!-- Encabezado de la sección -->
+            <div class="fpp-head">
+                <div>
+                    <p class="fpp-kicker">Sedes Fitness People</p>
+                    <h2>¿En qué <span>sede</span> quieres entrenar?</h2>
                 </div>
             </div>
-            <!-- End row -->
-        </div>
-    </div>
 
-    <uc1:planes runat="server" ID="controlplanes" />
+            <div class="sedes-container">
+                <!-- Cabecera -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=2">
 
-    <div id="newsletter_container" style="background-color: #000;">
-        <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 text-center">
-                    <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                <div id="message-newsletter"></div>
-                <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                    <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
-                    <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                </form>--%>
-                    <a href="gympass">
-                        <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                        <img src="img/descubrir-plan/04-01_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Cabecera" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-01_pregunta-seleccion.png"
+                             alt="Sede Cabecera" />
+                    </a>
+                </div>
+
+                <!-- El Prado -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=8">
+
+                        <img src="img/descubrir-plan/04-02_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede El Prado" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-02_pregunta-seleccion.png"
+                             alt="Sede El Prado" />
+                    </a>
+                </div>
+
+                <!-- Boulevard -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=1">
+
+                        <img src="img/descubrir-plan/04-03_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Boulevard" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-03_pregunta-seleccion.png"
+                             alt="Sede Boulevard" />
+                    </a>
+                </div>
+
+                <!-- Cañaveral -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=3">
+
+                        <img src="img/descubrir-plan/04-04_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Cañaveral" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-04_pregunta-seleccion.png"
+                             alt="Sede Cañaveral" />
+                    </a>
+                </div>
+
+                <!-- Ciudadela -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=10">
+
+                        <img src="img/descubrir-plan/04-05_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Ciudadela" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-05_pregunta-seleccion.png"
+                             alt="Sede Ciudadela" />
+                    </a>
+                </div>
+
+                <!-- De La Cuesta -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=5">
+
+                        <img src="img/descubrir-plan/04-06_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede De La Cuesta" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-06_pregunta-seleccion.png"
+                             alt="Sede De La Cuesta" />
+                    </a>
+                </div>
+
+                <!-- Parque Central -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=7">
+
+                        <img src="img/descubrir-plan/04-07_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Parque Central" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-07_pregunta-seleccion.png"
+                             alt="Sede Parque Central" />
+                    </a>
+                </div>
+
+                <!-- Provenza -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=9">
+
+                        <img src="img/descubrir-plan/04-08_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Provenza" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                             alt="Sede Provenza" />
+                    </a>
+                </div>
+
+                <!-- Ceiba II -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=6">
+
+                        <img src="img/descubrir-plan/04-09_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Ceiba II" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-09_pregunta-seleccion.png"
+                             alt="Sede Ceiba II" />
+                    </a>
+                </div>
+
+                <!-- Jardín Plaza -->
+                <div>
+                    <a class="sede-card"
+                       href="sede?id=4">
+
+                        <img src="img/descubrir-plan/04-10_pregunta.png"
+                             class="imagen-normal"
+                             alt="Sede Jardín Plaza" />
+
+                        <img class="imagen-hover"
+                             src="img/descubrir-plan/04-10_pregunta-seleccion.png"
+                             alt="Sede Jardín Plaza" />
                     </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <%--<div id="newsletter_container" style="background-color: #000;">
-        <div class="container margin_60">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 text-center">
-                    <h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                    <div id="message-newsletter"></div>
-                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
-                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>--%>
-    <!-- End newsletter_container -->
-
-    <!-- End container -->
-
-    <div>
-        <asp:Literal ID="ltMapa" runat="server"></asp:Literal>
-    </div>
 
     <uc1:footer runat="server" ID="footer" />
 
     <div id="toTop"></div>
     <!-- Back to top button -->
 
-    <uc1:loginregister runat="server" ID="loginregister" />
 
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-        <span class="search-overlay-close"><i class="icon_close"></i></span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Buscar..." />
-            <button type="submit">
-                <i class="icon-search-6"></i>
-            </button>
-        </form>
-    </div>
-    <!-- End Search Menu -->
     <!-- COMMON SCRIPTS -->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
@@ -275,36 +312,77 @@
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
 
-    <script>
+    <style>
 
-        'use strict';
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            center: false,
-            nav: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: true,
-            autoplayHoverPause: true,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                1000: {
-                    items: 1,
-                }
+        .container-sedes {
+            padding: 90px 0;
+        }
+
+        .sedes-titulo h3 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #E3FF00;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .sedes-container {
+            display: grid;
+            align-content: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .sede-card {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 431 / 275;
+            overflow: hidden;
+        }
+
+        .sede-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sede-card .imagen-normal {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .sede-card .imagen-hover {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sede-card:hover .imagen-normal {
+            opacity: 0;
+        }
+
+        .sede-card:hover .imagen-hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+            .sedes-titulo h3 {
+                font-size: 30px;
+                padding: 0 20px;
             }
-        });
 
-    </script>
+            .sedes-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+    </style>
+
 
     <noscript>
         <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
