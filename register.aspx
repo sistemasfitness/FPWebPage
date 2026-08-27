@@ -118,7 +118,7 @@
                         </div>
                         <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                            <asp:UpdatePanel ID="upAfiliados" runat="server">
+                            <asp:UpdatePanel ID="upAfiliados" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">

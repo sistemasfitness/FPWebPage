@@ -937,6 +937,8 @@ namespace WebPage
             {
                 await BuscarPersonaADRES(documento, form);
             }
+
+            upAfiliados.Update();
         }
 
         protected bool BuscarAfiliado(string documento, FormularioAfiliado form)
