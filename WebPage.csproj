@@ -285,6 +285,7 @@
     <Content Include="exclusivoweb.aspx" />
     <Content Include="exclusivowebfw.aspx" />
     <Content Include="nuestrasSedes.aspx" />
+    <Content Include="sede.aspx" />
     <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
@@ -951,6 +952,13 @@
     </Compile>
     <Compile Include="nuestrasSedes.aspx.designer.cs">
       <DependentUpon>nuestrasSedes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sede.aspx.cs">
+      <DependentUpon>sede.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sede.aspx.designer.cs">
+      <DependentUpon>sede.aspx</DependentUpon>
     </Compile>
     <Compile Include="Services\GoogleSheetsHelper.cs" />
     <Compile Include="somos.aspx.cs">
