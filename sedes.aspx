@@ -125,167 +125,197 @@
         </div>
     </header>
 
-    
     <section class="bg_black">
         <div class="container container-sedes">
-
             <!-- Encabezado de la sección -->
             <div class="fpp-head">
                 <div>
                     <p class="fpp-kicker">Sedes Fitness People</p>
-                    <h2>¿En qué <span>sede</span> quieres entrenar?</h2>
+                    <h2 class="fpp-title-sedes">Conoce nuestras <span>sedes</span></h2>
                 </div>
             </div>
 
-            <div class="sedes-container">
-                <!-- Cabecera -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=2">
-
-                        <img src="img/descubrir-plan/04-01_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Cabecera" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-01_pregunta-seleccion.png"
-                             alt="Sede Cabecera" />
-                    </a>
+            <!-- =============== BUCARAMANGA =============== -->
+            <div class="sede-ciudad">
+                <div class="sede-ciudad-header">
+                    <div class="sede-ciudad-line"></div>
+                    <h3>Bucaramanga</h3>
+                    <span>5 sedes</span>
                 </div>
 
-                <!-- El Prado -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=8">
+                <div class="sedes-container">
+                    <!-- Cabecera -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=2">
+                            <img src="img/descubrir-plan/04-01_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Cabecera" />
 
-                        <img src="img/descubrir-plan/04-02_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede El Prado" />
+                            <img src="img/descubrir-plan/04-01_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Cabecera" />
+                        </a>
+                    </div>
 
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-02_pregunta-seleccion.png"
-                             alt="Sede El Prado" />
-                    </a>
+                    <!-- El Prado -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=8">
+                            <img src="img/descubrir-plan/04-02_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede El Prado" />
+
+                            <img src="img/descubrir-plan/04-02_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede El Prado" />
+                        </a>
+                    </div>
+
+                    <!-- Boulevard -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=1">
+                            <img src="img/descubrir-plan/04-03_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Boulevard" />
+
+                            <img src="img/descubrir-plan/04-03_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Boulevard" />
+                        </a>
+                    </div>
+
+                    <!-- Ciudadela -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=10">
+                            <img src="img/descubrir-plan/04-05_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Ciudadela" />
+
+                            <img src="img/descubrir-plan/04-05_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Ciudadela" />
+                        </a>
+                    </div>
+
+                    <!-- Provenza -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=9">
+                            <img src="img/descubrir-plan/04-08_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Provenza" />
+
+                            <img src="img/descubrir-plan/04-08_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Provenza" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =============== FLORIDABLANCA =============== -->
+            <div class="sede-ciudad">
+                <div class="sede-ciudad-header">
+                    <div class="sede-ciudad-line"></div>
+                    <h3>Floridablanca</h3>
+                    <span>1 sede</span>
                 </div>
 
-                <!-- Boulevard -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=1">
+                <div class="sedes-container">
+                    <!-- Cañaveral -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=3">
+                            <img src="img/descubrir-plan/04-04_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Cañaveral" />
 
-                        <img src="img/descubrir-plan/04-03_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Boulevard" />
+                            <img src="img/descubrir-plan/04-04_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Cañaveral" />
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-03_pregunta-seleccion.png"
-                             alt="Sede Boulevard" />
-                    </a>
+            <!-- =============== PIEDECUESTA =============== -->
+            <div class="sede-ciudad">
+                <div class="sede-ciudad-header">
+                    <div class="sede-ciudad-line"></div>
+                    <h3>Piedecuesta</h3>
+                    <span>2 sedes</span>
                 </div>
 
-                <!-- Cañaveral -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=3">
+                <div class="sedes-container">
+                    <!-- De La Cuesta -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=5">
+                            <img src="img/descubrir-plan/04-06_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede De La Cuesta" />
 
-                        <img src="img/descubrir-plan/04-04_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Cañaveral" />
+                            <img src="img/descubrir-plan/04-06_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede De La Cuesta" />
+                        </a>
+                    </div>
 
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-04_pregunta-seleccion.png"
-                             alt="Sede Cañaveral" />
-                    </a>
+                    <!-- Parque Central -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=7">
+                            <img src="img/descubrir-plan/04-07_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Parque Central" />
+
+                            <img src="img/descubrir-plan/04-07_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Parque Central" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =============== CÚCUTA =============== -->
+            <div class="sede-ciudad">
+                <div class="sede-ciudad-header">
+                    <div class="sede-ciudad-line"></div>
+                    <h3>Cúcuta</h3>
+                    <span>2 sedes</span>
                 </div>
 
-                <!-- Ciudadela -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=10">
+                <div class="sedes-container">
+                    <!-- Ceiba II -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=6">
+                            <img src="img/descubrir-plan/04-09_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Ceiba II" />
 
-                        <img src="img/descubrir-plan/04-05_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Ciudadela" />
+                            <img src="img/descubrir-plan/04-09_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Ceiba II" />
+                        </a>
+                    </div>
 
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-05_pregunta-seleccion.png"
-                             alt="Sede Ciudadela" />
-                    </a>
-                </div>
+                    <!-- Jardín Plaza -->
+                    <div>
+                        <a class="sede-card" 
+                           href="sede?id=4">
+                            <img src="img/descubrir-plan/04-10_pregunta.png"
+                                 class="imagen-normal"
+                                 alt="Sede Jardín Plaza" />
 
-                <!-- De La Cuesta -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=5">
-
-                        <img src="img/descubrir-plan/04-06_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede De La Cuesta" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-06_pregunta-seleccion.png"
-                             alt="Sede De La Cuesta" />
-                    </a>
-                </div>
-
-                <!-- Parque Central -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=7">
-
-                        <img src="img/descubrir-plan/04-07_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Parque Central" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-07_pregunta-seleccion.png"
-                             alt="Sede Parque Central" />
-                    </a>
-                </div>
-
-                <!-- Provenza -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=9">
-
-                        <img src="img/descubrir-plan/04-08_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Provenza" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-08_pregunta-seleccion.png"
-                             alt="Sede Provenza" />
-                    </a>
-                </div>
-
-                <!-- Ceiba II -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=6">
-
-                        <img src="img/descubrir-plan/04-09_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Ceiba II" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-09_pregunta-seleccion.png"
-                             alt="Sede Ceiba II" />
-                    </a>
-                </div>
-
-                <!-- Jardín Plaza -->
-                <div>
-                    <a class="sede-card"
-                       href="sede?id=4">
-
-                        <img src="img/descubrir-plan/04-10_pregunta.png"
-                             class="imagen-normal"
-                             alt="Sede Jardín Plaza" />
-
-                        <img class="imagen-hover"
-                             src="img/descubrir-plan/04-10_pregunta-seleccion.png"
-                             alt="Sede Jardín Plaza" />
-                    </a>
+                            <img src="img/descubrir-plan/04-10_pregunta-seleccion.png"
+                                 class="imagen-hover"
+                                 alt="Sede Jardín Plaza" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,77 +341,6 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
-
-    <style>
-
-        .container-sedes {
-            padding: 90px 0;
-        }
-
-        .sedes-titulo h3 {
-            font-size: 50px;
-            font-weight: bold;
-            color: #E3FF00;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .sedes-container {
-            display: grid;
-            align-content: center;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .sede-card {
-            position: relative;
-            display: block;
-            overflow: hidden;
-            width: 100%;
-            aspect-ratio: 431 / 275;
-            overflow: hidden;
-        }
-
-        .sede-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .sede-card .imagen-normal {
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .sede-card .imagen-hover {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sede-card:hover .imagen-normal {
-            opacity: 0;
-        }
-
-        .sede-card:hover .imagen-hover {
-            opacity: 1;
-        }
-
-        @media (max-width: 992px) {
-            .sedes-titulo h3 {
-                font-size: 30px;
-                padding: 0 20px;
-            }
-
-            .sedes-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-    </style>
 
 
     <noscript>

@@ -4423,7 +4423,182 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		height: auto;
 	}
 
-/* Planes */
+@media (max-width: 992px) {
+	.section-prin-logos-met-pagos p {
+		margin-bottom: 10px;
+	}
+
+	.section-prin-logos {
+		gap: 20px;
+	}
+
+	.logos-met-pagos.deb img {
+		width: 40px;
+	}
+}
+
+/* preguntas-frecuentes */
+
+
+/* ==========================================
+   SEDES
+   ========================================== */
+
+.container-sedes {
+	padding: 100px 0;
+}
+
+/* ============ GRUPO POR CIUDAD ============ */
+.sede-ciudad {
+	margin-top: 65px;
+}
+
+/* ============ ENCABEZADO DE CIUDAD ============ */
+.sede-ciudad-header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 25px;
+}
+
+.sede-ciudad-line {
+	width: 45px;
+	height: 3px;
+	background-color: #E3FF00;
+	flex-shrink: 0;
+}
+
+.sede-ciudad-header h3 {
+	margin: 0;
+	color: #FFFFFF;
+	font-size: 28px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.sede-ciudad-header span {
+	color: #E3FF00;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* ============ GRID DE SEDES ============ */
+.sedes-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+}
+
+/* ============ TARJETA ============ */
+.sede-card {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	aspect-ratio: 431 / 275;
+	border-radius: 20px;
+}
+
+	/* Imágenes */
+	.sede-card img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	/* Imagen normal */
+	.sede-card .imagen-normal {
+		opacity: 1;
+		transition: opacity 0.3s ease;
+	}
+
+	/* Imagen hover */
+	.sede-card .imagen-hover {
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	/* Hover */
+	.sede-card:hover .imagen-normal {
+		opacity: 0;
+	}
+
+	.sede-card:hover .imagen-hover {
+		opacity: 1;
+	}
+
+/* ============ TABLET ============ */
+@media (max-width: 992px) {
+	.container-sedes {
+		padding: 70px 20px;
+	}
+
+	.sedes-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.sede-ciudad {
+		margin-top: 50px;
+	}
+
+	.sede-ciudad-header h3 {
+		font-size: 24px;
+	}
+}
+
+/* ============ MÓVIL ============ */
+@media (max-width: 576px) {
+	.container-sedes {
+		padding: 70px 15px;
+	}
+
+	.fpp-head .fpp-title-sedes {
+		text-align: center;
+	}
+
+	.sede-ciudad {
+		margin-top: 40px;
+	}
+
+	.sede-ciudad-header {
+		gap: 10px;
+		margin-bottom: 20px;
+	}
+
+	.sede-ciudad-line {
+		width: 30px;
+		height: 2px;
+	}
+
+	.sede-ciudad-header h3 {
+		font-size: 20px;
+	}
+
+	.sede-ciudad-header span {
+		font-size: 11px;
+	}
+
+	.sedes-container {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+}
+
+/* ==========================================
+   SEDES
+   ========================================== */
+
+
+/* ==========================================
+   PLANES
+   ========================================== */
 
 /* ============ SECCIÓN ============ */
 .fp-planes {
@@ -5035,21 +5210,8 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		}
 }
 
-/* Planes */
+/* ==========================================
+   PLANES
+   ========================================== */
 
 
-@media (max-width: 992px) {
-	.section-prin-logos-met-pagos p {
-		margin-bottom: 10px;
-	}
-
-	.section-prin-logos {
-		gap: 20px;
-	}
-
-	.logos-met-pagos.deb img {
-		width: 40px;
-	}
-}
-
-/* preguntas-frecuentes */
