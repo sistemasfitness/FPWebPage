@@ -1,58 +1,146 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="mainmenu.ascx.cs" Inherits="WebPage.controls.mainmenu" %>
-<div class="row">
-    <a href="https://api.whatsapp.com/send/?phone=573107842151&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="whatsapp" target="_blank"> <img src="../img/whatsapp-8.png" class="img-responsive" /></a>
-    <div class="col-xs-3">
-        <a href="default" id="logo">
-            <img src="img/logos/logo_2026-04-27.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
-            <img src="img/logos/logo_2026-04-27.svg" width="95" height="27" alt="" data-retina="true" class="logo_sticky">
-            <%--<img src="img/fp-logo-lime-f-min.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
-            <img src="img/fp-logo-lime-f-min.svg" width="95" height="27" alt="" data-retina="true" class="logo_sticky">--%>
-        </a>
-    </div>
-    <nav class="col-xs-9">
-        <ul id="access_top">
-            <%--<li><a href="#" class="search-overlay-menu-btn"><i class="icon-search-6"></i></a></li>--%>
-            <asp:Literal ID="ltMenu1" runat="server"></asp:Literal>
-            <%--<li><a href="#" data-toggle="modal" data-target="#register" class="hidden-xs">Registro</a></li>--%>
-        </ul>
-        <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-        <div class="main-menu">
-            <div id="header_menu">
-                <img src="img/fp-logo-lime-f-min.svg" height="27" alt="Fitness People" data-retina="true">
-            </div>
-            <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
-            <ul>
-                <li>
-                    <a href="default" class="show-submenu" style="font-weight: 900;">INICIO</a>
-                </li>
-                <li><a href="sedes" style="font-weight: 900;">SEDES</a></li>
-                <%--<li class="new-item-menu"><a href="descubrirplan" style="font-weight: 900; color: black;">TEST</a></li>--%>
-                <li><a href="default#planes" style="font-weight: 900;">PLANES</a></li>
-                <li><a href="somos" style="font-weight: 900;">NOSOTROS</a></li>
-                <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
 
-                <%--<li><a href="servicios" style="font-weight: 900;">SERVICIOS</a></li>--%>
-                <%--<li><a href="tienda" style="font-weight: 900;">TIENDA</a></li>--%>
-                <%--<li><a href="blog" style="font-weight: 900;">BLOG</a></li>--%>
-                <li><a href="contacto" style="font-weight: 900;">CONTACTO</a></li>
-                <%--<asp:Literal ID="ltMenuAfil" runat="server"></asp:Literal>--%>
-                <%--<asp:Literal ID="ltMenu2" runat="server"></asp:Literal>--%>
-                <%--<li><a href="#" style="font-weight: 900;" data-toggle="modal" data-target="#register" class="visible-xs">REGISTRO</a></li>--%>
-            </ul>
+<!-- ================= 01. HEADER ================= -->
+<header class="header">
+    <div class="container">
+        <a href="default" aria-label="Fitness People">
+            <img src="img/logos/logo_2026-04-27.svg" alt="Fitness People - Centro Médico Deportivo" data-retina="true" class="fp-logo">
+        </a>
+
+        <nav class="nav" aria-label="Principal">
+            <a href="sedes">Sedes</a>
+            <a href="default#planes">Planes</a>
+            <a href="#clases">Clases</a>
+            <a href="somos">Nosotros</a>
+            <a href="corporativo">Corporativo</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="default#planes" class="fpp-btn fpp-btn--solid">¡Inscríbete ya!</a>
+
+            <button class="icon-btn burger" aria-label="Menú">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
         </div>
-        <!-- End main-menu -->
-    </nav>
-</div>
+    </div>
+</header>
 
 <style>
-    .new-item-menu {
-        background-image: url('img/descubrir-plan/mainmenu-test.png');
+
+    /* ============ 01. HEADER ============ */
+    .header {
+        position: fixed;
+        top: 0; 
+        left: 0; 
+        right: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, .72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 82px;
+        gap: 24px;
+    }
+
+    .fp-logo { 
+        height: 40px; 
+        width: auto; 
+    }
+
+    .nav { 
+        display: flex; 
+        align-items: center; 
+        gap: 34px; 
+    }
+
+    .nav a {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--fp-white);
+        position: relative;
+        padding: 6px 0;
+        transition: color .2s;
+    }
+
+    .nav a::after {
+        content: "";
+        position: absolute; 
+        left: 0; 
+        bottom: 0;
+        width: 0; 
+        height: 2px;
+        background: var(--fp-lime);
+        transition: width .25s;
+    }
+
+    .nav a:hover { 
+        color: var(--fp-lime);
+    }
+
+    .nav a:hover::after { 
+        width: 100%; 
+    }
+
+    .header-actions { 
+        display: flex; 
+        align-items: center; 
+        gap: 14px; 
+    }
+
+    .icon-btn {
+        width: 42px; 
+        height: 42px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,.25);
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center;
+        color: var(--fp-white);
+        text-decoration: none;
+        transition: all .2s;
+    }
+
+    .icon-btn:hover { 
+        border-color: var(--fp-lime); 
+        color: var(--fp-lime); 
+    }
+
+    .icon-btn svg { 
+        width: 18px; 
+        height: 18px; 
+    }
+
+    .burger { 
+        display: none;
     }
 
     @media (max-width: 991px) {
-        .new-item-menu {
-            background-image: none;
+        .nav, .header .fpp-btn { 
+            display: none; 
+        }
+
+        .burger { 
+            display: inline-flex; 
         }
     }
+
+    @media (max-width: 600px) {
+        .container { 
+            padding: 0 18px; 
+        }
+
+        .header .container { 
+            height: 70px; 
+        }
+    }
+
 </style>
-<!-- End row -->

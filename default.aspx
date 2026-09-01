@@ -123,11 +123,14 @@
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
-    <header>
+    <%--<header>
         <div class="container-fluid">
             <uc1:mainmenu runat="server" ID="mainmenu" />
         </div>
-    </header>
+    </header>--%>
+
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
     <%--<section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
