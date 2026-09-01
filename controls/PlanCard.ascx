@@ -56,6 +56,19 @@
         <asp:Literal ID="litNota" runat="server"></asp:Literal>
     </span>
 
+    <!-- Pack de bienvenida -->
+    <div id="divPackBienvenida" runat="server" class="fpp-welcome-pack">
+        <div class="fpp-welcome-title">
+            <span class="fpp-welcome-icon"><i class="fa-solid fa-gift"></i></span>
+            <span>Pack de bienvenida</span>
+        </div>
+
+        <div class="fpp-welcome-content">
+            <strong>1 toalla edición Fitness People</strong>
+            <span>+ 1 semana de cortesía para una persona</span>
+        </div>
+    </div>
+
     <hr class="fpp-divider">
 
     <!-- Beneficios -->

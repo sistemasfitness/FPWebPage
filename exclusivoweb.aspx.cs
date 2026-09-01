@@ -46,16 +46,18 @@ namespace WebPage
                     lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
                     lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
 
-                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> GRATIS";
-                    lblSubTituloPrecio1.InnerText = "$ 9.900 DE INSCRIPCIÓN";
+                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.900";
+                    lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
                     lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
-                    lblFidelidad.InnerText = "FIDELIDAD DE 12 MESES, APLICA MULTA";
+                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES, APLICA MULTA";
+
+                    divPackBienvenida.Visible = true;
 
                     itemId = "1";
                     itemName = "Plan Flexible Pro";
-                    price = 9900;
+                    price = 49900;
                     texto = "ACTIVA TU PLAN";
-                    tokenId = "register?token=TKIlFPP8XYRC9l1rfGjR";
+                    tokenId = "register?token=ONiORcTGWT6e8D2QxFgV";
                     ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
                     ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
 
@@ -78,6 +80,8 @@ namespace WebPage
                     lblSubTituloUp.Visible = true;
                     lblSubTituloUp.InnerText = "ANTES $790.000";
                     lblFidelidad.Visible = false;
+
+                    divPackBienvenida.Visible = false;
 
                     itemId = "2";
                     itemName = "Plan 6 Meses + 2 Meses";
@@ -104,27 +108,27 @@ namespace WebPage
                 // ===============================
                 // PLAN FLEXIBLE PRO PROMO
                 // ===============================
-                case "flexible-pro-promo":
+                //case "flexible-pro-promo":
 
-                    lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
-                    lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
+                //    lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
+                //    lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
 
-                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 9.900";
-                    lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
-                    lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
-                    lblFidelidad.InnerText = "FIDELIDAD DE 12 MESES, APLICA MULTA";
+                //    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 9.900";
+                //    lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
+                //    lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
+                //    lblFidelidad.InnerText = "FIDELIDAD DE 12 MESES, APLICA MULTA";
 
-                    itemId = "3";
-                    itemName = "Plan Flexible Pro";
-                    price = 9900;
-                    texto = "ACTIVA TU PLAN";
-                    tokenId = "register?token=aKsoXcm34Ca4sMKeHraR";
-                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
-                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
+                //    itemId = "3";
+                //    itemName = "Plan Flexible Pro";
+                //    price = 9900;
+                //    texto = "ACTIVA TU PLAN";
+                //    tokenId = "register?token=aKsoXcm34Ca4sMKeHraR";
+                //    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
+                //    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
 
-                    lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
+                //    lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
 
-                    break;
+                //    break;
 
                 default:
                     Response.Redirect("default.aspx");

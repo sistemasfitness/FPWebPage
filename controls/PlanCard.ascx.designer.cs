@@ -150,6 +150,15 @@ namespace WebPage.controls
         protected global::System.Web.UI.WebControls.Literal litNota;
 
         /// <summary>
+        /// Control divPackBienvenida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPackBienvenida;
+
+        /// <summary>
         /// Control rptBeneficios.
         /// </summary>
         /// <remarks>

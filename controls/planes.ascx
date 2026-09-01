@@ -281,7 +281,7 @@
         };
 
         /* ============= URL FLEXIBLE PRO ============= */
-        const urlFlexiblePro = "register?token=TKIlFPP8XYRC9l1rfGjR";
+        const urlFlexiblePro = "register?token=ONiORcTGWT6e8D2QxFgV";
 
         /* ============= URLS POR PLAN + SEDE ============= */
         const urlsPlanes = {
@@ -388,7 +388,7 @@
                 });
 
                 // Redirección directa
-                window.location.href = "register?token=TKIlFPP8XYRC9l1rfGjR";
+                window.location.href = urlFlexiblePro;
 
                 return;
             }

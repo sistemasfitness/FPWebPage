@@ -157,6 +157,19 @@
                     <p class="inscription" runat="server" id="lblFidelidad"></p>
                 </div>
 
+                <!-- Pack de bienvenida -->
+                <div id="divPackBienvenida" runat="server" class="fpp-welcome-pack">
+                    <div class="fpp-welcome-title" style="justify-content: center;">
+                        <span class="fpp-welcome-icon"><i class="fa-solid fa-gift"></i></span>
+                        <span>Pack de bienvenida</span>
+                    </div>
+
+                    <div class="fpp-welcome-content">
+                        <strong>1 toalla edición Fitness People</strong>
+                        <span>+ 1 semana de cortesía para una persona</span>
+                    </div>
+                </div>
+
                 <div class="plans-switch text-center" style="flex-direction: column; gap: 12px;">
                     <asp:HyperLink ID="lnkComprar1" runat="server" CssClass="switch-btn active"></asp:HyperLink>
 
@@ -167,7 +180,7 @@
             </div>
 
             <div class="card-secundaria">
-                <h3 class="title">BENEFICIOS <br /> PLAN SEMESTRAL</h3>
+                <h3 class="title">BENEFICIOS</h3>
 
                 <ul class="benefits">
                     <li class="benefits-details">
@@ -195,42 +208,6 @@
                         </div>
                     </div>
 
-                    <%--<div class="row">
-                        <div class="col-12 title">
-                            <h3>¿DÓNDE QUIERES ENTRENAR?</h3>
-
-                            <p>Selecciona tu sede y luego activa tu plan</p>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Ciudad:</label>
-                                    <select id="ddlCiudadPlanes" class="form-control" style="background: #1A1A1A;"></select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Sede:</label>
-                                    <select id="ddlSedePlanes" class="form-control" style="background: #1A1A1A;"></select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <p id="mensaje"
-                            style="
-                                display: none;
-                                color: #E3FF00;
-                                font-weight: 700;
-                                text-align: center;
-                                text-decoration: underline;
-                            ">
-                        </p>
-                    </div>--%>
-
                     <div class="plans-switch text-center" style="margin-top: 5px;">
                         <asp:HyperLink ID="lnkComprar3" runat="server" CssClass="switch-btn active"></asp:HyperLink>
 
@@ -239,21 +216,6 @@
                 </div>
             </div>
         </div>
-
-        <%--<div class="container">
-            <div id="paymentModal" class="payment-modal">
-                <div id="paymentContainer" class="payment-container">
-
-                    <div id="paymentHeader" class="payment-header">
-                        <h2 style="font-weight: 900; color: #E3FF00;">Completa tus datos y realiza el pago de forma segura</h2>
-                        <button type="button" onclick="closePayment()" class="btn-close">✕</button>
-                    </div>
-
-                    <iframe id="paymentFrame" src=""></iframe>
-
-                </div>
-            </div>
-        </div>--%>
     </section>
 
 
@@ -286,194 +248,12 @@
 
     <script>
 
-        //const sedes = {
-        //    "Boulevard": "Bucaramanga",
-        //    "Cabecera": "Bucaramanga",
-        //    "El Prado": "Bucaramanga",
-        //    "Provenza": "Bucaramanga",
-        //    "Ciudadela": "Bucaramanga",
-        //    "Cañaveral": "Floridablanca",
-        //    "DeLaCuesta": "Piedecuesta",
-        //    "Parque Central": "Piedecuesta",
-        //    "Jardin Plaza": "Cúcuta",
-        //    "Ceiba II": "Cúcuta"
-        //};
-
-        //const planesLinks = {
-        //    "Plan Flexible Pro": {      // PLAN FLEXIBLE PRO DEBITO AUTOMATICO
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
-        //    },
-        //    "Plan 6 Meses": {      //  PLAN 6 MESES $590.000
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-3927",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-3875",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3879",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4153",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3964",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4143",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4003",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3304",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3224",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2984"
-        //    },
-        //    "Plan 6 Meses + 2 Meses": {      // PLAN 6 MESES $590.000
-        //        "Boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2759",
-        //        "Cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2646",
-        //        "El Prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3318",
-        //        "Provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3398",
-        //        "Ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-2999",
-        //        "Cañaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2838",
-        //        "DeLaCuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3078",
-        //        "Parque Central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3239",
-        //        "Jardin Plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3158",
-        //        "Ceiba II": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2918"
-        //    }
-        //}
-
-        //document.addEventListener("DOMContentLoaded", function () {
-        //    const ddlCiudad = document.getElementById("ddlCiudadPlanes");
-        //    const ddlSede = document.getElementById("ddlSedePlanes");
-
-        //    const ciudades = [...new Set(Object.values(sedes))];
-
-        //    // Default
-        //    ddlCiudad.innerHTML = '<option value="">Selecciona una opción</option>';
-        //    ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
-
-        //    // Llenar ciudades
-        //    ciudades.forEach(ciudad => {
-        //        const option = document.createElement("option");
-
-        //        option.value = ciudad;
-        //        option.textContent = ciudad;
-
-        //        ddlCiudad.appendChild(option);
-        //    });
-
-        //    // Llenar sedes por ciudad
-        //    Object.keys(sedes).forEach(sede => {
-        //        const option = document.createElement("option");
-
-        //        option.value = sede;
-        //        option.textContent = sede;
-
-        //        ddlSede.appendChild(option);
-        //    });
-
-        //    // Evento Cambio ciudad
-        //    ddlCiudad.addEventListener("change", function () {
-
-        //        limpiarMensaje();
-
-        //        const ciudadSeleccionada = this.value;
-
-        //        ddlSede.innerHTML = '<option value="">Selecciona una opción</option>';
-
-        //        Object.keys(sedes).forEach(sede => {
-        //            const ciudad = sedes[sede];
-
-        //            if (!ciudadSeleccionada || ciudad === ciudadSeleccionada) {
-        //                const option = document.createElement("option");
-
-        //                option.value = sede;
-        //                option.textContent = sede;
-
-        //                ddlSede.appendChild(option);
-        //            }
-        //        });
-        //    });
-
-        //    // Evento Cambio sede -> Seleccionar ciudad automáticamente
-        //    ddlSede.addEventListener("change", function () {
-
-        //        limpiarMensaje();
-
-        //        const sedeSeleccionada = this.value;
-
-        //        if (!sedeSeleccionada) return;
-
-        //        ddlCiudad.value = sedes[sedeSeleccionada];
-        //    });
-        //});
-
-        //function mostrarMensaje(textMensaje) {
-        //    const mensaje = document.getElementById("mensaje");
-
-        //    mensaje.style.display = "block";
-        //    mensaje.textContent = textMensaje;
-
-        //    document.getElementById("planesSelector")
-        //        .scrollIntoView({
-        //            behavior: "smooth",
-        //            block: "center"
-        //        });
-        //}
-
-        //function limpiarMensaje() {
-        //    const mensaje = document.getElementById("mensaje");
-
-        //    mensaje.style.display = "none";
-        //}
-
         function openPaymentInline(url) {
             if (url.includes("register?token=")) {
                 window.location.href = url;
                 return;
             }
-
-            //const container = document.getElementById("paymentContainer");
-            //const iframe = document.getElementById("paymentFrame");
-            //const header = document.getElementById("paymentHeader");
-
-            //// Mostrar el contenedor
-            //container.style.display = "block";
-
-            //// Mostrar botón cerrar
-            //header.style.display = "flex";
-
-            //// Cargar URL en el iframe
-            //iframe.src = url;
-
-            // Bajar suavemente hasta el iframe
-            setTimeout(() => {
-                container.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }, 100);
         }
-
-        //function closePayment() {
-        //    const container = document.getElementById("paymentContainer");
-        //    const iframe = document.getElementById("paymentFrame");
-        //    const planes = document.getElementById("planes");
-        //    const header = document.getElementById("paymentHeader");
-
-        //    // Limpiar iframe (detiene el proceso)
-        //    iframe.src = "";
-
-        //    // Ocultar contenedor
-        //    container.style.display = "none";
-
-        //    // Ocultar botón cerrar otra vez
-        //    header.style.display = "none";
-
-        //    // Subir suavemente a los planes
-        //    setTimeout(() => {
-        //        planes.scrollIntoView({
-        //            behavior: "smooth",
-        //            block: "start"
-        //        });
-        //    }, 100);
-        //}
 
         function planAddToCart(contentId, contentName, value, directUrl = null) {
             var eventId = 'atc-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
@@ -481,74 +261,11 @@
             let paymentUrl = "";
 
             if (directUrl) {
-                // limpiarMensaje();
-
                 paymentUrl = directUrl;
             }
 
-            //if (!directUrl) {
-
-            //    const sede = document.getElementById("ddlSedePlanes").value;
-            //    const ciudad = document.getElementById("ddlCiudadPlanes").value;
-
-            //    if (!sede || !ciudad) {
-            //        mostrarMensaje("Debes seleccionar una ciudad y sede antes de continuar.");
-
-            //        return;
-            //    }
-
-            //    limpiarMensaje();
-
-            //    if (!planesLinks[contentName] || !planesLinks[contentName][sede]) {
-            //        mostrarMensaje("No existe enlace configurado para esta sede.");
-            //        return;
-            //    }
-
-            //    paymentUrl = planesLinks[contentName][sede];
-            // }
-
-            // Enviar evento AddToCart a Meta Pixel
-            //fbq('track', 'AddToCart', {
-            //    content_ids: [contentId],
-            //    content_type: 'product',
-            //    content_name: contentName,
-            //    contents: [{
-            //        id: contentId,
-            //        quantity: 1
-            //    }],
-            //    currency: 'COP',
-            //    value: value
-            //});
-
             // Enviar información a Google Tag Manager
             window.dataLayer = window.dataLayer || [];
-
-            //window.dataLayer.push({
-            //    event: 'AddToCart',
-
-            //    ecommerce: {
-            //        items: [{
-            //            item_id: contentId,
-            //            item_name: contentName,
-            //            price: value,
-            //            currency: 'COP',
-            //            quantity: 1
-            //        }]
-            //    },
-
-            //    meta: {
-            //        content_ids: [contentId],
-            //        content_type: 'product',
-            //        content_name: contentName,
-            //        contents: [{
-            //            id: contentId,
-            //            quantity: 1
-            //        }],
-            //        currency: 'COP',
-            //        value: value
-            //    }
-            //});
-
 
             window.dataLayer.push({
                 event: 'AddToCart',
@@ -576,7 +293,6 @@
                 }
             });
 
-
             // Dar tiempo al Pixel antes de redireccionar
             if (paymentUrl.includes("register?token=")) {
 
@@ -586,8 +302,6 @@
 
                 return;
             }
-
-            // openPaymentInline(paymentUrl);
         }
 
     </script>

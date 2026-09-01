@@ -108,12 +108,16 @@ namespace WebPage.controls
                 cardPlan.Attributes["class"] = "fpp-card fpp-card--featured";
                 divBadge.Visible = true;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid btn-comprar-plan";
+
+                divPackBienvenida.Visible = true;
             }
             else
             {
                 cardPlan.Attributes["class"] = "fpp-card";
                 divBadge.Visible = false;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline btn-comprar-plan";
+
+                divPackBienvenida.Visible = false;
             }
 
             // ============================
@@ -173,7 +177,7 @@ namespace WebPage.controls
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
                             "5 pases de invitado al mes.",
-                            "Valoraciones físicas de seguimiento."
+                            "Valoración física inicial."
                         }
                     };
 
@@ -186,12 +190,12 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Más beneficios desde el primer mes.",
 
-                        PrecioAntes = "$9.900 de Inscripción",
+                        PrecioAntes = "Sin inscripción",
                         LabelPrecio = "1er mes",
-                        Precio = "GRATIS",
+                        Precio = "$49.900",
                         Periodo = "",
 
-                        Permanencia = "Después $99.000/mes<br />Fidelidad de 12 meses, aplica multa",
+                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses, aplica multa",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
@@ -203,7 +207,7 @@ namespace WebPage.controls
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
                             "5 pases de invitado al mes.",
-                            "Valoraciones físicas de seguimiento."
+                            "Valoración física inicial."
                         }
                     };
 
@@ -231,7 +235,7 @@ namespace WebPage.controls
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
                             "5 pases de invitado al mes.",
-                            "Valoraciones físicas de seguimiento."
+                            "Valoración física inicial."
                         }
                     };
 

@@ -4861,6 +4861,50 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	margin-top: 15px;
 }
 
+/* Pack de bienvenida */
+.fpp-welcome-pack {
+	margin-top: 18px;
+	padding: 14px 16px;
+	border: 1px solid rgba(200, 243, 29, .35);
+	border-radius: 10px;
+	background: rgba(200, 243, 29, .06);
+}
+
+.fpp-welcome-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 7px;
+	color: var(--fp-lime);
+	font-size: 11px;
+	font-weight: 900;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+}
+
+.fpp-welcome-icon {
+	font-size: 16px;
+	line-height: 1;
+}
+
+.fpp-welcome-content {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	font-size: 12px;
+	line-height: 1.4;
+	color: #D6D6D6;
+}
+
+	.fpp-welcome-content strong {
+		color: var(--fp-white);
+		font-weight: 700;
+	}
+
+	.fpp-welcome-content span {
+		color: var(--fp-gray);
+	}
+
 .fpp-divider {
 	border: none;
 	border-top: 1px solid var(--fp-border);
