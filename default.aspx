@@ -123,13 +123,13 @@
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
-    <%--<header>
+    <header>
         <div class="container-fluid">
             <uc1:mainmenu runat="server" ID="mainmenu" />
         </div>
-    </header>--%>
+    </header>
 
-    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <%--<uc1:mainmenu runat="server" ID="mainmenu" />--%>
 
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
@@ -157,26 +157,36 @@
     <div id="full-slider-wrapper">
         <div id="layerslider">
             <!-- Slide 1 -->
-            <a href="agendaDiaCortesia">
-                <div class="ls-slide" data-ls="slidedelay: 8000; transition2d:85;">
-                    <img class="ls-bg img-slider"
-                         data-desktop="img/slides/slider1_2026-08-21.jpg"
-                         data-mobile="img/slides/slider1_2026-08-21_mobile.jpg"
-                         src="img/slides/slider1_2026-08-21.jpg"
-                         alt="Fitness People" />
-                </div>
-            </a>
+            <div class="ls-slide" 
+                 data-ls="slidedelay: 4000; transition2d:85;">
+                <img class="ls-bg img-slider"
+                        data-desktop="img/slides/slider3_2026-09-02.png"
+                        data-mobile="img/slides/slider3_2026-09-02_mobile.png"
+                        src="img/slides/slider3_2026-09-02.png"
+                        alt="Fitness People" />
+            </div>
 
             <!-- Slide 2 -->
-            <a href="agendaDiaCortesia">
-                <div class="ls-slide" data-ls="slidedelay: 8000; transition2d:85;">
-                    <img class="ls-bg img-slider"
-                         data-desktop="img/slides/slider2_2026-08-21.jpg"
-                         data-mobile="img/slides/slider2_2026-08-21_mobile.jpg"
-                         src="img/slides/slider2_2026-08-21.jpg"
-                         alt="Fitness People" />
-                </div>
-            </a>
+            <div class="ls-slide elemet-clic" 
+                 data-ls="slidedelay: 4000; transition2d:85;"
+                 onclick="window.location.href='agendaDiaCortesia';">
+                <img class="ls-bg img-slider"
+                        data-desktop="img/slides/slider1_2026-08-21.jpg"
+                        data-mobile="img/slides/slider1_2026-08-21_mobile.jpg"
+                        src="img/slides/slider1_2026-08-21.jpg"
+                        alt="Fitness People" />
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="ls-slide elemet-clic" 
+                 data-ls="slidedelay: 4000; transition2d:85;"
+                 onclick="window.location.href='agendaDiaCortesia';">
+                <img class="ls-bg img-slider"
+                        data-desktop="img/slides/slider2_2026-08-21.jpg"
+                        data-mobile="img/slides/slider2_2026-08-21_mobile.jpg"
+                        src="img/slides/slider2_2026-08-21.jpg"
+                        alt="Fitness People" />
+            </div>
         </div>
     </div>
     <!-- End layerslider -->
@@ -604,7 +614,7 @@
 
         function cambiarImagenSlider() {
             var imagenes = document.querySelectorAll(".img-slider");
-            var isTabletOrMobile = window.innerWidth <= 1024;
+            var isTabletOrMobile = window.innerWidth <= 990;
 
             imagenes.forEach(function (img) {
                 var nueva = isTabletOrMobile ? img.dataset.mobile : img.dataset.desktop;

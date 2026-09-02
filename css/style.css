@@ -236,6 +236,10 @@ p.lead.styled {
 	margin-bottom: 45px;
 }
 
+.elemet-clic {
+	cursor: pointer;
+}
+
 /*General links color*/
 a {
 	/*color: #e3ff00;*/
@@ -4154,7 +4158,8 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	width: 100% !important;
 	/* Proporción de las imágenes desktop:
        1600 / 667 = 2.3988 */
-	aspect-ratio: 1600 / 700;
+	/*aspect-ratio: 1920 / 900;*/ /* QUITAR DE COMENTARIO PROXIMAMENTE */
+	aspect-ratio: 1920 / 800;
 	/*height: 100vh;*/
 	overflow: hidden;
 }
