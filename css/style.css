@@ -4988,6 +4988,15 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 		box-shadow: 0 8px 25px rgba(200, 243, 29, .35);
 	}
 
+.fpp-btn--lift {
+	transition: transform .25s ease, box-shadow .25s ease;
+}
+
+	.fpp-btn--lift:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 25px rgba(200, 243, 29, .35);
+	}
+
 /* Nota bajo el grid */
 .fpp-note {
 	text-align: center;

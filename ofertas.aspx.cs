@@ -14,7 +14,7 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                
+                Response.Redirect("default", true);
             }
         }
     }
