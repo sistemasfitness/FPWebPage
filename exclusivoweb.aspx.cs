@@ -46,7 +46,7 @@ namespace WebPage
                     lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
                     lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
 
-                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.900";
+                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.500";
                     lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
                     lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
                     lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES, APLICA MULTA";

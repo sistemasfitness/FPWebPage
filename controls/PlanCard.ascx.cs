@@ -192,7 +192,7 @@ namespace WebPage.controls
 
                         PrecioAntes = "Sin inscripción",
                         LabelPrecio = "1er mes",
-                        Precio = "$49.900",
+                        Precio = "$49.500",
                         Periodo = "",
 
                         Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses, aplica multa",

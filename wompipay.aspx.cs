@@ -567,13 +567,13 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA MULTA</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='title'>PRIMER MES <span class='pull-right'>$49.900</span></p>
+                                        <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
                                         <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
-                                        <p class='total'>TOTAL <span class='pull-right'>$ 49.900</span></p>
+                                        <p class='total'>TOTAL <span class='pull-right'>$ 49.500</span></p>
                                     </div>";
             }
         }
