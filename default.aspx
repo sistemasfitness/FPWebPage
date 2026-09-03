@@ -123,13 +123,13 @@
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
-    <header>
+    <%--<header>
         <div class="container-fluid">
             <uc1:mainmenu runat="server" ID="mainmenu" />
         </div>
-    </header>
+    </header>--%>
 
-    <%--<uc1:mainmenu runat="server" ID="mainmenu" />--%>
+    <uc1:mainmenu runat="server" ID="mainmenu" />
 
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
@@ -154,7 +154,7 @@
     <!-- End Header video -->
 
     <!-- Slider -->
-    <div id="full-slider-wrapper">
+    <div id="full-slider-wrapper" style="margin-top: 70px;">
         <div id="layerslider">
             <!-- Slide 1 -->
             <div class="ls-slide" 

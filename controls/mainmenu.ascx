@@ -1,20 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="mainmenu.ascx.cs" Inherits="WebPage.controls.mainmenu" %>
 
-<div class="row">
+<%--<div class="row">
     <a href="https://api.whatsapp.com/send/?phone=573107842151&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="whatsapp" target="_blank"> <img src="../img/whatsapp-8.png" class="img-responsive" /></a>
     <div class="col-xs-3">
         <a href="default" id="logo">
             <img src="img/logos/logo_2026-04-27.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
             <img src="img/logos/logo_2026-04-27.svg" width="95" height="27" alt="" data-retina="true" class="logo_sticky">
-            <%--<img src="img/fp-logo-lime-f-min.svg" width="95" height="27" alt="" data-retina="true" class="logo_normal">
-            <img src="img/fp-logo-lime-f-min.svg" width="95" height="27" alt="" data-retina="true" class="logo_sticky">--%>
         </a>
     </div>
     <nav class="col-xs-9">
         <ul id="access_top">
-            <%--<li><a href="#" class="search-overlay-menu-btn"><i class="icon-search-6"></i></a></li>--%>
             <asp:Literal ID="ltMenu1" runat="server"></asp:Literal>
-            <%--<li><a href="#" data-toggle="modal" data-target="#register" class="hidden-xs">Registro</a></li>--%>
         </ul>
         <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
         <div class="main-menu">
@@ -27,26 +23,18 @@
                     <a href="default" class="show-submenu" style="font-weight: 900;">INICIO</a>
                 </li>
                 <li><a href="sedes" style="font-weight: 900;">SEDES</a></li>
-                <%--<li class="new-item-menu"><a href="descubrirplan" style="font-weight: 900; color: black;">TEST</a></li>--%>
                 <li><a href="default#planes" style="font-weight: 900;">PLANES</a></li>
                 <li><a href="somos" style="font-weight: 900;">NOSOTROS</a></li>
                 <li><a href="corporativo" style="font-weight: 900;">CORPORATIVO</a></li>
-
-                <%--<li><a href="servicios" style="font-weight: 900;">SERVICIOS</a></li>--%>
-                <%--<li><a href="tienda" style="font-weight: 900;">TIENDA</a></li>--%>
-                <%--<li><a href="blog" style="font-weight: 900;">BLOG</a></li>--%>
                 <li><a href="contacto" style="font-weight: 900;">CONTACTO</a></li>
-                <%--<asp:Literal ID="ltMenuAfil" runat="server"></asp:Literal>--%>
-                <%--<asp:Literal ID="ltMenu2" runat="server"></asp:Literal>--%>
-                <%--<li><a href="#" style="font-weight: 900;" data-toggle="modal" data-target="#register" class="visible-xs">REGISTRO</a></li>--%>
             </ul>
         </div>
         <!-- End main-menu -->
     </nav>
-</div>
+</div>--%>
 
 <!-- ================= 01. HEADER ================= -->
-<%--<header class="header">
+<header class="header">
     <div class="container">
         <a href="default" aria-label="Fitness People">
             <img src="img/logos/logo_2026-04-27.svg" alt="Fitness People - Centro Médico Deportivo" data-retina="true" class="fp-logo">
@@ -55,26 +43,27 @@
         <nav class="nav" aria-label="Principal">
             <a href="sedes">Sedes</a>
             <a href="default#planes">Planes</a>
-            //<a href="#clases">Clases</a>//
+            <%--<a href="#clases">Clases</a>--%>
             <a href="somos">Nosotros</a>
             <a href="corporativo">Corporativo</a>
         </nav>
 
         <div class="header-actions">
             <a href="default#planes" class="fpp-btn fpp-btn--solid fpp-btn--lift">¡Inscríbete ya!</a>
-
-            <button class="icon-btn burger" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-                <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            </button>
         </div>
     </div>
-</header>--%>
+</header>
+
+<!-- Botón Menú Móvil --> 
+<button class="icon-btn burger" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+</button>
 
 <!-- Overlay --> 
-<%--<div class="mobile-menu-overlay" id="menuOverlay"></div>--%> 
+<div class="mobile-menu-overlay" id="menuOverlay"></div> 
 
 <!-- Menú móvil --> 
-<%--<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-header"> 
         <span class="mobile-menu-title"> MENÚ </span> 
         
@@ -107,9 +96,9 @@
         <p>¿Listo para comenzar?</p> 
         <a href="default#planes" class="fpp-btn fpp-btn--solid fpp-btn--lift mobile-menu-cta">¡Inscríbete ya!</a> 
     </div> 
-</aside>--%>
+</aside>
 
-<%--<style>
+<style>
 
     /* ============ 01. HEADER ============ */
     .header {
@@ -128,8 +117,18 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 82px;
+        height: 70px;
         gap: 24px;
+    }
+
+    .header .container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .header .container::before,
+    .header .container::after {
+        display: none;
     }
 
     .fp-logo { 
@@ -181,7 +180,7 @@
     }
 
     .header-actions .fpp-btn {
-        padding: 12px 22px;
+        padding: 10px 20px;
     }
 
     .icon-btn {
@@ -200,10 +199,6 @@
             color .2s ease,
             background .2s ease,
             transform .2s ease;
-    }
-
-    .burger { 
-        display: none; 
     }
 
     .icon-btn:hover {
@@ -232,6 +227,15 @@
     /* =========================================================
        MENÚ MÓVIL
        ========================================================= */
+
+    /* Botón Menú Móvil */
+    .burger {
+        display: none;
+        position: fixed;
+        top: 22px;
+        right: 24px;
+        z-index: 1000;
+    }
 
     /* Overlay */
     .mobile-menu-overlay {
@@ -288,12 +292,6 @@
         align-items: center;
         gap: 14px;
         margin-bottom: 35px;
-    }
-
-    /* ========================================================= CUANDO EL MENÚ ESTÁ ABIERTO ========================================================= */ 
-    /* Subimos el header por encima del menú. Esto permite utilizar el botón ✕. */ 
-    .header.menu-is-open { 
-        z-index: 1000; 
     }
 
     .mobile-menu-title {
@@ -380,6 +378,15 @@
             padding-bottom: 0;
         }
 
+        /* El header ocupa todo el ancho disponible */
+        .header .container {
+            justify-content: flex-start;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding-left: 0;
+        }
+
         .nav,
         .header .fpp-btn {
             display: none;
@@ -399,10 +406,13 @@
 
     @media (max-width: 600px) {
         .container {
-            padding: 0 18px;
+            /*padding: 0 18px;*/
         }
 
         .header .container {
+            width: 100%;
+            max-width: none;
+            margin: 0;
             height: 70px;
         }
 
@@ -414,6 +424,11 @@
             width: 88vw;
             padding: 100px 25px 25px;
         }
+
+        .burger {
+            top: 17px;
+            right: 18px;
+        }
     }
 
     /* Evitar scroll de la página con el menú abierto */
@@ -421,10 +436,10 @@
         overflow: hidden;
     }
 
-</style>--%>
+</style>
 
 
-<%--<script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
 
         const menuToggle = document.getElementById("menuToggle");
@@ -516,4 +531,4 @@
         });
 
     });
-</script>--%>
+</script>
