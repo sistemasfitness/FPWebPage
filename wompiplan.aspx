@@ -81,22 +81,14 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-
     <div id="preloader">
         <div data-loader="circle-side"></div>
     </div>
     <!-- End Preload -->
 
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">

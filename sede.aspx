@@ -89,16 +89,10 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- SubHeader =============================================== -->
     <section>
         <asp:Literal ID="ltImagenBG" runat="server"></asp:Literal>
