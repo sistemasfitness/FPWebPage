@@ -109,13 +109,21 @@
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Documentación</h2>
                     <p></p>
                     <p class="lead" style="color: #FFF;">
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" target="_blank">Derechos y deberes usuarios Fitness People</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/2.-PT-TDP-02-POLITICA-DE-PROTECCION-EN-VIDEOVIGILANCIA.pdf" target="_blank">Política de protección de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/1.-MN-TDP-03-MANUAL-DE-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Manual de protección de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">Autorización de uso de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-AVISO-DE-PRIVACIDAD-VERSION-II.pdf" target="_blank">Aviso de privacidad</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados financieros</a><br />
-                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos y condiciones de las promociones</a><br />
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" target="_blank">Derechos Y Deberes Usuarios Fitness People</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/1.-MN-GH-02-MANUAL-DE-FUNCIONES-Y-PROCEDIMIENTOS-DE-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Manual De Funciones, Responsabilidades y Procedimientos De Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Política De Tratamiento Y Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-PR-GH-01-PROTOCOLO-DE-TRATAMIENTO-DE-DATOS-SENSIBLES-Y-DE-MENORES.pdf" target="_blank">Protocolo Para El Tratamiento De Datos Sensibles Y De Menores De Edad</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-F-GH-20-ACUERDO-DE-CONFIDENCIALIDAD-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Acuerdo De Confidencialidad, No Divulgación Y Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/5.-PT-GH-03-AVISO-DE-PRIVACIDAD.pdf" target="_blank">Aviso De Privacidad</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados Financieros</a><br />
+
+                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos Y Condiciones De Las Promociones</a><br />
                     </p>
                     <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Términos y Condiciones de Ofertas – Fitness People Colombia</h4>
                     <p class="lead" style="color: #FFF; font-size: 1.5rem;">
