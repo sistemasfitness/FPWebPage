@@ -120,7 +120,7 @@
     <uc1:mainmenu runat="server" ID="mainmenu" />
     <!-- Control Main Menu -->
 
-    <section class="bg_black">
+    <section class="bg_black margin-top-header">
         <div class="container container-sedes">
             <!-- Encabezado de la sección -->
             <div class="fpp-head">

@@ -31,8 +31,6 @@ namespace WebPage
             string texto;
             string tokenId;
 
-            lblSubTituloUp.Visible = false;
-
             lnkComprar2.Visible = false;
             lnkComprar4.Visible = false;
 
@@ -49,7 +47,8 @@ namespace WebPage
                     lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.500";
                     lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
                     lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
-                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES, APLICA MULTA";
+                    lblSubTituloUp.InnerText = "ANTES $129.900";
+                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO";
 
                     divPackBienvenida.Visible = true;
 
@@ -77,7 +76,6 @@ namespace WebPage
                     lblSubTituloPrecio1.InnerText = "6 MESES DE ACCESO";
                     lblSubTituloPrecio2.Visible = false;
 
-                    lblSubTituloUp.Visible = true;
                     lblSubTituloUp.InnerText = "ANTES $790.000";
                     lblFidelidad.Visible = false;
 

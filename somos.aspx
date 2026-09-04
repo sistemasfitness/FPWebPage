@@ -89,7 +89,7 @@
     <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/corporative.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/corporative.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">SOBRE NOSOTROS</h1>
         </div>

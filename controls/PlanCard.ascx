@@ -65,7 +65,7 @@
 
         <div class="fpp-welcome-content">
             <strong>1 toalla edición Fitness People</strong>
-            <span>+ 1 semana de cortesía para una persona</span>
+            <strong>+ 1 semana de cortesía para una persona</strong>
         </div>
     </div>
 

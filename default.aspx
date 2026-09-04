@@ -147,7 +147,7 @@
     <!-- End Header video -->
 
     <!-- Slider -->
-    <div id="full-slider-wrapper" style="margin-top: 70px;">
+    <div id="full-slider-wrapper" class="margin-top-header">
         <div id="layerslider">
             <!-- Slide 1 -->
             <div class="ls-slide" 

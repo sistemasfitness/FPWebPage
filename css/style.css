@@ -4445,10 +4445,13 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 /* preguntas-frecuentes */
 
+.margin-top-header {
+	margin-top: 70px;
+}
+
 /* ==========================================
    HEADER
    ========================================== */
-
 .header {
 	position: fixed;
 	top: 0;

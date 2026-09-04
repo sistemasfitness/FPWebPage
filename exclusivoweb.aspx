@@ -119,7 +119,7 @@
     <uc1:mainmenu runat="server" ID="mainmenu" />
     <!-- Control Main Menu -->
 
-    <section class="margin_60 bg_gray section-principal-cards">
+    <section class="margin_60 bg_gray section-principal-cards margin-top-header">
         <div class="container section-cards">
             <div class="card-principal bg_black">
                 <div>
@@ -136,7 +136,7 @@
 
                     <div class="benefits-details">
                         <i class="fa-solid fa-user-group"></i>
-                        <p>CLASES GRUPALES CON PROFESORES</p>
+                        <p>ACCESO A LAS MEJORES CLASES GRUPALES DE BUCARAMANGA</p>
                     </div>
                 </div>
 
@@ -149,11 +149,11 @@
 
                     <p runat="server" id="lblSubTituloPrecio2"></p>
 
-                    <p class="inscription" runat="server" id="lblFidelidad"></p>
+                    <p class="fidelidad" runat="server" id="lblFidelidad"></p>
                 </div>
 
                 <!-- Pack de bienvenida -->
-                <div id="divPackBienvenida" runat="server" class="fpp-welcome-pack">
+                <div id="divPackBienvenida" runat="server" class="fpp-welcome-pack" style="margin-top: 0;">
                     <div class="fpp-welcome-title" style="justify-content: center;">
                         <span class="fpp-welcome-icon"><i class="fa-solid fa-gift"></i></span>
                         <span>Pack de bienvenida</span>
@@ -161,7 +161,7 @@
 
                     <div class="fpp-welcome-content">
                         <strong>1 toalla edición Fitness People</strong>
-                        <span>+ 1 semana de cortesía para una persona</span>
+                        <strong>+ 1 semana de cortesía para una persona</strong>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
                         <div class="col-12 title">
                             <h3>¿QUÉ ESTÁS ESPERANDO?</h3>
 
-                            <p>Entrena con la Familia Fitness People Ya!</p>
+                            <p>¡Entrena con la Familia Fitness People Ya!</p>
                         </div>
                     </div>
 
@@ -444,6 +444,11 @@
 
         .card-principal .price .inscription {
             color: #d6ff00;
+        }
+
+        .card-principal .price .fidelidad {
+            color: #d6ff00;
+            font-size: 10px;
         }
 
         .card-principal .plans-switch .switch-btn {

@@ -564,7 +564,34 @@ namespace WebPage
                                     <div class='total_cart info-plan-conditions'>
                                         <p class='condition-pri'>DÉBITO AUTOMÁTICO</p>
 
-                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA MULTA</p>
+                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
+                                    </div>
+                                    <div class='total_cart info-plan-precie'>
+                                        <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
+
+                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+
+                                        <p class='registration'>SIN INSCRIPCIÓN</p>
+
+                                        <p class='total'>TOTAL <span class='pull-right'>$ 49.500</span></p>
+                                    </div>";
+            }
+
+            if (IdPlan == 48)
+            {
+                pnlTotalCart.Visible = false;
+
+                ltPlanEasy.Text = @"<div class='total_cart info-plan'>
+                                        <p class='title'>PLAN</p>
+
+                                        <p class='sub-title'>FLEXIBLE PRO</p>
+
+                                        <p class='text'>Acceso total a sedes y áreas, clases grupales, plan de entrenamiento y nutrición en la FP App, 5 cortesías mensuales, membresía incluida, pago automático y valoración física inicial.</p>
+                                    </div>
+                                    <div class='total_cart info-plan-conditions'>
+                                        <p class='condition-pri'>DÉBITO AUTOMÁTICO</p>
+
+                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>

@@ -285,6 +285,7 @@
     <Content Include="exclusivoweb.aspx" />
     <Content Include="exclusivowebfw.aspx" />
     <Content Include="nuestrasSedes.aspx" />
+    <Content Include="promoAlexGuarin.aspx" />
     <Content Include="sede.aspx" />
     <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
@@ -952,6 +953,13 @@
     </Compile>
     <Compile Include="nuestrasSedes.aspx.designer.cs">
       <DependentUpon>nuestrasSedes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promoAlexGuarin.aspx.cs">
+      <DependentUpon>promoAlexGuarin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promoAlexGuarin.aspx.designer.cs">
+      <DependentUpon>promoAlexGuarin.aspx</DependentUpon>
     </Compile>
     <Compile Include="sede.aspx.cs">
       <DependentUpon>sede.aspx</DependentUpon>

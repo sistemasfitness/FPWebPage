@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiexito.aspx.cs" Inherits="WebPage.wompiexito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="promoAlexGuarin.aspx.cs" Inherits="WebPage.promoAlexGuarin" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -40,6 +40,35 @@
     </script>
     <!-- End Microsoft Clarity -->
 
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.page();
+            ttq.track('PageView');
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
+    <meta property="og:site_name" content="Fitness People" />
+    <meta property="og:title" content="Fitness People" />
+    <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
+    <meta property="og:image" content="https://fitnesspeoplecolombia.com/img/sedes/boulevard__.jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="355" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
+
+    <script src="js/fitnesspeople.js"></script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -61,7 +90,7 @@
     <link href="css/animate.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/menu.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
@@ -69,6 +98,10 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- SPECIFIC CSS -->
+    <link href="layerslider/css/layerslider.css" rel="stylesheet" />
+    <link href="css/pop_up.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -84,81 +117,88 @@
     <uc1:mainmenu runat="server" ID="mainmenu" />
     <!-- Control Main Menu -->
 
-    <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
-        <div id="sub_content_in">
-            <h1 style="font-weight: 900">¡Pago Exitoso!</h1>
+    <section class="bg_black margin-top-header section-promo-img">
+        <div class="promo-img">
+            <a href="register?token=tN7vdybh55QL2vX8JrAt">
+                <img class="ls-bg img-promo" 
+                     data-desktop="img/slides/slider3_2026-09-02.png"
+                     data-mobile="img/slides/slider3_2026-09-02_mobile.png"
+                     src="img/slides/slider3_2026-09-02.png"
+                     alt="Fitness People" />
+            </a>
         </div>
     </section>
-    <!-- End section -->
-    <!-- End SubHeader ============================================ -->
-
-    <div class="container margin_60_35" style="color: #fff">
-        <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-                <div class="box_style_2" style="background-color: #1A1A1A">
-                    <div id="confirm" class="text-center" >
-                        <%--<i class="icon_check_alt2"></i>--%>
-                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por ser parte de la familia Fitness People!</h3>
-                        <p style="color: #fff; font-weight: 400;"><b>Confirmamos que tu pago fue recibido.</b></p>
-                    </div>
-                    <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
-                    <table class="table table-striped nomargin">
-                        <tbody>
-                            <tr style="background-color: #1A1A1A">
-                                <td>Débito automático</td>
-                                <td><strong class="pull-right"><span class="pull-right"><asp:Literal ID="ltValor1" runat="server"></asp:Literal></span></strong></td>
-                            </tr>
-                            <tr style="font-weight: 900; background-color: #e3ff00; color: black;">
-                                <td class="">TOTAL</td>
-                                <td class=""><span class="pull-right"><asp:Literal ID="ltValor2" runat="server"></asp:Literal></span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form runat="server">
-                        <asp:Panel ID="pnlActivarPlan" runat="server">
-                            <div style="margin-top: 30px; text-align: center;">
-                                <h3 style="font-weight: 900; color: #e3ff00;">¡Ojo! Recuerda que...</h3>
-                                <p style="font-weight: 400;">Para activar tu plan debes completar el formulario de verificación. Para ello, <b>haz clic en el siguiente botón.</b></p>
-                                <%--<p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>--%>
-
-                                <asp:Button ID="btnRedireccionarActivarPlan" 
-                                            runat="server" CssClass="btn_slider" 
-                                            Text="ACTIVAR ACCESO" 
-                                            OnClick="btnRedireccionarActivarPlan_Click" />
-                                <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
-                            </div>
-                        </asp:Panel>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End row -->
-    </div>
-    <!-- End container -->
 
     <uc1:footer runat="server" ID="footer" />
 
     <div id="toTop"></div>
     <!-- Back to top button -->
 
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-        <span class="search-overlay-close"><i class="icon_close"></i></span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Buscar..." />
-            <button type="submit">
-                <i class="icon-search-6"></i>
-            </button>
-        </form>
-    </div>
-    <!-- End Search Menu -->
-
     <!-- COMMON SCRIPTS -->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/bootstrap-portfilter.min.js"></script>
+    <script src="js/jarallax.min.js"></script>
+    <script src="js/jarallax-video.min.js"></script>
+    <script src="layerslider/js/greensock.js"></script>
+    <script src="layerslider/js/layerslider.transitions.js"></script>
+    <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+    <style>
+
+        .section-promo-img {
+            width: 100%;
+            aspect-ratio: 1920 / 800;
+        }
+
+        .section-promo-img .promo-img {
+            width: 100%;
+        }
+
+        .section-promo-img .promo-img .img-promo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        @media (max-width: 990px) {
+            .promo-img {
+                height: calc(100vh - 70px);
+            }
+        }
+
+    </style>
+
+    <script>
+
+        function cambiarImagenSlider() {
+            var imagenes = document.querySelectorAll(".img-promo");
+            var isTabletOrMobile = window.innerWidth <= 990;
+
+            imagenes.forEach(function (img) {
+                var nueva = isTabletOrMobile ? img.dataset.mobile : img.dataset.desktop;
+
+                if (img.src.indexOf(nueva) === -1) {
+                    img.src = nueva;
+                }
+            });
+        }
+
+        window.addEventListener("load", cambiarImagenSlider);
+        // Ejecutar al redimensionar (con pequeño debounce)
+        let resizeTimeout;
+        window.addEventListener("resize", function () {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(cambiarImagenSlider, 200);
+        });
+
+    </script>
+
 
     <noscript>
         <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />

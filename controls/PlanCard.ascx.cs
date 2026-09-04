@@ -195,7 +195,7 @@ namespace WebPage.controls
                         Precio = "$49.500",
                         Periodo = "",
 
-                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses, aplica multa",
+                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses, aplica cobro por retiro anticipado",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
@@ -253,9 +253,9 @@ namespace WebPage.controls
                         Precio = "$59.700",
                         Periodo = "",
 
-                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses, aplica multa",
+                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses, aplica cobro por retiro anticipado",
 
-                        Nota = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
                         EsDestacado = false,
 
@@ -283,9 +283,9 @@ namespace WebPage.controls
                         Precio = "$89.900",
                         Periodo = "/mes",
 
-                        Permanencia = "Fidelidad de 6 meses, aplica multa",
+                        Permanencia = "Fidelidad de 6 meses, aplica cobro por retiro anticipado",
 
-                        Nota = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
                         EsDestacado = false,
 
