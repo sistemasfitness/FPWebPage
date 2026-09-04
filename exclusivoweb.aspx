@@ -535,10 +535,6 @@
 
             /**/
 
-            .section-principal-cards {
-                padding-top: 70px;
-            }
-
             .card-secundaria {
                 padding: 0 10px;
             }
