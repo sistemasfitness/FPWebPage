@@ -121,9 +121,9 @@
         <div class="promo-img">
             <a href="register?token=tN7vdybh55QL2vX8JrAt">
                 <img class="ls-bg img-promo" 
-                     data-desktop="img/slides/slider3_2026-09-02.png"
-                     data-mobile="img/slides/slider3_2026-09-02_mobile.png"
-                     src="img/slides/slider3_2026-09-02.png"
+                     data-desktop="img/banners/banner_2026-09-04.png"
+                     data-mobile="img/banners/banner_2026-09-04_mobile.png"
+                     src="img/banners/banner_2026-09-04.png"
                      alt="Fitness People" />
             </a>
         </div>
