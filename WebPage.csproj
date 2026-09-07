@@ -285,6 +285,7 @@
     <Content Include="exclusivoweb.aspx" />
     <Content Include="exclusivowebfw.aspx" />
     <Content Include="nuestrasSedes.aspx" />
+    <Content Include="pqrs.aspx" />
     <Content Include="promoAlexGuarin.aspx" />
     <Content Include="sede.aspx" />
     <Content Include="somos.aspx" />
@@ -953,6 +954,13 @@
     </Compile>
     <Compile Include="nuestrasSedes.aspx.designer.cs">
       <DependentUpon>nuestrasSedes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pqrs.aspx.cs">
+      <DependentUpon>pqrs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pqrs.aspx.designer.cs">
+      <DependentUpon>pqrs.aspx</DependentUpon>
     </Compile>
     <Compile Include="promoAlexGuarin.aspx.cs">
       <DependentUpon>promoAlexGuarin.aspx</DependentUpon>
