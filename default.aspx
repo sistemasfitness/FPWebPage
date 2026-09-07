@@ -103,6 +103,9 @@
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
+    <!-- SLIDER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 
@@ -148,38 +151,56 @@
 
     <!-- Slider -->
     <div id="full-slider-wrapper" class="margin-top-header">
-        <div id="layerslider">
-            <!-- Slide 1 -->
-            <div class="ls-slide" 
-                 data-ls="slidedelay: 4000; transition2d:85;">
-                <img class="ls-bg img-slider"
-                        data-desktop="img/slides/slider3_2026-09-02.png"
-                        data-mobile="img/slides/slider3_2026-09-02_mobile.png"
-                        src="img/slides/slider3_2026-09-02.png"
-                        alt="Fitness People" />
+        <div class="swiper fp-slider">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider3_2026-09-02_mobile.png" />
+                        <img
+                            src="img/slides/slider3_2026-09-02.png"
+                            alt="Fitness People"
+                            fetchpriority="high"
+                            decoding="async" />
+                    </picture>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide"
+                     onclick="window.location.href='agendaDiaCortesia';">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider1_2026-08-21_mobile.jpg" />
+                        <img
+                            src="img/slides/slider1_2026-08-21.jpg"
+                            alt="Fitness People"
+                            decoding="async" />
+                    </picture>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide"
+                     onclick="window.location.href='agendaDiaCortesia';">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider2_2026-08-21_mobile.jpg" />
+                        <img
+                            src="img/slides/slider2_2026-08-21.jpg"
+                            alt="Fitness People"
+                            decoding="async" />
+                    </picture>
+                </div>
             </div>
 
-            <!-- Slide 2 -->
-            <div class="ls-slide elemet-clic" 
-                 data-ls="slidedelay: 4000; transition2d:85;"
-                 onclick="window.location.href='agendaDiaCortesia';">
-                <img class="ls-bg img-slider"
-                        data-desktop="img/slides/slider1_2026-08-21.jpg"
-                        data-mobile="img/slides/slider1_2026-08-21_mobile.jpg"
-                        src="img/slides/slider1_2026-08-21.jpg"
-                        alt="Fitness People" />
-            </div>
+            <!-- Flecha anterior -->
+            <div class="swiper-button-prev"></div>
 
-            <!-- Slide 2 -->
-            <div class="ls-slide elemet-clic" 
-                 data-ls="slidedelay: 4000; transition2d:85;"
-                 onclick="window.location.href='agendaDiaCortesia';">
-                <img class="ls-bg img-slider"
-                        data-desktop="img/slides/slider2_2026-08-21.jpg"
-                        data-mobile="img/slides/slider2_2026-08-21_mobile.jpg"
-                        src="img/slides/slider2_2026-08-21.jpg"
-                        alt="Fitness People" />
-            </div>
+            <!-- Flecha siguiente -->
+            <div class="swiper-button-next"></div>
         </div>
     </div>
     <!-- End layerslider -->
@@ -488,6 +509,45 @@
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
 
+    <!-- SLIDER -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const fpSlider = new Swiper(".fp-slider", {
+                // Movimiento horizontal
+                direction: "horizontal",
+
+                // Repetir infinitamente
+                loop: true,
+
+                // Autoplay
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
+
+                // Transición
+                speed: 800,
+
+                // Flechas
+                navigation: {
+                    nextEl: ".fp-slider .swiper-button-next",
+                    prevEl: ".fp-slider .swiper-button-prev"
+                },
+
+                // Touch / Swipe
+                grabCursor: true,
+
+                // Permitir deslizar
+                allowTouchMove: true
+            });
+        });
+
+    </script>
+
     <script>
         //$('.jarallax').jarallax({
         //    videoLoop: true,
@@ -601,32 +661,6 @@
         window.addEventListener('load', actualizarImagenSlider);
         window.addEventListener('resize', actualizarImagenSlider);
     </script>--%>
-
-
-    <script>
-
-        function cambiarImagenSlider() {
-            var imagenes = document.querySelectorAll(".img-slider");
-            var isTabletOrMobile = window.innerWidth <= 990;
-
-            imagenes.forEach(function (img) {
-                var nueva = isTabletOrMobile ? img.dataset.mobile : img.dataset.desktop;
-
-                if (img.src.indexOf(nueva) === -1) {
-                    img.src = nueva;
-                }
-            });
-        }
-
-        window.addEventListener("load", cambiarImagenSlider);
-        // Ejecutar al redimensionar (con pequeño debounce)
-        let resizeTimeout;
-        window.addEventListener("resize", function () {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(cambiarImagenSlider, 200);
-        });
-
-    </script>
 
 
     <noscript>

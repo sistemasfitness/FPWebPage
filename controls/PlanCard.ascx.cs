@@ -51,6 +51,12 @@ namespace WebPage.controls
             litTagline.Text = plan.Tagline;
 
             // ============================
+            // INSCRIPCIÓN / PROMOCIÓN
+            // ============================
+
+            litInscProm.Text = plan.InscProm;
+
+            // ============================
             // PRECIO ANTERIOR / PROMOCIÓN
             // ============================
 
@@ -77,6 +83,20 @@ namespace WebPage.controls
             // ============================
 
             litPermanencia.Text = plan.Permanencia;
+
+            // ============================
+            // NOTA DE FIDELIDAD
+            // ============================
+
+            if (!string.IsNullOrWhiteSpace(plan.NotaFidelidad))
+            {
+                litNotaFidelidad.Visible = true;
+                litNotaFidelidad.Text = plan.NotaFidelidad;
+            }
+            else
+            {
+                litNotaFidelidad.Visible = false;
+            }
 
             // ============================
             // NOTA DE PAGO
@@ -160,12 +180,14 @@ namespace WebPage.controls
                         Modalidad = "Pago Mes a Mes",
                         Tagline = "Empieza y termina cuando quieras.",
 
-                        PrecioAntes = "Sin inscripción",
+                        InscProm = "Sin inscripción",
+                        PrecioAntes = "",
                         LabelPrecio = "",
                         Precio = "$165.000",
                         Periodo = "/mes",
 
                         Permanencia = "Renovación mes a mes<br />Sin fidelidad",
+                        NotaFidelidad = "",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
@@ -190,12 +212,14 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Más beneficios desde el primer mes.",
 
-                        PrecioAntes = "Sin inscripción",
+                        InscProm = "Sin inscripción",
+                        PrecioAntes = "Antes $129.900",
                         LabelPrecio = "1er mes",
                         Precio = "$49.500",
                         Periodo = "",
 
-                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses, aplica cobro por retiro anticipado",
+                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
+                        NotaFidelidad = "Aplica cobro por retiro anticipado",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
@@ -220,12 +244,14 @@ namespace WebPage.controls
                         Modalidad = "Pago único anual",
                         Tagline = "Entrena sin pausas durante todo un año.",
 
-                        PrecioAntes = "+ 2 meses GRATIS",
+                        InscProm = "+ 2 meses GRATIS",
+                        PrecioAntes = "Antes $1.380.000",
                         LabelPrecio = "",
                         Precio = "$990.000",
                         Periodo = "/año",
 
                         Permanencia = "Equivale a $70.700/mes aprox.<br />Sin fidelidad",
+                        NotaFidelidad = "",
 
                         EsDestacado = false,
 
@@ -248,12 +274,14 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Haz de tu bienestar parte del día.",
 
-                        PrecioAntes = "Sin inscripción",
+                        InscProm = "Sin inscripción",
+                        PrecioAntes = "Antes $109.900",
                         LabelPrecio = "1er mes",
                         Precio = "$59.700",
                         Periodo = "",
 
-                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses, aplica cobro por retiro anticipado",
+                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses",
+                        NotaFidelidad = "Aplica cobro por retiro anticipado",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
@@ -278,12 +306,14 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Tu salud más cerca de ti.",
 
-                        PrecioAntes = "Sin inscripción",
+                        InscProm = "Sin inscripción",
+                        PrecioAntes = "Antes $109.900",
                         LabelPrecio = "",
                         Precio = "$89.900",
                         Periodo = "/mes",
 
-                        Permanencia = "Fidelidad de 6 meses, aplica cobro por retiro anticipado",
+                        Permanencia = "Fidelidad de 6 meses",
+                        NotaFidelidad = "Aplica cobro por retiro anticipado",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
@@ -314,6 +344,8 @@ namespace WebPage.controls
 
             public string Tagline { get; set; }
 
+            public string InscProm { get; set; }
+
             public string PrecioAntes { get; set; }
 
             public string LabelPrecio { get; set; }
@@ -323,6 +355,8 @@ namespace WebPage.controls
             public string Periodo { get; set; }
 
             public string Permanencia { get; set; }
+
+            public string NotaFidelidad { get; set; }
 
             public string Nota { get; set; }
 

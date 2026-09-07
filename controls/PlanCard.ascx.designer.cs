@@ -60,6 +60,24 @@ namespace WebPage.controls
         protected global::System.Web.UI.WebControls.Literal litTagline;
 
         /// <summary>
+        /// Control divlitInscProm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divlitInscProm;
+
+        /// <summary>
+        /// Control litInscProm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litInscProm;
+
+        /// <summary>
         /// Control divPrecioAntes.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace WebPage.controls
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litPermanencia;
+
+        /// <summary>
+        /// Control litNotaFidelidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNotaFidelidad;
 
         /// <summary>
         /// Control spanNota.

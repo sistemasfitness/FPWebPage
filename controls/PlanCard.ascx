@@ -24,7 +24,12 @@
         <asp:Literal ID="litTagline" runat="server"></asp:Literal>
     </div>
 
-    <!-- Precio anterior / inscripción / promoción -->
+    <!-- Inscripción / promoción -->
+    <div id="divlitInscProm" runat="server" class="fpp-price-insc-prom">
+        <asp:Literal ID="litInscProm" runat="server"></asp:Literal>
+    </div>
+
+    <!-- Precio anterior -->
     <div id="divPrecioAntes" runat="server" class="fpp-price-before">
         <asp:Literal ID="litPrecioAntes" runat="server"></asp:Literal>
     </div>
@@ -49,6 +54,11 @@
     <!-- Permanencia / condiciones -->
     <div class="fpp-permanencia">
         <asp:Literal ID="litPermanencia" runat="server"></asp:Literal>
+    </div>
+
+    <!-- Nota fidelidad -->
+    <div class="fpp-nota-fidelidad">
+        <asp:Literal ID="litNotaFidelidad" runat="server"></asp:Literal>
     </div>
 
     <!-- Nota método de pago -->

@@ -150,6 +150,8 @@
                     <p runat="server" id="lblSubTituloPrecio2"></p>
 
                     <p class="fidelidad" runat="server" id="lblFidelidad"></p>
+
+                    <p class="nota-fidelidad" runat="server" id="lblNotaFidelidad"></p>
                 </div>
 
                 <!-- Pack de bienvenida -->
@@ -449,6 +451,11 @@
         .card-principal .price .fidelidad {
             color: #d6ff00;
             font-size: 10px;
+        }
+
+        .card-principal .price .nota-fidelidad {
+            color: white;
+            font-size: 7px;
         }
 
         .card-principal .plans-switch .switch-btn {

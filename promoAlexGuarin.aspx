@@ -119,13 +119,18 @@
 
     <section class="bg_black margin-top-header section-promo-img">
         <div class="promo-img">
-            <a href="register?token=tN7vdybh55QL2vX8JrAt">
-                <img class="ls-bg img-promo" 
-                     data-desktop="img/banners/banner_2026-09-04.png"
-                     data-mobile="img/banners/banner_2026-09-04_mobile.png"
-                     src="img/banners/banner_2026-09-04.png"
-                     alt="Fitness People" />
-            </a>
+            <picture>
+                <source 
+                    media="(max-width: 990px)"
+                    srcset="img/banners/banner_2026-09-04_mobile.png" />
+
+                <img 
+                    class="img-promo"
+                    src="img/banners/banner_2026-09-04.png"
+                    alt="Fitness People"
+                    fetchpriority="high"
+                    decoding="async" />
+            </picture>
         </div>
     </section>
 
@@ -159,7 +164,14 @@
             width: 100%;
         }
 
-        .section-promo-img .promo-img .img-promo {
+        .section-promo-img picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-promo-img .img-promo {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -167,37 +179,14 @@
         }
 
         @media (max-width: 990px) {
-            .promo-img {
-                height: calc(100vh - 70px);
+
+            .section-promo-img {
+                aspect-ratio: auto;
             }
+
         }
 
     </style>
-
-    <script>
-
-        function cambiarImagenSlider() {
-            var imagenes = document.querySelectorAll(".img-promo");
-            var isTabletOrMobile = window.innerWidth <= 990;
-
-            imagenes.forEach(function (img) {
-                var nueva = isTabletOrMobile ? img.dataset.mobile : img.dataset.desktop;
-
-                if (img.src.indexOf(nueva) === -1) {
-                    img.src = nueva;
-                }
-            });
-        }
-
-        window.addEventListener("load", cambiarImagenSlider);
-        // Ejecutar al redimensionar (con pequeño debounce)
-        let resizeTimeout;
-        window.addEventListener("resize", function () {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(cambiarImagenSlider, 200);
-        });
-
-    </script>
 
 
     <noscript>

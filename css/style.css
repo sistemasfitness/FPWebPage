@@ -236,7 +236,7 @@ p.lead.styled {
 	margin-bottom: 45px;
 }
 
-.elemet-clic {
+.element-clic {
 	cursor: pointer;
 }
 
@@ -4136,11 +4136,14 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	/* resultado.aspx */
 }
 
-/* Slider en página principal */
+/* =========================================================
+   SLIDER
+   ========================================================= */
 
 /* =========================================================
    SLIDER PRINCIPAL - FITNESS PEOPLE
-   Desktop: 1600 x 667
+   -- Desktop: 1600 x 667
+   Desktop: 1920 x 900
    Mobile:  1080 x 1920
    ========================================================= */
 
@@ -4150,191 +4153,142 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	overflow: hidden;
 }
 
-/* ---------------------------------------------------------
-   LayerSlider
-   --------------------------------------------------------- */
-
-#layerslider {
-	position: relative;
-	width: 100% !important;
-	/* Proporción de las imágenes desktop:
-       1600 / 667 = 2.3988 */
+/* Contenedor principal */
+.fp-slider {
+	width: 100%;
 	/*aspect-ratio: 1920 / 900;*/ /* QUITAR DE COMENTARIO PROXIMAMENTE */
 	aspect-ratio: 1920 / 800;
-	/*height: 100vh;*/
 	overflow: hidden;
 }
 
 	/* Slides */
-	#layerslider .ls-slide {
-		width: 100% !important;
-		height: 100% !important;
-	}
-
-	/* Imagen de fondo */
-	#layerslider .ls-bg {
-		width: 100% !important;
-		height: 100% !important;
-		object-fit: cover !important;
-		object-position: center center !important;
-		margin: 0 !important;
-		padding: 0 !important;
-	}
-
-
-/* =========================================================
-   EVITAR SALTOS DURANTE LAS TRANSICIONES
-   ========================================================= */
-
-.ls-curtile img,
-.ls-nexttile img {
-	width: 100% !important;
-	height: 100% !important;
-	object-fit: cover !important;
-	object-position: center center !important;
-	transform: none !important;
-}
-
-
-/* =========================================================
-   TRANSICIONES
-   ========================================================= */
-
-.ls-slide,
-.ls-bg {
-	transition: none !important;
-}
-
-
-/* =========================================================
-   FLECHA ANTERIOR / SIGUIENTE
-   ========================================================= */
-
-.ls-nav-prev,
-.ls-nav-next {
-	background: rgba(0, 0, 0, 0.4);
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	display: flex !important;
-	align-items: center;
-	justify-content: center;
-	opacity: 1 !important;
-	visibility: visible !important;
-	position: absolute !important;
-	top: 50% !important;
-	transform: translateY(-50%);
-	z-index: 100;
-	cursor: pointer;
-}
-
-.ls-nav-prev {
-	left: 25px !important;
-}
-
-.ls-nav-next {
-	right: 25px !important;
-}
-
-	.ls-nav-prev:hover,
-	.ls-nav-next:hover {
-		background: rgba(0, 0, 0, 0.7);
-	}
-
-
-	/* =========================================================
-   ICONOS DE LAS FLECHAS
-   ========================================================= */
-
-	.ls-nav-prev::before,
-	.ls-nav-next::before {
-		font-family: 'fontello';
-		font-style: normal;
-		font-weight: normal;
-		font-variant: normal;
-		text-transform: none;
-		line-height: 1;
-		speak: none;
-		display: inline-block;
-		font-size: 24px;
-		color: #fff;
+	.fp-slider .swiper-slide {
 		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 
-.ls-nav-prev::before {
-	content: "\e89a";
-	left: -2px;
-}
+		/* Picture */
+		.fp-slider .swiper-slide picture {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
 
-.ls-nav-next::before {
-	content: "\e89b";
-	right: -2px;
-}
+			/* Imagen */
+			.fp-slider .swiper-slide picture img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center center;
+			}
 
+/* =========================================================
+   FLECHAS
+   ========================================================= */
+	.fp-slider .swiper-button-prev,
+	.fp-slider .swiper-button-next {
+		width: 42px;
+		height: 42px;
+		background: rgba(0, 0, 0, 0.45);
+		border-radius: 50%;
+		color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s ease;
+	}
+
+	/* Icono SVG de Swiper */
+	.fp-slider .swiper-navigation-icon {
+		width: 11px !important;
+		height: 20px !important;
+	}
+
+	/* Posición */
+	.fp-slider .swiper-button-prev {
+		left: 20px !important;
+	}
+
+	.fp-slider .swiper-button-next {
+		right: 20px !important;
+	}
+
+		/* Hover */
+		.fp-slider .swiper-button-prev:hover,
+		.fp-slider .swiper-button-next:hover {
+			background: rgba(0, 0, 0, 0.7);
+		}
+
+	/* Posición */
+	.fp-slider .swiper-button-prev {
+		left: 25px;
+	}
+
+	.fp-slider .swiper-button-next {
+		right: 25px;
+	}
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 900px) {
-
 	#full-slider-wrapper {
+		margin-top: 0;
 		width: 100%;
 		overflow: hidden;
 	}
 
-	#layerslider {
-		width: 100% !important;
-		/* Proporción de las imágenes mobile:
-           1080 / 1920 = 0.5625 */
-		/*aspect-ratio: 1080 / 1920;*/
-		height: 100vh;
-		overflow: hidden;
+	.fp-slider {
+		width: 100%;
+		height: 100dvh;
+		aspect-ratio: auto;
 	}
 
-		#layerslider .ls-slide {
-			width: 100% !important;
-			height: 100vh !important;
+		.fp-slider .swiper-slide {
+			width: 100%;
+			height: 100vh;
 		}
 
-		#layerslider .ls-bg {
-			width: 100% !important;
-			height: 100vh !important;
-			object-fit: cover !important;
-			object-position: center center !important;
+			.fp-slider .swiper-slide picture {
+				width: 100%;
+				height: 100%;
+			}
+
+				.fp-slider .swiper-slide picture img {
+					width: 100%;
+					height: 100dvh;
+					object-fit: cover;
+					object-position: center center;
+				}
+
+		/* Flechas */
+		.fp-slider .swiper-button-prev,
+		.fp-slider .swiper-button-next {
+			width: 36px;
+			height: 36px;
 		}
 
-	.ls-curtile img,
-	.ls-nexttile img {
-		width: 100% !important;
-		height: 100vh !important;
-		object-fit: cover !important;
-		object-position: center center !important;
-		transform: none !important;
-	}
+		.fp-slider .swiper-navigation-icon {
+			width: 9px !important;
+			height: 17px !important;
+		}
 
-	/* Flechas más pequeñas en celular */
+		.fp-slider .swiper-button-prev {
+			left: 10px;
+		}
 
-	.ls-nav-prev,
-	.ls-nav-next {
-		width: 38px;
-		height: 38px;
-	}
-
-	.ls-nav-prev {
-		left: 10px !important;
-	}
-
-	.ls-nav-next {
-		right: 10px !important;
-	}
-
-		.ls-nav-prev::before,
-		.ls-nav-next::before {
-			font-size: 19px;
+		.fp-slider .swiper-button-next {
+			right: 10px;
 		}
 }
 
+/* =========================================================
+   SLIDER
+   ========================================================= */
 
 /* register */
 
@@ -4596,7 +4550,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 	top: 0;
 	right: 0;
 	width: min(390px, 88vw);
-	height: 100vh;
+	height: 100dvh;
 	z-index: 999;
 	display: flex;
 	flex-direction: column;
@@ -5154,8 +5108,8 @@ body.menu-open {
 	margin-bottom: 26px;
 }
 
-/* Precios */
-.fpp-price-before {
+/* Inscripción / Promociones */
+.fpp-price-insc-prom {
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -5163,17 +5117,28 @@ body.menu-open {
 	letter-spacing: 1px;
 }
 
-	.fpp-price-before s {
+	.fpp-price-insc-prom s {
 		color: var(--fp-gray-2);
 		font-size: 17px;
 		margin-left: 6px;
 	}
 
+/* Precios */
+.fpp-price-before {
+	margin-top: 6px;
+	font-size: 15px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--fp-white);
+	text-decoration: line-through;
+}
+
 .fpp-price-now {
 	display: flex;
 	align-items: baseline;
 	gap: 10px;
-	margin: 6px 0 4px;
+	margin-bottom: 4px;
 }
 
 	.fpp-price-now .fpp-label {
@@ -5202,6 +5167,13 @@ body.menu-open {
 	font-size: 11.5px;
 	font-weight: 700;
 	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--fp-gray);
+}
+
+.fpp-nota-fidelidad {
+	font-size: 9px;
+	font-weight: 700;
 	text-transform: uppercase;
 	color: var(--fp-gray);
 }
