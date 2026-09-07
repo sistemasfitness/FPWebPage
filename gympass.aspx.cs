@@ -1,9 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Odbc;
+using System.IO;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -20,6 +22,8 @@ namespace WebPage
                 listaSedes();
                 date_contact.Attributes.Add("type", "date");
             }
+
+            date_contact.Attributes.Add("min", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
         }
 
         public DataTable TraerDatos(string strQuery)
@@ -66,68 +70,85 @@ namespace WebPage
             ddlSede.DataBind();
         }
 
-        private bool Existe(string strDocumento)
+        protected void btnEnviar_Click(object sender, EventArgs e)
         {
-            string strQuery = "SELECT NroDocumento FROM GymPass WHERE NroDocumento = " + strDocumento;
-            DataTable dt = TraerDatos(strQuery);
-            if (dt.Rows.Count > 0)
+            try
             {
-                return true;
-            }
-            else
+                string strNombre = name_contact.Value.ToString();
+                string strApellido = lastname_contact.Value.ToString();
+                string strCorreo = email_contact.Value.ToString();
+                string strCelular = phone_contact.Value.ToString();
+                string strDocumento = id_contact.Value.ToString();
+                string strSedeValor = ddlSede.SelectedItem.Value;
+                string strSedeTexto = ddlSede.SelectedItem.Text;
+                string strFechaAsistencia = date_contact.Value.ToString();
+
+                // Validación de sede seleccionada
+                if (string.IsNullOrWhiteSpace(strSedeValor))
+                {
+                    MostrarAlerta("Campo requerido", "Por favor, selecciona una sede para poder continuar.", "warning");
+                    return;
+                }
+
+                clasesglobales cg = new clasesglobales();
+
+                // Consulta de existencia de documento en la BD
+                DataTable dtConcursoGymPass = cg.ConsultarGymPassPorDocumento(strDocumento);
+
+                if (dtConcursoGymPass.Rows.Count > 0)
+                {
+                    MostrarAlerta("Ya estás registrado", "Este número de cédula ya se encuentra registrada en el sistema.", "info");
+                    return;
+                }
+
+                cg.InsertarGymPass(strNombre, strApellido, strDocumento, strCorreo, strCelular, int.Parse(strSedeValor), strFechaAsistencia);
+
+                dtConcursoGymPass.Dispose();
+
+                // Función de limpieza de campos
+                LimpiarFormulario();
+
+                MostrarAlerta("Registro exitoso", "Felicitaciones, has ganado un día de cortesía en Fitness People.", "success");
+
+            } catch (Exception ex)
             {
-                return false;
+                MostrarAlerta("Error", "Ocurrió un error inesperado al procesar tu registro.", "error");
+                System.Diagnostics.Debug.WriteLine("Error en btnEnviar_Click: " + ex.ToString());
             }
         }
 
-        protected void btnEnviar_Click(object sender, EventArgs e)
+        private void MostrarAlerta(string titulo, string mensaje, string tipo)
         {
-            string strNombre = name_contact.Value.ToString();
-            string strApellido = lastname_contact.Value.ToString();
-            string strEmail = email_contact.Value.ToString();
-            string strCelular = phone_contact.Value.ToString();
-            string strDocumento = id_contact.Value.ToString();
-            string strSede = ddlSede.SelectedItem.Value.ToString();
-            string strFechaAsistencia = date_contact.Value.ToString();
+            // tipo puede ser: 'success', 'error', 'warning', 'info', 'question'
+            string script = $@"
+            Swal.fire({{
+                title: '{titulo}',
+                text: '{mensaje}',
+                icon: '{tipo}', 
+                background: '#3C3C3C', 
+                showCloseButton: true, 
+                confirmButtonText: 'Aceptar', 
+                customClass: {{
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                }},
+            }});";
 
-            //Buscamos el documento en la tabla GymPass. Si no existe, creamos el afiliado. Si existe, actualizamos Correo, Celular, Ciudad, Sede y Plan
-            if (Existe(strDocumento))
-            {
-                //Mensaje de ya existe
-                Response.Redirect("gracias?msg=4");
-            }
-            else
-            {
-                //Si no existe el documento del afiliado, lo creamos como nuevo.
-                string strQuery = "INSERT INTO GymPass " +
-                    "(Nombres, Apellidos, Email, Celular, NroDocumento, " +
-                    "idSede, FechaAsistencia, FechaInscripcion) " +
-                    "VALUES ('" + strNombre + "', '" + strApellido + "', " +
-                    "'" + strEmail + "', '" + strCelular + "', " +
-                    "'" + strDocumento + "', " + strSede + ", '" + strFechaAsistencia + "', NOW()) ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
+        }
 
-                try
-                {
-                    string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+        protected void LimpiarFormulario()
+        {
+            // TextBox o Input tipo texto
+            name_contact.Value = string.Empty;
+            lastname_contact.Value = string.Empty;
+            id_contact.Value = string.Empty;
+            email_contact.Value = string.Empty;
+            phone_contact.Value = string.Empty;
+            date_contact.Value = string.Empty;
 
-                    using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
-                    {
-                        mysqlConexion.Open();
-                        using (MySqlCommand cmd = new MySqlCommand(strQuery, mysqlConexion))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.ExecuteNonQuery();
-                        }
-                        mysqlConexion.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string respuesta = "ERROR: " + ex.Message;
-                }
-
-                Response.Redirect("gracias?msg=5");
-            }
+            // DropDownList
+            ddlSede.ClearSelection();
         }
     }
 }

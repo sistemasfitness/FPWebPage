@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebPage.register" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebPage.register" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -8,6 +9,40 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -41,22 +76,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+    <!-- Google Tag Manager (noscript) -->
+    <%--<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">Registro y pago</h1>
+            <h1 style="font-weight: 900;">¡Compra tu plan ahora!</h1>
             <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
@@ -65,133 +101,133 @@
 
     <div class="container margin_60_35" style="color: #fff;">
         <div class="row">
-            <form id="form" runat="server">
+            <form id="form" runat="server" class="form-web">
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>1</strong>Información inicial</h3>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="fa-solid fa-shield-halved"></i></strong>Información inicial</h3>
                             <p style="color: #fff;">Datos personales para registro en el sistema.</p>
                         </div>
                         <div class="step">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nombre(s): *</label>
-                                        <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" required=""
-                                            placeholder="Nombre(s)" TabIndex="4"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Apellido(s): *</label>
-                                        <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" required=""
-                                            placeholder="Apellido(s)" TabIndex="2"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Tipo de Documento: *</label>
-                                        <asp:DropDownList ID="ddlTipoDocumento" runat="server" required=""
-                                            AppendDataBoundItems="true" DataTextField="TipoDocumento" 
-                                            DataValueField="idTipoDoc" CssClass="form-control" 
-                                            Style="background-color: #3c3c3c;">
-                                            <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nro. de Documento: *</label>
-                                        <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="Documento" TabIndex="1" required=""></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email: *</label>
-                                        <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" placeholder="Email" required=""></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Celular: *</label>
-                                        <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="Teléfono" required=""></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Género: *</label>
-                                        <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
-                                            DataTextField="Genero" DataValueField="idGenero" required="" 
-                                            Style="background-color: #3c3c3c;"
-                                            CssClass="form-control" TabIndex="6">
-                                            <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Fecha de Nacimiento: *</label>
-                                        <asp:TextBox ID="txbFechaNac" CssClass="form-control" runat="server" name="txbFechaNac" required="" Style="background-color: #3c3c3c;"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End step -->
-                        <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
-                            <p style="color: #fff;">Elige las opciones de tu plan.</p>
-                        </div>
-                        <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                            <asp:UpdatePanel ID="upSedes" runat="server">
+                            <asp:UpdatePanel ID="upAfiliados" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <label>Ciudad: *</label>
-                                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
-                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true" 
-                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                                    Style="background-color: #3c3c3c;">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+                                                <label>Nro. de Documento: *</label>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="1234567890" MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                                <p style="color: #fff; font-size: 12px; color: #e3ff00; margin-top: 5px; text-align: justify; line-height: 15px;"><i class="fa-solid fa-circle-info" style="font-weight: 900; margin-right: 5px;"></i>Al ingresar tu número de documento, algunos datos podrán completarse automáticamente mediante procesos de validación con fuentes autorizadas, con el fin de agilizar tu registro.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Tipo de Documento: *</label>
+                                                <asp:DropDownList ID="ddlTipoDocumento" runat="server"
+                                                    AppendDataBoundItems="true" DataTextField="TipoDocumento" 
+                                                    DataValueField="idTipoDoc" CssClass="form-control">
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Nombre(s): *</label>
+                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" placeholder="Pepito" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Apellido(s): *</label>
+                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" placeholder="Pérez" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Email: *</label>
+                                                <asp:TextBox ID="txbEmail" CssClass="form-control" runat="server" TextMode="Email" placeholder="ejemplo@correo.com" autocomplete="email"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Celular: *</label>
+                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" MaxLength="10" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                            </div>
+                                        </div>
+
+                                        <asp:TextBox ID="txbFechaIni" runat="server" name="txbFechaIni" Visible="false" OnTextChanged="CambiarFechaFin"></asp:TextBox>
+                                        <asp:TextBox ID="txbFechaFin" runat="server" name="txbFechaFin" Visible="false"></asp:TextBox>
+                                    </div>
+                                    <%--<div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Género: *</label>
+                                                <asp:DropDownList ID="ddlGenero" runat="server" AppendDataBoundItems="true" 
+                                                    DataTextField="Genero" DataValueField="idGenero" required="" 
+                                                    CssClass="form-control" TabIndex="6">
+                                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Fecha de Nacimiento: *</label>
+                                                <asp:TextBox ID="txbFechaNac" CssClass="form-control" 
+                                                    runat="server" name="txbFechaNac" required=""></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>--%>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <!--End step -->
+                        <%--<div class="form_title">
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
+                            <p style="color: #fff;">Elige las opciones de tu plan.</p>
+                        </div>--%>
+
+                        <%--<div class="step">
+                            <asp:UpdatePanel ID="upSedes" runat="server">
+                                <ContentTemplate>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Ciudad: *</label>
+                                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
+                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" 
+                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Sede: *</label>
-                                                <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control" 
-                                                    AppendDataBoundItems="true" required=""
-                                                    DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true" 
-                                                    Style="background-color: #3c3c3c;">
-                                                    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" required=""
+                                                    DataTextField="NombreSede" DataValueField="IdSede" 
+                                                    AutoPostBack="true" OnSelectedIndexChanged="ddlSede_SelectedIndexChanged" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
                                                 <label>Valor del plan:</label>
                                                 <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" Enabled="false"></asp:TextBox>
                                                 <asp:HiddenField ID="hfValorPlan" runat="server" />
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
-                                                <label>Fecha de inicio: *</label>
+                                                <label>Fecha de inicio:</label>
                                                 <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                    AutoPostBack="true" OnTextChanged="CambiarFechaFin" Style="background-color: #3c3c3c;"></asp:TextBox>
+                                                    OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
                                             <div class="form-group">
                                                 <label>Fecha de fin:</label>
                                                 <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
@@ -204,56 +240,195 @@
                         <!--End step -->
                         <div class="form_title">
                             <h3 style="font-weight: 900; color: #e3ff00;"><strong>3</strong>Información del pago</h3>
-                            <p style="color: #fff;">Método de pago elegido.</p>
+                            <p style="color: #fff;">Tipo de pago elegido.</p>
                         </div>
                         <div class="step">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Método:</label>
+                                        <label>Tipo:</label>
                                         <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" Enabled="false" 
                                             TabIndex="4"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <aside class="col-md-4" id="sidebar">
                     <div class="theiaStickySidebar">
                         <div class="box_style_2" style="color: black;">
-                            <div id="total_cart">
+                            <asp:Literal ID="ltPlanEasy" runat="server"></asp:Literal>
+
+                            <%--<div id="total_cart" class="ocultar">
                                 TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </div>--%>
+
+                            <asp:Panel ID="pnlTotalCart" runat="server" CssClass="total_cart">
+                                TOTAL <span class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></span>
+                            </asp:Panel>
+
+                            <div>
+                                <p style="font-weight: 600;"><asp:Literal ID="ltInfoPlan" runat="server"></asp:Literal></p>
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <asp:CheckBox ID="cbAutorizo" runat="server" />
+                                    <%--<asp:CheckBox ID="cbAutorizo" runat="server" />--%>
 
-                                    <label for="cbAutorizo">
-                                        <span>Autorizo a <a style="color: #808080; text-decoration: revert;" href="#">Fitness People Centro Médico Deportivo S.A.S.</a> realizar el cobro recurrente.</span>
+                                    <%--<label for="cbAutorizo">
+                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro<asp:Label ID="lbTipoCobro" runat="server"></asp:Label>.</span>
+                                    </label>--%>
+
+                                    <input type="checkbox" id="cbAutorizo1" />
+
+                                    <label for="cbAutorizo1" style="text-align: justify; line-height: 17px;">
+                                        <span>Autorizo el 
+                                            <b>
+                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">
+                                                    tratamiento de mis datos personales conforme a la Política de Tratamiento de Datos Personales de Fitness People Centro Médico Deportivo S.A.S.
+                                                </a>
+                                            </b> y la normativa vigente en Colombia.
+                                        </span>
                                     </label>
                                 </div>
 
+                                <div class="checkbox checkbox-dark">
+                                    <input type="checkbox" id="cbAutorizo2" />
+
+                                    <label for="cbAutorizo2" style="text-align: justify; line-height: 17px;">
+                                        <span>Acepto los
+                                            <b>
+                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/terminoslegales" target="_blank">
+                                                    reglamentos, términos y condiciones y la política de privacidad de Fitness People Centro Médico Deportivo S.A.S.
+                                                </a>
+                                            </b>
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
                             <div id="message-subscribe"></div>
                             <hr />
                             <div>
-                                <asp:Button ID="btnRegistrarAfiliado" runat="server" CssClass="btn_full" Text="Registrar y pagar" OnClick="btnRegistrar" Enabled="false"/>
+                                <asp:Button ID="btnRegistrarAfiliado" runat="server" 
+                                    CssClass="btn_full" 
+                                    Text="Registrarme" 
+                                    OnClientClick="afiliadoFormSubmit(); return iniciarProcesoPago();"
+                                    OnClick="btnRegistrar_Click" />
                             </div>
                         </div>
-                        <div class="box_style_4">
+
+                        <div class="box_style_2" style="display: none; color: black;">
+                            <div>
+                                <asp:HyperLink ID="btnElegirPlanLink" runat="server" CssClass="btn_full" Text="Seleccionar otro plan" />
+                            </div>
+                        </div>
+
+                        <%--<div class="box_style_4">
                             <i class="icon_lifesaver"></i>
                             <h4 style="color: #fff">Necesitas ayuda?</h4>
-                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573138859790" class="phone" target="_blank">3138859790</a>
+                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573107842151" class="phone" target="_blank">310 7842151</a>
                             <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
-                        </div>
+                        </div>--%>
                     </div>
                 </aside>
+
+
+                <!-- Modal - Embajadores -->
+                <%--<div class="modal fade" id="cod-embajador" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-cod-embajador" style="width: 500px; min-width: 340px; background: #191919; border-color: #E3FF00;">
+                            <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+
+                            <div class="modal-header text-center" style="border-bottom: none; margin-top: 40px;">
+                                <h5 class="modal-title" id="modalEmbajadorLabel" style="font-size: 20px; font-weight: 700; color: #fff;">¿Tienes tu código de embajador?</h5>
+                            </div>
+
+                            <div class="modal-body text-center">
+                                <p class="text-center" style="font-size: 20px; color: #fff;">
+                                    ¡Genial! Actívalo y disfruta de un plan con un beneficio exclusivo:
+                                </p>
+                                <p style="font-size: 20px; color: #fff;">
+                                    <i class="fa fa-circle-check" style="color: #E3FF00;"></i><b> Los 2 primeros meses pagas $49.900</b><br />
+                                    <i class="fa fa-circle-check" style="color: #E3FF00;"></i><b> Despúes pagas $99.000</b>
+                                </p>
+
+                                <p style="font-size: 20px; color: #fff;">
+                                    ¡Aprovecha esta oportunidad exclusiva y entrena con el mejor precio!
+                                </p>
+
+                                <asp:TextBox ID="txtCodigoEmbajador" runat="server" CssClass="form-control text-center margin_30"
+                                    placeholder="Ej: FITJUAN10" />
+
+                                <asp:Label ID="lblMensajeEmbajador" runat="server" CssClass="mt-2 d-block" />
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-center" style="border-top: none; display: flex; gap: 15px;">
+                                <asp:Button ID="btnValidarEmbajador" 
+                                    runat="server" 
+                                    CssClass="btn-confirm-alert"
+                                    Text="Validar código" 
+                                    OnClick="btnValidarCodEmbajador_Click" 
+                                    CausesValidation="false" 
+                                    UseSubmitBehavior="false" />
+                                <button type="button" class="btn_full" data-dismiss="modal">No tengo código</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
+
+
+                <!-- Modal - Plan Easy -->
+                <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+                    <div class="modal-dialog" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                            <!-- Contenedor relativo -->
+                            <div style="position: relative; width: 100%;">
+                                <!-- Contador -->
+                                <div id="barraProgresoEasy"
+                                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                                    id="time-remaining-easy"></p>
+                                </div>
+
+                                <!-- Imagen -->
+                                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                                <!-- Capa clickeable                                             | ¡¡¡COMENTAR ANCLA SI SE VUELVEN A UTILIZAR LOS MODALES!!! -->
+                                <a href="register?idPlan=21&idVendedor=156"
+                                    style="position: absolute; inset: 0; z-index: 10;"></a>
+
+                                <asp:LinkButton 
+                                    ID="lnkRegister"
+                                    runat="server"
+                                    Style="position:absolute; inset:0; z-index:10; display:block; background:transparent;"
+                                    OnClick="btnRedireccionarRegresarRegister_Click">
+                                </asp:LinkButton>
+                            </div>
+
+                            <!-- Botón de cierre -->
+                            <a href="#" class="close-link" data-dismiss="modal"
+                                style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                                <i class="icon_close_alt2"></i>
+                            </a>
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-bar" style="width: 100%;">
+                                <div id="progress-fill-easy" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
+
             </form>
         </div>
         <!-- End row -->
     </div>
     <!-- End container -->
+
+    <!-- Control Preguntas Frecuentes -->
+    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
+    <!-- End Control Preguntas Frecuentes -->
 
     <!-- End footer -->
     <uc1:footer runat="server" id="footer" />
@@ -263,6 +438,29 @@
     <!-- Back to top button -->
 
     <uc1:loginregister runat="server" ID="loginregister" />
+
+    <!-- Modal - Plan Easy -->
+    <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent;">
+                <!-- Contador dentro del modal -->
+                <div id="barraProgresoEasy" style="text-align: center; margin-top: 10px; background-color: #111820;">
+                    <h4 style="font-weight: 700; color: #FFF; margin: 0;">⏳ ¡Tu promo expira pronto!</h4>
+
+                    <p style="font-size: 4rem; font-weight: 800; color: #e3ff00; margin-bottom: 0; width: 100%;" id="time-remaining-easy"></p>
+                </div>
+
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <a href="register?idPlan=19">
+                    <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
+                </a>
+                <div class="progress-bar" style="width: 100%;">
+                    <div id="progress-fill-easy" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>--%>
+
 
     <!-- Search Menu -->
     <div class="search-overlay-menu">
@@ -281,20 +479,580 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
-    <script>
-        window.onload = function () {
-            const cbAutorizo = document.getElementById('<%= cbAutorizo.ClientID %>');
-            const btnRegistrar = document.getElementById('<%= btnRegistrarAfiliado.ClientID %>');
 
-            function toggleButton() {
-                btnRegistrar.disabled = !cbAutorizo.checked;
+    <%--<script>
+
+        // Evitar validación HTML5 para el botón de ValidarEmbajador
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("<%= btnValidarEmbajador.ClientID %>");
+            if (btn) {
+                btn.addEventListener("click", function (e) {
+                    // Anula la validación HTML5 del formulario principal
+                    e.preventDefault();
+                    __doPostBack('<%= btnValidarEmbajador.UniqueID %>', '');
+                });
+            }
+        });
+
+    </script>--%>
+
+    <%--<script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const fechaIni = document.getElementById('<%= txbFechaIni.ClientID %>');
+            fechaIni.addEventListener("change", function() {
+                __doPostBack('<%= txbFechaIni.UniqueID %>', '');
+            });
+        });
+
+    </script>--%>
+
+    <%--<script>
+
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
             }
 
-            cbAutorizo.addEventListener('change', toggleButton);
-
-            // Inicializar el estado al cargar la página
-            toggleButton();
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
         }
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("token") === "Doyf9lC0O0w3PgmVqO0A") {
+
+                // Mostrar modal código embajador (ahora sí se puede cerrar libremente)
+                $("#cod-embajador").modal({
+                    backdrop: true, 
+                    keyboard: true
+                });
+
+                // Obtener ID real del control ASP.NET
+                var documentoInput = $("#<%= txbDocumento.ClientID %>");
+
+                function abrirModalEasy() {
+                    $("#plan-easy").modal("show");
+                    iniciarTemporizadorEasy(120); // 2 minutos = 120 segundos
+                }
+
+                documentoInput.on("blur", function () {
+                    if ($(this).val().trim() !== "") {
+                        abrirModalEasy();
+                    }
+                });
+
+                documentoInput.on("keypress", function (e) {
+                    if (e.which === 13 && $(this).val().trim() !== "") {
+                        e.preventDefault();
+                        abrirModalEasy();
+                    }
+                });
+
+                //// Cuando pierde el foco
+                //documentoInput.on("blur", function () {
+                //    if ($(this).val().trim() !== "") {
+                //        $("#plan-easy").modal("show");
+                //    }
+                //});
+
+                //// Cuando presiona Enter
+                //documentoInput.on("keypress", function (e) {
+                //    if (e.which === 13 && $(this).val().trim() !== "") {
+                //        e.preventDefault(); // evitar que dispare un submit
+                //        $("#plan-easy").modal("show");
+                //    }
+                //});
+            }
+        });
+
+    </script>--%>
+
+    <%--<script>
+
+        function numberFormat(input) {
+            // Elimina cualquier cosa que no sea número
+            let value = input.value.replace(/\D/g, '');
+
+            // Limita a 10 dígitos (Cédula y Celular)
+            value = value.substring(0, 10);
+
+            input.value = value;
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
+                title: titulo,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            };
+
+            esHtml ? config.html = mensaje : config.text = mensaje;
+            return Swal.fire(config); // Retorna la promesa
+        }
+
+        function validarCamposFormulario() {
+
+            const campos = [
+                { id: "<%= txbDocumento.ClientID %>", msg: "Por favor, ingresa tu número de documento." },
+                { id: "<%= ddlTipoDocumento.ClientID %>", msg: "Por favor, selecciona el tipo de documento." },
+                { id: "<%= txbNombre.ClientID %>", msg: "Por favor, ingresa tu nombre." },
+                { id: "<%= txbApellido.ClientID %>", msg: "Por favor, ingresa tus apellidos." },
+                { id: "<%= txbEmail.ClientID %>", msg: "Por favor, ingresa tu correo electrónico.", tipo: "email" },
+                { id: "<%= txbCelular.ClientID %>", msg: "Por favor, ingresa tu número de celular." }
+                // { id: "<%= ddlGenero.ClientID %>", msg: "Por favor, selecciona tu género." },
+                { id: "<%= txbFechaNac.ClientID %>", msg: "Por favor, ingresa tu fecha de nacimiento." },
+                { id: "<%= ddlCiudad.ClientID %>", msg: "Por favor, selecciona la ciudad donde deseas entrenar." },
+                { id: "<%= ddlSede.ClientID %>", msg: "Por favor, selecciona la sede donde deseas entrenar." }//
+            ];
+
+            // Validación del afiliado principal
+            for (const campo of campos) {
+                const el = document.getElementById(campo.id);
+                const valor = el?.value.trim();
+
+                if (!valor) {
+                    return mostrarAlerta('Campo requerido', campo.msg, 'warning')
+                        .then(() => el.focus());
+                }
+
+                if (campo.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+                    return mostrarAlerta(
+                        'Correo inválido',
+                        'El formato del correo electrónico no es válido.<br><b>Ej: usuario@dominio.com</b>',
+                        'warning',
+                        {},
+                        true
+                    ).then(() => el.focus());
+                }
+            }
+
+            return true;
+        }
+
+        function validarYEjecutarPago() {
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
+
+            const autorizacionesOk = cb1.checked && cb2.checked;
+
+            if (!autorizacionesOk) {
+                mostrarAlerta('Confirmación requerida', 'Debes aceptar todas las autorizaciones para continuar.', 'warning');
+                return false;
+            }
+
+            const formularioOK = validarCamposFormulario();
+            if (formularioOK === true) {
+                return ejecutarPago();
+            }
+
+            return false;
+        }
+
+        function ejecutarPago() {
+            mostrarAlerta(
+                'Procesando registro',
+                'Estamos guardando tu información.<br><br><b>No cierres ni recargues la página</b><br>mientras te redirigimos a la pasarela de pago.',
+                'info',
+                {
+                    showCloseButton: false,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => Swal.showLoading()
+                },
+                true
+            );
+
+            return true;
+        }
+
+    </script>--%>
+
+    <script>
+
+        let procesandoPago = false;
+
+        function limpiarTexto(texto) {
+            return texto.trim().replace(/\s+/g, ' ');
+        }
+
+        function permitirSoloNumeros(e) {
+
+            const tecla = e.key;
+
+            // Permitir teclas especiales
+            const especiales = [
+                "Backspace",
+                "Delete",
+                "ArrowLeft",
+                "ArrowRight",
+                "Tab"
+            ];
+
+            if (especiales.includes(tecla))
+                return true;
+
+            // Solo números
+            if (!/^\d$/.test(tecla)) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function permitirSoloLetras(e) {
+
+            const tecla = e.key;
+
+            const especiales = [
+                "Backspace",
+                "Delete",
+                "ArrowLeft",
+                "ArrowRight",
+                "Tab",
+                " "
+            ];
+
+            if (especiales.includes(tecla))
+                return true;
+
+            // Letras con tildes y ñ
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]$/.test(tecla)) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function marcarError(el) {
+            el.classList.add("input-error");
+        }
+
+        function limpiarError(el) {
+            el.classList.remove("input-error");
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo, opcionesExtras = {}, esHtml = false) {
+            const config = {
+                title: titulo,
+                icon: tipo,
+                background: '#3C3C3C',
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'alert',
+                    confirmButton: 'btn-confirm-alert'
+                },
+                ...opcionesExtras
+            };
+
+            esHtml ? config.html = mensaje : config.text = mensaje;
+            return Swal.fire(config); // Retorna la promesa
+        }
+
+        function validarDocumento(valor) {
+            if (!/^\d{5,10}$/.test(valor)) return "El número de documento debe contener entre 5 y 10 dígitos."
+
+            if (/^0+$/.test(valor)) return "El número de documento no es válido.";
+
+            return null;
+        }
+
+        function validarNombre(valor, campo) {
+            const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+
+            if (!regex.test(valor)) return `El campo ${campo} solo debe contener letras y espacios.`;
+
+            if (valor.length < 2) return `El campo ${campo} debe tener al menos 2 caracteres.`;
+
+            return null;
+        }
+
+        function validarEmail(valor) {
+            valor = valor.toLowerCase();
+
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!regex.test(valor)) return "El formato del correo electrónico no es válido. Ej: usuario@dominio.com.";
+
+            return null;
+        }
+
+        function validarCelular(valor) {
+            if (!/^3\d{9}$/.test(valor)) return "El número de celular debe iniciar en 3 y tener 10 dígitos."
+
+            return null;
+        }
+
+        function validarCamposFormulario() {
+            const campos = [
+                {
+                    id: "<%= txbDocumento.ClientID %>",
+                    msg: "Por favor, ingresa tu número de documento.",
+                    validar: validarDocumento
+                },
+                {
+                    id: "<%= ddlTipoDocumento.ClientID %>",
+                    msg: "Por favor, selecciona el tipo de documento."
+                },
+                {
+                    id: "<%= txbNombre.ClientID %>",
+                    msg: "Por favor, ingresa tu nombre.",
+                    validar: (v) => validarNombre(v, "Nombre")
+                },
+                {
+                    id: "<%= txbApellido.ClientID %>",
+                    msg: "Por favor, ingresa tus apellidos.",
+                    validar: (v) => validarNombre(v, "Apellido")
+                },
+                {
+                    id: "<%= txbEmail.ClientID %>",
+                    msg: "Por favor, ingresa tu correo electrónico.",
+                    validar: validarEmail
+                },
+                {
+                    id: "<%= txbCelular.ClientID %>",
+                    msg: "Por favor, ingresa tu número de celular.",
+                    validar: validarCelular
+                }
+            ];
+
+            for (const campo of campos) {
+
+                const el = document.getElementById(campo.id);
+
+                limpiarError(el);
+
+                let valor = "";
+
+                // Dropdown
+                if (el.tagName === "SELECT") {
+                    valor = el.value;
+                }
+                else {
+                    valor = limpiarTexto(el.value);
+                    el.value = valor;
+                }
+
+                // Campo vacío
+                if (!valor) {
+
+                    marcarError(el);
+
+                    mostrarAlerta(
+                        'Campo requerido',
+                        campo.msg,
+                        'warning'
+                    );
+
+                    el.focus();
+
+                    return false;
+                }
+
+                // Validaciones especiales
+                if (campo.validar) {
+
+                    const error = campo.validar(valor);
+
+                    if (error) {
+
+                        marcarError(el);
+
+                        mostrarAlerta(
+                            'Validación incorrecta',
+                            error,
+                            'warning'
+                        );
+
+                        el.focus();
+
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        function validarAutorizaciones() {
+            const cb1 = document.getElementById("cbAutorizo1");
+            const cb2 = document.getElementById("cbAutorizo2");
+
+            const autorizacionesOk = cb1.checked && cb2.checked;
+
+            if (!autorizacionesOk) {
+                mostrarAlerta(
+                    'Confirmación requerida',
+                    'Debes aceptar las autorizaciones para continuar.',
+                    'warning'
+                );
+
+                return false;
+            }
+
+            return true;
+        }
+
+        function bloquearBotonPago() {
+            const btn = document.getElementById("<%= btnRegistrarAfiliado.ClientID %>");
+
+            btn.disabled = true;
+
+            btn.style.opacity = "0.7";
+
+            btn.value = "Procesando...";
+        }
+
+        function iniciarProcesoPago() {
+            if (procesandoPago) return false;
+
+            const formularioOK = validarCamposFormulario();
+
+            if (!formularioOK) return false;
+
+            const autorizacionesOK = validarAutorizaciones();
+
+            if (!autorizacionesOK) return false;
+
+            procesandoPago = true;
+
+            setTimeout(() => {
+
+                bloquearBotonPago();
+
+                mostrarAlerta(
+                    'Procesando registro',
+                    'Estamos guardando tu información.<br><br><b>No cierres ni recargues la página</b><br>mientras te redirigimos a la pasarela de pago.',
+                    'info',
+                    {
+                        showCloseButton: false,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        didOpen: () => Swal.showLoading()
+                    },
+                    true
+                );
+
+            }, 100);
+
+            // PERMITIR POSTBACK
+            return true;
+        }
+
+        document.addEventListener("input", function (e) {
+            e.target.classList.remove("input-error");
+        });
+
     </script>
+
+    <script>
+
+        function afiliadoFormSubmit() {
+
+            var nombre = document.getElementById('<%= txbNombre.ClientID %>').value;
+            var apellido = document.getElementById('<%= txbApellido.ClientID %>').value;
+            var correo = document.getElementById('<%= txbEmail.ClientID %>').value;
+            var telefono = document.getElementById('<%= txbCelular.ClientID %>').value;
+
+            window.dataLayer.push({
+                event: 'custom_form_submit',
+                formData: {
+                    name: nombre + ' ' + apellido,
+                    email: correo,
+                    phone: telefono
+                }
+            });
+        }
+
+    </script>
+
+    <style>
+
+        .input-error {
+            border: 2px solid #ff4d4f !important;
+        }
+
+    </style>
+
+
+    <style>
+
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+
+        .modal-dialog {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .modal-content.modal-popup {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
+        }
+
+    </style>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

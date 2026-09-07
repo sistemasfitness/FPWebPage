@@ -1,13 +1,70 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="WebPage._default" %>
 
-<%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
+<%@ Register Src="~/controls/aliados.ascx" TagPrefix="uc1" TagName="aliados" %>
+<%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
+<%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
+<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
+<%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
+<%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D7T28VJC77U471PH6MJ0');
+            ttq.page();
+            ttq.track('PageView');
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
     <meta property="og:site_name" content="Fitness People" />
     <meta property="og:title" content="Fitness People" />
     <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
@@ -18,10 +75,6 @@
     <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
 
     <script src="js/fitnesspeople.js"></script>
-
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,6 +103,9 @@
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
+    <!-- SLIDER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 
@@ -59,26 +115,26 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
+    <%--<noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-    </header>
+
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
+    <%--<section class="header-video-2 jarallax" data-jarallax-video="https://youtu.be/hcsegwkpT0Q" runat="server" visible="true" id="divVideo">
         <div id="hero_video">
             <div id="sub_content">
                 <div class="mobile_fix">
-                    <%--<h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
-                    <p>Transforma tu cuerpo y tu vida</p>--%>
+                    <h1 style="font-weight: 900;">VIVE LA EXPERIENCIA</h1>
+                    <p>Transforma tu cuerpo y tu vida</p>
                 </div>
             </div>
             <!-- End sub_content -->
@@ -90,36 +146,69 @@
                 <li><span class="number">4</span>&nbsp;Ciudades</li>
             </ul>
         </div>
-    </section>
+    </section>--%>
     <!-- End Header video -->
 
     <!-- Slider -->
-    <%--<div id="full-slider-wrapper">
-        <div id="layerslider" style="width: 100%;">
-            <!-- first slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;" style="cursor: pointer;" onclick="window.open('planeasy.aspx','_blank')">
-                <img id="slide1-img" src="img/slides/banner_4.jpg" class="ls-bg" width="1600" height="100%" />
-            </div>
-            <!-- second slide -->
-            <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;" style="cursor: pointer;" onclick="window.open('plan3plus3.aspx','_blank')">
-                <img id="slide2-img" src="img/slides/banner_5.jpg" class="ls-bg" width="1600" height="100%" />
+    <div id="full-slider-wrapper" class="margin-top-header">
+        <div class="swiper fp-slider">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider3_2026-09-02_mobile.png" />
+                        <img
+                            src="img/slides/slider3_2026-09-02.png"
+                            alt="Fitness People"
+                            fetchpriority="high"
+                            decoding="async" />
+                    </picture>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide"
+                     onclick="window.location.href='agendaDiaCortesia';">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider1_2026-08-21_mobile.jpg" />
+                        <img
+                            src="img/slides/slider1_2026-08-21.jpg"
+                            alt="Fitness People"
+                            decoding="async" />
+                    </picture>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide"
+                     onclick="window.location.href='agendaDiaCortesia';">
+                    <picture>
+                        <source
+                            media="(max-width: 900px)"
+                            srcset="img/slides/slider2_2026-08-21_mobile.jpg" />
+                        <img
+                            src="img/slides/slider2_2026-08-21.jpg"
+                            alt="Fitness People"
+                            decoding="async" />
+                    </picture>
+                </div>
             </div>
 
-            <div id="count" class="hidden-xs">
-                <ul>
-                    <li><span class="number">2500</span>&nbsp;Clases</li>
-                    <li><span class="number">10</span>&nbsp;Sedes</li>
-                    <li><span class="number">4</span>&nbsp;Ciudades</li>
-                </ul>
-            </div>
+            <!-- Flecha anterior -->
+            <div class="swiper-button-prev"></div>
+
+            <!-- Flecha siguiente -->
+            <div class="swiper-button-next"></div>
         </div>
-    </div>--%>
+    </div>
     <!-- End layerslider -->
     <!-- End SubHeader ============================================ -->
     <form runat="server" id="form2">
         <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-        <section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
+        <%--<section class="margin_60_35" id="bg_black1" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;">VIVE LA EXPERIENCIA<span>TRANSFORMA TU CUERPO Y TU VIDA</span></h2>
                 <p class="lead styled" style="color: #FFF;">
@@ -129,271 +218,15 @@
                 </p>
             </div>
             <!--  End container-->
-        </section>
+        </section>--%>
 
-        <section class="margin_60_35" id="sedes" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+        <!-- Control Sedes -->
+        <uc1:sedes runat="server" ID="sedes" />
+        <!-- End Control Sedes -->
 
-                <div class="row">
-                    <div class="owl-carousel team-carousel3" width="600px">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=1">
-                                            <img src="img/sedes/boulevard.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=2">
-                                            <img src="img/sedes/cabecera.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=3">
-                                            <img src="img/sedes/canaveral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=4">
-                                            <img src="img/sedes/jardin.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=5">
-                                            <img src="img/sedes/delacuesta.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=6">
-                                            <img src="img/sedes/ceiba.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=7">
-                                            <img src="img/sedes/parquecentral.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=8">
-                                            <img src="img/sedes/prado.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=9">
-                                            <img src="img/sedes/provenza.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <div class="img_wrapper">
-                                    <div class="img_container">
-                                        <a href="sedes?id=10">
-                                            <img src="img/sedes/ciudadela.jpg" class="img-responsive" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
-            </div>
-        </section>
-
-        <section class="margin_60_35" id="bg_gray1" style="background: #000;">
-            <div class="container">
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Control Servicios -->
+        <uc1:servicios runat="server" ID="controlservicios" />
+        <!-- End Control Servicios -->
 
         <section class="margin_60_35" id="bg_gray2" style="padding-top: 10px; padding-bottom: 15px;">
             <div class="container">
@@ -475,7 +308,7 @@
                 <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Profesionales a tu disposición</h2>
                 <div class="row text-center plans">
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/deportologo.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -484,7 +317,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/fisioterapeuta.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -493,7 +326,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/nutricionista.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -502,7 +335,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3">
+                    <div class="col-xl-4 col-lg-3 col-md-6">
                         <div class="img_container">
                             <img src="img/profesionales/Profesionales.jpg" class="img-responsive" />
                             <p style="font-weight: 600; color: #FFF;">
@@ -518,69 +351,27 @@
             <!--  End container-->
         </section>
 
-        <section id="planes" class="margin_60_35" style="padding-top: 10px; padding-bottom: 15px;">
-            <div class="container" id="scroll-to">
-                <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
-                <p class="lead styled" style="font-weight: 500; color: #FFF;">
-                    En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
-                </p>
-                <div class="row text-center plans">
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <a href="planes?id=1">
-                                <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
-                            </a>
-                        </div>
-                    </div>
+        <!-- Control Planes -->
+        <uc1:planes runat="server" ID="controlplanes" />
+        <!-- End Control Planes -->
 
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <a href="planes?id=15">
-                                <img src="img/planes/plan_15-anios.jpg" class="img-responsive" style="height: 450px;" />
-                            </a>
-                        </div>
+        <%--<div id="newsletter_container" style="background-color: #000;">
+            <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center">
+                        //<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                    <div id="message-newsletter"></div>
+                    <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
+                        <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
+                        <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
+                    </form>//
+                        <a href="gympass">
+                            <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
+                        </a>
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="img_container">
-                            <a href="planes?id=10">
-                                <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- End row plans-->
-
-                <div class="banner-tarifas img_container"></div>
-
-                <section style="padding-top: 10px; padding-bottom: 15px;">
-                    <div class="container" style="display: flex; flex-direction: column;">
-                        <div class="row">
-                            <div class="card-row-tarifas">
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
-                                    <img src="img/tarifas/01_plan-referencia-easy.png" class="img-responsive" />
-                                </div>
-
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3 add_bottom_15" >
-                                    <img src="img/tarifas/02_plan-referencia-3-meses.png" class="img-responsive" />
-                                </div>
-
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
-                                    <img src="img/tarifas/03_plan-referencia-6-meses.png" class="img-responsive" />
-                                </div>
-
-                                <div class="col-xs-6 col-md-3 col-sm-3 col-xl-3 col-lg-3 col-xxl-3" >
-                                    <img src="img/tarifas/04_plan-referencia-10-meses.png" class="img-responsive" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
-            <!--  End container-->
-        </section>
-        <!--  End section-->
+        </div>--%>
 
         <%--<section id="feat">
             <div class="container">
@@ -623,43 +414,14 @@
             </div>
         </section>--%>
 
-        <section class="margin_60_35" id="bg_gray3">
-            <div class="container">
-                <h2 class="main_title" style="color: #e3ff00; font-weight: 900;"><em></em>NUESTROS ALIADOS</h2>
-                <!--Team Carousel -->
-                <div class="row">
-                    <div class="owl-carousel team-carousel">
+        <!-- Control Preguntas Frecuentes -->
+        <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
+        <!-- End Control Preguntas Frecuentes -->
 
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/coopfuturo.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
 
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/fecolsa.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/freskoop.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-item-img">
-                                <img src="img/clientes/cooprofesores.png" style="width: 150px;" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!--End Team Carousel-->
-            </div>
-            <!--  End container-->
-        </section>
-        <!--  End section-->
+        <!-- Control Aliados -->
+        <uc1:aliados runat="server" ID="controlaliados" />
+        <!-- End Control Aliados -->
 
 
         <div id="seleccion_sede">
@@ -680,7 +442,7 @@
                                                 DataValueField="idSede" CssClass="form-control"
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlNombresSedes_SelectedIndexChanged"
                                                 Style="background-color: #3c3c3c;">
-                                                <asp:ListItem Text="Selecciona una sede" Value=""></asp:ListItem>
+                                                <%--<asp:ListItem Text="Selecciona una sede" Value=""></asp:ListItem>--%>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
@@ -699,6 +461,8 @@
         </div>
         <!-- End newsletter_container -->
     </form>
+
+    <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
 
@@ -744,43 +508,57 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+    <!-- SLIDER -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
     <script>
-        $('.jarallax').jarallax({
-            videoLoop: true,
-            videoPlayOnlyVisible: false,
-            videoLazyLoading: false
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const fpSlider = new Swiper(".fp-slider", {
+                // Movimiento horizontal
+                direction: "horizontal",
+
+                // Repetir infinitamente
+                loop: true,
+
+                // Autoplay
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
+
+                // Transición
+                speed: 800,
+
+                // Flechas
+                navigation: {
+                    nextEl: ".fp-slider .swiper-button-next",
+                    prevEl: ".fp-slider .swiper-button-prev"
+                },
+
+                // Touch / Swipe
+                grabCursor: true,
+
+                // Permitir deslizar
+                allowTouchMove: true
+            });
         });
 
-        'use strict';
-        $(".team-carousel").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 1000,
-            margin: 20,
-            autoplay: true,
-            smartSpeed: 300,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 2,
-                },
-                768: {
-                    items: 3,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
+    </script>
+
+    <script>
+        //$('.jarallax').jarallax({
+        //    videoLoop: true,
+        //    videoPlayOnlyVisible: false,
+        //    videoLazyLoading: false
+        //});
 
         $(".team-carousel2").owlCarousel({
             items: 4,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 10,
@@ -797,32 +575,6 @@
                 },
                 1000: {
                     items: 4,
-                }
-            }
-        });
-
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 2,
                 }
             }
         });
@@ -832,7 +584,7 @@
             autoHeight: true,
             autoWidth: true,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 100,
@@ -852,30 +604,42 @@
             }
         });
 
+        //$('#layerslider').layerSlider({
+        //    autoStart: true,
+        //    navButtons: false,
+        //    navStartStop: false,
+        //    showCircleTimer: false,
+        //    responsive: true,
+        //    responsiveUnder: 1400,
+        //    layersContainer: 1170,
+        //    skinsPath: 'layerslider/skins/'
+        //    // Please make sure that you didn't forget to add a comma to the line endings
+        //    // except the last line!
+        //});
+
         $('#layerslider').layerSlider({
             autoStart: true,
-            navButtons: false,
+            navButtons: true,
             navStartStop: false,
             showCircleTimer: false,
             responsive: true,
-            responsiveUnder: 1400,
+            responsiveUnder: 0,
             layersContainer: 1170,
+            skin: 'default',
             skinsPath: 'layerslider/skins/'
-            // Please make sure that you didn't forget to add a comma to the line endings
-            // except the last line!
         });
 
-        function setPanels() {
-            var windowWidth = window.innerWidth;
-            console.log(windowWidth);
-            if (windowWidth < 500) {
-                document.getElementById('img1').src = 'img/slides/slide_1_v.jpg';
-            }
-            else {
-                document.getElementById('img1').src = 'img/slides/slide_1.jpg';
-                //document.getElementById('layerslider').style = 'width:100%;height:667px;';
-            }
-        }
+        //function setPanels() {
+        //    var windowWidth = window.innerWidth;
+        //    console.log(windowWidth);
+        //    if (windowWidth < 500) {
+        //        document.getElementById('img1').src = 'img/slides/slide_1_v.jpg';
+        //    }
+        //    else {
+        //        document.getElementById('img1').src = 'img/slides/slide_1.jpg';
+        //        //document.getElementById('layerslider').style = 'width:100%;height:667px;';
+        //    }
+        //}
     </script>
     <%--<script src="js/pop_up.min.js"></script>
     <script src="js/pop_up_func.js"></script>--%>
@@ -897,14 +661,10 @@
         window.addEventListener('load', actualizarImagenSlider);
         window.addEventListener('resize', actualizarImagenSlider);
     </script>--%>
-    <style>
-        .banner-tarifas {
-	        width: 100%;
-	        height: 470px;
-	        background-image: url('img/banners/tarifas-2025.jpg');
-	        background-size: cover;
-	        background-position: center;
-        }
-    </style>
+
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

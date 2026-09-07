@@ -7,11 +7,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="js/fitnesspeople.js"></script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>
+    <!-- End Google Tag Manager -->
 
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,6 +68,7 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
@@ -381,9 +401,10 @@
 
     <div class="container_styled_1">
         <div class="container margin_60_35">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>PREGUNTAS FRECUENTES</h2>
+
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
                     <div class="panel-group" id="works">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -393,7 +414,9 @@
                             </div>
                             <div id="collapseOne_works" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
+                                    <b>Sí, puedes cancelar tu suscripción en cualquier momento.</b> Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda realizar la solicitud con al menos <b>5 días de anticipación</b> a tu próximo cobro.
+                                    <br />
+                                    Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
                                 </div>
                             </div>
                         </div>
@@ -429,7 +452,7 @@
                             </div>
                             <div id="collapseFour_works" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
+                                    Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
                                 </div>
                             </div>
                         </div>
@@ -825,5 +848,8 @@
 
     </style>
 
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

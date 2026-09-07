@@ -13,56 +13,24 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                clasesglobales cg = new clasesglobales();
-
-                //hlContacto.Enabled = false;
-                string strQuery = "SELECT s.idSede, CONCAT(s.NombreSede, \" - \", cs.NombreCiudadSede) AS NombreSede " +
-                "FROM sedes s " +
-                "LEFT JOIN CiudadesSedes cs ON s.idCiudadSede = cs.idCiudadSede " +
-                "ORDER BY s.idCiudadSede, NombreSede";
-                DataTable dt = cg.TraerDatos(strQuery);
-
-                ddlNombresSedes.DataSource = dt;
-                ddlNombresSedes.DataBind();
-
-                dt.Dispose();
-
-                strQuery = "SELECT * FROM CiudadesSedes " +
-                "WHERE idCiudadSede <> 5 ";
-                DataTable dt1 = cg.TraerDatos(strQuery);
-
-                ddlCiudad.DataSource = dt1;
-                ddlCiudad.DataBind();
-
-                dt1.Dispose();
-
-                ddlSedes.Enabled = false;
+                CargarCiudades();
             }
         }
 
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarCiudades()
         {
-            ddlSedes.Enabled = true;
             clasesglobales cg = new clasesglobales();
 
-            string strQuery = "SELECT * " +
-            "FROM Sedes " +
-            "WHERE idCiudadSede = " + ddlCiudad.SelectedItem.Value.ToString() + " " +
-            "AND idSede <> 11 ";
-            DataTable dt = cg.TraerDatos(strQuery);
+            DataTable dt = cg.ConsultaCargarSedesPorId(null, "Todas");
 
-            ListItem li = new ListItem("Seleccione", "");
-            ddlSedes.Items.Clear();
-            ddlSedes.Items.Add(li);
-            ddlSedes.DataSource = dt;
-            ddlSedes.DataBind();
-
-            dt.Dispose();
-        }
-
-        protected void ddlSedes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                ddlNombresSedes.DataSource = dt;
+                ddlNombresSedes.DataTextField = "NombreSede";
+                ddlNombresSedes.DataValueField = "idSede";
+                ddlNombresSedes.DataBind();
+                ddlNombresSedes.Items.Insert(0, new ListItem("Selecciona una sede", ""));
+            }
         }
 
         protected void ddlNombresSedes_SelectedIndexChanged(object sender, EventArgs e)

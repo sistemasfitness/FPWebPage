@@ -1,12 +1,46 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="wompiplan.aspx.cs" Inherits="WebPage.wompiplan" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
+<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -22,6 +56,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Kalam:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 
     <!-- BASE CSS -->
     <link href="css/animate.min.css" rel="stylesheet" />
@@ -31,65 +66,83 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+    <!-- Google Tag Manager (noscript) -->
+    <%--<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div id="preloader">
         <div data-loader="circle-side"></div>
     </div>
     <!-- End Preload -->
 
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sub_header_general.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1>Pago a través de Wompi</h1>
-            <p>Paga de manera segura a través de Wompi.</p>
+            <h1 style="font-weight: 900">Pago a través de Wompi</h1>
+            <p style="font-weight: 900;">¡Rápido, seguro y sin complicaciones!</p>
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35" style="color: #fff">
         <div class="row">
-            Botón de Pago.
-            <form>
-                <script src="https://checkout.wompi.co/widget.js"
-                    data-render="button"
-                    data-public-key="pub_test_Mp5JzDLXitLu7W0I3Gea5OXotOExpFjv"
-                    data-currency="COP"
-                    data-amount-in-cents="<%=strMonto%>"
-                    data-reference="<%=strReferencia%>"
-                    data-signature:integrity="<%=strHash256%>"
-                    data-redirect-url="<%=strRedireccion%>">
-                </script>
-            </form>
+            <div class="col-md-offset-3 col-md-6">
+                <div class="box_style_2" style="background-color: #1A1A1A">
+                    <div id="confirm" class="text-center">
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Estás a un paso de completar tu compra!</h3>
+                        <p style="color: #fff; font-weight: 400;">Haz clic en el botón <b>“Paga con Wompi”</b> para continuar.</p>
+                    </div>
+
+                    <div class="text-center">
+                        <form id="form" runat="server">
+                            <script src="https://checkout.wompi.co/widget.js"
+                                data-render="button"
+                                data-public-key="<%=KeyPub%>"
+                                data-currency="COP"
+                                data-amount-in-cents="<%=strMonto%>"
+                                data-reference="<%=IdReferencia%>"
+                                data-signature:integrity="<%=strHash256%>"
+                                data-redirect-url="<%=strRedireccion%>"
+                                data-customer-email="<%=strCorreo%>"
+                                data-customer-full-name="<%=strNombre%>"
+                                data-customer-phone-number="<%=strTelefono%>">
+                            </script>
+                        </form>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Recuerda que...!</h3>
+                        <p style="font-weight: 400;">
+                            Cuando finalices tu pago, asegúrate de hacer clic en <b>“Finalizar mi proceso”</b> o <b>“Regresar al comercio”</b>.
+                        </p>
+                        <p style="font-weight: 400;">
+                            <b>Solo así podremos validar y confirmar tu compra.</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- End row -->
     </div>
     <!-- End container -->
 
     <uc1:footer runat="server" ID="footer" />
-    <!-- End footer -->
-    <div id="copy">
-        <div class="container">
-            Copyright © 2021 – 2024 Fitness People Centro Médico Deportivo S.A.S. – Todos los derechos reservados.
-        </div>
-    </div>
-    <!-- End copy -->
 
     <div id="toTop"></div>
     <!-- Back to top button -->
@@ -111,5 +164,9 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

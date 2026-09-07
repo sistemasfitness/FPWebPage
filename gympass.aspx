@@ -9,37 +9,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script>
+        (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
             }); var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');</script>
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Meta Pixel Code -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1224942061553441');
-        fbq('track', 'PageView');
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
     </script>
-    <noscript>
-        <img height="1" width="1" style="display: none"
-            src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
-    <!-- End Meta Pixel Code -->
+    <!-- End Microsoft Clarity -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,14 +60,16 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ"
-            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
@@ -103,63 +95,47 @@
 
         <div class="col-md-8">
             <h2 style="font-weight: 900; color: #e3ff00;">Gym Pass</h2>
-            <%--<p style="color: #FFF;">Una experiencia exclusiva por un día en Fitness People.</p>--%>
             <div>
                 <div id="message-contact"></div>
-                <form method="post" id="contacto" style="color: #FFF;" runat="server">
+                <form method="post" id="contacto" style="color: #FFF;" runat="server" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Nombres</label>
-                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="name_contact" name="name_contact" placeholder="Nombre" required runat="server" />
+                                <label>Nombres.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="name_contact" name="name_contact" placeholder="Pepito" required="" runat="server" />
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Apellidos</label>
-                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="lastname_contact" name="lastname_contact" placeholder="Apellido" required runat="server" />
+                                <label>Apellidos.</label>
+                                <input type="text" class="form-control styled" style="background: #FFF; color: #000;" id="lastname_contact" name="lastname_contact" placeholder="Pérez" required="" runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label>Nro. de documento.</label>
+                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" placeholder="123456789" style="background: #FFF; color: #000;" required="" runat="server" oninput="numberFormat(this)" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-8 col-sm-4">
                             <div class="form-group">
-                                <label>Correo eléctronico:</label>
-                                <input type="email" id="email_contact" name="email_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="email@email.com" required runat="server" />
+                                <label>Correo eléctronico.</label>
+                                <input type="email" id="email_contact" name="email_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="ejemplo@correo.com" required="" runat="server" />
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Celular:</label>
-                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3993334444" required runat="server" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label>Nro. de documento:</label>
-                                <input type="number" id="id_contact" name="id_contact" class="form-control styled" style="background: #FFF; color: #000;" required runat="server" />
+                                <label>Celular.</label>
+                                <input type="number" id="phone_contact" name="phone_contact" class="form-control styled" style="background: #FFF; color: #000;" placeholder="3133333333" required="" runat="server" oninput="numberFormat(this)" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <%--<div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label>Ciudad:</label>
-                                <select id="ddlCiudad" name="ddlCiudad" onchange="popSedes()" class="form-control" required>
-                                    <option value="">Seleccione</option>
-                                    <option value="Bucaramanga">Bucaramanga</option>
-                                    <option value="Cúcuta">Cúcuta</option>
-                                    <option value="Floridablanca">Floridablanca</option>
-                                    <option value="Piedecuesta">Piedecuesta</option>
-                                </select>
-                            </div>
-                        </div>--%>
                         <div class="col-md-8 col-sm-8">
                             <div class="form-group">
-                                <label>Sede:</label>
-                                <%--<select id="ddlSede" name="ddlSede" class="form-control" required>
-                                    <option value="">Seleccione</option>
-                                </select>--%>
+                                <label>Sede.</label>
                                 <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" style="background: #FFF; color: #000;" AppendDataBoundItems="true">
                                     <asp:ListItem Text="Seleccione" Value="" />
                                 </asp:DropDownList>
@@ -167,11 +143,12 @@
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label>Fecha que asistirá:</label>
-                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required runat="server" />
+                                <label>Fecha de asistencia.</label>
+                                <input type="text" id="date_contact" name="date_contact" class="form-control styled" style="background: #FFF; color: #000;" required="" runat="server" />
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -182,6 +159,7 @@
 					                    </label>
 				                    </div>
                                 </div>
+                                <p><strong>Válido solo para usuarios nuevos que no hayan tomado cortesías.</strong></p>
                                 <p>Cortesía con acceso a la sede escogida por el cliente. Se debe presentar el documento de identidad en el counter de la sede. 
                                     No se permite el ingreso de menores de 14 años. Nos reservamos el derecho de admisión. 
                                     Cortesía válida para todas las sedes. Esta cortesía no tiene valor comercial. 
@@ -193,7 +171,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <asp:Button ID="btnEnviar" runat="server" Text="ENVIAR" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled />
+                                <asp:Button ID="btnEnviar" runat="server" Text="ENVIAR" CssClass="btn_slider" OnClick="btnEnviar_Click" disabled="" />
                                 <%--<input type="submit" value="Enviar" class="btn_slider" id="submit-contact" disabled />--%>
                             </div>
                         </div>
@@ -249,14 +227,36 @@
             }
         }
 
-        function habilitarBoton() {
-            const check1 = document.getElementById('check_1')
+    </script>
 
-            if (check1.checked) {
-                console.log('Boton de enviar habilitado');
-                document.getElementById('btnEnviar').disabled = false;
+    <script>
+
+        function numberFormat(input) {
+            // Elimina cualquier cosa que no sea número
+            let value = input.value.replace(/\D/g, '');
+
+            // Limita a 4 dígitos (algunas tarjetas como Amex lo requieren)
+            value = value.substring(0, 10);
+
+            input.value = value;
+        }
+
+        function habilitarBoton() {
+            var check = document.getElementById("check_1");
+            var boton = document.getElementById("<%= btnEnviar.ClientID %>");
+
+            if (check.checked) {
+                boton.disabled = false;
+            } else {
+                boton.disabled = true;
             }
         }
+
     </script>
+
+    <noscript>
+        <img height="1" width="1" style="display: none"
+            src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

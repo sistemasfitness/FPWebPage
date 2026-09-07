@@ -8,6 +8,39 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -33,94 +66,98 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/icon_fonts/css/all_icons.min.css" rel="stylesheet" />
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+    <!-- Google Tag Manager (noscript) -->
+    <%--<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <div id="preloader">
-        <div data-loader="circle-side"></div>
-    </div>
-    <!-- End Preload -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/office.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">VERIFICACION</h1>
+            <asp:Literal ID="ltTituloPrincipal" runat="server" />
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
-        <div class="row">
+    <form id="form" runat="server">
+        <div class="container margin_60_35" style="color: #fff">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="box_style_2" style="background-color: #1A1A1A">
+                        <div id="confirm" class="text-center">
+                            <asp:Literal ID="ltTitulo" runat="server" />
+                            <asp:Literal ID="ltMensaje" runat="server" />
+                        </div>
 
-            <div class="col-md-8">
-                <h2 style="font-weight: 900;">Pago realizado</h2>
-                <p>Gracias por confiar en nosotros.</p>
-                <asp:Literal ID="ltMensaje" runat="server"></asp:Literal>
-                <div>
-                    
+                        <asp:Panel ID="pnlResumen" runat="server" Visible="false">
+                            <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
+
+                            <table class="table table-striped nomargin">
+                                <tbody>
+                                    <tr style="background-color: #1A1A1A">
+                                        <td>Valor del pago</td>
+                                        <td><strong class="pull-right"><asp:Literal ID="ltValor" runat="server"></asp:Literal></strong></td>
+                                    </tr>
+
+                                    <tr style="font-weight: 900; background-color: #e3ff00; color: black;">
+                                        <td>TOTAL</td>
+                                        <td><strong class="pull-right"><asp:Literal ID="ltTotal" runat="server"></asp:Literal></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </asp:Panel>
+
+                        <asp:Panel ID="pnlRegresar" runat="server" Visible="false">
+                            <div style="margin-top: 30px; text-align: center;">
+                                <h3 style="font-weight: 900; color: #e3ff00;">¿Quieres intentarlo nuevamente?</h3>
+                                <p style="font-weight: 400;">Hubo un inconveniente con tu compra. Puedes regresar para completar el proceso de nuevo.</p>
+
+                                <asp:Button 
+                                    ID="btnRegresar" 
+                                    runat="server" 
+                                    CssClass="btn_slider"
+                                    Text="VOLVER A INTENTAR"
+                                    OnClick="btnRedireccionarRegresarRegister_Click" />
+                            </div>
+                        </asp:Panel>
+
+                        <asp:Panel ID="pnlContinuar" runat="server" Visible="false">
+                            <div style="margin-top: 30px; text-align: center;">
+                                <h3 style="font-weight: 900; color: #e3ff00;">¡Ojo! Recuerda que...</h3>
+                                <p style="font-weight: 400;">Para activar tu plan debes completar el formulario de verificación. Para ello, <b>haz clic en el siguiente botón.</b></p>
+
+                                <asp:Button 
+                                    ID="btnContinuar" 
+                                    runat="server" 
+                                    CssClass="btn_slider"
+                                    Text="ACTIVAR ACCESO"
+                                    OnClick="btnRedireccionarActivarPlan_Click" />
+                            </div>
+                        </asp:Panel>
+                    </div>
                 </div>
             </div>
-            <!-- End col lg 9 -->
-            <aside class="col-md-4">
-                <div class="box_style_2">
-                    <h5 style="font-weight: 900;">Información de Contacto</h5>
-                    <p>Calle 45 No. 35 - 23 Piso 2<br>
-                        (+57) 318 707 7584<br>
-                        <a href="mailto:fp_info@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">fp_info@fitnesspeoplecmd.com</a>
-                    </p>
-                    <h5 style="font-weight: 900;">Cómo llegar?</h5>
-                    <form action="http://maps.google.com/maps" method="get" target="_blank">
-                        <div class="form-group">
-                            <input type="text" name="saddr" placeholder="Ingresa tu ubicación" class="form-control styled">
-                            <input type="hidden" name="daddr" value="Fitness People centro administrativo, Cl. 45 #35 23 piso 2, Cabecera del llano, Bucaramanga, Santander">
-                            <!-- Write here your end point -->
-                        </div>
-                        <input type="submit" value="Obtener ruta" class="btn_1 add_bottom_15">
-                    </form>
-                    <hr class="styled">
-                    <h5 style="font-weight: 900;">Departamentos</h5>
-                    <ul class="contacts_info">
-                        <li><strong>Contabilidad</strong><br>
-                            <a href="https://wa.me/573187077584" style="color: #333333;">(+57) 318 707 7584</a>
-                            <br>
-                            <a href="mailto:contabilidad@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">contabilidad@fitnesspeoplecmd.com</a>
-                            <br>
-                            <small>Lunes a Viernes 9am - 6pm</small>
-                        </li>
-                        <li><strong>Área Comercial</strong><br>
-                            <a href="https://wa.me/573138859790" style="color: #333333;">(+57) 313 885 9790</a>
-                            <br>
-                            <a href="mailto:comercial@fitnesspeoplecmd.com" style="color: #333333; text-decoration: underline;">comercial@fitnesspeoplecmd.com</a>
-                            <br>
-                            <small>Lunes a Sábado 8am - 7pm</small>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <!--End aside -->
+            <!-- End row -->
         </div>
-        <!-- End row -->
-    </div>
-    <!-- End container -->
+        <!-- End container -->
+    </form>
 
-    <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.764486790383!2d-73.11025033039041!3d7.119283530320726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f7e428fb6e5%3A0x3a67714ea25f138b!2sFitness%20People%20centro%20administrativo!5e0!3m2!1sen!2sco!4v1733155568363!5m2!1sen!2sco" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-
-    <uc1:footer runat="server" ID="footer" />
+    <uc1:footer runat="server" id="footer" />
 
     <div id="toTop"></div>
     <!-- Back to top button -->

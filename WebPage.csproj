@@ -55,6 +55,18 @@
     <Reference Include="ExtendedNumerics.BigDecimal, Version=2025.1001.2.129, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
       <HintPath>packages\ExtendedNumerics.BigDecimal.2025.1001.2.129\lib\net48\ExtendedNumerics.BigDecimal.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis, Version=1.75.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.75.0\lib\net462\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.75.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.75.0\lib\net462\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.75.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Core.1.75.0\lib\net462\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Sheets.v4, Version=1.75.0.4178, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Sheets.v4.1.75.0.4178\lib\net462\Google.Apis.Sheets.v4.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.29.3.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.29.3\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -94,6 +106,9 @@
     </Reference>
     <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.1.0\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql, Version=8.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\Npgsql.8.0.3\lib\netstandard2.0\Npgsql.dll</HintPath>
@@ -198,9 +213,6 @@
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -223,9 +235,13 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="404.html" />
+    <Content Include="actualizardatos.aspx" />
+    <Content Include="agendaDiaCortesia.aspx" />
+    <Content Include="aniversario.aspx" />
     <Content Include="assets\validate.js" />
     <Content Include="blog.aspx" />
     <Content Include="blogpost.aspx" />
+    <Content Include="cambioMetodoPago.aspx" />
     <Content Include="carrito1.aspx" />
     <Content Include="carrito2.aspx" />
     <Content Include="carrito3.aspx" />
@@ -233,6 +249,7 @@
     <Content Include="cart-page-1.html" />
     <Content Include="cart-page-2.html" />
     <Content Include="cart-page-3.html" />
+    <Content Include="concursogympass.aspx" />
     <Content Include="contacto.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -250,12 +267,27 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="contrato.aspx" />
+    <Content Include="controls\aliados.ascx" />
     <Content Include="controls\footer.ascx" />
+    <Content Include="controls\infocontacto.ascx" />
     <Content Include="controls\loginregister.ascx" />
     <Content Include="controls\mainmenu.ascx" />
     <Content Include="controls\mainmenulanding.ascx" />
     <Content Include="controls\mainmenunew.ascx" />
+    <Content Include="controls\mapasedeadministrativa.ascx" />
+    <Content Include="controls\PlanCard.ascx" />
+    <Content Include="controls\planes.ascx" />
+    <Content Include="controls\preguntasfrecuentes.ascx" />
+    <Content Include="controls\sedes.ascx" />
+    <Content Include="controls\servicios.ascx" />
     <Content Include="corporativo.aspx" />
+    <Content Include="exclusivoweb.aspx" />
+    <Content Include="exclusivowebfw.aspx" />
+    <Content Include="nuestrasSedes.aspx" />
+    <Content Include="promoAlexGuarin.aspx" />
+    <Content Include="sede.aspx" />
+    <Content Include="somos.aspx" />
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
     <Content Include="css\blog.css" />
@@ -287,7 +319,9 @@
     <Content Include="css\style.css" />
     <Content Include="default.aspx" />
     <Content Include="default_.aspx" />
+    <Content Include="promo.aspx" />
     <Content Include="descubrirplan.aspx" />
+    <Content Include="EncontrarFuentePago.aspx" />
     <Content Include="eliminarproductocarrito.aspx" />
     <Content Include="estudiafit.aspx" />
     <Content Include="favicon.ico" />
@@ -325,10 +359,6 @@
     <Content Include="img\blog\ARTICULO-3-1200x800-1.jpg" />
     <Content Include="img\cards.png" />
     <Content Include="img\check_radio_sheet.png" />
-    <Content Include="img\clientes\coopfuturo.png" />
-    <Content Include="img\clientes\cooprofesores.png" />
-    <Content Include="img\clientes\fecolsa.png" />
-    <Content Include="img\clientes\freskoop.png" />
     <Content Include="img\corporativo.png" />
     <Content Include="img\course_1.jpg" />
     <Content Include="img\course_2.jpg" />
@@ -637,12 +667,21 @@
     <Content Include="logout.aspx" />
     <Content Include="mainAfil.aspx" />
     <Content Include="newsletter.aspx" />
+    <Content Include="ofertas.aspx" />
+    <Content Include="ofertasCounter.aspx" />
+    <Content Include="ofertasDiaMujer.aspx" />
+    <Content Include="ofertasMasVendidos.aspx" />
+    <Content Include="ofertasPagosRecurrentes.aspx" />
+    <Content Include="ofertasPagosUnicos.aspx" />
     <Content Include="peoplewear.html" />
     <Content Include="plan3plus3.aspx" />
+    <Content Include="planesEasy.aspx" />
     <Content Include="planeasy.aspx" />
     <Content Include="planes.aspx" />
+    <Content Include="planesKiosco.aspx" />
     <Content Include="producto.aspx" />
-    <Content Include="Pruebas.aspx" />
+    <Content Include="pagoRedeban.aspx" />
+    <Content Include="promoPagosUnicos.aspx" />
     <Content Include="register.aspx" />
     <Content Include="resultado.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -673,6 +712,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="wompiwebhook.aspx" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -702,6 +742,27 @@
     <Content Include="wompiplan.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="actualizardatos.aspx.cs">
+      <DependentUpon>actualizardatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="actualizardatos.aspx.designer.cs">
+      <DependentUpon>actualizardatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agendaDiaCortesia.aspx.cs">
+      <DependentUpon>agendaDiaCortesia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agendaDiaCortesia.aspx.designer.cs">
+      <DependentUpon>agendaDiaCortesia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aniversario.aspx.cs">
+      <DependentUpon>aniversario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aniversario.aspx.designer.cs">
+      <DependentUpon>aniversario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="blog.aspx.cs">
       <DependentUpon>blog.aspx</DependentUpon>
@@ -716,6 +777,13 @@
     </Compile>
     <Compile Include="blogpost.aspx.designer.cs">
       <DependentUpon>blogpost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cambioMetodoPago.aspx.cs">
+      <DependentUpon>cambioMetodoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambioMetodoPago.aspx.designer.cs">
+      <DependentUpon>cambioMetodoPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="carrito1.aspx.cs">
       <DependentUpon>carrito1.aspx</DependentUpon>
@@ -746,6 +814,13 @@
       <DependentUpon>carrito4.aspx</DependentUpon>
     </Compile>
     <Compile Include="clasesglobales.cs" />
+    <Compile Include="concursogympass.aspx.cs">
+      <DependentUpon>concursogympass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="concursogympass.aspx.designer.cs">
+      <DependentUpon>concursogympass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="contacto.aspx.cs">
       <DependentUpon>contacto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -753,12 +828,33 @@
     <Compile Include="contacto.aspx.designer.cs">
       <DependentUpon>contacto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="contrato.aspx.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contrato.aspx.designer.cs">
+      <DependentUpon>contrato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\aliados.ascx.cs">
+      <DependentUpon>aliados.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\aliados.ascx.designer.cs">
+      <DependentUpon>aliados.ascx</DependentUpon>
+    </Compile>
     <Compile Include="controls\footer.ascx.cs">
       <DependentUpon>footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="controls\footer.ascx.designer.cs">
       <DependentUpon>footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\infocontacto.ascx.cs">
+      <DependentUpon>infocontacto.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\infocontacto.ascx.designer.cs">
+      <DependentUpon>infocontacto.ascx</DependentUpon>
     </Compile>
     <Compile Include="controls\loginregister.ascx.cs">
       <DependentUpon>loginregister.ascx</DependentUpon>
@@ -788,12 +884,97 @@
     <Compile Include="controls\mainmenunew.ascx.designer.cs">
       <DependentUpon>mainmenunew.ascx</DependentUpon>
     </Compile>
+    <Compile Include="controls\mapasedeadministrativa.ascx.cs">
+      <DependentUpon>mapasedeadministrativa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\mapasedeadministrativa.ascx.designer.cs">
+      <DependentUpon>mapasedeadministrativa.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\PlanCard.ascx.cs">
+      <DependentUpon>PlanCard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\PlanCard.ascx.designer.cs">
+      <DependentUpon>PlanCard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\planes.ascx.cs">
+      <DependentUpon>planes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\planes.ascx.designer.cs">
+      <DependentUpon>planes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\preguntasfrecuentes.ascx.cs">
+      <DependentUpon>preguntasfrecuentes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\preguntasfrecuentes.ascx.designer.cs">
+      <DependentUpon>preguntasfrecuentes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\sedes.ascx.cs">
+      <DependentUpon>sedes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\sedes.ascx.designer.cs">
+      <DependentUpon>sedes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\servicios.ascx.cs">
+      <DependentUpon>servicios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\servicios.ascx.designer.cs">
+      <DependentUpon>servicios.ascx</DependentUpon>
+    </Compile>
     <Compile Include="corporativo.aspx.cs">
       <DependentUpon>corporativo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="corporativo.aspx.designer.cs">
       <DependentUpon>corporativo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exclusivoweb.aspx.cs">
+      <DependentUpon>exclusivoweb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exclusivoweb.aspx.designer.cs">
+      <DependentUpon>exclusivoweb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exclusivowebfw.aspx.cs">
+      <DependentUpon>exclusivowebfw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exclusivowebfw.aspx.designer.cs">
+      <DependentUpon>exclusivowebfw.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nuestrasSedes.aspx.cs">
+      <DependentUpon>nuestrasSedes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nuestrasSedes.aspx.designer.cs">
+      <DependentUpon>nuestrasSedes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promoAlexGuarin.aspx.cs">
+      <DependentUpon>promoAlexGuarin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promoAlexGuarin.aspx.designer.cs">
+      <DependentUpon>promoAlexGuarin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sede.aspx.cs">
+      <DependentUpon>sede.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sede.aspx.designer.cs">
+      <DependentUpon>sede.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\GoogleSheetsHelper.cs" />
+    <Compile Include="somos.aspx.cs">
+      <DependentUpon>somos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="somos.aspx.designer.cs">
+      <DependentUpon>somos.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -809,12 +990,26 @@
     <Compile Include="default_.aspx.designer.cs">
       <DependentUpon>default_.aspx</DependentUpon>
     </Compile>
+    <Compile Include="promo.aspx.cs">
+      <DependentUpon>promo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promo.aspx.designer.cs">
+      <DependentUpon>promo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="descubrirplan.aspx.cs">
       <DependentUpon>descubrirplan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="descubrirplan.aspx.designer.cs">
       <DependentUpon>descubrirplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncontrarFuentePago.aspx.cs">
+      <DependentUpon>EncontrarFuentePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncontrarFuentePago.aspx.designer.cs">
+      <DependentUpon>EncontrarFuentePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="eliminarproductocarrito.aspx.cs">
       <DependentUpon>eliminarproductocarrito.aspx</DependentUpon>
@@ -868,12 +1063,61 @@
     <Compile Include="newsletter.aspx.designer.cs">
       <DependentUpon>newsletter.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ofertas.aspx.cs">
+      <DependentUpon>ofertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertas.aspx.designer.cs">
+      <DependentUpon>ofertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasCounter.aspx.cs">
+      <DependentUpon>ofertasCounter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasCounter.aspx.designer.cs">
+      <DependentUpon>ofertasCounter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasDiaMujer.aspx.cs">
+      <DependentUpon>ofertasDiaMujer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasDiaMujer.aspx.designer.cs">
+      <DependentUpon>ofertasDiaMujer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasMasVendidos.aspx.cs">
+      <DependentUpon>ofertasMasVendidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasMasVendidos.aspx.designer.cs">
+      <DependentUpon>ofertasMasVendidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasPagosRecurrentes.aspx.cs">
+      <DependentUpon>ofertasPagosRecurrentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasPagosRecurrentes.aspx.designer.cs">
+      <DependentUpon>ofertasPagosRecurrentes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ofertasPagosUnicos.aspx.cs">
+      <DependentUpon>ofertasPagosUnicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ofertasPagosUnicos.aspx.designer.cs">
+      <DependentUpon>ofertasPagosUnicos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="plan3plus3.aspx.cs">
       <DependentUpon>plan3plus3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="plan3plus3.aspx.designer.cs">
       <DependentUpon>plan3plus3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planesEasy.aspx.cs">
+      <DependentUpon>planesEasy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planesEasy.aspx.designer.cs">
+      <DependentUpon>planesEasy.aspx</DependentUpon>
     </Compile>
     <Compile Include="planeasy.aspx.cs">
       <DependentUpon>planeasy.aspx</DependentUpon>
@@ -889,6 +1133,13 @@
     <Compile Include="planes.aspx.designer.cs">
       <DependentUpon>planes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="planesKiosco.aspx.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planesKiosco.aspx.designer.cs">
+      <DependentUpon>planesKiosco.aspx</DependentUpon>
+    </Compile>
     <Compile Include="producto.aspx.cs">
       <DependentUpon>producto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -896,13 +1147,20 @@
     <Compile Include="producto.aspx.designer.cs">
       <DependentUpon>producto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pruebas.aspx.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
+    <Compile Include="promoPagosUnicos.aspx.cs">
+      <DependentUpon>promoPagosUnicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pruebas.aspx.designer.cs">
-      <DependentUpon>Pruebas.aspx</DependentUpon>
+    <Compile Include="promoPagosUnicos.aspx.designer.cs">
+      <DependentUpon>promoPagosUnicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="pagoRedeban.aspx.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagoRedeban.aspx.designer.cs">
+      <DependentUpon>pagoRedeban.aspx</DependentUpon>
     </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -932,6 +1190,9 @@
     <Compile Include="sedespg.aspx.designer.cs">
       <DependentUpon>sedespg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Services\RedebanClient.cs" />
+    <Compile Include="Services\SiigoClient.cs" />
+    <Compile Include="Services\UrlEncryptor.cs" />
     <Compile Include="servicios.aspx.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -987,6 +1248,13 @@
     </Compile>
     <Compile Include="wompiplan.aspx.designer.cs">
       <DependentUpon>wompiplan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wompiwebhook.aspx.cs">
+      <DependentUpon>wompiwebhook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wompiwebhook.aspx.designer.cs">
+      <DependentUpon>wompiwebhook.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

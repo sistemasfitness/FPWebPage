@@ -1,13 +1,49 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sedespg.aspx.cs" Inherits="WebPage.sedespg" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
+<%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
+<%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
+<%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
+<%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
     <meta property="og:site_name" content="Fitness People" />
     <meta property="og:title" content="Fitness People" />
     <meta property="og:description" content="Vive la experiencia, transforma tu cuerpo y tu vida." />
@@ -16,10 +52,6 @@
     <meta property="og:updated_time" content="1440432930" />
 
     <script src="js/fitnesspeople.js"></script>
-
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,159 +88,58 @@
     <link href="css/pop_up.css" rel="stylesheet" />
 </head>
 <body>
-    <a href="https://wa.me/573146887259?text=Hola,%20estoy%20interesad@%20en%20los%20planes%20de%20Fitness%20People" class="whatsapp" target="_blank"><i class="fab fa-whatsapp whatsapp-icon"></i></a>
     <!-- Google Tag Manager (noscript) -->
+    <%--<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ"
-            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/sedes/banners/prado.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/terminos_legales.webp" data-natural-width="1900">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">SEDES</h1>
+            <h1 style="font-weight: 900; text-shadow: 3px 3px 4px black;">SEDES</h1>
         </div>
     </section>
     <!-- End Header video -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="sedes" style="padding-top: 0px;">
-        <div class="container margin_60">
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
+    <!-- Control Sedes -->
+    <form runat="server" id="form1" class="form-web" style="color: #fff;">
+        <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
 
-            <form runat="server" id="form1">
-                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="upSedes" runat="server">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Ciudad:</label>
-                                    <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label style="color: #FFF;">Sede:</label>
-                                    <asp:DropDownList ID="ddlSedes" runat="server" CssClass="form-control"
-                                        OnSelectedIndexChanged="ddlSedes_SelectedIndexChanged" AppendDataBoundItems="true"
-                                        DataTextField="NombreSede" DataValueField="idSede" AutoPostBack="true"
-                                        Style="background-color: #3c3c3c;">
-                                        <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </form>
+        <uc1:sedes runat="server" ID="sedes" />
+    </form>
+    <!-- End Control Sedes -->
 
-            <div class="row">
+    <uc1:planes runat="server" ID="controlplanes" />
 
-                <div class="owl-carousel team-carousel3">
-                    <asp:Repeater ID="rpSedes" runat="server">
-                        <ItemTemplate>
-                            <div class="team-item">
-                                <div class="team-item-img">
-                                    <img src="img/sedes/galeria/<%# Eval("ImagenPrincipal") %>" class="img-responsive" alt="" />
-                                    <div class="team-item-detail">
-                                        <div class="team-item-detail-inner">
-                                            <h4 style="font-weight: 900;"><%# Eval("NombreSede") %></h4>
-                                            <p>
-                                                <%# Eval("DireccionSede") %><br />
-                                                <%# Eval("NombreCiudadSede") %><br />
-                                                <%# Eval("TelefonoSede") %>
-                                            </p>
-                                            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="team-item-info">
-                                    <h4 style="font-weight: 900; color: #fff;"><%# Eval("NombreSede") %></h4>
-                                    <p style="color: #fff;"><%# Eval("NombreCiudadSede") %></p>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-    <section class="margin_60_35" id="planes" style="padding-bottom: 0px;">
-        <div class="container" id="scroll-to">
-
-            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>¡Únete a la familia Fitness People!</h2>
-            <p class="lead styled" style="font-weight: 500; color: #FFF;">
-                En Fitness People te ofrecemos una variedad de planes diseñados para adaptarse a tus necesidades y objetivos personales. No importa dónde te encuentres, siempre tendrás la oportunidad de entrenar con nosotros en nuestras sedes ubicadas en Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. ¡Elige el plan que mejor se adapte a ti!
-            </p>
-
-            <div class="row text-center plans">
-
-                <div class="col-md-4">
-                    <div class="img_container">
-                        <a href="planes?id=1">
-                            <img src="img/planes/01_plan_easy.jpg" class="img-responsive" />
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="img_container">
-                        <a href="planes?id=11">
-                            <img src="img/planes/plan_8-mas-3.jpg" class="img-responsive" style="height: 450px;" />
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="img_container">
-                        <a href="planes?id=10">
-                            <img src="img/planes/plan_6-mas-2.jpg" class="img-responsive" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  End container-->
-    </section>
-    <!--  End section-->
-
-    <div id="newsletter_container" style="background-color: #000;">
+    <%--<div id="newsletter_container" style="background-color: #000;">
         <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <%--<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
+                    ///<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
                 <div id="message-newsletter"></div>
                 <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
                     <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
                     <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                </form>--%>
+                </form>//
                     <a href="gympass">
                         <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
                     </a>
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <!-- End newsletter_container -->
+
+    <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
 
@@ -248,32 +179,6 @@
             videoLazyLoading: false
         });
 
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 2,
-                }
-            }
-        });
-
         $('#layerslider').layerSlider({
             autoStart: true,
             navButtons: false,
@@ -288,5 +193,9 @@
         });
 
     </script>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

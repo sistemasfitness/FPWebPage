@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,16 +17,31 @@ namespace WebPage
                 {
                     if (Request.QueryString["msg"].ToString() == "4")
                     {
-                        confirm2.Visible = true;
+                        //confirm2.Visible = true;
                     }
                     if (Request.QueryString["msg"].ToString() == "5")
                     {
-                        confirm3.Visible = true;
+                        //confirm3.Visible = true;
                     }
                 }
                 else
                 {
-                    confirm1.Visible = true;
+                    //confirm1.Visible = true;
+                }
+
+                clasesglobales cg = new clasesglobales();
+
+                string strQuery = "SELECT * FROM Sedes s " +
+                    "INNER JOIN CiudadesSedes cs ON s.idCiudadSede = cs.idCiudadSede " +
+                    "WHERE idSede <> 11 " +
+                    "ORDER BY NombreCiudadSede ";
+
+                DataTable dt2 = cg.TraerDatos(strQuery);
+                if (dt2.Rows.Count > 0)
+                {
+                    rpSedes.DataSource = dt2;
+                    rpSedes.DataBind();
+                    dt2.Dispose();
                 }
             }
         }

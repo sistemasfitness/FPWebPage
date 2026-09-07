@@ -8,11 +8,40 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="js/fitnesspeople.js"></script>
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
 
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,24 +75,22 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
+    <%--<noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/office.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/terminos_legales.webp" data-natural-width="1900">
         <div id="sub_content_in">
-            <h1 style="font-weight: 900;">TÉRMINOS LEGALES</h1>
+            <h1 style="font-weight: 900; text-shadow: 3px 3px 4px black;">TÉRMINOS LEGALES</h1>
         </div>
     </section>
     <!-- End section -->
@@ -76,12 +103,21 @@
                     <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Documentación</h2>
                     <p></p>
                     <p class="lead" style="color: #FFF;">
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" target="_blank">Derechos y deberes usuarios Fitness People</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/2.-PT-TDP-02-POLITICA-DE-PROTECCION-EN-VIDEOVIGILANCIA.pdf" target="_blank">Política de protección de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/1.-MN-TDP-03-MANUAL-DE-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Manual de protección de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">Autorización de uso de datos</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-AVISO-DE-PRIVACIDAD-VERSION-II.pdf" target="_blank">Aviso de privacidad</a><br />
-                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados financieros</a><br />
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/DERECHOS-Y-DEBERES-USUARIOS-FITNESS-PEOPLE.pdf" target="_blank">Derechos Y Deberes Usuarios Fitness People</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/1.-MN-GH-02-MANUAL-DE-FUNCIONES-Y-PROCEDIMIENTOS-DE-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Manual De Funciones, Responsabilidades y Procedimientos De Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Política De Tratamiento Y Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/3.-PR-GH-01-PROTOCOLO-DE-TRATAMIENTO-DE-DATOS-SENSIBLES-Y-DE-MENORES.pdf" target="_blank">Protocolo Para El Tratamiento De Datos Sensibles Y De Menores De Edad</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/4.-F-GH-20-ACUERDO-DE-CONFIDENCIALIDAD-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">Acuerdo De Confidencialidad, No Divulgación Y Protección De Datos Personales</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/5.-PT-GH-03-AVISO-DE-PRIVACIDAD.pdf" target="_blank">Aviso De Privacidad</a><br />
+
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados Financieros</a><br />
+
+                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos Y Condiciones De Las Promociones</a><br />
                     </p>
                     <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Términos y Condiciones de Ofertas – Fitness People Colombia</h4>
                     <p class="lead" style="color: #FFF; font-size: 1.5rem;">
@@ -184,5 +220,8 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

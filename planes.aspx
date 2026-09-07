@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="planes.aspx.cs" Inherits="WebPage.planes" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/servicios.ascx" TagPrefix="uc1" TagName="servicios" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 <%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 
@@ -8,11 +9,31 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="js/fitnesspeople.js"></script>
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>
+    <!-- End Google Tag Manager -->
 
-    <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
-    </noscript>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,6 +71,7 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
     <!-- Header ================================================== -->
@@ -70,108 +92,6 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <section class="margin_60_35" id="testimonials" style="background: #000;">
-        <div class="container">
-            <div class="row">
-                <div class="owl-carousel team-carousel">
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/7_dias_semana.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/10_sedes.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/breakee.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/clases_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/deportologo.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/fisioterapeuta.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/nutricionista.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/profesionales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_grupales.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_pilates.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_spinning.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/salon_xtreme.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_cardiovascular.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_hammer.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_mancuernas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-                    <div class="team-item">
-                        <div class="team-item-img">
-                            <img src="img/servicios/zona_poleas.png" style="width: 140px;" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="barraProgreso" runat="server" visible="false" style="text-align: center;">
         <div class="container">
             <asp:Literal ID="litScriptFechas" runat="server" EnableViewState="false"></asp:Literal>
@@ -188,21 +108,22 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="testimonials2">
+    <section class="margin_60_35" id="plan">
         <div class="container">
-            <div class="row info-planes" style="display: flex; margin-bottom: 2rem;">
+            <div class="row info-planes" style="display: flex;">
                 <div class="col-md-6" style="display: flex; flex-direction: column; justify-content: space-around;">
-                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">
-                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal></h2>
-                    <p class="lead" style="color: #FFF; margin-top: 20px;">
-                        <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal></p>
+                    <h2 class="nomargin_top" style="font-weight: 900; color: #e3ff00; margin-bottom: 30px;">
+                        <asp:Literal ID="ltTitulo" runat="server"></asp:Literal>
+                    </h2>
+                    <asp:Literal ID="ltDescripcion" runat="server"></asp:Literal>
                 </div>
 
                 <div class="col-md-6 col-md-offset-1" style="cursor: pointer; align-content: center;">
                     <asp:Literal ID="ltImagenMarketing" runat="server"></asp:Literal>
                 </div>
             </div>
-            <div class="row" style="display: flex; justify-content: center;">
+
+            <div class="row boton-comprar" style="display: flex; justify-content: center;">
                 <div class="col-md-12" style="text-align: center;">
                     <asp:Literal ID="ltBotonPago" runat="server"></asp:Literal>
                 </div>
@@ -211,12 +132,16 @@
         </div>
     </section>
 
-    <section class="margin_60_35" id="planes" style="padding-top: 10px; padding-bottom: 15px;">
+    <!-- Control Servicios -->
+    <uc1:servicios runat="server" ID="controlservicios" />
+    <!-- End Control Servicios -->
+
+    <section class="margin_60_35" id="planes2" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>Nuestras Sedes</h2>
 
             <div class="row">
-                <div class="owl-carousel team-carousel3" width="600px">
+                <div class="owl-carousel team-carousel2" width="600px">
                     <div class="team-item">
                         <div class="team-item-img">
                             <div class="img_wrapper">
@@ -368,16 +293,60 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+
+                <!-- Modal - Plan Easy -->
+                <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+                    <div class="modal-dialog" style="display: flex; justify-content: center;">
+                        <div class="modal-content modal-popup" style="background: transparent; position: relative;">
+                            <!-- Contenedor relativo -->
+                            <div style="position: relative; width: 100%;">
+                                <!-- Contador -->
+                                <div id="barraProgresoEasy"
+                                    style="position: absolute; inset: 0; display: flex; flex-direction: column;
+                                    align-items: center; justify-content: flex-start; padding-top: 40%;">
+                                    <p style="font-size: 5.5rem; font-weight: 800; color: #e3ff00; margin-bottom: 0;"
+                                    id="time-remaining-easy"></p>
+                                </div>
+
+                                <!-- Imagen -->
+                                <img src="img/modals/ventana-emergente_2025-11-12.png" style="width: 100%; display: block;" />
+
+                                <!-- Capa clickeable                                             | ¡¡¡COMENTAR ANCLA SI SE VUELVEN A UTILIZAR LOS MODALES!!! -->
+                                <a href="register?idPlan=21&idVendedor=156"                     
+                                    style="position: absolute; inset: 0; z-index: 10;"></a>
+
+                                <asp:LinkButton 
+                                    ID="lnkRegister"
+                                    runat="server"
+                                    Style="position:absolute; inset:0; z-index:10; display:block; background:transparent;"
+                                    OnClick="btnRedireccionarRegresarRegister_Click">
+                                </asp:LinkButton>
+                            </div>
+
+                            <!-- Botón de cierre -->
+                            <a href="#" class="close-link" data-dismiss="modal"
+                                style="position: absolute; top: 10px; right: 10px; z-index: 20;">
+                                <i class="icon_close_alt2"></i>
+                            </a>
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-bar" style="width: 100%;">
+                                <div id="progress-fill-easy" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
+
             </form>
         </div>
     </section>
 
-    <section class="margin_60_35" id="testimonials" style="padding-top: 10px; padding-bottom: 15px;">
+    <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 15px;">
         <div class="container">
             <h2 class="main_title" style="color: #fff; font-weight: 900;"><em></em>NUESTRAS CLASES GRUPALES</h2>
             <!--Team Carousel -->
             <div class="row">
-                <div class="owl-carousel team-carousel4">
+                <div class="owl-carousel team-carousel3">
                     <div class="team-item">
                         <div class="team-item-img">
                             <img src="img/grupales/cardio_box.jpg" style="width: 600px;" alt="" />
@@ -495,10 +464,10 @@
 
     <div class="container_styled_1">
         <div class="container margin_60_35">
+            <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>PREGUNTAS FRECUENTES</h2>
+
             <div class="row">
                 <div class="col-md-12">
-
-                    <h3 class="nomargin_top" style="color: #fff; font-weight: 900;">Preguntas frecuentes</h3>
                     <div class="panel-group" id="works">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -508,7 +477,9 @@
                             </div>
                             <div id="collapseOne_works" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    Sí, puedes cancelarla en cualquier momento. Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda hacerlo con al menos 5 días de anticipación a tu próximo cobro.
+                                    <b>Sí, puedes cancelar tu suscripción en cualquier momento.</b> Solo debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente. Recuerda realizar la solicitud con al menos <b>5 días de anticipación</b> a tu próximo cobro.
+                                    <br />
+                                    Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
                                 </div>
                             </div>
                         </div>
@@ -544,15 +515,12 @@
                             </div>
                             <div id="collapseFour_works" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Recibimos tarjetas débito, crédito, pagos en efectivo, transferencias y pagos en línea. Pregunta en tu sede por las opciones disponibles o revisa nuestra plataforma digital.
+                                    Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- End panel-group -->
-
-
-
                 </div>
                 <!-- End col-md-9 -->
             </div>
@@ -661,6 +629,28 @@
 
     <uc1:loginregister runat="server" ID="loginregister" />
 
+    <!-- Modal - Plan Easy -->
+    <%--<div class="modal fade" id="plan-easy" tabindex="-1" role="dialog" aria-labelledby="myAviso">
+        <div class="modal-dialog" style="display: flex; justify-content: center;">
+            <div class="modal-content modal-popup" style="background: transparent;">
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <a href="register?idPlan=19">
+                    <img src="img/modals/modal_plan-easy-1.png" style="width: 100%;" />
+                </a>
+                <!-- Contador dentro del modal -->
+                <div id="barraProgresoEasy" style="text-align: center; margin-top: 10px;">
+                    <h4 style="font-weight: 700; color: #FFF; margin: 0;">⏳ ¡Tu promo expira pronto!</h4>
+
+                    <p style="font-size: 4rem; font-weight: 800; color: #e3ff00; margin-bottom: 0; width: 100%;" id="time-remaining-easy"></p>
+
+                    <div class="progress-bar" style="width: 100%;">
+                        <div id="progress-fill-easy" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>--%>
+
     <!-- Search Menu -->
     <div class="search-overlay-menu">
         <span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -678,40 +668,172 @@
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
-    <script>
+    <%--<script>
 
-        'use strict';
-        $(".team-carousel").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 1000,
-            margin: 20,
-            autoplay: true,
-            smartSpeed: 300,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 2,
-                },
-                768: {
-                    items: 3,
-                },
-                1000: {
-                    items: 4,
+        // Modal - Plan Easy
+
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
                 }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        };
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") !== "20") return;
+
+            const triggerPoint = $("#planes2").offset().top;
+
+            $(window).on("scroll", function () {
+                if ($(window).scrollTop() >= triggerPoint - 300) {
+                    $("#plan-easy").modal("show");
+                    iniciarTemporizadorEasy(120);
+                    $(window).off("scroll"); // evitar que se repita
+                }
+            });
+        });
+
+    </script>--%>
+
+
+
+    <%--<script>
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") === "18") {
+                let modalShown = false;
+                let allowLeave = false;
+
+                // 1. Interceptar atrás desde el inicio
+                history.pushState({ modalBlock: true }, "", window.location.href);
+
+                window.addEventListener("popstate", function (e) {
+                    if (!allowLeave) {
+                        $("#plan-easy").modal("show");
+                        modalShown = true;
+
+                        // reponer el estado para que el usuario siga "en la misma página"
+                        history.pushState({ modalBlock: true }, "", window.location.href);
+                    } else {
+                        // si ya cerró el modal, ahora sí puede salir
+                        history.back();
+                    }
+                });
+
+                // 2. Interceptar cierre de pestaña
+                window.addEventListener("beforeunload", function (e) {
+                    if (!allowLeave) {
+                        $("#plan-easy").modal("show");
+                        modalShown = true;
+                        e.preventDefault();
+                        e.returnValue = ""; // obligatorio en Chrome
+                    }
+                });
+
+                // 3. Cuando cierre el modal manualmente -> permitir salida
+                $("#plan-easy").on("hidden.bs.modal", function () {
+                    allowLeave = true;
+                });
+            }
+        });
+    </script>--%>
+
+    <%--<script>
+
+        // Inicia el temporizador de 2 minutos
+        function iniciarTemporizadorEasy(duracionSegundos) {
+            const fechaInicio = new Date().getTime();
+            const fechaFin = fechaInicio + duracionSegundos * 1000;
+            const totalTiempo = duracionSegundos * 1000;
+
+            function actualizarBarra() {
+                const ahora = new Date().getTime();
+                const tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    document.getElementById("progress-fill-easy").style.width = "0%";
+                    document.getElementById("time-remaining-easy").textContent = "Tiempo terminado";
+                    document.getElementById("time-remaining-easy").style.fontSize = "3.7rem";
+                    clearInterval(intervalo);
+
+                    // ✅ Cerrar el modal 2 segundos después de que se acaba el tiempo
+                    setTimeout(function () {
+                        $("#plan-easy").modal("hide");
+                    }, 1000);
+
+                    return;
+                }
+
+                const porcentaje = (tiempoRestante / totalTiempo) * 100;
+                document.getElementById("progress-fill-easy").style.width = porcentaje + "%";
+
+                const segundos = Math.floor((tiempoRestante / 1000) % 60);
+                const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+
+                document.getElementById("time-remaining-easy").textContent =
+                    `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+            }
+
+            const intervalo = setInterval(actualizarBarra, 1000);
+            actualizarBarra();
+        }
+
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("id") === "18") {
+
+                function abrirModalEasy() {
+                    $("#plan-easy").modal("show");
+                    iniciarTemporizadorEasy(10); // 2 minutos = 120 segundos
+                }
+
+                setTimeout(function () {
+                    abrirModalEasy();
+                }, 5000);
             }
         });
 
-        $(".team-carousel3").owlCarousel({
+    </script>--%>
+
+    <script>
+
+        'use strict';
+        $(".team-carousel2").owlCarousel({
             items: 1,
             loop: true,
             autoHeight: true,
             autoWidth: false,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 10,
@@ -732,12 +854,12 @@
             }
         });
 
-        $(".team-carousel4").owlCarousel({
+        $(".team-carousel3").owlCarousel({
             items: 1,
             autoHeight: true,
             autoWidth: true,
             loop: true,
-            nav: false,
+            nav: true,
             center: true,
             autoplayTimeout: 3000,
             margin: 100,
@@ -758,7 +880,69 @@
         });
     </script>
 
+    <script>
+
+        function planAddToCart(contentId, contentName, value, paymentUrl) {
+
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                ecommerce: {
+                    items: [{
+                        item_id: contentId,
+                        item_name: contentName,
+                        price: value,
+                        currency: 'COP',
+                        quantity: 1
+                    }]
+                }
+            });
+
+            setTimeout(function () {
+                window.location.href = paymentUrl;
+            }, 150);
+        }
+
+    </script>
+
     <style>
+
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-y: auto !important;
+        }
+
+        .modal-dialog {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .modal-content.modal-popup {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
+        }
+
+    </style>
+
+    <%--<style>
         .progress-bar {
             width: 100%;
             height: 30px;
@@ -775,9 +959,31 @@
             background-size: 200% 100%;
             transition: width 0.5s linear;
         }
-    </style>
+    </style>--%>
 
-    <script>
+    <%--<style>
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #E3FF00, #FFA500, #FF0000);
+            background-size: 200% 100%;
+            transition: width 1s linear;
+        }
+
+    </style>--%>
+
+    <%--<script>
         function iniciarTemporizador(fechaInicioStr, fechaFinStr) {
             const fechaInicio = new Date(fechaInicioStr);
             const fechaFin = new Date(fechaFinStr);
@@ -809,7 +1015,10 @@
             const intervalo = setInterval(actualizarBarra, 1000);
             actualizarBarra();
         }
-    </script>
+    </script>--%>
 
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

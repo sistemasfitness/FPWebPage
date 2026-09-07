@@ -7,6 +7,39 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!-- Google Tag Manager -->
+    <%--<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+    </script>--%>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "tqldhc207r");
+    </script>
+    <!-- End Microsoft Clarity -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -38,20 +71,21 @@
     <link href="css/custom.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+    <!-- Google Tag Manager (noscript) -->
+    <%--<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>--%>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">¡Pago Exitoso!</h1>
         </div>
@@ -63,10 +97,10 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <div class="box_style_2" style="background-color: #1A1A1A">
-                    <div id="confirm">
+                    <div id="confirm" class="text-center" >
                         <%--<i class="icon_check_alt2"></i>--%>
-                        <h3 style="font-weight: 900; color: #e3ff00;">Pago confirmado!</h3>
-                        <p style="color: #fff;">Su orden ha sido confirmada.</p>
+                        <h3 style="font-weight: 900; color: #e3ff00;">¡Gracias por ser parte de la familia Fitness People!</h3>
+                        <p style="color: #fff; font-weight: 400;"><b>Confirmamos que tu pago fue recibido.</b></p>
                     </div>
                     <h4 style="font-weight: 900; color: #e3ff00;">Resumen</h4>
                     <table class="table table-striped nomargin">
@@ -82,11 +116,19 @@
                         </tbody>
                     </table>
                     <form runat="server">
-                        <div style="margin-top: 30px; text-align: center;">
-                            <p style="color: #fff;">Para activar tu plan, debes completar el formulario de verificación</p>
-                            <asp:Button ID="btnRedireccionarActivarPlan" runat="server" CssClass="btn_slider" Text="ACTIVAR PLAN" OnClick="btnRedireccionarActivarPlan_Click" />
-                            <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
-                        </div>
+                        <asp:Panel ID="pnlActivarPlan" runat="server">
+                            <div style="margin-top: 30px; text-align: center;">
+                                <h3 style="font-weight: 900; color: #e3ff00;">¡Ojo! Recuerda que...</h3>
+                                <p style="font-weight: 400;">Para activar tu plan debes completar el formulario de verificación. Para ello, <b>haz clic en el siguiente botón.</b></p>
+                                <%--<p style="color: #fff;"><strong>Activa tu plan en segundos:</strong> llena el formulario de verificación dando click en el siguiente botón.</p>--%>
+
+                                <asp:Button ID="btnRedireccionarActivarPlan" 
+                                            runat="server" CssClass="btn_slider" 
+                                            Text="ACTIVAR ACCESO" 
+                                            OnClick="btnRedireccionarActivarPlan_Click" />
+                                <%--<button class="btn_slider" onclick="RedireccionarActivarPlan">ACTIVAR PLAN</button>--%>
+                            </div>
+                        </asp:Panel>
                     </form>
                 </div>
             </div>
@@ -117,5 +159,9 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
+
+    <noscript>
+        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+    </noscript>
 </body>
 </html>

@@ -24,15 +24,6 @@ namespace WebPage
         protected global::WebPage.controls.mainmenu mainmenu;
 
         /// <summary>
-        /// Control divVideo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVideo;
-
-        /// <summary>
         /// Control form2.
         /// </summary>
         /// <remarks>
@@ -51,31 +42,49 @@ namespace WebPage
         protected global::System.Web.UI.ScriptManager sm1;
 
         /// <summary>
-        /// Control upSedes.
+        /// Control sedes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upSedes;
+        protected global::WebPage.controls.sedes sedes;
 
         /// <summary>
-        /// Control ddlCiudad.
+        /// Control controlservicios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCiudad;
+        protected global::WebPage.controls.servicios controlservicios;
 
         /// <summary>
-        /// Control ddlSedes.
+        /// Control controlplanes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSedes;
+        protected global::WebPage.controls.planes controlplanes;
+
+        /// <summary>
+        /// Control preguntasfrecuentes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.preguntasfrecuentes preguntasfrecuentes;
+
+        /// <summary>
+        /// Control controlaliados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.aliados controlaliados;
 
         /// <summary>
         /// Control upContacto.
@@ -103,6 +112,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlContacto;
+
+        /// <summary>
+        /// Control mapasedeadministrativa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebPage.controls.mapasedeadministrativa mapasedeadministrativa;
 
         /// <summary>
         /// Control footer.

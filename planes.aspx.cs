@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,27 +18,29 @@ namespace WebPage
                 if (Request.QueryString["id"].ToString() != "")
                 {
                     clasesglobales cg = new clasesglobales();
-                    string strQuery = "SELECT * " +
-                        "FROM Planes WHERE idPlan <> 9 AND idPlan <> 12 AND idPlan = " + Request.QueryString["id"].ToString();
-                    DataTable dt = cg.TraerDatos(strQuery);
+
+                    DataTable dt = cg.ConsultarPlanWebPorId(Convert.ToInt32(Request.QueryString["id"].ToString()));
+
                     if (dt.Rows.Count > 0)
                     {
-                        ltBannerFull.Text = "<section class=\"parallax_window_in\" data-parallax=\"scroll\" data-image-src=\"img/banners/" + dt.Rows[0]["BannerWeb"].ToString() + "\" data-natural-width=\"1400\" data-natural-height=\"470\">";
-                        ltBannerFull.Text += "<div id=\"sub_content_in\" style='align-content: end;'>";
-                        ltBannerFull.Text += "<h1 style=\"font-weight: 900;\">" + dt.Rows[0]["NombrePlan"].ToString().ToUpper() + "</h1>";
-                        ltBannerFull.Text += "<p>ENTRENA SIN PAUSAS, SIN VUELTAS, SIN EXCUSAS.</p>";
-                        ltBannerFull.Text += "</div>";
-                        ltBannerFull.Text += "</section>";
-
-                        ltTitulo.Text = dt.Rows[0]["TituloPlan"].ToString();
-                        ltDescripcion.Text = dt.Rows[0]["DescripcionPlanWeb"].ToString();
-
-                        ltImagenMarketing.Text = "<a href=\"" + dt.Rows[0]["EnlacePago"].ToString() + "\" target=\"_blank\" >";
-                        ltImagenMarketing.Text += "<img src=\"img/planes/" + dt.Rows[0]["ImagenMarketing"].ToString() + "\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />";
-                        ltImagenMarketing.Text += "</a>";
-
+                        int idPlan = Convert.ToInt32(dt.Rows[0]["idPlan"]);
+                        string nombrePlan = dt.Rows[0]["NombrePlan"].ToString();
+                        int valorPlan = Convert.ToInt32(dt.Rows[0]["precioTotal"]);
                         string enlacePago = dt.Rows[0]["EnlacePago"].ToString();
-                        string htmlBoton = GenerarBotonPago(enlacePago);
+
+                        string bannerWeb = dt.Rows[0]["BannerWeb"].ToString();
+                        string tituloPlan = dt.Rows[0]["TituloPlan"].ToString();
+                        string descripcionPlanWeb = dt.Rows[0]["DescripcionPlanWeb"].ToString();
+                        string imagenMarketing = dt.Rows[0]["ImagenMarketing"].ToString();
+
+                        ltBannerFull.Text = GenerarBannerPago(idPlan, nombrePlan, valorPlan, enlacePago, bannerWeb);
+
+                        ltTitulo.Text = tituloPlan;
+                        ltDescripcion.Text = descripcionPlanWeb;
+
+                        ltImagenMarketing.Text = GenerarImagenPago(idPlan, nombrePlan, valorPlan, enlacePago, imagenMarketing);
+
+                        string htmlBoton = GenerarBotonPago(idPlan, nombrePlan, valorPlan, enlacePago);
 
                         ltBotonPago.Text = htmlBoton;
                         ltBotonPago2.Text = htmlBoton;
@@ -48,9 +51,11 @@ namespace WebPage
                         Response.Redirect("default");
                     }
 
-                    GenerarBarraProgreso();
+                    dt.Dispose();
 
-                    strQuery = "SELECT * FROM CiudadesSedes " +
+                    //GenerarBarraProgreso();
+
+                    string strQuery = "SELECT * FROM CiudadesSedes " +
                         "WHERE idCiudadSede <> 5 ";
                     DataTable dt1 = cg.TraerDatos(strQuery);
 
@@ -63,10 +68,43 @@ namespace WebPage
             }
         }
 
-        private string GenerarBotonPago(string enlace)
+        private string GenerarBannerPago(int idPlan, string nombrePlan, int valorPlan, string enlacePago, string bannerWeb)
         {
-            return $"<a href=\"{enlace}\" target=\"_blank\" >" +
-                   "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\"></a>";
+            string jsName = HttpUtility.JavaScriptStringEncode(nombrePlan ?? "");
+            string jsUrl = HttpUtility.JavaScriptStringEncode(enlacePago ?? "");
+
+            return
+                $"<a href=\"#\" onclick=\"planAddToCart(['{idPlan}'], '{jsName}', {valorPlan}, '{jsUrl}'); return false;\">" +
+                    $"<section class=\"parallax_window_in\" " +
+                        $"data-parallax=\"scroll\" data-image-src=\"img/banners/{bannerWeb}\" " +
+                        "data-natural-width=\"1400\" data-natural-height=\"470\" " +
+                        "style=\"cursor:pointer;\">" +
+                    "</section>" +
+                "</a>";
+        }
+
+        private string GenerarImagenPago(int idPlan, string nombrePlan, int valorPlan, string enlacePago, string imagenMarketing)
+        {
+            string jsName = HttpUtility.JavaScriptStringEncode(nombrePlan ?? "");
+            string jsUrl = HttpUtility.JavaScriptStringEncode(enlacePago ?? "");
+
+            return
+                $"<a href=\"#\" onclick=\"planAddToCart(['{idPlan}'], '{jsName}', {valorPlan}, '{jsUrl}'); return false;\">" +
+                    $"<img src=\"img/planes/{imagenMarketing}\" alt=\"\" class=\"img-responsive\" style=\"border-radius: 15px;\" />" +
+                "</a>";
+        }
+
+        private string GenerarBotonPago(int idPlan, string nombrePlan, int valorPlan, string enlace)
+        {
+            string jsName = HttpUtility.JavaScriptStringEncode(nombrePlan ?? "");
+            string jsUrl = HttpUtility.JavaScriptStringEncode(enlace ?? "");
+
+            string jsContentId = $"['{idPlan}']";
+
+            return 
+                $"<a href=\"#\" onclick=\"planAddToCart({jsContentId}, '{jsName}', {valorPlan}, '{jsUrl}'); return false;\">" +
+                    "<img src=\"img/comprar_ahora.png\" style=\"width: 300px;\" alt=\"Comprar ahora\" />" +
+                "</a>";
         }
 
         private void GenerarBarraProgreso()
@@ -129,5 +167,16 @@ namespace WebPage
         {
             Response.Redirect("sedes?id=" + ddlSedes.SelectedItem.Value.ToString());
         }
+
+        //protected void btnRedireccionarRegresarRegister_Click(object sender, EventArgs e)
+        //{
+        //    clasesglobales cg = new clasesglobales();
+        //    DataTable dtToken = cg.ConsultarTokenPorIdPlanYIdVendedor(21, 156);
+
+        //    string token = dtToken.Rows.Count > 0 ? dtToken.Rows[0]["token"].ToString() : "";
+
+        //    Response.Redirect($"register.aspx?token={token}", false);
+        //    Context.ApplicationInstance.CompleteRequest();
+        //}
     }
 }
