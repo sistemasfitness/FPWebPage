@@ -240,11 +240,14 @@ p.lead.styled {
 	cursor: pointer;
 }
 
+b {
+	color: var(--fp-bg);
+}
+
 /*General links color*/
 a {
 	/*color: #e3ff00;*/
-	color: #e3ff00;
-	text-decoration: none;
+	color: var(--fp-bg);
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	outline: none;
@@ -252,8 +255,9 @@ a {
 
 	a:hover,
 	a:focus {
-		color: #fff;
-		text-decoration: none;
+		color: var(--fp-bg);
+		/*color: #fff;
+		text-decoration: none;*/
 		outline: none;
 	}
 
