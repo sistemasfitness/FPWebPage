@@ -45,6 +45,8 @@ Author URI: http://themeforest.net/user/Ansonika/
 
 :root {
 	/* ====== PALETA FITNESS PEOPLE (editar aquí) ====== */
+	--fpp-black: #000000;
+	--fpp-white: #ffffff;
 	--fp-lime: #E3FF00; /* Verde lima del logo */
 	--fp-lime-soft: rgba(200, 243, 29, .12);
 	--fp-bg: #0D0D0D; /* Fondo de la sección */
@@ -54,6 +56,10 @@ Author URI: http://themeforest.net/user/Ansonika/
 	--fp-white: #FFFFFF;
 	--fp-gray: #9E9E9E; /* Texto secundario */
 	--fp-gray-2: #6E6E6E; /* Precio tachado */
+
+	--fpp-input: #151515;
+	--fpp-border: #292929;
+	--fpp-muted: #777777;
 }
 
 /*-------- 1.1 Typography --------*/

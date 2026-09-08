@@ -134,7 +134,7 @@
             </div>
 
             <h2 class="fpp-radicacion__title">
-                <span>RADICA</span> TU<br>
+                <span>RADICA</span> TU<br />
                 SOLICITUD.
             </h2>
 
@@ -436,27 +436,8 @@
                         Adjuntar Soportes o Evidencias <span>(Opcional)</span>
                     </label>
 
-                    <div class="fpp-select-wrapper">
-                        <select id="respuesta" name="respuesta" required>
-                            <option value="" selected disabled>
-                                Selecciona
-                            </option>
-
-                            <option value="correo">
-                                Correo electrónico
-                            </option>
-
-                            <option value="whatsapp">
-                                WhatsApp
-                            </option>
-
-                            <option value="correo-whatsapp">
-                                Correo electrónico y WhatsApp
-                            </option>
-                        </select>
-                    </div>
+                    <input type="file" name="archivos" multiple="" />
                 </div>
-
 
                 <!-- Autorización -->
                 <div class="fpp-radicacion__privacy">
@@ -473,7 +454,7 @@
                         <span class="fpp-checkbox__text">
                             Autorizo el tratamiento de mis datos personales
                             conforme a la
-                            <a href="#" target="_blank">
+                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
                                 Política de Tratamiento de Datos
                             </a>
                             de Fitness People, únicamente para gestionar y
@@ -482,53 +463,13 @@
                     </label>
                 </div>
 
-                <div class="fpp-radicacion__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion2"
-                            name="autorizacion"
-                            required=""
-                        />
-
-                        <span class="fpp-checkbox__box"></span>
-
-                        <span class="fpp-checkbox__text">
-                            Declaro bajo la gravedad de juramento que los 
-                            datos suministrados en esta solicitud son fidedignos 
-                            y corresponden a hechos reales.
-                        </span>
-                    </label>
-                </div>
-
-
                 <!-- Botón -->
-                <button
-                    type="submit"
-                    class="fpp-radicacion__submit"
-                >
-
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-btn-pqrs-full">
                     <span>RADICAR SOLICITUD</span>
-
-                    <span class="fpp-radicacion__submit-icon">
-                        →
-                    </span>
-
                 </button>
-
-
-                <!-- Nota -->
-                <p class="fpp-radicacion__notice">
-                    Al radicar aceptas ser contactado por el medio que elegiste.
-                    Este formulario no atiende urgencias médicas.
-                </p>
-
             </form>
-
         </div>
-
     </div>
-
 </section>
 
     <uc1:footer runat="server" ID="footer" />
@@ -558,14 +499,14 @@
 /* =========================================================
    RADICACIÓN DE SOLICITUD
 ========================================================= */
-
 .fpp-radicacion {
     --fpp-lime: #dfff00;
     --fpp-black: #000000;
-    --fpp-input: #151515;
-    --fpp-border: #292929;
-    --fpp-white: #ffffff;
-    --fpp-muted: #777777;
+	--fpp-white: #ffffff;
+	--fpp-input: #151515;
+	--fpp-border: #292929;
+	--fpp-muted: #777777;
+
     width: 100%;
     background: var(--fpp-lime);
     padding: 80px 0;
@@ -587,28 +528,22 @@
     gap: 70px;
 }
 
-
 /* =========================================================
    COLUMNA IZQUIERDA
 ========================================================= */
-
 .fpp-radicacion__info {
     align-self: start;
     padding-top: 3px;
 }
 
-
 /* =========================================================
    EYEBROW
 ========================================================= */
-
 .fpp-radicacion__eyebrow {
     display: flex;
     align-items: center;
     gap: 12px;
-
     margin-bottom: 12px;
-
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 2.5px;
@@ -617,28 +552,21 @@
 
 .fpp-radicacion__eyebrow span {
     display: block;
-
     width: 40px;
     height: 2px;
-
     background: var(--fpp-black);
 }
-
 
 /* =========================================================
    TÍTULO
 ========================================================= */
-
 .fpp-radicacion__title {
     margin: 0;
-
     color: var(--fpp-black);
-
     font-size: clamp(50px, 6vw, 76px);
     font-weight: 900;
     line-height: .84;
     letter-spacing: -2px;
-
     text-transform: uppercase;
 }
 
@@ -646,28 +574,21 @@
     font-weight: 300;
 }
 
-
 /* =========================================================
    DESCRIPCIÓN
 ========================================================= */
-
 .fpp-radicacion__description {
     max-width: 520px;
-
     margin: 27px 0 26px;
-
     color: var(--fpp-black);
-
     font-size: 15px;
     font-weight: 500;
     line-height: 1.55;
 }
 
-
 /* =========================================================
    PASOS
 ========================================================= */
-
 .fpp-radicacion__steps {
     display: flex;
     flex-direction: column;
@@ -680,40 +601,29 @@
     gap: 12px;
 }
 
-
 /* Número */
-
 .fpp-radicacion__step-number {
     flex: 0 0 30px;
-
     width: 30px;
     height: 30px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: var(--fpp-black);
     color: var(--fpp-lime);
-
     font-size: 14px;
     font-weight: 800;
 }
 
-
 /* Contenido */
-
 .fpp-radicacion__step-content {
     padding-top: 1px;
 }
 
 .fpp-radicacion__step-content h3 {
     margin: 0 0 3px;
-
     color: var(--fpp-black);
-
     font-size: 13px;
     font-weight: 900;
     letter-spacing: .5px;
@@ -722,16 +632,12 @@
 
 .fpp-radicacion__step-content p {
     max-width: 440px;
-
     margin: 0;
-
     color: var(--fpp-black);
-
     font-size: 13px;
     font-weight: 500;
     line-height: 1.45;
 }
-
 
 /* =========================================================
    TARJETA DEL FORMULARIO
@@ -772,18 +678,15 @@
     color: var(--fpp-lime);
 }
 
-
 /* =========================================================
    FORMULARIO
 ========================================================= */
-
 .fpp-radicacion__form {
     width: 100%;
 }
 
 .fpp-field {
     min-width: 0;
-
     margin-bottom: 11px;
 }
 
@@ -791,23 +694,17 @@
     grid-column: 1 / -1;
 }
 
-
 /* =========================================================
    LABELS
 ========================================================= */
-
 .fpp-field label {
     display: block;
-
     margin-bottom: 6px;
-
     color: #bcbcbc;
-
     font-size: 9px;
     font-weight: 900;
     letter-spacing: 2px;
     line-height: 1.2;
-
     text-transform: uppercase;
 }
 
@@ -815,143 +712,104 @@
     color: var(--fpp-lime);
 }
 
-
 /* =========================================================
    INPUTS / SELECT / TEXTAREA
 ========================================================= */
-
 .fpp-field input,
 .fpp-field select,
-.fpp-field textarea {
+.fpp-field textarea, 
+.fpp-field file {
     width: 100%;
-
     box-sizing: border-box;
-
     border: 1px solid var(--fpp-border);
     border-radius: 10px;
-
     outline: none;
-
     background: var(--fpp-input);
     color: var(--fpp-white);
-
     font-family: inherit;
     font-size: 13px;
-
     transition:
         border-color .2s ease,
         box-shadow .2s ease;
 }
 
-
 /* Input */
-
 .fpp-field input {
     height: 42px;
     padding: 0 15px;
 }
 
-
 /* Select */
-
 .fpp-select-wrapper {
     position: relative;
 }
 
 .fpp-field select {
     height: 42px;
-
     padding: 0 40px 0 15px;
-
     appearance: none;
     -webkit-appearance: none;
-
     cursor: pointer;
 }
 
 .fpp-select-wrapper::after {
     content: "";
-
     position: absolute;
-
     top: 50%;
     right: 14px;
-
     width: 0;
     height: 0;
-
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 5px solid var(--fpp-lime);
-
     transform: translateY(-25%);
-
     pointer-events: none;
 }
 
-
 /* Textarea */
-
 .fpp-field textarea {
     min-height: 105px;
-
     padding: 14px 15px;
-
     resize: vertical;
-
     line-height: 1.4;
 }
 
-
 /* Placeholder */
-
 .fpp-field input::placeholder,
 .fpp-field textarea::placeholder {
     color: #626262;
     opacity: 1;
 }
 
-
 /* Focus */
-
 .fpp-field input:focus,
 .fpp-field select:focus,
 .fpp-field textarea:focus {
     border-color: var(--fpp-lime);
-
     box-shadow: 0 0 0 1px var(--fpp-lime);
 }
-
 
 /* =========================================================
    CAMPOS EN DOS COLUMNAS
 ========================================================= */
-
 .fpp-radicacion__form {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     column-gap: 11px;
 }
 
-
 /* El header ocupa todo */
-
 .fpp-radicacion__form-header {
     grid-column: 1 / -1;
 }
 
-
 /* =========================================================
    CONTADOR
 ========================================================= */
-
 .fpp-field__label-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 6px;
 }
 
@@ -961,20 +819,16 @@
 
 .fpp-counter {
     color: #777;
-
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
-
 /* =========================================================
    CHECKBOX / PRIVACIDAD
 ========================================================= */
-
 .fpp-radicacion__privacy {
     grid-column: 1 / -1;
-
     margin-top: 1px;
     margin-bottom: 13px;
 }
@@ -982,53 +836,37 @@
 .fpp-checkbox {
     display: flex;
     align-items: flex-start;
-
     gap: 10px;
-
     cursor: pointer;
 }
 
-
 /* Ocultar checkbox nativo */
-
 .fpp-checkbox input {
     position: absolute;
-
     width: 1px;
     height: 1px;
-
     opacity: 0;
 }
 
-
 /* Checkbox visual */
-
 .fpp-checkbox__box {
     flex: 0 0 19px;
-
     width: 19px;
     height: 19px;
-
     margin-top: 1px;
-
     border: 1px solid var(--fpp-lime);
     border-radius: 5px;
-
     box-sizing: border-box;
-
     position: relative;
 }
 
-
 /* Check */
-
 .fpp-checkbox input:checked + .fpp-checkbox__box {
     background: var(--fpp-lime);
 }
 
 .fpp-checkbox input:checked + .fpp-checkbox__box::after {
     content: "";
-
     position: absolute;
 
     width: 5px;
@@ -1062,61 +900,9 @@
 }
 
 
-/* =========================================================
-   BOTÓN
-========================================================= */
 
-.fpp-radicacion__submit {
+.fpp-btn-pqrs-full {
     grid-column: 1 / -1;
-
-    width: 100%;
-    height: 53px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    border: none;
-    border-radius: 28px;
-
-    background: var(--fpp-lime);
-    color: var(--fpp-black);
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-.fpp-radicacion__submit:hover {
-    transform: translateY(-2px);
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
-}
-
-.fpp-radicacion__submit-icon {
-    width: 23px;
-    height: 23px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--fpp-black);
-    color: var(--fpp-lime);
-
-    font-size: 15px;
-    line-height: 1;
 }
 
 
