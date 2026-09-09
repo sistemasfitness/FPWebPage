@@ -124,91 +124,200 @@
     <!-- ================= GESTIÓN DE PQRS ================= -->
 <section class="fpp-radicacion margin-top-header" id="radicacion">
     <div class="fpp-radicacion__container">
-        <!-- =========================================
-             COLUMNA IZQUIERDA
-        ========================================== -->
-        <div class="fpp-radicacion__info">
-            <div class="fpp-radicacion__eyebrow">
-                <span></span>
-                <strong>FORMULARIO OFICIAL · F-CG-01</strong>
+        <!-- ================= ENCABEZADO ================= -->
+        <div class="fpp-head">
+            <p class="fpp-kicker">PQRS Fitness People</p>
+
+            <div class="fpp-pqrs-header">
+                <h2 class="fpp-pqrs-header-title">Radica <span>tu solicitud</span></h2>
+
+                <div>
+                    <button></button>
+                </div>
+
+                <p class="fpp-pqrs-header-text">
+                    En Fitness People, tu opinión es importante para nosotros. Este espacio está creado para que puedas compartir tus <b>peticiones, quejas, reclamos o sugerencias</b>, y así ayudarnos a seguir mejorando tu experiencia.
+                    <br />
+                    Cuéntanos qué necesitas. Nuestro equipo está listo para escucharte, orientarte y brindarte una respuesta oportuna.
+                </p>
             </div>
 
-            <h2 class="fpp-radicacion__title">
-                <span>RADICA</span> TU<br />
-                SOLICITUD.
-            </h2>
+            <div class="fpp-pqrs-header">
+                <h2 class="fpp-pqrs-header-title">Consulta el estado de <span>tu solicitud</span></h2>
 
-            <p class="fpp-radicacion__description">
-                Diligencia el formulario y recibe de inmediato tu número de
-                radicado. Con ese número tu caso queda registrado, se asigna
-                a un responsable y se le hace seguimiento hasta el cierre.
-            </p>
-
-            <!-- PASOS -->
-            <div class="fpp-radicacion__steps">
-                <!-- Paso 1 -->
-                <div class="fpp-radicacion__step">
-                    <div class="fpp-radicacion__step-number">
-                        1
-                    </div>
-
-                    <div class="fpp-radicacion__step-content">
-                        <h3>DILIGENCIAS EL FORMULARIO</h3>
-
-                        <p>
-                            Toma menos de tres minutos. Entre más detalle des,
-                            más rápido resolvemos.
-                        </p>
-                    </div>
-                </div>
-
-
-                <!-- Paso 2 -->
-                <div class="fpp-radicacion__step">
-
-                    <div class="fpp-radicacion__step-number">
-                        2
-                    </div>
-
-                    <div class="fpp-radicacion__step-content">
-                        <h3>RECIBES TU RADICADO</h3>
-
-                        <p>
-                            Te llega por correo o WhatsApp, según el medio
-                            que elijas.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <!-- Paso 3 -->
-                <div class="fpp-radicacion__step">
-
-                    <div class="fpp-radicacion__step-number">
-                        3
-                    </div>
-
-                    <div class="fpp-radicacion__step-content">
-                        <h3>TE RESPONDEMOS</h3>
-
-                        <p>
-                            Máximo 15 días hábiles. Si necesitamos más tiempo,
-                            te avisamos antes del vencimiento.
-                        </p>
-                    </div>
-
-                </div>
-
+                <p class="fpp-pqrs-header-text">
+                    ¿Ya realizaste una solicitud? Consulta su estado y conoce en qué etapa se encuentra.
+                </p>
             </div>
 
+            <div class="fpp-pqrs-header">
+                <h2 class="fpp-pqrs-header-title">Adjunta archivos a <span>tu solicitud</span></h2>
+
+                <p class="fpp-pqrs-header-text">
+                    Si necesitas complementar la información de tu solicitud, puedes adjuntar documentos o archivos que nos ayuden a entender mejor tu caso y brindarte una respuesta adecuada.
+                </p>
+            </div>
         </div>
 
-
-        <!-- =========================================
-             COLUMNA DERECHA - FORMULARIO
-        ========================================== -->
+        <!-- CARGA DE ARCHIVOS - RADICACIÓN -->
         <div class="fpp-radicacion__form-wrapper">
+            <form class="fpp-radicacion__form">
+                <div class="fpp-radicacion__form-header">
+                    <h2>CARGAR ARCHIVOS A SOLICITUD</h2>
+                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                </div>
+
+                <!-- Código de Radicado -->
+                <div class="fpp-field fpp-field--full">
+                    <label for="cod-segui">
+                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cod-segui"
+                        name="cod-segui"
+                        placeholder="FP-PQRS-01234567-ABCD"
+                        required=""
+                    />
+                </div>
+
+                <!-- Archivos de soporte -->
+                <div class="fpp-field fpp-field--full fpp-file-upload">
+                    <label for="archivos">
+                        Adjuntar Soportes o Evidencias
+                        <span class="fpp-file-upload__optional">*</span>
+                    </label>
+
+                    <!-- Input real -->
+                    <input
+                        type="file"
+                        id="archivos"
+                        name="archivos"
+                        class="fpp-file-upload__input"
+                        multiple=""
+                        accept=".pdf,.jpg,.jpeg,.png"
+                    />
+
+                    <!-- Zona de carga -->
+                    <label
+                        for="archivos"
+                        class="fpp-file-upload__dropzone"
+                        id="fppFileDropzone"
+                    >
+
+                        <!-- Icono -->
+                        <div class="fpp-file-upload__icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <!-- Texto principal -->
+                        <div class="fpp-file-upload__title">
+                            Arrastra tus archivos aquí o
+                            <span>examina</span>
+                        </div>
+
+                        <!-- Información -->
+                        <div class="fpp-file-upload__info">
+                            Formatos admitidos: PDF, JPG, PNG
+                            (Hasta 3 archivos, máx 10 MB total)
+                        </div>
+                    </label>
+
+                    <!-- Archivos seleccionados -->
+                    <div
+                        class="fpp-file-upload__files"
+                        id="fppFileList"
+                    ></div>
+                </div>
+
+                <!-- Autorización -->
+                <div class="fpp-radicacion__privacy">
+                    <label class="fpp-checkbox">
+                        <input
+                            type="checkbox"
+                            id="autorizacion1"
+                            name="autorizacion"
+                            required=""
+                        />
+
+                        <span class="fpp-checkbox__box"></span>
+
+                        <span class="fpp-checkbox__text">
+                            Autorizo el tratamiento de mis datos personales
+                            conforme a la
+                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                Política de Tratamiento de Datos
+                            </a>
+                            de Fitness People, únicamente para gestionar y
+                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Botón -->
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
+                    <span>BUSCAR</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- CONSULTA - RADICACIÓN -->
+        <%--<div class="fpp-radicacion__form-wrapper">
+            <form class="fpp-radicacion__form">
+                <div class="fpp-radicacion__form-header">
+                    <h2>CONSULTA SOLICITUD</h2>
+                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                </div>
+
+                <!-- Código de Radicado -->
+                <div class="fpp-field fpp-field--full">
+                    <label for="cod-segui">
+                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cod-segui"
+                        name="cod-segui"
+                        placeholder="FP-PQRS-01234567-ABCD"
+                        required=""
+                    />
+                </div>
+
+                <!-- Autorización -->
+                <div class="fpp-radicacion__privacy">
+                    <label class="fpp-checkbox">
+                        <input
+                            type="checkbox"
+                            id="autorizacion1"
+                            name="autorizacion"
+                            required=""
+                        />
+
+                        <span class="fpp-checkbox__box"></span>
+
+                        <span class="fpp-checkbox__text">
+                            Autorizo el tratamiento de mis datos personales
+                            conforme a la
+                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                Política de Tratamiento de Datos
+                            </a>
+                            de Fitness People, únicamente para gestionar y
+                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Botón -->
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
+                    <span>BUSCAR</span>
+                </button>
+            </form>
+        </div>--%>
+
+        <!-- CREACIÓN - RADICACIÓN -->
+        <%--<div class="fpp-radicacion__form-wrapper">
             <form class="fpp-radicacion__form">
                 <div class="fpp-radicacion__form-header">
                     <h2>NUEVA SOLICITUD</h2>
@@ -218,7 +327,7 @@
                 <!-- Nombres -->
                 <div class="fpp-field">
                     <label for="nombre">
-                        NOMBRE<span>*</span>
+                        NOMBRE <span>*</span>
                     </label>
 
                     <input
@@ -233,7 +342,7 @@
                 <!-- Apellidos -->
                 <div class="fpp-field">
                     <label for="nombre">
-                        APELLIDOS<span>*</span>
+                        APELLIDOS <span>*</span>
                     </label>
 
                     <input
@@ -322,14 +431,14 @@
                 </div>
 
                 <!-- Tipo de solicitud -->
-                <div class="fpp-field fpp-field--full">
+                <div class="fpp-field">
                     <label for="tipoSolicitud">
                         TIPO DE SOLICITUD <span>*</span>
                     </label>
 
                     <div class="fpp-select-wrapper">
-                        <select id="tipoSolicitud" name="tipoSolicitud" required>
-                            <option value="" selected disabled>
+                        <select id="tipoSolicitud" name="tipoSolicitud" required="">
+                            <option value="" selected="" disabled="">
                                 Selecciona una opción
                             </option>
 
@@ -376,24 +485,6 @@
                     </div>
                 </div>
 
-                <!-- Vínculo -->
-                <div class="fpp-field">
-                    <label for="vinculo">
-                        TU VÍNCULO CON FP <span>*</span>
-                    </label>
-
-                    <div class="fpp-select-wrapper">
-                        <select id="vinculo" name="vinculo" required="">
-                            <option value="">Selecciona</option>
-                            <option>Usuario con membresía activa</option>
-                            <option>Usuario con membresía inactiva</option>
-                            <option>Visitante o interesado</option>
-                            <option>Empresa en convenio</option>
-                            <option>Otro</option>
-                        </select>
-                    </div>
-                </div>
-
                 <!-- Asunto -->
                 <div class="fpp-field fpp-field--full">
                     <label for="asunto">
@@ -430,13 +521,53 @@
                     ></textarea>
                 </div>
 
-                <!-- Archivos de soporte || CORREGIR -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="respuesta">
-                        Adjuntar Soportes o Evidencias <span>(Opcional)</span>
+                <!-- Archivos de soporte -->
+                <div class="fpp-field fpp-field--full fpp-file-upload">
+                    <label for="archivos">
+                        Adjuntar Soportes o Evidencias
+                        <span class="fpp-file-upload__optional">(Opcional)</span>
                     </label>
 
-                    <input type="file" name="archivos" multiple="" />
+                    <!-- Input real -->
+                    <input
+                        type="file"
+                        id="archivos"
+                        name="archivos"
+                        class="fpp-file-upload__input"
+                        multiple=""
+                        accept=".pdf,.jpg,.jpeg,.png"
+                    />
+
+                    <!-- Zona de carga -->
+                    <label
+                        for="archivos"
+                        class="fpp-file-upload__dropzone"
+                        id="fppFileDropzone"
+                    >
+
+                        <!-- Icono -->
+                        <div class="fpp-file-upload__icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <!-- Texto principal -->
+                        <div class="fpp-file-upload__title">
+                            Arrastra tus archivos aquí o
+                            <span>examina</span>
+                        </div>
+
+                        <!-- Información -->
+                        <div class="fpp-file-upload__info">
+                            Formatos admitidos: PDF, JPG, PNG
+                            (Hasta 3 archivos, máx 10 MB total)
+                        </div>
+                    </label>
+
+                    <!-- Archivos seleccionados -->
+                    <div
+                        class="fpp-file-upload__files"
+                        id="fppFileList"
+                    ></div>
                 </div>
 
                 <!-- Autorización -->
@@ -458,17 +589,17 @@
                                 Política de Tratamiento de Datos
                             </a>
                             de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012).
+                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
                         </span>
                     </label>
                 </div>
 
                 <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-btn-pqrs-full">
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
                     <span>RADICAR SOLICITUD</span>
                 </button>
             </form>
-        </div>
+        </div>--%>
     </div>
 </section>
 
@@ -508,7 +639,7 @@
 	--fpp-muted: #777777;
 
     width: 100%;
-    background: var(--fpp-lime);
+    background: var(--fpp-black);
     padding: 80px 0;
     box-sizing: border-box;
     font-family: inherit;
@@ -519,125 +650,42 @@
 ========================================================= */
 .fpp-radicacion__container {
     width: 100%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: .95fr 1.05fr;
-    gap: 70px;
-}
-
-/* =========================================================
-   COLUMNA IZQUIERDA
-========================================================= */
-.fpp-radicacion__info {
-    align-self: start;
-    padding-top: 3px;
-}
-
-/* =========================================================
-   EYEBROW
-========================================================= */
-.fpp-radicacion__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-    line-height: 1;
-}
-
-.fpp-radicacion__eyebrow span {
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: var(--fpp-black);
-}
-
-/* =========================================================
-   TÍTULO
-========================================================= */
-.fpp-radicacion__title {
-    margin: 0;
-    color: var(--fpp-black);
-    font-size: clamp(50px, 6vw, 76px);
-    font-weight: 900;
-    line-height: .84;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-}
-
-.fpp-radicacion__title span {
-    font-weight: 300;
-}
-
-/* =========================================================
-   DESCRIPCIÓN
-========================================================= */
-.fpp-radicacion__description {
-    max-width: 520px;
-    margin: 27px 0 26px;
-    color: var(--fpp-black);
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.55;
-}
-
-/* =========================================================
-   PASOS
-========================================================= */
-.fpp-radicacion__steps {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-}
-
-.fpp-radicacion__step {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-/* Número */
-.fpp-radicacion__step-number {
-    flex: 0 0 30px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: var(--fpp-black);
-    color: var(--fpp-lime);
-    font-size: 14px;
-    font-weight: 800;
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    gap: 50px;
 }
 
-/* Contenido */
-.fpp-radicacion__step-content {
-    padding-top: 1px;
+/* =========================================================
+   HEADER PQRS
+========================================================= */
+.fpp-head {
+    margin-bottom: 0;
 }
 
-.fpp-radicacion__step-content h3 {
-    margin: 0 0 3px;
-    color: var(--fpp-black);
-    font-size: 13px;
+.fpp-pqrs-header-title {
+    margin-top: 20px;
+    font-size: clamp(30px, 5vw, 40px) !important;
+    text-transform: uppercase;
     font-weight: 900;
-    letter-spacing: .5px;
-    line-height: 1.2;
+    color: var(--fpp-lime);
 }
 
-.fpp-radicacion__step-content p {
-    max-width: 440px;
-    margin: 0;
-    color: var(--fpp-black);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.45;
+.fpp-pqrs-header-text {
+    font-size: 15px;
+    color: var(--fpp-white);
 }
+
+@media (max-width: 600px) {
+    .fpp-pqrs-header-title {
+        text-align: center;
+    }
+}
+    
 
 /* =========================================================
    TARJETA DEL FORMULARIO
@@ -646,7 +694,8 @@
     width: 100%;
     padding: 30px 30px 27px;
     box-sizing: border-box;
-    background: var(--fpp-black);
+    background: var(--fp-card);
+    border: 1.5px solid var(--fp-lime);
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, .10);
 }
@@ -687,7 +736,7 @@
 
 .fpp-field {
     min-width: 0;
-    margin-bottom: 11px;
+    margin-bottom: 20px;
 }
 
 .fpp-field--full {
@@ -699,9 +748,10 @@
 ========================================================= */
 .fpp-field label {
     display: block;
+    justify-items: center;
     margin-bottom: 6px;
     color: #bcbcbc;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 900;
     letter-spacing: 2px;
     line-height: 1.2;
@@ -727,7 +777,7 @@
     background: var(--fpp-input);
     color: var(--fpp-white);
     font-family: inherit;
-    font-size: 13px;
+    font-weight: 500;
     transition:
         border-color .2s ease,
         box-shadow .2s ease;
@@ -868,75 +918,350 @@
 .fpp-checkbox input:checked + .fpp-checkbox__box::after {
     content: "";
     position: absolute;
-
     width: 5px;
     height: 9px;
-
     top: 3px;
     left: 6px;
-
     border-right: 2px solid var(--fpp-black);
     border-bottom: 2px solid var(--fpp-black);
-
     transform: rotate(45deg);
 }
 
-
 /* Texto */
-
 .fpp-checkbox__text {
     color: #dedede;
-
     font-size: 10px;
     line-height: 1.4;
 }
 
 .fpp-checkbox__text a {
     color: var(--fpp-lime);
-
     font-weight: 800;
-
     text-decoration: underline;
 }
 
 
+/* =========================================================
+   ARCHIVOS DE SOPORTE
+========================================================= */
 
-.fpp-btn-pqrs-full {
-    grid-column: 1 / -1;
+.fpp-file-upload {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* Label */
+
+.fpp-file-upload > label:first-child {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #bcbcbc;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.2;
+
+    text-transform: uppercase;
+}
+
+.fpp-file-upload__optional {
+    color: #777;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 
 /* =========================================================
-   AVISO INFERIOR
+   INPUT REAL
 ========================================================= */
 
-.fpp-radicacion__notice {
-    grid-column: 1 / -1;
+.fpp-field .fpp-file-upload__input {
+    display: none;
+}
 
-    margin: 11px 0 0;
 
-    color: #555;
+/* =========================================================
+   DROPZONE
+========================================================= */
 
-    font-size: 9px;
-    line-height: 1.35;
+.fpp-file-upload__dropzone {
+    width: 100%;
+    min-height: 155px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: #181818;
+
+    border: 1px dashed #292929;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        background-color .2s ease,
+        transform .2s ease;
+}
+
+
+/* Hover */
+
+.fpp-file-upload__dropzone:hover {
+    background: #1c1c1c;
+    border-color: #dfff00;
+}
+
+
+/* Cuando se arrastran archivos */
+
+.fpp-file-upload__dropzone.is-dragover {
+    background: #1d1d1d;
+    border-color: #dfff00;
+
+    transform: scale(1.01);
+}
+
+
+/* =========================================================
+   ICONO
+========================================================= */
+
+.fpp-file-upload__icon {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #202020;
+
+    color: #dfff00;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   TEXTO PRINCIPAL
+========================================================= */
+
+.fpp-file-upload__title {
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    text-align: center;
+}
+
+.fpp-file-upload__title span {
+    color: #dfff00;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.fpp-file-upload__info {
+    margin-top: 8px;
+
+    color: #bcbcbc;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: .3px;
+
+    line-height: 1.4;
 
     text-align: center;
 }
 
 
 /* =========================================================
-   TABLET
+   LISTA DE ARCHIVOS
 ========================================================= */
 
-@media (max-width: 1000px) {
+.fpp-file-upload__files {
+    width: 100%;
 
+    margin-top: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+/* Archivo */
+
+.fpp-file-upload__file {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 8px 10px;
+
+    background: #181818;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+}
+
+
+/* Información del archivo */
+
+.fpp-file-upload__file-info {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* Icono archivo */
+
+.fpp-file-upload__file-icon {
+    flex: 0 0 auto;
+
+    color: #dfff00;
+
+    font-size: 13px;
+}
+
+
+/* Nombre */
+
+.fpp-file-upload__file-name {
+    min-width: 0;
+
+    overflow: hidden;
+
+    color: #d0d0d0;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* Tamaño */
+
+.fpp-file-upload__file-size {
+    flex: 0 0 auto;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   MENSAJE DE ERROR
+========================================================= */
+
+.fpp-file-upload__error {
+    margin-top: 7px;
+
+    color: #ff6b6b;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.fpp-file-upload,
+.fpp-file-upload__dropzone,
+.fpp-file-upload__files,
+.fpp-file-upload__file {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+    .fpp-file-upload {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .fpp-file-upload__dropzone {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .fpp-file-upload__dropzone {
+        min-height: 145px;
+
+        padding: 18px 12px;
+    }
+
+    .fpp-file-upload__icon {
+        width: 44px;
+        height: 44px;
+
+        margin-bottom: 10px;
+
+        font-size: 18px;
+    }
+
+    .fpp-file-upload__title {
+        font-size: 14px;
+    }
+
+    .fpp-file-upload__info {
+        max-width: 280px;
+
+        font-size: 9px;
+    }
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+@media (max-width: 1000px) {
     .fpp-radicacion {
         padding: 35px 25px;
     }
 
     .fpp-radicacion__container {
         grid-template-columns: 1fr;
-
         gap: 45px;
     }
 
@@ -946,19 +1271,14 @@
 
     .fpp-radicacion__form-wrapper {
         max-width: 650px;
-
         margin: 0 auto;
     }
-
 }
-
 
 /* =========================================================
    MÓVIL
 ========================================================= */
-
 @media (max-width: 600px) {
-
     .fpp-radicacion {
         width: 100%;
         box-sizing: border-box;
@@ -970,11 +1290,9 @@
         width: 100%;
     }
 
-
     /* -----------------------------------------
        Información
     ------------------------------------------ */
-
     .fpp-radicacion__eyebrow {
         font-size: 9px;
         letter-spacing: 1.8px;
@@ -994,17 +1312,13 @@
         font-size: 14px;
     }
 
-
     /* -----------------------------------------
        Pasos
     ------------------------------------------ */
-
     .fpp-radicacion__step-number {
         flex-basis: 28px;
-
         width: 28px;
         height: 28px;
-
         font-size: 12px;
     }
 
@@ -1016,14 +1330,11 @@
         font-size: 12px;
     }
 
-
     /* -----------------------------------------
        Formulario
     ------------------------------------------ */
-
     .fpp-radicacion__form-wrapper {
         padding: 25px 18px 22px;
-
         border-radius: 17px;
     }
 
@@ -1056,11 +1367,242 @@
     .fpp-checkbox__text {
         font-size: 9px;
     }
-
 }
 
-
     </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const input = document.getElementById("archivos");
+        const dropzone = document.getElementById("fppFileDropzone");
+        const fileList = document.getElementById("fppFileList");
+
+        const MAX_FILES = 3;
+        const MAX_TOTAL_SIZE = 10 * 1024 * 1024; // 10 MB
+
+        const ALLOWED_TYPES = [
+            "application/pdf",
+            "image/jpeg",
+            "image/png"
+        ];
+
+
+        /* =====================================================
+           SELECCIÓN DE ARCHIVOS
+        ===================================================== */
+
+        input.addEventListener("change", function () {
+
+            processFiles(Array.from(input.files));
+
+        });
+
+
+        /* =====================================================
+           DRAG & DROP
+        ===================================================== */
+
+        dropzone.addEventListener("dragover", function (event) {
+
+            event.preventDefault();
+
+            dropzone.classList.add("is-dragover");
+
+        });
+
+
+        dropzone.addEventListener("dragleave", function () {
+
+            dropzone.classList.remove("is-dragover");
+
+        });
+
+
+        dropzone.addEventListener("drop", function (event) {
+
+            event.preventDefault();
+
+            dropzone.classList.remove("is-dragover");
+
+            const files = Array.from(event.dataTransfer.files);
+
+            processFiles(files);
+
+        });
+
+
+        /* =====================================================
+           PROCESAR ARCHIVOS
+        ===================================================== */
+
+        function processFiles(files) {
+
+            clearMessages();
+
+            if (!files.length) {
+                return;
+            }
+
+
+            /* Máximo 3 archivos */
+
+            if (files.length > MAX_FILES) {
+
+                showError(
+                    "Solo puedes adjuntar un máximo de 3 archivos."
+                );
+
+                input.value = "";
+
+                return;
+            }
+
+
+            /* Validar tipos */
+
+            const invalidType = files.find(function (file) {
+
+                return !ALLOWED_TYPES.includes(file.type);
+
+            });
+
+            if (invalidType) {
+
+                showError(
+                    "Solo se permiten archivos PDF, JPG y PNG."
+                );
+
+                input.value = "";
+
+                return;
+            }
+
+
+            /* Tamaño total */
+
+            const totalSize = files.reduce(function (total, file) {
+
+                return total + file.size;
+
+            }, 0);
+
+
+            if (totalSize > MAX_TOTAL_SIZE) {
+
+                showError(
+                    "El tamaño total de los archivos no puede superar los 10 MB."
+                );
+
+                input.value = "";
+
+                return;
+            }
+
+
+            /* Mostrar archivos */
+
+            renderFiles(files);
+
+        }
+
+
+        /* =====================================================
+           MOSTRAR ARCHIVOS
+        ===================================================== */
+
+        function renderFiles(files) {
+
+            fileList.innerHTML = "";
+
+            files.forEach(function (file) {
+
+                const item = document.createElement("div");
+
+                item.className = "fpp-file-upload__file";
+
+                item.innerHTML = `
+                    <div class="fpp-file-upload__file-info">
+
+                        <i class="fa-regular fa-file fpp-file-upload__file-icon"></i>
+
+                        <span class="fpp-file-upload__file-name">
+                            ${escapeHtml(file.name)}
+                        </span>
+
+                    </div>
+
+                    <span class="fpp-file-upload__file-size">
+                        ${formatFileSize(file.size)}
+                    </span>
+                `;
+
+                fileList.appendChild(item);
+
+            });
+
+        }
+
+
+        /* =====================================================
+           MENSAJES
+        ===================================================== */
+
+        function showError(message) {
+
+            clearMessages();
+
+            const error = document.createElement("div");
+
+            error.className = "fpp-file-upload__error";
+
+            error.textContent = message;
+
+            fileList.appendChild(error);
+
+        }
+
+
+        function clearMessages() {
+
+            fileList.innerHTML = "";
+
+        }
+
+
+        /* =====================================================
+           FORMATO TAMAÑO
+        ===================================================== */
+
+        function formatFileSize(bytes) {
+
+            if (bytes < 1024 * 1024) {
+
+                return Math.round(bytes / 1024) + " KB";
+
+            }
+
+            return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+
+        }
+
+
+        /* =====================================================
+           SEGURIDAD PARA MOSTRAR NOMBRE
+        ===================================================== */
+
+        function escapeHtml(text) {
+
+            const div = document.createElement("div");
+
+            div.textContent = text;
+
+            return div.innerHTML;
+
+        }
+
+    });
+</script>
 
 
     <noscript>
