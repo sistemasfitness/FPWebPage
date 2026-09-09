@@ -125,15 +125,17 @@
 <section class="fpp-radicacion margin-top-header" id="radicacion">
     <div class="fpp-radicacion__container">
         <!-- ================= ENCABEZADO ================= -->
-        <div class="fpp-head">
+        <div class="fpp-head fpp-head-pqrs">
             <p class="fpp-kicker">PQRS Fitness People</p>
 
-            <div class="fpp-pqrs-header">
-                <h2 class="fpp-pqrs-header-title">Radica <span>tu solicitud</span></h2>
+            <div class="fpp-pqrs-btns">
+                <button type="button" class="fpp-btn-ghost fpp-btn--solid" data-tab="radicar">Radicar</button>
+                <button type="button" class="fpp-btn-ghost" data-tab="consultar">Consultar</button>
+                <button type="button" class="fpp-btn-ghost" data-tab="adjuntar">Adjuntar Archivos</button>
+            </div>
 
-                <div>
-                    <button></button>
-                </div>
+            <div class="fpp-pqrs-header fpp-pqrs-content is-active" data-content="radicar">
+                <h2 class="fpp-pqrs-header-title">Radica <span>tu solicitud</span></h2>
 
                 <p class="fpp-pqrs-header-text">
                     En Fitness People, tu opinión es importante para nosotros. Este espacio está creado para que puedas compartir tus <b>peticiones, quejas, reclamos o sugerencias</b>, y así ayudarnos a seguir mejorando tu experiencia.
@@ -142,7 +144,7 @@
                 </p>
             </div>
 
-            <div class="fpp-pqrs-header">
+            <div class="fpp-pqrs-header fpp-pqrs-content" data-content="consultar">
                 <h2 class="fpp-pqrs-header-title">Consulta el estado de <span>tu solicitud</span></h2>
 
                 <p class="fpp-pqrs-header-text">
@@ -150,7 +152,7 @@
                 </p>
             </div>
 
-            <div class="fpp-pqrs-header">
+            <div class="fpp-pqrs-header fpp-pqrs-content" data-content="adjuntar">
                 <h2 class="fpp-pqrs-header-title">Adjunta archivos a <span>tu solicitud</span></h2>
 
                 <p class="fpp-pqrs-header-text">
@@ -159,165 +161,8 @@
             </div>
         </div>
 
-        <!-- CARGA DE ARCHIVOS - RADICACIÓN -->
-        <div class="fpp-radicacion__form-wrapper">
-            <form class="fpp-radicacion__form">
-                <div class="fpp-radicacion__form-header">
-                    <h2>CARGAR ARCHIVOS A SOLICITUD</h2>
-                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
-                </div>
-
-                <!-- Código de Radicado -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="cod-segui">
-                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cod-segui"
-                        name="cod-segui"
-                        placeholder="FP-PQRS-01234567-ABCD"
-                        required=""
-                    />
-                </div>
-
-                <!-- Archivos de soporte -->
-                <div class="fpp-field fpp-field--full fpp-file-upload">
-                    <label for="archivos">
-                        Adjuntar Soportes o Evidencias
-                        <span class="fpp-file-upload__optional">*</span>
-                    </label>
-
-                    <!-- Input real -->
-                    <input
-                        type="file"
-                        id="archivos"
-                        name="archivos"
-                        class="fpp-file-upload__input"
-                        multiple=""
-                        accept=".pdf,.jpg,.jpeg,.png"
-                    />
-
-                    <!-- Zona de carga -->
-                    <label
-                        for="archivos"
-                        class="fpp-file-upload__dropzone"
-                        id="fppFileDropzone"
-                    >
-
-                        <!-- Icono -->
-                        <div class="fpp-file-upload__icon">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                        </div>
-
-                        <!-- Texto principal -->
-                        <div class="fpp-file-upload__title">
-                            Arrastra tus archivos aquí o
-                            <span>examina</span>
-                        </div>
-
-                        <!-- Información -->
-                        <div class="fpp-file-upload__info">
-                            Formatos admitidos: PDF, JPG, PNG
-                            (Hasta 3 archivos, máx 10 MB total)
-                        </div>
-                    </label>
-
-                    <!-- Archivos seleccionados -->
-                    <div
-                        class="fpp-file-upload__files"
-                        id="fppFileList"
-                    ></div>
-                </div>
-
-                <!-- Autorización -->
-                <div class="fpp-radicacion__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion1"
-                            name="autorizacion"
-                            required=""
-                        />
-
-                        <span class="fpp-checkbox__box"></span>
-
-                        <span class="fpp-checkbox__text">
-                            Autorizo el tratamiento de mis datos personales
-                            conforme a la
-                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
-                                Política de Tratamiento de Datos
-                            </a>
-                            de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
-                    <span>BUSCAR</span>
-                </button>
-            </form>
-        </div>
-
-        <!-- CONSULTA - RADICACIÓN -->
-        <%--<div class="fpp-radicacion__form-wrapper">
-            <form class="fpp-radicacion__form">
-                <div class="fpp-radicacion__form-header">
-                    <h2>CONSULTA SOLICITUD</h2>
-                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
-                </div>
-
-                <!-- Código de Radicado -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="cod-segui">
-                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cod-segui"
-                        name="cod-segui"
-                        placeholder="FP-PQRS-01234567-ABCD"
-                        required=""
-                    />
-                </div>
-
-                <!-- Autorización -->
-                <div class="fpp-radicacion__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion1"
-                            name="autorizacion"
-                            required=""
-                        />
-
-                        <span class="fpp-checkbox__box"></span>
-
-                        <span class="fpp-checkbox__text">
-                            Autorizo el tratamiento de mis datos personales
-                            conforme a la
-                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
-                                Política de Tratamiento de Datos
-                            </a>
-                            de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
-                    <span>BUSCAR</span>
-                </button>
-            </form>
-        </div>--%>
-
         <!-- CREACIÓN - RADICACIÓN -->
-        <%--<div class="fpp-radicacion__form-wrapper">
+        <div class="fpp-radicacion__form-wrapper fpp-pqrs-content is-active" data-content="radicar">
             <form class="fpp-radicacion__form">
                 <div class="fpp-radicacion__form-header">
                     <h2>NUEVA SOLICITUD</h2>
@@ -599,7 +444,165 @@
                     <span>RADICAR SOLICITUD</span>
                 </button>
             </form>
-        </div>--%>
+        </div>
+
+        <!-- CONSULTA - RADICACIÓN -->
+        <div class="fpp-radicacion__form-wrapper fpp-pqrs-content" data-content="consultar">
+            <form class="fpp-radicacion__form">
+                <div class="fpp-radicacion__form-header">
+                    <h2>CONSULTA SOLICITUD</h2>
+                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                </div>
+
+                <!-- Código de Radicado -->
+                <div class="fpp-field fpp-field--full">
+                    <label for="cod-segui">
+                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cod-segui"
+                        name="cod-segui"
+                        placeholder="FP-PQRS-01234567-ABCD"
+                        required=""
+                    />
+                </div>
+
+                <!-- Autorización -->
+                <div class="fpp-radicacion__privacy">
+                    <label class="fpp-checkbox">
+                        <input
+                            type="checkbox"
+                            id="autorizacion1"
+                            name="autorizacion"
+                            required=""
+                        />
+
+                        <span class="fpp-checkbox__box"></span>
+
+                        <span class="fpp-checkbox__text">
+                            Autorizo el tratamiento de mis datos personales
+                            conforme a la
+                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                Política de Tratamiento de Datos
+                            </a>
+                            de Fitness People, únicamente para gestionar y
+                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Botón -->
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
+                    <span>BUSCAR</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- CARGA DE ARCHIVOS - RADICACIÓN -->
+        <div class="fpp-radicacion__form-wrapper fpp-pqrs-content" data-content="adjuntar">
+            <form class="fpp-radicacion__form">
+                <div class="fpp-radicacion__form-header">
+                    <h2>CARGAR ARCHIVOS A SOLICITUD</h2>
+                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                </div>
+
+                <!-- Código de Radicado -->
+                <div class="fpp-field fpp-field--full">
+                    <label for="cod-segui">
+                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cod-segui"
+                        name="cod-segui"
+                        placeholder="FP-PQRS-01234567-ABCD"
+                        required=""
+                    />
+                </div>
+
+                <!-- Archivos de soporte -->
+                <div class="fpp-field fpp-field--full fpp-file-upload">
+                    <label for="archivos">
+                        Adjuntar Soportes o Evidencias
+                        <span class="fpp-file-upload__optional">*</span>
+                    </label>
+
+                    <!-- Input real -->
+                    <input
+                        type="file"
+                        id="archivos"
+                        name="archivos"
+                        class="fpp-file-upload__input"
+                        multiple=""
+                        accept=".pdf,.jpg,.jpeg,.png"
+                    />
+
+                    <!-- Zona de carga -->
+                    <label
+                        for="archivos"
+                        class="fpp-file-upload__dropzone"
+                        id="fppFileDropzone"
+                    >
+
+                        <!-- Icono -->
+                        <div class="fpp-file-upload__icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <!-- Texto principal -->
+                        <div class="fpp-file-upload__title">
+                            Arrastra tus archivos aquí o
+                            <span>examina</span>
+                        </div>
+
+                        <!-- Información -->
+                        <div class="fpp-file-upload__info">
+                            Formatos admitidos: PDF, JPG, PNG
+                            (Hasta 3 archivos, máx 10 MB total)
+                        </div>
+                    </label>
+
+                    <!-- Archivos seleccionados -->
+                    <div
+                        class="fpp-file-upload__files"
+                        id="fppFileList"
+                    ></div>
+                </div>
+
+                <!-- Autorización -->
+                <div class="fpp-radicacion__privacy">
+                    <label class="fpp-checkbox">
+                        <input
+                            type="checkbox"
+                            id="autorizacion1"
+                            name="autorizacion"
+                            required=""
+                        />
+
+                        <span class="fpp-checkbox__box"></span>
+
+                        <span class="fpp-checkbox__text">
+                            Autorizo el tratamiento de mis datos personales
+                            conforme a la
+                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                Política de Tratamiento de Datos
+                            </a>
+                            de Fitness People, únicamente para gestionar y
+                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Botón -->
+                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
+                    <span>BUSCAR</span>
+                </button>
+            </form>
+        </div>
+
     </div>
 </section>
 
@@ -626,6 +629,14 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
     <style>
+
+    .fpp-pqrs-content {
+        display: none;
+    }
+
+    .fpp-pqrs-content.is-active {
+        display: block;
+    }
 
 /* =========================================================
    RADICACIÓN DE SOLICITUD
@@ -666,6 +677,18 @@
 .fpp-head {
     margin-bottom: 0;
 }
+
+    .fpp-head.fpp-head-pqrs {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .fpp-pqrs-btns {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 
 .fpp-pqrs-header-title {
     margin-top: 20px;
@@ -1370,6 +1393,41 @@
 }
 
     </style>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".fpp-pqrs-btns button");
+        const contents = document.querySelectorAll(".fpp-pqrs-content");
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const tab = this.getAttribute("data-tab");
+
+                // Quitar estado activo de los botones
+                buttons.forEach(function (btn) {
+                    btn.classList.remove("fpp-btn--solid");
+                });
+
+                // Quitar estado activo de los contenidos
+                contents.forEach(function (content) {
+                    content.classList.remove("is-active");
+                });
+
+                // Activar botón seleccionado
+                this.classList.add("fpp-btn--solid");
+
+                // Mostrar contenidos correspondientes
+                contents.forEach(function (content) {
+                    if (content.getAttribute("data-content") === tab) {
+                        content.classList.add("is-active");
+                    }
+                });
+            });
+        });
+    });
+
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
