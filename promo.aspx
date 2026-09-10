@@ -90,76 +90,28 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
-    <!-- SubHeader =============================================== -->
-    <section id="secBanner" class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/terminos_legales.webp" data-natural-width="1900">
-        <div id="sub_content_in">
-            <%--<h1 style="font-weight: 900;"></h1>--%>
-        </div>
-    </section>
-    <!-- End section -->
-    <!-- End SubHeader ============================================ -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
-    <section class="margin_60 section-principal-promo">
-	    <div class="container">
-            <div class="row plans plans-recu">
-                <div class="col-md-5" style="padding: 0;">
-                    <div class="plan">
-                        <img id="imgPlan" runat="server" alt="Imagen del plan" />
+    <section class="bg_black margin-top-header section-promo-img">
+        <a href="register?token=tN7vdybh55QL2vX8JrAt" class="promo-img-link">
+            <div class="promo-img">
+                <picture>
+                    <source 
+                        media="(max-width: 990px)"
+                        srcset="img/banners/banner_2026-09-04_mobile.png" />
 
-                        <div class="plan-info">
-                            <h2 class="plan-title" runat="server" id="lblTitulo"></h2>
-                            <h4 class="plan-title" style="font-size: 12px;" runat="server" id="lblSubTitulo"></h4>
-
-                            <p style="margin-bottom: 0;" runat="server" id="lblDescripcion"></p>
-
-                            <p class="plan-price" runat="server" id="lblPrecio"></p>
-                            <p class="plan-sub-title" runat="server" id="lblPrecioAdd"></p>
-                            <p class="plan-sub-title-white" runat="server" id="lblPrecioDes"></p>
-                            <p class="plan-title-white" runat="server" id="lblPrecioDesUnico"></p>
-
-                            <p class="plan-sub-title" runat="server" id="lblFidelidad"></p>
-
-                            <div class="text-center" style="margin-top:15px;">
-                                <asp:HyperLink ID="lnkComprar1" runat="server" CssClass="btn_full">
-                                    Comprar ya
-                                </asp:HyperLink>
-                            </div>
-
-                            <div class="plan-toggle">
-                                <span>¿Qué incluye?</span>
-                                <i class="fa fa-chevron-down toggle-icon"></i>
-                            </div>
-
-                            <ul class="plan-features">
-                                <asp:Repeater ID="rptBeneficios" runat="server">
-                                    <ItemTemplate>
-                                        <li>
-                                            <i class="fa fa-circle-check"></i>
-                                            <%# Eval("Texto") %>
-                                        </li>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    <img 
+                        class="img-promo"
+                        src="img/banners/banner_2026-09-04.png"
+                        alt="Fitness People"
+                        fetchpriority="high"
+                        decoding="async" />
+                </picture>
             </div>
-        </div>
-	    <!--  End container-->
+        </a>
     </section>
-    <!--  End section-->
-
-
 
     <uc1:footer runat="server" ID="footer" />
 
@@ -185,120 +137,43 @@
     <script src="js/functions.js"></script>
 
 
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const toggles = document.querySelectorAll(".plan-toggle");
-            const features = document.querySelectorAll(".plan-features");
-
-            let isOpen = false;
-
-            toggles.forEach(toggle => {
-                toggle.addEventListener("click", function () {
-
-                    if (!isOpen) {
-                        // Abrir todos
-                        features.forEach(f => {
-                            f.classList.add("open");
-                            f.style.maxHeight = f.scrollHeight + "px";
-                        });
-
-                        toggles.forEach(t => t.classList.add("active"));
-
-                        isOpen = true;
-                    } else {
-                        // Cerrar todos
-                        features.forEach(f => {
-                            f.classList.remove("open");
-                            f.style.maxHeight = null;
-                        });
-
-                        toggles.forEach(t => t.classList.remove("active"));
-
-                        isOpen = false;
-                    }
-
-                });
-            });
-
-        });
-
-    </script>
-
-    <script>
-
-        function planAddToCart(contentId, contentName, value, paymentUrl) {
-
-            window.dataLayer.push({
-                event: 'add_to_cart',
-                ecommerce: {
-                    items: [{
-                        item_id: contentId,
-                        item_name: contentName,
-                        price: value,
-                        currency: 'COP',
-                        quantity: 1
-                    }]
-                }
-            });
-
-            setTimeout(function () {
-                window.location.href = paymentUrl;
-            }, 150);
-
-            return false;
-        }
-
-    </script>
-
     <style>
 
-        .plans {
-            margin: 0;
+        .section-promo-img {
+            width: 100%;
+            aspect-ratio: 1920 / 800;
         }
 
-        .plan-features {
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.35s ease, opacity 0.25s ease;
-        }
-
-        .plan-features.open {
-            opacity: 1;
-        }
-
-        .plan-toggle {
+        .promo-img-link {
+            display: block;
+            text-decoration: none;
             cursor: pointer;
-            font-weight: 600;
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .plan-toggle .toggle-icon {
-            transition: transform 0.3s ease;
+        .section-promo-img .promo-img {
+            width: 100%;
         }
 
-        .plan-toggle.active .toggle-icon {
-            transform: rotate(180deg);
+        .section-promo-img picture {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
-        @media (max-width: 767px) {
-            .section-principal-promo {
-                padding-top: 30px;
+        .section-promo-img .img-promo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        @media (max-width: 990px) {
+
+            .section-promo-img {
+                aspect-ratio: auto;
             }
 
-            #secBanner {
-                display: none !important;
-            }
-
-            .parallax-mirror,
-            .parallax-slider {
-                display: none !important;
-            }
         }
 
     </style>

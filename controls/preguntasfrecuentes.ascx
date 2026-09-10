@@ -14,7 +14,7 @@
                             </h4>
                         </div>
                         <div id="collapseOne_works" class="panel-collapse collapse in">
-                            <div class="panel-body">
+                            <div class="panel-body pregunt faq-section">
                                 Para solicitar el retiro de tu plan, debes comunicarte con nuestro equipo de <b>Servicio al Cliente – Débito Automático al <a href="https://api.whatsapp.com/send/?phone=573147041010" target="_blank" style="text-decoration: underline;">314 704 1010</a>.</b>
                                 <br />
                                 Nuestro equipo validará el <b>período de fidelidad establecido para tu plan</b> y te indicará el proceso correspondiente.

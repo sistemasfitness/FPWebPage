@@ -567,6 +567,8 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
+                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
                                         <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
@@ -594,6 +596,8 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
+                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
                                         <p class='sub-title'>DESPUÉS $ 99.000/mes</p>

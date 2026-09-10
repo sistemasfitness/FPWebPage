@@ -240,14 +240,18 @@ p.lead.styled {
 	cursor: pointer;
 }
 
-b {
+.faq-section b {
+	color: var(--fp-bg);
+}
+
+.faq-section a {
 	color: var(--fp-bg);
 }
 
 /*General links color*/
 a {
 	/*color: #e3ff00;*/
-	color: var(--fp-bg);
+	color: var(--fp-white);
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	outline: none;
@@ -256,8 +260,8 @@ a {
 	a:hover,
 	a:focus {
 		color: var(--fp-bg);
-		/*color: #fff;
-		text-decoration: none;*/
+		color: #fff;
+		text-decoration: none;
 		outline: none;
 	}
 
@@ -4333,6 +4337,11 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 .info-plan-precie .sub-title {
 	font-size: 14px;
+}
+
+.info-plan-precie .sub-title-before {
+	margin-bottom: 0;
+	text-decoration: line-through;
 }
 
 .info-plan-precie .registration {
