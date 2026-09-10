@@ -157,7 +157,7 @@
                 <div class="swiper-slide">
                     <picture>
                         <source
-                            media="(max-width: 900px)"
+                            media="(max-width: 600px)"
                             srcset="img/slides/slider3_2026-09-02_mobile.png" />
                         <img
                             src="img/slides/slider3_2026-09-02.png"
@@ -172,7 +172,7 @@
                      onclick="window.location.href='agendaDiaCortesia';">
                     <picture>
                         <source
-                            media="(max-width: 900px)"
+                            media="(max-width: 600px)"
                             srcset="img/slides/slider1_2026-08-21_mobile.jpg" />
                         <img
                             src="img/slides/slider1_2026-08-21.jpg"
@@ -186,7 +186,7 @@
                      onclick="window.location.href='agendaDiaCortesia';">
                     <picture>
                         <source
-                            media="(max-width: 900px)"
+                            media="(max-width: 600px)"
                             srcset="img/slides/slider2_2026-08-21_mobile.jpg" />
                         <img
                             src="img/slides/slider2_2026-08-21.jpg"

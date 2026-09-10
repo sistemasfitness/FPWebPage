@@ -213,7 +213,7 @@ namespace WebPage.controls
                         Tagline = "Más beneficios desde el primer mes.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $129.900",
+                        PrecioAntes = "Antes $165.000",
                         LabelPrecio = "1er mes",
                         Precio = "$49.500",
                         Periodo = "",

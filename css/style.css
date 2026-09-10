@@ -4235,7 +4235,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
    MOBILE
    ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
 	#full-slider-wrapper {
 		margin-top: 0;
 		width: 100%;
