@@ -15,9 +15,11 @@
                         </div>
                         <div id="collapseOne_works" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                Debes acercarte a tu sede o comunicarte con nuestro equipo de servicio al cliente <b>(3147041010).</b> Recuerda que si vas a realizar un <b>retiro anticipado debes informar con 60 días de anterioridad.</b>
+                                Para solicitar el retiro de tu plan, debes comunicarte con nuestro equipo de <b>Servicio al Cliente – Débito Automático al <a href="https://api.whatsapp.com/send/?phone=573147041010" target="_blank" style="text-decoration: underline;">314 704 1010</a>.</b>
                                 <br />
-                                Al recibir tu solicitud, verificaremos si ya cumpliste el <b>período de permanencia (fidelidad)</b> correspondiente a tu plan. Si aún no se ha cumplido, se aplicará la <b>penalización establecida por la terminación anticipada del contrato.</b>
+                                Nuestro equipo validará el <b>período de fidelidad establecido para tu plan</b> y te indicará el proceso correspondiente.
+                                <br />
+                                Si <b>ya cumpliste el período de fidelidad,</b> podrás solicitar el retiro de acuerdo con las condiciones de tu plan, <b>antes de la fecha de corte establecida.</b> Si <b>aún no has cumplido el período de fidelidad,</b> se realizará el <b>cobro correspondiente por retiro anticipado,</b> de acuerdo con las condiciones establecidas en tu contrato.
                             </div>
                         </div>
                     </div>
