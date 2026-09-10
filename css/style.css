@@ -240,18 +240,10 @@ p.lead.styled {
 	cursor: pointer;
 }
 
-.faq-section b {
-	color: var(--fp-bg);
-}
-
-.faq-section a {
-	color: var(--fp-bg);
-}
-
 /*General links color*/
 a {
 	/*color: #e3ff00;*/
-	color: var(--fp-white);
+	color: var(--fp-bg);
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	outline: none;
@@ -456,6 +448,18 @@ a {
 		}
 
 /*-------- 1.3 Structure --------*/
+
+.faq-section b {
+	color: var(--fp-bg);
+}
+
+.faq-section a {
+	color: var(--fp-bg);
+}
+
+	.faq-section a:hover {
+		color: var(--fp-bg);
+	}
 
 /* Header */
 
