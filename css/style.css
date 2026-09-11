@@ -45,21 +45,29 @@ Author URI: http://themeforest.net/user/Ansonika/
 
 :root {
 	/* ====== PALETA FITNESS PEOPLE (editar aquí) ====== */
-	--fpp-black: #000000;
-	--fpp-white: #ffffff;
 	--fp-lime: #E3FF00; /* Verde lima del logo */
 	--fp-lime-soft: rgba(200, 243, 29, .12);
 	--fp-bg: #0D0D0D; /* Fondo de la sección */
 	--fp-card: #161616; /* Fondo de tarjetas */
 	--fp-card-2: #1C1C1C;
-	--fp-border: #2A2A2A;
-	--fp-white: #FFFFFF;
-	--fp-gray: #9E9E9E; /* Texto secundario */
-	--fp-gray-2: #6E6E6E; /* Precio tachado */
 
-	--fpp-input: #151515;
-	--fpp-border: #292929;
-	--fpp-muted: #777777;
+	--fp-black: #000000;
+	--fp-white: #FFFFFF;
+
+	--fp-gray: #9E9E9E;
+	--fp-gray-2: #6E6E6E;
+	--fp-gray-light: #DEDEDE;
+	--fp-gray-light-2: #C6C6C6;
+	--fp-gray-light-3: #BCBCBC;
+	--fp-gray-light-4: #D0D0D0;
+
+	--fp-gray-dark: #626262;
+
+	--fp-red: #FF6B6B;
+
+	--fp-input: #151515;
+	--fp-border: #292929;
+	--fp-muted: #777777;
 }
 
 /*-------- 1.1 Typography --------*/
@@ -4753,6 +4761,615 @@ body.menu-open {
 
 /* ==========================================
    HEADER
+   ========================================== */
+
+
+/* ==========================================
+   PQRS
+   ========================================== */
+
+.fpp-pqrs-content {
+	display: none;
+}
+
+	.fpp-pqrs-content.is-active {
+		display: block;
+	}
+
+/* =========================================================
+   RADICACIÓN DE SOLICITUD
+   ========================================================= */
+.fpp-pqrs {
+	width: 100%;
+	background: var(--fp-black);
+	padding: 80px 0;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+.fpp-pqrs__container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-items: center;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 24px;
+	gap: 50px;
+}
+
+/* =========================================================
+   HEADER PQRS
+   ========================================================= */
+.fpp-head.fpp-head-pqrs {
+	margin-bottom: 0;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.fpp-pqrs-btns {
+	width: 100%;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.fpp-pqrs-header-title {
+	margin-top: 20px;
+	font-size: clamp(30px, 5vw, 40px) !important;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: var(--fp-lime);
+}
+
+.fpp-pqrs-header-text {
+	font-size: 15px;
+	color: var(--fp-white);
+}
+
+/* =========================================================
+   TARJETA DEL FORMULARIO
+   ========================================================= */
+.fpp-pqrs__form-wrapper {
+	width: 100%;
+	padding: 30px 30px 27px;
+	box-sizing: border-box;
+	background: var(--fp-card);
+	border: 1.5px solid var(--fp-lime);
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, .10);
+}
+
+/* =========================================================
+   HEADER DEL FORMULARIO
+   ========================================================= */
+.fpp-pqrs__form-header {
+	margin-bottom: 18px;
+	grid-column: 1 / -1;
+}
+
+	.fpp-pqrs__form-header h2 {
+		margin: 0 0 10px;
+		color: var(--fp-white);
+		font-size: 28px;
+		font-weight: 900;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.fpp-pqrs__form-header p {
+		margin: 0;
+		color: var(--fp-gray-light-2);
+		font-size: 12px;
+		line-height: 1.4;
+	}
+
+		.fpp-pqrs__form-header p span {
+			color: var(--fp-lime);
+		}
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+.fpp-pqrs__form {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 11px;
+}
+
+.fpp-field {
+	min-width: 0;
+	margin-bottom: 20px;
+}
+
+.fpp-field--full {
+	grid-column: 1 / -1;
+}
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+.fpp-field label {
+	display: block;
+	justify-items: center;
+	margin-bottom: 6px;
+	color: var(--fp-gray-light-3);
+	font-size: 11px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+	.fpp-field label span {
+		color: var(--fp-lime);
+	}
+
+/* =========================================================
+   INPUTS / SELECT / TEXTAREA
+   ========================================================= */
+.fpp-field input,
+.fpp-field select,
+.fpp-field textarea,
+.fpp-field file {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--fp-border);
+	border-radius: 10px;
+	outline: none;
+	background: var(--fp-input);
+	color: var(--fp-white);
+	font-family: inherit;
+	font-weight: 500;
+	transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+/* Input */
+.fpp-field input {
+	height: 42px;
+	padding: 0 15px;
+}
+
+/* Select */
+.fpp-select-wrapper {
+	position: relative;
+}
+
+.fpp-field select {
+	height: 42px;
+	padding: 0 40px 0 15px;
+	appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+}
+
+.fpp-select-wrapper::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 14px;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid var(--fp-lime);
+	transform: translateY(-25%);
+	pointer-events: none;
+}
+
+/* Textarea */
+.fpp-field textarea {
+	min-height: 105px;
+	padding: 14px 15px;
+	resize: vertical;
+	line-height: 1.4;
+}
+
+	/* Placeholder */
+	.fpp-field input::placeholder,
+	.fpp-field textarea::placeholder {
+		color: var(--fp-gray-dark);
+		opacity: 1;
+	}
+
+	/* Focus */
+	.fpp-field input:focus,
+	.fpp-field select:focus,
+	.fpp-field textarea:focus {
+		border-color: var(--fp-lime);
+		box-shadow: 0 0 0 1px var(--fp-lime);
+	}
+
+/* =========================================================
+   TEXTAREA / CONTADOR
+   ========================================================= */
+.fpp-field__label-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 6px;
+}
+
+	.fpp-field__label-row label {
+		margin-bottom: 0;
+	}
+
+.fpp-counter {
+	color: var(--fp-muted);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+/* =========================================================
+   ARCHIVOS DE SOPORTE
+   ========================================================= */
+.fpp-file-upload {
+	width: 100%;
+	min-width: 0;
+}
+
+	/* Label */
+	.fpp-file-upload > label:first-child {
+		display: block;
+		margin-bottom: 6px;
+		color: var(--fp-gray-light-3);
+		font-size: 11px;
+		font-weight: 900;
+		letter-spacing: 2px;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+.fpp-file-upload__optional {
+	color: var(--fp-muted);
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+/* =========================================================
+   INPUT REAL
+   ========================================================= */
+.fpp-field .fpp-file-upload__input {
+	display: none;
+}
+
+/* =========================================================
+   DROPZONE
+   ========================================================= */
+.fpp-file-upload__dropzone {
+	width: 100%;
+	min-height: 155px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: var(--fp-card);
+	border: 1px dashed var(--fp-border);
+	border-radius: 12px;
+	cursor: pointer;
+	transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+	/* Hover */
+	.fpp-file-upload__dropzone:hover {
+		background: var(--fp-card-2);
+		border-color: var(--fp-lime);
+	}
+
+	/* Cuando se arrastran archivos */
+	.fpp-file-upload__dropzone.is-dragover {
+		background: var(--fp-card-2);
+		border-color: var(--fp-lime);
+		transform: scale(1.01);
+	}
+
+/* =========================================================
+   ICONO
+   ========================================================= */
+.fpp-file-upload__icon {
+	width: 48px;
+	height: 48px;
+	margin-bottom: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--fp-card-2);
+	color: var(--fp-lime);
+	font-size: 20px;
+}
+
+/* =========================================================
+   TEXTO PRINCIPAL
+   ========================================================= */
+.fpp-file-upload__title {
+	color: var(--fp-white);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.3;
+	text-align: center;
+}
+
+	.fpp-file-upload__title span {
+		color: var(--fp-lime);
+	}
+
+/* =========================================================
+   INFORMACIÓN
+   ========================================================= */
+.fpp-file-upload__info {
+	margin-top: 8px;
+	color: var(--fp-gray-light-3);
+	font-size: 11px;
+	font-weight: 500;
+	letter-spacing: .3px;
+	line-height: 1.4;
+	text-align: center;
+}
+
+/* =========================================================
+   LISTA DE ARCHIVOS
+   ========================================================= */
+.fpp-file-upload__files {
+	width: 100%;
+	margin-top: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+/* Archivo */
+.fpp-file-upload__file {
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 8px 10px;
+	background: var(--fp-card);
+	border: 1px solid var(--fp-border);
+	border-radius: 8px;
+}
+
+/* Información del archivo */
+.fpp-file-upload__file-info {
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Icono archivo */
+.fpp-file-upload__file-icon {
+	flex: 0 0 auto;
+	color: var(--fp-lime);
+	font-size: 13px;
+}
+
+/* Nombre */
+.fpp-file-upload__file-name {
+	min-width: 0;
+	overflow: hidden;
+	color: var(--fp-gray-light-4);
+	font-size: 10px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* Tamaño */
+.fpp-file-upload__file-size {
+	flex: 0 0 auto;
+	color: var(--fp-muted);
+	font-size: 9px;
+}
+
+/* =========================================================
+   MENSAJE DE ERROR
+   ========================================================= */
+.fpp-file-upload__error {
+	margin-top: 7px;
+	color: var(--fp-red);
+	font-size: 10px;
+	line-height: 1.4;
+}
+
+.fpp-file-upload,
+.fpp-file-upload__dropzone,
+.fpp-file-upload__files,
+.fpp-file-upload__file {
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+/* =========================================================
+   CHECKBOX / PRIVACIDAD
+   ========================================================= */
+.fpp-pqrs__privacy {
+	grid-column: 1 / -1;
+	margin-top: 1px;
+	margin-bottom: 13px;
+}
+
+.fpp-checkbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+	/* Ocultar checkbox nativo */
+	.fpp-checkbox input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+	}
+
+/* Checkbox visual */
+.fpp-checkbox__box {
+	flex: 0 0 19px;
+	width: 19px;
+	height: 19px;
+	margin-top: 1px;
+	border: 1px solid var(--fp-lime);
+	border-radius: 5px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+/* Check */
+.fpp-checkbox input:checked + .fpp-checkbox__box {
+	background: var(--fp-lime);
+}
+
+	.fpp-checkbox input:checked + .fpp-checkbox__box::after {
+		content: "";
+		position: absolute;
+		width: 5px;
+		height: 9px;
+		top: 3px;
+		left: 6px;
+		border-right: 2px solid var(--fp-black);
+		border-bottom: 2px solid var(--fp-black);
+		transform: rotate(45deg);
+	}
+
+/* Texto */
+.fpp-checkbox__text {
+	color: var(--fp-gray-light);
+	font-size: 10px;
+	line-height: 1.4;
+}
+
+	.fpp-checkbox__text a {
+		color: var(--fp-lime);
+		font-weight: 800;
+		text-decoration: underline;
+	}
+
+/* =========================================================
+   TABLET
+========================================================= */
+@media (max-width: 1000px) {
+	.fpp-pqrs {
+		padding: 35px 25px;
+	}
+
+	.fpp-pqrs__container {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+
+	.fpp-pqrs__info {
+		max-width: 700px;
+	}
+
+	.fpp-pqrs__form-wrapper {
+		max-width: 650px;
+		margin: 0 auto;
+	}
+}
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+@media (max-width: 600px) {
+	.fpp-pqrs-header-title {
+		text-align: center;
+	}
+
+	.fpp-pqrs {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 35px 16px;
+	}
+
+	.fpp-pqrs__container {
+		padding: 0;
+		width: 100%;
+	}
+
+	/* Formulario */
+	.fpp-pqrs__form-wrapper {
+		padding: 25px 18px 22px;
+		border-radius: 17px;
+	}
+
+	.fpp-pqrs__form {
+		grid-template-columns: 1fr;
+	}
+
+	.fpp-field,
+	.fpp-field--full,
+	.fpp-pqrs__privacy,
+	.fpp-pqrs__form-header {
+		grid-column: 1;
+	}
+
+		.fpp-pqrs__form-header h2 {
+			font-size: 24px;
+		}
+
+		.fpp-field input,
+		.fpp-field select {
+			height: 44px;
+		}
+
+		.fpp-field textarea {
+			min-height: 120px;
+		}
+
+	.fpp-file-upload {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	.fpp-file-upload__dropzone {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
+	}
+
+	.fpp-file-upload__dropzone {
+		min-height: 145px;
+		padding: 18px 12px;
+	}
+
+	.fpp-file-upload__icon {
+		width: 44px;
+		height: 44px;
+		margin-bottom: 10px;
+		font-size: 18px;
+	}
+
+	.fpp-file-upload__title {
+		font-size: 14px;
+	}
+
+	.fpp-file-upload__info {
+		max-width: 280px;
+		font-size: 9px;
+	}
+
+	.fpp-checkbox__text {
+		font-size: 9px;
+	}
+}
+
+/* ==========================================
+   PQRS
    ========================================== */
 
 
