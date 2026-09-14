@@ -295,14 +295,16 @@ namespace WebPage
                                     <div class='total_cart info-plan-conditions'>
                                         <p class='condition-pri'>DÉBITO AUTOMÁTICO</p>
 
-                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA MULTA</p>
+                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='title'>PRIMER MES <span class='pull-right'>GRATIS</span></p>
+                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+
+                                        <p class='title'>PRIMER MES <span class='pull-right'>$ 9.900</span></p>
 
                                         <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
 
-                                        <p class='registration'>INSCRIPCIÓN <span class='pull-right'>$ 9.900</span></p>
+                                        <p class='registration'>SIN INSCRIPCIÓN</p>
 
                                         <p class='total'>TOTAL <span class='pull-right'>$ 9.900</span></p>
                                     </div>";
