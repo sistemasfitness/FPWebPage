@@ -122,489 +122,387 @@
     <!-- Control Main Menu -->
 
     <!-- ================= GESTIÓN DE PQRS ================= -->
-<section class="fpp-pqrs margin-top-header" id="pqrs">
-    <div class="fpp-pqrs__container">
-        <!-- ================= ENCABEZADO ================= -->
-        <div class="fpp-head fpp-head-pqrs">
-            <p class="fpp-kicker">PQRS Fitness People</p>
+    <section class="fpp-pqrs margin-top-header" id="pqrs">
+        <div class="fpp-pqrs__container">
+            <!-- ================= ENCABEZADO ================= -->
+            <div class="fpp-head fpp-head-pqrs">
+                <p class="fpp-kicker">PQRS Fitness People</p>
 
-            <div class="fpp-pqrs-btns">
-                <button type="button" class="fpp-btn-ghost fpp-btn--solid" data-tab="radicar">Radicar</button>
-                <button type="button" class="fpp-btn-ghost" data-tab="consultar">Consultar</button>
-                <button type="button" class="fpp-btn-ghost" data-tab="adjuntar">Adjuntar Archivos</button>
+                <div class="fpp-pqrs-btns">
+                    <button type="button" class="fpp-btn-ghost fpp-btn--solid" data-tab="radicar">Radicar</button>
+                    <button type="button" class="fpp-btn-ghost" data-tab="consultar">Consultar</button>
+                    <button type="button" class="fpp-btn-ghost" data-tab="adjuntar">Adjuntar Archivos</button>
+                </div>
+
+                <div class="fpp-pqrs-header fpp-pqrs-content is-active" data-content="radicar">
+                    <h2 class="fpp-pqrs-header-title">Radica <span>tu solicitud</span></h2>
+
+                    <p class="fpp-pqrs-header-text">
+                        En Fitness People, tu opinión es importante para nosotros. Este espacio está creado para que puedas compartir tus <b>peticiones, quejas, reclamos o sugerencias</b>, y así ayudarnos a seguir mejorando tu experiencia.
+                        <br />
+                        Cuéntanos qué necesitas. Nuestro equipo está listo para escucharte, orientarte y brindarte una respuesta oportuna.
+                    </p>
+                </div>
+
+                <div class="fpp-pqrs-header fpp-pqrs-content" data-content="consultar">
+                    <h2 class="fpp-pqrs-header-title">Consulta el estado de <span>tu solicitud</span></h2>
+
+                    <p class="fpp-pqrs-header-text">
+                        ¿Ya realizaste una solicitud? Consulta su estado y conoce en qué etapa se encuentra.
+                    </p>
+                </div>
+
+                <div class="fpp-pqrs-header fpp-pqrs-content" data-content="adjuntar">
+                    <h2 class="fpp-pqrs-header-title">Adjunta archivos a <span>tu solicitud</span></h2>
+
+                    <p class="fpp-pqrs-header-text">
+                        Si necesitas complementar la información de tu solicitud, puedes adjuntar documentos o archivos que nos ayuden a entender mejor tu caso y brindarte una respuesta adecuada.
+                    </p>
+                </div>
             </div>
 
-            <div class="fpp-pqrs-header fpp-pqrs-content is-active" data-content="radicar">
-                <h2 class="fpp-pqrs-header-title">Radica <span>tu solicitud</span></h2>
-
-                <p class="fpp-pqrs-header-text">
-                    En Fitness People, tu opinión es importante para nosotros. Este espacio está creado para que puedas compartir tus <b>peticiones, quejas, reclamos o sugerencias</b>, y así ayudarnos a seguir mejorando tu experiencia.
-                    <br />
-                    Cuéntanos qué necesitas. Nuestro equipo está listo para escucharte, orientarte y brindarte una respuesta oportuna.
-                </p>
-            </div>
-
-            <div class="fpp-pqrs-header fpp-pqrs-content" data-content="consultar">
-                <h2 class="fpp-pqrs-header-title">Consulta el estado de <span>tu solicitud</span></h2>
-
-                <p class="fpp-pqrs-header-text">
-                    ¿Ya realizaste una solicitud? Consulta su estado y conoce en qué etapa se encuentra.
-                </p>
-            </div>
-
-            <div class="fpp-pqrs-header fpp-pqrs-content" data-content="adjuntar">
-                <h2 class="fpp-pqrs-header-title">Adjunta archivos a <span>tu solicitud</span></h2>
-
-                <p class="fpp-pqrs-header-text">
-                    Si necesitas complementar la información de tu solicitud, puedes adjuntar documentos o archivos que nos ayuden a entender mejor tu caso y brindarte una respuesta adecuada.
-                </p>
-            </div>
-        </div>
-
-        <!-- CREACIÓN - RADICACIÓN -->
-        <div class="fpp-pqrs__form-wrapper fpp-pqrs-content is-active" data-content="radicar">
-            <form class="fpp-pqrs__form">
-                <div class="fpp-pqrs__form-header">
-                    <h2>NUEVA SOLICITUD</h2>
-                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
-                </div>
-
-                <!-- Nombres -->
-                <div class="fpp-field">
-                    <label for="nombre">
-                        NOMBRE <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Nombres"
-                        required=""
-                    />
-                </div>
-
-                <!-- Apellidos -->
-                <div class="fpp-field">
-                    <label for="nombre">
-                        APELLIDOS <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="apellidos"
-                        name="apellidos"
-                        placeholder="Apellidos"
-                        required=""
-                    />
-                </div>
-
-                <!-- Tipo de Documento -->
-                <div class="fpp-field">
-                    <label for="tipo-documento">
-                        TIPO DE DOCUMENTO <span>*</span>
-                    </label>
-
-                    <div class="fpp-select-wrapper">
-                        <select id="tipoDocumento" name="tipoDocumento" required="">
-                            <option value="" selected="" disabled="">
-                                Selecciona una opción
-                            </option>
-
-                            <option value="peticion">
-                                Cédula de Ciudadanía
-                            </option>
-
-                            <option value="queja">
-                                Cédula de Extranjería
-                            </option>
-
-                            <option value="reclamo">
-                                Tarjeta de Identidad
-                            </option>
-
-                            <option value="sugerencia">
-                                Pasaporte
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Documento -->
-                <div class="fpp-field">
-                    <label for="documento">
-                        DOCUMENTO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="documento"
-                        name="documento"
-                        placeholder="Nro. de documento"
-                        required=""
-                    />
-                </div>
-
-                <!-- Correo -->
-                <div class="fpp-field">
-                    <label for="correo">
-                        CORREO ELECTRÓNICO <span>*</span>
-                    </label>
-
-                    <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        placeholder="tucorreo@correo.com"
-                        required=""
-                    />
-                </div>
-
-                <!-- Celular -->
-                <div class="fpp-field">
-                    <label for="celular">
-                        CELULAR <span>*</span>
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="celular"
-                        name="celular"
-                        placeholder="300 000 0000"
-                        required=""
-                    />
-                </div>
-
-                <!-- Tipo de solicitud -->
-                <div class="fpp-field">
-                    <label for="tipoSolicitud">
-                        TIPO DE SOLICITUD <span>*</span>
-                    </label>
-
-                    <div class="fpp-select-wrapper">
-                        <select id="tipoSolicitud" name="tipoSolicitud" required="">
-                            <option value="" selected="" disabled="">
-                                Selecciona una opción
-                            </option>
-
-                            <option value="peticion">
-                                Petición
-                            </option>
-
-                            <option value="queja">
-                                Queja
-                            </option>
-
-                            <option value="reclamo">
-                                Reclamo
-                            </option>
-
-                            <option value="sugerencia">
-                                Sugerencia
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Sede -->
-                <div class="fpp-field">
-                    <label for="sede">
-                        SEDE RELACIONADA <span>*</span>
-                    </label>
-
-                    <div class="fpp-select-wrapper">
-                        <select id="sede" name="sede" required="">
-                            <option value="">Elige la sede</option>
-                            <option>Boulevard · Bucaramanga</option>
-                            <option>Cabecera · Bucaramanga</option>
-                            <option>El Prado · Bucaramanga</option>
-                            <option>Provenza · Bucaramanga</option>
-                            <option>Ciudadela · Bucaramanga</option>
-                            <option>Cañaveral · Floridablanca</option>
-                            <option>DeLaCuesta · Piedecuesta</option>
-                            <option>Parque Central · Piedecuesta</option>
-                            <option>Jardín Plaza · Cúcuta</option>
-                            <option>Ceiba II · Cúcuta</option>
-                            <option>No aplica / Corporativo</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Asunto -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="asunto">
-                        ASUNTO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="asunto"
-                        name="asunto"
-                        placeholder="Resume tu solicitud en una línea"
-                        required=""
-                    />
-                </div>
-
-                <!-- Descripción -->
-                <div class="fpp-field fpp-field--full">
-                    <div class="fpp-field__label-row">
-                        <label for="descripcion">
-                            DESCRIPCIÓN <span>*</span>
-                        </label>
-
-                        <span class="fpp-counter">
-                            0 / 1200
-                        </span>
-                    </div>
-
-                    <textarea
-                        id="descripcion"
-                        name="descripcion"
-                        maxlength="1200"
-                        placeholder="Cuéntanos qué pasó: fecha, hora, sede, personas involucradas y qué esperas de nosotros."
-                        required=""
-                    ></textarea>
-                </div>
-
-                <!-- Archivos de soporte -->
-                <div class="fpp-field fpp-field--full fpp-file-upload">
-                    <label for="archivos">
-                        Adjuntar Soportes o Evidencias
-                        <span class="fpp-file-upload__optional">(Opcional)</span>
-                    </label>
-
-                    <!-- Input real -->
-                    <input
-                        type="file"
-                        id="archivos"
-                        name="archivos"
-                        class="fpp-file-upload__input"
-                        multiple=""
-                        accept=".pdf,.jpg,.jpeg,.png"
-                    />
-
-                    <!-- Zona de carga -->
-                    <label
-                        for="archivos"
-                        class="fpp-file-upload__dropzone"
-                        id="fppFileDropzone"
-                    >
-
-                        <!-- Icono -->
-                        <div class="fpp-file-upload__icon">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <!-- CREACIÓN - RADICACIÓN -->
+            <form runat="server">
+                <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                <div class="fpp-pqrs__form-wrapper fpp-pqrs-content is-active" data-content="radicar">
+                    <div class="fpp-pqrs__form">
+                        <div class="fpp-pqrs__form-header">
+                            <h2>NUEVA SOLICITUD</h2>
+                            <p>Los campos marcados con <span>*</span> son obligatorios.</p>
                         </div>
 
-                        <!-- Texto principal -->
-                        <div class="fpp-file-upload__title">
-                            Arrastra tus archivos aquí o
-                            <span>examina</span>
+                        <!-- Nombres -->
+                        <div class="fpp-field">
+                            <label for="<%= txtNombres.ClientID %>">
+                                NOMBRE <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtNombres" runat="server" CssClass="fpp-input" placeholder="Nombres" />
                         </div>
 
-                        <!-- Información -->
-                        <div class="fpp-file-upload__info">
-                            Formatos admitidos: PDF, JPG, PNG
-                            (Hasta 3 archivos, máx 10 MB total)
+                        <!-- Apellidos -->
+                        <div class="fpp-field">
+                            <label for="<%= txtApellidos.ClientID %>">
+                                APELLIDOS <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtApellidos" runat="server" CssClass="fpp-input" placeholder="Apellidos" />
                         </div>
-                    </label>
 
-                    <!-- Archivos seleccionados -->
-                    <div
-                        class="fpp-file-upload__files"
-                        id="fppFileList"
-                    ></div>
+                        <!-- Tipo de Documento -->
+                        <div class="fpp-field">
+                            <label for="<%= ddlTipoDocumento.ClientID %>">
+                                TIPO DE DOCUMENTO <span>*</span>
+                            </label>
+
+                            <div class="fpp-select-wrapper">
+                                <asp:DropDownList 
+                                    ID="ddlTipoDocumento" 
+                                    runat="server" 
+                                    AppendDataBoundItems="true" 
+                                    DataTextField="tipoDocumento"
+                                    DataValueField="idTipoDoc"
+                                    CssClass="fpp-input">
+                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <!-- Documento -->
+                        <div class="fpp-field">
+                            <label for="<%= txtDocumento.ClientID %>">
+                                DOCUMENTO <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtDocumento" runat="server" CssClass="fpp-input" placeholder="Nro. de documento" />
+                        </div>
+
+                        <!-- Correo -->
+                        <div class="fpp-field">
+                            <label for="<%= txtCorreo.ClientID %>">
+                                CORREO ELECTRÓNICO <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="fpp-input" TextMode="Email" placeholder="tucorreo@correo.com" />
+                        </div>
+
+                        <!-- Celular -->
+                        <div class="fpp-field">
+                            <label for="<%= txtCelular.ClientID %>">
+                                CELULAR <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtCelular" runat="server" CssClass="fpp-input" TextMode="Phone" placeholder="300 000 0000" />
+                        </div>
+
+                        <!-- Tipo de solicitud -->
+                        <div class="fpp-field">
+                            <label for="<%= ddlTipoSolicitud.ClientID %>">
+                                TIPO DE SOLICITUD <span>*</span>
+                            </label>
+
+                            <div class="fpp-select-wrapper">
+                                <asp:DropDownList ID="ddlTipoSolicitud" runat="server" CssClass="fpp-input">
+                                    <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                    <asp:ListItem Text="Petición" Value="PETICION"></asp:ListItem>
+                                    <asp:ListItem Text="Queja" Value="QUEJA"></asp:ListItem>
+                                    <asp:ListItem Text="Reclamo" Value="RECLAMO"></asp:ListItem>
+                                    <asp:ListItem Text="Sugerencia" Value="SUGERENCIA"></asp:ListItem>
+                                    <asp:ListItem Text="Felicitación" Value="FELICITACION"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <!-- Sede -->
+                        <div class="fpp-field">
+                            <label for="<%= ddlSede.ClientID %>">
+                                SEDE RELACIONADA <span>*</span>
+                            </label>
+
+                            <div class="fpp-select-wrapper">
+                                <asp:DropDownList 
+                                    ID="ddlSede" 
+                                    runat="server" 
+                                    AppendDataBoundItems="true" 
+                                    DataTextField="nombreSede"
+                                    DataValueField="idSede"
+                                    CssClass="fpp-input">
+                                    <asp:ListItem Text="Elige la sede" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <!-- Asunto -->
+                        <div class="fpp-field fpp-field--full">
+                            <label for="<%= txtAsunto.ClientID %>">
+                                ASUNTO <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtAsunto" runat="server" CssClass="fpp-input" placeholder="Resume tu solicitud en una línea" />
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="fpp-field fpp-field--full">
+                            <div class="fpp-field__label-row">
+                                <label for="<%= txtDescripcion.ClientID %>">
+                                    DESCRIPCIÓN <span>*</span>
+                                </label>
+
+                                <span class="fpp-counter">
+                                    0 / 1200
+                                </span>
+                            </div>
+
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="fpp-textarea" TextMode="MultiLine" MaxLength="1200" placeholder="Cuéntanos qué pasó: fecha, hora, sede, personas involucradas y qué esperas de nosotros." />
+                        </div>
+
+                        <!-- Archivos de soporte -->
+                        <div class="fpp-field fpp-field--full fpp-file-upload">
+                            <label for="<%= fuSoportesRadicar.ClientID %>">
+                                Adjuntar Soportes o Evidencias
+                                <span class="fpp-file-upload__optional">(Opcional)</span>
+                            </label>
+
+                            <!-- Input real -->
+                            <asp:FileUpload ID="fuSoportesRadicar" runat="server" CssClass="fpp-file-upload__input" AllowMultiple="true" />
+
+                            <!-- Zona de carga -->
+                            <label
+                                for="<%= fuSoportesRadicar.ClientID %>"
+                                class="fpp-file-upload__dropzone"
+                                id="fppFileDropzoneRadicar"
+                            >
+
+                                <!-- Icono -->
+                                <div class="fpp-file-upload__icon">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+
+                                <!-- Texto principal -->
+                                <div class="fpp-file-upload__title">
+                                    Arrastra tus archivos aquí o
+                                    <span>examina</span>
+                                </div>
+
+                                <!-- Información -->
+                                <div class="fpp-file-upload__info">
+                                    Formatos admitidos: PDF, JPG, PNG
+                                    (Hasta 3 archivos, máx 10 MB total)
+                                </div>
+                            </label>
+
+                            <!-- Archivos seleccionados -->
+                            <div
+                                class="fpp-file-upload__files"
+                                id="fppFileListRadicar"
+                            ></div>
+                        </div>
+
+                        <!-- Autorización -->
+                        <div class="fpp-pqrs__privacy">
+                            <label class="fpp-checkbox">
+                                <asp:CheckBox ID="chkAutorizacionRadicar" runat="server" />
+
+                                <span class="fpp-checkbox__box"></span>
+
+                                <span class="fpp-checkbox__text">
+                                    Autorizo el tratamiento de mis datos personales
+                                    conforme a la
+                                    <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                        Política de Tratamiento de Datos
+                                    </a>
+                                    de Fitness People, únicamente para gestionar y
+                                    responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Botón -->
+                        <asp:Button 
+                            ID="btnRadicarSolicitud" 
+                            runat="server" 
+                            Text="RADICAR SOLICITUD" 
+                            CssClass="fpp-btn fpp-btn--solid fpp-field--full" 
+                            OnClick="btnRadicarSolicitud_Click" />
+                    </div>
                 </div>
 
-                <!-- Autorización -->
-                <div class="fpp-pqrs__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion1"
-                            name="autorizacion"
-                            required=""
-                        />
+                <!-- CONSULTA - RADICACIÓN -->
+                <div class="fpp-pqrs__form-wrapper fpp-pqrs-content" data-content="consultar">
+                    <div class="fpp-pqrs__form">
+                        <div class="fpp-pqrs__form-header">
+                            <h2>CONSULTA SOLICITUD</h2>
+                            <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                        </div>
 
-                        <span class="fpp-checkbox__box"></span>
+                        <!-- Código de Radicado -->
+                        <div class="fpp-field fpp-field--full">
+                            <label for="<%= txtCodigoRadicadoConsulta.ClientID %>">
+                                INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                            </label>
 
-                        <span class="fpp-checkbox__text">
-                            Autorizo el tratamiento de mis datos personales
-                            conforme a la
-                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
-                                Política de Tratamiento de Datos
-                            </a>
-                            de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
-                        </span>
-                    </label>
+                            <asp:TextBox ID="txtCodigoRadicadoConsulta" runat="server" CssClass="fpp-input" placeholder="FP-PQRS-01234567-ABCD" />
+                        </div>
+
+                        <!-- Autorización -->
+                        <div class="fpp-pqrs__privacy">
+                            <label class="fpp-checkbox">
+                                <asp:CheckBox ID="chkAutorizacionConsulta" runat="server" />
+
+                                <span class="fpp-checkbox__box"></span>
+
+                                <span class="fpp-checkbox__text">
+                                    Autorizo el tratamiento de mis datos personales
+                                    conforme a la
+                                    <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                        Política de Tratamiento de Datos
+                                    </a>
+                                    de Fitness People, únicamente para gestionar y
+                                    responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Botón -->
+                        <asp:Button 
+                            ID="btnConsultarSolicitud" 
+                            runat="server" 
+                            Text="BUSCAR" 
+                            CssClass="fpp-btn fpp-btn--solid fpp-field--full" 
+                            OnClick="btnConsultarSolicitud_Click" />
+                    </div>
                 </div>
 
-                <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
-                    <span>RADICAR SOLICITUD</span>
-                </button>
+                <!-- CARGA DE ARCHIVOS - RADICACIÓN -->
+                <div class="fpp-pqrs__form-wrapper fpp-pqrs-content" data-content="adjuntar">
+                    <div class="fpp-pqrs__form">
+                        <div class="fpp-pqrs__form-header">
+                            <h2>CARGAR ARCHIVOS A SOLICITUD</h2>
+                            <p>Los campos marcados con <span>*</span> son obligatorios.</p>
+                        </div>
+
+                        <!-- Código de Radicado -->
+                        <div class="fpp-field fpp-field--full">
+                            <label for="<%= txtCodigoRadicadoAdjuntar.ClientID %>">
+                                INGRESA EL CÓDIGO DE RADICADO <span>*</span>
+                            </label>
+
+                            <asp:TextBox ID="txtCodigoRadicadoAdjuntar" runat="server" CssClass="fpp-input" placeholder="FP-PQRS-01234567-ABCD" />
+                        </div>
+
+                        <!-- Archivos de soporte -->
+                        <div class="fpp-field fpp-field--full fpp-file-upload">
+                            <label for="<%= fuSoportesAdjuntar.ClientID %>">
+                                Adjuntar Soportes o Evidencias
+                                <span class="fpp-file-upload__optional">*</span>
+                            </label>
+
+                            <!-- Input real -->
+                            <asp:FileUpload ID="fuSoportesAdjuntar" runat="server" CssClass="fpp-file-upload__input" AllowMultiple="true" />
+
+                            <!-- Zona de carga -->
+                            <label
+                                for="<%= fuSoportesAdjuntar.ClientID %>"
+                                class="fpp-file-upload__dropzone"
+                                id="fppFileDropzoneAdjuntar"
+                            >
+
+                                <!-- Icono -->
+                                <div class="fpp-file-upload__icon">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+
+                                <!-- Texto principal -->
+                                <div class="fpp-file-upload__title">
+                                    Arrastra tus archivos aquí o
+                                    <span>examina</span>
+                                </div>
+
+                                <!-- Información -->
+                                <div class="fpp-file-upload__info">
+                                    Formatos admitidos: PDF, JPG, PNG
+                                    (Hasta 3 archivos, máx 10 MB total)
+                                </div>
+                            </label>
+
+                            <!-- Archivos seleccionados -->
+                            <div
+                                class="fpp-file-upload__files"
+                                id="fppFileListAdjuntar"
+                            ></div>
+                        </div>
+
+                        <!-- Autorización -->
+                        <div class="fpp-pqrs__privacy">
+                            <label class="fpp-checkbox">
+                                <asp:CheckBox ID="chkAutorizacionAdjuntar" runat="server" />
+
+                                <span class="fpp-checkbox__box"></span>
+
+                                <span class="fpp-checkbox__text">
+                                    Autorizo el tratamiento de mis datos personales
+                                    conforme a la
+                                    <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
+                                        Política de Tratamiento de Datos
+                                    </a>
+                                    de Fitness People, únicamente para gestionar y
+                                    responder esta solicitud (Ley 1581 de 2012). <span>*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Botón -->
+                        <asp:Button 
+                            ID="btnAdjuntarArchivos" 
+                            runat="server" 
+                            Text="BUSCAR" 
+                            CssClass="fpp-btn fpp-btn--solid fpp-field--full" 
+                            OnClick="btnAdjuntarArchivos_Click" />
+                    </div>
+                </div>
             </form>
         </div>
-
-        <!-- CONSULTA - RADICACIÓN -->
-        <div class="fpp-pqrs__form-wrapper fpp-pqrs-content" data-content="consultar">
-            <form class="fpp-pqrs__form">
-                <div class="fpp-pqrs__form-header">
-                    <h2>CONSULTA SOLICITUD</h2>
-                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
-                </div>
-
-                <!-- Código de Radicado -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="cod-segui">
-                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cod-segui"
-                        name="cod-segui"
-                        placeholder="FP-PQRS-01234567-ABCD"
-                        required=""
-                    />
-                </div>
-
-                <!-- Autorización -->
-                <div class="fpp-pqrs__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion1"
-                            name="autorizacion"
-                            required=""
-                        />
-
-                        <span class="fpp-checkbox__box"></span>
-
-                        <span class="fpp-checkbox__text">
-                            Autorizo el tratamiento de mis datos personales
-                            conforme a la
-                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
-                                Política de Tratamiento de Datos
-                            </a>
-                            de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
-                    <span>BUSCAR</span>
-                </button>
-            </form>
-        </div>
-
-        <!-- CARGA DE ARCHIVOS - RADICACIÓN -->
-        <div class="fpp-pqrs__form-wrapper fpp-pqrs-content" data-content="adjuntar">
-            <form class="fpp-pqrs__form">
-                <div class="fpp-pqrs__form-header">
-                    <h2>CARGAR ARCHIVOS A SOLICITUD</h2>
-                    <p>Los campos marcados con <span>*</span> son obligatorios.</p>
-                </div>
-
-                <!-- Código de Radicado -->
-                <div class="fpp-field fpp-field--full">
-                    <label for="cod-segui">
-                        INGRESA EL CÓDIGO DE RADICADO <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cod-segui"
-                        name="cod-segui"
-                        placeholder="FP-PQRS-01234567-ABCD"
-                        required=""
-                    />
-                </div>
-
-                <!-- Archivos de soporte -->
-                <div class="fpp-field fpp-field--full fpp-file-upload">
-                    <label for="archivos">
-                        Adjuntar Soportes o Evidencias
-                        <span class="fpp-file-upload__optional">*</span>
-                    </label>
-
-                    <!-- Input real -->
-                    <input
-                        type="file"
-                        id="archivos"
-                        name="archivos"
-                        class="fpp-file-upload__input"
-                        multiple=""
-                        accept=".pdf,.jpg,.jpeg,.png"
-                    />
-
-                    <!-- Zona de carga -->
-                    <label
-                        for="archivos"
-                        class="fpp-file-upload__dropzone"
-                        id="fppFileDropzone"
-                    >
-
-                        <!-- Icono -->
-                        <div class="fpp-file-upload__icon">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                        </div>
-
-                        <!-- Texto principal -->
-                        <div class="fpp-file-upload__title">
-                            Arrastra tus archivos aquí o
-                            <span>examina</span>
-                        </div>
-
-                        <!-- Información -->
-                        <div class="fpp-file-upload__info">
-                            Formatos admitidos: PDF, JPG, PNG
-                            (Hasta 3 archivos, máx 10 MB total)
-                        </div>
-                    </label>
-
-                    <!-- Archivos seleccionados -->
-                    <div
-                        class="fpp-file-upload__files"
-                        id="fppFileList"
-                    ></div>
-                </div>
-
-                <!-- Autorización -->
-                <div class="fpp-pqrs__privacy">
-                    <label class="fpp-checkbox">
-                        <input
-                            type="checkbox"
-                            id="autorizacion1"
-                            name="autorizacion"
-                            required=""
-                        />
-
-                        <span class="fpp-checkbox__box"></span>
-
-                        <span class="fpp-checkbox__text">
-                            Autorizo el tratamiento de mis datos personales
-                            conforme a la
-                            <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
-                                Política de Tratamiento de Datos
-                            </a>
-                            de Fitness People, únicamente para gestionar y
-                            responder esta solicitud (Ley 1581 de 2012). <span>*</span>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Botón -->
-                <button type="submit" class="fpp-btn fpp-btn--solid fpp-field--full">
-                    <span>BUSCAR</span>
-                </button>
-            </form>
-        </div>
-
-    </div>
-</section>
+    </section>
 
     <uc1:footer runat="server" ID="footer" />
 
