@@ -119,7 +119,7 @@
     <uc1:mainmenu runat="server" ID="mainmenu" />
     <!-- Control Main Menu -->
 
-    <section class="margin_60 bg_gray section-principal-cards margin-top-header">
+    <section class="margin_60 bg_dark-gray section-principal-cards margin-top-header">
         <div class="container section-cards">
             <div class="card-principal bg_black">
                 <div>
@@ -194,7 +194,7 @@
 
                     <li class="benefits-details">
                         <i class="fa-solid fa-users"></i>
-                        <p>5 cortesías mensuales para invitar a tus amigos.</p>
+                        <p>5 cortesías mensuales para invitar a amigos nuevos.</p>
                     </li>
                 </ul>
 
@@ -215,29 +215,30 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
+            <div id="contenedorIframePlan" class="fp-iframe-container">
+                <div class="fp-iframe-header">
+                    <div>
+                        <p class="fpp-kicker">Inscripción</p>
+                        <h3>Completa tu <span>registro</span></h3>
+                    </div>
 
-        <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
-        <div id="contenedorIframePlan" class="fp-iframe-container">
-            <div class="fp-iframe-header">
-                <div>
-                    <p class="fpp-kicker">Inscripción</p>
-                    <h3>Completa tu <span>registro</span></h3>
+                    <button
+                        type="button"
+                        id="btnCerrarIframe"
+                        class="fp-iframe-close">
+                        &times;
+                    </button>
                 </div>
 
-                <button
-                    type="button"
-                    id="btnCerrarIframe"
-                    class="fp-iframe-close">
-                    &times;
-                </button>
+                <iframe
+                    id="iframePlan"
+                    src=""
+                    title="Inscripción Fitness People"
+                    loading="lazy">
+                </iframe>
             </div>
-
-            <iframe
-                id="iframePlan"
-                src=""
-                title="Inscripción Fitness People"
-                loading="lazy">
-            </iframe>
         </div>
     </section>
 
@@ -411,11 +412,14 @@
     </script>--%>
 
     <script>
+
         document.addEventListener("DOMContentLoaded", function () {
             /* ============= VARIABLES ============= */
             let planSeleccionado = null;
             let nombrePlanSeleccionado = null;
             let precioPlanSeleccionado = null;
+            let tokenPlanSeleccionado = null;
+            let planUrlKeySeleccionado = null;
 
             const panelSede = document.getElementById("panelSede");
             const panelOverlay = document.getElementById("panelSedeOverlay");
@@ -429,6 +433,14 @@
             const iframePlan = document.getElementById("iframePlan");
 
             const btnCerrarIframe = document.getElementById("btnCerrarIframe");
+
+            /* =====================================================
+               PLANES QUE REQUIEREN CIUDAD + SEDE
+            ===================================================== */
+
+            const planesConSede = [
+                "SORPRENDETE_EN_DICIEMBRE"
+            ];
 
             /* ============= SEDES POR CIUDAD ============= */
             const sedesPorCiudad = {
@@ -486,15 +498,9 @@
 
             };
 
-            /* ============= URL FLEXIBLE PRO ============= */
-            const urlFlexiblePro = "register?token=ONiORcTGWT6e8D2QxFgV";
-
-            /* ============= URL FLEXIBLE PRO PROMO ============= */
-            const urlFlexibleProPromo = "register?token=TKIlFPP8XYRC9l1rfGjR";
-
             /* ============= URLS POR PLAN + SEDE ============= */
             const urlsPlanes = {
-                MES_A_MES: {
+                SORPRENDETE_EN_DICIEMBRE: {
                     "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-4986",
                     "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-4978",
                     "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-4980",
@@ -520,41 +526,40 @@
                 nombrePlanSeleccionado = boton.getAttribute("data-plan-name");
                 precioPlanSeleccionado = boton.getAttribute("data-plan-price");
 
+                tokenPlanSeleccionado = boton.getAttribute("data-plan-token");
+                planUrlKeySeleccionado = boton.getAttribute("data-plan-url-key");
+
                 if (!planSeleccionado) return;
 
-                // ==========================================
-                // FLEXIBLE PRO
-                // ==========================================
+                // GOOGLE TAG MANAGER
+                window.dataLayer = window.dataLayer || [];
 
-                if (planSeleccionado === "FLEXIBLE_PRO") {
+                window.dataLayer.push({
+                    event: "AddToCart",
+                    ecommerce: {
+                        items: [{
+                            item_id: planSeleccionado,
+                            item_name: nombrePlanSeleccionado,
+                            price: precioPlanSeleccionado,
+                            currency: "COP",
+                            quantity: 1
+                        }]
+                    }
+                });
 
-                    // GOOGLE TAG MANAGER
-                    window.dataLayer = window.dataLayer || [];
+                const planUrls = urlsPlanes[planUrlKeySeleccionado];
 
-                    window.dataLayer.push({
-                        event: "AddToCart",
-                        ecommerce: {
-                            items: [{
-                                item_id: planSeleccionado,
-                                item_name: nombrePlanSeleccionado,
-                                price: precioPlanSeleccionado,
-                                currency: "COP",
-                                quantity: 1
-                            }]
-                        }
-                    });
-
-                    // Redirección directa
-                    window.location.href = urlFlexiblePro;
-
+                /* PLANES QUE TIENEN SELECTOR DE SEDE */
+                if (planUrls) {
+                    abrirPanelSede();
                     return;
                 }
 
-                // ==========================================
-                // RESTO DE PLANES
-                // ==========================================
-
-                abrirPanelSede();
+                /* PLANES SIN SELECTOR DE SEDE */
+                if (tokenPlanSeleccionado) {
+                    window.location.href = tokenPlanSeleccionado;
+                    return;
+                }
             });
 
             /* ============= ABRIR PANEL ============= */
@@ -627,31 +632,13 @@
                 if (!sede) return;
 
                 // Buscar URL correspondiente
-                const planUrls = urlsPlanes[planSeleccionado];
+                const planUrls = urlsPlanes[planUrlKeySeleccionado];
 
                 if (!planUrls) return;
 
                 const url = planUrls[sede];
 
                 if (!url) return;
-
-
-                // GOOGLE TAG MANAGER
-                window.dataLayer = window.dataLayer || [];
-
-                window.dataLayer.push({
-                    event: "AddToCart",
-                    ecommerce: {
-                        items: [{
-                            item_id: planSeleccionado,
-                            item_name: nombrePlanSeleccionado,
-                            price: precioPlanSeleccionado,
-                            currency: "COP",
-                            quantity: 1
-                        }]
-                    }
-                });
-
 
                 // Cerrar panel
                 cerrarPanelSede();
@@ -685,6 +672,9 @@
                 // Limpiar selección
                 planSeleccionado = null;
 
+                tokenPlanSeleccionado = null;
+                planUrlKeySeleccionado = null;
+
                 ddlCiudad.value = "";
 
                 ddlSede.innerHTML = "";
@@ -699,17 +689,30 @@
 
                 ddlSede.disabled = true;
 
+                const seccionPrincipal = document.querySelector(".section-principal-cards");
+
                 // Regresar a planes
-                document.getElementById("planes").scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                if (seccionPrincipal) {
+                    seccionPrincipal.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
             }
 
             btnCerrarIframe.addEventListener("click", function () {
                 cerrarIframe();
             });
+
+            /* ============= CERRAR IFRAME CON ESC ============= */
+            document.addEventListener("keydown", function (e) {
+                    if (e.key !== "Escape") return;
+
+                    if (panelSede.classList.contains("active")) cerrarPanelSede();
+                }
+            );
         });
+
     </script>
 
 
