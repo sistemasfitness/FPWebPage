@@ -31,6 +31,8 @@ namespace WebPage
             string texto;
             string tokenId;
 
+            lblTituloMeses.Visible = false;
+
             lnkComprar2.Visible = false;
             lnkComprar4.Visible = false;
 
@@ -95,6 +97,38 @@ namespace WebPage
                     break;
 
                 // ===============================
+                // PLAN DICIEMBRE
+                // ===============================
+                case "sorprendete-en-diciembre":
+
+                    lblTitulo.InnerText = "PLAN SORPRÉNDETE EN DICIEMBRE";
+                    lblSubTitulo.InnerText = "PLAN PAGO ÚNICO";
+
+                    lblTituloMeses.Visible = true;
+                    lblTituloMeses.InnerHtml = "2 MESES + 1 MES GRATIS";
+                    lblTituloPrecio.InnerHtml = "PAGA HOY <br /> $249.000";
+                    lblSubTituloPrecio1.Visible = false;
+                    lblSubTituloPrecio2.Visible = false;
+
+                    lblSubTituloUp.InnerText = "ANTES $350.000";
+                    lblFidelidad.Visible = false;
+                    lblNotaFidelidad.Visible = false;
+
+                    divPackBienvenida.Visible = false;
+
+                    itemId = "4";
+                    itemName = "Plan Sorpréndete en Diciembre";
+                    price = 249000;
+                    texto = "ACTIVA TU PLAN";
+                    tokenId = "register?token=iIcy3afZs7mlj4oUOKT8";
+                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId);
+                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId);
+
+                    lblTextoFinal.InnerHtml = "Sin inscripción <br /> Sin administración <br /> Sin permanencia obligatoria";
+
+                    break;
+
+                // ===============================
                 // PLAN SEMESTRAL
                 // ===============================
                 case "semestral":
@@ -112,7 +146,7 @@ namespace WebPage
 
                     divPackBienvenida.Visible = false;
 
-                    itemId = "2";
+                    itemId = "4";
                     itemName = "Plan 6 Meses + 2 Meses";
                     price = 590000;
                     texto = "COMPRAR CON 2 MESES GRATIS";

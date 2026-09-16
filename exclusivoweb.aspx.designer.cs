@@ -42,6 +42,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSubTitulo;
 
         /// <summary>
+        /// Control lblTituloMeses.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloMeses;
+
+        /// <summary>
         /// Control lblSubTituloUp.
         /// </summary>
         /// <remarks>
