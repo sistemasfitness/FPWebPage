@@ -836,6 +836,7 @@
 
         .card-principal .switch-btn {
             padding: 5px 13px;
+            width: 100%;
         }
 
         .card-principal .price .title {

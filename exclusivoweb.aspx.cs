@@ -105,7 +105,7 @@ namespace WebPage
                 case "sorprendete-en-diciembre":
 
                     lblTitulo.InnerText = "PLAN SORPRÉNDETE EN DICIEMBRE";
-                    lblSubTitulo.InnerText = "PLAN PAGO ÚNICO";
+                    lblSubTitulo.InnerHtml = "PLAN PAGO ÚNICO <br /> EXCLUSIVO PARA RENOVADOS";
 
                     lblTituloMeses.Visible = true;
                     lblTituloMeses.InnerHtml = "2 MESES + 1 MES GRATIS";
