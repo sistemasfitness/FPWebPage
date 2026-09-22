@@ -105,6 +105,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.DropDownList ddlSede;
 
         /// <summary>
+        /// Control chkMotivos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkMotivos;
+
+        /// <summary>
         /// Control txtAsunto.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoRadicadoAdjuntar;
+
+        /// <summary>
+        /// Control txtDescripcionAdjuntar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionAdjuntar;
 
         /// <summary>
         /// Control fuSoportesAdjuntar.

@@ -97,8 +97,8 @@
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
-    <!-- SLIDER -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <!-- SWEETALERT2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
@@ -242,13 +242,14 @@
                             </label>
 
                             <div class="fpp-select-wrapper">
-                                <asp:DropDownList ID="ddlTipoSolicitud" runat="server" CssClass="fpp-input">
+                                <asp:DropDownList 
+                                    ID="ddlTipoSolicitud" 
+                                    runat="server" 
+                                    AppendDataBoundItems="true" 
+                                    DataTextField="nombre"
+                                    DataValueField="idTipoPQRS"
+                                    CssClass="fpp-input">
                                     <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="Petición" Value="PETICION"></asp:ListItem>
-                                    <asp:ListItem Text="Queja" Value="QUEJA"></asp:ListItem>
-                                    <asp:ListItem Text="Reclamo" Value="RECLAMO"></asp:ListItem>
-                                    <asp:ListItem Text="Sugerencia" Value="SUGERENCIA"></asp:ListItem>
-                                    <asp:ListItem Text="Felicitación" Value="FELICITACION"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -270,6 +271,23 @@
                                     <asp:ListItem Text="Elige la sede" Value=""></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
+                        </div>
+
+                        <!-- Motivos -->
+                        <div class="fpp-field fpp-field--full">
+                            <label for="<%= chkMotivos.ClientID %>">
+                                MOTIVOS DE SOLICITUD <span>*</span>
+                            </label>
+
+                            <asp:CheckBoxList 
+                                ID="chkMotivos" 
+                                runat="server"
+                                DataTextField="nombre"
+                                DataValueField="idMotivoPQRS"
+                                CssClass="fpp-checkbox-list"
+                                RepeatDirection="Horizontal"
+                                RepeatLayout="Flow">
+                            </asp:CheckBoxList>
                         </div>
 
                         <!-- Asunto -->
@@ -430,6 +448,21 @@
                             <asp:TextBox ID="txtCodigoRadicadoAdjuntar" runat="server" CssClass="fpp-input" placeholder="FP-PQRS-01234567-ABCD" />
                         </div>
 
+                        <!-- Descripción -->
+                        <div class="fpp-field fpp-field--full">
+                            <div class="fpp-field__label-row">
+                                <label for="<%= txtDescripcionAdjuntar.ClientID %>">
+                                    DESCRIPCIÓN <span>*</span>
+                                </label>
+
+                                <span class="fpp-counter">
+                                    0 / 1200
+                                </span>
+                            </div>
+
+                            <asp:TextBox ID="txtDescripcionAdjuntar" runat="server" CssClass="fpp-textarea" TextMode="MultiLine" MaxLength="1200" placeholder="Cuéntanos qué pasó: fecha, hora, sede, personas involucradas y qué esperas de nosotros." />
+                        </div>
+
                         <!-- Archivos de soporte -->
                         <div class="fpp-field fpp-field--full fpp-file-upload">
                             <label for="<%= fuSoportesAdjuntar.ClientID %>">
@@ -562,7 +595,7 @@
 
 </script>
 
-<script>
+<%--<script>
     document.addEventListener("DOMContentLoaded", function () {
 
         const input = document.getElementById("archivos");
@@ -793,7 +826,7 @@
         }
 
     });
-</script>
+</script>--%>
 
 
     <noscript>
