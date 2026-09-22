@@ -28,9 +28,9 @@ namespace WebPage
 
             int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedValue);
             string documento = txtDocumento.Text.Trim();
-            string nombres = txtNombres.Text.Trim();
-            string apellidos = txtApellidos.Text.Trim();
-            string correo = txtCorreo.Text.Trim();
+            string nombres = txtNombres.Text.Trim().ToUpper();
+            string apellidos = txtApellidos.Text.Trim().ToUpper();
+            string correo = txtCorreo.Text.Trim().ToLower();
             string celular = txtCelular.Text.Trim();
             int idSede = Convert.ToInt32(ddlSede.SelectedValue);
 
@@ -44,6 +44,15 @@ namespace WebPage
                 idAfiliado = Convert.ToInt32(dt.Rows[0]["idAfiliado"]);
 
                 dt.Dispose();
+
+                cg.ActualizarAfiliadoPQRS(
+                    documento,
+                    nombres,
+                    apellidos,
+                    correo,
+                    celular,
+                    idSede
+                );
             }
             else
             {
@@ -76,6 +85,31 @@ namespace WebPage
                 descripcion,
                 1 // Radicado, estado inicial de la solicitud
             );
+
+            foreach (ListItem item in chkMotivos.Items)
+            {
+                if (item.Selected)
+                {
+                    int idMotivo = Convert.ToInt32(item.Value);
+                    cg.InsertarPQRSMotivoSeleccionado(idMotivo, idPQRS);
+                }
+            }
+
+            if (fuSoportesRadicar.HasFiles)
+            {
+                foreach (HttpPostedFile archivo in fuSoportesRadicar.PostedFiles)
+                {
+                    string nombreArchivo = Path.GetFileName(archivo.FileName);
+                    string rutaCarpeta = Server.MapPath("~/ArchivosPQRS/");
+                    string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
+                    if (!Directory.Exists(rutaCarpeta))
+                    {
+                        Directory.CreateDirectory(rutaCarpeta);
+                    }
+                    archivo.SaveAs(rutaArchivo);
+                    cg.InsertarPQRSArchivo(idPQRS, 0, nombreArchivo, rutaArchivo); // Cambiar 0 por el ID del usuario actual si es necesario
+                }
+            }
         }
 
         protected void btnConsultarSolicitud_Click(object sender, EventArgs e)

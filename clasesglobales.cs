@@ -6819,6 +6819,62 @@ namespace WebPage
             return idPQRS;
         }
 
+        public string InsertarPQRSMotivoSeleccionado(int idMotivo, int idPQRS)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("PA_INSERTAR_MOTIVO_SELECCIONADO_PQRS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_motivo", idMotivo);
+                        cmd.Parameters.AddWithValue("@p_id_pqrs", idPQRS);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string InsertarPQRSArchivo(int idPQRS, int idMensaje, string nombreArchivo, string rutaArchivo)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("PA_INSERTAR_ARCHIVO_PQRS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_pqrs", idPQRS);
+                        cmd.Parameters.AddWithValue("@p_id_mensaje", idMensaje);
+                        cmd.Parameters.AddWithValue("@p_nombre", nombreArchivo);
+                        cmd.Parameters.AddWithValue("@p_ruta", rutaArchivo);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
         public DataTable ConsultarTiposPQRS()
         {
             DataTable dt = new DataTable();
@@ -6892,7 +6948,7 @@ namespace WebPage
                     using (MySqlCommand cmd = new MySqlCommand("PA_INSERTAR_AFILIADO_PQRS", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@p_documento_afiliado", documento);
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
                         cmd.Parameters.AddWithValue("@p_id_tipo_documento", idTipoDocumento);
                         cmd.Parameters.AddWithValue("@p_nombres", nombres);
                         cmd.Parameters.AddWithValue("@p_apellidos", apellidos);
@@ -6917,6 +6973,42 @@ namespace WebPage
             }
 
             return idAfiliado;
+        }
+
+        public string ActualizarAfiliadoPQRS(string documento, string nombres, string apellidos, string celular, string correo, int idSede)
+        {
+            string respuesta = string.Empty;
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open(); // Abrir conexión antes de usarla
+
+                    using (MySqlCommand cmd = new MySqlCommand("PA_ACTUALIZAR_AFILIADO_PQRS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        cmd.Parameters.AddWithValue("@p_documento", documento);
+                        cmd.Parameters.AddWithValue("@p_nombres", nombres);
+                        cmd.Parameters.AddWithValue("@p_apellidos", apellidos);
+                        cmd.Parameters.AddWithValue("@p_celular", celular);
+                        cmd.Parameters.AddWithValue("@p_correo", correo);
+                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
         }
 
         #endregion PQRS
