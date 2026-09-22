@@ -5612,4 +5612,6 @@ body.menu-open {
    PLANES
    ========================================== */
 
-
+.telefono a {
+	color: white;
+}
