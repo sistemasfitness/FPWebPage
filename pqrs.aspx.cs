@@ -26,6 +26,7 @@ namespace WebPage
         {
             if (!ValidarFormularioRadicacion()) return;
 
+            // ======= DATOS DEL SOLICITANTE =======
             int idTipoDocumento = Convert.ToInt32(ddlTipoDocumento.SelectedValue);
             string documento = txtDocumento.Text.Trim();
             string nombres = txtNombres.Text.Trim().ToUpper();
@@ -35,15 +36,15 @@ namespace WebPage
             int idSede = Convert.ToInt32(ddlSede.SelectedValue);
 
             clasesglobales cg = new clasesglobales();
-            DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
+
+            // ======= GESTIÓN DE AFILIADO =======
+            DataTable dtAfiliado = cg.ConsultarAfiliadoPorDocumento(documento);
 
             int idAfiliado;
 
-            if (dt.Rows.Count > 0)
+            if (dtAfiliado.Rows.Count > 0)
             {
-                idAfiliado = Convert.ToInt32(dt.Rows[0]["idAfiliado"]);
-
-                dt.Dispose();
+                idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["idAfiliado"]);
 
                 cg.ActualizarAfiliadoPQRS(
                     documento,
@@ -67,25 +68,57 @@ namespace WebPage
                 );
             }
 
+            dtAfiliado.Dispose();
+
+            // ======= ADMINISTRADOR DE LA SEDE =======
+            DataTable dtAdmin = cg.ConsultarAdministradorPQRS(idSede);
+
+            if (dtAdmin.Rows.Count == 0)
+            {
+                dtAdmin.Dispose();
+
+                MostrarAlerta(
+                    "No se pudo radicar",
+                    "La sede seleccionada no tiene un administrador configurado.",
+                    "error"
+                );
+
+                return;
+            }
+
+            int idAdministrador = Convert.ToInt32(dtAdmin.Rows[0]["idUsuario"]);
+            dtAdmin.Dispose();
+
+            // ======= DATOS DEL PQRS =======
             int idTipoSolicitud = Convert.ToInt32(ddlTipoSolicitud.SelectedValue);
+
             string asunto = txtAsunto.Text.Trim();
             string descripcion = txtDescripcion.Text.Trim();
 
-            string codigoRadicacion = $"FP-PQRS-{DateTime.Now.ToString("yyyyMMddHHmmss")}-ABC";
+            string codigoRadicacion = GenerarCodigoRadicacion();
 
-            int idPQRS;
-
-            idPQRS = cg.InsertarPQRSDevolverId(
+            // ======= CREAR PQRS =======
+            int idPQRS = cg.InsertarPQRSDevolverId(
                 idAfiliado,
-                2, // Usuario ejemplo, se debe reemplazar con el ID del usuario actual
+                idAdministrador,
                 idSede, 
-                codigoRadicacion, // Mejorar código de radicación para que sea único y más representativo
+                codigoRadicacion,
                 idTipoSolicitud,
                 asunto,
                 descripcion,
-                1 // Radicado, estado inicial de la solicitud
+                1 // Radicado
             );
 
+            // ======= REGISTRAR ESTADO INICIAL EN EL HISTORIAL =======
+            cg.InsertarPQRSEstadoHistorial(
+                idPQRS,
+                1, // Radicado
+                idAfiliado,
+                null,
+                "La PQRS ha sido radicada por el afiliado."
+            );
+
+            // ======= REGISTRAR MOTIVOS =======
             foreach (ListItem item in chkMotivos.Items)
             {
                 if (item.Selected)
@@ -95,20 +128,14 @@ namespace WebPage
                 }
             }
 
+            // ======= REGISTRAR ARCHIVOS =======
             if (fuSoportesRadicar.HasFiles)
             {
-                foreach (HttpPostedFile archivo in fuSoportesRadicar.PostedFiles)
-                {
-                    string nombreArchivo = Path.GetFileName(archivo.FileName);
-                    string rutaCarpeta = Server.MapPath("~/ArchivosPQRS/");
-                    string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
-                    if (!Directory.Exists(rutaCarpeta))
-                    {
-                        Directory.CreateDirectory(rutaCarpeta);
-                    }
-                    archivo.SaveAs(rutaArchivo);
-                    cg.InsertarPQRSArchivo(idPQRS, 0, nombreArchivo, rutaArchivo); // Cambiar 0 por el ID del usuario actual si es necesario
-                }
+                GuardarArchivosRadicacion(
+                    cg,
+                    idPQRS,
+                    codigoRadicacion
+                );
             }
         }
 
@@ -340,6 +367,52 @@ namespace WebPage
             }
 
             return true;
+        }
+
+        private string GenerarCodigoRadicacion()
+        {
+            string fecha = DateTime.Now.ToString("yyyyMMdd");
+            string codigoUnico = Guid.NewGuid()
+                .ToString("N")
+                .Substring(0, 6)
+                .ToUpper();
+
+            return $"FP-PQRS-{fecha}-{codigoUnico}";
+        }
+
+        private void GuardarArchivosRadicacion(clasesglobales cg, int idPQRS, string codigoRadicacion)
+        {
+            string rutaCarpeta = Server.MapPath("~/ArchivosPQRS/");
+
+            if (!Directory.Exists(rutaCarpeta))
+            {
+                Directory.CreateDirectory(rutaCarpeta);
+            }
+
+            int consecutivo = 1;
+
+            foreach (HttpPostedFile archivo in fuSoportesRadicar.PostedFiles)
+            {
+                string extension = Path.GetExtension(
+                    archivo.FileName
+                ).ToLowerInvariant();
+
+                string nombreArchivo = $"{codigoRadicacion}-{consecutivo:D2}{extension}";
+
+                string rutaArchivo = $"~/ArchivosPQRS/{nombreArchivo}";
+                string rutaFisica = Server.MapPath(rutaArchivo);
+
+                archivo.SaveAs(rutaFisica);
+
+                cg.InsertarPQRSArchivo(
+                    idPQRS,
+                    null,
+                    nombreArchivo,
+                    rutaArchivo
+                );
+
+                consecutivo++;
+            }
         }
 
         private void CargarTipoDocumento()

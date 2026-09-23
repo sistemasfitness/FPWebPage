@@ -6846,7 +6846,7 @@ namespace WebPage
             return respuesta;
         }
 
-        public string InsertarPQRSArchivo(int idPQRS, int idMensaje, string nombreArchivo, string rutaArchivo)
+        public string InsertarPQRSArchivo(int idPQRS, int? idMensaje, string nombreArchivo, string rutaArchivo)
         {
             string respuesta = string.Empty;
             try
@@ -6859,9 +6859,42 @@ namespace WebPage
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@p_id_pqrs", idPQRS);
-                        cmd.Parameters.AddWithValue("@p_id_mensaje", idMensaje);
+                        cmd.Parameters.AddWithValue("@p_id_mensaje", idMensaje.HasValue ? (object)idMensaje.Value : DBNull.Value);
                         cmd.Parameters.AddWithValue("@p_nombre", nombreArchivo);
                         cmd.Parameters.AddWithValue("@p_ruta", rutaArchivo);
+                        cmd.ExecuteNonQuery();
+                        respuesta = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = "ERROR: " + ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public string InsertarPQRSEstadoHistorial(int idPQRS, int idEstadoPQRS, int? idAfiliado, int? idUsuario, string comentario)
+        {
+            string respuesta = string.Empty;
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    mysqlConexion.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("PA_INSERTAR_ESTADO_HISTORIAL_PQRS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_pqrs", idPQRS);
+                        cmd.Parameters.AddWithValue("@p_id_estado_pqrs", idEstadoPQRS);
+                        cmd.Parameters.AddWithValue("@p_id_afiliado", idAfiliado.HasValue ? (object)idAfiliado.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@p_id_usuario", idUsuario.HasValue ? (object)idUsuario.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@p_comentario", comentario);
                         cmd.ExecuteNonQuery();
                         respuesta = "OK";
                     }
@@ -6917,6 +6950,38 @@ namespace WebPage
                     using (MySqlCommand cmd = new MySqlCommand("PA_CONSULTAR_MOTIVOS_PQRS", mysqlConexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
+                        {
+                            mysqlConexion.Open();
+                            dataAdapter.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Error", typeof(string));
+                dt.Rows.Add(ex.Message);
+            }
+
+            return dt;
+        }
+
+        public DataTable ConsultarAdministradorPQRS(int idSede)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string strConexion = WebConfigurationManager.ConnectionStrings["ConnectionFP"].ConnectionString;
+                using (MySqlConnection mysqlConexion = new MySqlConnection(strConexion))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("PA_CONSULTAR_ADMIN_PQRS", mysqlConexion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@p_id_sede", idSede);
+
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
                         {
                             mysqlConexion.Open();
