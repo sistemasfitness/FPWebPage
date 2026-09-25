@@ -161,9 +161,9 @@
                 </div>
             </div>
 
-            <!-- CREACIÓN - RADICACIÓN -->
             <form runat="server">
                 <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                <!-- CREACIÓN - RADICACIÓN -->
                 <div class="fpp-pqrs__form-wrapper fpp-pqrs-content is-active" data-content="radicar">
                     <div class="fpp-pqrs__form">
                         <div class="fpp-pqrs__form-header">
@@ -345,7 +345,7 @@
                                 <!-- Información -->
                                 <div class="fpp-file-upload__info">
                                     Formatos admitidos: PDF, JPG, PNG
-                                    (Hasta 3 archivos, máx 10 MB total)
+                                    (Hasta 3 archivos, máx 10 MB por archivo y 20 MB total)
                                 </div>
                             </label>
 
@@ -595,15 +595,23 @@
 
 </script>
 
-<%--<script>
+
+<script>
+
     document.addEventListener("DOMContentLoaded", function () {
+        // ============= ELEMENTOS =============
+        const input = document.getElementById("<%= fuSoportesRadicar.ClientID %>");
+        const dropzone = document.getElementById("fppFileDropzoneRadicar");
+        const fileList = document.getElementById("fppFileListRadicar");
 
-        const input = document.getElementById("archivos");
-        const dropzone = document.getElementById("fppFileDropzone");
-        const fileList = document.getElementById("fppFileList");
-
+        // ============= CONFIGURACIÓN =============
         const MAX_FILES = 3;
-        const MAX_TOTAL_SIZE = 10 * 1024 * 1024; // 10 MB
+
+        // Máximo por archivo: 10 MB
+        const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+        // Máximo total: 20 MB
+        const MAX_TOTAL_SIZE = 20 * 1024 * 1024;
 
         const ALLOWED_TYPES = [
             "application/pdf",
@@ -611,171 +619,263 @@
             "image/png"
         ];
 
+        // ============= LISTA DE ARCHIVOS SELECCIONADOS =============
+        let selectedFiles = [];
 
-        /* =====================================================
-           SELECCIÓN DE ARCHIVOS
-        ===================================================== */
-
+        // ============= SELECCIÓN DE ARCHIVOS =============
         input.addEventListener("change", function () {
-
-            processFiles(Array.from(input.files));
-
+            const files = Array.from(input.files);
+            addFiles(files);
         });
 
-
-        /* =====================================================
-           DRAG & DROP
-        ===================================================== */
-
+        // ============= DRAG & DROP =============
         dropzone.addEventListener("dragover", function (event) {
-
             event.preventDefault();
 
             dropzone.classList.add("is-dragover");
-
         });
-
 
         dropzone.addEventListener("dragleave", function () {
-
             dropzone.classList.remove("is-dragover");
-
         });
 
-
         dropzone.addEventListener("drop", function (event) {
-
             event.preventDefault();
 
             dropzone.classList.remove("is-dragover");
-
             const files = Array.from(event.dataTransfer.files);
-
-            processFiles(files);
-
+            addFiles(files);
         });
 
-
-        /* =====================================================
-           PROCESAR ARCHIVOS
-        ===================================================== */
-
-        function processFiles(files) {
-
+        // ============= AGREGAR ARCHIVOS =============
+        function addFiles(files) {
             clearMessages();
 
-            if (!files.length) {
-                return;
-            }
+            if (!files.length) return;
 
+            let rejectedType = false;
+            let rejectedSize = false;
+            let rejectedLimit = false;
 
-            /* Máximo 3 archivos */
+            files.forEach(function (file) {
+                // ============= VALIDAR CANTIDAD =============
+                if (selectedFiles.length >= MAX_FILES) {
+                    rejectedLimit = true;
+                    return;
+                }
 
-            if (files.length > MAX_FILES) {
+                // ============= VALIDAR TIPO =============
+                const typeValid = ALLOWED_TYPES.includes(file.type);
 
+                if (!typeValid) {
+                    rejectedType = true;
+                    return;
+                }
+
+                // ============= VALIDAR TAMAÑO INDIVIDUAL =============
+                const sizeValid = file.size <= MAX_FILE_SIZE;
+
+                if (!sizeValid) {
+                    rejectedSize = true;
+                    return;
+                }
+
+                // ============= EVITAR DUPLICADOS =============
+                const alreadyExists = selectedFiles.some(function (existingFile) {
+                    return (
+                        existingFile.name === file.name &&
+                        existingFile.size === file.size &&
+                        existingFile.lastModified === file.lastModified
+                    );
+                });
+
+                if (alreadyExists) return;
+
+                // ============= AGREGAR ARCHIVO =============
+                selectedFiles.push(file);
+            });
+
+            // ============= ACTUALIZAR INPUT REAL =============
+            updateInputFiles();
+
+            // ============= MOSTRAR LISTA =============
+            renderFiles();
+
+            // ============= MENSAJES =============
+            if (rejectedLimit) {
                 showError(
                     "Solo puedes adjuntar un máximo de 3 archivos."
                 );
-
-                input.value = "";
-
-                return;
             }
 
-
-            /* Validar tipos */
-
-            const invalidType = files.find(function (file) {
-
-                return !ALLOWED_TYPES.includes(file.type);
-
-            });
-
-            if (invalidType) {
-
+            if (rejectedType) {
                 showError(
                     "Solo se permiten archivos PDF, JPG y PNG."
                 );
-
-                input.value = "";
-
-                return;
             }
 
-
-            /* Tamaño total */
-
-            const totalSize = files.reduce(function (total, file) {
-
-                return total + file.size;
-
-            }, 0);
-
-
-            if (totalSize > MAX_TOTAL_SIZE) {
-
+            if (rejectedSize) {
                 showError(
-                    "El tamaño total de los archivos no puede superar los 10 MB."
+                    "Cada archivo puede tener un tamaño máximo de 10 MB."
                 );
-
-                input.value = "";
-
-                return;
             }
 
-
-            /* Mostrar archivos */
-
-            renderFiles(files);
-
+            // ============= VALIDAR TAMAÑO TOTAL =============
+            validateTotalSize();
         }
 
+        // ============= ACTUALIZAR INPUT DE WEB FORMS =============
+        function updateInputFiles() {
+            const dataTransfer = new DataTransfer();
 
-        /* =====================================================
-           MOSTRAR ARCHIVOS
-        ===================================================== */
-
-        function renderFiles(files) {
-
-            fileList.innerHTML = "";
-
-            files.forEach(function (file) {
-
-                const item = document.createElement("div");
-
-                item.className = "fpp-file-upload__file";
-
-                item.innerHTML = `
-                    <div class="fpp-file-upload__file-info">
-
-                        <i class="fa-regular fa-file fpp-file-upload__file-icon"></i>
-
-                        <span class="fpp-file-upload__file-name">
-                            ${escapeHtml(file.name)}
-                        </span>
-
-                    </div>
-
-                    <span class="fpp-file-upload__file-size">
-                        ${formatFileSize(file.size)}
-                    </span>
-                `;
-
-                fileList.appendChild(item);
-
+            selectedFiles.forEach(function (file) {
+                dataTransfer.items.add(file);
             });
 
+            input.files = dataTransfer.files;
         }
 
+        // ============= ELIMINAR ARCHIVO =============
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
 
-        /* =====================================================
-           MENSAJES
-        ===================================================== */
+            // Actualizar input real
+            updateInputFiles();
 
-        function showError(message) {
+            // Volver a mostrar archivos
+            renderFiles();
 
+            // Limpiar mensajes
             clearMessages();
 
+            // Volver a validar
+            validateTotalSize();
+        }
+
+        // ============= MOSTRAR ARCHIVOS =============
+        function renderFiles() {
+            fileList.innerHTML = "";
+
+            const totalSize = getTotalSize();
+
+            const totalSizeValid = totalSize <= MAX_TOTAL_SIZE;
+
+            selectedFiles.forEach(
+                function (file, index) {
+                    // ============= VALIDACIONES =============
+                    const typeValid = ALLOWED_TYPES.includes(file.type);
+
+                    const sizeValid = file.size <= MAX_FILE_SIZE;
+
+                    const isInvalid = !typeValid || !sizeValid || !totalSizeValid;
+
+                    // ============= CONTENEDOR =============
+                    const fileContainer = document.createElement("div");
+
+                    fileContainer.className =
+                        "fpp-file-upload__file" +
+                        (
+                            isInvalid
+                                ? " fpp-file-upload__file--error"
+                                : ""
+                        );
+
+                    // ============= INFORMACIÓN DEL ARCHIVO =============
+                    const fileInfo = document.createElement("div");
+
+                    fileInfo.className = "fpp-file-upload__file-info";
+
+                    // ============= ÍCONO =============
+                    const icon = document.createElement("i");
+
+                    let iconClass = "fa-regular fa-file";
+
+                    if (file.type === "application/pdf") {
+                        iconClass = "fa-regular fa-file-pdf";
+                    }
+                    else if (file.type === "image/jpeg" || file.type === "image/png") {
+                        iconClass = "fa-regular fa-file-image";
+                    }
+
+                    icon.className = iconClass + " fpp-file-upload__file-icon";
+
+                    // ============= NOMBRE =============
+                    const fileName = document.createElement("span");
+
+                    fileName.className = "fpp-file-upload__file-name";
+
+                    fileName.textContent = file.name;
+
+                    // ============= TAMAÑO =============
+                    const fileSize = document.createElement("span");
+
+                    fileSize.className = "fpp-file-upload__file-size";
+
+                    fileSize.textContent = formatFileSize(file.size);
+
+                    // ============= BOTÓN ELIMINAR =============
+                    const removeButton = document.createElement("button");
+
+                    removeButton.type = "button";
+
+                    removeButton.className = "fpp-file-upload__file-remove";
+
+                    removeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+                    removeButton.title = "Eliminar archivo";
+
+                    removeButton.setAttribute("aria-label", "Eliminar " + file.name);
+
+                    removeButton.addEventListener("click", function () {
+                            removeFile(index);
+                        }
+                    );
+
+                    // ============= ARMAR INFORMACIÓN =============
+                    fileInfo.appendChild(icon);
+                    fileInfo.appendChild(fileName);
+
+                    // ============= CONTENIDO DERECHO =============
+                    const fileActions = document.createElement("div");
+
+                    fileActions.className = "fpp-file-upload__file-actions";
+
+                    fileActions.appendChild(fileSize);
+                    fileActions.appendChild(removeButton);
+
+                    // ============= ARMAR ARCHIVO =============
+                    fileContainer.appendChild(fileInfo);
+                    fileContainer.appendChild(fileActions);
+
+                    fileList.appendChild(fileContainer);
+                }
+            );
+        }
+
+        // ============= VALIDAR TAMAÑO TOTAL =============
+        function validateTotalSize() {
+            const totalSize = getTotalSize();
+
+            if (totalSize > MAX_TOTAL_SIZE) {
+                showError("El tamaño total de los archivos no puede superar los 20 MB.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // ============= OBTENER TAMAÑO TOTAL =============
+        function getTotalSize() {
+            return selectedFiles.reduce(
+                function (total, file) {
+                    return total + file.size;
+                },
+                0
+            );
+        }
+
+        // ============= MOSTRAR ERROR =============
+        function showError(message) {
             const error = document.createElement("div");
 
             error.className = "fpp-file-upload__error";
@@ -783,50 +883,37 @@
             error.textContent = message;
 
             fileList.appendChild(error);
-
         }
 
-
+        // ============= LIMPIAR MENSAJES =============
         function clearMessages() {
+            const errors = fileList.querySelectorAll(".fpp-file-upload__error");
 
-            fileList.innerHTML = "";
-
+            errors.forEach(function (error) {
+                error.remove();
+            });
         }
 
-
-        /* =====================================================
-           FORMATO TAMAÑO
-        ===================================================== */
-
+        // ============= FORMATEAR TAMAÑO =============
         function formatFileSize(bytes) {
-
-            if (bytes < 1024 * 1024) {
-
-                return Math.round(bytes / 1024) + " KB";
-
+            if (bytes < 1024) {
+                return bytes + " B";
             }
 
-            return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+            if (bytes < 1024 * 1024) {
+                return Math.round(
+                    bytes / 1024
+                ) + " KB";
+            }
 
+            return (
+                bytes /
+                (1024 * 1024)
+            ).toFixed(1) + " MB";
         }
-
-
-        /* =====================================================
-           SEGURIDAD PARA MOSTRAR NOMBRE
-        ===================================================== */
-
-        function escapeHtml(text) {
-
-            const div = document.createElement("div");
-
-            div.textContent = text;
-
-            return div.innerHTML;
-
-        }
-
     });
-</script>--%>
+
+</script>
 
 
     <noscript>

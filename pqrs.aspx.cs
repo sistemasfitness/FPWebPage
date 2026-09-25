@@ -20,6 +20,24 @@ namespace WebPage
                 CargarSedes();
                 CargarMotivos();
             }
+
+            ddlTipoDocumento.SelectedValue = "1";
+            txtDocumento.Text = "1005137105";
+            txtNombres.Text = "CARLOS ANTONIO";
+            txtApellidos.Text = "RIVERA BAYONA";
+            txtCorreo.Text = "carlos.rivera0904@gmail.com";
+            txtCelular.Text = "3133664411";
+            ddlSede.SelectedValue = "2";
+            ddlTipoSolicitud.SelectedValue = "3";
+            txtAsunto.Text = "Este es un ejemplo de asunto para una PQRS";
+            txtDescripcion.Text = "Este es un ejemplo de descripción para una PQRS.";
+
+            foreach (ListItem item in chkMotivos.Items)
+            {
+                item.Selected = item.Value == "2" || item.Value == "3";
+            }
+
+            chkAutorizacionRadicar.Checked = true;
         }
 
         protected void btnRadicarSolicitud_Click(object sender, EventArgs e)
@@ -46,7 +64,7 @@ namespace WebPage
             {
                 idAfiliado = Convert.ToInt32(dtAfiliado.Rows[0]["idAfiliado"]);
 
-                cg.ActualizarAfiliadoPQRS(
+                string resultadoActualizacion = cg.ActualizarAfiliadoPQRS(
                     documento,
                     nombres,
                     apellidos,
@@ -54,6 +72,18 @@ namespace WebPage
                     celular,
                     idSede
                 );
+
+                if (resultadoActualizacion != "OK")
+                {
+                    MostrarAlerta(
+                        "No se pudo radicar",
+                        "No fue posible actualizar la información del afiliado.",
+                        "error"
+                    );
+
+                    dtAfiliado.Dispose();
+                    return;
+                }
             }
             else
             {
@@ -66,6 +96,18 @@ namespace WebPage
                     celular,
                     idSede
                 );
+
+                if (idAfiliado <= 0)
+                {
+                    MostrarAlerta(
+                        "No se pudo radicar",
+                        "No fue posible registrar la información del afiliado.",
+                        "error"
+                    );
+
+                    dtAfiliado.Dispose();
+                    return;
+                }
             }
 
             dtAfiliado.Dispose();
@@ -109,8 +151,19 @@ namespace WebPage
                 1 // Radicado
             );
 
+            if (idPQRS <= 0)
+            {
+                MostrarAlerta(
+                    "No se pudo radicar",
+                    "No fue posible crear la solicitud.",
+                    "error"
+                );
+
+                return;
+            }
+
             // ======= REGISTRAR ESTADO INICIAL EN EL HISTORIAL =======
-            cg.InsertarPQRSEstadoHistorial(
+            string resultadoHistorial = cg.InsertarPQRSEstadoHistorial(
                 idPQRS,
                 1, // Radicado
                 idAfiliado,
@@ -118,24 +171,58 @@ namespace WebPage
                 "La PQRS ha sido radicada por el afiliado."
             );
 
+            if (resultadoHistorial != "OK")
+            {
+                MostrarAlerta(
+                    "No se pudo completar la radicación",
+                    "La solicitud fue creada, pero no fue posible registrar su historial.",
+                    "error"
+                );
+
+                return;
+            }
+
             // ======= REGISTRAR MOTIVOS =======
             foreach (ListItem item in chkMotivos.Items)
             {
                 if (item.Selected)
                 {
                     int idMotivo = Convert.ToInt32(item.Value);
-                    cg.InsertarPQRSMotivoSeleccionado(idMotivo, idPQRS);
+
+                    string resultadoMotivo = cg.InsertarPQRSMotivoSeleccionado(idMotivo, idPQRS);
+
+                    if (resultadoMotivo != "OK")
+                    {
+                        MostrarAlerta(
+                            "No se pudo completar la radicación",
+                            "No fue posible registrar uno de los motivos de la solicitud.",
+                            "error"
+                        );
+
+                        return;
+                    }
                 }
             }
 
             // ======= REGISTRAR ARCHIVOS =======
             if (fuSoportesRadicar.HasFiles)
             {
-                GuardarArchivosRadicacion(
+                bool archivosGuardados = GuardarArchivosRadicacion(
                     cg,
                     idPQRS,
                     codigoRadicacion
                 );
+
+                if (!archivosGuardados)
+                {
+                    MostrarAlerta(
+                        "No se pudo completar la radicación",
+                        "No fue posible registrar uno de los archivos adjuntos.",
+                        "error"
+                    );
+
+                    return;
+                }
             }
         }
 
@@ -380,7 +467,7 @@ namespace WebPage
             return $"FP-PQRS-{fecha}-{codigoUnico}";
         }
 
-        private void GuardarArchivosRadicacion(clasesglobales cg, int idPQRS, string codigoRadicacion)
+        private bool GuardarArchivosRadicacion(clasesglobales cg, int idPQRS, string codigoRadicacion)
         {
             string rutaCarpeta = Server.MapPath("~/ArchivosPQRS/");
 
@@ -404,15 +491,19 @@ namespace WebPage
 
                 archivo.SaveAs(rutaFisica);
 
-                cg.InsertarPQRSArchivo(
+                string resultadoArchivo = cg.InsertarPQRSArchivo(
                     idPQRS,
                     null,
                     nombreArchivo,
                     rutaArchivo
                 );
 
+                if (resultadoArchivo != "OK") return false;
+
                 consecutivo++;
             }
+
+            return true;
         }
 
         private void CargarTipoDocumento()

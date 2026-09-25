@@ -5138,6 +5138,7 @@ body.menu-open {
 	background: var(--fp-card);
 	border: 1px solid var(--fp-border);
 	border-radius: 8px;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 /* Información del archivo */
@@ -5171,6 +5172,44 @@ body.menu-open {
 	color: var(--fp-muted);
 	font-size: 9px;
 }
+
+.fpp-file-upload__file--error {
+	border: 1px solid #ff4d4d;
+	border-color: #ff4d4d;
+	background: rgba(255, 77, 77, 0.08);
+}
+
+.fpp-file-upload__file-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.fpp-file-upload__file-remove {
+	width: 25px;
+	height: 25px;
+	border: 1px solid var(--fp-lime);
+	border-radius: 5px;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	font-size: 14px;
+}
+
+	.fpp-file-upload__file-remove i {
+		color: var(--fp-lime);
+	}
+
+	.fpp-file-upload__file-remove:hover {
+		background: var(--fp-lime);
+	}
+
+		.fpp-file-upload__file-remove:hover i {
+			color: var(--fp-black);
+		}
 
 /* =========================================================
    MENSAJE DE ERROR
