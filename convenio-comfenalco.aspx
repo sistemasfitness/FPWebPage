@@ -122,14 +122,12 @@
                 <div>
                     <div class="fpp-head fpp-title-convenio">
                         <div>
-                            <h2 class="title-convenio">Tu caja <span>te pone a entrenar.</span></h2>
+                            <h2 class="title-convenio">Tu caja <span>te pone a entrenar</span></h2>
                         </div>
                     </div>
 
                     <p class="hero-sub">
-                        Si estás afiliado a <strong>Comfenalco Santander</strong>, entrenas en Fitness People con
-                        tarifa preferencial según tu categoría. Consulta con tu número de documento cuánto pagas
-                        y empieza en la sede que prefieras.
+                        Si estás afiliado a <strong>Comfenalco Santander</strong>, entrenas en Fitness People por <strong>$79.000 al mes.</strong> Digita tu documento y te confirmamos al instante si aplicas al convenio, seas titular o beneficiario.
                     </p>
 
                     <div class="hero-ctas">
@@ -162,74 +160,124 @@
                 <div class="kicker kicker--center">Consulta en línea</div>
 
                 <div class="fpp-title-consulta-conv">
-                    <h2>Mira <span>cuánto pagas.</span></h2>
+                    <h2>Mira <span>si aplicas</span></h2>
                 </div>
 
-                <%--<h2 class="display"><span class="outline">Mira</span> <span class="lime">cuánto pagas.</span></h2>--%>
-
-                <p class="lead">Selecciona tu tipo de documento, digita el número y te mostramos la categoría en la que estás afiliado a Comfenalco Santander y la tarifa que te corresponde.</p>
+                <p class="lead">Selecciona si consultas como titular o como beneficiario, digita el documento y te confirmamos de inmediato si tienes la tarifa del convenio.</p>
 
                 <!-- Formulario de consulta -->
                 <form class="cs-form" id="csForm" novalidate>
-                    <div>
-                        <label for="tipoDoc">Tipo de documento</label>
+                    <!-- Titular / Beneficiario -->
+                    <div class="cs-radios" role="radiogroup" aria-label="Tipo de consulta">
+                        <label class="cs-radio on" data-radio>
+                            <input type="radio" name="rol" value="titular" checked>
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="txt">Titular</span>
+                        </label>
 
-                        <select id="tipoDoc" required>
-                            <option value="">Selecciona</option>
-                            <option value="CC">Cédula de ciudadanía</option>
-                            <option value="CE">Cédula de extranjería</option>
-                            <option value="TI">Tarjeta de identidad</option>
-                            <option value="PA">Pasaporte</option>
-                            <option value="PPT">Permiso por Protección Temporal</option>
-                        </select>
+                        <label class="cs-radio" data-radio>
+                            <input type="radio" name="rol" value="beneficiario">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="txt">Beneficiario</span>
+                        </label>
                     </div>
 
-                    <div>
-                        <label for="numDoc">Número de documento</label>
-                        <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required>
+                    <!-- Documento del titular (siempre visible) -->
+                    <div class="cs-bloque">
+                        <p class="cs-bloque-t">Documento del titular</p>
+
+                        <div class="cs-duo">
+                            <div>
+                                <label for="tipoDoc">Tipo</label>
+                                <select id="tipoDoc" required>
+                                <option value="">Tipo</option>
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="PA">Pasaporte</option>
+                                <option value="PPT">Permiso por Protección Temporal</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="numDoc">N.° de documento</label>
+                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required/>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
+                    <div class="cs-bloque" id="bloqueBenef" hidden>
+                        <p class="cs-bloque-t">Documento del beneficiario</p>
+
+                        <div class="cs-duo">
+                            <div>
+                                <label for="tipoDocB">Tipo</label>
+                                <select id="tipoDocB">
+                                <option value="">Tipo</option>
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="RC">Registro civil</option>
+                                <option value="PA">Pasaporte</option>
+                                <option value="PPT">Permiso por Protección Temporal</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="numDocB">N.° de documento</label>
+                                <input id="numDocB" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <label class="cs-check" for="acepto" id="csCheckWrap">
+                        <input id="acepto" type="checkbox" required checked />
+                        <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de tratamiento de datos personales</a> de Fitness People.</span>
+                    </label>
+
                     <div>
-                        <button class="fpp-btn fpp-btn--solid" type="submit">Consultar</button>
+                        <button class="fpp-btn fpp-btn--solid fpp-btn-full" type="submit">Consultar mi tarifa</button>
                     </div>
                 </form>
 
                 <p class="cs-msg" id="csMsg">Revisa los datos: selecciona el tipo de documento y digita un número válido.</p>
-                <p class="cs-nota">Consultamos tu afiliación en la base de Comfenalco Santander. Tus datos se usan solo para validar la tarifa, según la <a href="#">política de tratamiento de datos</a>.</p>
 
                 <!-- Cargando -->
                 <div class="cs-load" id="csLoad"><i></i> Validando tu afiliación…</div>
 
-                <!-- Resultado: afiliado -->
+                <!-- Resultado: aplica -->
                 <div class="cs-res" id="csRes">
                     <div class="cs-res-grid">
                         <div class="cs-persona">
-                            <small>Afiliado verificado</small>
-                            <b id="csNombre">Afiliado Comfenalco</b>
-                            <p class="doc" id="csDoc">CC 1.098.765.432</p>
-                            <span class="cs-cat"><i id="csLetra">A</i> <span id="csCatTxt">Categoría A · hasta 2 SMMLV</span></span>
+                            <small>Resultado de la consulta</small>
+                            <b>Aplicas al convenio</b>
+                            <p class="doc" id="csDoc">Titular · CC 1.098.765.432</p>
+                            <p class="doc" id="csDocB" hidden>Beneficiario · TI 1.030.445.881</p>
+                            <span class="cs-cat"><i>✓</i> <span>Tarifa del convenio habilitada</span></span>
                         </div>
 
                         <div class="cs-precio">
                             <div class="antes">Tarifa plena <s>$165.000</s></div>
-                                <div class="ahora"><span class="v" id="csValor">$79.000</span><span class="p">/ mes</span></div>
-                                <div class="ahorro" id="csAhorro">Ahorras $86.000 cada mes</div>
-                                <a href="#pasos" class="fpp-btn fpp-btn--solid">Continuar mi inscripción <span class="arrow"></span></a>
-                                <small class="demo">Valores de ejemplo — pendientes de confirmar con Comfenalco Santander.</small>
+                            <div class="ahora"><span class="v">$79.000</span><span class="p">/ mes</span></div>
+                            <div class="ahorro">Ahorras $86.000 cada mes</div>
+                            <a href="#pasos" class="fpp-btn fpp-btn--solid">Continuar mi inscripción <span class="arrow"></span></a>
                         </div>
                     </div>
+
                     <button class="cs-reset" type="button" data-reset>Consultar otro documento</button>
                 </div>
 
-                <!-- Resultado: no encontrado -->
+                <!-- Resultado: no aplica -->
                 <div class="cs-no" id="csNo">
                     <div class="ic">?</div>
-                    <h3>No encontramos tu afiliación</h3>
-                    <p>El documento que digitaste no aparece como afiliado activo a Comfenalco Santander. Verifica el número o comunícate con tu caja para confirmar tu estado y categoría.</p>
-                    <div class="acciones">
+                        <h3>Este documento no aplica</h3>
+                        <p>No pudimos habilitar la tarifa del convenio para el documento que digitaste. Puede ser porque la afiliación no está activa a la fecha o porque no cumple las condiciones vigentes del convenio. Un asesor puede revisarlo contigo y mostrarte las demás opciones.</p>
+                        <div class="acciones">
                         <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
                         <a href="index.html#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
                     </div>
+
                     <button class="cs-reset" type="button" data-reset>Consultar otro documento</button>
                 </div>
             </div>
@@ -244,10 +292,10 @@
             <div class="section-head section-head--split reveal">
                 <div>
                     <div class="kicker">Qué incluye</div>
-                    <h2 class="display">Misma tarifa, <span>todo incluido.</span></h2>
+                    <h2 class="display">Misma tarifa, <span>todo incluido</span></h2>
                 </div>
                 
-                <p>El convenio cambia lo que pagas, no lo que recibes. Los afiliados de Comfenalco entran con la membresía completa de Fitness People, con el respaldo del Centro Médico Deportivo.</p>
+                <p>El convenio cambia lo que pagas, no lo que recibes. Los afiliados de Comfenalco entran con la membresía completa de Fitness People.</p>
             </div>
 
             <div class="chips reveal">
@@ -278,68 +326,72 @@
             <div class="section-head section-head--split reveal">
                 <div>
                     <div class="kicker">Dónde entrenas</div>
-                    <h2 class="display">Diez sedes <span>habilitadas.</span></h2>
+                    <h2 class="display">Diez sedes <span>habilitadas</span></h2>
                 </div>
                 <p>El convenio aplica en todas nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. Entrena en la que quieras, sin costos por traslado.</p>
             </div>
 
             <div class="sedes-mini reveal">
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/boulevard1.jpg" alt=""></figure><div class="t"><small>Bucaramanga</small><b>Boulevard</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/cabecera1.jpg" alt=""></figure><div class="t"><small>Bucaramanga</small><b>Cabecera</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/prado1.jpg" alt=""></figure><div class="t"><small>Bucaramanga</small><b>El Prado</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/provenza1.jpg" alt=""></figure><div class="t"><small>Bucaramanga</small><b>Provenza</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ciudadela1.jpg" alt=""></figure><div class="t"><small>Bucaramanga</small><b>Ciudadela</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/canaveral1.jpg" alt=""></figure><div class="t"><small>Floridablanca</small><b>Cañaveral</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/delacuesta1.jpg" alt=""></figure><div class="t"><small>Piedecuesta</small><b>DeLaCuesta</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/parquecentral1.jpg" alt=""></figure><div class="t"><small>Piedecuesta</small><b>Parque Central</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/jardin1.jpg" alt=""></figure><div class="t"><small>Cúcuta</small><b>Jardín Plaza</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ceiba1.jpg" alt=""></figure><div class="t"><small>Cúcuta</small><b>Ceiba II</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/boulevard1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Boulevard</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/cabecera1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Cabecera</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/prado1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>El Prado</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/provenza1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Provenza</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ciudadela1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Ciudadela</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/canaveral1.jpg" alt=""/></figure><div class="t"><small>Floridablanca</small><b>Cañaveral</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/delacuesta1.jpg" alt=""/></figure><div class="t"><small>Piedecuesta</small><b>DeLaCuesta</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/parquecentral1.jpg" alt=""/></figure><div class="t"><small>Piedecuesta</small><b>Parque Central</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/jardin1.jpg" alt=""/></figure><div class="t"><small>Cúcuta</small><b>Jardín Plaza</b></div></a>
+                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ceiba1.jpg" alt=""/></figure><div class="t"><small>Cúcuta</small><b>Ceiba II</b></div></a>
             </div>
         </div>
     </section>
 
 
 
-<!-- ================= 09. FAQ ================= -->
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="faq-grid">
-      <div class="reveal">
-        <div class="kicker">Dudas frecuentes</div>
-        <h2 class="display">Sobre el <span>convenio.</span></h2>
-        <p class="lead">Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
-        <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
-      </div>
+    <!-- ================= 09. FAQ ================= -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-grid">
+                <div class="reveal">
+                    <div class="kicker">Preguntas frecuentes</div>
+                    <h2 class="display">Sobre el <span>convenio</span></h2>
+                    <p class="lead">Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
+                    <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
+                </div>
 
-      <div class="fap-section reveal">
-        <details open>
-          <summary>¿Cómo sé en qué categoría estoy?</summary>
-          <p>La categoría la asigna Comfenalco Santander según el ingreso mensual reportado: A hasta 2 salarios mínimos, B entre 2 y 4, y C más de 4. Puedes verificarla aquí mismo digitando tu documento en la sección de consulta, o en el portal de la caja.</p>
-        </details>
-        <details>
-          <summary>¿Mi familia también accede a la tarifa?</summary>
-          <p>Sí. Aplica para las personas que tengas registradas como beneficiarias ante la caja: cónyuge, hijos y padres. Cada una firma su propio contrato presentando el certificado de afiliación del titular.</p>
-        </details>
-        <details>
-          <summary>¿Debo pagar cuota de inscripción?</summary>
-          <p>No. Durante la vigencia del convenio los afiliados de Comfenalco Santander ingresan sin cuota de inscripción en cualquiera de las 10 sedes.</p>
-        </details>
-        <details>
-          <summary>¿Puedo entrenar en todas las sedes?</summary>
-          <p>Sí. La tarifa del convenio habilita el acceso a las 10 sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta, sin trámites ni costos adicionales por cambiar de sede.</p>
-        </details>
-        <details>
-          <summary>¿Qué pasa si dejo de estar afiliado a la caja?</summary>
-          <p>El beneficio está atado a tu afiliación activa. Si esta termina, tu membresía continúa pero pasa a la tarifa vigente sin convenio a partir del siguiente periodo de facturación, previo aviso.</p>
-        </details>
-        <details>
-          <summary>¿Puedo combinar el convenio con otra promoción?</summary>
-          <p>No. Las tarifas del convenio no son acumulables con otras promociones, descuentos por referidos, planes corporativos ni campañas vigentes.</p>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="fap-section reveal">
+                    <details open>
+                        <summary>¿Cómo sé si aplico al convenio?</summary>
+                        <p>No tienes que averiguar nada por tu cuenta. Digita tu documento en la consulta en línea y el sistema valida tu afiliación con Comfenalco Santander: en segundos te confirma si tienes habilitada la tarifa del convenio.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuánto cuesta la membresía con el convenio?</summary>
+                        <p>Hay una sola tarifa: $79.000 al mes, sin cuota de inscripción y sin permanencia, frente a los $165.000 de la tarifa plena. Es la misma para titulares y beneficiarios que apliquen.</p>
+                    </details>
+                    <details>
+                        <summary>¿Mis beneficiarios también acceden a la tarifa?</summary>
+                        <p>Sí, siempre que estén registrados como beneficiarios ante la caja y cumplan las condiciones del convenio. En la consulta selecciona <strong>Beneficiario</strong> e ingresa el documento del titular y el del beneficiario. Cada persona firma su propio contrato.</p>
+                    </details>
+                    <details>
+                        <summary>Mi documento no aplicó. ¿Qué puedo hacer?</summary>
+                        <p>Verifica que el número esté bien digitado y que tu afiliación a la caja esté activa. Si todo está correcto y aun así no aplica, escríbenos por WhatsApp: un asesor revisa tu caso y te muestra las demás opciones y promociones vigentes.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo entrenar en todas las sedes?</summary>
+                        <p>Sí. La tarifa del convenio habilita el acceso a las 10 sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta, sin trámites ni costos adicionales por cambiar de sede.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué pasa si dejo de estar afiliado a la caja?</summary>
+                        <p>El beneficio está atado a tu afiliación activa. Si esta termina, tu membresía continúa pero pasa a la tarifa vigente sin convenio a partir del siguiente periodo de facturación, previo aviso.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo combinar el convenio con otra promoción?</summary>
+                        <p>No. La tarifa del convenio no es acumulable con otras promociones, descuentos por referidos, planes corporativos ni campañas vigentes.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -387,10 +439,10 @@
 .lockup {
   display: inline-flex; align-items: center; gap: 20px;
   border: 1px solid var(--fp-border); background: rgba(0,0,0,.55);
-  border-radius: 30px; padding: 12px 24px 12px 16px; margin-bottom: 26px;
+  border-radius: 10px; padding: 12px 24px 12px 16px;
 }
-.lockup .fp-logo { height: 50px; }
-.lockup .fp-logo-comf { height: 130px; }
+.lockup .fp-logo { height: 35px; }
+.lockup .fp-logo-comf { height: 110px; }
 .lockup .x { color: var(--fp-gray-2); font-size: 25px; font-weight: 300; }
 
 .fpp-title-convenio {
@@ -398,11 +450,11 @@
 }
 
 .title-convenio {
-    font-size: clamp(50px, 7.6vw, 80px) !important;
+    font-size: clamp(40px, 5vw, 55px) !important;
 }
 
 .hero-sub {
-  font-size: clamp(16px, 1.5vw, 19px);
+  font-size: 15px;
   line-height: 1.6;
   color: #E6E6E6;
   max-width: 560px;
@@ -451,7 +503,7 @@
 }
 
 .fpp-title-consulta-conv h2 {
-	font-size: clamp(24px, 4vw, 46px) !important;
+	font-size: clamp(20px, 4vw, 40px) !important;
 	font-weight: 900;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -508,27 +560,84 @@
 .cs-card h2 { font-size: clamp(38px, 5vw, 62px); text-align: center; }
 .cs-card > p.lead { text-align: center; color: var(--fp-gray-3); font-size: 15px; line-height: 1.65; max-width: 560px; margin: 16px auto 0; font-weight: 400; }
 
-.cs-form { margin-top: 38px; display: grid; grid-template-columns: 1fr 1.25fr auto; gap: 14px; align-items: end; }
-.cs-form label { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--fp-gray); margin-bottom: 9px; }
-.cs-form select, .cs-form input {
-  width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: #fff;
-  background: #0A0A0A; border: 1px solid var(--fp-border); border-radius: 14px;
-  padding: 17px 18px; outline: none; transition: border-color .2s;
-  -webkit-appearance: none; appearance: none;
-}
-.cs-form select {
-  background-image: linear-gradient(45deg, transparent 50%, #E3FF00 50%), linear-gradient(135deg, #E3FF00 50%, transparent 50%);
-  background-position: calc(100% - 22px) 50%, calc(100% - 17px) 50%;
-  background-size: 5px 5px; background-repeat: no-repeat;
-}
-.cs-form select:focus, .cs-form input:focus { border-color: var(--fp-lime); }
-.cs-form input::placeholder { color: #6E6E6E; font-weight: 500; }
-.cs-form input.err, .cs-form select.err { border-color: #FF5C5C; }
-.cs-form .btn { padding: 18px 34px; }
-.cs-nota { margin-top: 18px; text-align: center; font-size: 12px; color: var(--fp-gray-2); line-height: 1.6; }
-.cs-nota a { color: var(--fp-lime); text-decoration: none; font-weight: 700; }
-.cs-msg { display: none; margin-top: 16px; text-align: center; color: #FF7B7B; font-size: 13px; font-weight: 700; }
-.cs-msg.on { display: block; }
+.fpp-btn-full { width: 100%; }
+
+  .cs-form { margin: 36px auto 0; max-width: 620px; }
+
+  /* Selector Titular / Beneficiario */
+  .cs-radios { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .cs-radio {
+    position: relative; display: flex; align-items: center; gap: 12px;
+    border: 1px solid var(--fp-border); background: #0A0A0A; border-radius: 14px;
+    padding: 16px 18px; cursor: pointer; transition: border-color .2s, background .2s;
+  }
+  .cs-radio input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .cs-radio .dot { position: relative; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--fp-gray-2); flex-shrink: 0; transition: border-color .2s; }
+  .cs-radio .dot::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--fp-lime); transform: scale(0); transition: transform .18s ease; }
+  .cs-radio .txt { font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--fp-gray); transition: color .2s; }
+  .cs-radio:hover { border-color: var(--fp-gray-2); }
+  .cs-radio.on { border-color: var(--fp-lime); background: var(--fp-lime-soft); }
+  .cs-radio.on .dot { border-color: var(--fp-lime); }
+  .cs-radio.on .dot::after { transform: scale(1); }
+  .cs-radio.on .txt { color: #fff; }
+  .cs-radio input:focus-visible ~ .dot { box-shadow: 0 0 0 3px rgba(227,255,0,.35); }
+
+  /* Bloques de documento */
+  .cs-bloque { margin-bottom: 22px; }
+  .cs-bloque[hidden] { display: none; }
+  .cs-bloque-t {
+    font-size: 11px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--fp-lime); margin-bottom: 16px; padding-bottom: 11px; border-bottom: 1px solid var(--fp-border);
+  }
+  .cs-duo { display: grid; grid-template-columns: 210px 1fr; gap: 12px; }
+
+  /* Aceptación de términos */
+  .cs-check {
+    display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+    margin: 6px 0 22px; font-size: 12.5px; line-height: 1.6; color: #C4C4C4; cursor: pointer;
+  }
+  .cs-check input { width: 22px; height: 22px; border-radius: 6px; accent-color: var(--fp-lime); cursor: pointer; }
+  .cs-check a { color: var(--fp-lime); font-weight: 700; text-decoration: none; }
+  .cs-check a:hover { text-decoration: underline; }
+  .cs-check.err span { color: #FF7B7B; }
+
+  .cs-form label { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--fp-gray); margin-bottom: 9px; }
+  .cs-form select, .cs-form input {
+    width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: #fff;
+    background: #0A0A0A; border: 1px solid var(--fp-border); border-radius: 14px;
+    padding: 17px 18px; outline: none; transition: border-color .2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .cs-form select {
+    background-image: linear-gradient(45deg, transparent 50%, #E3FF00 50%), linear-gradient(135deg, #E3FF00 50%, transparent 50%);
+    background-position: calc(100% - 22px) 50%, calc(100% - 17px) 50%;
+    background-size: 5px 5px; background-repeat: no-repeat;
+  }
+  .cs-form select:focus, .cs-form input:focus { border-color: var(--fp-lime); }
+  .cs-form input::placeholder { color: #6E6E6E; font-weight: 500; }
+  .cs-form input.err, .cs-form select.err { border-color: #FF5C5C; }
+  .cs-form .btn { width: 100%; padding: 18px 30px; }
+
+  /* Overrides: el radio y el check no heredan el estilo de los campos */
+  .cs-form label.cs-radio { display: flex; align-items: center; gap: 12px; margin-bottom: 0; }
+  .cs-form .cs-radio .dot { display: block; }
+  .cs-form .cs-radio input[type="radio"] {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; margin: 0; padding: 0; border: none; background: none; cursor: pointer;
+  }
+  .cs-form label.cs-check {
+      display: flex;
+    font-size: 12.5px; font-weight: 500; letter-spacing: normal; text-transform: none;
+    color: #C4C4C4; margin-bottom: 22px;
+  }
+  .cs-form .cs-check input[type="checkbox"] {
+    width: 22px; height: 22px; padding: 0; border-radius: 6px;
+    background: #141414; border: 1px solid var(--fp-border); accent-color: var(--fp-lime);
+  }
+  .cs-nota { margin-top: 18px; text-align: center; font-size: 12px; color: var(--fp-gray-2); line-height: 1.6; }
+  .cs-nota a { color: var(--fp-lime); text-decoration: none; font-weight: 700; }
+  .cs-msg { display: none; margin-top: 16px; text-align: center; color: #FF7B7B; font-size: 13px; font-weight: 700; }
+  .cs-msg.on { display: block; }
 
 /* Estado de carga */
 .cs-load { display: none; margin-top: 34px; text-align: center; color: var(--fp-gray); font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -580,7 +689,7 @@
 
 .respaldo { padding: 100px 0; background: var(--fp-card); }
 .section-head { margin-bottom: 24px; }
-.section-head h2 { font-size: clamp(24px, 5vw, 44px); font-weight: 900;
+.section-head h2 { font-size: clamp(34px, 5vw, 50px); font-weight: 900;
 text-transform: uppercase;
 letter-spacing: 1px;
 line-height: 1.05;
@@ -708,7 +817,7 @@ color: var(--fp-white); }
   /* ============ 09. FAQ + ALIADOS ============ */
 .faq { padding: 100px 0 80px; background: var(--fp-bg); }
 .faq-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; }
-.faq h2 { font-size: clamp(24px, 5vw, 44px); font-weight: 900;
+.faq h2 { font-size: clamp(34px, 5vw, 50px); font-weight: 900;
 text-transform: uppercase;
 letter-spacing: 1px;
 line-height: 1.05;
@@ -798,8 +907,17 @@ color: var(--fp-white); }
   .paso:nth-child(3), .paso:nth-child(4) { border-top: 1px solid var(--fp-border); }
 }
 @media (max-width: 991px) {
-  .cv-hero { padding: 118px 0 58px; }
-  .cv-hero-grid, .cs-form, .cs-res-grid, .requisitos { grid-template-columns: 1fr; gap: 34px; }
+
+    .lockup .fp-logo { height: 30px; }
+.lockup .fp-logo-comf { height: 100px; }
+
+
+.fpp-title-convenio { margin-top: 0; }
+
+
+  .cv-hero { padding: 100px 0 58px; }
+  .cs-form, .cs-res-grid, .requisitos { grid-template-columns: 1fr; gap: 34px; }
+  .cv-hero-grid { flex-direction: column-reverse; gap: 10px; }
   .cs-form { gap: 16px; }
   .cs-form .btn { width: 100%; }
   .franja .container { grid-template-columns: 1fr 1fr; }
@@ -807,6 +925,12 @@ color: var(--fp-white); }
   .fr-item:nth-child(3) { padding-left: 0; border-top: 1px solid var(--fp-border); }
   .fr-item:nth-child(4) { border-top: 1px solid var(--fp-border); }
   .cs-card { padding: 34px 26px 30px; }
+
+
+  .consulta, .respaldo, .sedes-conv, .faq { padding: 50px 0; }
+
+  
+
 }
 @media (max-width: 600px) {
   .franja .container { grid-template-columns: 1fr; }
@@ -821,6 +945,10 @@ color: var(--fp-white); }
   .lockup .partner b { font-size: 14px; }
   .aviso { grid-template-columns: 1fr; }
   .cs-card { padding: 26px 20px; }
+
+
+  .cs-radios { gap: 7px; }
+
 }
 
     </style>
@@ -828,7 +956,7 @@ color: var(--fp-white); }
 
 
 
-<script>
+<%--<script>
     // =========================================================
     //  CONSULTA DE AFILIACIÓN — MAQUETA
     //  Al implementar: reemplazar consultarDemo() por la llamada
@@ -921,6 +1049,159 @@ color: var(--fp-white); }
             b.addEventListener('click', function () {
                 ocultar();
                 form.reset();
+                num.focus();
+                form.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            });
+        });
+    })();
+
+    // Aparición suave
+    (function () {
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, { threshold: .12 });
+        els.forEach(function (e) { io.observe(e); });
+    })();
+</script>--%>
+
+
+<script>
+    // =========================================================
+    //  CONSULTA DE AFILIACIÓN — MAQUETA
+    //
+    //  Al implementar: reemplazar consultarDemo() por la llamada
+    //  real al servicio de Comfenalco Santander (o al backend que
+    //  lo consume). La respuesta solo necesita decir si el
+    //  documento aplica o no: { aplica: true | false }.
+    //
+    //  IMPORTANTE: la categoría del afiliado (A, B o C) NO se
+    //  muestra en pantalla. El convenio cubre A y B con una
+    //  tarifa única; C no aplica, pero el usuario nunca ve la
+    //  letra ni el motivo, solo "aplica" o "no aplica".
+    //
+    //  Regla de la demo, para poder ver los dos estados:
+    //  documentos terminados en "00", o cuya suma de dígitos sea
+    //  múltiplo de 3 más 2, devuelven "no aplica".
+    // =========================================================
+    (function () {
+        var ETIQUETA = { CC: 'CC', CE: 'CE', TI: 'TI', RC: 'RC', PA: 'Pasaporte', PPT: 'PPT' };
+
+        var form = document.getElementById('csForm');
+        var tipo = document.getElementById('tipoDoc');
+        var num = document.getElementById('numDoc');
+        var tipoB = document.getElementById('tipoDocB');
+        var numB = document.getElementById('numDocB');
+        var bloqueB = document.getElementById('bloqueBenef');
+        var chk = document.getElementById('acepto');
+        var chkBox = document.getElementById('csCheckWrap');
+        var msg = document.getElementById('csMsg');
+        var load = document.getElementById('csLoad');
+        var res = document.getElementById('csRes');
+        var no = document.getElementById('csNo');
+        var linDoc = document.getElementById('csDoc');
+        var linDocB = document.getElementById('csDocB');
+
+        function esBeneficiario() {
+            var r = form.querySelector('input[name="rol"]:checked');
+            return r && r.value === 'beneficiario';
+        }
+        function miles(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+        // ---- Radio group Titular / Beneficiario ----
+        form.querySelectorAll('input[name="rol"]').forEach(function (r) {
+            r.addEventListener('change', function () {
+                form.querySelectorAll('[data-radio]').forEach(function (l) {
+                    l.classList.toggle('on', l.querySelector('input').checked);
+                });
+                var benef = esBeneficiario();
+                bloqueB.hidden = !benef;
+                if (!benef) { tipoB.value = ''; numB.value = ''; tipoB.classList.remove('err'); numB.classList.remove('err'); }
+                ocultar();
+            });
+        });
+
+        // ---- Formato de miles mientras escribe ----
+        function formatear(campoTipo, campoNum) {
+            campoNum.addEventListener('input', function () {
+                campoNum.classList.remove('err');
+                if (campoTipo.value === 'PA') return;        // el pasaporte admite letras
+                var limpio = campoNum.value.replace(/\D/g, '').slice(0, 12);
+                campoNum.value = limpio ? miles(limpio) : '';
+            });
+            campoTipo.addEventListener('change', function () { campoTipo.classList.remove('err'); });
+        }
+        formatear(tipo, num);
+        formatear(tipoB, numB);
+        chk.addEventListener('change', function () { chkBox.classList.remove('err'); });
+
+        // ---- Consulta simulada ----
+        function consultarDemo(doc) {
+            var d = doc.replace(/\D/g, '');
+            if (d.slice(-2) === '00') return { aplica: false };
+            var suma = 0;
+            for (var i = 0; i < d.length; i++) suma += parseInt(d.charAt(i), 10) || 0;
+            return { aplica: suma % 3 !== 2 };
+        }
+
+        function ocultar() {
+            res.classList.remove('on');
+            no.classList.remove('on');
+            msg.classList.remove('on');
+        }
+
+        function valido(campoTipo, campoNum) {
+            var crudo = campoNum.value.trim();
+            var digitos = crudo.replace(/\D/g, '');
+            var ok = true;
+            if (!campoTipo.value) { campoTipo.classList.add('err'); ok = false; }
+            if (campoTipo.value === 'PA' ? crudo.length < 5 : digitos.length < 6) { campoNum.classList.add('err'); ok = false; }
+            return ok;
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            ocultar();
+
+            var benef = esBeneficiario();
+            var falla = !valido(tipo, num);
+            if (benef && !valido(tipoB, numB)) falla = true;
+            if (!chk.checked) { chkBox.classList.add('err'); falla = true; }
+            if (falla) { msg.classList.add('on'); return; }
+
+            load.classList.add('on');
+
+            // El documento que define la tarifa es el del beneficiario cuando aplica;
+            // el backend real debe validar el vínculo titular-beneficiario.
+            var clave = (benef ? numB.value : num.value).replace(/\D/g, '');
+
+            setTimeout(function () {
+                load.classList.remove('on');
+                var r = consultarDemo(clave);
+
+                if (!r.aplica) { no.classList.add('on'); no.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+
+                linDoc.textContent = 'Titular · ' + (ETIQUETA[tipo.value] || '') + ' ' + num.value.trim();
+                if (benef) {
+                    linDocB.textContent = 'Beneficiario · ' + (ETIQUETA[tipoB.value] || '') + ' ' + numB.value.trim();
+                    linDocB.hidden = false;
+                } else {
+                    linDocB.hidden = true;
+                }
+                res.classList.add('on');
+                res.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }, 900);
+        });
+
+        document.querySelectorAll('[data-reset]').forEach(function (b) {
+            b.addEventListener('click', function () {
+                ocultar();
+                form.reset();
+                bloqueB.hidden = true;
+                form.querySelectorAll('[data-radio]').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').checked); });
+                form.querySelectorAll('.err').forEach(function (x) { x.classList.remove('err'); });
+                chkBox.classList.remove('err');
                 num.focus();
                 form.scrollIntoView({ block: 'center', behavior: 'smooth' });
             });
