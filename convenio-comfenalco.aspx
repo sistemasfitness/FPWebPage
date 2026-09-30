@@ -213,14 +213,14 @@
                         <div class="cs-duo">
                             <div>
                                 <label for="tipoDocB">Tipo</label>
-                                <select id="tipoDocB">
-                                <option value="">Tipo</option>
-                                <option value="CC">Cédula de ciudadanía</option>
-                                <option value="CE">Cédula de extranjería</option>
-                                <option value="TI">Tarjeta de identidad</option>
-                                <option value="RC">Registro civil</option>
-                                <option value="PA">Pasaporte</option>
-                                <option value="PPT">Permiso por Protección Temporal</option>
+                                    <select id="tipoDocB">
+                                    <option value="">Tipo</option>
+                                    <option value="CC">Cédula de ciudadanía</option>
+                                    <option value="CE">Cédula de extranjería</option>
+                                    <option value="TI">Tarjeta de identidad</option>
+                                    <option value="RC">Registro civil</option>
+                                    <option value="PA">Pasaporte</option>
+                                    <option value="PPT">Permiso por Protección Temporal</option>
                                 </select>
                             </div>
                             <div>
@@ -945,10 +945,16 @@ color: var(--fp-white); }
   .lockup .partner b { font-size: 14px; }
   .aviso { grid-template-columns: 1fr; }
   .cs-card { padding: 26px 20px; }
+  .cs-duo { grid-template-columns: 1fr; }
 
 
-  .cs-radios { gap: 7px; }
 
+}
+
+@media (max-width: 400px) {
+    .cs-radio {
+        padding: 5px;
+    }
 }
 
     </style>
