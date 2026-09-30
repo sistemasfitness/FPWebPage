@@ -154,7 +154,7 @@
         <div class="swiper fp-slider">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
-                <div class="swiper-slide">
+                <%--<div class="swiper-slide">
                     <picture>
                         <source
                             media="(max-width: 600px)"
@@ -165,7 +165,7 @@
                             fetchpriority="high"
                             decoding="async" />
                     </picture>
-                </div>
+                </div>--%>
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide"

@@ -102,35 +102,35 @@ namespace WebPage
                 // ===============================
                 // PLAN SORPRÉNDETE EN DICIEMBRE
                 // ===============================
-                case "sorprendete-en-diciembre":
+                //case "sorprendete-en-diciembre":
 
-                    lblTitulo.InnerText = "PLAN SORPRÉNDETE EN DICIEMBRE";
-                    lblSubTitulo.InnerHtml = "PLAN PAGO ÚNICO <br /> EXCLUSIVO PARA RENOVADOS";
+                //    lblTitulo.InnerText = "PLAN SORPRÉNDETE EN DICIEMBRE";
+                //    lblSubTitulo.InnerHtml = "PLAN PAGO ÚNICO <br /> EXCLUSIVO PARA RENOVADOS";
 
-                    lblTituloMeses.Visible = true;
-                    lblTituloMeses.InnerHtml = "2 MESES + 1 MES GRATIS";
-                    lblTituloPrecio.InnerHtml = "PAGA HOY <br /> $249.000";
-                    lblSubTituloPrecio1.Visible = false;
-                    lblSubTituloPrecio2.Visible = false;
+                //    lblTituloMeses.Visible = true;
+                //    lblTituloMeses.InnerHtml = "2 MESES + 1 MES GRATIS";
+                //    lblTituloPrecio.InnerHtml = "PAGA HOY <br /> $249.000";
+                //    lblSubTituloPrecio1.Visible = false;
+                //    lblSubTituloPrecio2.Visible = false;
 
-                    lblSubTituloUp.InnerText = "ANTES $350.000";
-                    lblFidelidad.Visible = false;
-                    lblNotaFidelidad.Visible = false;
+                //    lblSubTituloUp.InnerText = "ANTES $350.000";
+                //    lblFidelidad.Visible = false;
+                //    lblNotaFidelidad.Visible = false;
 
-                    divPackBienvenida.Visible = false;
+                //    divPackBienvenida.Visible = false;
 
-                    itemId = "4";
-                    itemName = "Plan Sorpréndete en Diciembre";
-                    price = 249000;
-                    texto = "ACTIVA TU PLAN";
-                    tokenId = "";
-                    urlKey = "SORPRENDETE_EN_DICIEMBRE";
-                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId, urlKey);
-                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId, urlKey);
+                //    itemId = "4";
+                //    itemName = "Plan Sorpréndete en Diciembre";
+                //    price = 249000;
+                //    texto = "ACTIVA TU PLAN";
+                //    tokenId = "";
+                //    urlKey = "SORPRENDETE_EN_DICIEMBRE";
+                //    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId, urlKey);
+                //    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId, urlKey);
 
-                    lblTextoFinal.InnerHtml = "Sin inscripción <br /> Sin administración <br /> Sin permanencia obligatoria";
+                //    lblTextoFinal.InnerHtml = "Sin inscripción <br /> Sin administración <br /> Sin permanencia obligatoria";
 
-                    break;
+                //    break;
 
                 // ===============================
                 // PLAN SEMESTRAL
