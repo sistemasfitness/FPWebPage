@@ -606,12 +606,13 @@
     width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: #fff;
     background: #0A0A0A; border: 1px solid var(--fp-border); border-radius: 14px;
     padding: 17px 18px; outline: none; transition: border-color .2s;
-    -webkit-appearance: none; appearance: none;
+    /*-webkit-appearance: none; appearance: none;*/
   }
   .cs-form select {
     background-image: linear-gradient(45deg, transparent 50%, #E3FF00 50%), linear-gradient(135deg, #E3FF00 50%, transparent 50%);
     background-position: calc(100% - 22px) 50%, calc(100% - 17px) 50%;
     background-size: 5px 5px; background-repeat: no-repeat;
+    -webkit-appearance: none;
   }
   .cs-form select:focus, .cs-form input:focus { border-color: var(--fp-lime); }
   .cs-form input::placeholder { color: #6E6E6E; font-weight: 500; }
@@ -946,9 +947,6 @@ color: var(--fp-white); }
   .aviso { grid-template-columns: 1fr; }
   .cs-card { padding: 26px 20px; }
   .cs-duo { grid-template-columns: 1fr; }
-
-
-
 }
 
 @media (max-width: 400px) {
