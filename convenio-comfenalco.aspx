@@ -166,9 +166,9 @@
                 <p class="lead">Selecciona si consultas como titular o como beneficiario, digita el documento y te confirmamos de inmediato si tienes la tarifa del convenio.</p>
 
                 <!-- Formulario de consulta -->
-                <%--<form class="cs-form" id="csForm" novalidate="novalidate">
+                <form class="cs-form" id="csForm" novalidate="novalidate" runat="server">
                     <!-- Titular / Beneficiario -->
-                    <div class="cs-radios" role="radiogroup" aria-label="Tipo de consulta">
+                    <div class="fpp-radio-list" role="radiogroup" aria-label="Tipo de consulta">
                         <label class="cs-radio on" data-radio="">
                             <input type="radio" name="rol" value="titular" checked="checked" />
                             <span class="dot" aria-hidden="true"></span>
@@ -230,115 +230,18 @@
                         </div>
                     </div>
 
-                    <!-- Términos y condiciones -->
-                    <label class="cs-check" for="acepto" id="csCheckWrap">
-                        <input id="acepto" type="checkbox" required="required" checked="checked" />
-                        <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de tratamiento de datos personales</a> de Fitness People.</span>
-                    </label>
+                    <!-- Autorización -->
+                    <div class="fpp-pqrs__privacy">
+                        <label class="fpp-checkbox">
+                            <asp:CheckBox ID="chkAutorizacionRadicar" runat="server" />
 
-                    <div>
-                        <button class="fpp-btn fpp-btn--solid fpp-btn-full" type="submit">Consultar mi tarifa</button>
+                            <span class="fpp-checkbox__box"></span>
+
+                            <span class="fpp-checkbox__text">
+                                Acepto los <a href="terminoslegales">términos y condiciones</a> y la <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf">política de tratamiento de datos personales</a> de Fitness People.
+                            </span>
+                        </label>
                     </div>
-                </form>--%>
-
-                <form class="fpp-form" id="csForm" novalidate="novalidate">
-                    <!-- Titular / Beneficiario -->
-                    <div class="fpp-field fpp-field--full">
-                        <p class="cs-bloque-t">Tipo de consulta</p>
-
-                        <div class="fpp-radio-list" role="radiogroup" aria-label="Tipo de consulta">
-                            <label class="cs-radio on" data-radio="">
-                                <input type="radio" name="rol" value="titular" checked="checked" />
-                                <span class="dot"></span>
-                                <span class="txt">Titular</span>
-                            </label>
-
-                            <label class="cs-radio" data-radio="">
-                                <input type="radio" name="rol" value="beneficiario" />
-                                <span class="dot"></span>
-                                <span class="txt">Beneficiario</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="fpp-field--full">
-                        <p class="cs-bloque-t">Documento del titular</p>
-                    </div>
-
-                    <div class="fpp-field">
-                        <label class="fpp-field--label" for="tipoDoc">Tipo <span>*</span></label>
-
-                        <div class="fpp-select-wrapper">
-                            <select id="tipoDoc" class="fpp-input" required="required">
-                                <option value="">Tipo</option>
-                                <option value="CC">Cédula de ciudadanía</option>
-                                <option value="CE">Cédula de extranjería</option>
-                                <option value="TI">Tarjeta de identidad</option>
-                                <option value="PA">Pasaporte</option>
-                                <option value="PPT">Permiso por Protección Temporal</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="fpp-field">
-                        <label class="fpp-field--label" for="numDoc">N.° de documento <span>*</span></label>
-                        <input id="numDoc" class="fpp-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
-                    </div>
-
-
-                    <!-- Documento del titular (siempre visible) -->
-                    <%--<div class="fpp-field--full cs-bloque">
-                        <p class="cs-bloque-t">Documento del titular</p>
-
-                        <div class="fpp-duo">
-                            <div class="fpp-field">
-                                <label class="fpp-field--label" for="tipoDoc">Tipo <span>*</span></label>
-                                <select id="tipoDoc" required="required">
-                                    <option value="">Tipo</option>
-                                    <option value="CC">Cédula de ciudadanía</option>
-                                    <option value="CE">Cédula de extranjería</option>
-                                    <option value="TI">Tarjeta de identidad</option>
-                                    <option value="PA">Pasaporte</option>
-                                    <option value="PPT">Permiso por Protección Temporal</option>
-                                </select>
-                            </div>
-
-                            <div class="fpp-field">
-                                <label class="fpp-field--label" for="numDoc">N.° de documento <span>*</span></label>
-                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
-                            </div>
-                        </div>
-                    </div>--%>
-
-                    <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
-                    <div class="cs-bloque" id="bloqueBenef" hidden="hidden">
-                        <p class="cs-bloque-t">Documento del beneficiario</p>
-
-                        <div class="cs-duo">
-                            <div>
-                                <label for="tipoDocB">Tipo</label>
-                                <select id="tipoDocB">
-                                    <option value="">Tipo</option>
-                                    <option value="CC">Cédula de ciudadanía</option>
-                                    <option value="CE">Cédula de extranjería</option>
-                                    <option value="TI">Tarjeta de identidad</option>
-                                    <option value="RC">Registro civil</option>
-                                    <option value="PA">Pasaporte</option>
-                                    <option value="PPT">Permiso por Protección Temporal</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="numDocB">N.° de documento</label>
-                                <input id="numDocB" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Términos y condiciones -->
-                    <label class="cs-check" for="acepto" id="csCheckWrap">
-                        <input id="acepto" type="checkbox" required="required" checked="checked" />
-                        <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de tratamiento de datos personales</a> de Fitness People.</span>
-                    </label>
 
                     <div>
                         <button class="fpp-btn fpp-btn--solid fpp-btn-full" type="submit">Consultar mi tarifa</button>
@@ -662,7 +565,7 @@
 .cs-card .kicker { justify-content: center; }
 .cs-card .kicker::after { content: ""; width: 46px; height: 2px; background: var(--fp-lime); display: inline-block; }
 .cs-card h2 { font-size: clamp(38px, 5vw, 62px); text-align: center; }
-.cs-card > p.lead { text-align: center; color: var(--fp-gray-3); font-size: 15px; line-height: 1.65; max-width: 560px; margin: 16px auto 0; font-weight: 400; }
+.cs-card > p.lead { text-align: center; color: var(--fp-gray); font-size: 15px; line-height: 1.6; max-width: 560px; margin: 16px auto 0; font-weight: 400; }
 
 .fpp-btn-full { width: 100%; }
 
@@ -674,12 +577,72 @@
    ========================================================= */
 .fpp-radio-list {
 	display: flex;
+    justify-content: center;
 	align-items: center;
-	gap: 25px;
-	margin-top: 8px;
+    gap: 12px; 
+    margin-bottom: 28px;
 }
 
+.fpp-pqrs__privacy {
+	margin-bottom: 22px;
+}
 
+.fpp-checkbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+	/* Ocultar checkbox nativo */
+	.fpp-checkbox input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+	}
+
+/* Checkbox visual */
+.fpp-checkbox__box {
+	flex: 0 0 19px;
+	width: 19px;
+	height: 19px;
+	margin-top: 1px;
+	border: 1px solid var(--fp-lime);
+	border-radius: 5px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+/* Check */
+.fpp-checkbox input:checked + .fpp-checkbox__box {
+	background: var(--fp-lime);
+}
+
+	.fpp-checkbox input:checked + .fpp-checkbox__box::after {
+		content: "";
+		position: absolute;
+		width: 5px;
+		height: 9px;
+		top: 3px;
+		left: 6px;
+		border-right: 2px solid var(--fp-black);
+		border-bottom: 2px solid var(--fp-black);
+		transform: rotate(45deg);
+	}
+
+/* Texto */
+.fpp-checkbox__text {
+	color: var(--fp-gray-light);
+	font-size: 10px;
+	line-height: 1.4;
+}
+
+	.fpp-checkbox__text a {
+		color: var(--fp-lime);
+		font-weight: 800;
+		text-decoration: underline;
+	}
 
 
 
@@ -692,6 +655,11 @@
 	grid-template-columns: 1fr 1fr;
 	column-gap: 11px;
     margin-top: 30px;
+}
+
+.fpp-form-small {
+    margin: 36px auto 0;
+    max-width: 620px;
 }
 
 .fpp-field {
@@ -828,15 +796,15 @@
 
   /* Aceptación de términos */
   .cs-check {
-    display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
-    margin: 6px 0 22px; font-size: 12.5px; line-height: 1.6; color: #C4C4C4; cursor: pointer;
+    /*display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+    margin: 6px 0 22px; font-size: 12.5px; line-height: 1.6; color: #C4C4C4; cursor: pointer;*/
   }
-  .cs-check input { width: 22px; height: 22px; border-radius: 6px; accent-color: var(--fp-lime); cursor: pointer; }
+  /*.cs-check input { width: 22px; height: 22px; border-radius: 6px; accent-color: var(--fp-lime); cursor: pointer; }*/
   .cs-check a { color: var(--fp-lime); font-weight: 700; text-decoration: none; }
   .cs-check a:hover { text-decoration: underline; }
   .cs-check.err span { color: #FF7B7B; }
 
-  .cs-form label { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--fp-gray); margin-bottom: 9px; }
+  .cs-form label {  font-size: 10.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--fp-gray); margin-bottom: 9px; }
   .cs-form select, .cs-form input {
     width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: #fff;
     background: #0A0A0A; border: 1px solid var(--fp-border); border-radius: 14px;
@@ -862,13 +830,13 @@
     opacity: 0; margin: 0; padding: 0; border: none; background: none; cursor: pointer;
   }
   .cs-form label.cs-check {
-      display: flex;
+      /*display: flex;
     font-size: 12.5px; font-weight: 500; letter-spacing: normal; text-transform: none;
-    color: #C4C4C4; margin-bottom: 22px;
+    color: #C4C4C4; margin-bottom: 22px;*/
   }
   .cs-form .cs-check input[type="checkbox"] {
-    width: 22px; height: 22px; padding: 0; border-radius: 6px;
-    background: #141414; border: 1px solid var(--fp-border); accent-color: var(--fp-lime);
+    /*width: 22px; height: 22px; padding: 0; border-radius: 6px;
+    background: #141414; border: 1px solid var(--fp-border); accent-color: var(--fp-lime);*/
   }
   .cs-nota { margin-top: 18px; text-align: center; font-size: 12px; color: var(--fp-gray-2); line-height: 1.6; }
   .cs-nota a { color: var(--fp-lime); text-decoration: none; font-weight: 700; }
