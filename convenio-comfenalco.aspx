@@ -131,11 +131,11 @@
                     </p>
 
                     <div class="hero-ctas">
-                        <a class="fpp-btn fpp-btn--solid" href="">
+                        <a class="fpp-btn fpp-btn--solid" href="...">
                             Consultar mi tarifa
                         </a>
 
-                        <a class="fpp-btn fpp-btn--outline" href="">
+                        <a class="fpp-btn fpp-btn--outline" href="...">
                             Ver qué incluye
                         </a>
                     </div>
@@ -166,17 +166,17 @@
                 <p class="lead">Selecciona si consultas como titular o como beneficiario, digita el documento y te confirmamos de inmediato si tienes la tarifa del convenio.</p>
 
                 <!-- Formulario de consulta -->
-                <form class="cs-form" id="csForm" novalidate>
+                <%--<form class="cs-form" id="csForm" novalidate="novalidate">
                     <!-- Titular / Beneficiario -->
                     <div class="cs-radios" role="radiogroup" aria-label="Tipo de consulta">
-                        <label class="cs-radio on" data-radio>
-                            <input type="radio" name="rol" value="titular" checked>
+                        <label class="cs-radio on" data-radio="">
+                            <input type="radio" name="rol" value="titular" checked="checked" />
                             <span class="dot" aria-hidden="true"></span>
                             <span class="txt">Titular</span>
                         </label>
 
-                        <label class="cs-radio" data-radio>
-                            <input type="radio" name="rol" value="beneficiario">
+                        <label class="cs-radio" data-radio="">
+                            <input type="radio" name="rol" value="beneficiario" />
                             <span class="dot" aria-hidden="true"></span>
                             <span class="txt">Beneficiario</span>
                         </label>
@@ -189,31 +189,31 @@
                         <div class="cs-duo">
                             <div>
                                 <label for="tipoDoc">Tipo</label>
-                                <select id="tipoDoc" required>
-                                <option value="">Tipo</option>
-                                <option value="CC">Cédula de ciudadanía</option>
-                                <option value="CE">Cédula de extranjería</option>
-                                <option value="TI">Tarjeta de identidad</option>
-                                <option value="PA">Pasaporte</option>
-                                <option value="PPT">Permiso por Protección Temporal</option>
+                                <select id="tipoDoc" required="required">
+                                    <option value="">Tipo</option>
+                                    <option value="CC">Cédula de ciudadanía</option>
+                                    <option value="CE">Cédula de extranjería</option>
+                                    <option value="TI">Tarjeta de identidad</option>
+                                    <option value="PA">Pasaporte</option>
+                                    <option value="PPT">Permiso por Protección Temporal</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label for="numDoc">N.° de documento</label>
-                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required/>
+                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
                             </div>
                         </div>
                     </div>
 
                     <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
-                    <div class="cs-bloque" id="bloqueBenef" hidden>
+                    <div class="cs-bloque" id="bloqueBenef" hidden="hidden">
                         <p class="cs-bloque-t">Documento del beneficiario</p>
 
                         <div class="cs-duo">
                             <div>
                                 <label for="tipoDocB">Tipo</label>
-                                    <select id="tipoDocB">
+                                <select id="tipoDocB">
                                     <option value="">Tipo</option>
                                     <option value="CC">Cédula de ciudadanía</option>
                                     <option value="CE">Cédula de extranjería</option>
@@ -232,7 +232,111 @@
 
                     <!-- Términos y condiciones -->
                     <label class="cs-check" for="acepto" id="csCheckWrap">
-                        <input id="acepto" type="checkbox" required checked />
+                        <input id="acepto" type="checkbox" required="required" checked="checked" />
+                        <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de tratamiento de datos personales</a> de Fitness People.</span>
+                    </label>
+
+                    <div>
+                        <button class="fpp-btn fpp-btn--solid fpp-btn-full" type="submit">Consultar mi tarifa</button>
+                    </div>
+                </form>--%>
+
+                <form class="fpp-form" id="csForm" novalidate="novalidate">
+                    <!-- Titular / Beneficiario -->
+                    <div class="fpp-field fpp-field--full">
+                        <p class="cs-bloque-t">Tipo de consulta</p>
+
+                        <div class="fpp-radio-list" role="radiogroup" aria-label="Tipo de consulta">
+                            <label class="cs-radio on" data-radio="">
+                                <input type="radio" name="rol" value="titular" checked="checked" />
+                                <span class="dot"></span>
+                                <span class="txt">Titular</span>
+                            </label>
+
+                            <label class="cs-radio" data-radio="">
+                                <input type="radio" name="rol" value="beneficiario" />
+                                <span class="dot"></span>
+                                <span class="txt">Beneficiario</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="fpp-field--full">
+                        <p class="cs-bloque-t">Documento del titular</p>
+                    </div>
+
+                    <div class="fpp-field">
+                        <label class="fpp-field--label" for="tipoDoc">Tipo <span>*</span></label>
+
+                        <div class="fpp-select-wrapper">
+                            <select id="tipoDoc" class="fpp-input" required="required">
+                                <option value="">Tipo</option>
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="PA">Pasaporte</option>
+                                <option value="PPT">Permiso por Protección Temporal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="fpp-field">
+                        <label class="fpp-field--label" for="numDoc">N.° de documento <span>*</span></label>
+                        <input id="numDoc" class="fpp-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
+                    </div>
+
+
+                    <!-- Documento del titular (siempre visible) -->
+                    <%--<div class="fpp-field--full cs-bloque">
+                        <p class="cs-bloque-t">Documento del titular</p>
+
+                        <div class="fpp-duo">
+                            <div class="fpp-field">
+                                <label class="fpp-field--label" for="tipoDoc">Tipo <span>*</span></label>
+                                <select id="tipoDoc" required="required">
+                                    <option value="">Tipo</option>
+                                    <option value="CC">Cédula de ciudadanía</option>
+                                    <option value="CE">Cédula de extranjería</option>
+                                    <option value="TI">Tarjeta de identidad</option>
+                                    <option value="PA">Pasaporte</option>
+                                    <option value="PPT">Permiso por Protección Temporal</option>
+                                </select>
+                            </div>
+
+                            <div class="fpp-field">
+                                <label class="fpp-field--label" for="numDoc">N.° de documento <span>*</span></label>
+                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
+                            </div>
+                        </div>
+                    </div>--%>
+
+                    <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
+                    <div class="cs-bloque" id="bloqueBenef" hidden="hidden">
+                        <p class="cs-bloque-t">Documento del beneficiario</p>
+
+                        <div class="cs-duo">
+                            <div>
+                                <label for="tipoDocB">Tipo</label>
+                                <select id="tipoDocB">
+                                    <option value="">Tipo</option>
+                                    <option value="CC">Cédula de ciudadanía</option>
+                                    <option value="CE">Cédula de extranjería</option>
+                                    <option value="TI">Tarjeta de identidad</option>
+                                    <option value="RC">Registro civil</option>
+                                    <option value="PA">Pasaporte</option>
+                                    <option value="PPT">Permiso por Protección Temporal</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="numDocB">N.° de documento</label>
+                                <input id="numDocB" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <label class="cs-check" for="acepto" id="csCheckWrap">
+                        <input id="acepto" type="checkbox" required="required" checked="checked" />
                         <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de tratamiento de datos personales</a> de Fitness People.</span>
                     </label>
 
@@ -253,7 +357,7 @@
                             <small>Resultado de la consulta</small>
                             <b>Aplicas al convenio</b>
                             <p class="doc" id="csDoc">Titular · CC 1.098.765.432</p>
-                            <p class="doc" id="csDocB" hidden>Beneficiario · TI 1.030.445.881</p>
+                            <p class="doc" id="csDocB" hidden="hidden">Beneficiario · TI 1.030.445.881</p>
                             <span class="cs-cat"><i>✓</i> <span>Tarifa del convenio habilitada</span></span>
                         </div>
 
@@ -265,7 +369,7 @@
                         </div>
                     </div>
 
-                    <button class="cs-reset" type="button" data-reset>Consultar otro documento</button>
+                    <button class="cs-reset" type="button" data-reset="">Consultar otro documento</button>
                 </div>
 
                 <!-- Resultado: no aplica -->
@@ -278,7 +382,7 @@
                         <a href="index.html#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
                     </div>
 
-                    <button class="cs-reset" type="button" data-reset>Consultar otro documento</button>
+                    <button class="cs-reset" type="button" data-reset="">Consultar otro documento</button>
                 </div>
             </div>
         </div>
@@ -360,7 +464,7 @@
                 </div>
 
                 <div class="fap-section reveal">
-                    <details open>
+                    <details open="open">
                         <summary>¿Cómo sé si aplico al convenio?</summary>
                         <p>No tienes que averiguar nada por tu cuenta. Digita tu documento en la consulta en línea y el sistema valida tu afiliación con Comfenalco Santander: en segundos te confirma si tienes habilitada la tarifa del convenio.</p>
                     </details>
@@ -561,6 +665,137 @@
 .cs-card > p.lead { text-align: center; color: var(--fp-gray-3); font-size: 15px; line-height: 1.65; max-width: 560px; margin: 16px auto 0; font-weight: 400; }
 
 .fpp-btn-full { width: 100%; }
+
+
+
+
+/* =========================================================
+   RADIO BUTTONS
+   ========================================================= */
+.fpp-radio-list {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+	margin-top: 8px;
+}
+
+
+
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+.fpp-form {
+    width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 11px;
+    margin-top: 30px;
+}
+
+.fpp-field {
+	min-width: 0;
+	margin-bottom: 20px;
+}
+
+.fpp-field--full {
+	grid-column: 1 / -1;
+}
+/* =========================================================
+   LABELS
+   ========================================================= */
+.fpp-field .fpp-field--label {
+	display: block;
+	justify-items: center;
+	margin-bottom: 6px;
+	color: var(--fp-gray-light-3);
+	font-size: 11px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+	.fpp-field label span {
+		color: var(--fp-lime);
+	}
+/* =========================================================
+   INPUTS / SELECT / TEXTAREA
+   ========================================================= */
+.fpp-field input,
+.fpp-field select,
+.fpp-field textarea,
+.fpp-field file {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--fp-border);
+	border-radius: 10px;
+	outline: none;
+	background: var(--fp-input);
+	color: var(--fp-white);
+	font-family: inherit;
+	font-weight: 500;
+	transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+/* Input */
+.fpp-field input {
+	height: 42px;
+	padding: 0 15px;
+}
+
+/* Select */
+.fpp-select-wrapper {
+	position: relative;
+}
+
+.fpp-field select {
+	height: 42px;
+	padding: 0 40px 0 15px;
+	appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+}
+
+.fpp-select-wrapper::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 14px;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid var(--fp-lime);
+	transform: translateY(-25%);
+	pointer-events: none;
+}
+
+/* Textarea */
+.fpp-field textarea {
+	min-height: 105px;
+	padding: 14px 15px;
+	resize: vertical;
+	line-height: 1.4;
+}
+
+	/* Placeholder */
+	.fpp-field input::placeholder,
+	.fpp-field textarea::placeholder {
+		color: var(--fp-gray-dark);
+		opacity: 1;
+	}
+
+	/* Focus */
+	.fpp-field input:focus,
+	.fpp-field select:focus,
+	.fpp-field textarea:focus {
+		border-color: var(--fp-lime);
+		box-shadow: 0 0 0 1px var(--fp-lime);
+	}
+
+
 
   .cs-form { margin: 36px auto 0; max-width: 620px; }
 
