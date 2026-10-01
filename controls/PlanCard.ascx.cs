@@ -244,13 +244,13 @@ namespace WebPage.controls
                         Modalidad = "Pago único anual",
                         Tagline = "Entrena sin pausas durante todo un año.",
 
-                        InscProm = "+ 2 meses GRATIS",
+                        InscProm = "+ 4 meses GRATIS",
                         PrecioAntes = "Antes $1.380.000",
                         LabelPrecio = "",
                         Precio = "$990.000",
                         Periodo = "/año",
 
-                        Permanencia = "Equivale a $70.700/mes aprox.<br />Sin fidelidad",
+                        Permanencia = "Equivale a $61.875/mes aprox.<br />Sin fidelidad",
                         NotaFidelidad = "",
 
                         EsDestacado = false,
