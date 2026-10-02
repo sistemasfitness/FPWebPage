@@ -33,13 +33,13 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlForm csForm;
 
         /// <summary>
-        /// Control chkAutorizacionRadicar.
+        /// Control chkAutorizacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAutorizacionRadicar;
+        protected global::System.Web.UI.WebControls.CheckBox chkAutorizacion;
 
         /// <summary>
         /// Control footer.
