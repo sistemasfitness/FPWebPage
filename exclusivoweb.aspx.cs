@@ -42,32 +42,32 @@ namespace WebPage
                 // ===============================
                 // PLAN FLEXIBLE PRO [47]
                 // ===============================
-                case "flexible-pro":
+                //case "flexible-pro":
 
-                    lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
-                    lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
+                //    lblTitulo.InnerText = "PLAN FLEXIBLE PRO";
+                //    lblSubTitulo.InnerText = "PLAN DÉBITO AUTOMÁTICO";
 
-                    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.500";
-                    lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
-                    lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
-                    lblSubTituloUp.InnerText = "ANTES $165.000";
-                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES";
-                    lblNotaFidelidad.InnerText = "APLICA COBRO POR RETIRO ANTICIPADO";
+                //    lblTituloPrecio.InnerHtml = "PRIMER MES <br /> $ 49.500";
+                //    lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
+                //    lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
+                //    lblSubTituloUp.InnerText = "ANTES $165.000";
+                //    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES";
+                //    lblNotaFidelidad.InnerText = "APLICA COBRO POR RETIRO ANTICIPADO";
 
-                    divPackBienvenida.Visible = true;
+                //    divPackBienvenida.Visible = true;
 
-                    itemId = "1";
-                    itemName = "Plan Flexible Pro";
-                    price = 49500;
-                    texto = "ACTIVA TU PLAN";
-                    tokenId = "register?token=ONiORcTGWT6e8D2QxFgV";
-                    urlKey = "";
-                    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId, urlKey);
-                    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId, urlKey);
+                //    itemId = "1";
+                //    itemName = "Plan Flexible Pro";
+                //    price = 49500;
+                //    texto = "ACTIVA TU PLAN";
+                //    tokenId = "register?token=ONiORcTGWT6e8D2QxFgV";
+                //    urlKey = "";
+                //    ConfigurarBtn(lnkComprar1, texto, itemId, itemName, price, tokenId, urlKey);
+                //    ConfigurarBtn(lnkComprar3, texto, itemId, itemName, price, tokenId, urlKey);
 
-                    lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
+                //    lblTextoFinal.InnerHtml = "Pago mensual mediante débito automático. <br /> No aplica para pagos en efectivo, transferencia ni datáfono.";
 
-                    break;
+                //    break;
 
                 // ===============================
                 // PLAN FLEXIBLE PRO PROMO [45]

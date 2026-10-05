@@ -280,8 +280,11 @@
 
         };
 
-        /* ============= URL FLEXIBLE PRO ============= */
-        const urlFlexiblePro = "register?token=ONiORcTGWT6e8D2QxFgV";
+        /* ============= URL FLEXIBLE PRO | $49.500 ============= */
+        //const urlFlexiblePro = "register?token=ONiORcTGWT6e8D2QxFgV";
+
+        /* ============= URL FLEXIBLE PRO | $9.900 ============= */
+        const urlFlexiblePro = "register?token=TKIlFPP8XYRC9l1rfGjR";
 
         /* ============= URLS POR PLAN + SEDE ============= */
         const urlsPlanes = {

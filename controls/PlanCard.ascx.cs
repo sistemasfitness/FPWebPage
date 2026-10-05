@@ -204,6 +204,37 @@ namespace WebPage.controls
                     };
 
 
+                //case "FLEXIBLE_PRO":
+
+                //    return new Plan
+                //    {
+                //        Nombre = "Flexible Pro",
+                //        Modalidad = "Débito automático",
+                //        Tagline = "Más beneficios desde el primer mes.",
+
+                //        InscProm = "Sin inscripción",
+                //        PrecioAntes = "Antes $165.000",
+                //        LabelPrecio = "1er mes",
+                //        Precio = "$49.500",
+                //        Periodo = "",
+
+                //        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
+                //        NotaFidelidad = "Aplica cobro por retiro anticipado",
+
+                //        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+
+                //        EsDestacado = true,
+
+                //        Beneficios = new List<string>
+                //        {
+                //            "Acceso a todas las sedes de Fitness People.",
+                //            "Clases grupales con instructores certificados.",
+                //            "FP App con planes de entrenamiento y tips de nutrición.",
+                //            "5 pases de invitado al mes.",
+                //            "Valoración física inicial."
+                //        }
+                //    };
+
                 case "FLEXIBLE_PRO":
 
                     return new Plan
@@ -215,7 +246,7 @@ namespace WebPage.controls
                         InscProm = "Sin inscripción",
                         PrecioAntes = "Antes $165.000",
                         LabelPrecio = "1er mes",
-                        Precio = "$49.500",
+                        Precio = "$9.900",
                         Periodo = "",
 
                         Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
