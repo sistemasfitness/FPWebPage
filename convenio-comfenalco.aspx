@@ -281,77 +281,150 @@
 
     <section class="fpp-respaldo" id="beneficios">
         <div class="container">
-            <div class="section-head section-head--split reveal fpp-">
+            <div class="fpp-section-head fpp-section-head--split">
                 <div>
-                    <div class="kicker">Qué incluye</div>
+                    <div class="fpp-kicker">Qué incluye</div>
                     <h2 class="fpp-general-title">Misma tarifa, <span>todo incluido</span></h2>
                 </div>
                 
                 <p>El convenio cambia lo que pagas, no lo que recibes. Los afiliados de Comfenalco entran con la membresía completa de Fitness People.</p>
             </div>
 
-            <div class="chips reveal">
-                <span class="chip"><i>✚</i> Acceso a las 10 sedes</span>
-                <span class="chip"><i>✚</i> Clases grupales ilimitadas</span>
-                <span class="chip"><i>✚</i> Valoración médico-deportiva</span>
-                <span class="chip"><i>✚</i> Valoraciones de seguimiento</span>
-                <span class="chip"><i>✚</i> Deportólogo en sede</span>
-                <span class="chip"><i>✚</i> Fisioterapia preventiva</span>
-                <span class="chip"><i>✚</i> Acompañamiento nutricional</span>
-                <span class="chip"><i>✚</i> Entrenadores en piso</span>
-                <span class="chip"><i>✚</i> Zona cardiovascular</span>
-                <span class="chip"><i>✚</i> Peso libre y mancuernas</span>
-                <span class="chip"><i>✚</i> Zona funcional</span>
-                <span class="chip"><i>✚</i> Spinning, Pilates y Xtreme</span>
-                <span class="chip"><i>✚</i> FP App</span>
-                <span class="chip"><i>✚</i> Abierto los 7 días</span>
-                <span class="chip"><i>✚</i> Sin cuota de inscripción</span>
+            <div class="fpp-chips">
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acceso a las 10 sedes</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Clases grupales ilimitadas</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoración médico-deportiva</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoraciones de seguimiento</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Deportólogo en sede</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Fisioterapia preventiva</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acompañamiento nutricional</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Entrenadores en piso</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Zona cardiovascular</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Peso libre y mancuernas</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Zona funcional</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Spinning, Pilates y Xtreme</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> FP App</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Abierto los 7 días</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Sin cuota de inscripción</span>
             </div>
         </div>
     </section>
 
-
-
-    <!-- ================= 08. SEDES ================= -->
-    <section class="sedes-conv">
+    <section class="fpp-sedes-conv">
         <div class="container">
-            <div class="section-head section-head--split reveal">
+            <div class="fpp-section-head fpp-section-head--split">
                 <div>
-                    <div class="kicker">Dónde entrenas</div>
-                    <h2 class="display">Diez sedes <span>habilitadas</span></h2>
+                    <div class="fpp-kicker">Dónde entrenas</div>
+                    <h2 class="fpp-general-title">Diez sedes <span>habilitadas</span></h2>
                 </div>
                 <p>El convenio aplica en todas nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. Entrena en la que quieras, sin costos por traslado.</p>
             </div>
 
-            <div class="sedes-mini reveal">
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/boulevard1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Boulevard</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/cabecera1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Cabecera</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/prado1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>El Prado</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/provenza1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Provenza</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ciudadela1.jpg" alt=""/></figure><div class="t"><small>Bucaramanga</small><b>Ciudadela</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/canaveral1.jpg" alt=""/></figure><div class="t"><small>Floridablanca</small><b>Cañaveral</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/delacuesta1.jpg" alt=""/></figure><div class="t"><small>Piedecuesta</small><b>DeLaCuesta</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/parquecentral1.jpg" alt=""/></figure><div class="t"><small>Piedecuesta</small><b>Parque Central</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/jardin1.jpg" alt=""/></figure><div class="t"><small>Cúcuta</small><b>Jardín Plaza</b></div></a>
-                <a href="index.html#sedes" class="sede-mini"><figure><img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ceiba1.jpg" alt=""/></figure><div class="t"><small>Cúcuta</small><b>Ceiba II</b></div></a>
+            <div class="fpp-sedes-mini">
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/boulevard1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Bucaramanga</small><b>Boulevard</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/cabecera1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Bucaramanga</small><b>Cabecera</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/prado1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Bucaramanga</small><b>El Prado</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/provenza1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Bucaramanga</small><b>Provenza</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ciudadela1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Bucaramanga</small><b>Ciudadela</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/canaveral1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Floridablanca</small><b>Cañaveral</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/delacuesta1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Piedecuesta</small><b>DeLaCuesta</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/parquecentral1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Piedecuesta</small><b>Parque Central</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/jardin1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Cúcuta</small><b>Jardín Plaza</b>
+                    </div>
+                </div>
+
+                <div class="fpp-sede-mini">
+                    <figure>
+                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ceiba1.jpg" alt=""/>
+                    </figure>
+                    <div class="t">
+                        <small>Cúcuta</small><b>Ceiba II</b>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-
-
-    <!-- ================= 09. FAQ ================= -->
-    <section class="faq" id="faq">
+    <section class="fpp-faq" id="faq">
         <div class="container">
-            <div class="faq-grid">
-                <div class="reveal">
-                    <div class="kicker">Preguntas frecuentes</div>
-                    <h2 class="display">Sobre el <span>convenio</span></h2>
-                    <p class="lead">Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
-                    <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
+            <div class="fpp-faq-grid">
+                <div class="fpp-section-head">
+                    <div class="fpp-kicker">Preguntas frecuentes</div>
+                    <h2 class="fpp-general-title">Sobre el <span>convenio</span></h2>
+                    <p>Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
+                    <a href="https://wa.me/57..." class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
                 </div>
 
-                <div class="fap-section reveal">
+                <div class="fpp-fap-section">
                     <details open="open">
                         <summary>¿Cómo sé si aplico al convenio?</summary>
                         <p>No tienes que averiguar nada por tu cuenta. Digita tu documento en la consulta en línea y el sistema valida tu afiliación con Comfenalco Santander: en segundos te confirma si tienes habilitada la tarifa del convenio.</p>
@@ -384,8 +457,6 @@
             </div>
         </div>
     </section>
-
-
 
     <uc1:footer runat="server" ID="footer" />
 
