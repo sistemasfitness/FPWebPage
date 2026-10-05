@@ -6932,3 +6932,26 @@ body.menu-open {
 .telefono a {
 	color: white;
 }
+
+
+/* ANIVERSARIO */
+
+.contenedor-imgs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+	.contenedor-imgs {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Móviles */
+@media (max-width: 575px) {
+	.contenedor-imgs {
+		grid-template-columns: 1fr;
+	}
+}

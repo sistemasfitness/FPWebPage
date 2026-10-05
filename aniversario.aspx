@@ -94,7 +94,7 @@
     </header>
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/aniversario-2025.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/aniversario-2025.jpg" data-natural-width="1400" data-natural-height="470" style="margin-top: 70px;">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">ANIVERSARIO 15 AÑOS</h1>
         </div>
@@ -215,62 +215,60 @@
     <section class="margin_60_35" id="testimonials3" style="padding-top: 10px; padding-bottom: 100px;">
         <div class="container" id="scroll-to3">
             <h2 class="main_title" style="font-weight: 900; color: #FFF;"><em></em>NUESTROS TBT</h2>
-            <div class="text-center plans">
-
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+            <div class="contenedor-imgs">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/01_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/02_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/03_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/04_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/05_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/06_galeria-aniversario_13.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/07_galeria-aniversario_14.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/08_galeria-aniversario_14.jpg" class="img-responsive" />
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-4 col-sm-4 col-xl-4 col-lg-4 col-xxl-4 ultima-foto-galeria">
+                <div class="">
                     <div class="img_container">
                         <img src="img/aniversario/09_galeria-aniversario_14.jpg" class="img-responsive" />
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
