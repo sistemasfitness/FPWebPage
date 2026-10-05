@@ -256,7 +256,7 @@
                             <div class="antes">Tarifa plena <s>$165.000</s></div>
                             <div class="ahora"><span class="v">$79.000</span><span class="p">/ mes</span></div>
                             <div class="ahorro">Ahorras $86.000 cada mes</div>
-                            <a href="#pasos" class="fpp-btn fpp-btn--solid">Continuar mi inscripción <span class="arrow"></span></a>
+                            <button type="button" class="fpp-btn fpp-btn--solid btn-comprar-plan" id="btnComprar" data-plan-id="CONVENIO_COMFENALCO">Continuar mi inscripción</button>
                         </div>
                     </div>
 
@@ -276,6 +276,30 @@
                     <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
                 </div>
             </div>
+        </div>
+
+        <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
+        <div id="contenedorIframePlan" class="fp-iframe-container">
+            <div class="fp-iframe-header">
+                <div>
+                    <p class="fpp-kicker">Inscripción</p>
+                    <h3>Completa tu <span>registro</span></h3>
+                </div>
+
+                <button
+                    type="button"
+                    id="btnCerrarIframe"
+                    class="fp-iframe-close">
+                    &times;
+                </button>
+            </div>
+
+            <iframe
+                id="iframePlan"
+                src=""
+                title="Inscripción Fitness People"
+                loading="lazy">
+            </iframe>
         </div>
     </section>
 
@@ -458,6 +482,87 @@
         </div>
     </section>
 
+    <!-- ================= PANEL LATERAL DE CIUDAD / SEDE ================= -->
+    <div id="panelSede" class="fp-panel-sede">
+        <!-- Fondo oscuro -->
+        <div
+            id="panelSedeOverlay"
+            class="fp-panel-overlay">
+        </div>
+
+        <!-- Panel -->
+        <aside class="fp-panel-content">
+            <!-- Cerrar -->
+            <button
+                type="button"
+                id="btnCerrarSede"
+                class="fp-panel-close"
+                aria-label="Cerrar">
+                &times;
+            </button>
+
+            <!-- Encabezado -->
+            <div class="fp-panel-title">
+                <p class="fpp-kicker">
+                    Comprar tu plan
+                </p>
+
+                <h3>
+                    Elige tu <span>sede</span>
+                </h3>
+
+                <p class="fp-panel-description">
+                    Selecciona la ciudad y la sede donde deseas realizar tu inscripción.
+                </p>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="fp-sede-section">
+                <label for="ddlCiudad">
+                    Ciudad
+                </label>
+
+                <select id="ddlCiudad">
+                    <option value="">
+                        Selecciona una ciudad
+                    </option>
+
+                    <option value="bucaramanga">
+                        Bucaramanga
+                    </option>
+
+                    <option value="floridablanca">
+                        Floridablanca
+                    </option>
+
+                    <option value="piedecuesta">
+                        Piedecuesta
+                    </option>
+
+                    <option value="cucuta">
+                        Cúcuta
+                    </option>
+                </select>
+            </div>
+
+            <!-- Sede -->
+            <div class="fp-sede-section">
+                <label for="ddlSede">
+                    Sede
+                </label>
+
+                <select
+                    id="ddlSede"
+                    disabled>
+
+                    <option value="">
+                        Primero selecciona una ciudad
+                    </option>
+                </select>
+            </div>
+        </aside>
+    </div>
+
     <uc1:footer runat="server" ID="footer" />
 
     <div id="toTop"></div>
@@ -548,7 +653,7 @@
         }
         formatear(tipo, num);
         formatear(tipoB, numB);
-        chk.addEventListener('change', function () { chkBox.classList.remove('err'); });
+        /*chk.addEventListener('change', function () { chkBox.classList.remove('err'); });*/
 
         // ---- Consulta simulada ----
         function consultarDemo(doc) {
