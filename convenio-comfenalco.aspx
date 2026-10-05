@@ -279,12 +279,12 @@
         </div>
     </section>
 
-    <section class="respaldo" id="beneficios">
+    <section class="fpp-respaldo" id="beneficios">
         <div class="container">
-            <div class="section-head section-head--split reveal">
+            <div class="section-head section-head--split reveal fpp-">
                 <div>
                     <div class="kicker">Qué incluye</div>
-                    <h2 class="display">Misma tarifa, <span>todo incluido</span></h2>
+                    <h2 class="fpp-general-title">Misma tarifa, <span>todo incluido</span></h2>
                 </div>
                 
                 <p>El convenio cambia lo que pagas, no lo que recibes. Los afiliados de Comfenalco entran con la membresía completa de Fitness People.</p>

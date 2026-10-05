@@ -6244,7 +6244,7 @@ body.menu-open {
 
 
 /* ============ BENEFICIOS ============ */
-.respaldo {
+.fpp-respaldo {
 	padding: 100px 0;
 	background: var(--fp-card);
 }
@@ -6255,15 +6255,6 @@ body.menu-open {
 
 	.section-head h2 {
 		font-size: clamp(34px, 5vw, 50px);
-		font-weight: 900;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		line-height: 1.05;
-		color: var(--fp-white);
-	}
-
-	.section-head span {
-		color: var(--fp-lime);
 	}
 
 
@@ -6752,7 +6743,7 @@ body.menu-open {
 			transform: translateY(-6px);
 		}
 
-	.respaldo-grid, .freepass-grid, .faq-grid {
+	.faq-grid {
 		grid-template-columns: 1fr;
 		gap: 40px;
 	}
@@ -6902,7 +6893,7 @@ body.menu-open {
 	}
 
 
-	.fpp-consulta, .respaldo, .sedes-conv, .faq {
+	.fpp-consulta, .fpp-respaldo, .sedes-conv, .faq {
 		padding: 50px 0;
 	}
 }
