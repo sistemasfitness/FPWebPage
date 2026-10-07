@@ -124,10 +124,10 @@
                         Si estás afiliado a <strong>Comfenalco Santander</strong>, entrenas en Fitness People por <strong>$79.000 al mes.</strong> Digita tu documento y te confirmamos al instante si aplicas al convenio, seas titular o beneficiario.
                     </p>
                     <div class="fpp-hero-ctas">
-                        <a class="fpp-btn fpp-btn--solid" href="...">
+                        <a class="fpp-btn fpp-btn--solid" href="#consulta">
                             Consultar mi tarifa
                         </a>
-                        <a class="fpp-btn fpp-btn--outline" href="...">
+                        <a class="fpp-btn fpp-btn--outline" href="#beneficios">
                             Ver qué incluye
                         </a>
                     </div>
@@ -268,15 +268,8 @@
                                         OnClick="btnConsultar_Click" />
                                 </div>
                             </div>
-                        
 
-                            <!-- Mensaje de validación -->
-                            <%--<asp:Label
-                                ID="lblMensaje"
-                                runat="server"
-                                ClientIDMode="Static"
-                                CssClass="fpp-cs-msg">
-                            </asp:Label>--%>
+                            <!-- Mensaje de error -->
                             <div
                                 id="lblMensaje"
                                 runat="server"
@@ -327,7 +320,7 @@
                                     </div>
                                 </div>
 
-                                <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
+                                <button class="fpp-cs-reset" type="button" data-reset="data-reset">Consultar otro documento</button>
                             </div>
 
                             <!-- Resultado: no aplica -->
@@ -343,11 +336,35 @@
                                     <a href="default#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
                                 </div>
 
-                                <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
+                                <button class="fpp-cs-reset" type="button" data-reset="data-reset">Consultar otro documento</button>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </form>
+            </div>
+
+            <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
+            <div id="contenedorIframePlan" class="fp-iframe-container">
+                <div class="fp-iframe-header">
+                    <div>
+                        <p class="fpp-kicker">Inscripción</p>
+                        <h3>Completa tu <span>registro</span></h3>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="btnCerrarIframe"
+                        class="fp-iframe-close">
+                        &times;
+                    </button>
+                </div>
+
+                <iframe
+                    id="iframePlan"
+                    src=""
+                    title="Inscripción Fitness People"
+                    loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
@@ -602,7 +619,7 @@
 
                 <select
                     id="ddlSede"
-                    disabled>
+                    disabled="disabled">
 
                     <option value="">
                         Primero selecciona una ciudad
@@ -635,941 +652,768 @@
 
 
 
-<%--<script>
-    // =========================================================
-    //  CONSULTA DE AFILIACIÓN — MAQUETA
-    //
-    //  Al implementar: reemplazar consultarDemo() por la llamada
-    //  real al servicio de Comfenalco Santander (o al backend que
-    //  lo consume). La respuesta solo necesita decir si el
-    //  documento aplica o no: { aplica: true | false }.
-    //
-    //  IMPORTANTE: la categoría del afiliado (A, B o C) NO se
-    //  muestra en pantalla. El convenio cubre A y B con una
-    //  tarifa única; C no aplica, pero el usuario nunca ve la
-    //  letra ni el motivo, solo "aplica" o "no aplica".
-    //
-    //  Regla de la demo, para poder ver los dos estados:
-    //  documentos terminados en "00", o cuya suma de dígitos sea
-    //  múltiplo de 3 más 2, devuelven "no aplica".
-    // =========================================================
+<script>
     (function () {
-        var ETIQUETA = { CC: 'CC', CE: 'CE', TI: 'TI', RC: 'RC', PA: 'Pasaporte', PPT: 'PPT' };
+        /* ====== VARIABLES ====== */
+        var panelSede = document.getElementById("panelSede");
+        var panelOverlay = document.getElementById("panelSedeOverlay");
 
-        var form = document.getElementById('csForm');
-        var tipo = document.getElementById('tipoDoc');
-        var num = document.getElementById('numDoc');
-        var tipoB = document.getElementById('tipoDocB');
-        var numB = document.getElementById('numDocB');
-        var bloqueB = document.getElementById('bloqueBenef');
-        var chk = document.getElementById('chkAutorizacion');
-        var chkBox = document.getElementById('csCheckWrap');
-        var msg = document.getElementById('csMsg');
-        var load = document.getElementById('csLoad');
-        var res = document.getElementById('csRes');
-        var no = document.getElementById('csNo');
-        var linDoc = document.getElementById('csDoc');
-        var linDocB = document.getElementById('csDocB');
+        var btnCerrarSede = document.getElementById("btnCerrarSede");
 
-        function esBeneficiario() {
-            var r = form.querySelector('input[name="rol"]:checked');
-            return r && r.value === 'beneficiario';
-        }
-        function miles(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+        var ddlCiudad = document.getElementById("ddlCiudad");
+        var ddlSede = document.getElementById("ddlSede");
 
-        // ---- Radio group Titular / Beneficiario ----
-        form.querySelectorAll('input[name="rol"]').forEach(function (r) {
-            r.addEventListener('change', function () {
-                form.querySelectorAll('[data-radio]').forEach(function (l) {
-                    l.classList.toggle('on', l.querySelector('input').checked);
-                });
-                var benef = esBeneficiario();
-                bloqueB.hidden = !benef;
-                if (!benef) { tipoB.value = ''; numB.value = ''; tipoB.classList.remove('err'); numB.classList.remove('err'); }
-                ocultar();
-            });
-        });
+        var contenedorIframe = document.getElementById("contenedorIframePlan");
+        var iframePlan = document.getElementById("iframePlan");
 
-        // ---- Formato de miles mientras escribe ----
-        function formatear(campoTipo, campoNum) {
-            campoNum.addEventListener('input', function () {
-                campoNum.classList.remove('err');
-                if (campoTipo.value === 'PA') return;        // el pasaporte admite letras
-                var limpio = campoNum.value.replace(/\D/g, '').slice(0, 12);
-                campoNum.value = limpio ? miles(limpio) : '';
-            });
-            campoTipo.addEventListener('change', function () { campoTipo.classList.remove('err'); });
-        }
-        formatear(tipo, num);
-        formatear(tipoB, numB);
-        /*chk.addEventListener('change', function () { chkBox.classList.remove('err'); });*/
+        var btnCerrarIframe = document.getElementById("btnCerrarIframe");
 
-        // ---- Consulta simulada ----
-        function consultarDemo(doc) {
-            var d = doc.replace(/\D/g, '');
-            if (d.slice(-2) === '00') return { aplica: false };
-            var suma = 0;
-            for (var i = 0; i < d.length; i++) suma += parseInt(d.charAt(i), 10) || 0;
-            return { aplica: suma % 3 !== 2 };
-        }
-
-        function ocultar() {
-            res.classList.remove('on');
-            no.classList.remove('on');
-            msg.classList.remove('on');
-        }
-
-        function valido(campoTipo, campoNum) {
-            var crudo = campoNum.value.trim();
-            var digitos = crudo.replace(/\D/g, '');
-            var ok = true;
-            if (!campoTipo.value) { campoTipo.classList.add('err'); ok = false; }
-            if (campoTipo.value === 'PA' ? crudo.length < 5 : digitos.length < 6) { campoNum.classList.add('err'); ok = false; }
-            return ok;
-        }
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            ocultar();
-
-            var benef = esBeneficiario();
-            var falla = !valido(tipo, num);
-            if (benef && !valido(tipoB, numB)) falla = true;
-            if (!chk.checked) { chkBox.classList.add('err'); falla = true; }
-            if (falla) { msg.classList.add('on'); return; }
-
-            load.classList.add('on');
-
-            // El documento que define la tarifa es el del beneficiario cuando aplica;
-            // el backend real debe validar el vínculo titular-beneficiario.
-            var clave = (benef ? numB.value : num.value).replace(/\D/g, '');
-
-            setTimeout(function () {
-                load.classList.remove('on');
-                var r = consultarDemo(clave);
-
-                if (!r.aplica) { no.classList.add('on'); no.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
-
-                linDoc.textContent = 'Titular · ' + (ETIQUETA[tipo.value] || '') + ' ' + num.value.trim();
-                if (benef) {
-                    linDocB.textContent = 'Beneficiario · ' + (ETIQUETA[tipoB.value] || '') + ' ' + numB.value.trim();
-                    linDocB.hidden = false;
-                } else {
-                    linDocB.hidden = true;
+        /* ====== SEDES POR CIUDAD ====== */
+        var sedesPorCiudad = {
+            bucaramanga: [
+                {
+                    nombre: "Boulevard",
+                    valor: "bucaramanga-boulevard"
+                },
+                {
+                    nombre: "Cabecera",
+                    valor: "bucaramanga-cabecera"
+                },
+                {
+                    nombre: "El Prado",
+                    valor: "bucaramanga-el-prado"
+                },
+                {
+                    nombre: "Provenza",
+                    valor: "bucaramanga-provenza"
+                },
+                {
+                    nombre: "Ciudadela",
+                    valor: "bucaramanga-ciudadela"
                 }
-                res.classList.add('on');
-                res.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }, 900);
-        });
+            ],
+            floridablanca: [
+                {
+                    nombre: "Cañaveral",
+                    valor: "floridablanca-canaveral"
+                }
+            ],
+            piedecuesta: [
+                {
+                    nombre: "DeLaCuesta",
+                    valor: "piedecuesta-delacuesta"
+                },
+                {
+                    nombre: "Parque Central",
+                    valor: "piedecuesta-parque-central"
+                }
+            ],
+            cucuta: [
+                {
+                    nombre: "Jardín Plaza",
+                    valor: "cucuta-jardin-plaza"
+                },
+                {
+                    nombre: "Ceiba II",
+                    valor: "cucuta-ceiba-ii"
+                }
+            ]
+        };
 
-        document.querySelectorAll('[data-reset]').forEach(function (b) {
-            b.addEventListener('click', function () {
-                ocultar();
-                form.reset();
-                bloqueB.hidden = true;
-                form.querySelectorAll('[data-radio]').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').checked); });
-                form.querySelectorAll('.err').forEach(function (x) { x.classList.remove('err'); });
-                chkBox.classList.remove('err');
-                num.focus();
-                form.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        /* ====== URLS POR SEDE - CONVENIO ====== */
+        var urlsSedes = {
+            "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
+            "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+            "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
+            "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
+            "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
+            "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
+            "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
+            "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
+            "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
+            "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
+        };
+
+        /* ====== ABRIR PANEL DE SEDE ====== */
+        function abrirPanelSede() {
+            if (!panelSede) {
+                return;
+            }
+
+            panelSede.classList.add("active");
+            document.body.style.overflow = "hidden";
+
+            // Reiniciar selección de ciudad
+            if (ddlCiudad) {
+                ddlCiudad.value = "";
+            }
+
+            // Reiniciar selección de sede
+            if (ddlSede) {
+                ddlSede.innerHTML = "";
+
+                var option = document.createElement("option");
+
+                option.value = "";
+                option.textContent = "Primero selecciona una ciudad";
+
+                ddlSede.appendChild(option);
+
+                ddlSede.disabled = true;
+            }
+        }
+
+        /* ====== CERRAR PANEL DE SEDE ====== */
+        function cerrarPanelSede() {
+            if (!panelSede) {
+                return;
+            }
+
+            panelSede.classList.remove("active");
+
+            document.body.style.overflow = "";
+        }
+
+        /* ====== CAMBIO DE CIUDAD ====== */
+        function configurarCiudad() {
+            if (!ddlCiudad || !ddlSede) {
+                return;
+            }
+
+            // Evitar registrar el evento más de una vez
+            if (ddlCiudad.dataset.configurado === "true") {
+                return;
+            }
+
+            ddlCiudad.dataset.configurado = "true";
+
+            ddlCiudad.addEventListener("change", function () {
+                var ciudad = this.value;
+
+                // Limpiar sedes
+                ddlSede.innerHTML = "";
+
+                // ====== NO HAY CIUDAD SELECCIONADA ====== 
+                if (!ciudad || !sedesPorCiudad[ciudad]) {
+                    ddlSede.disabled = true;
+
+                    var optionInicial = document.createElement("option");
+
+                    optionInicial.value = "";
+                    optionInicial.textContent =
+                        "Primero selecciona una ciudad";
+
+                    ddlSede.appendChild(optionInicial);
+
+                    return;
+                }
+
+                // ====== OPCIÓN INICIAL ======
+                var optionSeleccion = document.createElement("option");
+
+                optionSeleccion.value = "";
+                optionSeleccion.textContent = "Selecciona una sede";
+
+                ddlSede.appendChild(optionSeleccion);
+
+                // ====== CARGAR SEDES ======
+                sedesPorCiudad[ciudad].forEach(function (sede) {
+                    var option = document.createElement("option");
+
+                    option.value = sede.valor;
+                    option.textContent = sede.nombre;
+
+                    ddlSede.appendChild(option);
+                });
+
+                ddlSede.disabled = false;
             });
-        });
+        }
+
+        /* ====== CAMBIO DE SEDE ====== */
+        function configurarSede() {
+            if (!ddlSede) {
+                return;
+            }
+
+            // Evitar registrar el evento más de una vez
+            if (ddlSede.dataset.configurado === "true") {
+                return;
+            }
+
+            ddlSede.dataset.configurado = "true";
+
+            ddlSede.addEventListener("change", function () {
+                var sede = this.value;
+
+                if (!sede) {
+                    return;
+                }
+
+                // ====== BUSCAR URL DE LA SEDE ======
+                var url = urlsSedes[sede];
+
+                if (!url) return;
+
+                // ====== CERRAR PANEL ====== 
+                cerrarPanelSede();
+
+                // ====== MOSTRAR IFRAME ====== 
+                mostrarIframe(url);
+            });
+        }
+
+        /* ====== MOSTRAR IFRAME ====== */
+        function mostrarIframe(url) {
+            if (!iframePlan || !contenedorIframe) {
+                return;
+            }
+
+            iframePlan.src = url;
+
+            contenedorIframe.classList.add("active");
+
+            // Scroll hasta el iframe
+            setTimeout(function () {
+                contenedorIframe.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 350);
+        }
+
+        /* ====== CERRAR IFRAME ====== */
+        function cerrarIframe() {
+            if (!contenedorIframe) {
+                return;
+            }
+
+            iframePlan.src = "";
+
+            contenedorIframe.classList.remove("active");
+
+            // Limpiar selección de ciudad
+            if (ddlCiudad) {
+                ddlCiudad.value = "";
+            }
+
+            // Limpiar selección de sede
+            if (ddlSede) {
+                ddlSede.innerHTML = "";
+
+                var option = document.createElement("option");
+
+                option.value = "";
+                option.textContent = "Primero selecciona una ciudad";
+
+                ddlSede.appendChild(option);
+
+                ddlSede.disabled = true;
+            }
+        }
+
+        /* =========================================================
+           BOTÓN CONTINUAR MI INSCRIPCIÓN
+           Está dentro del UpdatePanel
+           ========================================================= */
+        function configurarBotonComprar() {
+            var btnComprar = document.getElementById("btnComprar");
+
+            if (!btnComprar) {
+                return;
+            }
+
+            // Evitar registrar el evento varias veces
+            if (btnComprar.dataset.configurado === "true") {
+                return;
+            }
+
+            btnComprar.dataset.configurado = "true";
+
+            btnComprar.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                abrirPanelSede();
+            });
+        }
+
+        /* ====== BOTONES DE CIERRE ====== */
+        function configurarBotonesCierre() {
+            if (btnCerrarSede &&
+                btnCerrarSede.dataset.configurado !== "true") {
+
+                btnCerrarSede.dataset.configurado = "true";
+
+                btnCerrarSede.addEventListener(
+                    "click",
+                    cerrarPanelSede
+                );
+            }
+
+            if (panelOverlay &&
+                panelOverlay.dataset.configurado !== "true") {
+
+                panelOverlay.dataset.configurado = "true";
+
+                panelOverlay.addEventListener(
+                    "click",
+                    cerrarPanelSede
+                );
+            }
+
+            if (btnCerrarIframe &&
+                btnCerrarIframe.dataset.configurado !== "true") {
+
+                btnCerrarIframe.dataset.configurado = "true";
+
+                btnCerrarIframe.addEventListener(
+                    "click",
+                    cerrarIframe
+                );
+            }
+        }
+
+        /* ====== INICIALIZAR ====== */
+        function inicializar() {
+            // Elementos que pueden existir nuevamente
+            // después de un UpdatePanel
+            panelSede = document.getElementById("panelSede");
+            panelOverlay = document.getElementById("panelSedeOverlay");
+
+            btnCerrarSede = document.getElementById("btnCerrarSede");
+
+            ddlCiudad = document.getElementById("ddlCiudad");
+
+            ddlSede = document.getElementById("ddlSede");
+
+            contenedorIframe = document.getElementById("contenedorIframePlan");
+
+            iframePlan = document.getElementById("iframePlan");
+
+            btnCerrarIframe = document.getElementById("btnCerrarIframe");
+
+            configurarBotonComprar();
+
+            configurarCiudad();
+
+            configurarSede();
+
+            configurarBotonesCierre();
+        }
+
+        /*  ====== PRIMERA CARGA ====== */
+        inicializar();
+
+        /* ====== UPDATEPANEL ====== */
+        if (typeof Sys !== "undefined" &&
+            Sys.WebForms &&
+            Sys.WebForms.PageRequestManager) {
+
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+
+            prm.add_endRequest(function () {
+                inicializar();
+            });
+        }
     })();
-
-    // Aparición suave
-    (function () {
-        var els = document.querySelectorAll('.reveal');
-        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-        }, { threshold: .12 });
-        els.forEach(function (e) { io.observe(e); });
-    })();
-</script>--%>
+</script>
 
 
-<%--<script>
-(function () {
+    <script>
 
-    var form = document.getElementById('csForm');
+        (function () {
+            // ======== ELEMENTOS ========
+            var form = document.getElementById('csForm');
 
-    var tipo = document.getElementById('ddlTipoDoc');
-    var num = document.getElementById('txtNumDoc');
+            if (!form) {
+                return;
+            }
 
-    var tipoB = document.getElementById('ddlTipoDocB');
-    var numB = document.getElementById('txtNumDocB');
+            var tipo = document.getElementById('ddlTipoDoc');
+            var num = document.getElementById('txtNumDoc');
 
-    var bloqueB = document.getElementById('bloqueBenef');
+            var tipoB = document.getElementById('ddlTipoDocB');
+            var numB = document.getElementById('txtNumDocB');
 
-    function esBeneficiario() {
+            var bloqueB = document.getElementById('bloqueBenef');
 
-        var radio = form.querySelector(
-            'input[name="rol"]:checked'
-        );
+            var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
 
-        return radio &&
-               radio.value === 'beneficiario';
-    }
+            var mensaje = document.getElementById('lblMensaje');
 
-    function miles(valor) {
+            var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
+            var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
 
-        return valor.replace(
-            /\B(?=(\d{3})+(?!\d))/g,
-            '.'
-        );
-    }
+            // ======== TITULAR / BENEFICIARIO ========
+            function esBeneficiario() {
+                var radio = form.querySelector(
+                    'input[name="rol"]:checked'
+                );
 
-    // =========================================================
-    // TITULAR / BENEFICIARIO
-    // =========================================================
+                return radio && radio.value === 'beneficiario';
+            }
 
-    form.querySelectorAll(
-        'input[name="rol"]'
-    ).forEach(function (radio) {
+            function configurarRoles() {
+                var radios = form.querySelectorAll(
+                    'input[name="rol"]'
+                );
 
-        radio.addEventListener(
-            'change',
-            function () {
+                radios.forEach(function (radio) {
+                    radio.addEventListener(
+                        'change',
+                        function () {
+                            // Guardar el rol seleccionado
+                            var hfRol = document.getElementById('hfRol');
+
+                            if (hfRol) {
+                                hfRol.value = radio.value;
+                            }
+
+                            form.querySelectorAll(
+                                '[data-radio]'
+                            ).forEach(function (label) {
+                                var input = label.querySelector('input');
+
+                                if (input) {
+                                    label.classList.toggle(
+                                        'on',
+                                        input.checked
+                                    );
+                                }
+                            });
+
+                            var beneficiario = esBeneficiario();
+
+                            if (bloqueB) {
+                                bloqueB.hidden = !beneficiario;
+                            }
+
+                            if (!beneficiario) {
+
+                                if (tipoB) {
+                                    tipoB.value = '';
+                                    tipoB.classList.remove('err');
+                                }
+
+                                if (numB) {
+                                    numB.value = '';
+                                    numB.classList.remove('err');
+                                }
+                            }
+                        }
+                    );
+                });
+            }
+
+            function restaurarRol() {
+                var hfRol = document.getElementById('hfRol');
+
+                if (!hfRol || !hfRol.value) {
+                    return;
+                }
+
+                var radio = form.querySelector(
+                    'input[name="rol"][value="' + hfRol.value + '"]'
+                );
+
+                if (!radio) {
+                    return;
+                }
+
+                radio.checked = true;
 
                 form.querySelectorAll(
                     '[data-radio]'
                 ).forEach(function (label) {
+                    var input = label.querySelector('input');
 
-                    label.classList.toggle(
-                        'on',
-                        label.querySelector('input').checked
-                    );
-
+                    if (input) {
+                        label.classList.toggle(
+                            'on',
+                            input.checked
+                        );
+                    }
                 });
 
-                var beneficiario = esBeneficiario();
+                var beneficiario = hfRol.value === 'beneficiario';
 
-                bloqueB.hidden = !beneficiario;
+                if (bloqueB) {
+                    bloqueB.hidden = !beneficiario;
+                }
+            }
 
-                if (!beneficiario) {
 
-                    tipoB.value = '';
-                    numB.value = '';
+            // ======== FORMATEAR DOCUMENTOS ========
+            function miles(valor) {
+                return valor.replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    '.'
+                );
+            }
 
+            function formatear(campoTipo, campoNumero) {
+                // Evita errores si algún elemento no existe
+                if (!campoNumero) {
+                    return;
+                }
+
+                campoNumero.addEventListener(
+                    'input',
+                    function () {
+                        campoNumero.classList.remove('err');
+
+                        if (campoTipo && campoTipo.value === 'PA') {
+                            return;
+                        }
+
+                        var limpio =
+                            campoNumero.value
+                                .replace(/\D/g, '')
+                                .slice(0, 12);
+
+                        campoNumero.value =
+                            limpio ? miles(limpio) : '';
+                    }
+                );
+
+                if (campoTipo) {
+                    campoTipo.addEventListener(
+                        'change',
+                        function () {
+                            campoTipo.classList.remove('err');
+                        }
+                    );
+                }
+            }
+
+            // ======== AUTORIZACIÓN ========
+            function configurarAutorizacion() {
+                if (!autorizacion) {
+                    return;
+                }
+
+                autorizacion.addEventListener(
+                    'change',
+                    function () {
+                        if (autorizacion.checked && checkWrap) {
+                            checkWrap.classList.remove('err');
+                        }
+                    }
+                );
+            }
+
+            // ======== MENSAJES ========
+            function mostrarError(texto) {
+                mensaje = document.getElementById('lblMensaje');
+
+                if (!mensaje) {
+                    return;
+                }
+
+                mensaje.textContent = texto;
+                mensaje.classList.add('on');
+            }
+
+            function limpiarMensaje() {
+                mensaje = document.getElementById('lblMensaje');
+
+                if (!mensaje) {
+                    return;
+                }
+
+                mensaje.textContent = '';
+                mensaje.classList.remove('on');
+            }
+
+            function limpiarErrores() {
+                if (tipo) {
+                    tipo.classList.remove('err');
+                }
+
+                if (num) {
+                    num.classList.remove('err');
+                }
+
+                if (tipoB) {
                     tipoB.classList.remove('err');
+                }
+
+                if (numB) {
                     numB.classList.remove('err');
                 }
-            }
-        );
-    });
 
-    // =========================================================
-    // FORMATEAR DOCUMENTOS
-    // =========================================================
-
-    function formatear(campoTipo, campoNumero) {
-
-        if (!campoNumero)
-            return;
-
-        campoNumero.addEventListener(
-            'input',
-            function () {
-
-                campoNumero.classList.remove('err');
-
-                if (campoTipo.value === 'PA')
-                    return;
-
-                var limpio =
-                    campoNumero.value
-                        .replace(/\D/g, '')
-                        .slice(0, 12);
-
-                campoNumero.value =
-                    limpio ? miles(limpio) : '';
-            }
-        );
-
-        if (campoTipo) {
-
-            campoTipo.addEventListener(
-                'change',
-                function () {
-
-                    campoTipo.classList.remove('err');
-
-                }
-            );
-        }
-
-        autorizacion.addEventListener('change', function () {
-
-            if (autorizacion.checked) {
-                checkWrap.classList.remove('err');
-            }
-
-        });
-    }
-
-    formatear(tipo, num);
-    formatear(tipoB, numB);
-
-    // =========================================================
-    // RESET
-    // =========================================================
-
-    document.querySelectorAll(
-        '[data-reset]'
-    ).forEach(function (boton) {
-
-        boton.addEventListener(
-            'click',
-            function () {
-
-                window.location.reload();
-
-            }
-        );
-
-    });
-
-
-    // =========================================================
-    // VALIDACIÓN DEL FORMULARIO
-    // =========================================================
-
-    var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
-    var mensaje = document.getElementById('lblMensaje');
-    var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
-    var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
-
-    function mostrarError(mensajeTexto) {
-
-        mensaje.textContent = mensajeTexto;
-        mensaje.classList.add('on');
-    }
-
-    function limpiarMensaje() {
-
-        mensaje.textContent = '';
-        mensaje.classList.remove('on');
-    }
-
-    function limpiarErrores() {
-
-        tipo.classList.remove('err');
-        num.classList.remove('err');
-
-        tipoB.classList.remove('err');
-        numB.classList.remove('err');
-
-        checkWrap.classList.remove('err');
-
-        limpiarMensaje();
-    }
-
-    btnConsultar.addEventListener('click', function (e) {
-
-        limpiarErrores();
-
-        var beneficiario = esBeneficiario();
-
-        // =====================================================
-        // AUTORIZACIÓN
-        // =====================================================
-
-        if (!autorizacion.checked) {
-
-            checkWrap.classList.add('err');
-
-            mostrarError(
-                'Debes aceptar los términos y la política de tratamiento de datos.'
-            );
-
-            e.preventDefault();
-            return;
-        }
-
-        // =====================================================
-        // TIPO DE DOCUMENTO TITULAR
-        // =====================================================
-
-        if (!tipo.value) {
-
-            tipo.classList.add('err');
-
-            mostrarError(
-                'Selecciona el tipo de documento del titular.'
-            );
-
-            e.preventDefault();
-            return;
-        }
-
-        // =====================================================
-        // DOCUMENTO TITULAR
-        // =====================================================
-
-        if (!num.value.trim()) {
-
-            num.classList.add('err');
-
-            mostrarError(
-                'Ingresa el número de documento del titular.'
-            );
-
-            e.preventDefault();
-            return;
-        }
-
-        // =====================================================
-        // BENEFICIARIO
-        // =====================================================
-
-        if (beneficiario) {
-
-            if (!tipoB.value) {
-
-                tipoB.classList.add('err');
-
-                mostrarError(
-                    'Selecciona el tipo de documento del beneficiario.'
-                );
-
-                e.preventDefault();
-                return;
-            }
-
-            if (!numB.value.trim()) {
-
-                numB.classList.add('err');
-
-                mostrarError(
-                    'Ingresa el número de documento del beneficiario.'
-                );
-
-                e.preventDefault();
-                return;
-            }
-        }
-
-        // =====================================================
-        // TODO CORRECTO
-        // =====================================================
-
-        // No hacemos preventDefault.
-        // El botón continúa normalmente con el postback.
-    });
-
-})();
-</script>--%>
-
-<script>
-    (function () {
-
-        // =========================================================
-        // ELEMENTOS
-        // =========================================================
-
-        var form = document.getElementById('csForm');
-
-        if (!form) {
-            return;
-        }
-
-        var tipo = document.getElementById('ddlTipoDoc');
-        var num = document.getElementById('txtNumDoc');
-
-        var tipoB = document.getElementById('ddlTipoDocB');
-        var numB = document.getElementById('txtNumDocB');
-
-        var bloqueB = document.getElementById('bloqueBenef');
-
-        var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
-
-    var mensaje = document.getElementById('lblMensaje');
-
-    var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
-    var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
-
-
-    // =========================================================
-    // TITULAR / BENEFICIARIO
-    // =========================================================
-
-    function esBeneficiario() {
-
-        var radio = form.querySelector(
-            'input[name="rol"]:checked'
-        );
-
-        return radio &&
-               radio.value === 'beneficiario';
-    }
-
-
-    function configurarRoles() {
-
-        var radios = form.querySelectorAll(
-            'input[name="rol"]'
-        );
-
-        radios.forEach(function (radio) {
-
-            radio.addEventListener(
-                'change',
-                function () {
-
-                    var seleccionado = form.querySelector(
-                        'input[name="rol"]:checked'
-                    );
-
-                    if (seleccionado) {
-                        document.getElementById('hfRol').value =
-                            seleccionado.value;
-                    }
-
-                    form.querySelectorAll(
-                        '[data-radio]'
-                    ).forEach(function (label) {
-
-                        var input = label.querySelector('input');
-
-                        if (input) {
-                            label.classList.toggle(
-                                'on',
-                                input.checked
-                            );
-                        }
-
-                    });
-
-                    var beneficiario = esBeneficiario();
-
-                    if (bloqueB) {
-                        bloqueB.hidden = !beneficiario;
-                    }
-
-                    if (!beneficiario) {
-
-                        if (tipoB) {
-                            tipoB.value = '';
-                            tipoB.classList.remove('err');
-                        }
-
-                        if (numB) {
-                            numB.value = '';
-                            numB.classList.remove('err');
-                        }
-                    }
-                }
-            );
-
-        });
-
-        }
-
-        function restaurarRol() {
-
-            var hfRol = document.getElementById('hfRol');
-
-            if (!hfRol || !hfRol.value) {
-                return;
-            }
-
-            var radio = form.querySelector(
-                'input[name="rol"][value="' + hfRol.value + '"]'
-            );
-
-            if (!radio) {
-                return;
-            }
-
-            radio.checked = true;
-
-            form.querySelectorAll(
-                '[data-radio]'
-            ).forEach(function (label) {
-
-                var input = label.querySelector('input');
-
-                if (input) {
-                    label.classList.toggle(
-                        'on',
-                        input.checked
-                    );
-                }
-
-            });
-
-            var beneficiario = hfRol.value === 'beneficiario';
-
-            if (bloqueB) {
-                bloqueB.hidden = !beneficiario;
-            }
-        }
-
-
-    // =========================================================
-    // FORMATEAR DOCUMENTOS
-    // =========================================================
-
-    function miles(valor) {
-
-        return valor.replace(
-            /\B(?=(\d{3})+(?!\d))/g,
-            '.'
-        );
-    }
-
-
-    function formatear(campoTipo, campoNumero) {
-
-        // Evita errores si algún elemento no existe
-        if (!campoNumero) {
-            return;
-        }
-
-        campoNumero.addEventListener(
-            'input',
-            function () {
-
-                campoNumero.classList.remove('err');
-
-                if (campoTipo && campoTipo.value === 'PA') {
-                    return;
-                }
-
-                var limpio =
-                    campoNumero.value
-                        .replace(/\D/g, '')
-                        .slice(0, 12);
-
-                campoNumero.value =
-                    limpio ? miles(limpio) : '';
-            }
-        );
-
-
-        if (campoTipo) {
-
-            campoTipo.addEventListener(
-                'change',
-                function () {
-
-                    campoTipo.classList.remove('err');
-
-                }
-            );
-
-        }
-
-    }
-
-
-    // =========================================================
-    // AUTORIZACIÓN
-    // =========================================================
-
-    function configurarAutorizacion() {
-
-        if (!autorizacion) {
-            return;
-        }
-
-        autorizacion.addEventListener(
-            'change',
-            function () {
-
-                if (autorizacion.checked && checkWrap) {
+                if (checkWrap) {
                     checkWrap.classList.remove('err');
                 }
 
-            }
-        );
-
-    }
-
-
-    // =========================================================
-    // MENSAJES
-    // =========================================================
-
-        function mostrarError(texto) {
-
-            mensaje = document.getElementById('lblMensaje');
-
-            if (!mensaje) {
-                return;
+                limpiarMensaje();
             }
 
-            mensaje.textContent = texto;
-            mensaje.classList.add('on');
-        }
+            // ======== VALIDAR FORMULARIO ANTES DEL POSTBACK ========
+            function validarFormulario() {
+                limpiarErrores();
 
+                var beneficiario = esBeneficiario();
 
-        function limpiarMensaje() {
+                // ----- AUTORIZACIÓN -----
+                if (!autorizacion || !autorizacion.checked) {
+                    if (checkWrap) {
+                        checkWrap.classList.add('err');
+                    }
 
-            mensaje = document.getElementById('lblMensaje');
-
-            if (!mensaje) {
-                return;
-            }
-
-            mensaje.textContent = '';
-            mensaje.classList.remove('on');
-        }
-
-
-    function limpiarErrores() {
-
-        if (tipo) {
-            tipo.classList.remove('err');
-        }
-
-        if (num) {
-            num.classList.remove('err');
-        }
-
-        if (tipoB) {
-            tipoB.classList.remove('err');
-        }
-
-        if (numB) {
-            numB.classList.remove('err');
-        }
-
-        if (checkWrap) {
-            checkWrap.classList.remove('err');
-        }
-
-        limpiarMensaje();
-    }
-
-
-    // =========================================================
-    // VALIDAR FORMULARIO ANTES DEL POSTBACK
-    // =========================================================
-
-    function validarFormulario() {
-
-        limpiarErrores();
-
-        var beneficiario = esBeneficiario();
-
-
-        // -----------------------------------------------------
-        // AUTORIZACIÓN
-        // -----------------------------------------------------
-
-        if (!autorizacion || !autorizacion.checked) {
-
-            if (checkWrap) {
-                checkWrap.classList.add('err');
-            }
-
-            mostrarError(
-                'Debes aceptar los términos y la política de tratamiento de datos.'
-            );
-
-            return false;
-        }
-
-
-        // -----------------------------------------------------
-        // TIPO DOCUMENTO TITULAR
-        // -----------------------------------------------------
-
-        if (!tipo || !tipo.value) {
-
-            if (tipo) {
-                tipo.classList.add('err');
-            }
-
-            mostrarError(
-                'Selecciona el tipo de documento del titular.'
-            );
-
-            return false;
-        }
-
-
-        // -----------------------------------------------------
-        // DOCUMENTO TITULAR
-        // -----------------------------------------------------
-
-        if (!num || !num.value.trim()) {
-
-            if (num) {
-                num.classList.add('err');
-            }
-
-            mostrarError(
-                'Ingresa el número de documento del titular.'
-            );
-
-            return false;
-        }
-
-
-        // -----------------------------------------------------
-        // TIPO DOCUMENTO BENEFICIARIO
-        // -----------------------------------------------------
-
-        if (beneficiario) {
-
-            if (!tipoB || !tipoB.value) {
-
-                if (tipoB) {
-                    tipoB.classList.add('err');
-                }
-
-                mostrarError(
-                    'Selecciona el tipo de documento del beneficiario.'
-                );
-
-                return false;
-            }
-
-
-            // -------------------------------------------------
-            // DOCUMENTO BENEFICIARIO
-            // -------------------------------------------------
-
-            if (!numB || !numB.value.trim()) {
-
-                if (numB) {
-                    numB.classList.add('err');
-                }
-
-                mostrarError(
-                    'Ingresa el número de documento del beneficiario.'
-                );
-
-                return false;
-            }
-
-        }
-
-
-        return true;
-    }
-
-
-    // =========================================================
-    // CONFIGURAR BOTÓN
-    // =========================================================
-
-    function configurarBoton() {
-
-        if (!btnConsultar) {
-            return;
-        }
-
-        btnConsultar.addEventListener(
-            'click',
-            function (e) {
-
-                if (!validarFormulario()) {
-
-                    e.preventDefault();
+                    mostrarError(
+                        'Debes aceptar los términos y la política de tratamiento de datos.'
+                    );
 
                     return false;
                 }
 
+                // ----- TIPO DOCUMENTO TITULAR -----
+                if (!tipo || !tipo.value) {
+                    if (tipo) {
+                        tipo.classList.add('err');
+                    }
+
+                    mostrarError(
+                        'Selecciona el tipo de documento del titular.'
+                    );
+
+                    return false;
+                }
+
+                // ----- DOCUMENTO TITULAR -----
+                if (!num || !num.value.trim()) {
+                    if (num) {
+                        num.classList.add('err');
+                    }
+
+                    mostrarError(
+                        'Ingresa el número de documento del titular.'
+                    );
+
+                    return false;
+                }
+
+                // ----- TIPO DOCUMENTO BENEFICIARIO -----
+                if (beneficiario) {
+                    if (!tipoB || !tipoB.value) {
+                        if (tipoB) {
+                            tipoB.classList.add('err');
+                        }
+
+                        mostrarError(
+                            'Selecciona el tipo de documento del beneficiario.'
+                        );
+
+                        return false;
+                    }
+
+                    // ----- DOCUMENTO BENEFICIARIO -----
+                    if (!numB || !numB.value.trim()) {
+                        if (numB) {
+                            numB.classList.add('err');
+                        }
+
+                        mostrarError(
+                            'Ingresa el número de documento del beneficiario.'
+                        );
+
+                        return false;
+                    }
+                }
+
                 return true;
-
             }
-        );
 
-    }
-
-
-    // =========================================================
-    // INICIALIZAR
-    // =========================================================
-
-    function inicializar() {
-
-        // Volver a obtener elementos porque UpdatePanel
-        // puede haber reemplazado el contenido.
-
-        tipo = document.getElementById('ddlTipoDoc');
-        num = document.getElementById('txtNumDoc');
-
-        tipoB = document.getElementById('ddlTipoDocB');
-        numB = document.getElementById('txtNumDocB');
-
-        bloqueB = document.getElementById('bloqueBenef');
-
-        btnConsultar =
-            document.getElementById('<%= btnConsultar.ClientID %>');
-
-        mensaje =
-            document.getElementById('lblMensaje');
-
-        checkWrap =
-            document.getElementById('<%= csCheckWrap.ClientID %>');
-
-        autorizacion =
-            document.getElementById('<%= chkAutorizacion.ClientID %>');
-
-
-            configurarRoles();
-
-            formatear(tipo, num);
-
-            formatear(tipoB, numB);
-
-            configurarAutorizacion();
-
-            configurarBoton();
-
-            restaurarRol();
-        }
-
-
-        // Primera carga
-        inicializar();
-
-
-        // =========================================================
-        // UPDATEPANEL
-        // =========================================================
-
-        if (typeof Sys !== 'undefined' &&
-            Sys.WebForms &&
-            Sys.WebForms.PageRequestManager) {
-
-            var prm =
-                Sys.WebForms.PageRequestManager.getInstance();
-
-            prm.add_endRequest(function () {
-
-                inicializar();
-
-            });
-
-        }
-
-
-        // =========================================================
-        // RESET
-        // =========================================================
-
-        document.addEventListener(
-            'click',
-            function (e) {
-
-                var boton = e.target.closest('[data-reset]');
-
-                if (!boton) {
+            // ======== CONFIGURAR BOTÓN ========
+            function configurarBoton() {
+                if (!btnConsultar) {
                     return;
                 }
 
-                window.location.reload();
+                btnConsultar.addEventListener(
+                    'click',
+                    function (e) {
+                        if (!validarFormulario()) {
 
+                            e.preventDefault();
+
+                            return false;
+                        }
+
+                        return true;
+                    }
+                );
             }
-        );
 
-    })();
-</script>
+            // ======== INICIALIZAR ========
+            function inicializar() {
+                // Volver a obtener elementos porque UpdatePanel
+                // puede haber reemplazado el contenido.
+
+                tipo = document.getElementById('ddlTipoDoc');
+                num = document.getElementById('txtNumDoc');
+
+                tipoB = document.getElementById('ddlTipoDocB');
+                numB = document.getElementById('txtNumDocB');
+
+                bloqueB = document.getElementById('bloqueBenef');
+
+                btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
+
+                mensaje = document.getElementById('lblMensaje');
+
+                checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
+
+                autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
+
+                configurarRoles();
+
+                formatear(tipo, num);
+
+                formatear(tipoB, numB);
+
+                configurarAutorizacion();
+
+                configurarBoton();
+
+                restaurarRol();
+            }
+
+            // Primera carga
+            inicializar();
+
+
+            // ======== UPDATEPANEL ========
+            if (typeof Sys !== 'undefined' &&
+                Sys.WebForms &&
+                Sys.WebForms.PageRequestManager) {
+
+                var prm =
+                    Sys.WebForms.PageRequestManager.getInstance();
+
+                prm.add_endRequest(function () {
+                    inicializar();
+                });
+            }
+
+            // ======== RESET ========
+            document.addEventListener(
+                'click',
+                function (e) {
+                    var boton = e.target.closest('[data-reset]');
+
+                    if (!boton) {
+                        return;
+                    }
+
+                    window.location.reload();
+                }
+            );
+        })();
+
+    </script>
 
 
 

@@ -46,6 +46,8 @@ namespace WebPage
                 return;
             }
 
+            hfRol.Value = rol;
+
             bool esBeneficiario = rol == "beneficiario";
 
             // =========================================================

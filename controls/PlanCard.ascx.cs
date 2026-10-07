@@ -246,7 +246,7 @@ namespace WebPage.controls
                         Tagline = "Más beneficios desde el primer mes.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $165.000",
+                        PrecioAntes = "Antes $165.000 /mes",
                         LabelPrecio = "1er mes",
                         Precio = "$9.900",
                         Periodo = "",
@@ -308,7 +308,7 @@ namespace WebPage.controls
                         Tagline = "Haz de tu bienestar parte del día.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900",
+                        PrecioAntes = "Antes $109.900 /mes",
                         LabelPrecio = "1er mes",
                         Precio = "$59.700",
                         Periodo = "",
@@ -340,7 +340,7 @@ namespace WebPage.controls
                         Tagline = "Tu salud más cerca de ti.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900",
+                        PrecioAntes = "Antes $109.900 /mes",
                         LabelPrecio = "",
                         Precio = "$89.900",
                         Periodo = "/mes",

@@ -6254,13 +6254,13 @@ body.menu-open {
 	}
 
 /* Autorización con error */
-
 #csCheckWrap.err .fpp-checkbox__box {
 	border-color: #FF5C5C;
 	box-shadow: 0 0 0 1px rgba(255, 92, 92, .25);
 }
 
-#csCheckWrap.err .fpp-checkbox__text {
+#csCheckWrap.err .fpp-checkbox__text, 
+#csCheckWrap.err .fpp-checkbox__text a {
 	color: #FF7B7B;
 }
 
@@ -6547,6 +6547,10 @@ body.menu-open {
 }
 
 @media (max-width: 400px) {
+	.fpp-radio-list {
+		gap: 5px;
+	}
+
 	.fpp-cs-radio {
 		padding: 10px;
 		gap: 10px;
