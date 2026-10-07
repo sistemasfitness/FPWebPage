@@ -652,401 +652,108 @@
 
 
 
-<script>
-    (function () {
-        /* ====== VARIABLES ====== */
-        var panelSede = document.getElementById("panelSede");
-        var panelOverlay = document.getElementById("panelSedeOverlay");
-
-        var btnCerrarSede = document.getElementById("btnCerrarSede");
-
-        var ddlCiudad = document.getElementById("ddlCiudad");
-        var ddlSede = document.getElementById("ddlSede");
-
-        var contenedorIframe = document.getElementById("contenedorIframePlan");
-        var iframePlan = document.getElementById("iframePlan");
-
-        var btnCerrarIframe = document.getElementById("btnCerrarIframe");
-
-        /* ====== SEDES POR CIUDAD ====== */
-        var sedesPorCiudad = {
-            bucaramanga: [
-                {
-                    nombre: "Boulevard",
-                    valor: "bucaramanga-boulevard"
-                },
-                {
-                    nombre: "Cabecera",
-                    valor: "bucaramanga-cabecera"
-                },
-                {
-                    nombre: "El Prado",
-                    valor: "bucaramanga-el-prado"
-                },
-                {
-                    nombre: "Provenza",
-                    valor: "bucaramanga-provenza"
-                },
-                {
-                    nombre: "Ciudadela",
-                    valor: "bucaramanga-ciudadela"
-                }
-            ],
-            floridablanca: [
-                {
-                    nombre: "Cañaveral",
-                    valor: "floridablanca-canaveral"
-                }
-            ],
-            piedecuesta: [
-                {
-                    nombre: "DeLaCuesta",
-                    valor: "piedecuesta-delacuesta"
-                },
-                {
-                    nombre: "Parque Central",
-                    valor: "piedecuesta-parque-central"
-                }
-            ],
-            cucuta: [
-                {
-                    nombre: "Jardín Plaza",
-                    valor: "cucuta-jardin-plaza"
-                },
-                {
-                    nombre: "Ceiba II",
-                    valor: "cucuta-ceiba-ii"
-                }
-            ]
-        };
-
-        /* ====== URLS POR SEDE - CONVENIO ====== */
-        var urlsSedes = {
-            "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
-            "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-            "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
-            "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
-            "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
-            "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
-            "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
-            "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
-            "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
-            "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
-        };
-
-        /* ====== ABRIR PANEL DE SEDE ====== */
-        function abrirPanelSede() {
-            if (!panelSede) {
-                return;
-            }
-
-            panelSede.classList.add("active");
-            document.body.style.overflow = "hidden";
-
-            // Reiniciar selección de ciudad
-            if (ddlCiudad) {
-                ddlCiudad.value = "";
-            }
-
-            // Reiniciar selección de sede
-            if (ddlSede) {
-                ddlSede.innerHTML = "";
-
-                var option = document.createElement("option");
-
-                option.value = "";
-                option.textContent = "Primero selecciona una ciudad";
-
-                ddlSede.appendChild(option);
-
-                ddlSede.disabled = true;
-            }
-        }
-
-        /* ====== CERRAR PANEL DE SEDE ====== */
-        function cerrarPanelSede() {
-            if (!panelSede) {
-                return;
-            }
-
-            panelSede.classList.remove("active");
-
-            document.body.style.overflow = "";
-        }
-
-        /* ====== CAMBIO DE CIUDAD ====== */
-        function configurarCiudad() {
-            if (!ddlCiudad || !ddlSede) {
-                return;
-            }
-
-            // Evitar registrar el evento más de una vez
-            if (ddlCiudad.dataset.configurado === "true") {
-                return;
-            }
-
-            ddlCiudad.dataset.configurado = "true";
-
-            ddlCiudad.addEventListener("change", function () {
-                var ciudad = this.value;
-
-                // Limpiar sedes
-                ddlSede.innerHTML = "";
-
-                // ====== NO HAY CIUDAD SELECCIONADA ====== 
-                if (!ciudad || !sedesPorCiudad[ciudad]) {
-                    ddlSede.disabled = true;
-
-                    var optionInicial = document.createElement("option");
-
-                    optionInicial.value = "";
-                    optionInicial.textContent =
-                        "Primero selecciona una ciudad";
-
-                    ddlSede.appendChild(optionInicial);
-
-                    return;
-                }
-
-                // ====== OPCIÓN INICIAL ======
-                var optionSeleccion = document.createElement("option");
-
-                optionSeleccion.value = "";
-                optionSeleccion.textContent = "Selecciona una sede";
-
-                ddlSede.appendChild(optionSeleccion);
-
-                // ====== CARGAR SEDES ======
-                sedesPorCiudad[ciudad].forEach(function (sede) {
-                    var option = document.createElement("option");
-
-                    option.value = sede.valor;
-                    option.textContent = sede.nombre;
-
-                    ddlSede.appendChild(option);
-                });
-
-                ddlSede.disabled = false;
-            });
-        }
-
-        /* ====== CAMBIO DE SEDE ====== */
-        function configurarSede() {
-            if (!ddlSede) {
-                return;
-            }
-
-            // Evitar registrar el evento más de una vez
-            if (ddlSede.dataset.configurado === "true") {
-                return;
-            }
-
-            ddlSede.dataset.configurado = "true";
-
-            ddlSede.addEventListener("change", function () {
-                var sede = this.value;
-
-                if (!sede) {
-                    return;
-                }
-
-                // ====== BUSCAR URL DE LA SEDE ======
-                var url = urlsSedes[sede];
-
-                if (!url) return;
-
-                // ====== CERRAR PANEL ====== 
-                cerrarPanelSede();
-
-                // ====== MOSTRAR IFRAME ====== 
-                mostrarIframe(url);
-            });
-        }
-
-        /* ====== MOSTRAR IFRAME ====== */
-        function mostrarIframe(url) {
-            if (!iframePlan || !contenedorIframe) {
-                return;
-            }
-
-            iframePlan.src = url;
-
-            contenedorIframe.classList.add("active");
-
-            // Scroll hasta el iframe
-            setTimeout(function () {
-                contenedorIframe.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }, 350);
-        }
-
-        /* ====== CERRAR IFRAME ====== */
-        function cerrarIframe() {
-            if (!contenedorIframe) {
-                return;
-            }
-
-            iframePlan.src = "";
-
-            contenedorIframe.classList.remove("active");
-
-            // Limpiar selección de ciudad
-            if (ddlCiudad) {
-                ddlCiudad.value = "";
-            }
-
-            // Limpiar selección de sede
-            if (ddlSede) {
-                ddlSede.innerHTML = "";
-
-                var option = document.createElement("option");
-
-                option.value = "";
-                option.textContent = "Primero selecciona una ciudad";
-
-                ddlSede.appendChild(option);
-
-                ddlSede.disabled = true;
-            }
-        }
-
-        /* =========================================================
-           BOTÓN CONTINUAR MI INSCRIPCIÓN
-           Está dentro del UpdatePanel
-           ========================================================= */
-        function configurarBotonComprar() {
-            var btnComprar = document.getElementById("btnComprar");
-
-            if (!btnComprar) {
-                return;
-            }
-
-            // Evitar registrar el evento varias veces
-            if (btnComprar.dataset.configurado === "true") {
-                return;
-            }
-
-            btnComprar.dataset.configurado = "true";
-
-            btnComprar.addEventListener("click", function (e) {
-                e.preventDefault();
-
-                abrirPanelSede();
-            });
-        }
-
-        /* ====== BOTONES DE CIERRE ====== */
-        function configurarBotonesCierre() {
-            if (btnCerrarSede &&
-                btnCerrarSede.dataset.configurado !== "true") {
-
-                btnCerrarSede.dataset.configurado = "true";
-
-                btnCerrarSede.addEventListener(
-                    "click",
-                    cerrarPanelSede
-                );
-            }
-
-            if (panelOverlay &&
-                panelOverlay.dataset.configurado !== "true") {
-
-                panelOverlay.dataset.configurado = "true";
-
-                panelOverlay.addEventListener(
-                    "click",
-                    cerrarPanelSede
-                );
-            }
-
-            if (btnCerrarIframe &&
-                btnCerrarIframe.dataset.configurado !== "true") {
-
-                btnCerrarIframe.dataset.configurado = "true";
-
-                btnCerrarIframe.addEventListener(
-                    "click",
-                    cerrarIframe
-                );
-            }
-        }
-
-        /* ====== INICIALIZAR ====== */
-        function inicializar() {
-            // Elementos que pueden existir nuevamente
-            // después de un UpdatePanel
-            panelSede = document.getElementById("panelSede");
-            panelOverlay = document.getElementById("panelSedeOverlay");
-
-            btnCerrarSede = document.getElementById("btnCerrarSede");
-
-            ddlCiudad = document.getElementById("ddlCiudad");
-
-            ddlSede = document.getElementById("ddlSede");
-
-            contenedorIframe = document.getElementById("contenedorIframePlan");
-
-            iframePlan = document.getElementById("iframePlan");
-
-            btnCerrarIframe = document.getElementById("btnCerrarIframe");
-
-            configurarBotonComprar();
-
-            configurarCiudad();
-
-            configurarSede();
-
-            configurarBotonesCierre();
-        }
-
-        /*  ====== PRIMERA CARGA ====== */
-        inicializar();
-
-        /* ====== UPDATEPANEL ====== */
-        if (typeof Sys !== "undefined" &&
-            Sys.WebForms &&
-            Sys.WebForms.PageRequestManager) {
-
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-
-            prm.add_endRequest(function () {
-                inicializar();
-            });
-        }
-    })();
-</script>
-
-
     <script>
 
         (function () {
-            // ======== ELEMENTOS ========
-            var form = document.getElementById('csForm');
+            /* ====== VARIABLES ====== */
+            // ====== CONSULTA DE CONVENIO ======
+            var form;
+            var tipo;
+            var num;
+            var tipoB;
+            var numB;
+            var bloqueB;
+            var btnConsultar;
+            var mensaje;
+            var checkWrap;
+            var autorizacion;
 
-            if (!form) {
-                return;
-            }
+            // ====== SELECCIÓN DE SEDE / INSCRIPCIÓN ======
+            var panelSede;
+            var panelOverlay;
+            var btnCerrarSede;
 
-            var tipo = document.getElementById('ddlTipoDoc');
-            var num = document.getElementById('txtNumDoc');
+            var ddlCiudad;
+            var ddlSede;
 
-            var tipoB = document.getElementById('ddlTipoDocB');
-            var numB = document.getElementById('txtNumDocB');
+            var contenedorIframe;
+            var iframePlan;
 
-            var bloqueB = document.getElementById('bloqueBenef');
+            var btnCerrarIframe;
 
-            var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
+            /* ====== SEDES POR CIUDAD ====== */
+            var sedesPorCiudad = {
+                bucaramanga: [
+                    {
+                        nombre: "Boulevard",
+                        valor: "bucaramanga-boulevard"
+                    },
+                    {
+                        nombre: "Cabecera",
+                        valor: "bucaramanga-cabecera"
+                    },
+                    {
+                        nombre: "El Prado",
+                        valor: "bucaramanga-el-prado"
+                    },
+                    {
+                        nombre: "Provenza",
+                        valor: "bucaramanga-provenza"
+                    },
+                    {
+                        nombre: "Ciudadela",
+                        valor: "bucaramanga-ciudadela"
+                    }
+                ],
+                floridablanca: [
+                    {
+                        nombre: "Cañaveral",
+                        valor: "floridablanca-canaveral"
+                    }
+                ],
+                piedecuesta: [
+                    {
+                        nombre: "DeLaCuesta",
+                        valor: "piedecuesta-delacuesta"
+                    },
+                    {
+                        nombre: "Parque Central",
+                        valor: "piedecuesta-parque-central"
+                    }
+                ],
+                cucuta: [
+                    {
+                        nombre: "Jardín Plaza",
+                        valor: "cucuta-jardin-plaza"
+                    },
+                    {
+                        nombre: "Ceiba II",
+                        valor: "cucuta-ceiba-ii"
+                    }
+                ]
+            };
 
-            var mensaje = document.getElementById('lblMensaje');
+            /* ====== URLS POR SEDE - CONVENIO ====== */
+            var urlsSedes = {
+                "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
+                "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+                "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
+                "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
+                "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
+                "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
+                "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
+                "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
+                "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
+                "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
+            };
 
-            var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
-            var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
-
-            // ======== TITULAR / BENEFICIARIO ========
+            /* ====== CONSULTA DE CONVENIO ====== */
+            // ====== TITULAR / BENEFICIARIO ======
             function esBeneficiario() {
+                if (!form) {
+                    return false;
+                }
+
                 var radio = form.querySelector(
                     'input[name="rol"]:checked'
                 );
@@ -1055,11 +762,22 @@
             }
 
             function configurarRoles() {
+                if (!form) {
+                    return;
+                }
+
                 var radios = form.querySelectorAll(
                     'input[name="rol"]'
                 );
 
                 radios.forEach(function (radio) {
+                    // Evitar registrar el evento varias veces
+                    if (radio.dataset.configurado === "true") {
+                        return;
+                    }
+
+                    radio.dataset.configurado = "true";
+
                     radio.addEventListener(
                         'change',
                         function () {
@@ -1070,6 +788,7 @@
                                 hfRol.value = radio.value;
                             }
 
+                            // Actualizar estado visual
                             form.querySelectorAll(
                                 '[data-radio]'
                             ).forEach(function (label) {
@@ -1085,10 +804,13 @@
 
                             var beneficiario = esBeneficiario();
 
+                            // Mostrar / ocultar beneficiario
                             if (bloqueB) {
                                 bloqueB.hidden = !beneficiario;
                             }
 
+                            // Limpiar campos del beneficiario
+                            // cuando se cambia a titular
                             if (!beneficiario) {
 
                                 if (tipoB) {
@@ -1107,6 +829,10 @@
             }
 
             function restaurarRol() {
+                if (!form) {
+                    return;
+                }
+
                 var hfRol = document.getElementById('hfRol');
 
                 if (!hfRol || !hfRol.value) {
@@ -1114,7 +840,9 @@
                 }
 
                 var radio = form.querySelector(
-                    'input[name="rol"][value="' + hfRol.value + '"]'
+                    'input[name="rol"][value="' +
+                    hfRol.value +
+                    '"]'
                 );
 
                 if (!radio) {
@@ -1123,6 +851,7 @@
 
                 radio.checked = true;
 
+                // Restaurar estado visual
                 form.querySelectorAll(
                     '[data-radio]'
                 ).forEach(function (label) {
@@ -1143,8 +872,7 @@
                 }
             }
 
-
-            // ======== FORMATEAR DOCUMENTOS ========
+            // ====== FORMATEAR DOCUMENTOS ======
             function miles(valor) {
                 return valor.replace(
                     /\B(?=(\d{3})+(?!\d))/g,
@@ -1153,10 +881,16 @@
             }
 
             function formatear(campoTipo, campoNumero) {
-                // Evita errores si algún elemento no existe
                 if (!campoNumero) {
                     return;
                 }
+
+                // Evitar registrar el evento más de una vez
+                if (campoNumero.dataset.formateado === "true") {
+                    return;
+                }
+
+                campoNumero.dataset.formateado = "true";
 
                 campoNumero.addEventListener(
                     'input',
@@ -1167,31 +901,39 @@
                             return;
                         }
 
-                        var limpio =
-                            campoNumero.value
+                        var limpio = campoNumero.value
                                 .replace(/\D/g, '')
                                 .slice(0, 12);
 
-                        campoNumero.value =
-                            limpio ? miles(limpio) : '';
+                        campoNumero.value = limpio ? miles(limpio) : '';
                     }
                 );
 
                 if (campoTipo) {
-                    campoTipo.addEventListener(
-                        'change',
-                        function () {
-                            campoTipo.classList.remove('err');
-                        }
-                    );
+                    if (campoTipo.dataset.formateado !== "true") {
+                        campoTipo.dataset.formateado = "true";
+
+                        campoTipo.addEventListener(
+                            'change',
+                            function () {
+                                campoTipo.classList.remove('err');
+                            }
+                        );
+                    }
                 }
             }
 
-            // ======== AUTORIZACIÓN ========
+            // ====== AUTORIZACIÓN ======
             function configurarAutorizacion() {
                 if (!autorizacion) {
                     return;
                 }
+
+                if (autorizacion.dataset.configurado === "true") {
+                    return;
+                }
+
+                autorizacion.dataset.configurado = "true";
 
                 autorizacion.addEventListener(
                     'change',
@@ -1203,7 +945,7 @@
                 );
             }
 
-            // ======== MENSAJES ========
+            // ====== MENSAJES ======
             function mostrarError(texto) {
                 mensaje = document.getElementById('lblMensaje');
 
@@ -1250,7 +992,7 @@
                 limpiarMensaje();
             }
 
-            // ======== VALIDAR FORMULARIO ANTES DEL POSTBACK ========
+            // ====== VALIDAR FORMULARIO ======
             function validarFormulario() {
                 limpiarErrores();
 
@@ -1262,9 +1004,7 @@
                         checkWrap.classList.add('err');
                     }
 
-                    mostrarError(
-                        'Debes aceptar los términos y la política de tratamiento de datos.'
-                    );
+                    mostrarError('Debes aceptar los términos y la política de tratamiento de datos.');
 
                     return false;
                 }
@@ -1275,9 +1015,7 @@
                         tipo.classList.add('err');
                     }
 
-                    mostrarError(
-                        'Selecciona el tipo de documento del titular.'
-                    );
+                    mostrarError('Selecciona el tipo de documento del titular.');
 
                     return false;
                 }
@@ -1288,9 +1026,7 @@
                         num.classList.add('err');
                     }
 
-                    mostrarError(
-                        'Ingresa el número de documento del titular.'
-                    );
+                    mostrarError('Ingresa el número de documento del titular.');
 
                     return false;
                 }
@@ -1302,9 +1038,7 @@
                             tipoB.classList.add('err');
                         }
 
-                        mostrarError(
-                            'Selecciona el tipo de documento del beneficiario.'
-                        );
+                        mostrarError('Selecciona el tipo de documento del beneficiario.');
 
                         return false;
                     }
@@ -1315,9 +1049,7 @@
                             numB.classList.add('err');
                         }
 
-                        mostrarError(
-                            'Ingresa el número de documento del beneficiario.'
-                        );
+                        mostrarError('Ingresa el número de documento del beneficiario.');
 
                         return false;
                     }
@@ -1326,19 +1058,23 @@
                 return true;
             }
 
-            // ======== CONFIGURAR BOTÓN ========
-            function configurarBoton() {
+            // ====== BOTÓN CONSULTAR ======
+            function configurarBotonConsultar() {
                 if (!btnConsultar) {
                     return;
                 }
+
+                if (btnConsultar.dataset.configurado === "true") {
+                    return;
+                }
+
+                btnConsultar.dataset.configurado = "true";
 
                 btnConsultar.addEventListener(
                     'click',
                     function (e) {
                         if (!validarFormulario()) {
-
                             e.preventDefault();
-
                             return false;
                         }
 
@@ -1347,27 +1083,292 @@
                 );
             }
 
-            // ======== INICIALIZAR ========
-            function inicializar() {
-                // Volver a obtener elementos porque UpdatePanel
-                // puede haber reemplazado el contenido.
+            /* ====== SELECCIÓN DE SEDE / INSCRIPCIÓN ====== */
+            // ====== ABRIR PANEL DE SEDE ======
+            function abrirPanelSede() {
+                if (!panelSede) {
+                    return;
+                }
 
+                panelSede.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+
+                // Reiniciar ciudad
+                if (ddlCiudad) {
+                    ddlCiudad.value = "";
+                }
+
+                // Reiniciar sede
+                if (ddlSede) {
+                    ddlSede.innerHTML = "";
+
+                    var option = document.createElement("option");
+
+                    option.value = "";
+                    option.textContent = "Primero selecciona una ciudad";
+
+                    ddlSede.appendChild(option);
+
+                    ddlSede.disabled = true;
+                }
+            }
+
+            // ====== CERRAR PANEL DE SEDE ======
+            function cerrarPanelSede() {
+                if (!panelSede) {
+                    return;
+                }
+
+                panelSede.classList.remove("active");
+
+                document.body.style.overflow = "";
+            }
+
+            // ====== CAMBIO DE CIUDAD ======
+            function configurarCiudad() {
+                if (!ddlCiudad || !ddlSede) {
+                    return;
+                }
+
+                if (ddlCiudad.dataset.configurado === "true") {
+                    return;
+                }
+
+                ddlCiudad.dataset.configurado = "true";
+
+                ddlCiudad.addEventListener(
+                    "change",
+                    function () {
+                        var ciudad = this.value;
+
+                        // Limpiar sedes
+                        ddlSede.innerHTML = "";
+
+                        // ====== NO HAY CIUDAD ======
+                        if (!ciudad || !sedesPorCiudad[ciudad]) {
+                            ddlSede.disabled = true;
+
+                            var optionInicial = document.createElement("option");
+
+                            optionInicial.value = "";
+
+                            optionInicial.textContent = "Primero selecciona una ciudad";
+
+                            ddlSede.appendChild(optionInicial);
+
+                            return;
+                        }
+
+                        // ====== OPCIÓN INICIAL ======
+                        var optionSeleccion = document.createElement("option");
+
+                        optionSeleccion.value = "";
+
+                        optionSeleccion.textContent = "Selecciona una sede";
+
+                        ddlSede.appendChild(optionSeleccion);
+
+                        // ====== CARGAR SEDES ======
+                        sedesPorCiudad[ciudad]
+                            .forEach(
+                                function (sede) {
+                                    var option = document.createElement("option");
+
+                                    option.value = sede.valor;
+
+                                    option.textContent = sede.nombre;
+
+                                    ddlSede.appendChild(option);
+                                }
+                            );
+
+                        ddlSede.disabled = false;
+                    }
+                );
+            }
+
+            // ====== CAMBIO DE SEDE ======
+            function configurarSede() {
+                if (!ddlSede) {
+                    return;
+                }
+
+                if (ddlSede.dataset.configurado === "true") {
+                    return;
+                }
+
+                ddlSede.dataset.configurado = "true";
+
+                ddlSede.addEventListener(
+                    "change",
+                    function () {
+                        var sede = this.value;
+
+                        if (!sede) {
+                            return;
+                        }
+
+                        // Buscar URL
+                        var url = urlsSedes[sede];
+
+                        if (!url) {
+                            return;
+                        }
+
+                        // Cerrar panel
+                        cerrarPanelSede();
+
+                        // Mostrar iframe
+                        mostrarIframe(url);
+                    }
+                );
+            }
+
+            // ====== MOSTRAR IFRAME ======
+            function mostrarIframe(url) {
+                if (!iframePlan || !contenedorIframe) {
+                    return;
+                }
+
+                iframePlan.src = url;
+
+                contenedorIframe.classList.add("active");
+
+                // Scroll hasta el iframe
+                setTimeout(
+                    function () {
+                        contenedorIframe.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    },
+                    350
+                );
+            }
+
+            // ====== CERRAR IFRAME ======
+            function cerrarIframe() {
+                if (!contenedorIframe) {
+                    return;
+                }
+
+                iframePlan.src = "";
+
+                contenedorIframe.classList.remove("active");
+
+                // Limpiar ciudad
+                if (ddlCiudad) {
+                    ddlCiudad.value = "";
+                }
+
+                // Limpiar sede
+                if (ddlSede) {
+                    ddlSede.innerHTML = "";
+
+                    var option = document.createElement("option");
+
+                    option.value = "";
+
+                    option.textContent = "Primero selecciona una ciudad";
+
+                    ddlSede.appendChild(option);
+
+                    ddlSede.disabled = true;
+                }
+
+                // Regresar a consultar convenio
+                var consulta = document.getElementById("consulta");
+
+                if (consulta) {
+                    consulta.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+
+            // ====== BOTÓN CONTINUAR MI INSCRIPCIÓN ======
+            function configurarBotonComprar() {
+                var btnComprar = document.getElementById("btnComprar");
+
+                if (!btnComprar) {
+                    return;
+                }
+
+                if (btnComprar.dataset.configurado === "true") {
+                    return;
+                }
+
+                btnComprar.dataset.configurado = "true";
+
+                btnComprar.addEventListener(
+                    "click",
+                    function (e) {
+                        e.preventDefault();
+                        abrirPanelSede();
+                    }
+                );
+            }
+
+            // ====== BOTONES DE CIERRE ======
+            function configurarBotonesCierre() {
+                // ----- Cerrar panel sede -----
+                if (btnCerrarSede && btnCerrarSede.dataset.configurado !== "true") {
+                    btnCerrarSede.dataset.configurado = "true";
+
+                    btnCerrarSede.addEventListener("click", cerrarPanelSede);
+                }
+
+                // ----- Overlay -----
+                if (panelOverlay && panelOverlay.dataset.configurado !== "true") {
+                    panelOverlay.dataset.configurado = "true";
+
+                    panelOverlay.addEventListener("click", cerrarPanelSede);
+                }
+
+                // ----- Cerrar iframe -----
+                if (btnCerrarIframe && btnCerrarIframe.dataset.configurado !== "true") {
+                    btnCerrarIframe.dataset.configurado = "true";
+
+                    btnCerrarIframe.addEventListener("click", cerrarIframe);
+                }
+            }
+
+            /* ====== OBTENER ELEMENTOS ====== */
+            function obtenerElementos() {
+                // ====== CONSULTA CONVENIO ======
+                form = document.getElementById('csForm');
                 tipo = document.getElementById('ddlTipoDoc');
                 num = document.getElementById('txtNumDoc');
-
                 tipoB = document.getElementById('ddlTipoDocB');
                 numB = document.getElementById('txtNumDocB');
-
                 bloqueB = document.getElementById('bloqueBenef');
-
                 btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
-
                 mensaje = document.getElementById('lblMensaje');
-
                 checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
-
                 autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
 
+                // ====== SELECCIÓN DE SEDE ======
+                panelSede = document.getElementById("panelSede");
+                panelOverlay = document.getElementById("panelSedeOverlay");
+                btnCerrarSede = document.getElementById("btnCerrarSede");
+                ddlCiudad = document.getElementById("ddlCiudad");
+                ddlSede = document.getElementById("ddlSede");
+                contenedorIframe = document.getElementById("contenedorIframePlan");
+                iframePlan = document.getElementById("iframePlan");
+                btnCerrarIframe = document.getElementById("btnCerrarIframe");
+            }
+
+            /* ====== INICIALIZAR ====== */
+            function inicializar() {
+                // Volver a obtener elementos porque
+                // UpdatePanel puede haber reemplazado
+                // el contenido.
+
+                obtenerElementos();
+
+                // ====== CONSULTA CONVENIO ======
                 configurarRoles();
 
                 formatear(tipo, num);
@@ -1375,34 +1376,44 @@
                 formatear(tipoB, numB);
 
                 configurarAutorizacion();
-
-                configurarBoton();
-
+                configurarBotonConsultar();
                 restaurarRol();
+
+                // ====== SELECCIÓN DE SEDE ======
+                configurarBotonComprar();
+                configurarCiudad();
+                configurarSede();
+                configurarBotonesCierre();
             }
 
-            // Primera carga
+            /* ====== PRIMERA CARGA ====== */
             inicializar();
 
-
-            // ======== UPDATEPANEL ========
-            if (typeof Sys !== 'undefined' &&
+            /* ====== UPDATEPANEL ====== */
+            if (
+                typeof Sys !== "undefined" &&
                 Sys.WebForms &&
-                Sys.WebForms.PageRequestManager) {
-
+                Sys.WebForms.PageRequestManager
+            ) {
                 var prm =
-                    Sys.WebForms.PageRequestManager.getInstance();
+                    Sys.WebForms.PageRequestManager
+                        .getInstance();
 
-                prm.add_endRequest(function () {
-                    inicializar();
-                });
+                prm.add_endRequest(
+                    function () {
+
+                        inicializar();
+                    }
+                );
             }
 
-            // ======== RESET ========
+            /* ====== RESET ====== */
             document.addEventListener(
                 'click',
                 function (e) {
-                    var boton = e.target.closest('[data-reset]');
+                    var boton = e.target.closest(
+                            '[data-reset]'
+                        );
 
                     if (!boton) {
                         return;
