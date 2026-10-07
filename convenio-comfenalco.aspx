@@ -146,7 +146,7 @@
 
     <section class="fpp-consulta" id="consulta">
         <div class="container">
-            <div class="fpp-cs-card reveal">
+            <div class="fpp-cs-card">
                 <div class="fpp-kicker fpp-kicker--center">Consulta en línea</div>
 
                 <h2 class="fpp-general-title">Mira <span>si aplicas</span></h2>
@@ -154,152 +154,201 @@
                 <p class="lead">Selecciona si consultas como titular o como beneficiario, digita el documento y te confirmamos de inmediato si tienes la tarifa del convenio.</p>
 
                 <!-- Formulario de consulta -->
-                <form class="fpp-cs-form" id="csForm" novalidate="novalidate" runat="server">
-                    <!-- Titular / Beneficiario -->
-                    <div class="fpp-radio-list" role="radiogroup" aria-label="Tipo de consulta">
-                        <label class="fpp-cs-radio on" data-radio="">
-                            <input type="radio" name="rol" value="titular" checked="checked" />
-                            <span class="dot" aria-hidden="true"></span>
-                            <span class="txt">Titular</span>
-                        </label>
+                <form id="csForm" runat="server">
+                    <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
+                    <asp:UpdatePanel
+                        ID="upConsultaConvenio"
+                        runat="server"
+                        UpdateMode="Conditional">
+                        <ContentTemplate>
 
-                        <label class="fpp-cs-radio" data-radio="">
-                            <input type="radio" name="rol" value="beneficiario" />
-                            <span class="dot" aria-hidden="true"></span>
-                            <span class="txt">Beneficiario</span>
-                        </label>
-                    </div>
+                            <div class="fpp-cs-form">
+                                <!-- Titular / Beneficiario -->
+                                <div class="fpp-radio-list" role="radiogroup" aria-label="Tipo de consulta">
+                                    <label class="fpp-cs-radio on" data-radio="">
+                                        <input type="radio" name="rol" value="titular" checked="checked" />
+                                        <span class="dot" aria-hidden="true"></span>
+                                        <span class="txt">Titular</span>
+                                    </label>
 
-                    <!-- Documento del titular (siempre visible) -->
-                    <div class="fpp-cs-bloque">
-                        <p class="fpp-cs-bloque-t">Documento del titular</p>
+                                    <label class="fpp-cs-radio" data-radio="">
+                                        <input type="radio" name="rol" value="beneficiario" />
+                                        <span class="dot" aria-hidden="true"></span>
+                                        <span class="txt">Beneficiario</span>
+                                    </label>
+                                </div>
 
-                        <div class="fpp-cs-duo">
-                            <div>
-                                <label for="tipoDoc">Tipo</label>
-                                <select id="tipoDoc" required="required">
-                                    <option value="">Tipo</option>
-                                    <option value="CC">Cédula de ciudadanía</option>
-                                    <option value="CE">Cédula de extranjería</option>
-                                    <option value="TI">Tarjeta de identidad</option>
-                                    <option value="PA">Pasaporte</option>
-                                    <option value="PPT">Permiso por Protección Temporal</option>
-                                </select>
+                                <asp:HiddenField
+                                    ID="hfRol"
+                                    runat="server"
+                                    ClientIDMode="Static" />
+
+                                <!-- Documento del titular (siempre visible) -->
+                                <div class="fpp-cs-bloque">
+                                    <p class="fpp-cs-bloque-t">Documento del titular</p>
+
+                                    <div class="fpp-cs-duo">
+                                        <div>
+                                            <label for="<%= ddlTipoDoc.ClientID %>">Tipo</label>
+                                            <asp:DropDownList
+                                                ID="ddlTipoDoc"
+                                                runat="server"
+                                                ClientIDMode="Static"
+                                                CssClass="fpp-cs-select"
+                                                DataTextField="tipoDocumento"
+                                                DataValueField="idTipoDoc">
+                                            </asp:DropDownList>
+                                        </div>
+
+                                        <div>
+                                            <label for="<%= txtNumDoc.ClientID %>">N.° de documento</label>
+                                            <asp:TextBox
+                                                ID="txtNumDoc"
+                                                runat="server"
+                                                ClientIDMode="Static"
+                                                CssClass="fpp-cs-input"
+                                                MaxLength="20"
+                                                autocomplete="off"
+                                                placeholder="Sin puntos ni comas">
+                                            </asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
+                                <div class="fpp-cs-bloque" id="bloqueBenef" hidden="hidden">
+                                    <p class="fpp-cs-bloque-t">Documento del beneficiario</p>
+
+                                    <div class="fpp-cs-duo">
+                                        <div>
+                                            <label for="<%= ddlTipoDocB.ClientID %>">Tipo</label>
+                                            <asp:DropDownList
+                                                ID="ddlTipoDocB"
+                                                runat="server"
+                                                ClientIDMode="Static"
+                                                CssClass="fpp-cs-select"
+                                                DataTextField="tipoDocumento"
+                                                DataValueField="idTipoDoc">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div>
+                                            <label for="<%= txtNumDocB.ClientID %>">N.° de documento</label>
+                                            <asp:TextBox
+                                                ID="txtNumDocB"
+                                                runat="server"
+                                                ClientIDMode="Static"
+                                                CssClass="fpp-cs-input"
+                                                MaxLength="20"
+                                                autocomplete="off"
+                                                placeholder="Sin puntos ni comas">
+                                            </asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Autorización -->
+                                <div class="fpp-pqrs__privacy" id="csCheckWrap" runat="server" >
+                                    <label class="fpp-checkbox">
+                                        <asp:CheckBox ID="chkAutorizacion" runat="server" />
+
+                                        <span class="fpp-checkbox__box"></span>
+
+                                        <span class="fpp-checkbox__text">
+                                            Acepto los <a href="terminoslegales">términos y condiciones</a> y la <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf">política de tratamiento de datos personales</a> de Fitness People.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <asp:Button
+                                        ID="btnConsultar"
+                                        runat="server"
+                                        Text="Consultar mi tarifa"
+                                        CssClass="fpp-btn fpp-btn--solid fpp-btn-full"
+                                        OnClick="btnConsultar_Click" />
+                                </div>
+                            </div>
+                        
+
+                            <!-- Mensaje de validación -->
+                            <%--<asp:Label
+                                ID="lblMensaje"
+                                runat="server"
+                                ClientIDMode="Static"
+                                CssClass="fpp-cs-msg">
+                            </asp:Label>--%>
+                            <div
+                                id="lblMensaje"
+                                runat="server"
+                                class="fpp-cs-msg"
+                                role="alert"
+                                aria-live="polite">
                             </div>
 
-                            <div>
-                                <label for="numDoc">N.° de documento</label>
-                                <input id="numDoc" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas" required="required" />
+                            <!-- Cargando -->
+                            <div class="fpp-cs-load" id="csLoad" runat="server"><i></i> Validando tu afiliación…</div>
+
+                            <!-- Resultado: aplica -->
+                            <div class="fpp-cs-res" id="csRes" runat="server">
+                                <div class="fpp-cs-res-grid">
+                                    <div class="fpp-cs-persona">
+                                        <small>Resultado de la consulta</small>
+
+                                        <b>Aplicas al convenio</b>
+
+                                        <p class="doc"
+                                            id="csDoc"
+                                            runat="server">
+                                        </p>
+
+                                        <p class="doc"
+                                            id="csDocB"
+                                            runat="server"
+                                            visible="false">
+                                        </p>
+
+                                        <span class="fpp-cs-cat">
+                                            <i class="fa-solid fa-plus"></i> 
+                                            <span>Tarifa del convenio habilitada</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="fpp-cs-precio">
+                                        <div class="antes">Tarifa plena <s>$165.000</s></div>
+
+                                        <div class="ahora">
+                                            <span class="v">$79.000</span>
+                                            <span class="p">/ mes</span>
+                                        </div>
+
+                                        <div class="ahorro">Ahorras $86.000 cada mes</div>
+
+                                        <button type="button" class="fpp-btn fpp-btn--solid fpp-btn-full" id="btnComprar">Continuar mi inscripción</button>
+                                    </div>
+                                </div>
+
+                                <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Documento del beneficiario (solo si se elige "Beneficiario") -->
-                    <div class="fpp-cs-bloque" id="bloqueBenef" hidden="hidden">
-                        <p class="fpp-cs-bloque-t">Documento del beneficiario</p>
+                            <!-- Resultado: no aplica -->
+                            <div class="fpp-cs-no" id="csNo" runat="server">
+                                <div class="ic"><i class="fa-solid fa-question"></i></div>
 
-                        <div class="fpp-cs-duo">
-                            <div>
-                                <label for="tipoDocB">Tipo</label>
-                                <select id="tipoDocB">
-                                    <option value="">Tipo</option>
-                                    <option value="CC">Cédula de ciudadanía</option>
-                                    <option value="CE">Cédula de extranjería</option>
-                                    <option value="TI">Tarjeta de identidad</option>
-                                    <option value="RC">Registro civil</option>
-                                    <option value="PA">Pasaporte</option>
-                                    <option value="PPT">Permiso por Protección Temporal</option>
-                                </select>
+                                <h3>Este documento no aplica</h3>
+
+                                <p>No pudimos habilitar la tarifa del convenio para el documento que digitaste. Puede ser porque la afiliación no está activa a la fecha o porque no cumple las condiciones vigentes del convenio. Un asesor puede revisarlo contigo y mostrarte las demás opciones.</p>
+
+                                <div class="acciones">
+                                    <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
+                                    <a href="default#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
+                                </div>
+
+                                <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
                             </div>
-                            <div>
-                                <label for="numDocB">N.° de documento</label>
-                                <input id="numDocB" type="text" inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni comas"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Autorización -->
-                    <div class="fpp-pqrs__privacy">
-                        <label class="fpp-checkbox">
-                            <asp:CheckBox ID="chkAutorizacion" runat="server" />
-
-                            <span class="fpp-checkbox__box"></span>
-
-                            <span class="fpp-checkbox__text">
-                                Acepto los <a href="terminoslegales">términos y condiciones</a> y la <a href="assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf">política de tratamiento de datos personales</a> de Fitness People.
-                            </span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <button class="fpp-btn fpp-btn--solid fpp-btn-full" type="submit">Consultar mi tarifa</button>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </form>
-
-                <p class="fpp-cs-msg" id="csMsg">Revisa los datos: selecciona el tipo de documento y digita un número válido.</p>
-
-                <!-- Cargando -->
-                <div class="fpp-cs-load" id="csLoad"><i></i> Validando tu afiliación…</div>
-
-                <!-- Resultado: aplica -->
-                <div class="fpp-cs-res" id="csRes">
-                    <div class="fpp-cs-res-grid">
-                        <div class="fpp-cs-persona">
-                            <small>Resultado de la consulta</small>
-                            <b>Aplicas al convenio</b>
-                            <p class="doc" id="csDoc">Titular · CC 1.098.765.432</p>
-                            <p class="doc" id="csDocB" hidden="hidden">Beneficiario · TI 1.030.445.881</p>
-                            <span class="fpp-cs-cat"><i>✓</i> <span>Tarifa del convenio habilitada</span></span>
-                        </div>
-
-                        <div class="fpp-cs-precio">
-                            <div class="antes">Tarifa plena <s>$165.000</s></div>
-                            <div class="ahora"><span class="v">$79.000</span><span class="p">/ mes</span></div>
-                            <div class="ahorro">Ahorras $86.000 cada mes</div>
-                            <button type="button" class="fpp-btn fpp-btn--solid btn-comprar-plan" id="btnComprar" data-plan-id="CONVENIO_COMFENALCO">Continuar mi inscripción</button>
-                        </div>
-                    </div>
-
-                    <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
-                </div>
-
-                <!-- Resultado: no aplica -->
-                <div class="fpp-cs-no" id="csNo">
-                    <div class="ic">?</div>
-                        <h3>Este documento no aplica</h3>
-                        <p>No pudimos habilitar la tarifa del convenio para el documento que digitaste. Puede ser porque la afiliación no está activa a la fecha o porque no cumple las condiciones vigentes del convenio. Un asesor puede revisarlo contigo y mostrarte las demás opciones.</p>
-                        <div class="acciones">
-                        <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
-                        <a href="index.html#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
-                    </div>
-
-                    <button class="fpp-cs-reset" type="button" data-reset="">Consultar otro documento</button>
-                </div>
             </div>
-        </div>
-
-        <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
-        <div id="contenedorIframePlan" class="fp-iframe-container">
-            <div class="fp-iframe-header">
-                <div>
-                    <p class="fpp-kicker">Inscripción</p>
-                    <h3>Completa tu <span>registro</span></h3>
-                </div>
-
-                <button
-                    type="button"
-                    id="btnCerrarIframe"
-                    class="fp-iframe-close">
-                    &times;
-                </button>
-            </div>
-
-            <iframe
-                id="iframePlan"
-                src=""
-                title="Inscripción Fitness People"
-                loading="lazy">
-            </iframe>
         </div>
     </section>
 
@@ -586,7 +635,7 @@
 
 
 
-<script>
+<%--<script>
     // =========================================================
     //  CONSULTA DE AFILIACIÓN — MAQUETA
     //
@@ -736,8 +785,791 @@
         }, { threshold: .12 });
         els.forEach(function (e) { io.observe(e); });
     })();
-</script>
+</script>--%>
 
+
+<%--<script>
+(function () {
+
+    var form = document.getElementById('csForm');
+
+    var tipo = document.getElementById('ddlTipoDoc');
+    var num = document.getElementById('txtNumDoc');
+
+    var tipoB = document.getElementById('ddlTipoDocB');
+    var numB = document.getElementById('txtNumDocB');
+
+    var bloqueB = document.getElementById('bloqueBenef');
+
+    function esBeneficiario() {
+
+        var radio = form.querySelector(
+            'input[name="rol"]:checked'
+        );
+
+        return radio &&
+               radio.value === 'beneficiario';
+    }
+
+    function miles(valor) {
+
+        return valor.replace(
+            /\B(?=(\d{3})+(?!\d))/g,
+            '.'
+        );
+    }
+
+    // =========================================================
+    // TITULAR / BENEFICIARIO
+    // =========================================================
+
+    form.querySelectorAll(
+        'input[name="rol"]'
+    ).forEach(function (radio) {
+
+        radio.addEventListener(
+            'change',
+            function () {
+
+                form.querySelectorAll(
+                    '[data-radio]'
+                ).forEach(function (label) {
+
+                    label.classList.toggle(
+                        'on',
+                        label.querySelector('input').checked
+                    );
+
+                });
+
+                var beneficiario = esBeneficiario();
+
+                bloqueB.hidden = !beneficiario;
+
+                if (!beneficiario) {
+
+                    tipoB.value = '';
+                    numB.value = '';
+
+                    tipoB.classList.remove('err');
+                    numB.classList.remove('err');
+                }
+            }
+        );
+    });
+
+    // =========================================================
+    // FORMATEAR DOCUMENTOS
+    // =========================================================
+
+    function formatear(campoTipo, campoNumero) {
+
+        if (!campoNumero)
+            return;
+
+        campoNumero.addEventListener(
+            'input',
+            function () {
+
+                campoNumero.classList.remove('err');
+
+                if (campoTipo.value === 'PA')
+                    return;
+
+                var limpio =
+                    campoNumero.value
+                        .replace(/\D/g, '')
+                        .slice(0, 12);
+
+                campoNumero.value =
+                    limpio ? miles(limpio) : '';
+            }
+        );
+
+        if (campoTipo) {
+
+            campoTipo.addEventListener(
+                'change',
+                function () {
+
+                    campoTipo.classList.remove('err');
+
+                }
+            );
+        }
+
+        autorizacion.addEventListener('change', function () {
+
+            if (autorizacion.checked) {
+                checkWrap.classList.remove('err');
+            }
+
+        });
+    }
+
+    formatear(tipo, num);
+    formatear(tipoB, numB);
+
+    // =========================================================
+    // RESET
+    // =========================================================
+
+    document.querySelectorAll(
+        '[data-reset]'
+    ).forEach(function (boton) {
+
+        boton.addEventListener(
+            'click',
+            function () {
+
+                window.location.reload();
+
+            }
+        );
+
+    });
+
+
+    // =========================================================
+    // VALIDACIÓN DEL FORMULARIO
+    // =========================================================
+
+    var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
+    var mensaje = document.getElementById('lblMensaje');
+    var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
+    var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
+
+    function mostrarError(mensajeTexto) {
+
+        mensaje.textContent = mensajeTexto;
+        mensaje.classList.add('on');
+    }
+
+    function limpiarMensaje() {
+
+        mensaje.textContent = '';
+        mensaje.classList.remove('on');
+    }
+
+    function limpiarErrores() {
+
+        tipo.classList.remove('err');
+        num.classList.remove('err');
+
+        tipoB.classList.remove('err');
+        numB.classList.remove('err');
+
+        checkWrap.classList.remove('err');
+
+        limpiarMensaje();
+    }
+
+    btnConsultar.addEventListener('click', function (e) {
+
+        limpiarErrores();
+
+        var beneficiario = esBeneficiario();
+
+        // =====================================================
+        // AUTORIZACIÓN
+        // =====================================================
+
+        if (!autorizacion.checked) {
+
+            checkWrap.classList.add('err');
+
+            mostrarError(
+                'Debes aceptar los términos y la política de tratamiento de datos.'
+            );
+
+            e.preventDefault();
+            return;
+        }
+
+        // =====================================================
+        // TIPO DE DOCUMENTO TITULAR
+        // =====================================================
+
+        if (!tipo.value) {
+
+            tipo.classList.add('err');
+
+            mostrarError(
+                'Selecciona el tipo de documento del titular.'
+            );
+
+            e.preventDefault();
+            return;
+        }
+
+        // =====================================================
+        // DOCUMENTO TITULAR
+        // =====================================================
+
+        if (!num.value.trim()) {
+
+            num.classList.add('err');
+
+            mostrarError(
+                'Ingresa el número de documento del titular.'
+            );
+
+            e.preventDefault();
+            return;
+        }
+
+        // =====================================================
+        // BENEFICIARIO
+        // =====================================================
+
+        if (beneficiario) {
+
+            if (!tipoB.value) {
+
+                tipoB.classList.add('err');
+
+                mostrarError(
+                    'Selecciona el tipo de documento del beneficiario.'
+                );
+
+                e.preventDefault();
+                return;
+            }
+
+            if (!numB.value.trim()) {
+
+                numB.classList.add('err');
+
+                mostrarError(
+                    'Ingresa el número de documento del beneficiario.'
+                );
+
+                e.preventDefault();
+                return;
+            }
+        }
+
+        // =====================================================
+        // TODO CORRECTO
+        // =====================================================
+
+        // No hacemos preventDefault.
+        // El botón continúa normalmente con el postback.
+    });
+
+})();
+</script>--%>
+
+<script>
+    (function () {
+
+        // =========================================================
+        // ELEMENTOS
+        // =========================================================
+
+        var form = document.getElementById('csForm');
+
+        if (!form) {
+            return;
+        }
+
+        var tipo = document.getElementById('ddlTipoDoc');
+        var num = document.getElementById('txtNumDoc');
+
+        var tipoB = document.getElementById('ddlTipoDocB');
+        var numB = document.getElementById('txtNumDocB');
+
+        var bloqueB = document.getElementById('bloqueBenef');
+
+        var btnConsultar = document.getElementById('<%= btnConsultar.ClientID %>');
+
+    var mensaje = document.getElementById('lblMensaje');
+
+    var checkWrap = document.getElementById('<%= csCheckWrap.ClientID %>');
+    var autorizacion = document.getElementById('<%= chkAutorizacion.ClientID %>');
+
+
+    // =========================================================
+    // TITULAR / BENEFICIARIO
+    // =========================================================
+
+    function esBeneficiario() {
+
+        var radio = form.querySelector(
+            'input[name="rol"]:checked'
+        );
+
+        return radio &&
+               radio.value === 'beneficiario';
+    }
+
+
+    function configurarRoles() {
+
+        var radios = form.querySelectorAll(
+            'input[name="rol"]'
+        );
+
+        radios.forEach(function (radio) {
+
+            radio.addEventListener(
+                'change',
+                function () {
+
+                    var seleccionado = form.querySelector(
+                        'input[name="rol"]:checked'
+                    );
+
+                    if (seleccionado) {
+                        document.getElementById('hfRol').value =
+                            seleccionado.value;
+                    }
+
+                    form.querySelectorAll(
+                        '[data-radio]'
+                    ).forEach(function (label) {
+
+                        var input = label.querySelector('input');
+
+                        if (input) {
+                            label.classList.toggle(
+                                'on',
+                                input.checked
+                            );
+                        }
+
+                    });
+
+                    var beneficiario = esBeneficiario();
+
+                    if (bloqueB) {
+                        bloqueB.hidden = !beneficiario;
+                    }
+
+                    if (!beneficiario) {
+
+                        if (tipoB) {
+                            tipoB.value = '';
+                            tipoB.classList.remove('err');
+                        }
+
+                        if (numB) {
+                            numB.value = '';
+                            numB.classList.remove('err');
+                        }
+                    }
+                }
+            );
+
+        });
+
+        }
+
+        function restaurarRol() {
+
+            var hfRol = document.getElementById('hfRol');
+
+            if (!hfRol || !hfRol.value) {
+                return;
+            }
+
+            var radio = form.querySelector(
+                'input[name="rol"][value="' + hfRol.value + '"]'
+            );
+
+            if (!radio) {
+                return;
+            }
+
+            radio.checked = true;
+
+            form.querySelectorAll(
+                '[data-radio]'
+            ).forEach(function (label) {
+
+                var input = label.querySelector('input');
+
+                if (input) {
+                    label.classList.toggle(
+                        'on',
+                        input.checked
+                    );
+                }
+
+            });
+
+            var beneficiario = hfRol.value === 'beneficiario';
+
+            if (bloqueB) {
+                bloqueB.hidden = !beneficiario;
+            }
+        }
+
+
+    // =========================================================
+    // FORMATEAR DOCUMENTOS
+    // =========================================================
+
+    function miles(valor) {
+
+        return valor.replace(
+            /\B(?=(\d{3})+(?!\d))/g,
+            '.'
+        );
+    }
+
+
+    function formatear(campoTipo, campoNumero) {
+
+        // Evita errores si algún elemento no existe
+        if (!campoNumero) {
+            return;
+        }
+
+        campoNumero.addEventListener(
+            'input',
+            function () {
+
+                campoNumero.classList.remove('err');
+
+                if (campoTipo && campoTipo.value === 'PA') {
+                    return;
+                }
+
+                var limpio =
+                    campoNumero.value
+                        .replace(/\D/g, '')
+                        .slice(0, 12);
+
+                campoNumero.value =
+                    limpio ? miles(limpio) : '';
+            }
+        );
+
+
+        if (campoTipo) {
+
+            campoTipo.addEventListener(
+                'change',
+                function () {
+
+                    campoTipo.classList.remove('err');
+
+                }
+            );
+
+        }
+
+    }
+
+
+    // =========================================================
+    // AUTORIZACIÓN
+    // =========================================================
+
+    function configurarAutorizacion() {
+
+        if (!autorizacion) {
+            return;
+        }
+
+        autorizacion.addEventListener(
+            'change',
+            function () {
+
+                if (autorizacion.checked && checkWrap) {
+                    checkWrap.classList.remove('err');
+                }
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // MENSAJES
+    // =========================================================
+
+        function mostrarError(texto) {
+
+            mensaje = document.getElementById('lblMensaje');
+
+            if (!mensaje) {
+                return;
+            }
+
+            mensaje.textContent = texto;
+            mensaje.classList.add('on');
+        }
+
+
+        function limpiarMensaje() {
+
+            mensaje = document.getElementById('lblMensaje');
+
+            if (!mensaje) {
+                return;
+            }
+
+            mensaje.textContent = '';
+            mensaje.classList.remove('on');
+        }
+
+
+    function limpiarErrores() {
+
+        if (tipo) {
+            tipo.classList.remove('err');
+        }
+
+        if (num) {
+            num.classList.remove('err');
+        }
+
+        if (tipoB) {
+            tipoB.classList.remove('err');
+        }
+
+        if (numB) {
+            numB.classList.remove('err');
+        }
+
+        if (checkWrap) {
+            checkWrap.classList.remove('err');
+        }
+
+        limpiarMensaje();
+    }
+
+
+    // =========================================================
+    // VALIDAR FORMULARIO ANTES DEL POSTBACK
+    // =========================================================
+
+    function validarFormulario() {
+
+        limpiarErrores();
+
+        var beneficiario = esBeneficiario();
+
+
+        // -----------------------------------------------------
+        // AUTORIZACIÓN
+        // -----------------------------------------------------
+
+        if (!autorizacion || !autorizacion.checked) {
+
+            if (checkWrap) {
+                checkWrap.classList.add('err');
+            }
+
+            mostrarError(
+                'Debes aceptar los términos y la política de tratamiento de datos.'
+            );
+
+            return false;
+        }
+
+
+        // -----------------------------------------------------
+        // TIPO DOCUMENTO TITULAR
+        // -----------------------------------------------------
+
+        if (!tipo || !tipo.value) {
+
+            if (tipo) {
+                tipo.classList.add('err');
+            }
+
+            mostrarError(
+                'Selecciona el tipo de documento del titular.'
+            );
+
+            return false;
+        }
+
+
+        // -----------------------------------------------------
+        // DOCUMENTO TITULAR
+        // -----------------------------------------------------
+
+        if (!num || !num.value.trim()) {
+
+            if (num) {
+                num.classList.add('err');
+            }
+
+            mostrarError(
+                'Ingresa el número de documento del titular.'
+            );
+
+            return false;
+        }
+
+
+        // -----------------------------------------------------
+        // TIPO DOCUMENTO BENEFICIARIO
+        // -----------------------------------------------------
+
+        if (beneficiario) {
+
+            if (!tipoB || !tipoB.value) {
+
+                if (tipoB) {
+                    tipoB.classList.add('err');
+                }
+
+                mostrarError(
+                    'Selecciona el tipo de documento del beneficiario.'
+                );
+
+                return false;
+            }
+
+
+            // -------------------------------------------------
+            // DOCUMENTO BENEFICIARIO
+            // -------------------------------------------------
+
+            if (!numB || !numB.value.trim()) {
+
+                if (numB) {
+                    numB.classList.add('err');
+                }
+
+                mostrarError(
+                    'Ingresa el número de documento del beneficiario.'
+                );
+
+                return false;
+            }
+
+        }
+
+
+        return true;
+    }
+
+
+    // =========================================================
+    // CONFIGURAR BOTÓN
+    // =========================================================
+
+    function configurarBoton() {
+
+        if (!btnConsultar) {
+            return;
+        }
+
+        btnConsultar.addEventListener(
+            'click',
+            function (e) {
+
+                if (!validarFormulario()) {
+
+                    e.preventDefault();
+
+                    return false;
+                }
+
+                return true;
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // INICIALIZAR
+    // =========================================================
+
+    function inicializar() {
+
+        // Volver a obtener elementos porque UpdatePanel
+        // puede haber reemplazado el contenido.
+
+        tipo = document.getElementById('ddlTipoDoc');
+        num = document.getElementById('txtNumDoc');
+
+        tipoB = document.getElementById('ddlTipoDocB');
+        numB = document.getElementById('txtNumDocB');
+
+        bloqueB = document.getElementById('bloqueBenef');
+
+        btnConsultar =
+            document.getElementById('<%= btnConsultar.ClientID %>');
+
+        mensaje =
+            document.getElementById('lblMensaje');
+
+        checkWrap =
+            document.getElementById('<%= csCheckWrap.ClientID %>');
+
+        autorizacion =
+            document.getElementById('<%= chkAutorizacion.ClientID %>');
+
+
+            configurarRoles();
+
+            formatear(tipo, num);
+
+            formatear(tipoB, numB);
+
+            configurarAutorizacion();
+
+            configurarBoton();
+
+            restaurarRol();
+        }
+
+
+        // Primera carga
+        inicializar();
+
+
+        // =========================================================
+        // UPDATEPANEL
+        // =========================================================
+
+        if (typeof Sys !== 'undefined' &&
+            Sys.WebForms &&
+            Sys.WebForms.PageRequestManager) {
+
+            var prm =
+                Sys.WebForms.PageRequestManager.getInstance();
+
+            prm.add_endRequest(function () {
+
+                inicializar();
+
+            });
+
+        }
+
+
+        // =========================================================
+        // RESET
+        // =========================================================
+
+        document.addEventListener(
+            'click',
+            function (e) {
+
+                var boton = e.target.closest('[data-reset]');
+
+                if (!boton) {
+                    return;
+                }
+
+                window.location.reload();
+
+            }
+        );
+
+    })();
+</script>
 
 
 

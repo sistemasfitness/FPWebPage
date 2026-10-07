@@ -5872,7 +5872,7 @@ body.menu-open {
 
 .fpp-cs-duo {
 	display: grid;
-	grid-template-columns: 210px 1fr;
+	grid-template-columns: 340px 1fr;
 	gap: 12px;
 }
 
@@ -5885,9 +5885,8 @@ body.menu-open {
 	margin-bottom: 9px;
 }
 
-.fpp-cs-form select, .fpp-cs-form input {
+.fpp-cs-form select, .fpp-cs-form .fpp-cs-input {
 	width: 100%;
-	font-family: var(--font-body);
 	font-size: 15px;
 	font-weight: 600;
 	color: #fff;
@@ -5897,7 +5896,7 @@ body.menu-open {
 	padding: 17px 18px;
 	outline: none;
 	transition: border-color .2s;
-	-webkit-appearance: none; 
+	-webkit-appearance: none;
 	appearance: none;
 }
 
@@ -6240,6 +6239,30 @@ body.menu-open {
 		color: var(--fp-lime);
 		border-color: var(--fp-lime);
 	}
+
+/* CAMPOS CON ERROR */
+.fpp-cs-input.err,
+.fpp-cs-select.err {
+	border-color: #FF5C5C !important;
+	box-shadow: 0 0 0 1px rgba(255, 92, 92, .25);
+}
+
+	.fpp-cs-input.err:focus,
+	.fpp-cs-select.err:focus {
+		border-color: #FF5C5C !important;
+		box-shadow: 0 0 0 2px rgba(255, 92, 92, .15);
+	}
+
+/* Autorización con error */
+
+#csCheckWrap.err .fpp-checkbox__box {
+	border-color: #FF5C5C;
+	box-shadow: 0 0 0 1px rgba(255, 92, 92, .25);
+}
+
+#csCheckWrap.err .fpp-checkbox__text {
+	color: #FF7B7B;
+}
 
 /* ============ BENEFICIOS ============ */
 .fpp-respaldo {

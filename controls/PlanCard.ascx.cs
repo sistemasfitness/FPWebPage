@@ -123,13 +123,15 @@ namespace WebPage.controls
             // DESTACADO
             // ============================
 
+            divPackBienvenida.Visible = false;
+
             if (plan.EsDestacado)
             {
                 cardPlan.Attributes["class"] = "fpp-card fpp-card--featured";
                 divBadge.Visible = true;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid btn-comprar-plan";
 
-                divPackBienvenida.Visible = true;
+                //divPackBienvenida.Visible = true;
             }
             else
             {
@@ -137,7 +139,7 @@ namespace WebPage.controls
                 divBadge.Visible = false;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline btn-comprar-plan";
 
-                divPackBienvenida.Visible = false;
+                //divPackBienvenida.Visible = false;
             }
 
             // ============================
