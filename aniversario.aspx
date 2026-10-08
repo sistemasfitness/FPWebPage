@@ -70,6 +70,9 @@
     <link href="css/magnific-popup.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
+    <!-- SLIDER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet" />
 
@@ -84,21 +87,57 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-    </header>
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
+
     <!-- End Header =============================================== -->
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/aniversario-2025.jpg" data-natural-width="1400" data-natural-height="470" style="margin-top: 70px;">
+    <%--<section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/aniversario-2025.jpg" data-natural-width="1400" data-natural-height="470" style="margin-top: 70px;">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">ANIVERSARIO 15 AÑOS</h1>
         </div>
-    </section>
+    </section>--%>
+
+    <!-- Slider -->
+    <div id="full-slider-wrapper" class="margin-top-header">
+        <div class="swiper fp-slider">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <picture>
+                        <source
+                            media="(max-width: 600px)"
+                            srcset="img/aniversario/banner-slider1_aniversario_2026-10-08_mobile.jpeg" />
+                        <img
+                            src="img/aniversario/banner-slider1_aniversario_2026-10-08.jpeg"
+                            alt="Fitness People"
+                            fetchpriority="high"
+                            decoding="async" />
+                    </picture>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <picture>
+                        <source
+                            media="(max-width: 600px)"
+                            srcset="img/aniversario/banner-slider2_aniversario_2026-10-08_mobile.jpeg" />
+                        <img
+                            src="img/aniversario/banner-slider2_aniversario_2026-10-08.jpeg"
+                            alt="Fitness People"
+                            decoding="async" />
+                    </picture>
+                </div>
+            </div>
+
+            <!-- Flecha anterior -->
+            <div class="swiper-button-prev"></div>
+
+            <!-- Flecha siguiente -->
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
 
     <section id="planes" class="margin_60_35" style="margin: 11rem 0 5rem 0; padding-top: 10px; padding-bottom: 15px;">
         <div class="container" id="scroll-to">
@@ -278,31 +317,7 @@
     <div id="toTop"></div>
     <!-- Back to top button -->
 
-    <uc1:loginregister runat="server" ID="loginregister" />
 
-    <!-- Login modal -->
-    <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myAviso" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modal-popup">
-                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-                <!--<a href="https://forms.gle/JTfGsH33Y22FjkKV7" target="_blank"> -->
-                <a href="https://pagos.fitnesspeoplecolombia.com/index.php?r=pagos/pagoPlan&token=4cc23d7fecb8a312901ee6e46ae30455&user=&plan=15455" target="_blank">
-                    <img src="img/10_meses_prebd03.jpg" class="img-responsive" />
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-        <span class="search-overlay-close"><i class="icon_close"></i></span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Buscar..." />
-            <button type="submit">
-                <i class="icon-search-6"></i>
-            </button>
-        </form>
-    </div>
     <!-- End Search Menu -->
     <!-- COMMON SCRIPTS -->
     <script src="js/jquery-2.2.4.min.js"></script>
@@ -317,7 +332,50 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+    <!-- SLIDER -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const fpSlider = new Swiper(".fp-slider", {
+                // Movimiento horizontal
+                direction: "horizontal",
+
+                // Repetir infinitamente
+                loop: true,
+
+                // Autoplay
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
+
+                // Transición
+                speed: 800,
+
+                // Flechas
+                navigation: {
+                    nextEl: ".fp-slider .swiper-button-next",
+                    prevEl: ".fp-slider .swiper-button-prev"
+                },
+
+                // Touch / Swipe
+                grabCursor: true,
+
+                // Permitir deslizar
+                allowTouchMove: true
+            });
+        });
+
+    </script>
+
+
+
+    <%--<script>
         $('.jarallax').jarallax({
             videoLoop: true,
             videoPlayOnlyVisible: false,
@@ -449,7 +507,8 @@
                 //document.getElementById('layerslider').style = 'width:100%;height:667px;';
             }
         }
-    </script>
+    </script>--%>
+
     <%--<script src="js/pop_up.min.js"></script>
     <script src="js/pop_up_func.js"></script>--%>
     <%--<script>
