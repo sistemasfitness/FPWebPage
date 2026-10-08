@@ -110,7 +110,7 @@
                         </div>
                         <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
-                            <asp:UpdatePanel ID="upAfiliados" runat="server" UpdateMode="Conditional">
+                            <asp:UpdatePanel ID="upAfiliados" runat="server">
                                 <ContentTemplate>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -162,6 +162,20 @@
                                         <asp:TextBox ID="txbFechaIni" runat="server" name="txbFechaIni" Visible="false" OnTextChanged="CambiarFechaFin"></asp:TextBox>
                                         <asp:TextBox ID="txbFechaFin" runat="server" name="txbFechaFin" Visible="false"></asp:TextBox>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Fecha de Nacimiento: *</label>
+                                                <%--<asp:TextBox ID="txbFechaNac" CssClass="form-control" 
+                                                    runat="server" name="txbFechaNac" required=""></asp:TextBox>--%>
+                                                <asp:TextBox ID="txbFechaNac"
+                                                    CssClass="form-control"
+                                                    runat="server"
+                                                    TextMode="Date">
+                                                </asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <%--<div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
@@ -184,75 +198,6 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <!--End step -->
-                        <%--<div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Información del plan</h3>
-                            <p style="color: #fff;">Elige las opciones de tu plan.</p>
-                        </div>--%>
-
-                        <%--<div class="step">
-                            <asp:UpdatePanel ID="upSedes" runat="server">
-                                <ContentTemplate>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Ciudad: *</label>
-                                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control" required=""
-                                                    OnSelectedIndexChanged="ddlCiudad_SelectedIndexChanged" 
-                                                    DataTextField="NombreCiudadSede" DataValueField="idCiudadSede" AutoPostBack="true" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Sede: *</label>
-                                                <asp:DropDownList ID="ddlSede" runat="server" CssClass="form-control" required=""
-                                                    DataTextField="NombreSede" DataValueField="IdSede" 
-                                                    AutoPostBack="true" OnSelectedIndexChanged="ddlSede_SelectedIndexChanged" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Valor del plan:</label>
-                                                <asp:TextBox ID="txbValorPlan" CssClass="form-control" name="txbValorPlan" runat="server" Enabled="false"></asp:TextBox>
-                                                <asp:HiddenField ID="hfValorPlan" runat="server" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Fecha de inicio:</label>
-                                                <asp:TextBox ID="txbFechaIni" CssClass="form-control" runat="server" name="txbFechaIni" required=""
-                                                    OnTextChanged="CambiarFechaFin"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Fecha de fin:</label>
-                                                <asp:TextBox ID="txbFechaFin" CssClass="form-control" runat="server" name="txbFechaFin" Enabled="false"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                        <!--End step -->
-                        <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>3</strong>Información del pago</h3>
-                            <p style="color: #fff;">Tipo de pago elegido.</p>
-                        </div>
-                        <div class="step">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Tipo:</label>
-                                        <asp:TextBox ID="txbMetodoPago" CssClass="form-control" runat="server" Enabled="false" 
-                                            TabIndex="4"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>--%>
                     </div>
                 </div>
                 <aside class="col-md-4" id="sidebar">
@@ -273,12 +218,6 @@
                             </div>
                             <div style="font-size: 13px">
                                 <div class="checkbox checkbox-dark">
-                                    <%--<asp:CheckBox ID="cbAutorizo" runat="server" />--%>
-
-                                    <%--<label for="cbAutorizo">
-                                        <span>Autorizo a <b>Fitness People Centro Médico Deportivo S.A.S.</b> realizar el cobro<asp:Label ID="lbTipoCobro" runat="server"></asp:Label>.</span>
-                                    </label>--%>
-
                                     <input type="checkbox" id="cbAutorizo1" />
 
                                     <label for="cbAutorizo1" style="text-align: justify; line-height: 17px;">
@@ -322,13 +261,6 @@
                                 <asp:HyperLink ID="btnElegirPlanLink" runat="server" CssClass="btn_full" Text="Seleccionar otro plan" />
                             </div>
                         </div>
-
-                        <%--<div class="box_style_4">
-                            <i class="icon_lifesaver"></i>
-                            <h4 style="color: #fff">Necesitas ayuda?</h4>
-                            <a style="color: #808080; text-decoration: revert;" href="https://wa.me/573107842151" class="phone" target="_blank">310 7842151</a>
-                            <small style="color: #fff">Todos los dias de 7:00am - 7:00pm</small>
-                        </div>--%>
                     </div>
                 </aside>
 
@@ -704,6 +636,10 @@
 
     <script>
 
+        document.addEventListener("DOMContentLoaded", function () {
+            configurarFechaNacimiento();
+        });
+
         let procesandoPago = false;
 
         function limpiarTexto(texto) {
@@ -723,8 +659,9 @@
                 "Tab"
             ];
 
-            if (especiales.includes(tecla))
+            if (especiales.includes(tecla)){
                 return true;
+            }
 
             // Solo números
             if (!/^\d$/.test(tecla)) {
@@ -736,7 +673,6 @@
         }
 
         function permitirSoloLetras(e) {
-
             const tecla = e.key;
 
             const especiales = [
@@ -758,6 +694,29 @@
             }
 
             return true;
+        }
+
+        function configurarFechaNacimiento() {
+
+            const campo = document.getElementById("<%= txbFechaNac.ClientID %>");
+
+            if (!campo) return;
+
+            const hoy = new Date();
+
+            // La persona debe ser mayor de 14 años,
+            // por lo tanto debe haber cumplido 15 años.
+            const fechaLimite = new Date(
+                hoy.getFullYear() - 15,
+                hoy.getMonth(),
+                hoy.getDate() + 1
+            );
+
+            const anio = fechaLimite.getFullYear();
+            const mes = String(fechaLimite.getMonth() + 1).padStart(2, "0");
+            const dia = String(fechaLimite.getDate()).padStart(2, "0");
+
+            campo.max = `${anio}-${mes}-${dia}`;
         }
 
         function marcarError(el) {
@@ -820,6 +779,58 @@
             return null;
         }
 
+        function validarFechaNacimiento(valor) {
+
+            // Validar formato YYYY-MM-DD
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(valor)) {
+                return "La fecha de nacimiento no es válida.";
+            }
+
+            const [anio, mes, dia] = valor.split("-").map(Number);
+
+            // Crear fecha
+            const fechaNacimiento = new Date(anio, mes - 1, dia);
+
+            // Validar que la fecha realmente exista
+            if (
+                fechaNacimiento.getFullYear() !== anio ||
+                fechaNacimiento.getMonth() !== mes - 1 ||
+                fechaNacimiento.getDate() !== dia
+            ) {
+                return "La fecha de nacimiento no es válida.";
+            }
+
+            // Fecha actual
+            const hoy = new Date();
+            hoy.setHours(0, 0, 0, 0);
+
+            // No permitir fechas futuras
+            if (fechaNacimiento > hoy) {
+                return "La fecha de nacimiento no puede ser una fecha futura.";
+            }
+
+            // Calcular edad
+            let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+            const aunNoCumpleAnos =
+                hoy.getMonth() < fechaNacimiento.getMonth() ||
+                (
+                    hoy.getMonth() === fechaNacimiento.getMonth() &&
+                    hoy.getDate() < fechaNacimiento.getDate()
+                );
+
+            if (aunNoCumpleAnos) {
+                edad--;
+            }
+
+            // Regla de negocio: debe ser mayor de 14 años
+            if (edad < 15) {
+                return "Debes ser mayor de 14 años para registrarte.";
+            }
+
+            return null;
+        }
+
         function validarCamposFormulario() {
             const campos = [
                 {
@@ -850,6 +861,11 @@
                     id: "<%= txbCelular.ClientID %>",
                     msg: "Por favor, ingresa tu número de celular.",
                     validar: validarCelular
+                },
+                {
+                    id: "<%= txbFechaNac.ClientID %>",
+                    msg: "Por favor, ingresa tu fecha de nacimiento.",
+                    validar: validarFechaNacimiento
                 }
             ];
 

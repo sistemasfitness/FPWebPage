@@ -117,7 +117,9 @@
 
                         <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/EEFF-2020-comprimido.pdf" target="_blank">Estados Financieros</a><br />
 
-                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos Y Condiciones De Las Promociones</a><br />
+                        <i class="fa fa-file-pdf" style="margin-right: 20px;"></i><a style="color: #fff;" href="assets/docs/6.-TERMINOS-Y-CONDICIONES-FITNESS-PEOPLE-REV-10-05-10-26.pdf" target="_blank">Términos Y Condiciones Para Uso De Las Instalaciones</a><br />
+
+                        <i class="fa fa-file-excel" style="margin-right: 20px;"></i><a style="color: #fff;" href="https://docs.google.com/spreadsheets/d/12UoPKwqmfVbHSUx1gYCuGIkx4ES93a-elyR_tgZT5uY/edit?gid=0#gid=0" target="_blank">Términos Y Condiciones De Ofertas O Promociones</a><br />
                     </p>
                     <h4 class="nomargin_top" style="font-weight: 900; color: #e3ff00;">Términos y Condiciones de Ofertas – Fitness People Colombia</h4>
                     <p class="lead" style="color: #FFF; font-size: 1.5rem;">
