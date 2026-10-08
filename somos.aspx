@@ -122,6 +122,9 @@
                     <p>En nuestra IPS de primer nivel, tendrás la tranquilidad de recibir una atención integral de profesionales especializados con un objetivo social enmarcado en promover la salud y prevenir las enfermedades a través del deporte y la recreación, con un equipo altamente capacitado para valoración en Fisioterapia, Nutrición y medicina del deporte.<br /><br />Ayudamos a mitigar trastornos osteomusculares, aumentar el flujo de oxígeno al cerebro, por lo que la capacidad de aprendizaje, concentración y memoria se potencializan, mejorando la calidad de sueño y previniendo la enfermedad como Apnea del sueño.</p>
                     <p style="font-weight: 600;"><em>Tu bienestar es nuestra prioridad.</em></p>
 
+                    <h2 style="color: #e3ff00; font-weight: 900;">Misión</h2>
+                    <p>FITNESS PEOPLE CENTRO MÉDICO DEPORTIVO S.A.S; es una empresa líder en el sector de la salud, que promueve hábitos de programas individualizados para la actividad física y la recreación con equipo humano competente para mejorar el bienestar integral de sus pacientes y usuarios.</p>
+
                     <h2 style="color: #e3ff00; font-weight: 900;">Visión</h2>
                     <p>FITNESS PEOPLE CENTRO MÉDICO DEPORTIVO S.A.S., proyecta en el 2030, ser la empresa consolidada y reconocida a nivel nacional, que promociona la salud a más de 40.000 pacientes y usuarios, mediante procesos con acreditación certificada, en estándares de calidad y mejora continua y cuidados en el impacto ambiental, apoyado en una infraestructura sólida con equipos de última tecnología, que satisfagan las necesidades de toda nuestra comunidad.</p>
                 </div>

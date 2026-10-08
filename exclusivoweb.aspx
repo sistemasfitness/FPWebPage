@@ -119,7 +119,7 @@
     <uc1:mainmenu runat="server" ID="mainmenu" />
     <!-- Control Main Menu -->
 
-    <section class="margin_60 bg_gray section-principal-cards margin-top-header">
+    <section class="margin_60 bg_dark-gray section-principal-cards margin-top-header">
         <div class="container section-cards">
             <div class="card-principal bg_black">
                 <div>
@@ -141,9 +141,11 @@
                 </div>
 
                 <div class="price">
+                    <h3 runat="server" class="title-meses" id="lblTituloMeses"></h3>
+
                     <p class="sub-title-up" runat="server" id="lblSubTituloUp"></p>
 
-                    <h3 runat="server" id="lblTituloPrecio"></h3>
+                    <h3 runat="server" class="title" id="lblTituloPrecio"></h3>
 
                     <p class="inscription" runat="server" id="lblSubTituloPrecio1"></p>
 
@@ -192,7 +194,7 @@
 
                     <li class="benefits-details">
                         <i class="fa-solid fa-users"></i>
-                        <p>5 cortesías mensuales para invitar a tus amigos.</p>
+                        <p>5 cortesías mensuales para invitar a amigos nuevos.</p>
                     </li>
                 </ul>
 
@@ -213,7 +215,113 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <!-- ================= IFRAME DE INSCRIPCIÓN ================= -->
+            <div id="contenedorIframePlan" class="fp-iframe-container">
+                <div class="fp-iframe-header">
+                    <div>
+                        <p class="fpp-kicker">Inscripción</p>
+                        <h3>Completa tu <span>registro</span></h3>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="btnCerrarIframe"
+                        class="fp-iframe-close">
+                        &times;
+                    </button>
+                </div>
+
+                <iframe
+                    id="iframePlan"
+                    src=""
+                    title="Inscripción Fitness People"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
     </section>
+
+    <!-- ================= PANEL LATERAL DE CIUDAD / SEDE ================= -->
+    <div id="panelSede" class="fp-panel-sede">
+        <!-- Fondo oscuro -->
+        <div
+            id="panelSedeOverlay"
+            class="fp-panel-overlay">
+        </div>
+
+        <!-- Panel -->
+        <aside class="fp-panel-content">
+            <!-- Cerrar -->
+            <button
+                type="button"
+                id="btnCerrarSede"
+                class="fp-panel-close"
+                aria-label="Cerrar">
+                &times;
+            </button>
+
+            <!-- Encabezado -->
+            <div class="fp-panel-title">
+                <p class="fpp-kicker">
+                    Comprar tu plan
+                </p>
+
+                <h3>
+                    Elige tu <span>sede</span>
+                </h3>
+
+                <p class="fp-panel-description">
+                    Selecciona la ciudad y la sede donde deseas realizar tu inscripción.
+                </p>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="fp-sede-section">
+                <label for="ddlCiudad">
+                    Ciudad
+                </label>
+
+                <select id="ddlCiudad">
+                    <option value="">
+                        Selecciona una ciudad
+                    </option>
+
+                    <option value="bucaramanga">
+                        Bucaramanga
+                    </option>
+
+                    <option value="floridablanca">
+                        Floridablanca
+                    </option>
+
+                    <option value="piedecuesta">
+                        Piedecuesta
+                    </option>
+
+                    <option value="cucuta">
+                        Cúcuta
+                    </option>
+                </select>
+            </div>
+
+            <!-- Sede -->
+            <div class="fp-sede-section">
+                <label for="ddlSede">
+                    Sede
+                </label>
+
+                <select
+                    id="ddlSede"
+                    disabled>
+
+                    <option value="">
+                        Primero selecciona una ciudad
+                    </option>
+                </select>
+            </div>
+        </aside>
+    </div>
 
 
     <!-- Control Preguntas Frecuentes -->
@@ -243,7 +351,7 @@
 
 
 
-    <script>
+    <%--<script>
 
         function openPaymentInline(url) {
             if (url.includes("register?token=")) {
@@ -301,7 +409,312 @@
             }
         }
 
+    </script>--%>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            /* ============= VARIABLES ============= */
+            let planSeleccionado = null;
+            let nombrePlanSeleccionado = null;
+            let precioPlanSeleccionado = null;
+            let tokenPlanSeleccionado = null;
+            let planUrlKeySeleccionado = null;
+
+            const panelSede = document.getElementById("panelSede");
+            const panelOverlay = document.getElementById("panelSedeOverlay");
+
+            const btnCerrarSede = document.getElementById("btnCerrarSede");
+
+            const ddlCiudad = document.getElementById("ddlCiudad");
+            const ddlSede = document.getElementById("ddlSede");
+
+            const contenedorIframe = document.getElementById("contenedorIframePlan");
+            const iframePlan = document.getElementById("iframePlan");
+
+            const btnCerrarIframe = document.getElementById("btnCerrarIframe");
+
+            /* =====================================================
+               PLANES QUE REQUIEREN CIUDAD + SEDE
+            ===================================================== */
+
+            const planesConSede = [
+                "SORPRENDETE_EN_DICIEMBRE"
+            ];
+
+            /* ============= SEDES POR CIUDAD ============= */
+            const sedesPorCiudad = {
+                bucaramanga: [
+                    {
+                        nombre: "Boulevard",
+                        valor: "bucaramanga-boulevard"
+                    },
+                    {
+                        nombre: "Cabecera",
+                        valor: "bucaramanga-cabecera"
+                    },
+                    {
+                        nombre: "El Prado",
+                        valor: "bucaramanga-el-prado"
+                    },
+                    {
+                        nombre: "Provenza",
+                        valor: "bucaramanga-provenza"
+                    },
+                    {
+                        nombre: "Ciudadela",
+                        valor: "bucaramanga-ciudadela"
+                    }
+                ],
+
+                floridablanca: [
+                    {
+                        nombre: "Cañaveral",
+                        valor: "floridablanca-canaveral"
+                    }
+                ],
+
+                piedecuesta: [
+                    {
+                        nombre: "DeLaCuesta",
+                        valor: "piedecuesta-delacuesta"
+                    },
+                    {
+                        nombre: "Parque Central",
+                        valor: "piedecuesta-parque-central"
+                    }
+                ],
+
+                cucuta: [
+                    {
+                        nombre: "Jardín Plaza",
+                        valor: "cucuta-jardin-plaza"
+                    },
+                    {
+                        nombre: "Ceiba II",
+                        valor: "cucuta-ceiba-ii"
+                    }
+                ]
+
+            };
+
+            /* ============= URLS POR PLAN + SEDE ============= */
+            const urlsPlanes = {
+                SORPRENDETE_EN_DICIEMBRE: {
+                    "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-4986",
+                    "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-4978",
+                    "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-4980",
+                    "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-4979",
+                    "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-4984",
+                    "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-4985",
+                    "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4983",
+                    "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-4981",
+                    "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-4982",
+                    "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-4976"
+                }
+            };
+
+            /* ============= COMPRAR PLAN ============= */
+            document.addEventListener("click", function (e) {
+                const boton = e.target.closest(".btn-comprar-plan");
+
+                if (!boton) return;
+
+                e.preventDefault();
+
+                planSeleccionado = boton.getAttribute("data-plan-id");
+                nombrePlanSeleccionado = boton.getAttribute("data-plan-name");
+                precioPlanSeleccionado = boton.getAttribute("data-plan-price");
+
+                tokenPlanSeleccionado = boton.getAttribute("data-plan-token");
+                planUrlKeySeleccionado = boton.getAttribute("data-plan-url-key");
+
+                if (!planSeleccionado) return;
+
+                // GOOGLE TAG MANAGER
+                window.dataLayer = window.dataLayer || [];
+
+                window.dataLayer.push({
+                    event: "AddToCart",
+                    ecommerce: {
+                        items: [{
+                            item_id: planSeleccionado,
+                            item_name: nombrePlanSeleccionado,
+                            price: precioPlanSeleccionado,
+                            currency: "COP",
+                            quantity: 1
+                        }]
+                    }
+                });
+
+                const planUrls = urlsPlanes[planUrlKeySeleccionado];
+
+                /* PLANES QUE TIENEN SELECTOR DE SEDE */
+                if (planUrls) {
+                    abrirPanelSede();
+                    return;
+                }
+
+                /* PLANES SIN SELECTOR DE SEDE */
+                if (tokenPlanSeleccionado) {
+                    window.location.href = tokenPlanSeleccionado;
+                    return;
+                }
+            });
+
+            /* ============= ABRIR PANEL ============= */
+            function abrirPanelSede() {
+                panelSede.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+            }
+
+            /* ============= CERRAR PANEL ============= */
+            function cerrarPanelSede() {
+                panelSede.classList.remove("active");
+
+                document.body.style.overflow = "";
+            }
+
+            /* ============= BOTONES CERRAR ============= */
+            btnCerrarSede.addEventListener("click", cerrarPanelSede);
+
+            panelOverlay.addEventListener("click", cerrarPanelSede);
+
+            /* ============= CAMBIO DE CIUDAD ============= */
+            ddlCiudad.addEventListener("change", function () {
+                const ciudad = this.value;
+
+                // Limpiar sedes
+                ddlSede.innerHTML = "";
+
+                // No hay ciudad
+                if (!ciudad || !sedesPorCiudad[ciudad]) {
+                    ddlSede.disabled = true;
+
+                    const option = document.createElement("option");
+
+                    option.value = "";
+                    option.textContent = "Primero selecciona una ciudad";
+
+                    ddlSede.appendChild(option);
+
+                    return;
+                }
+
+                // Opción inicial
+                const optionInicial = document.createElement("option");
+
+                optionInicial.value = "";
+
+                optionInicial.textContent = "Selecciona una sede";
+
+                ddlSede.appendChild(optionInicial);
+
+                // Cargar sedes
+                sedesPorCiudad[ciudad].forEach(function (sede) {
+                    const option = document.createElement("option");
+
+                    option.value = sede.valor;
+
+                    option.textContent = sede.nombre;
+
+                    ddlSede.appendChild(option);
+                });
+
+                ddlSede.disabled = false;
+            });
+
+            /* ============= CAMBIO DE SEDE ============= */
+            ddlSede.addEventListener("change", function () {
+                const sede = this.value;
+
+                if (!sede) return;
+
+                // Buscar URL correspondiente
+                const planUrls = urlsPlanes[planUrlKeySeleccionado];
+
+                if (!planUrls) return;
+
+                const url = planUrls[sede];
+
+                if (!url) return;
+
+                // Cerrar panel
+                cerrarPanelSede();
+
+                // Mostrar iframe
+                mostrarIframe(url);
+            });
+
+            /* ============= MOSTRAR IFRAME ============= */
+            function mostrarIframe(url) {
+                iframePlan.src = url;
+
+                contenedorIframe.classList.add("active");
+
+                // Scroll hasta el iframe
+                setTimeout(function () {
+                    contenedorIframe.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }, 350);
+            }
+
+            /* ============= CERRAR IFRAME ============= */
+            function cerrarIframe() {
+                iframePlan.src = "";
+
+                contenedorIframe.classList.remove("active");
+
+                // Limpiar selección
+                planSeleccionado = null;
+
+                tokenPlanSeleccionado = null;
+                planUrlKeySeleccionado = null;
+
+                ddlCiudad.value = "";
+
+                ddlSede.innerHTML = "";
+
+                const option = document.createElement("option");
+
+                option.value = "";
+
+                option.textContent = "Primero selecciona una ciudad";
+
+                ddlSede.appendChild(option);
+
+                ddlSede.disabled = true;
+
+                const seccionPrincipal = document.querySelector(".section-principal-cards");
+
+                // Regresar a planes
+                if (seccionPrincipal) {
+                    seccionPrincipal.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+
+            btnCerrarIframe.addEventListener("click", function () {
+                cerrarIframe();
+            });
+
+            /* ============= CERRAR IFRAME CON ESC ============= */
+            document.addEventListener("keydown", function (e) {
+                    if (e.key !== "Escape") return;
+
+                    if (panelSede.classList.contains("active")) cerrarPanelSede();
+                }
+            );
+        });
+
     </script>
+
 
 
     <style>
@@ -423,11 +836,20 @@
 
         .card-principal .switch-btn {
             padding: 5px 13px;
+            width: 100%;
         }
 
-        .card-principal .price h3 {
+        .card-principal .price .title {
             margin-top: 0px;
             font-size: 40px;
+            font-weight: bold;
+            color: #d6ff00;
+            line-height: 1;
+        }
+
+        .card-principal .price .title-meses {
+            margin-top: 0px;
+            font-size: 30px;
             font-weight: bold;
             color: #d6ff00;
             line-height: 1;

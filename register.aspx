@@ -284,7 +284,7 @@
                                     <label for="cbAutorizo1" style="text-align: justify; line-height: 17px;">
                                         <span>Autorizo el 
                                             <b>
-                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/assets/docs/3.-AUTORIZACION-DEL-TITULAR-PARA-EL-TRATAMIENTO-BD.pdf" target="_blank">
+                                                <a style="color: #000000; text-decoration: revert;" href="https://fitnesspeoplecolombia.com/assets/docs/2.-PT-GH-02-POLITICA-DE-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES.pdf" target="_blank">
                                                     tratamiento de mis datos personales conforme a la Política de Tratamiento de Datos Personales de Fitness People Centro Médico Deportivo S.A.S.
                                                 </a>
                                             </b> y la normativa vigente en Colombia.

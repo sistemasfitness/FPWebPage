@@ -150,7 +150,7 @@
                         <!--End step -->
                         <div class="form_title">
                             <h3><strong><i class="fab fa-whatsapp"></i></strong></h3>
-                            <h4 style="padding-top: 10px; color: #FFF;">
+                            <h4 style="padding-top: 10px; color: #FFF;" class="telefono">
                                 <asp:Literal ID="ltTelefonoSede" runat="server"></asp:Literal></h4>
                         </div>
                         <div class="step" style="padding: 0 0 20px 31px;"></div>

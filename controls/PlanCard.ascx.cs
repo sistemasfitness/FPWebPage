@@ -123,13 +123,15 @@ namespace WebPage.controls
             // DESTACADO
             // ============================
 
+            divPackBienvenida.Visible = false;
+
             if (plan.EsDestacado)
             {
                 cardPlan.Attributes["class"] = "fpp-card fpp-card--featured";
                 divBadge.Visible = true;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--solid btn-comprar-plan";
 
-                divPackBienvenida.Visible = true;
+                //divPackBienvenida.Visible = true;
             }
             else
             {
@@ -137,7 +139,7 @@ namespace WebPage.controls
                 divBadge.Visible = false;
                 btnComprar.Attributes["class"] = "fpp-btn fpp-btn--outline btn-comprar-plan";
 
-                divPackBienvenida.Visible = false;
+                //divPackBienvenida.Visible = false;
             }
 
             // ============================
@@ -204,6 +206,37 @@ namespace WebPage.controls
                     };
 
 
+                //case "FLEXIBLE_PRO":
+
+                //    return new Plan
+                //    {
+                //        Nombre = "Flexible Pro",
+                //        Modalidad = "Débito automático",
+                //        Tagline = "Más beneficios desde el primer mes.",
+
+                //        InscProm = "Sin inscripción",
+                //        PrecioAntes = "Antes $165.000",
+                //        LabelPrecio = "1er mes",
+                //        Precio = "$49.500",
+                //        Periodo = "",
+
+                //        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
+                //        NotaFidelidad = "Aplica cobro por retiro anticipado",
+
+                //        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+
+                //        EsDestacado = true,
+
+                //        Beneficios = new List<string>
+                //        {
+                //            "Acceso a todas las sedes de Fitness People.",
+                //            "Clases grupales con instructores certificados.",
+                //            "FP App con planes de entrenamiento y tips de nutrición.",
+                //            "5 pases de invitado al mes.",
+                //            "Valoración física inicial."
+                //        }
+                //    };
+
                 case "FLEXIBLE_PRO":
 
                     return new Plan
@@ -213,9 +246,9 @@ namespace WebPage.controls
                         Tagline = "Más beneficios desde el primer mes.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $129.900",
+                        PrecioAntes = "Antes $165.000 /mes",
                         LabelPrecio = "1er mes",
-                        Precio = "$49.500",
+                        Precio = "$9.900",
                         Periodo = "",
 
                         Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
@@ -244,13 +277,13 @@ namespace WebPage.controls
                         Modalidad = "Pago único anual",
                         Tagline = "Entrena sin pausas durante todo un año.",
 
-                        InscProm = "+ 2 meses GRATIS",
+                        InscProm = "+ 4 meses GRATIS",
                         PrecioAntes = "Antes $1.380.000",
                         LabelPrecio = "",
                         Precio = "$990.000",
                         Periodo = "/año",
 
-                        Permanencia = "Equivale a $70.700/mes aprox.<br />Sin fidelidad",
+                        Permanencia = "Equivale a $61.875/mes aprox.<br />Sin fidelidad",
                         NotaFidelidad = "",
 
                         EsDestacado = false,
@@ -275,7 +308,7 @@ namespace WebPage.controls
                         Tagline = "Haz de tu bienestar parte del día.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900",
+                        PrecioAntes = "Antes $109.900 /mes",
                         LabelPrecio = "1er mes",
                         Precio = "$59.700",
                         Periodo = "",
@@ -307,7 +340,7 @@ namespace WebPage.controls
                         Tagline = "Tu salud más cerca de ti.",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900",
+                        PrecioAntes = "Antes $109.900 /mes",
                         LabelPrecio = "",
                         Precio = "$89.900",
                         Periodo = "/mes",
