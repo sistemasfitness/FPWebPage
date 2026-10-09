@@ -392,30 +392,32 @@ namespace WebPage
 
         private void ConfigurarCamposFecha()
         {
-            txbFechaNac.Attributes.Add("type", "date");
-            txbFechaIni.Attributes.Add("type", "date");
-            txbFechaFin.Attributes.Add("type", "date");
+            txbFechaNac.Attributes["type"] = "date";
+            txbFechaIni.Attributes["type"] = "date";
+            txbFechaFin.Attributes["type"] = "date";
 
-            DateTime dtHoy = DateTime.Now;
-            DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
-            DateTime dt14 = DateTime.Now.AddYears(-14);
-            DateTime dt100 = DateTime.Now.AddYears(-100);
+            DateTime hoy = DateTime.Today;
 
-            txbFechaNac.Attributes.Add("min", dt100.ToString("yyyy-MM-dd"));
-            txbFechaNac.Attributes.Add("max", dt14.ToString("yyyy-MM-dd"));
+            DateTime dt14 = hoy.AddYears(-14);
+            DateTime dt100 = hoy.AddYears(-100);
 
-            string fechaHoy = dtHoy.ToString("yyyy-MM-dd");
+            txbFechaNac.Attributes["min"] = dt100.ToString("yyyy-MM-dd");
+            txbFechaNac.Attributes["max"] = dt14.ToString("yyyy-MM-dd");
+
+            string fechaHoy = hoy.ToString("yyyy-MM-dd");
             txbFechaIni.Attributes["value"] = fechaHoy;
             txbFechaIni.Text = fechaHoy;
 
-            string fechaUnAnnio = dtHoyUnAnnio.ToString("yyyy-MM-dd");
+            string fechaUnAnnio = hoy.AddYears(1).ToString("yyyy-MM-dd");
             txbFechaFin.Attributes["value"] = fechaUnAnnio;
             txbFechaFin.Text = fechaUnAnnio;
 
-            txbFechaIni.Attributes["min"] = DateTime.Now.ToString("yyyy-MM-dd");
+            txbFechaIni.Attributes["min"] = fechaHoy;
 
             if (IdPlan != 12)
-                txbFechaIni.Attributes["max"] = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
+            {
+                txbFechaIni.Attributes["max"] = hoy.AddDays(3).ToString("yyyy-MM-dd");
+            }
         }
 
         private void ValidarPlan()
@@ -610,7 +612,7 @@ namespace WebPage
 
                 //int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, idGenero, strFechaNac, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
 
-                await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, strFechaInicioPlan);
+                await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, strFechaNac, strFechaInicioPlan);
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
                 bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
@@ -624,7 +626,7 @@ namespace WebPage
                     { "valorPlan", ValorPlan.ToString() },
                     { "fechaIni", strFechaInicioPlan },
                     { "fechaFin", strFechaFinPlan },
-                    { "idVendedor", IdVendedor.ToString() },
+                    { "idVendedor", IdVendedor.ToString() }
                     //{ "idSede", idSede.ToString() }
                 };
 
@@ -828,11 +830,11 @@ namespace WebPage
             }
 
             // Regla de negocio: mayor de 14 años
-            if (edad < 15)
+            if (edad < 14)
             {
                 MostrarAlerta(
                     "Edad no permitida",
-                    "Debes ser mayor de 14 años para registrarte.",
+                    "Debes tener al menos 14 años para registrarte.",
                     "warning"
                 );
 
@@ -927,7 +929,7 @@ namespace WebPage
         //    return idAfiliado;
         //}
 
-        private async Task GestionarAfiliado(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, string fechaInicioPlan)
+        private async Task GestionarAfiliado(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, string fechaNac, string fechaInicioPlan)
         {
             clasesglobales cg = new clasesglobales();
 
@@ -945,7 +947,7 @@ namespace WebPage
                     celular,
                     correo,
                     1,
-                    "",
+                    fechaNac,
                     1,
                     "Pendiente"
                 );
@@ -960,7 +962,7 @@ namespace WebPage
                     celular,
                     correo,
                     1,
-                    "",
+                    fechaNac,
                     1
                 );
             }
@@ -1030,7 +1032,7 @@ namespace WebPage
             return false;
         }
 
-        protected async void GestionarDatosUsuario(object sender, EventArgs e)
+        protected void GestionarDatosUsuario(object sender, EventArgs e)
         {
             string documento = txbDocumento.Text.Trim();
 
@@ -1040,17 +1042,19 @@ namespace WebPage
                 return;
             }
 
-            bool existe = BuscarAfiliado(documento);
+            BuscarAfiliado(documento);
 
-            if (!existe)
-            {
-                await BuscarPersonaADRES(documento);
-            }
+            //bool existe = BuscarAfiliado(documento);
+
+            //if (!existe)
+            //{
+            //    await BuscarPersonaADRES(documento);
+            //}
         }
 
-        protected bool BuscarAfiliado(string documento)
+        protected void BuscarAfiliado(string documento)
         {
-            if (string.IsNullOrEmpty(documento)) return false;
+            if (string.IsNullOrEmpty(documento)) return;
 
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
@@ -1059,7 +1063,7 @@ namespace WebPage
             {
                 LimpiarCampos();
                 dt.Dispose();
-                return false;
+                return;
             }
 
             DataRow afiliado = dt.Rows[0];
@@ -1071,7 +1075,7 @@ namespace WebPage
             txbEmail.Text = afiliado["EmailAfiliado"]?.ToString() ?? "";
             txbCelular.Text = afiliado["CelularAfiliado"]?.ToString() ?? "";
 
-            if (afiliado["FechaNacAfiliado"] != DBNull.Value)
+            if (afiliado["FechaNacAfiliado"] != DBNull.Value && afiliado["FechaNacAfiliado"].ToString() != "")
             {
                 DateTime fechaNacimiento = Convert.ToDateTime(afiliado["FechaNacAfiliado"]);
 
@@ -1084,7 +1088,7 @@ namespace WebPage
 
             dt.Dispose();
 
-            return true;
+            return;
         }
 
         protected async Task BuscarPersonaADRES(string documento)

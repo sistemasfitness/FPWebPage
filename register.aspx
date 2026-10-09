@@ -704,12 +704,11 @@
 
             const hoy = new Date();
 
-            // La persona debe ser mayor de 14 años,
-            // por lo tanto debe haber cumplido 15 años.
+            // La persona debe tener al menos 14 años,
             const fechaLimite = new Date(
-                hoy.getFullYear() - 15,
+                hoy.getFullYear() - 14,
                 hoy.getMonth(),
-                hoy.getDate() + 1
+                hoy.getDate()
             );
 
             const anio = fechaLimite.getFullYear();
@@ -824,8 +823,8 @@
             }
 
             // Regla de negocio: debe ser mayor de 14 años
-            if (edad < 15) {
-                return "Debes ser mayor de 14 años para registrarte.";
+            if (edad < 14) {
+                return "Debes tener al menos 14 años para registrarte.";
             }
 
             return null;
