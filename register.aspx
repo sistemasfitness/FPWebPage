@@ -105,13 +105,18 @@
                 <div class="col-md-8">
                     <div class="box_style_general">
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="fa-solid fa-shield-halved"></i></strong>Información inicial</h3>
-                            <p style="color: #fff;">Datos personales para registro en el sistema.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong><i class="fa-solid fa-shield-halved"></i></strong>Datos del afiliado</h3>
+                            <p style="color: #fff; font-size: 13px;">Registra a la persona que utilizará el plan de Fitness People.</p>
                         </div>
                         <div class="step">
                             <asp:ScriptManager ID="sm1" runat="server"></asp:ScriptManager>
                             <asp:UpdatePanel ID="upAfiliados" runat="server">
                                 <ContentTemplate>
+                                    <div class="row">
+                                        <div class="col-12 div-information">
+                                            <p><b>Importante:</b> Si estás comprando el plan para otra persona, ingresa los datos de esa persona, no los datos de quien está realizando el pago.</p>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
@@ -1023,6 +1028,24 @@
 
         .input-error {
             border: 2px solid #ff4d4f !important;
+        }
+
+        .div-information {
+            padding: 10px 20px; 
+            border: 1px solid var(--fp-lime);
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .div-information p {
+            margin-bottom: 0;
+            color: var(--fp-lime);
+        }
+
+        @media(max-width: 991px){
+            .div-information {
+                margin-right: 20px;
+            }
         }
 
     </style>
