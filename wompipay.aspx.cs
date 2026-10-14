@@ -519,11 +519,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$ 9.900</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -569,11 +569,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -598,11 +598,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -797,6 +797,7 @@ namespace WebPage
                 string apellidoAfi = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
                 string celularAfi = dtAfi.Rows[0]["CelularAfiliado"].ToString();
                 string correoAfi = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+                string fechaNac = dtAfi.Rows[0]["FechaNacAfiliado"].ToString();
 
                 cg.ActualizarAfiliadoRegister(
                     DocumentoAfiliado,
@@ -805,7 +806,7 @@ namespace WebPage
                     celularAfi,
                     correoAfi,
                     1,
-                    "",
+                    fechaNac,
                     IdSede,
                     "Pendiente"
                 );

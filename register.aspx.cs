@@ -298,11 +298,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$ 9.900</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -348,11 +348,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -377,11 +377,11 @@ namespace WebPage
                                         <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
-                                        <p class='sub-title sub-title-before'>ANTES $ 165.000/mes</p>
+                                        <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>
 
                                         <p class='title'>PRIMER MES <span class='pull-right'>$49.500</span></p>
 
-                                        <p class='sub-title'>DESPUÉS $ 99.000/mes</p>
+                                        <p class='sub-title'>DESPUÉS $99.000 /mes</p>
 
                                         <p class='registration'>SIN INSCRIPCIÓN</p>
 
@@ -392,26 +392,32 @@ namespace WebPage
 
         private void ConfigurarCamposFecha()
         {
-            txbFechaIni.Attributes.Add("type", "date");
-            txbFechaFin.Attributes.Add("type", "date");
+            txbFechaNac.Attributes["type"] = "date";
+            txbFechaIni.Attributes["type"] = "date";
+            txbFechaFin.Attributes["type"] = "date";
 
-            DateTime dtHoy = DateTime.Now;
-            DateTime dtHoyUnAnnio = DateTime.Now.AddYears(1);
-            DateTime dt14 = DateTime.Now.AddYears(-14);
-            DateTime dt100 = DateTime.Now.AddYears(-100);
+            DateTime hoy = DateTime.Today;
 
-            string fechaHoy = dtHoy.ToString("yyyy-MM-dd");
+            DateTime dt14 = hoy.AddYears(-14);
+            DateTime dt100 = hoy.AddYears(-100);
+
+            txbFechaNac.Attributes["min"] = dt100.ToString("yyyy-MM-dd");
+            txbFechaNac.Attributes["max"] = dt14.ToString("yyyy-MM-dd");
+
+            string fechaHoy = hoy.ToString("yyyy-MM-dd");
             txbFechaIni.Attributes["value"] = fechaHoy;
             txbFechaIni.Text = fechaHoy;
 
-            string fechaUnAnnio = dtHoyUnAnnio.ToString("yyyy-MM-dd");
+            string fechaUnAnnio = hoy.AddYears(1).ToString("yyyy-MM-dd");
             txbFechaFin.Attributes["value"] = fechaUnAnnio;
             txbFechaFin.Text = fechaUnAnnio;
 
-            txbFechaIni.Attributes["min"] = DateTime.Now.ToString("yyyy-MM-dd");
+            txbFechaIni.Attributes["min"] = fechaHoy;
 
             if (IdPlan != 12)
-                txbFechaIni.Attributes["max"] = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
+            {
+                txbFechaIni.Attributes["max"] = hoy.AddDays(3).ToString("yyyy-MM-dd");
+            }
         }
 
         private void ValidarPlan()
@@ -579,13 +585,13 @@ namespace WebPage
                 string strApellido = txbApellido.Text.Trim().ToUpper();
                 string strCelular = txbCelular.Text.Trim();
                 string strEmail = txbEmail.Text.Trim().ToLower();
+                string strFechaNac = txbFechaNac.Text.ToString();
                 //int idGenero = Convert.ToInt32(ddlGenero.SelectedItem.Value.ToString());
-                //string strFechaNac = txbFechaNac.Text.ToString();
 
                 string strFechaInicioPlan = txbFechaIni.Text.Trim();
                 string strFechaFinPlan = txbFechaFin.Text.Trim();
 
-                bool validacionesOk = Validaciones(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail);
+                bool validacionesOk = Validaciones(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, strFechaNac);
 
                 if (!validacionesOk) return;
 
@@ -606,7 +612,7 @@ namespace WebPage
 
                 //int idAfiliado = await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, idGenero, strFechaNac, strFechaInicioPlan, idSede, direccion, codEstado, codCiudad);
 
-                await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, strFechaInicioPlan);
+                await GestionarAfiliado(strCedula, idTipoDocumento, strNombre, strApellido, strCelular, strEmail, strFechaNac, strFechaInicioPlan);
 
                 DataTable dtPlan = cg.ConsultarPlanWebPorId(IdPlan);
                 bool esDebitoAutomatico = dtPlan.Rows[0]["DebitoAutomatico"].ToString() == "1";
@@ -620,7 +626,7 @@ namespace WebPage
                     { "valorPlan", ValorPlan.ToString() },
                     { "fechaIni", strFechaInicioPlan },
                     { "fechaFin", strFechaFinPlan },
-                    { "idVendedor", IdVendedor.ToString() },
+                    { "idVendedor", IdVendedor.ToString() }
                     //{ "idSede", idSede.ToString() }
                 };
 
@@ -648,7 +654,7 @@ namespace WebPage
             }
         }
 
-        private bool Validaciones(string strCedula, int idTipoDocumento, string strNombre, string strApellido, string strCelular, string strEmail)
+        private bool Validaciones(string strCedula, int idTipoDocumento, string strNombre, string strApellido, string strCelular, string strEmail, string strFechaNac)
         {
             strNombre = Regex.Replace(strNombre, @"\s+", " ").Trim();
             strApellido = Regex.Replace(strApellido, @"\s+", " ").Trim();
@@ -754,6 +760,87 @@ namespace WebPage
                 return false;
             }
 
+            // FECHA DE NACIMIENTO
+
+            if (!ValidarFechaNacimiento(strFechaNac))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidarFechaNacimiento(string strFechaNac)
+        {
+            if (string.IsNullOrWhiteSpace(strFechaNac))
+            {
+                MostrarAlerta(
+                    "Campo requerido",
+                    "Por favor, ingresa tu fecha de nacimiento.",
+                    "warning"
+                );
+
+                return false;
+            }
+
+            DateTime fechaNacimiento;
+
+            if (!DateTime.TryParseExact(
+                strFechaNac,
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out fechaNacimiento))
+            {
+                MostrarAlerta(
+                    "Error",
+                    "La fecha de nacimiento no es válida.",
+                    "error"
+                );
+
+                return false;
+            }
+
+            DateTime hoy = DateTime.Today;
+
+            // No permitir fechas futuras
+            if (fechaNacimiento > hoy)
+            {
+                MostrarAlerta(
+                    "Error",
+                    "La fecha de nacimiento no puede ser una fecha futura.",
+                    "error"
+                );
+
+                return false;
+            }
+
+            // Calcular edad
+            int edad = hoy.Year - fechaNacimiento.Year;
+
+            if (
+                hoy.Month < fechaNacimiento.Month ||
+                (
+                    hoy.Month == fechaNacimiento.Month &&
+                    hoy.Day < fechaNacimiento.Day
+                )
+            )
+            {
+                edad--;
+            }
+
+            // Regla de negocio: mayor de 14 años
+            if (edad < 14)
+            {
+                MostrarAlerta(
+                    "Edad no permitida",
+                    "Debes tener al menos 14 años para registrarte.",
+                    "warning"
+                );
+
+                return false;
+            }
+
             return true;
         }
 
@@ -842,7 +929,7 @@ namespace WebPage
         //    return idAfiliado;
         //}
 
-        private async Task GestionarAfiliado(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, string fechaInicioPlan)
+        private async Task GestionarAfiliado(string documento, int idTipoDocumento, string nombres, string apellidos, string celular, string correo, string fechaNac, string fechaInicioPlan)
         {
             clasesglobales cg = new clasesglobales();
 
@@ -860,7 +947,7 @@ namespace WebPage
                     celular,
                     correo,
                     1,
-                    "",
+                    fechaNac,
                     1,
                     "Pendiente"
                 );
@@ -875,7 +962,7 @@ namespace WebPage
                     celular,
                     correo,
                     1,
-                    "",
+                    fechaNac,
                     1
                 );
             }
@@ -945,95 +1032,68 @@ namespace WebPage
             return false;
         }
 
-        public class FormularioAfiliado
+        protected void GestionarDatosUsuario(object sender, EventArgs e)
         {
-            public TextBox txbDocumento { get; set; }
-            public DropDownList ddlTipoDocumento { get; set; }
-            public TextBox txbNombre { get; set; }
-            public TextBox txbApellido { get; set; }
-            public TextBox txbEmail { get; set; }
-            public TextBox txbCelular { get; set; }
-            //public TextBox txbFechaNac { get; set; }
-            //public DropDownList ddlGenero { get; set; }
-            //public DropDownList ddlCiudad { get; set; }
-            //public DropDownList ddlSede { get; set; }
-        }
-
-        private FormularioAfiliado ObtenerFormulario()
-        {
-            return new FormularioAfiliado
-            {
-                txbDocumento = txbDocumento,
-                ddlTipoDocumento = ddlTipoDocumento,
-                txbNombre = txbNombre,
-                txbApellido = txbApellido,
-                txbEmail = txbEmail,
-                txbCelular = txbCelular,
-                //txbFechaNac = txbFechaNac,
-                //ddlGenero = ddlGenero,
-                //ddlCiudad = ddlCiudad,
-                //ddlSede = ddlSede,
-            };
-        }
-
-        protected async void GestionarDatosUsuario(object sender, EventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string documento = txt.Text.Trim();
-
-            FormularioAfiliado form;
-
-            form = ObtenerFormulario();
+            string documento = txbDocumento.Text.Trim();
 
             if (string.IsNullOrEmpty(documento))
             {
-                LimpiarCampos(form);
+                LimpiarCampos();
                 return;
             }
 
-            bool existe = BuscarAfiliado(documento, form);
+            BuscarAfiliado(documento);
 
-            if (!existe)
-            {
-                await BuscarPersonaADRES(documento, form);
-            }
+            //bool existe = BuscarAfiliado(documento);
 
-            upAfiliados.Update();
+            //if (!existe)
+            //{
+            //    await BuscarPersonaADRES(documento);
+            //}
         }
 
-        protected bool BuscarAfiliado(string documento, FormularioAfiliado form)
+        protected void BuscarAfiliado(string documento)
         {
-            if (string.IsNullOrEmpty(documento)) return false;
+            if (string.IsNullOrEmpty(documento)) return;
 
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
 
             if (dt.Rows.Count == 0)
             {
+                LimpiarCampos();
                 dt.Dispose();
-                return false;
+                return;
             }
 
             DataRow afiliado = dt.Rows[0];
 
-            form.txbDocumento.Text = documento;
-            form.ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"]?.ToString() ?? "";
-            form.txbNombre.Text = afiliado["NombreAfiliado"]?.ToString() ?? "";
-            form.txbApellido.Text = afiliado["ApellidoAfiliado"]?.ToString() ?? "";
-            form.txbEmail.Text = afiliado["EmailAfiliado"]?.ToString() ?? "";
-            form.txbCelular.Text = afiliado["CelularAfiliado"]?.ToString() ?? "";
+            txbDocumento.Text = documento;
+            ddlTipoDocumento.SelectedValue = afiliado["idTipoDocumento"]?.ToString() ?? "";
+            txbNombre.Text = afiliado["NombreAfiliado"]?.ToString() ?? "";
+            txbApellido.Text = afiliado["ApellidoAfiliado"]?.ToString() ?? "";
+            txbEmail.Text = afiliado["EmailAfiliado"]?.ToString() ?? "";
+            txbCelular.Text = afiliado["CelularAfiliado"]?.ToString() ?? "";
+
+            if (afiliado["FechaNacAfiliado"] != DBNull.Value && afiliado["FechaNacAfiliado"].ToString() != "")
+            {
+                DateTime fechaNacimiento = Convert.ToDateTime(afiliado["FechaNacAfiliado"]);
+
+                txbFechaNac.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txbFechaNac.Text = "";
+            }
 
             dt.Dispose();
 
-            return true;
+            return;
         }
 
-        protected async Task BuscarPersonaADRES(string documento, FormularioAfiliado form)
+        protected async Task BuscarPersonaADRES(string documento)
         {
-            if (string.IsNullOrEmpty(documento))
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(documento)) return;
 
             string url = $"https://pqrdsuperargo.supersalud.gov.co/api/api/adres/0/{documento}";
 
@@ -1045,6 +1105,7 @@ namespace WebPage
 
                     if (!response.IsSuccessStatusCode)
                     {
+                        LimpiarCampos();
                         return;
                     }
 
@@ -1059,26 +1120,24 @@ namespace WebPage
                         personaADRES.nombre == null ||
                         personaADRES.apellido == null)
                     {
+                        LimpiarCampos();
                         return;
                     }
 
-                    // Campos comunes (principal y secundario)
-                    form.txbDocumento.Text = documento;
+                    txbNombre.Text = $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}".Trim().ToUpper();
+                    txbApellido.Text = $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}".Trim().ToUpper();
 
-                    if (string.IsNullOrWhiteSpace(form.txbNombre.Text))
+                    DateTime fechaNacimiento;
+
+                    if (DateTime.TryParse(
+                        personaADRES.fecha_nacimiento?.ToString(),
+                        out fechaNacimiento))
                     {
-                        form.txbNombre.Text =
-                            $"{(string)personaADRES.nombre} {(string)personaADRES.s_nombre}"
-                            .Trim()
-                            .ToUpper();
+                        txbFechaNac.Text = fechaNacimiento.ToString("yyyy-MM-dd");
                     }
-
-                    if (string.IsNullOrWhiteSpace(form.txbApellido.Text))
+                    else
                     {
-                        form.txbApellido.Text =
-                            $"{(string)personaADRES.apellido} {(string)personaADRES.s_apellido}"
-                            .Trim()
-                            .ToUpper();
+                        txbFechaNac.Text = "";
                     }
                 }
                 catch (Exception ex)
@@ -1090,13 +1149,14 @@ namespace WebPage
             }
         }
 
-        private void LimpiarCampos(FormularioAfiliado form)
+        private void LimpiarCampos()
         {
-            form.ddlTipoDocumento.ClearSelection();
-            form.txbNombre.Text = "";
-            form.txbApellido.Text = "";
-            form.txbEmail.Text = "";
-            form.txbCelular.Text = "";
+            ddlTipoDocumento.ClearSelection();
+            txbNombre.Text = "";
+            txbApellido.Text = "";
+            txbEmail.Text = "";
+            txbCelular.Text = "";
+            txbFechaNac.Text = "";
         }
 
         public string CalcularFechaFinPlan(string strFechaInicio)

@@ -160,8 +160,8 @@
                         <!--End step -->
 
                         <div class="form_title">
-                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Pago con tarjeta</h3>
-                            <p style="color: #fff;">Ingresa los datos de tu tarjeta para finalizar la compra.</p>
+                            <h3 style="font-weight: 900; color: #e3ff00;"><strong>2</strong>Datos de pago</h3>
+                            <p style="color: #fff;">Ingresa los datos de la tarjeta con la que realizarás el pago.</p>
                         </div>
 
                         <div class="step">
