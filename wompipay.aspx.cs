@@ -797,6 +797,7 @@ namespace WebPage
                 string apellidoAfi = dtAfi.Rows[0]["ApellidoAfiliado"].ToString();
                 string celularAfi = dtAfi.Rows[0]["CelularAfiliado"].ToString();
                 string correoAfi = dtAfi.Rows[0]["EmailAfiliado"].ToString();
+                string fechaNac = dtAfi.Rows[0]["FechaNacAfiliado"].ToString();
 
                 cg.ActualizarAfiliadoRegister(
                     DocumentoAfiliado,
@@ -805,7 +806,7 @@ namespace WebPage
                     celularAfi,
                     correoAfi,
                     1,
-                    "",
+                    fechaNac,
                     IdSede,
                     "Pendiente"
                 );
