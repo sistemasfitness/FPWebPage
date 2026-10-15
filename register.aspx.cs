@@ -1032,7 +1032,7 @@ namespace WebPage
             return false;
         }
 
-        protected void GestionarDatosUsuario(object sender, EventArgs e)
+        protected async void GestionarDatosUsuario(object sender, EventArgs e)
         {
             string documento = txbDocumento.Text.Trim();
 
@@ -1042,19 +1042,19 @@ namespace WebPage
                 return;
             }
 
-            BuscarAfiliado(documento);
+            //BuscarAfiliado(documento);
 
-            //bool existe = BuscarAfiliado(documento);
+            bool existe = BuscarAfiliado(documento);
 
-            //if (!existe)
-            //{
-            //    await BuscarPersonaADRES(documento);
-            //}
+            if (!existe)
+            {
+                await BuscarPersonaADRES(documento);
+            }
         }
 
-        protected void BuscarAfiliado(string documento)
+        protected bool BuscarAfiliado(string documento)
         {
-            if (string.IsNullOrEmpty(documento)) return;
+            if (string.IsNullOrEmpty(documento)) return false;
 
             clasesglobales cg = new clasesglobales();
             DataTable dt = cg.ConsultarAfiliadoPorDocumento(documento);
@@ -1063,7 +1063,7 @@ namespace WebPage
             {
                 LimpiarCampos();
                 dt.Dispose();
-                return;
+                return false;
             }
 
             DataRow afiliado = dt.Rows[0];
@@ -1088,7 +1088,7 @@ namespace WebPage
 
             dt.Dispose();
 
-            return;
+            return true;
         }
 
         protected async Task BuscarPersonaADRES(string documento)
