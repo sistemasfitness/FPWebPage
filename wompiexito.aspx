@@ -8,16 +8,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager -->
-    <%--<script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
-    </script>--%>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -72,11 +62,8 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <%--<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>--%>
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -142,26 +129,16 @@
     <div id="toTop"></div>
     <!-- Back to top button -->
 
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-        <span class="search-overlay-close"><i class="icon_close"></i></span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Buscar..." />
-            <button type="submit">
-                <i class="icon-search-6"></i>
-            </button>
-        </form>
-    </div>
-    <!-- End Search Menu -->
-
     <!-- COMMON SCRIPTS -->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
     <script src="assets/validate.js"></script>
     <script src="js/functions.js"></script>
 
+
+
     <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
 </body>
 </html>

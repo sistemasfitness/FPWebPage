@@ -15,15 +15,6 @@ namespace WebPage
     {
 
         /// <summary>
-        /// Control mainmenu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebPage.controls.mainmenu mainmenu;
-
-        /// <summary>
         /// Control ltMapa.
         /// </summary>
         /// <remarks>

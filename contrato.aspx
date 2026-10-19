@@ -16,7 +16,7 @@
             }); var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
     </script>
     <!-- End Google Tag Manager -->
 
@@ -70,14 +70,9 @@
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
 
-    <!-- Header ================================================== -->
-    <header>
-        <div class="container-fluid">
-            <uc1:mainmenu runat="server" ID="mainmenu" />
-        </div>
-        <!-- End container -->
-    </header>
-    <!-- End Header =============================================== -->
+    <!-- Control Main Menu -->
+    <uc1:mainmenu runat="server" ID="mainmenu" />
+    <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
     <section class="parallax_window_in" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">

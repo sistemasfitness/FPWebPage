@@ -565,7 +565,6 @@
     <Content Include="js\calories_calculators.js" />
     <Content Include="js\calories_calculators.min.js" />
     <Content Include="js\common_scripts_min.js" />
-    <Content Include="js\fitnesspeople.js" />
     <Content Include="js\functions.js" />
     <Content Include="js\ion.rangeSlider.js" />
     <Content Include="js\ion.rangeSlider.min.js" />

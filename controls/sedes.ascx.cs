@@ -91,7 +91,7 @@ namespace WebPage.controls
             // liberar si tu implementación lo requiere
             if (dtSede != null) dtSede.Dispose();
 
-            Response.Redirect("sedes?id=" + ddlSede.SelectedItem.Value.ToString());
+            Response.Redirect("sede?id=" + ddlSede.SelectedItem.Value.ToString());
         }
 
         private void CargarCarruselImagenes()

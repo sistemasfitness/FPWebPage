@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sedespg.aspx.cs" Inherits="WebPage.sedespg" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
@@ -12,16 +11,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager -->
-    <%--<script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
-    </script>--%>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -50,8 +39,6 @@
     <meta property="og:image" itemprop="image" content="https://fitnesspeoplecolombia.com/img/para_banner.png" />
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="1440432930" />
-
-    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -89,11 +76,8 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <%--<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>--%>
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -120,25 +104,6 @@
 
     <uc1:planes runat="server" ID="controlplanes" />
 
-    <%--<div id="newsletter_container" style="background-color: #000;">
-        <div class="container margin_60" style="padding-top: 0px; padding-bottom: 30px;">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 text-center">
-                    ///<h3 style="font-weight: 600; color: #FFF;">ENTÉRATE DE NOTICIAS Y PROMOCIONES</h3>
-                <div id="message-newsletter"></div>
-                <form method="post" action="newsletter" name="newsletter" id="newsletter" class="form-inline">
-                    <input name="email_newsletter" id="email_newsletter" type="email" value="" placeholder="Ingresa tu correo electrónico" class="form-control">
-                    <button id="submit-newsletter" class="btn_1">SUSCRÍBETE</button>
-                </form>//
-                    <a href="gympass">
-                        <img src="img/gympass01.jpg" class="img-responsive" style="width: 470px; display: inline;" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>--%>
-    <!-- End newsletter_container -->
-
     <uc1:mapasedeadministrativa runat="server" ID="mapasedeadministrativa" />
 
     <uc1:footer runat="server" ID="footer" />
@@ -146,19 +111,6 @@
     <div id="toTop"></div>
     <!-- Back to top button -->
 
-    <uc1:loginregister runat="server" ID="loginregister" />
-
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-        <span class="search-overlay-close"><i class="icon_close"></i></span>
-        <form role="search" id="searchform" method="get">
-            <input value="" name="q" type="search" placeholder="Buscar..." />
-            <button type="submit">
-                <i class="icon-search-6"></i>
-            </button>
-        </form>
-    </div>
-    <!-- End Search Menu -->
     <!-- COMMON SCRIPTS -->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
@@ -172,6 +124,9 @@
     <script src="layerslider/js/greensock.js"></script>
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+
+
+
     <script>
         $('.jarallax').jarallax({
             videoLoop: true,
@@ -194,8 +149,10 @@
 
     </script>
 
+
+
     <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
 </body>
 </html>

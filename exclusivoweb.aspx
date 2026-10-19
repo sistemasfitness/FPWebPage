@@ -10,16 +10,6 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!-- Google Tag Manager -->
-    <%--<script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
-    </script>--%>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -69,8 +59,6 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
 
-    <script src="js/fitnesspeople.js"></script>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elige el plan que mejor se adapte a ti y entrena en Fitness People en nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta." />
@@ -107,11 +95,8 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <%--<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>--%>
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -349,67 +334,6 @@
     <script src="layerslider/js/layerslider.transitions.js"></script>
     <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
 
-
-
-    <%--<script>
-
-        function openPaymentInline(url) {
-            if (url.includes("register?token=")) {
-                window.location.href = url;
-                return;
-            }
-        }
-
-        function planAddToCart(contentId, contentName, value, directUrl = null) {
-            var eventId = 'atc-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
-
-            let paymentUrl = "";
-
-            if (directUrl) {
-                paymentUrl = directUrl;
-            }
-
-            // Enviar información a Google Tag Manager
-            window.dataLayer = window.dataLayer || [];
-
-            window.dataLayer.push({
-                event: 'AddToCart',
-                event_id: eventId,
-                ecommerce: {
-                    items: [{
-                        item_id: contentId,
-                        item_name: contentName,
-                        price: value,
-                        currency: 'COP',
-                        quantity: 1
-                    }]
-                },
-                meta: {
-                    content_ids: [contentId],
-                    content_type: 'product',
-                    content_name: contentName,
-                    contents: [{
-                        id: contentId,
-                        quantity: 1,
-                        item_price: value
-                    }],
-                    currency: 'COP',
-                    value: value
-                }
-            });
-
-            // Dar tiempo al Pixel antes de redireccionar
-            if (paymentUrl.includes("register?token=")) {
-
-                setTimeout(() => {
-                    window.location.href = paymentUrl;
-                }, 300);
-
-                return;
-            }
-        }
-
-    </script>--%>
 
     <script>
 
@@ -996,7 +920,7 @@
 
 
     <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
 </body>
 </html>

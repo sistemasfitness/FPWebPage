@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sede.aspx.cs" Inherits="WebPage.sede" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -11,16 +10,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Google Tag Manager -->
-    <%--<script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
-    </script>--%>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -42,8 +31,6 @@
         })(window, document, "clarity", "script", "tqldhc207r");
     </script>
     <!-- End Microsoft Clarity -->
-
-    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -81,11 +68,8 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <%--<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>--%>
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display:none; visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -94,7 +78,7 @@
     <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section>
+    <section class="margin-top-header">
         <asp:Literal ID="ltImagenBG" runat="server"></asp:Literal>
 
         <div id="sub_content_in">
@@ -234,8 +218,10 @@
         });
     </script>
 
+
+
     <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
 </body>
 </html>

@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="aniversario.aspx.cs" Inherits="WebPage.aniversario" %>
 
-<%@ Register Src="~/controls/loginregister.ascx" TagPrefix="uc1" TagName="loginregister" %>
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
@@ -18,7 +17,7 @@
             }); var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCVVM2CZ');
+        })(window, document, 'script', 'dataLayer', 'GTM-KVFTTJ9G');
     </script>
     <!-- End Google Tag Manager -->
 
@@ -40,8 +39,6 @@
     <meta property="og:image:height" content="355" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://fitnesspeoplecolombia.com" />
-
-    <script src="js/fitnesspeople.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -83,7 +80,7 @@
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVVM2CZ" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFTTJ9G" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -373,163 +370,6 @@
 
     </script>
 
-
-
-    <%--<script>
-        $('.jarallax').jarallax({
-            videoLoop: true,
-            videoPlayOnlyVisible: false,
-            videoLazyLoading: false
-        });
-
-        'use strict';
-        $(".team-carousel").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 1000,
-            margin: 20,
-            autoplay: true,
-            smartSpeed: 300,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 2,
-                },
-                768: {
-                    items: 3,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
-
-        $(".team-carousel2").owlCarousel({
-            items: 4,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
-
-        $(".team-carousel3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoHeight: true,
-            autoWidth: false,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 10,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            autoplayHoverPause: true,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 2,
-                }
-            }
-        });
-
-        $(".team-carousel4").owlCarousel({
-            items: 1,
-            autoHeight: true,
-            autoWidth: true,
-            loop: true,
-            nav: false,
-            center: true,
-            autoplayTimeout: 3000,
-            margin: 100,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsiveClass: false,
-            responsive: {
-                320: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                1000: {
-                    items: 4,
-                }
-            }
-        });
-
-        $('#layerslider').layerSlider({
-            autoStart: true,
-            navButtons: false,
-            navStartStop: false,
-            showCircleTimer: false,
-            responsive: true,
-            responsiveUnder: 1400,
-            layersContainer: 1170,
-            skinsPath: 'layerslider/skins/'
-            // Please make sure that you didn't forget to add a comma to the line endings
-            // except the last line!
-        });
-
-        function setPanels() {
-            var windowWidth = window.innerWidth;
-            console.log(windowWidth);
-            if (windowWidth < 500) {
-                document.getElementById('img1').src = 'img/slides/slide_1_v.jpg';
-            }
-            else {
-                document.getElementById('img1').src = 'img/slides/slide_1.jpg';
-                //document.getElementById('layerslider').style = 'width:100%;height:667px;';
-            }
-        }
-    </script>--%>
-
-    <%--<script src="js/pop_up.min.js"></script>
-    <script src="js/pop_up_func.js"></script>--%>
-    <%--<script>
-        function actualizarImagenSlider() {
-            const slide1 = document.getElementById('slide1-img');
-            const slide2 = document.getElementById('slide2-img');
-            const screenWidth = window.innerWidth;
-
-            if (screenWidth <= 480) {
-                slide1.src = 'img/slides/slide_1_v.jpg'; // Imagen vertical o móvil
-                slide2.src = 'img/slides/slide_2_v.jpg';
-            } else {
-                slide1.src = 'img/slides/banner_4.jpg'; // Imagen de escritorio
-                slide2.src = 'img/slides/banner_5.jpg';
-            }
-        }
-
-        window.addEventListener('load', actualizarImagenSlider);
-        window.addEventListener('resize', actualizarImagenSlider);
-    </script>--%>
-
     <style>
 
         .video-container {
@@ -573,7 +413,7 @@
     </style>
 
     <noscript>
-        <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
+        <img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1224942061553441&ev=PageView&noscript=1" />
     </noscript>
 </body>
 </html>
