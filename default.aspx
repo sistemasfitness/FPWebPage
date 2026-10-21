@@ -157,9 +157,9 @@
                     <picture>
                         <source
                             media="(max-width: 600px)"
-                            srcset="img/slides/slider1_2026-08-21_mobile.jpg" />
+                            srcset="img/slides/slider1_2026-08-21_mobile.webp" />
                         <img
-                            src="img/slides/slider1_2026-08-21.jpg"
+                            src="img/slides/slider1_2026-08-21.webp"
                             alt="Fitness People"
                             decoding="async" />
                     </picture>
@@ -171,9 +171,9 @@
                     <picture>
                         <source
                             media="(max-width: 600px)"
-                            srcset="img/slides/slider2_2026-08-21_mobile.jpg" />
+                            srcset="img/slides/slider2_2026-08-21_mobile.webp" />
                         <img
-                            src="img/slides/slider2_2026-08-21.jpg"
+                            src="img/slides/slider2_2026-08-21.webp"
                             alt="Fitness People"
                             decoding="async" />
                     </picture>

@@ -75,7 +75,7 @@
     <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="banner-sub-header parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900">Pago a través de Wompi</h1>
             <p style="font-weight: 900;">¡Rápido, seguro y sin complicaciones!</p>
@@ -84,7 +84,7 @@
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35">
+    <div class="container margin_60_35 section-pasarela">
         <div class="row">
             <%--<form>
                 <script src="https://checkout.wompi.co/widget.js"
@@ -501,6 +501,12 @@
     </script>
 
     <style>
+
+        @media (max-width: 991px) {
+	        .parallax-mirror {
+		        display: none !important;
+	        }
+        }
 
         .section-prin-logos-met-pagos {
              margin-top: 0;

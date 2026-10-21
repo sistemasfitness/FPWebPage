@@ -10,7 +10,7 @@
                     <ul>
                         <li><a href="https://www.facebook.com/FitnessPeopleBga" target="_blank"><i class="fab fa-facebook"></i></a></li>
                         <li><a href="https://www.instagram.com/fitnesspeople_colombia" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://wa.me/573146887259" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                        <li><a href="https://wa.me/573107842151" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                         <%--<li><a href="#"><i class="icon-google"></i></a></li>
                         <li><a href="#"><i class="icon-linkedin"></i></a></li>--%>
                     </ul>

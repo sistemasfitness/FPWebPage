@@ -5590,8 +5590,10 @@ body.menu-open {
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 991px) {
-	.fpp-head {
+	.fp-planes .fpp-head {
 		justify-content: center;
+		gap: 10px;
+		margin-bottom: 30px;
 	}
 
 	.fpp-grid,
@@ -6593,5 +6595,15 @@ body.menu-open {
 @media (max-width: 575px) {
 	.contenedor-imgs {
 		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 991px) {
+	.banner-sub-header.parallax_window_in {
+		display: none !important;
+	}
+
+	.section-pasarela {
+		margin-top: 70px;
 	}
 }

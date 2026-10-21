@@ -76,16 +76,15 @@
     <!-- Control Main Menu -->
 
     <!-- SubHeader =============================================== -->
-    <section class="parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="banner-sub-header parallax_window_in margin-top-header" data-parallax="scroll" data-image-src="img/banners/planeasy.jpg" data-natural-width="1400" data-natural-height="470">
         <div id="sub_content_in">
             <h1 style="font-weight: 900;">¡Compra tu plan ahora!</h1>
-            <%--<p style="font-weight: 900; color: black;">Completa la siguiente informacion</p>--%>
         </div>
     </section>
     <!-- End section -->
     <!-- End SubHeader ============================================ -->
 
-    <div class="container margin_60_35" style="color: #fff;">
+    <div class="container margin_60_35 section-pasarela" style="color: #fff;">
         <div class="row">
             <form id="form" runat="server" class="form-web">
                 <div class="col-md-8">
@@ -107,7 +106,7 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nro. de Documento: *</label>
-                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" placeholder="1234567890" MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                                <asp:TextBox ID="txbDocumento" CssClass="form-control" runat="server" MaxLength="10" AutoPostBack="true" OnTextChanged="GestionarDatosUsuario" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
                                                 <p style="color: #fff; font-size: 12px; color: #e3ff00; margin-top: 5px; text-align: justify; line-height: 15px;"><i class="fa-solid fa-circle-info" style="font-weight: 900; margin-right: 5px;"></i>Al ingresar tu número de documento, algunos datos podrán completarse automáticamente mediante procesos de validación con fuentes autorizadas, con el fin de agilizar tu registro.</p>
                                             </div>
                                         </div>
@@ -126,13 +125,13 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Nombre(s): *</label>
-                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" placeholder="Pepito" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
+                                                <asp:TextBox ID="txbNombre" CssClass="form-control" runat="server" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Apellido(s): *</label>
-                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" placeholder="Pérez" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
+                                                <asp:TextBox ID="txbApellido" CssClass="form-control" runat="server" onkeypress="permitirSoloLetras(event)"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +145,7 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Celular: *</label>
-                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" placeholder="3001234567" MaxLength="10" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
+                                                <asp:TextBox ID="txbCelular" CssClass="form-control" runat="server" MaxLength="10" onkeypress="permitirSoloNumeros(event)"></asp:TextBox>
                                             </div>
                                         </div>
 
@@ -690,6 +689,12 @@
 
 
     <style>
+
+        @media (max-width: 991px) {
+	        .parallax-mirror {
+		        display: none !important;
+	        }
+        }
 
         body.modal-open {
             padding-right: 0 !important;

@@ -200,7 +200,7 @@ namespace WebPage.controls
                             "Acceso a todas las sedes de Fitness People.",
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
-                            "5 pases de invitado al mes.",
+                            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
                             "Valoración física inicial."
                         }
                     };
@@ -263,7 +263,7 @@ namespace WebPage.controls
                             "Acceso a todas las sedes de Fitness People.",
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
-                            "5 pases de invitado al mes.",
+                            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
                             "Valoración física inicial."
                         }
                     };
@@ -293,7 +293,7 @@ namespace WebPage.controls
                             "Acceso a todas las sedes de Fitness People.",
                             "Clases grupales con instructores certificados.",
                             "FP App con planes de entrenamiento y tips de nutrición.",
-                            "5 pases de invitado al mes.",
+                            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
                             "Valoración física inicial."
                         }
                     };
