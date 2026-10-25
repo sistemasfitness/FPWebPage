@@ -152,17 +152,18 @@
                 </div>--%>
 
                 <!-- Slide 2 -->
-                <div class="swiper-slide"
-                     onclick="window.location.href='agendaDiaCortesia';">
-                    <picture>
-                        <source
-                            media="(max-width: 600px)"
-                            srcset="img/slides/slider1_2026-08-21_mobile.webp" />
-                        <img
-                            src="img/slides/slider1_2026-08-21.webp"
-                            alt="Fitness People"
-                            decoding="async" />
-                    </picture>
+                <div class="swiper-slide">
+                    <a href="default#planes">
+                        <picture>
+                            <source
+                                media="(max-width: 600px)"
+                                srcset="img/slides/slider4_2026-10-24_mobile.webp" />
+                            <img
+                                src="img/slides/slider4_2026-10-24.webp"
+                                alt="Fitness People"
+                                decoding="async" />
+                        </picture>
+                    </a>
                 </div>
 
                 <!-- Slide 3 -->

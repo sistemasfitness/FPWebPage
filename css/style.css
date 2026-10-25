@@ -4258,31 +4258,32 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 @media (max-width: 600px) {
 	#full-slider-wrapper {
-		margin-top: 0;
-		width: 100%;
 		overflow: hidden;
 	}
 
 	.fp-slider {
 		width: 100%;
-		height: 100dvh;
-		aspect-ratio: auto;
+		height: auto;
+		aspect-ratio: 9 / 16;
 	}
 
 		.fp-slider .swiper-slide {
 			width: 100%;
-			height: 100vh;
+			height: 100%;
 		}
 
+			.fp-slider .swiper-slide a,
 			.fp-slider .swiper-slide picture {
+				display: block;
 				width: 100%;
 				height: 100%;
 			}
 
 				.fp-slider .swiper-slide picture img {
+					display: block;
 					width: 100%;
-					height: 100dvh;
-					object-fit: cover;
+					height: 100%;
+					object-fit: contain;
 					object-position: center center;
 				}
 
@@ -4751,10 +4752,10 @@ body.menu-open {
 	right: 70px;
 	bottom: 20px;
 	z-index: 90;
-	width: 40px;
-	height: 40px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
-	font-size: 20px;
+	font-size: 40px;
 	background: #25D366;
 	color: #fff;
 	display: flex;
@@ -4764,6 +4765,11 @@ body.menu-open {
 	text-decoration: none;
 	transition: transform .2s;
 }
+
+	.wa-float i {
+		/*width: 50px;
+		height: 50px;*/
+	}
 
 	.wa-float:hover {
 		transform: scale(1.08);
@@ -5639,7 +5645,7 @@ body.menu-open {
    PLANES
    ========================================== */
 
-
+/* ------------------------------------------------------------------------ */
 
 /* ==========================================
    CONVENIO - CONFENALCO
@@ -6607,3 +6613,408 @@ body.menu-open {
 		margin-top: 70px;
 	}
 }
+
+/* ==========================================
+   PLAN FLEXIBLE PRO
+   ========================================== */
+
+/* ============ BANNER INICIO ============ */
+.fpp-hero {
+	padding: 148px 0 74px;
+}
+
+.fpp-hero-section {
+	display: flex;
+	gap: 56px;
+	align-items: center;
+}
+
+.fpp-hero-section h1 {
+	font-size: clamp(50px, 6vw, 80px);
+}
+
+.fpp-oferta {
+	margin-top: 18px;
+}
+
+.fpp-oferta-row {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 4px 12px;
+}
+
+.fpp-oferta-precio {
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--fp-lime);
+}
+
+.fpp-oferta-txt {
+	font-size: 13px;
+	font-weight: 700;
+	color: var(--fp-white);
+}
+
+.fpp-oferta-cond {
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--fp-gray-2);
+	margin-top: 4px;
+	line-height: 1.5;
+}
+
+/* ============ FRANJA ============ */
+.fpp-franja {
+	background: var(--fp-lime);
+	color: var(--fp-black);
+}
+
+	.fpp-franja .wrap {
+		display: flex;
+		justify-content: center;
+		gap: 150px;
+		padding: 22px 0;
+	}
+
+.fpp-dif {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 8px;
+}
+
+	.fpp-dif i {
+		width: 45px;
+		height: 45px;
+		font-size: 20px;
+		border-radius: 50%;
+		background: var(--fp-black);
+		color: var(--fp-lime);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.fpp-dif b {
+		font-size: 11.5px;
+		font-weight: 800;
+		line-height: 1.25;
+	}
+
+	.fpp-dif span {
+		display: block;
+	}
+
+/* ============ PARA TI ============ */
+.fpp-sec {
+	padding: 60px 0;
+}
+
+.fpp-title {
+	font-weight: 800;
+	text-transform: uppercase;
+	line-height: .95;
+	letter-spacing: .5px;
+	font-size: clamp(30px, 5vw, 52px);
+}
+
+.fpp-parati {
+	margin-top: 26px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.fpp-pt {
+	background: var(--fp-card);
+	border-left: 3px solid var(--fp-lime);
+	border-radius: 10px;
+	padding: 16px 16px 16px 18px;
+}
+
+	.fpp-pt b {
+		display: block;
+		font-size: 15px;
+		font-weight: 800;
+		color: var(--fp-white);
+	}
+
+	.fpp-pt p {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--fp-gray);
+		margin-top: 4px;
+		margin-bottom: 0;
+		line-height: 1.5;
+	}
+
+/* ============ ASÍ EMPIEZAS ============ */
+.fpp-pasos-grid {
+	display: grid;
+	gap: 26px;
+}
+
+.fpp-pasos {
+	list-style: none;
+	display: grid;
+	gap: 18px;
+	margin-top: 26px;
+	padding-left: 0;
+}
+
+	.fpp-pasos li {
+		display: grid;
+		grid-template-columns: 34px 1fr;
+		gap: 14px;
+		align-items: start;
+	}
+
+	.fpp-pasos .n {
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		background: var(--fp-lime);
+		color: var(--fp-black);
+		font-size: 20px;
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.fpp-pasos b {
+		display: block;
+		font-size: 15px;
+		font-weight: 800;
+	}
+
+	.fpp-pasos p {
+		font-size: 13px;
+		color: var(--fp-gray);
+		margin-top: 3px;
+		font-weight: 600;
+		margin-bottom: 0;
+	}
+
+.fpp-equipo {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+	.fpp-equipo figure {
+		border-radius: 10px;
+		overflow: hidden;
+		aspect-ratio: 3 / 2;
+		background: #222;
+		position: relative;
+	}
+
+	.fpp-equipo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.fpp-equipo figcaption {
+		position: absolute;
+		left: 8px;
+		bottom: 8px;
+		font-size: 10px;
+		font-weight: 800;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		background: rgba(0,0,0,.7);
+		padding: 5px 8px;
+		border-radius: 4px;
+	}
+
+/* ============ TESTIMONIOS ============ */
+.fpp-socios {
+	margin-top: 26px;
+	display: grid;
+	gap: 10px;
+}
+
+.fpp-testi {
+	background: var(--fp-card);
+	border: 1px solid var(--fp-lime);
+	border-radius: 10px;
+	padding: 16px;
+}
+
+.fpp-testi-cab {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.fpp-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1.5px dashed var(--fp-lime);
+	background: var(--fp-gray-light);
+	flex-shrink: 0;
+}
+
+.fpp-testi-cab b {
+	display: block;
+	color: var(--fp-white);
+	font-size: 13px;
+	font-weight: 800;
+}
+
+.fpp-testi-cab small {
+	font-size: 11px;
+	color: var(--fp-gray-light);
+}
+
+.fpp-testi p {
+	font-size: 13px;
+	color: #D8D8D8;
+	font-weight: 600;
+	line-height: 1.6;
+	margin-bottom: 0;
+}
+
+/* ============ PLAN ============ */
+.fpp-plan-sec {
+	background: radial-gradient(120% 70% at 50% 0%, #1A1D08 0%, #121212 45%, #0C0C0C 100%);
+}
+
+	.fpp-plan-sec .fpp-benefits {
+		padding-left: 0;
+	}
+
+.fpp-plan-sec-fp {
+	display: flex;
+	justify-content: center;
+}
+
+.fpp-plan-sec-fp .fpp-plan-fp {
+	margin-top: 50px;
+	max-width: 500px;
+}
+
+/* ============ FAQ ============ */
+.fpp-sub-title {
+	font-size: 16px;
+	max-width: 800px;
+}
+
+/* ============ PRUEBA GRATIS | FINAL ============ */
+.fpp-sec-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+	.fpp-sec-center .fpp-title {
+		margin-top: 0;
+	}
+
+	.fpp-sec-center .fpp-hero-ctas {
+		width: 400px;
+		margin-top: 15px;
+	}
+
+/* ============ RESPONSIVE ============ */
+@media (min-width: 1024px) {
+	.fpp-pasos-grid {
+		grid-template-columns: 1fr 1fr;
+		gap: 56px;
+		align-items: center;
+	}
+
+	.fpp-pasos {
+		gap: 24px;
+	}
+
+		.fpp-pasos b {
+			font-size: 17px;
+		}
+
+		.fpp-pasos p {
+			font-size: 14px;
+		}
+
+	.fpp-equipo {
+		grid-template-columns: 1fr 1fr;
+		gap: 14px;
+	}
+
+		.fpp-equipo figure {
+			aspect-ratio: 3 / 4;
+		}
+
+			.fpp-equipo figure:last-child {
+				transform: translateY(40px);
+			}
+
+	/* */
+
+	.fpp-socios {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.fpp-testi {
+		padding: 24px;
+	}
+
+		.fpp-testi p {
+			font-size: 14px;
+		}
+}
+
+@media (max-width: 768px) {
+	.fpp-hero-plan {
+		padding: 110px 0 74px;
+	}
+
+	/* */
+
+	.fpp-franja .wrap {
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	/* */
+
+	.fpp-sec {
+		padding: 84px 0;
+	}
+
+	.fpp-parati {
+		grid-template-columns: repeat(1, 1fr);
+		gap: 14px;
+	}
+
+	/* */
+
+	.fpp-sec-center .fpp-hero-ctas {
+		width: 250px;
+	}
+}
+
+@media (min-width: 768px) {
+	.fpp-socios {
+		grid-template-columns: 1fr 1fr;
+		gap: 14px;
+	}
+}
+
+@media (max-width: 400px) {
+	.fpp-hero-section h1 {
+		font-size: 45px;
+	}
+}
+
+/* ==========================================
+   PLAN FLEXIBLE PRO
+   ========================================== */
