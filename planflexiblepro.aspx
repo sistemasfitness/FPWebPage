@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="fpp-hero-ctas">
-                        <a class="fpp-btn fpp-btn--solid" href="register?token=TKIlFPP8XYRC9l1rfGjR">
+                        <a class="fpp-btn fpp-btn--solid" href="#plan">
                             Empieza por $9.900
                         </a>
                         <a class="fpp-btn fpp-btn--outline" href="agendaDiaCortesia">
@@ -202,16 +202,16 @@
 
             <div class="fpp-socios">
                 <article class="fpp-testi">
-                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"></span><div><b>Testimonio real · primera vez en un gym</b><small>Sede y ciudad</small></div></div>
-                    <p>Qué temía antes de entrar y cómo fue su primer mes.</p>
+                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"><img src="https://lh3.googleusercontent.com/a-/ALV-UjV3itX1zBgc0PN1RrBHyBD--rjsvsFq1N_gBK3iIdY9MeKDWMEO=w72-h72-p-rp-mo-ba12-br100" alt="Foto de perfil"/></span><div><b>Carlos Andres Diaz Galeano</b><small>Provenza - Bucaramanga</small></div></div>
+                    <p>Un Gimnasio bastante completo, espacios adecuados y buena asesoría para clientes nuevos.</p>
                 </article>
                 <article class="fpp-testi">
-                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"></span><div><b>Testimonio real · socio 45+</b><small>Sede y ciudad</small></div></div>
-                    <p>Cómo llegó (dolor, sin experiencia) y qué cambió en su vida, en sus palabras.</p>
+                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"><img src="https://lh3.googleusercontent.com/a-/ALV-UjVhCGHkxgfULVkA84PQ1gPIXqp57p5GU9lHuSy9zw5Hmj2p_qU8Tw=w72-h72-p-rp-mo-ba12-br100" alt="Foto de perfil"/></span><div><b>Luz Marina Collazos</b><small>Parque Central - Cúcuta</small></div></div>
+                    <p>Excelente, están pendientes, las máquinas les hacen mantenimiento, la señora actual del aseo es perfecto, los asesores son muy respetuosos, la persona al ingreso es muy amable.</p>
                 </article>
                 <article class="fpp-testi">
-                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"></span><div><b>Testimonio real · primera vez en un gym</b><small>Sede y ciudad</small></div></div>
-                    <p>Qué temía antes de entrar y cómo fue su primer mes.</p>
+                    <div class="fpp-testi-cab"><span class="fpp-avatar" aria-hidden="true"><img src="https://lh3.googleusercontent.com/a-/ALV-UjU6sdCbQdO9YSJ7vxI2GU9qFut0Klw-RhRDyOvxRBjF3KYEd9GklQ=w72-h72-p-rp-mo-ba12-br100" alt="Foto de perfil"/></span><div><b>Andres David Baldovino</b><small>Cañaveral - Floridablanca</small></div></div>
+                    <p>Buen servicio. Buenas maquinas. Pequeño pero cómodo. Los entrenadores muy pendientes de todo.</p>
                 </article>
             </div>
         </div>
@@ -290,7 +290,7 @@
             <h2 class="fpp-title">Tu primer mes cuesta menos que un domicilio</h2>
 
             <div class="fpp-hero-ctas">
-                <a class="fpp-btn fpp-btn--solid fpp-btn-full" href="register?token=TKIlFPP8XYRC9l1rfGjR">
+                <a class="fpp-btn fpp-btn--solid fpp-btn-full" href="#plan">
                     Empieza por $9.900
                 </a>
             </div>
