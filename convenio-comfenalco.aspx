@@ -181,9 +181,12 @@
                                                 ID="ddlTipoDoc"
                                                 runat="server"
                                                 ClientIDMode="Static"
-                                                CssClass="fpp-cs-select"
-                                                DataTextField="tipoDocumento"
-                                                DataValueField="idTipoDoc">
+                                                CssClass="fpp-cs-select">
+                                                <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                                <asp:ListItem Text="Cédula de ciudadanía" Value="CC" data-sigla="CC"></asp:ListItem>
+                                                <asp:ListItem Text="Cédula de extranjería" Value="CE" data-sigla="CE"></asp:ListItem>
+                                                <asp:ListItem Text="Tarjeta de identidad" Value="TI" data-sigla="TI"></asp:ListItem>
+                                                <asp:ListItem Text="Permiso especial" Value="PE" data-sigla="PE"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
 
@@ -213,9 +216,12 @@
                                                 ID="ddlTipoDocB"
                                                 runat="server"
                                                 ClientIDMode="Static"
-                                                CssClass="fpp-cs-select"
-                                                DataTextField="tipoDocumento"
-                                                DataValueField="idTipoDoc">
+                                                CssClass="fpp-cs-select">
+                                                <asp:ListItem Text="Selecciona una opción" Value=""></asp:ListItem>
+                                                <asp:ListItem Text="Cédula de ciudadanía" Value="CC" data-sigla="CC"></asp:ListItem>
+                                                <asp:ListItem Text="Cédula de extranjería" Value="CE" data-sigla="CE"></asp:ListItem>
+                                                <asp:ListItem Text="Tarjeta de identidad" Value="TI" data-sigla="TI"></asp:ListItem>
+                                                <asp:ListItem Text="Permiso especial" Value="PE" data-sigla="PE"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                         <div>
@@ -287,6 +293,12 @@
                                             visible="false">
                                         </p>
 
+                                        <p
+                                            id="csMensajeResultado"
+                                            runat="server"
+                                            class="fpp-cs-detalle">
+                                        </p>
+
                                         <span class="fpp-cs-cat">
                                             <i class="fa-solid fa-plus"></i> 
                                             <span>Tarifa del convenio habilitada</span>
@@ -316,7 +328,15 @@
 
                                 <h3>Este documento no aplica</h3>
 
-                                <p>No pudimos habilitar la tarifa del convenio para el documento que digitaste. Puede ser porque la afiliación no está activa a la fecha o porque no cumple las condiciones vigentes del convenio. Un asesor puede revisarlo contigo y mostrarte las demás opciones.</p>
+                                <p
+                                    id="csMensajeNoAplica"
+                                    runat="server"
+                                    class="fpp-cs-detalle">
+                                </p>
+
+                                <p>
+                                    Un asesor puede revisar tu caso contigo y mostrarte las demás opciones disponibles.
+                                </p>
 
                                 <div class="acciones">
                                     <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
@@ -768,6 +788,9 @@
                     radio.addEventListener(
                         'change',
                         function () {
+                            // Limpiar los resultados de la consulta anterior
+                            limpiarResultadoConsulta();
+
                             // Guardar el rol seleccionado
                             var hfRol = document.getElementById('hfRol');
 
@@ -955,6 +978,35 @@
                 mensaje.classList.remove('on');
             }
 
+            function limpiarResultadoConsulta() {
+                var resultadoAplica = document.getElementById('csRes');
+                var resultadoNoAplica = document.getElementById('csNo');
+                var cargando = document.getElementById('csLoad');
+
+                // Ocultar resultado positivo
+                if (resultadoAplica) {
+                    resultadoAplica.classList.remove('on');
+                    resultadoAplica.style.display = 'none';
+                }
+
+                // Ocultar resultado negativo
+                if (resultadoNoAplica) {
+                    resultadoNoAplica.classList.remove('on');
+                    resultadoNoAplica.style.display = 'none';
+                }
+
+                // Ocultar indicador de carga
+                if (cargando) {
+                    cargando.style.display = 'none';
+                }
+
+                // Limpiar mensajes de validación
+                limpiarMensaje();
+
+                // Limpiar marcas de error
+                limpiarErrores();
+            }
+
             function limpiarErrores() {
                 if (tipo) {
                     tipo.classList.remove('err');
@@ -984,17 +1036,6 @@
                 limpiarErrores();
 
                 var beneficiario = esBeneficiario();
-
-                // ----- AUTORIZACIÓN -----
-                if (!autorizacion || !autorizacion.checked) {
-                    if (checkWrap) {
-                        checkWrap.classList.add('err');
-                    }
-
-                    mostrarError('Debes aceptar los términos y la política de tratamiento de datos.');
-
-                    return false;
-                }
 
                 // ----- TIPO DOCUMENTO TITULAR -----
                 if (!tipo || !tipo.value) {
@@ -1040,6 +1081,17 @@
 
                         return false;
                     }
+                }
+
+                // ----- AUTORIZACIÓN -----
+                if (!autorizacion || !autorizacion.checked) {
+                    if (checkWrap) {
+                        checkWrap.classList.add('err');
+                    }
+
+                    mostrarError('Debes aceptar los términos y la política de tratamiento de datos.');
+
+                    return false;
                 }
 
                 return true;

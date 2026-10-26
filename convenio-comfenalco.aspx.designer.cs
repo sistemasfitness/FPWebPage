@@ -168,6 +168,15 @@ namespace WebPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl csDocB;
 
         /// <summary>
+        /// Control csMensajeResultado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl csMensajeResultado;
+
+        /// <summary>
         /// Control csNo.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl csNo;
+
+        /// <summary>
+        /// Control csMensajeNoAplica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl csMensajeNoAplica;
 
         /// <summary>
         /// Control footer.
