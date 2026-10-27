@@ -396,27 +396,7 @@
                 return;
             }
 
-            // ==========================================
-            // RESTO DE PLANES
-            // ==========================================
-
             abrirPanelSede();
-
-
-
-            //const boton = e.target.closest(".btn-comprar-plan");
-
-            //if (!boton) return;
-
-            //e.preventDefault();
-
-            //planSeleccionado = boton.getAttribute("data-plan-id");
-            //nombrePlanSeleccionado = boton.getAttribute("data-plan-name");
-            //precioPlanSeleccionado = boton.getAttribute("data-plan-price");
-
-            //if (!planSeleccionado) return;
-
-            //abrirPanelSede();
         });
 
         /* ============= ABRIR PANEL ============= */

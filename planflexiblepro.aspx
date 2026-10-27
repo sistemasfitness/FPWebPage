@@ -130,9 +130,9 @@
                         <a class="fpp-btn fpp-btn--solid" href="#plan">
                             Empieza por $9.900
                         </a>
-                        <a class="fpp-btn fpp-btn--outline" href="agendaDiaCortesia">
+                        <%--<a class="fpp-btn fpp-btn--outline" href="agendaDiaCortesia">
                             Prueba un día gratis
-                        </a>
+                        </a>--%>
                     </div>
                 </div>
             </div>
@@ -320,10 +320,43 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
-            /* ============= URL FLEXIBLE PRO | $9.900 ============= */
+            // ======= VIEWCONTENT | VISUALIZACIÓN DE PLANES =======
+            var seccionPlanes = document.querySelector("#plan");
+
+            if (seccionPlanes) {
+                var viewContentEnviado = false;
+
+                var observador = new IntersectionObserver(function (entradas) {
+
+                    entradas.forEach(function (entrada) {
+
+                        if (entrada.isIntersecting && !viewContentEnviado) {
+
+                            viewContentEnviado = true;
+
+                            window.dataLayer = window.dataLayer || [];
+
+                            window.dataLayer.push({
+                                event: "ViewContent",
+                                content_name: "Planes Fitness People",
+                                content_type: "product"
+                            });
+
+                            observador.disconnect();
+                        }
+                    });
+
+                }, {
+                    threshold: 0.25
+                });
+
+                observador.observe(seccionPlanes);
+            }
+
+            // ======= URL FLEXIBLE PRO | $9.900 =======
             const urlFlexiblePro = "register?token=TKIlFPP8XYRC9l1rfGjR";
 
-            /* ============= COMPRAR PLAN ============= */
+            // ======= COMPRAR PLAN =======
             document.addEventListener("click", function (e) {
                 const boton = e.target.closest(".btn-comprar-plan");
 
@@ -331,19 +364,14 @@
 
                 e.preventDefault();
 
-                planSeleccionado = boton.getAttribute("data-plan-id");
-                nombrePlanSeleccionado = boton.getAttribute("data-plan-name");
-                precioPlanSeleccionado = boton.getAttribute("data-plan-price");
+                const planSeleccionado = boton.getAttribute("data-plan-id");
+                const nombrePlanSeleccionado = boton.getAttribute("data-plan-name");
+                const precioPlanSeleccionado = boton.getAttribute("data-plan-price");
 
                 if (!planSeleccionado) return;
 
-                // ==========================================
-                // FLEXIBLE PRO
-                // ==========================================
-
+                // ======= FLEXIBLE PRO =======
                 if (planSeleccionado === "FLEXIBLE_PRO") {
-
-                    // GOOGLE TAG MANAGER
                     window.dataLayer = window.dataLayer || [];
 
                     window.dataLayer.push({
@@ -356,11 +384,16 @@
                                 currency: "COP",
                                 quantity: 1
                             }]
-                        }
-                    });
+                        },
 
-                    // Redirección directa
-                    window.location.href = urlFlexiblePro;
+                        // Redirigir después de que GTM procese el evento
+                        eventCallback: function () {
+                            window.location.href = urlFlexiblePro;
+                        },
+
+                        // Tiempo máximo de espera para evitar bloquear al usuario
+                        eventTimeout: 2000
+                    });
 
                     return;
                 }

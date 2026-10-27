@@ -4749,11 +4749,11 @@ body.menu-open {
 
 .wa-float {
 	position: fixed;
-	right: 70px;
-	bottom: 20px;
+	right: 20px;
+	bottom: 75px;
 	z-index: 90;
-	width: 70px;
-	height: 70px;
+	width: 65px;
+	height: 65px;
 	border-radius: 50%;
 	font-size: 40px;
 	background: #25D366;
