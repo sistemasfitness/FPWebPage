@@ -60,6 +60,15 @@ namespace WebPage
         protected global::System.Web.UI.WebControls.HiddenField hfRol;
 
         /// <summary>
+        /// Control hfCategoriaTitular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCategoriaTitular;
+
+        /// <summary>
         /// Control ddlTipoDoc.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,33 @@ namespace WebPage
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl csMensajeResultado;
+
+        /// <summary>
+        /// Control litValorPlan.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litValorPlan;
+
+        /// <summary>
+        /// Control litSubsidio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litSubsidio;
+
+        /// <summary>
+        /// Control litTotalPagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTotalPagar;
 
         /// <summary>
         /// Control csNo.

@@ -251,7 +251,7 @@ namespace WebPage.controls
                         Precio = "$9.900",
                         Periodo = "",
 
-                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 12 meses",
+                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 6 meses",
                         NotaFidelidad = "Aplica cobro por retiro anticipado",
 
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
@@ -277,7 +277,7 @@ namespace WebPage.controls
                         Modalidad = "Pago único anual",
                         Tagline = "Entrena sin pausas durante todo un año.",
 
-                        InscProm = "+ 4 meses GRATIS",
+                        InscProm = "Sin inscripción",
                         PrecioAntes = "Antes $1.380.000",
                         LabelPrecio = "",
                         Precio = "$990.000",

@@ -295,7 +295,7 @@ namespace WebPage
                                     <div class='total_cart info-plan-conditions'>
                                         <p class='condition-pri'>DÉBITO AUTOMÁTICO</p>
 
-                                        <p class='condition-sec'>FIDELIDAD DE 12 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
+                                        <p class='condition-sec'>FIDELIDAD DE 6 MESES, APLICA COBRO POR RETIRO ANTICIPADO</p>
                                     </div>
                                     <div class='total_cart info-plan-precie'>
                                         <p class='sub-title sub-title-before'>ANTES $165.000 /mes</p>

@@ -16,23 +16,23 @@
         <!-- ================= PLANES MÁS VENDIDOS ================= -->
         <div class="planes-mas-vendidos active">
             <div class="fpp-grid ">
-                <!-- ================= PLAN MES A MES ================= -->
-                <uc:PlanCard
-                    ID="MesAMes"
-                    runat="server"
-                    PlanId="MES_A_MES" />
-
                 <!-- ============ PLAN FLEXIBLE PRO (DESTACADO) ============ -->
                 <uc:PlanCard
                     ID="PlanFlexiblePro"
                     runat="server"
                     PlanId="FLEXIBLE_PRO" />
 
-                <!-- ================= PLAN AÑO IMPARABLE ================= -->
+                <!-- ================= PLAN MES A MES ================= -->
                 <uc:PlanCard
+                    ID="MesAMes"
+                    runat="server"
+                    PlanId="MES_A_MES" />
+
+                <!-- ================= PLAN AÑO IMPARABLE ================= -->
+                <%--<uc:PlanCard
                     ID="PlanAnoImparable"
                     runat="server"
-                    PlanId="ANIO_IMPARABLE" />
+                    PlanId="ANIO_IMPARABLE" />--%>
             </div>
         </div>
 

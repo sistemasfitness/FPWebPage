@@ -108,7 +108,7 @@
                 <div>
                     <h1 class="fpp-general-title">Tu caja <span>te pone a entrenar</span></h1>
                     <p class="fpp-hero-sub">
-                        Si estás afiliado a <strong>Comfenalco Santander</strong>, entrenas en Fitness People por <strong>$79.000 al mes.</strong> Digita tu documento y te confirmamos al instante si aplicas al convenio, seas titular o beneficiario.
+                        Si estás afiliado a <strong>Comfenalco Santander</strong>, entrenas en Fitness People con un <strong>precio especial</strong>. Digita tu documento y te confirmamos al instante si aplicas al convenio, seas titular o beneficiario.
                     </p>
                     <div class="fpp-hero-ctas">
                         <a class="fpp-btn fpp-btn--solid" href="#consulta">
@@ -167,6 +167,11 @@
 
                                 <asp:HiddenField
                                     ID="hfRol"
+                                    runat="server"
+                                    ClientIDMode="Static" />
+
+                                <asp:HiddenField
+                                    ID="hfCategoriaTitular"
                                     runat="server"
                                     ClientIDMode="Static" />
 
@@ -306,16 +311,32 @@
                                     </div>
 
                                     <div class="fpp-cs-precio">
-                                        <div class="antes">Tarifa plena <s>$165.000</s></div>
+                                        <div class="fpp-cs-plan-nombre">Plan Convenio Comfenalco</div>
 
-                                        <div class="ahora">
-                                            <span class="v">$79.000</span>
-                                            <span class="p">/ mes</span>
+                                        <div class="fpp-cs-desglose">
+                                            <div class="fpp-cs-desglose-item">
+                                                <span>Valor del plan</span>
+                                                <strong>
+                                                    $<asp:Literal ID="litValorPlan" runat="server" />
+                                                </strong>
+                                            </div>
+
+                                            <div class="fpp-cs-desglose-item">
+                                                <span>Subsidio del convenio</span>
+                                                <strong>
+                                                    -$<asp:Literal ID="litSubsidio" runat="server" />
+                                                </strong>
+                                            </div>
+
+                                            <div class="fpp-cs-desglose-total">
+                                                <span>Total a pagar</span>
+                                                <strong>
+                                                    $<asp:Literal ID="litTotalPagar" runat="server" />
+                                                </strong>
+                                            </div>
                                         </div>
 
-                                        <div class="ahorro">Ahorras $86.000 cada mes</div>
-
-                                        <button type="button" class="fpp-btn fpp-btn--solid fpp-btn-full" id="btnComprar">Continuar mi inscripción</button>
+                                        <button type="button" class="fpp-btn fpp-btn--solid fpp-btn-full" id="btnComprar">¡Comprar ya!</button>
                                     </div>
                                 </div>
 
@@ -339,7 +360,7 @@
                                 </p>
 
                                 <div class="acciones">
-                                    <a href="https://wa.me/573107842151" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
+                                    <a href="https://wa.me/573204630051" class="fpp-btn fpp-btn--solid">Hablar con un asesor</a>
                                     <a href="default#planes" class="fpp-btn fpp-btn--outline">Ver planes sin convenio</a>
                                 </div>
 
@@ -381,7 +402,7 @@
             <div class="fpp-section-head fpp-section-head--split">
                 <div>
                     <div class="fpp-kicker">Qué incluye</div>
-                    <h2 class="fpp-general-title">Misma tarifa, <span>todo incluido</span></h2>
+                    <h2 class="fpp-general-title">Tarifa especial, <span>todo incluido</span></h2>
                 </div>
                 
                 <p>El convenio cambia lo que pagas, no lo que recibes. Los afiliados de Comfenalco entran con la membresía completa de Fitness People.</p>
@@ -389,19 +410,14 @@
 
             <div class="fpp-chips">
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acceso a las 10 sedes</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Clases grupales ilimitadas</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoración médico-deportiva</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoraciones de seguimiento</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Deportólogo en sede</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Fisioterapia preventiva</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acompañamiento nutricional</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Entrenadores en piso</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Clases grupales</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoración inicial con Fisioterapia</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Zona cardiovascular</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Peso libre y mancuernas</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Zona funcional</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Spinning, Pilates y Xtreme</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> FP App</span>
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Abierto los 7 días</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Abierto todos los días</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Sin cuota de inscripción</span>
             </div>
         </div>
@@ -518,7 +534,7 @@
                     <div class="fpp-kicker">Preguntas frecuentes</div>
                     <h2 class="fpp-general-title">Sobre el <span>convenio</span></h2>
                     <p>Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
-                    <a href="https://wa.me/57..." class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
+                    <a href="https://wa.me/573204630051" class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
                 </div>
 
                 <div class="fpp-fap-section">
@@ -528,7 +544,7 @@
                     </details>
                     <details>
                         <summary>¿Cuánto cuesta la membresía con el convenio?</summary>
-                        <p>Hay una sola tarifa: $79.000 al mes, sin cuota de inscripción y sin permanencia, frente a los $165.000 de la tarifa plena. Es la misma para titulares y beneficiarios que apliquen.</p>
+                        <p>El valor de la membresía es de $63.400, $67.300 o $79.200 al mes, según el subsidio asignado al titular del convenio. Este beneficio aplica tanto para titulares como para sus beneficiarios que cumplan las condiciones del convenio.</p>
                     </details>
                     <details>
                         <summary>¿Mis beneficiarios también acceden a la tarifa?</summary>
@@ -541,10 +557,6 @@
                     <details>
                         <summary>¿Puedo entrenar en todas las sedes?</summary>
                         <p>Sí. La tarifa del convenio habilita el acceso a las 10 sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta, sin trámites ni costos adicionales por cambiar de sede.</p>
-                    </details>
-                    <details>
-                        <summary>¿Qué pasa si dejo de estar afiliado a la caja?</summary>
-                        <p>El beneficio está atado a tu afiliación activa. Si esta termina, tu membresía continúa pero pasa a la tarifa vigente sin convenio a partir del siguiente periodo de facturación, previo aviso.</p>
                     </details>
                     <details>
                         <summary>¿Puedo combinar el convenio con otra promoción?</summary>
@@ -639,7 +651,7 @@
     <uc1:footer runat="server" ID="footer" />
 
     <!-- ================= Whatsapp Flotante ================= -->
-    <a href="https://api.whatsapp.com/send/?phone=573107842151&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="wa-float" target="_blank" aria-label="Escríbenos por WhatsApp">
+    <a href="https://wa.me/573204630051" class="wa-float" target="_blank" aria-label="Escríbenos por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -670,6 +682,7 @@
             /* ====== VARIABLES ====== */
             // ====== CONSULTA DE CONVENIO ======
             var form;
+            var categoriaTitular = "";
             var tipo;
             var num;
             var tipoB;
@@ -746,17 +759,57 @@
             };
 
             /* ====== URLS POR SEDE - CONVENIO ====== */
-            var urlsSedes = {
-                "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2821",
-                "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-                "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3381",
-                "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3461",
-                "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3061",
-                "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2901",
-                "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-3141",
-                "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3301",
-                "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3221",
-                "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2981"
+            var planesPorSede = {
+                "bucaramanga-boulevard": {
+                    categoriaA: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+                    categoriaB: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
+                    categoriaC: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725"
+                },
+                "bucaramanga-cabecera": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "bucaramanga-el-prado": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "bucaramanga-provenza": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "bucaramanga-ciudadela": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "floridablanca-canaveral": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "piedecuesta-delacuesta": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "piedecuesta-parque-central": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "cucuta-jardin-plaza": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                },
+                "cucuta-ceiba-ii": {
+                    categoriaA: "",
+                    categoriaB: "",
+                    categoriaC: ""
+                }
             };
 
             /* ====== CONSULTA DE CONVENIO ====== */
@@ -1253,10 +1306,36 @@
                             return;
                         }
 
-                        // Buscar URL
-                        var url = urlsSedes[sede];
+                        // Obtener la categoría del titular
+                        var hfCategoria = document.getElementById(
+                            "hfCategoriaTitular"
+                        );
 
-                        if (!url) {
+                        var categoria = hfCategoria
+                            ? hfCategoria.value.toUpperCase().trim()
+                            : "";
+
+                        if (!categoria) {
+                            alert("No fue posible identificar la tarifa del convenio. Realiza nuevamente la consulta.");
+                            return;
+                        }
+
+                        // Obtener configuración de la sede
+                        var configuracionSede = planesPorSede[sede];
+
+                        if (!configuracionSede) {
+                            alert("No se encontró la configuración de esta sede.");
+                            return;
+                        }
+
+                        // Identificar el enlace según la categoría
+                        var claveCategoria = "categoria" + categoria;
+
+                        var url = configuracionSede[claveCategoria];
+
+                        // Validar que exista un enlace configurado
+                        if (!url || !url.trim()) {
+                            alert("El enlace de inscripción para esta sede todavía no está disponible. Comunícate con un asesor.");
                             return;
                         }
 
@@ -1382,6 +1461,7 @@
             /* ====== OBTENER ELEMENTOS ====== */
             function obtenerElementos() {
                 // ====== CONSULTA CONVENIO ======
+                categoriaTitular = "";
                 form = document.getElementById('csForm');
                 tipo = document.getElementById('ddlTipoDoc');
                 num = document.getElementById('txtNumDoc');
@@ -1402,6 +1482,12 @@
                 contenedorIframe = document.getElementById("contenedorIframePlan");
                 iframePlan = document.getElementById("iframePlan");
                 btnCerrarIframe = document.getElementById("btnCerrarIframe");
+
+                var hfCategoria = document.getElementById("hfCategoriaTitular");
+
+                if (hfCategoria) {
+                    categoriaTitular = hfCategoria.value;
+                }
             }
 
             /* ====== INICIALIZAR ====== */
@@ -1445,8 +1531,8 @@
 
                 prm.add_endRequest(
                     function () {
-
                         inicializar();
+                        desplazarAlResultado();
                     }
                 );
             }
@@ -1466,6 +1552,33 @@
                     window.location.reload();
                 }
             );
+
+            function desplazarAlResultado() {
+                var resultadoAplica = document.getElementById("csRes");
+                var resultadoNoAplica = document.getElementById("csNo");
+
+                var resultado = null;
+
+                if (resultadoAplica && resultadoAplica.classList.contains("on")) {
+                    resultado = resultadoAplica;
+                }
+                else if (resultadoNoAplica && resultadoNoAplica.classList.contains("on")) {
+                    resultado = resultadoNoAplica;
+                }
+
+                if (!resultado) {
+                    return;
+                }
+
+                setTimeout(function () {
+
+                    resultado.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }, 150);
+            }
         })();
 
     </script>

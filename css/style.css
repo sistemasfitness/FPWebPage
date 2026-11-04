@@ -4766,14 +4766,17 @@ body.menu-open {
 	transition: transform .2s;
 }
 
-	.wa-float i {
-		/*width: 50px;
-		height: 50px;*/
-	}
-
 	.wa-float:hover {
 		transform: scale(1.08);
 	}
+
+@media (max-width: 600px) {
+	.wa-float {
+		width: 54px;
+		height: 54px;
+		font-size: 30px;
+	}
+}
 
 /* ============ WHATSAPP FLOTANTE ============ */
 
@@ -6081,6 +6084,12 @@ body.menu-open {
 	margin-bottom: 0;
 }
 
+.fpp-cs-persona .fpp-cs-detalle {
+	color: var(--fp-white);
+	font-weight: 600;
+	margin: 10px 0 0;
+}
+
 .fpp-cs-persona .fpp-cs-cat {
 	display: inline-flex;
 	align-items: center;
@@ -6117,50 +6126,59 @@ body.menu-open {
 	padding: 26px 28px;
 }
 
-	.fpp-cs-precio .antes {
-		font-size: 13px;
+.fpp-cs-plan-nombre {
+	font-size: 20px;
+	font-weight: 800;
+	margin-bottom: 22px;
+	color: var(--fp-lime);
+}
+
+/* Desglose de precios */
+.fpp-cs-desglose {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-bottom: 24px;
+}
+
+.fpp-cs-desglose-item,
+.fpp-cs-desglose-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+}
+
+	.fpp-cs-desglose-item span {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--fp-white);
+	}
+
+	.fpp-cs-desglose-item strong {
+		font-size: 15px;
 		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		color: var(--fp-gray);
+		color: var(--fp-white);
+		white-space: nowrap;
 	}
 
-		.fpp-cs-precio .antes s {
-			color: var(--fp-gray-2);
-			font-size: 16px;
-			margin-left: 6px;
-		}
+.fpp-cs-desglose-total {
+	border-top: 1px solid #ddd;
+	padding-top: 16px;
+	margin-top: 4px;
+}
 
-	.fpp-cs-precio .ahora {
-		display: flex;
-		align-items: baseline;
-		gap: 10px;
-		margin: 8px 0 6px;
-		flex-wrap: wrap;
-	}
-
-		.fpp-cs-precio .ahora .v {
-			font-size: clamp(38px, 4vw, 50px);
-			font-weight: 900;
-			color: var(--fp-lime);
-			letter-spacing: -1.5px;
-			line-height: 1;
-		}
-
-		.fpp-cs-precio .ahora .p {
-			font-size: 15px;
-			font-weight: 800;
-			text-transform: uppercase;
-			color: #fff;
-		}
-
-	.fpp-cs-precio .ahorro {
-		font-size: 12px;
+	.fpp-cs-desglose-total span {
+		font-size: 16px;
 		font-weight: 800;
-		letter-spacing: 1.5px;
-		text-transform: uppercase;
 		color: var(--fp-lime);
-		margin-bottom: 22px;
+	}
+
+	.fpp-cs-desglose-total strong {
+		font-size: 25px;
+		font-weight: 900;
+		color: var(--fp-lime);
+		white-space: nowrap;
 	}
 
 	.fpp-cs-precio .btn {
@@ -6566,6 +6584,18 @@ body.menu-open {
 
 	.fpp-consulta .fpp-kicker {
 		font-size: 11px;
+	}
+
+	.fpp-cs-persona b {
+		font-size: 24px;
+	}
+
+	.fpp-cs-desglose-total strong {
+		font-size: 22px;
+	}
+
+	.fpp-cs-plan-nombre {
+		font-size: 17px;
 	}
 
 	.fpp-sede-mini .t b {
@@ -7023,3 +7053,8 @@ body.menu-open {
 /* ==========================================
    PLAN FLEXIBLE PRO
    ========================================== */
+
+#csRes,
+#csNo {
+	scroll-margin-top: 30px;
+}

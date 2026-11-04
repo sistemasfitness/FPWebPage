@@ -28,6 +28,14 @@ namespace WebPage
         {
             public EstadoConsulta Estado { get; set; }
             public string Mensaje { get; set; }
+            public string CategoriaTitular { get; set; }
+        }
+
+        private class TarifaConvenio
+        {
+            public decimal ValorPlan { get; set; }
+            public decimal Subsidio { get; set; }
+            public decimal TotalPagar { get; set; }
         }
 
         // =========================================================
@@ -189,7 +197,8 @@ namespace WebPage
                     documentoTitular,
                     esBeneficiario,
                     tipoDocumentoBeneficiario,
-                    documentoBeneficiario);
+                    documentoBeneficiario,
+                    resultado);
             }
             catch (Exception ex)
             {
@@ -204,6 +213,37 @@ namespace WebPage
                 // Actualizar el contenido del UpdatePanel
                 upConsultaConvenio.Update();
             }
+        }
+
+        private TarifaConvenio ObtenerTarifaPorCategoria(string categoria)
+        {
+            decimal valorPlan = 79200;
+            decimal subsidio = 0;
+
+            switch ((categoria ?? "").Trim().ToUpperInvariant())
+            {
+                case "A":
+                    subsidio = 15800;
+                    break;
+
+                case "B":
+                    subsidio = 11900;
+                    break;
+
+                case "C":
+                    subsidio = 0;
+                    break;
+
+                default:
+                    return null;
+            }
+
+            return new TarifaConvenio
+            {
+                ValorPlan = valorPlan,
+                Subsidio = subsidio,
+                TotalPagar = valorPlan - subsidio
+            };
         }
 
         // =========================================================
@@ -384,11 +424,11 @@ namespace WebPage
                             .Trim()
                             .ToUpperInvariant();
 
-                        if (categoriaTitular != "A" && categoriaTitular != "B")
+                        if (categoriaTitular != "A" && categoriaTitular != "B" && categoriaTitular != "C")
                         {
                             return CrearResultado(
                                 EstadoConsulta.NoAplica,
-                                "El titular pertenece a una categoría que no está habilitada para este convenio. Solo aplica para categorías A y B.");
+                                "No fue posible identificar una categoría habilitada para acceder al convenio.");
                         }
 
                         // 11. Si la consulta es para el titular, ya se validó
@@ -396,7 +436,8 @@ namespace WebPage
                         {
                             return CrearResultado(
                                 EstadoConsulta.Aplica,
-                                "El titular se encuentra activo y puede acceder al convenio.");
+                                "El titular se encuentra activo y puede acceder al convenio.",
+                                categoriaTitular);
                         }
 
                         // 12. Si es beneficiario, buscarlo en los registros asociados al titular consultado.
@@ -411,43 +452,23 @@ namespace WebPage
                             documentoBeneficiario);
 
                         // Si el beneficiario es el cónyuge
+                        // La categoría utilizada será exclusivamente la del titular.
                         if (conyuge != null)
                         {
-                            string categoriaConyuge = conyuge["categocony"]?
-                                .ToString()
-                                .Trim()
-                                .ToUpperInvariant();
-
-                            if (categoriaConyuge != "A" && categoriaConyuge != "B")
-                            {
-                                return CrearResultado(
-                                    EstadoConsulta.NoAplica,
-                                    "El beneficiario pertenece a una categoría que no está habilitada para este convenio. Solo aplica para categorías A y B.");
-                            }
-
                             return CrearResultado(
                                 EstadoConsulta.Aplica,
-                                "El beneficiario cumple las condiciones del convenio.");
+                                "El beneficiario cumple las condiciones del convenio.",
+                                categoriaTitular);
                         }
 
                         // Si el beneficiario es un dependiente
+                        // La categoría utilizada será exclusivamente la del titular.
                         if (dependiente != null)
                         {
-                            string categoriaDependiente = dependiente["categodep"]?
-                                .ToString()
-                                .Trim()
-                                .ToUpperInvariant();
-
-                            if (categoriaDependiente != "A" && categoriaDependiente != "B")
-                            {
-                                return CrearResultado(
-                                    EstadoConsulta.NoAplica,
-                                    "El beneficiario pertenece a una categoría que no está habilitada para este convenio. Solo aplica para categorías A y B.");
-                            }
-
                             return CrearResultado(
                                 EstadoConsulta.Aplica,
-                                "El beneficiario cumple las condiciones del convenio.");
+                                "El beneficiario cumple las condiciones del convenio.",
+                                categoriaTitular);
                         }
 
                         return CrearResultado(
@@ -487,12 +508,14 @@ namespace WebPage
         // =========================================================
         private ResultadoConvenio CrearResultado(
             EstadoConsulta estado,
-            string mensaje)
+            string mensaje,
+            string categoriaTitular = "")
         {
             return new ResultadoConvenio
             {
                 Estado = estado,
-                Mensaje = mensaje
+                Mensaje = mensaje,
+                CategoriaTitular = categoriaTitular
             };
         }
 
@@ -694,7 +717,8 @@ namespace WebPage
             string documentoTitular,
             bool esBeneficiario,
             string tipoDocumentoBeneficiario,
-            string documentoBeneficiario)
+            string documentoBeneficiario,
+            ResultadoConvenio resultado)
         {
             csRes.Visible = true;
             csNo.Visible = false;
@@ -715,6 +739,30 @@ namespace WebPage
                 csDocB.InnerText = "";
                 csDocB.Visible = false;
             }
+
+            // Mostrar mensaje de resultado
+            csMensajeResultado.InnerText = resultado.Mensaje ?? "";
+
+            // Obtener categoría del titular
+            string categoria = resultado.CategoriaTitular;
+
+            // Calcular tarifa
+            TarifaConvenio tarifa = ObtenerTarifaPorCategoria(categoria);
+
+            if (tarifa == null)
+            {
+                throw new Exception("No fue posible determinar la tarifa del convenio.");
+            }
+
+            // Mostrar valores económicos
+            litValorPlan.Text = tarifa.ValorPlan.ToString("N0");
+
+            litSubsidio.Text = tarifa.Subsidio.ToString("N0");
+
+            litTotalPagar.Text = tarifa.TotalPagar.ToString("N0");
+
+            // Guardar categoría internamente para JavaScript
+            hfCategoriaTitular.Value = categoria;
         }
 
         // =========================================================
@@ -757,6 +805,14 @@ namespace WebPage
             lblMensaje.Attributes["class"] = "fpp-cs-msg";
 
             csMensajeNoAplica.InnerText = "";
+
+            // Limpiar categoría anterior
+            hfCategoriaTitular.Value = "";
+
+            // Limpiar valores económicos
+            litValorPlan.Text = "";
+            litSubsidio.Text = "";
+            litTotalPagar.Text = "";
         }
 
         // =========================================================

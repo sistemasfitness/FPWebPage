@@ -15,15 +15,6 @@ namespace WebPage.controls
     {
 
         /// <summary>
-        /// Control MesAMes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebPage.controls.PlanCard MesAMes;
-
-        /// <summary>
         /// Control PlanFlexiblePro.
         /// </summary>
         /// <remarks>
@@ -33,13 +24,13 @@ namespace WebPage.controls
         protected global::WebPage.controls.PlanCard PlanFlexiblePro;
 
         /// <summary>
-        /// Control PlanAnoImparable.
+        /// Control MesAMes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::WebPage.controls.PlanCard PlanAnoImparable;
+        protected global::WebPage.controls.PlanCard MesAMes;
 
         /// <summary>
         /// Control Estudiantes.
