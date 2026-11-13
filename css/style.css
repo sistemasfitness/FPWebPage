@@ -7178,7 +7178,7 @@ body.menu-open {
 /* Barra de progreso */
 .cd-barra-info {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	gap: 10px;
 	margin: 16px 0 8px;
 	font-size: 12px;
@@ -7186,7 +7186,7 @@ body.menu-open {
 	color: #D8D8D8;
 }
 
-	.cd-barra-info span:last-child {
+	.cd-barra-info span {
 		color: var(--fp-lime);
 	}
 

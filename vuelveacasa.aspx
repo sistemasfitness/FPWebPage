@@ -111,21 +111,21 @@
             <picture class="hero-banner__picture">
                 <!-- Imagen para dispositivos móviles -->
                 <source
-                media="(max-width: 767px)"
-                srcset="img/banners/banner_2026-11-11_mobile.webp"
-                width="750"
-                height="1000" />
+                    media="(max-width: 767px)"
+                    srcset="img/banners/banner_2026-11-11_mobile.webp"
+                    width="750"
+                    height="1000" />
 
                 <!-- Imagen para escritorio -->
                 <img
-                class="hero-banner__image"
-                src="img/banners/banner_2026-11-11.webp"
-                width="1920"
-                height="760"
-                alt="Personas entrenando en Fitness People"
-                fetchpriority="high"
-                loading="eager"
-                decoding="async" />
+                    class="hero-banner__image"
+                    src="img/banners/banner_2026-11-11.webp"
+                    width="1920"
+                    height="760"
+                    alt="Personas entrenando en Fitness People"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async" />
             </picture>
         </a>
     </section>
@@ -148,7 +148,6 @@
 
                 <div>
                     <div class="cd-barra-info">
-                        <span id="cdBarraTxt">Tiempo de la promoción</span>
                         <span id="cdPct">0 %</span>
                     </div>
 
@@ -295,7 +294,7 @@
                 titulo: document.getElementById('cdTitulo'), fin: document.getElementById('cdFin'),
                 d: document.getElementById('cdD'), h: document.getElementById('cdH'),
                 m: document.getElementById('cdM'), s: document.getElementById('cdS'),
-                pct: document.getElementById('cdPct'), txt: document.getElementById('cdBarraTxt'),
+                pct: document.getElementById('cdPct'), 
                 barra: document.getElementById('cdBarra'), relleno: document.getElementById('cdRelleno')
             };
             function dos(n) { return n < 10 ? '0' + n : String(n); }
@@ -324,21 +323,18 @@
                 if (ahora < CD_INICIO) {
                     estado = 'antes';
                     el.titulo.textContent = 'La promoción arranca hoy a las 12:00 m.';
-                    el.txt.textContent = 'Arranca en';
                     pintarReloj(CD_INICIO - ahora);
                     pintarBarra(0);
                 } else if (ahora < CD_FIN) {
                     var resta = CD_FIN - ahora;
                     estado = resta <= ULTIMAS_HORAS * 3600000 ? 'ultimas' : 'activa';
                     el.titulo.textContent = estado === 'ultimas' ? '¡Últimas horas de la promoción!' : 'La promoción termina en';
-                    el.txt.textContent = 'Han pasado ' + Math.floor((ahora - CD_INICIO) / 3600000) + ' de las ' + CD_HORAS + ' horas';
                     pintarReloj(resta);
                     pintarBarra((ahora - CD_INICIO) / (CD_FIN - CD_INICIO));
                 } else {
                     estado = 'final';
                     el.titulo.textContent = 'La promoción terminó';
                     el.fin.innerHTML = 'Terminó el <b>domingo 15 de noviembre, 12:00 m.</b>';
-                    el.txt.textContent = 'Se cumplieron las ' + CD_HORAS + ' horas';
                     pintarReloj(0);
                     pintarBarra(1);
                     clearInterval(timer);
