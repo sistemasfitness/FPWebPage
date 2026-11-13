@@ -5135,6 +5135,7 @@ body.menu-open {
 
 .fpp-card--featured h3 {
 	color: var(--fp-lime);
+	margin-top: 0;
 }
 
 .fpp-mode {
@@ -5156,7 +5157,7 @@ body.menu-open {
 }
 
 /* Inscripción / Promociones */
-.fpp-price-insc-prom {
+.fpp-price-sub-title {
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -5164,20 +5165,20 @@ body.menu-open {
 	letter-spacing: 1px;
 }
 
-	.fpp-price-insc-prom s {
-		color: var(--fp-gray-2);
-		font-size: 17px;
-		margin-left: 6px;
-	}
+.fpp-price-insc-prom {
+	margin-top: 26px;
+}
 
 /* Precios */
-.fpp-price-before {
-	margin-top: 6px;
-	font-size: 15px;
+.fpp-price {
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	color: var(--fp-white);
+}
+
+.fpp-price-before {
+	font-size: 15px;
 	text-decoration: line-through;
 }
 
@@ -5185,7 +5186,6 @@ body.menu-open {
 	display: flex;
 	align-items: baseline;
 	gap: 10px;
-	margin-bottom: 4px;
 }
 
 	.fpp-price-now .fpp-label {
@@ -5210,6 +5210,11 @@ body.menu-open {
 		text-transform: uppercase;
 	}
 
+.fpp-price-after {
+	margin-top: 0;
+	font-size: 15px;
+}
+
 .fpp-permanencia {
 	font-size: 11.5px;
 	font-weight: 700;
@@ -5218,22 +5223,18 @@ body.menu-open {
 	color: var(--fp-gray);
 }
 
-.fpp-nota-fidelidad {
-	font-size: 9px;
+.fpp-notas {
+	margin-top: 26px;
+	font-size: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
 	color: var(--fp-gray);
 }
 
 .fpp-nota {
-	font-style: italic;
-	font-size: 10px;
 	font-weight: 800;
 	letter-spacing: 1px;
-	text-transform: uppercase;
-	color: var(--fp-gray);
 	text-decoration: underline;
-	margin-top: 15px;
 }
 
 /* Pack de bienvenida */
@@ -5294,7 +5295,7 @@ body.menu-open {
 .fpp-benefits {
 	list-style: none;
 	flex-grow: 1;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 	.fpp-benefits li {

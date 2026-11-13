@@ -123,7 +123,7 @@
                             <span class="fpp-oferta-precio">$9.900</span>
                             <span class="fpp-oferta-txt">el primer mes · sin inscripción</span>
                         </div>
-                        <p class="fpp-oferta-cond">Luego <span>$99.000</span>/mes · permanencia 12 meses · promo hasta el <span>31 de octubre</span></p>
+                        <p class="fpp-oferta-cond">Luego <span>$99.000</span>/mes · permanencia 6 meses · promo hasta el <span>30 de noviembre</span></p>
                     </div>
 
                     <div class="fpp-hero-ctas">

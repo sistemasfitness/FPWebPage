@@ -81,7 +81,7 @@ namespace WebPage
                     lblSubTituloPrecio1.InnerText = "SIN INSCRIPCIÓN";
                     lblSubTituloPrecio2.InnerText = "DESPUÉS $99.000/MES";
                     lblSubTituloUp.InnerText = "ANTES $165.000";
-                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 12 MESES";
+                    lblFidelidad.InnerText = "FIDELIDAD MÍNIMA DE 6 MESES";
                     lblNotaFidelidad.InnerText = "APLICA COBRO POR RETIRO ANTICIPADO";
 
                     divPackBienvenida.Visible = false;

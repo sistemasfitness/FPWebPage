@@ -24,9 +24,9 @@
 
                 <!-- ================= PLAN MES A MES ================= -->
                 <uc:PlanCard
-                    ID="MesAMes"
+                    ID="PeopleActive"
                     runat="server"
-                    PlanId="MES_A_MES" />
+                    PlanId="PEOPLE_ACTIVE" />
 
                 <!-- ================= PLAN AÑO IMPARABLE ================= -->
                 <%--<uc:PlanCard
@@ -288,7 +288,21 @@
 
         /* ============= URLS POR PLAN + SEDE ============= */
         const urlsPlanes = {
-            MES_A_MES: {
+            //MES_A_MES: {
+            //    "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2822",
+            //    "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2726",
+            //    "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3382",
+            //    "bucaramanga-provenza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-3462",
+            //    "bucaramanga-ciudadela": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-3062",
+            //    "floridablanca-canaveral": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-2902",
+            //    "piedecuesta-delacuesta": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-4000",
+            //    "piedecuesta-parque-central": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-3302",
+            //    "cucuta-jardin-plaza": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6a059bb86-3222",
+            //    "cucuta-ceiba-ii": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6463ea739-2982"
+            //},
+
+            // TODO - CAMBIAR POR LINKS VERDADEROS
+            PEOPLE_ACTIVE: {
                 "bucaramanga-boulevard": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-2822",
                 "bucaramanga-cabecera": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2726",
                 "bucaramanga-el-prado": "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-3382",

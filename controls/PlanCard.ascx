@@ -24,22 +24,16 @@
         <asp:Literal ID="litTagline" runat="server"></asp:Literal>
     </div>
 
-    <!-- Inscripción / promoción -->
-    <div id="divlitInscProm" runat="server" class="fpp-price-insc-prom">
-        <asp:Literal ID="litInscProm" runat="server"></asp:Literal>
-    </div>
-
     <!-- Precio anterior -->
-    <div id="divPrecioAntes" runat="server" class="fpp-price-before">
+    <div id="divPrecioAntes" runat="server" class="fpp-price fpp-price-before">
         <asp:Literal ID="litPrecioAntes" runat="server"></asp:Literal>
     </div>
 
     <!-- Precio actual -->
-    <div class="fpp-price-now">
-
-        <span id="spanLabelPrecio" runat="server" class="fpp-label">
+    <div class="fpp-price fpp-price-now">
+        <%--<span id="spanLabelPrecio" runat="server" class="fpp-label">
             <asp:Literal ID="litLabelPrecio" runat="server"></asp:Literal>
-        </span>
+        </span>--%>
 
         <span class="fpp-amount">
             <asp:Literal ID="litPrecio" runat="server"></asp:Literal>
@@ -48,23 +42,40 @@
         <span id="spanPeriodo" runat="server" class="fpp-period">
             <asp:Literal ID="litPeriodo" runat="server"></asp:Literal>
         </span>
+    </div>
 
+    <!-- Precio despúes -->
+    <div id="divPrecioDespues" runat="server" class="fpp-price fpp-price-after">
+        <asp:Literal ID="litPrecioDespues" runat="server"></asp:Literal>
+    </div>
+
+    <!-- Inscripción / promoción -->
+    <div id="divlitInscProm" runat="server" class="fpp-price-sub-title fpp-price-insc-prom">
+        <asp:Literal ID="litInscProm" runat="server"></asp:Literal>
     </div>
 
     <!-- Permanencia / condiciones -->
-    <div class="fpp-permanencia">
+    <div class="fpp-price-sub-title">
         <asp:Literal ID="litPermanencia" runat="server"></asp:Literal>
     </div>
 
-    <!-- Nota fidelidad -->
-    <div class="fpp-nota-fidelidad">
-        <asp:Literal ID="litNotaFidelidad" runat="server"></asp:Literal>
-    </div>
+    <!-- Notas -->
+    <div class="fpp-notas">
+        <!-- Nota fidelidad -->
+        <div class="fpp-nota-fidelidad">
+            <asp:Literal ID="litNotaFidelidad" runat="server"></asp:Literal>
+        </div>
 
-    <!-- Nota método de pago -->
-    <span id="spanNota" runat="server" class="fpp-nota">
-        <asp:Literal ID="litNota" runat="server"></asp:Literal>
-    </span>
+        <!-- Nota método de pago -->
+        <span id="spanNota" runat="server" class="fpp-nota">
+            <asp:Literal ID="litNota" runat="server"></asp:Literal>
+        </span>
+
+        <!-- Nota vigencia -->
+        <div id="divNotaVigencia" runat="server" class="fpp-nota-vigencia">
+            <asp:Literal ID="litNotaVigencia" runat="server"></asp:Literal>
+        </div>
+    </div>
 
     <!-- Pack de bienvenida -->
     <div id="divPackBienvenida" runat="server" class="fpp-welcome-pack">

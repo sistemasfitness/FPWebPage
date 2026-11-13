@@ -74,9 +74,14 @@ namespace WebPage.controls
             // PRECIO ACTUAL
             // ============================
 
-            litLabelPrecio.Text = plan.LabelPrecio;
             litPrecio.Text = plan.Precio;
             litPeriodo.Text = plan.Periodo;
+
+            // ============================
+            // PRECIO DESPUÉS
+            // ============================
+
+            litPrecioDespues.Text = plan.PrecioDespues;
 
             // ============================
             // PERMANENCIA
@@ -110,6 +115,20 @@ namespace WebPage.controls
             else
             {
                 spanNota.Visible = false;
+            }
+
+            // ============================
+            // NOTA VIGENCIA
+            // ============================
+
+            if (!string.IsNullOrWhiteSpace(plan.NotaVigencia))
+            {
+                divNotaVigencia.Visible = true;
+                litNotaVigencia.Text = plan.NotaVigencia;
+            }
+            else
+            {
+                divNotaVigencia.Visible = false;
             }
 
             // ============================
@@ -174,36 +193,36 @@ namespace WebPage.controls
         {
             switch (planId.ToUpper())
             {
-                case "MES_A_MES":
+                //case "MES_A_MES":
 
-                    return new Plan
-                    {
-                        Nombre = "Mes a Mes",
-                        Modalidad = "Pago Mes a Mes",
-                        Tagline = "Empieza y termina cuando quieras.",
+                //    return new Plan
+                //    {
+                //        Nombre = "Mes a Mes",
+                //        Modalidad = "Pago Mes a Mes",
+                //        Tagline = "Empieza y termina cuando quieras.",
 
-                        InscProm = "Sin inscripción",
-                        PrecioAntes = "",
-                        LabelPrecio = "",
-                        Precio = "$165.000",
-                        Periodo = "/mes",
+                //        InscProm = "Sin inscripción",
+                //        PrecioAntes = "",
+                //        //LabelPrecio = "",
+                //        Precio = "$165.000",
+                //        Periodo = "/mes",
 
-                        Permanencia = "Renovación mes a mes<br />Sin fidelidad",
-                        NotaFidelidad = "",
+                //        Permanencia = "Renovación mes a mes<br />Sin fidelidad",
+                //        NotaFidelidad = "",
 
-                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                //        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
-                        EsDestacado = false,
+                //        EsDestacado = false,
 
-                        Beneficios = new List<string>
-                        {
-                            "Acceso a todas las sedes de Fitness People.",
-                            "Clases grupales con instructores certificados.",
-                            "FP App con planes de entrenamiento y tips de nutrición.",
-                            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
-                            "Valoración física inicial."
-                        }
-                    };
+                //        Beneficios = new List<string>
+                //        {
+                //            "Acceso a todas las sedes de Fitness People.",
+                //            "Clases grupales con instructores certificados.",
+                //            "FP App con planes de entrenamiento y tips de nutrición.",
+                //            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
+                //            "Valoración física inicial."
+                //        }
+                //    };
 
 
                 //case "FLEXIBLE_PRO":
@@ -245,15 +264,15 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Más beneficios desde el primer mes.",
 
+                        PrecioAntes = "$ 99.000",
+                        Precio = "$ 9.900",
+                        Periodo = "Primer mes",
+                        PrecioDespues = "Después $ 99.000/mes",
+
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $165.000 /mes",
-                        LabelPrecio = "1er mes",
-                        Precio = "$9.900",
-                        Periodo = "",
+                        Permanencia = "Fidelidad mínima de 6 meses",
 
-                        Permanencia = "Después $99.000/mes<br />Fidelidad mínima de 6 meses",
                         NotaFidelidad = "Aplica cobro por retiro anticipado",
-
                         Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
                         EsDestacado = true,
@@ -268,23 +287,24 @@ namespace WebPage.controls
                         }
                     };
 
-
-                case "ANIO_IMPARABLE":
+                case "PEOPLE_ACTIVE":
 
                     return new Plan
                     {
-                        Nombre = "Año Imparable",
-                        Modalidad = "Pago único anual",
-                        Tagline = "Entrena sin pausas durante todo un año.",
+                        Nombre = "People Active",
+                        Modalidad = "Débito automático",
+                        Tagline = "...",
+
+                        PrecioAntes = "$ 165.000",
+                        Precio = "$ 89.900",
+                        Periodo = "/mes",
+                        PrecioDespues = "Pagas por todo un año el mismo valor",
 
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $1.380.000",
-                        LabelPrecio = "",
-                        Precio = "$990.000",
-                        Periodo = "/año",
+                        Permanencia = "Sin fidelidad",
 
-                        Permanencia = "Equivale a $61.875/mes aprox.<br />Sin fidelidad",
-                        NotaFidelidad = "",
+                        NotaFidelidad = "Aplica cobro por retiro anticipado",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
                         EsDestacado = false,
 
@@ -299,6 +319,36 @@ namespace WebPage.controls
                     };
 
 
+                //case "ANIO_IMPARABLE":
+
+                //    return new Plan
+                //    {
+                //        Nombre = "Año Imparable",
+                //        Modalidad = "Pago único anual",
+                //        Tagline = "Entrena sin pausas durante todo un año.",
+
+                //        InscProm = "Sin inscripción",
+                //        PrecioAntes = "Antes $1.380.000",
+                //        //LabelPrecio = "",
+                //        Precio = "$990.000",
+                //        Periodo = "/año",
+
+                //        Permanencia = "Equivale a $61.875/mes aprox.<br />Sin fidelidad",
+                //        NotaFidelidad = "",
+
+                //        EsDestacado = false,
+
+                //        Beneficios = new List<string>
+                //        {
+                //            "Acceso a todas las sedes de Fitness People.",
+                //            "Clases grupales con instructores certificados.",
+                //            "FP App con planes de entrenamiento y tips de nutrición.",
+                //            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
+                //            "Valoración física inicial."
+                //        }
+                //    };
+
+
                 case "ESTUDIANTES":
 
                     return new Plan
@@ -307,16 +357,17 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Haz de tu bienestar parte del día.",
 
+                        PrecioAntes = "$ 109.900",
+                        Precio = "$ 59.700",
+                        Periodo = "Primer mes",
+                        PrecioDespues = "Después $ 79.600/mes",
+
                         InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900 /mes",
-                        LabelPrecio = "1er mes",
-                        Precio = "$59.700",
-                        Periodo = "",
+                        Permanencia = "Fidelidad de 6 meses",
 
-                        Permanencia = "Después $79.600/mes<br />Fidelidad de 6 meses",
                         NotaFidelidad = "Aplica cobro por retiro anticipado",
-
-                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                        NotaVigencia = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
                         EsDestacado = false,
 
@@ -339,16 +390,17 @@ namespace WebPage.controls
                         Modalidad = "Débito automático",
                         Tagline = "Tu salud más cerca de ti.",
 
-                        InscProm = "Sin inscripción",
-                        PrecioAntes = "Antes $109.900 /mes",
-                        LabelPrecio = "",
-                        Precio = "$89.900",
+                        PrecioAntes = "$ 109.900",
+                        Precio = "$ 89.900",
                         Periodo = "/mes",
+                        PrecioDespues = "",
 
+                        InscProm = "Sin inscripción",
                         Permanencia = "Fidelidad de 6 meses",
-                        NotaFidelidad = "Aplica cobro por retiro anticipado",
 
-                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono. <br /> VIGENCIA: Hasta el 31 de diciembre de 2026.",
+                        NotaFidelidad = "Aplica cobro por retiro anticipado",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                        NotaVigencia = "VIGENCIA: Hasta el 31 de diciembre de 2026.",
 
                         EsDestacado = false,
 
@@ -381,6 +433,8 @@ namespace WebPage.controls
 
             public string PrecioAntes { get; set; }
 
+            public string PrecioDespues { get; set; }
+
             public string LabelPrecio { get; set; }
 
             public string Precio { get; set; }
@@ -392,6 +446,8 @@ namespace WebPage.controls
             public string NotaFidelidad { get; set; }
 
             public string Nota { get; set; }
+
+            public string NotaVigencia { get; set; }
 
             public bool EsDestacado { get; set; }
 
