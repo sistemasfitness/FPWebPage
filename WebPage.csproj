@@ -713,6 +713,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="vuelveacasa.aspx" />
     <Content Include="wompiwebhook.aspx" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
@@ -1235,6 +1236,13 @@
     </Compile>
     <Compile Include="verificacion.aspx.designer.cs">
       <DependentUpon>verificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vuelveacasa.aspx.cs">
+      <DependentUpon>vuelveacasa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vuelveacasa.aspx.designer.cs">
+      <DependentUpon>vuelveacasa.aspx</DependentUpon>
     </Compile>
     <Compile Include="wompidata.aspx.cs">
       <DependentUpon>wompidata.aspx</DependentUpon>
