@@ -11,8 +11,7 @@ namespace WebPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // TODO: Descomentar el domingo 13/11/2026
-            //Response.Redirect("default", true);
+            Response.Redirect("default", true);
         }
     }
 }
