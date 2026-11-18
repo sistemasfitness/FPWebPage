@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="convenio-comfenalco.aspx.cs" Inherits="WebPage.convenio_comfenalco" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
+<%@ Register Src="~/controls/faq.ascx" TagPrefix="uc1" TagName="faq" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -527,45 +528,7 @@
         </div>
     </section>
 
-    <section class="fpp-faq" id="faq">
-        <div class="container">
-            <div class="fpp-faq-grid">
-                <div class="fpp-section-head">
-                    <div class="fpp-kicker">Preguntas frecuentes</div>
-                    <h2 class="fpp-general-title">Sobre el <span>convenio</span></h2>
-                    <p>Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.</p>
-                    <a href="https://wa.me/573204630051" class="fpp-btn fpp-btn--outline" style="margin-top:26px; max-width: 300px;">Hablar con un asesor</a>
-                </div>
-
-                <div class="fpp-fap-section">
-                    <details open="open">
-                        <summary>¿Cómo sé si aplico al convenio?</summary>
-                        <p>No tienes que averiguar nada por tu cuenta. Digita tu documento en la consulta en línea y el sistema valida tu afiliación con Comfenalco Santander: en segundos te confirma si tienes habilitada la tarifa del convenio.</p>
-                    </details>
-                    <details>
-                        <summary>¿Cuánto cuesta la membresía con el convenio?</summary>
-                        <p>El valor de la membresía es de $63.400, $67.300 o $79.200 al mes, según el subsidio asignado al titular del convenio. Este beneficio aplica tanto para titulares como para sus beneficiarios que cumplan las condiciones del convenio.</p>
-                    </details>
-                    <details>
-                        <summary>¿Mis beneficiarios también acceden a la tarifa?</summary>
-                        <p>Sí, siempre que estén registrados como beneficiarios ante la caja y cumplan las condiciones del convenio. En la consulta selecciona <strong>Beneficiario</strong> e ingresa el documento del titular y el del beneficiario. Cada persona firma su propio contrato.</p>
-                    </details>
-                    <details>
-                        <summary>Mi documento no aplicó. ¿Qué puedo hacer?</summary>
-                        <p>Verifica que el número esté bien digitado y que tu afiliación a la caja esté activa. Si todo está correcto y aun así no aplica, escríbenos por WhatsApp: un asesor revisa tu caso y te muestra las demás opciones y promociones vigentes.</p>
-                    </details>
-                    <details>
-                        <summary>¿Puedo entrenar en todas las sedes?</summary>
-                        <p>Sí. La tarifa del convenio habilita el acceso a las 10 sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta, sin trámites ni costos adicionales por cambiar de sede.</p>
-                    </details>
-                    <details>
-                        <summary>¿Puedo combinar el convenio con otra promoción?</summary>
-                        <p>No. La tarifa del convenio no es acumulable con otras promociones, descuentos por referidos, planes corporativos ni campañas vigentes.</p>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </section>
+    <uc1:faq runat="server" ID="faq" />
 
     <!-- ================= PANEL LATERAL DE CIUDAD / SEDE ================= -->
     <div id="panelSede" class="fp-panel-sede">
@@ -622,10 +585,6 @@
 
                     <option value="piedecuesta">
                         Piedecuesta
-                    </option>
-
-                    <option value="cucuta">
-                        Cúcuta
                     </option>
                 </select>
             </div>
@@ -745,16 +704,6 @@
                         nombre: "Parque Central",
                         valor: "piedecuesta-parque-central"
                     }
-                ],
-                cucuta: [
-                    {
-                        nombre: "Jardín Plaza",
-                        valor: "cucuta-jardin-plaza"
-                    },
-                    {
-                        nombre: "Ceiba II",
-                        valor: "cucuta-ceiba-ii"
-                    }
                 ]
             };
 
@@ -796,16 +745,6 @@
                     categoriaC: ""
                 },
                 "piedecuesta-parque-central": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
-                },
-                "cucuta-jardin-plaza": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
-                },
-                "cucuta-ceiba-ii": {
                     categoriaA: "",
                     categoriaB: "",
                     categoriaC: ""

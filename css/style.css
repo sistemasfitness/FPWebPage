@@ -251,8 +251,8 @@ p.lead.styled {
 
 /*General links color*/
 a {
-	/*color: #e3ff00;*/
-	color: var(--fp-bg);
+	/*color: var(--fp-bg);*/
+	color: var(--fp-lime);
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	outline: none;
@@ -4371,7 +4371,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 /* preguntas-frecuentes */
 
 .section-prin-logos-met-pagos {
-	margin-top: 10px;
+	margin-bottom: 24px;
 }
 
 	.section-prin-logos-met-pagos p {
@@ -4380,7 +4380,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 .section-prin-logos {
 	display: flex;
-	gap: 50px;
+	gap: 20px;
 	width: 100%;
 	flex-wrap: wrap;
 }
@@ -5382,6 +5382,7 @@ body.menu-open {
 	text-align: center;
 	margin-top: 42px;
 	font-size: 13px;
+	font-weight: 600;
 	color: var(--fp-gray);
 	letter-spacing: .3px;
 }
@@ -6495,9 +6496,10 @@ body.menu-open {
 .fpp-faq details p {
 	color: var(--fp-gray);
 	font-size: 15px;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 1.7;
 	padding: 0 0 24px;
+	margin-bottom: 0;
 	max-width: 640px;
 }
 
@@ -6549,7 +6551,7 @@ body.menu-open {
 		gap: 40px;
 	}
 
-	.fpp-consulta, .fpp-respaldo, .fpp-sedes-conv, .fpp-faq {
+	.fpp-respaldo, .fpp-sedes-conv, .fpp-faq {
 		padding: 50px 0;
 	}
 }
@@ -7380,3 +7382,84 @@ body.menu-open {
 /* ==========================================
    VUELVE A CASA - LANDING
    ========================================== */
+
+
+/* ==========================================
+   FRANJA DE CIFRAS
+   ========================================== */
+
+.fp-stats {
+	background: var(--fp-black);
+	border-top: 1px solid var(--fp-border);
+	border-bottom: 1px solid var(--fp-border);
+	overflow: hidden;
+	padding: 30px 0;
+	position: relative;
+}
+
+.fp-stats-track {
+	display: flex;
+	gap: 0;
+	width: max-content;
+	animation: marquee 38s linear infinite;
+}
+
+.fp-stats:hover .fp-stats-track {
+	animation-play-state: paused;
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.fp-stat {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	padding: 0 44px;
+	border-right: 1px solid var(--fp-border);
+}
+
+	.fp-stat .num {
+		font-size: 54px;
+		font-weight: 600;
+		line-height: 1;
+		color: var(--fp-lime);
+		letter-spacing: 1px;
+	}
+
+	.fp-stat .lbl {
+		font-size: 11.5px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: var(--fp-white);
+		line-height: 1.35;
+	}
+
+		.fp-stat .lbl small {
+			display: block;
+			color: var(--fp-gray);
+			font-weight: 600;
+			letter-spacing: 1px;
+		}
+
+@media (max-width: 600px) {
+	.fp-stat .num {
+		font-size: 42px;
+	}
+}
+
+/* ==========================================
+   FRANJA DE CIFRAS
+   ========================================== */
+
+.met-pagos-title {
+	color: var(--fp-white);
+}

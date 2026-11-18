@@ -5,7 +5,7 @@
 <%@ Register Src="~/controls/aliados.ascx" TagPrefix="uc1" TagName="aliados" %>
 <%@ Register Src="~/controls/sedes.ascx" TagPrefix="uc1" TagName="sedes" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
-<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
+<%@ Register Src="~/controls/faq.ascx" TagPrefix="uc1" TagName="faq" %>
 <%@ Register Src="~/controls/mapasedeadministrativa.ascx" TagPrefix="uc1" TagName="mapasedeadministrativa" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
@@ -191,6 +191,20 @@
     <!-- End layerslider -->
     <!-- End SubHeader ============================================ -->
 
+
+    <!-- ================= FRANJA DE CIFRAS ================= -->
+    <section class="fp-stats" aria-label="Cifras Fitness People">
+        <div class="fp-stats-track" id="statsTrack">
+            <div class="fp-stat"><span class="num">10</span><span class="lbl">Sedes<small>Bucaramanga, Floridablanca, Piedecuesta y Cúcuta</small></span></div>
+            <div class="fp-stat"><span class="num">+20K</span><span class="lbl">Personas<small>entrenando con nosotros</small></span></div>
+            <div class="fp-stat"><span class="num">9</span><span class="lbl">Clases grupales<small>con instructores certificados</small></span></div>
+            <div class="fp-stat"><span class="num">7</span><span class="lbl">Días a la semana<small>entrena cuando quieras</small></span></div>
+            <div class="fp-stat"><span class="num">4</span><span class="lbl">Especialidades médicas<small>deportología · fisio · nutrición · deporte</small></span></div>
+            <div class="fp-stat"><span class="num">1</span><span class="lbl">App<small>planes de entrenamiento y nutrición</small></span></div>
+        </div>
+    </section>
+
+
     <!-- Control Sedes -->
     <uc1:sedes runat="server" ID="sedes" />
     <!-- End Control Sedes -->
@@ -311,9 +325,9 @@
     <uc1:planes runat="server" ID="controlplanes" />
     <!-- End Control Planes -->
 
-    <!-- Control Preguntas Frecuentes -->
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
-    <!-- End Control Preguntas Frecuentes -->
+    <!-- Control Preguntas Frecuentes (FAQ) -->
+    <uc1:faq runat="server" ID="faq" />
+    <!-- End Control Preguntas Frecuentes (FAQ) -->
 
     <!-- Control Aliados -->
     <uc1:aliados runat="server" ID="controlaliados" />
@@ -346,6 +360,18 @@
 
     <!-- SLIDER -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+
+    <script>
+
+        // FRANJA DE CIFRAS //
+        // Duplicar la franja de cifras para el efecto marquee infinito
+        (function () {
+            var t = document.getElementById('statsTrack');
+            t.innerHTML += t.innerHTML;
+        })();
+
+    </script>
 
     <script>
 

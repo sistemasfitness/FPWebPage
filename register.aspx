@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebPage.register" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
+<%@ Register Src="~/controls/faq.ascx" TagPrefix="uc1" TagName="faq" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -257,9 +257,9 @@
     </div>
     <!-- End container -->
 
-    <!-- Control Preguntas Frecuentes -->
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
-    <!-- End Control Preguntas Frecuentes -->
+    <!-- Control Preguntas Frecuentes (FAQ) -->
+    <uc1:faq runat="server" ID="faq" />
+    <!-- End Control Preguntas Frecuentes (FAQ) -->
 
     <!-- End footer -->
     <uc1:footer runat="server" id="footer" />

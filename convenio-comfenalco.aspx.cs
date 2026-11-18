@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebPage.controls;
 
 namespace WebPage
 {
@@ -45,8 +46,8 @@ namespace WebPage
         {
             if (!IsPostBack)
             {
-                //CargarTiposDocumento();
                 OcultarResultados();
+                ConfigurarFAQ();
             }
         }
 
@@ -822,6 +823,105 @@ namespace WebPage
         {
             lblMensaje.InnerText = mensaje;
             lblMensaje.Attributes["class"] = "fpp-cs-msg on";
+        }
+
+        private void ConfigurarFAQ()
+        {
+            // Encabezado
+            faq.SectionId = "faq";
+
+            faq.Kicker = "Preguntas frecuentes";
+
+            faq.Title = "Sobre el";
+            faq.Highlight = "convenio";
+
+            faq.Description = "Si tu duda no está aquí, un asesor te responde por WhatsApp antes de que te inscribas.";
+
+            // Botón
+            faq.WhatsAppUrl = "https://wa.me/573204630051";
+
+            faq.WhatsAppText = "Hablar con un asesor";
+
+            // Preguntas y respuestas
+            faq.Items = new List<FaqItem>
+            {
+                new FaqItem
+                {
+                    Question = "¿Cómo sé si aplico al convenio?",
+                    Answer = @"
+                        <p>
+                            No tienes que averiguar nada por tu cuenta. Digita tu documento en 
+                            la <b>consulta en línea</b> y el sistema valida tu afiliación con 
+                            <b>Comfenalco Santander</b>: en segundos te confirma si tienes 
+                            habilitada la tarifa del convenio.
+                        </p>
+                    ",
+                    Open = true
+                },
+
+                new FaqItem
+                {
+                    Question = "¿Cuánto cuesta la membresía con el convenio?",
+                    Answer = @"
+                        <p>
+                            El valor de la membresía es de <b>$63.400, $67.300 o $79.200 al mes</b>, 
+                            según el subsidio asignado al titular del convenio. Este beneficio aplica 
+                            tanto para <b>titulares como para sus beneficiarios</b> que cumplan las 
+                            condiciones del convenio.
+                        </p>
+                    "
+                },
+
+                new FaqItem
+                {
+                    Question = "¿Mis beneficiarios también acceden a la tarifa?",
+                    Answer = @"
+                        <p>
+                            Sí, siempre que estén registrados como beneficiarios ante la caja 
+                            y cumplan las condiciones del convenio. En la consulta selecciona 
+                            <b>Beneficiario</b> e ingresa el documento del titular y el del 
+                            beneficiario. <b>Cada persona firma su propio contrato.</b>
+                        </p>
+                    "
+                },
+
+                new FaqItem
+                {
+                    Question = "Mi documento no aplicó. ¿Qué puedo hacer?",
+                    Answer = @"
+                        <p>
+                            Verifica que el número esté bien digitado y que tu <b>afiliación 
+                            a la caja esté activa.</b> Si todo está correcto y aun así no aplica, 
+                            <b>escríbenos por WhatsApp</b>: un asesor revisa tu caso y te muestra 
+                            las demás opciones y promociones vigentes.
+                        </p>
+                    "
+                },
+
+                new FaqItem
+                {
+                    Question = "¿Puedo entrenar en todas las sedes?",
+                    Answer = @"
+                        <p>
+                            La tarifa del convenio habilita el acceso a las <b>8 sedes 
+                            de Bucaramanga, Floridablanca y Piedecuesta, sin trámites 
+                            ni costos adicionales por cambiar de sede.</b> Ten en cuenta 
+                            que <b>las 2 sedes de Cúcuta no cuentan con este convenio.</b>
+                        </p>
+                    "
+                },
+
+                new FaqItem
+                {
+                    Question = "¿Puedo combinar el convenio con otra promoción?",
+                    Answer = @"
+                        <p>
+                            No. La tarifa del convenio <b>no es acumulable con otras promociones</b>, 
+                            descuentos por referidos, planes corporativos ni campañas vigentes.
+                        </p>
+                    "
+                }
+            };
         }
     }
 }

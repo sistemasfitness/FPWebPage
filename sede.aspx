@@ -2,7 +2,7 @@
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
 <%@ Register Src="~/controls/planes.ascx" TagPrefix="uc1" TagName="planes" %>
-<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
+<%@ Register Src="~/controls/faq.ascx" TagPrefix="uc1" TagName="faq" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -162,8 +162,9 @@
 
     <uc1:planes runat="server" ID="controlplanes" />
 
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
-
+    <!-- Control Preguntas Frecuentes (FAQ) -->
+    <uc1:faq runat="server" ID="faq" />
+    <!-- End Control Preguntas Frecuentes (FAQ) -->
 
     <div>
         <asp:Literal ID="ltMapa" runat="server"></asp:Literal>

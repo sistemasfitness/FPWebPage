@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wompipay.aspx.cs" Inherits="WebPage.wompipay" Async="true" %>
 
 <%@ Register Src="~/controls/mainmenu.ascx" TagPrefix="uc1" TagName="mainmenu" %>
-<%@ Register Src="~/controls/preguntasfrecuentes.ascx" TagPrefix="uc1" TagName="preguntasfrecuentes" %>
+<%@ Register Src="~/controls/faq.ascx" TagPrefix="uc1" TagName="faq" %>
 <%@ Register Src="~/controls/footer.ascx" TagPrefix="uc1" TagName="footer" %>
 
 <!DOCTYPE html>
@@ -239,7 +239,7 @@
                                     <div>
                                         <div class="section-prin-logos-met-pagos">
                                             <p style="text-decoration: underline; margin-bottom: 10px;">
-                                                Recibimos tarjetas debito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
+                                                Recibimos tarjetas débito y crédito, excepto tarjetas virtuales como Nequi, Daviplata, NuBank. No disponible para pagos en efectivo, datafono o transferencia.
                                             </p>
 
                                             <p>Tarjetas</p>
@@ -267,7 +267,7 @@
 
                                                         <img src="https://www.misole.co/wp-content/uploads/2019/12/logo-bancolombia.png" alt="Bancolombia" />
 
-                                                        <img src="https://imagenes.portafolio.co/files/image_1200_600/uploads/2025/05/22/682f89397f3d1.png" alt="Banco Popular" />
+                                                        <img src="https://www.bancopopular.com.co/wps/wcm/connect/bancopopular/18296b56-f4f1-4a18-95d4-c48bb9670ed1/og-banco-popular.png?MOD=AJPERES" alt="Banco Popular" />
 
                                                         <img src="https://cdn.worldvectorlogo.com/logos/logo-banco-de-bogota.svg" alt="Banco de Bogotá" />
 
@@ -275,9 +275,9 @@
 
                                                         <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Citibank.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Citibank" />
 
-                                                        <img src="https://images.seeklogo.com/logo-png/16/1/colpatria-logo-png_seeklogo-168795.png" alt="Colpatria" />
+                                                        <img src="https://static.wikia.nocookie.net/logopedia/images/6/65/Colpatriavertical.png/revision/latest?cb=20210428022124&path-prefix=es" alt="Colpatria" />
 
-                                                        <img src="https://images.seeklogo.com/logo-png/9/1/multibank-panama-logo-png_seeklogo-95907.png" alt="Multibank" />
+                                                        <img src="https://static.wikia.nocookie.net/logopedia/images/b/b2/Multibank.svg/revision/latest?cb=20260313195156&path-prefix=es" alt="Multibank" />
 
                                                         <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Logo_CorpBanca.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="CorpBanca" />
                                                     </div>
@@ -366,9 +366,9 @@
     </div>
     <!-- End container -->
 
-    <!-- Control Preguntas Frecuentes -->
-    <uc1:preguntasfrecuentes runat="server" ID="preguntasfrecuentes" />
-    <!-- End Control Preguntas Frecuentes -->
+    <!-- Control Preguntas Frecuentes (FAQ) -->
+    <uc1:faq runat="server" ID="faq" />
+    <!-- End Control Preguntas Frecuentes (FAQ) -->
 
     <uc1:footer runat="server" ID="footer" />
     <!-- End footer -->
@@ -506,17 +506,8 @@
 
     <style>
 
-        @media (max-width: 991px) {
-	        .parallax-mirror {
-		        display: none !important;
-	        }
-        }
-
         .section-prin-logos-met-pagos {
-             margin-top: 0;
-             background-color: white;
-             padding: 10px;
-             color: black;
+             margin-bottom: 0;
         }
 
         .section-prin-logos-met-pagos p {
@@ -525,6 +516,12 @@
 
         .section-prin-logos.wp {
             gap: 10px;
+        }
+
+        @media (max-width: 991px) {
+	        .parallax-mirror {
+		        display: none !important;
+	        }
         }
 
     </style>

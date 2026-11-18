@@ -193,36 +193,36 @@ namespace WebPage.controls
         {
             switch (planId.ToUpper())
             {
-                //case "MES_A_MES":
+                case "MES_A_MES":
 
-                //    return new Plan
-                //    {
-                //        Nombre = "Mes a Mes",
-                //        Modalidad = "Pago Mes a Mes",
-                //        Tagline = "Empieza y termina cuando quieras.",
+                    return new Plan
+                    {
+                        Nombre = "Mes a Mes",
+                        Modalidad = "Pago Mes a Mes",
+                        Tagline = "Empieza y termina cuando quieras.",
 
-                //        InscProm = "Sin inscripción",
-                //        PrecioAntes = "",
-                //        //LabelPrecio = "",
-                //        Precio = "$165.000",
-                //        Periodo = "/mes",
+                        PrecioAntes = "",
+                        Precio = "$ 165.000",
+                        Periodo = "/mes",
+                        PrecioDespues = "Renovación mes a mes",
 
-                //        Permanencia = "Renovación mes a mes<br />Sin fidelidad",
-                //        NotaFidelidad = "",
+                        InscProm = "Sin inscripción",
+                        Permanencia = "Sin fidelidad",
 
-                //        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
+                        NotaFidelidad = "",
+                        Nota = "No aplica para pagos en efectivo, transferencia ni datáfono.",
 
-                //        EsDestacado = false,
+                        EsDestacado = false,
 
-                //        Beneficios = new List<string>
-                //        {
-                //            "Acceso a todas las sedes de Fitness People.",
-                //            "Clases grupales con instructores certificados.",
-                //            "FP App con planes de entrenamiento y tips de nutrición.",
-                //            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
-                //            "Valoración física inicial."
-                //        }
-                //    };
+                        Beneficios = new List<string>
+                        {
+                            "Acceso a todas las sedes de Fitness People.",
+                            "Clases grupales con instructores certificados.",
+                            "FP App con planes de entrenamiento y tips de nutrición.",
+                            "5 pases de invitado al mes para 5 personas diferentes. Cada persona puede disfrutar de esta cortesía una vez cada 6 meses.",
+                            "Valoración física inicial."
+                        }
+                    };
 
 
                 //case "FLEXIBLE_PRO":
