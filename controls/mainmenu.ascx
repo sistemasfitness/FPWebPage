@@ -12,7 +12,7 @@
             <a href="default#planes">Planes</a>
             <%--<a href="#clases">Clases</a>--%>
             <a href="somos">Nosotros</a>
-            <a href="corporativo">Corporativo</a>
+            <a class="active" href="corporativo">Convenios</a>
         </nav>
 
         <div class="header-actions">

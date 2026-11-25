@@ -338,7 +338,7 @@
     <uc1:footer runat="server" ID="footer" />
 
     <!-- ================= Whatsapp Flotante ================= -->
-    <a href="https://api.whatsapp.com/send/?phone=573107842151&text=Acabo%20de%20ver%20su%20p%C3%A1gina%20y%20quiero%20info%20para%20empezar%20a%20entrenar.&type=phone_number&app_absent=0" class="wa-float" target="_blank" aria-label="Escríbenos por WhatsApp">
+    <a href="https://api.whatsapp.com/send/?phone=573502809286" class="wa-float" target="_blank" aria-label="Escríbenos por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 

@@ -314,6 +314,45 @@
                                     <div class="fpp-cs-precio">
                                         <div class="fpp-cs-plan-nombre">Plan Convenio Comfenalco</div>
 
+                                        <div class="fpp-cs-descripcion">
+                                            <p class="fpp-cs-p">¡Entrena más y disfruta beneficios exclusivos!</p>
+
+                                            <ul class="fpp-benefits">
+                                                <li>Acceso a todas las sedes de Fitness People.</li>
+                                                <li>Clases grupales con instructores certificados.</li>
+                                                <li>FP App con planes de entrenamiento y tips de nutrición.</li>
+                                                <li>Valoración física inicial.</li>
+                                            </ul>
+
+                                            <!-- Inscripción -->
+                                            <div class="fpp-price-sub-title fpp-price-insc-prom">
+                                                Sin inscripción
+                                            </div>
+
+                                            <!-- Permanencia -->
+                                            <div class="fpp-price-sub-title">
+                                                Fidelidad mínima de 6 meses
+                                            </div>
+
+                                            <!-- Notas -->
+                                            <div class="fpp-notas">
+                                                <!-- Nota fidelidad -->
+                                                <div class="fpp-nota-fidelidad">
+                                                    Aplica cobro por retiro anticipado
+                                                </div>
+
+                                                <!-- Nota método de pago -->
+                                                <span class="fpp-nota">
+                                                    No aplica para pagos en efectivo, transferencia ni datáfono.
+                                                </span>
+
+                                                <!-- Nota vigencia -->
+                                                <%--<div class="fpp-nota-vigencia">
+                                                    VIGENCIA: Hasta el 31 de diciembre de 2026.
+                                                </div>--%>
+                                            </div>
+                                        </div>
+
                                         <div class="fpp-cs-desglose">
                                             <div class="fpp-cs-desglose-item">
                                                 <span>Valor del plan</span>
@@ -410,7 +449,7 @@
             </div>
 
             <div class="fpp-chips">
-                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acceso a las 10 sedes</span>
+                <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Acceso a 8 sedes</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Clases grupales</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Valoración inicial con Fisioterapia</span>
                 <span class="fpp-chip"><i class="fa-solid fa-plus"></i> Zona cardiovascular</span>
@@ -429,9 +468,9 @@
             <div class="fpp-section-head fpp-section-head--split">
                 <div>
                     <div class="fpp-kicker">Dónde entrenas</div>
-                    <h2 class="fpp-general-title">Diez sedes <span>habilitadas</span></h2>
+                    <h2 class="fpp-general-title">Ocho sedes <span>habilitadas</span></h2>
                 </div>
-                <p>El convenio aplica en todas nuestras sedes de Bucaramanga, Floridablanca, Piedecuesta y Cúcuta. Entrena en la que quieras, sin costos por traslado.</p>
+                <p>El convenio aplica en nuestras sedes de Bucaramanga, Floridablanca y Piedecuesta. Entrena en la que quieras, sin costos por traslado.</p>
             </div>
 
             <div class="fpp-sedes-mini">
@@ -504,24 +543,6 @@
                     </figure>
                     <div class="t">
                         <small>Piedecuesta</small><b>Parque Central</b>
-                    </div>
-                </div>
-
-                <div class="fpp-sede-mini">
-                    <figure>
-                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/jardin1.jpg" alt=""/>
-                    </figure>
-                    <div class="t">
-                        <small>Cúcuta</small><b>Jardín Plaza</b>
-                    </div>
-                </div>
-
-                <div class="fpp-sede-mini">
-                    <figure>
-                        <img src="https://fitnesspeoplecolombia.com/img/sedes/galeria/ceiba1.jpg" alt=""/>
-                    </figure>
-                    <div class="t">
-                        <small>Cúcuta</small><b>Ceiba II</b>
                     </div>
                 </div>
             </div>
@@ -710,44 +731,44 @@
             /* ====== URLS POR SEDE - CONVENIO ====== */
             var planesPorSede = {
                 "bucaramanga-boulevard": {
-                    categoriaA: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-                    categoriaB: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725",
-                    categoriaC: "https://www.dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-2725"
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-5168",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-5178",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a607b4d4f0-5191"
                 },
                 "bucaramanga-cabecera": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-5177",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-5187",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a707140846-5200"
                 },
                 "bucaramanga-el-prado": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-5175",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-5185",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6d48e5514-5198"
                 },
                 "bucaramanga-provenza": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-5176",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-5186",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6f07c847f-5199"
                 },
                 "bucaramanga-ciudadela": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-5171",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-5181",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a662555598-5194"
                 },
                 "floridablanca-canaveral": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-5169",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-5179",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a623d2bdd3-5192"
                 },
                 "piedecuesta-delacuesta": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-5172",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-5182",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a681570921-5195"
                 },
                 "piedecuesta-parque-central": {
-                    categoriaA: "",
-                    categoriaB: "",
-                    categoriaC: ""
+                    categoriaA: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-5174",
+                    categoriaB: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-5184",
+                    categoriaC: "https://dash.fitmewise.com/admin/users/register/without-redirect/696a6bc17d050-5197"
                 }
             };
 

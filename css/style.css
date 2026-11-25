@@ -4489,7 +4489,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 			transition: width .25s;
 		}
 
-		.nav a:hover {
+		.nav a:hover, .nav .active {
 			color: var(--fp-lime);
 		}
 
@@ -5554,7 +5554,6 @@ body.menu-open {
 	align-items: center;
 	justify-content: space-between;
 	gap: 20px;
-	margin-bottom: 25px;
 }
 
 	.fp-iframe-header .fpp-kicker {
@@ -6131,8 +6130,26 @@ body.menu-open {
 .fpp-cs-plan-nombre {
 	font-size: 20px;
 	font-weight: 800;
-	margin-bottom: 22px;
+	margin-bottom: 12px;
 	color: var(--fp-lime);
+}
+
+.fpp-cs-descripcion .fpp-cs-p {
+	font-weight: 500;
+	color: var(--fp-white);
+	margin-bottom: 10px;
+}
+
+.fpp-cs-descripcion .fpp-benefits {
+	padding-left: 0;
+}
+
+.fpp-cs-descripcion .fpp-price-insc-prom {
+	margin-top: 0;
+}
+
+.fpp-cs-descripcion .fpp-notas {
+	margin-top: 10px;
 }
 
 /* Desglose de precios */
@@ -6140,7 +6157,7 @@ body.menu-open {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	margin-bottom: 24px;
+	margin: 24px 0;
 }
 
 .fpp-cs-desglose-item,
@@ -6546,6 +6563,14 @@ body.menu-open {
 		gap: 34px;
 	}
 
+	.fpp-cs-form, .fpp-cs-res-grid .fpp-cs-persona b {
+		font-size: 26px;
+	}
+
+	.fpp-cs-form, .fpp-cs-res-grid .fpp-cs-plan-nombre {
+		font-size: 18px;
+	}
+
 	.fpp-faq-grid {
 		grid-template-columns: 1fr;
 		gap: 40px;
@@ -6576,6 +6601,10 @@ body.menu-open {
 }
 
 @media (max-width: 400px) {
+	.fpp-cs-card {
+		padding: 23px 18px;
+	}
+
 	.fpp-radio-list {
 		gap: 5px;
 	}
@@ -6586,19 +6615,23 @@ body.menu-open {
 	}
 
 	.fpp-consulta .fpp-kicker {
-		font-size: 11px;
+		font-size: 10px;
 	}
 
 	.fpp-cs-persona b {
-		font-size: 24px;
+		font-size: 22px !important;
 	}
 
 	.fpp-cs-desglose-total strong {
 		font-size: 22px;
 	}
 
-	.fpp-cs-plan-nombre {
-		font-size: 17px;
+	.fpp-cs-p {
+		font-size: 13px !important;
+	}
+
+	.fpp-benefits li {
+		gap: 5px;
 	}
 
 	.fpp-sede-mini .t b {
@@ -7066,10 +7099,6 @@ body.menu-open {
 
 .fpp-head-active {
 	margin-bottom: 0;
-}
-
-.fp-iframe-container {
-	margin-top: 20px;
 }
 
 .fp-iframe-active {

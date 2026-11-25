@@ -44,7 +44,7 @@
                                                 <%# Eval("NombreCiudadSede") %><br />
                                                 <%# Eval("TelefonoSede") %>
                                             </p>
-                                            <a href="sedes?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
+                                            <a href="sede?id=<%# Eval("idSede") %>" class="btn_1 add_bottom_15">VER SEDE</a>
                                         </div>
                                     </div>
                                 </div>
