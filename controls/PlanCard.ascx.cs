@@ -293,12 +293,12 @@ namespace WebPage.controls
                     {
                         Nombre = "People Active",
                         Modalidad = "Débito automático",
-                        Tagline = "...",
+                        Tagline = "Entrena con flexibilidad y mantén tu plan activo.",
 
                         PrecioAntes = "$ 165.000",
-                        Precio = "$ 89.900",
+                        Precio = "$ 79.000",
                         Periodo = "/mes",
-                        PrecioDespues = "Pagas por todo un año el mismo valor",
+                        PrecioDespues = "Durante 12 meses. Si pausas o cancelas, vuelve a $165.000/mes.",
 
                         InscProm = "Sin inscripción",
                         Permanencia = "Sin fidelidad",

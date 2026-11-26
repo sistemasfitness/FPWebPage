@@ -31,10 +31,6 @@
 
     <!-- Precio actual -->
     <div class="fpp-price fpp-price-now">
-        <%--<span id="spanLabelPrecio" runat="server" class="fpp-label">
-            <asp:Literal ID="litLabelPrecio" runat="server"></asp:Literal>
-        </span>--%>
-
         <span class="fpp-amount">
             <asp:Literal ID="litPrecio" runat="server"></asp:Literal>
         </span>
